@@ -2,50 +2,45 @@
 <html>
 
 <head>
-
 <title>Olive Defence Entrance Academy</title>
 
 <style>
 
 body{
-font-family: Arial, sans-serif;
+font-family: Arial;
 text-align:center;
-background:#f4f6f8;
-margin:0;
-}
-
-.logo{
-width:320px;
-margin-top:25px;
+background:#f5f5f5;
 }
 
 h1{
-margin-top:10px;
+margin-top:30px;
 }
 
-.subjects{
+.container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+width:80%;
+margin:auto;
 margin-top:40px;
 }
 
-.subject{
-display:inline-block;
+.box{
 background:white;
-padding:18px;
-margin:12px;
-width:200px;
+padding:20px;
 border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-font-size:18px;
-}
-
-.subject a{
-text-decoration:none;
-color:#222;
+box-shadow:0px 3px 10px rgba(0,0,0,0.1);
+font-size:20px;
 font-weight:bold;
 }
 
-.subject:hover{
-background:#f0f4ff;
+a{
+text-decoration:none;
+color:black;
+}
+
+.box:hover{
+background:#e8e8e8;
 }
 
 </style>
@@ -54,49 +49,31 @@ background:#f0f4ff;
 
 <body>
 
-<img src="olive-logo.png" class="logo">
+<img src="Olive-Logo.png" width="120">
 
 <h1>Olive Defence Entrance Academy</h1>
 
 <h2>Defence Exam Preparation Portal</h2>
 
-<div class="subjects">
+<div class="container">
 
-<div class="subject">
-<a href="english.html">English</a>
-</div>
+<a href="English.html"><div class="box">English</div></a>
 
-<div class="subject">
-<a href="mathematics.html">Mathematics</a>
-</div>
+<a href="Mathematics.html"><div class="box">Mathematics</div></a>
 
-<div class="subject">
-<a href="physics.html">Physics</a>
-</div>
+<a href="Physics.html"><div class="box">Physics</div></a>
 
-<div class="subject">
-<a href="chemistry.html">Chemistry</a>
-</div>
+<a href="Chemistry.html"><div class="box">Chemistry</div></a>
 
-<div class="subject">
-<a href="biology.html">Biology</a>
-</div>
+<a href="Biology.html"><div class="box">Biology</div></a>
 
-<div class="subject">
-<a href="polity.html">Polity</a>
-</div>
+<a href="Polity.html"><div class="box">Polity</div></a>
 
-<div class="subject">
-<a href="history-geography.html">History & Geography</a>
-</div>
+<a href="HistoryGeography.html"><div class="box">History & Geography</div></a>
 
-<div class="subject">
-<a href="current-affairs.html">Current Affairs</a>
-</div>
+<a href="CurrentAffairs.html"><div class="box">Current Affairs</div></a>
 
-<div class="subject">
-<a href="reasoning.html">Logical Reasoning (AFCAT)</a>
-</div>
+<a href="Reasoning.html"><div class="box">Logical Reasoning (AFCAT)</div></a>
 
 </div>
 
