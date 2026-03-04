@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C01 · Matter & Its Properties | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F5F0E8;
+  --bg2:       #EDE6D8;
+  --bg3:       #E4DBC8;
+  --white:     #FFFFFF;
+  --ink:       #2C2416;
+  --ink2:      #3D3420;
+  --muted:     #7A6E58;
+  --dim:       #A89C84;
+  --border:    #D8CEBC;
+  --teal:      #1A6B6B;
+  --tealLt:    #2A8B8B;
+  --tealPale:  #E6F4F4;
+  --amber:     #B06010;
+  --amberLt:   #D4780A;
+  --amberPale: #FEF3E2;
+  --green:     #2E6B3A;
+  --greenLt:   #3D8B4A;
+  --greenPale: #EAF4EC;
+  --red:       #8B1A1A;
+  --redLt:     #B02020;
+  --redPale:   #FDEAEA;
+  --blue:      #1A4A7A;
+  --bluePale:  #EAF0FA;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(44,36,22,.10);
+  --shadow-md: 0 4px 20px rgba(44,36,22,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+/* ── LAYOUT ───────────────────────────────────────────────────── */
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HEADER ───────────────────────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:32px 24px 28px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.06) 0%, transparent 60%);
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.6);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:20px;height:2px;background:rgba(255,255,255,.4)}
+.hero-title{
+  font-family:'Lora',serif;font-size:clamp(26px,6vw,36px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.72);margin-bottom:18px;line-height:1.6}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:4px 12px;border-radius:20px;text-transform:uppercase;
+}
+.chip-w{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+.chip-y{background:rgba(255,216,122,.2);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.15);color:#7ADEA0}
+
+/* ── NAV TABS ─────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);
+  border-bottom:2px solid var(--border);
+  margin:0 -16px;
+  display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(44,36,22,.08);
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(26,107,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;cursor:pointer;
+  border-left:4px solid transparent;transition:all .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px 18px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT ELEMENTS ─────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(176,96,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 18px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{
+  content:'→';position:absolute;left:0;
+  color:var(--amber);font-weight:700;font-size:13px;
+}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.7}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(139,26,26,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:4px 0 4px 20px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 14px;text-align:left;font-size:13px;
+  font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 14px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+
+.analogy-box{
+  background:var(--bluePale);border-left:4px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;
+}
+.analogy-box .an-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:6px;
+}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{
+  font-family:'Lora',serif;font-size:22px;
+  font-weight:700;color:var(--teal);line-height:1;
+}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{
+  font-size:10px;font-weight:800;padding:2px 10px;
+  border-radius:20px;letter-spacing:.5px;text-transform:uppercase;
+}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{
+  font-size:17px;line-height:1.8;color:var(--ink);
+  margin-bottom:14px;font-weight:600;
+}
+.q-text u{text-decoration-color:var(--teal)}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){
+  border-color:var(--teal);background:var(--tealPale);
+}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--amber);margin-bottom:6px;
+}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(26,107,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+/* ── BUTTONS ──────────────────────────────────────────────────── */
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(26,107,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── RESULTS ──────────────────────────────────────────────────── */
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{
+  font-family:'Lora',serif;font-size:72px;
+  font-weight:700;color:#FFD87A;line-height:1;
+}
+.res-grade{
+  font-family:'Lora',serif;font-size:24px;
+  color:#fff;margin:6px 0 4px;font-style:italic;
+}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;
+  letter-spacing:.5px;
+}
+
+/* ── MOBILE REFINEMENTS ───────────────────────────────────────── */
+@media(max-width:400px){
+  .hero{padding:24px 18px 22px}
+  .hero-title{font-size:24px}
+  .tab{padding:12px 14px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Chemistry · Module C01</div>
+  <h1 class="hero-title">Matter &<br><span>Its Properties</span></h1>
+  <p class="hero-sub">Everything around us — air, water, food, your phone — is made of matter. This module explains what matter is, how it behaves, and the concepts that show up in CDS, NDA & AFCAT every year.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner Friendly</span>
+    <span class="chip chip-y">2.5 Hours</span>
+    <span class="chip chip-g">25 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz (25)</button>
+</div>
+
+<!-- ══════════ THEORY ══════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>In this module you'll learn: <strong>what matter is</strong>, its <strong>states and changes</strong>, the difference between <strong>elements, compounds and mixtures</strong>, and important <strong>separation techniques</strong>. All of these appear directly in CDS/NDA/AFCAT questions.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-label">Section 1 — What is Matter?</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4F4">🧪</div>
+      <span class="c-title">Definition of Matter</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Matter</strong> is anything that has <strong>mass</strong> and occupies <strong>space (volume)</strong>. If you can touch it, smell it, or weigh it — it's matter.</p>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <p>Water ✓ · Air ✓ · Iron ✓ · Smoke ✓<br>
+        Light ✗ · Sound ✗ · Heat ✗ · Electricity ✗<br><em>(These are forms of energy — NOT matter)</em></p>
+      </div>
+      <div class="analogy-box">
+        <div class="an-label">Think of it this way</div>
+        <p>Imagine trying to put something in a bag. If it fills the bag and weighs something — it's matter. You can't bag light or sound — so they're not matter.</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>Heat, light, sound, electricity and shadow are <strong>NOT matter</strong>. This is a very common trick question in CDS/AFCAT.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-label">Section 2 — States of Matter</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">💧</div>
+      <span class="c-title">Three States of Matter</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Matter exists in <strong>three main states</strong>: solid, liquid and gas. The difference is in how tightly the particles (atoms/molecules) are packed and how freely they move.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Property</th><th>Solid</th><th>Liquid</th><th>Gas</th></tr>
+          <tr><td>Shape</td><td><b>Fixed</b></td><td>No fixed shape</td><td>No fixed shape</td></tr>
+          <tr><td>Volume</td><td><b>Fixed</b></td><td><b>Fixed</b></td><td>No fixed volume</td></tr>
+          <tr><td>Particle arrangement</td><td>Very tightly packed</td><td>Loosely packed</td><td>Very far apart</td></tr>
+          <tr><td>Particle movement</td><td>Only vibrate</td><td>Slide past each other</td><td>Move freely</td></tr>
+          <tr><td>Compressibility</td><td>Not compressible</td><td>Barely compressible</td><td><b>Highly compressible</b></td></tr>
+          <tr><td>Example</td><td>Ice, iron, wood</td><td>Water, oil, mercury</td><td>Steam, oxygen, CO₂</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">4th State — Plasma</div>
+        <ul>
+          <li>Super-heated, ionised gas — particles are charged</li>
+          <li>Found in the Sun, stars, lightning, neon signs, fluorescent lights</li>
+          <li>Most abundant state of matter in the universe</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p><strong>Mercury</strong> is a metal but it is a <strong>liquid at room temperature</strong>. Bromine is the only non-metal liquid at room temperature. Both are frequent trick answers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FEF3E2">🔥</div>
+      <span class="c-title">Changes of State</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Matter changes from one state to another when <strong>heat is added or removed</strong>. Each change has a specific name:</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Change</th><th>Process Name</th><th>Heat</th></tr>
+          <tr><td>Solid → Liquid</td><td><b>Melting</b> (Fusion)</td><td>Added</td></tr>
+          <tr><td>Liquid → Solid</td><td><b>Freezing</b> (Solidification)</td><td>Removed</td></tr>
+          <tr><td>Liquid → Gas</td><td><b>Vaporisation / Evaporation</b></td><td>Added</td></tr>
+          <tr><td>Gas → Liquid</td><td><b>Condensation</b></td><td>Removed</td></tr>
+          <tr><td>Solid → Gas</td><td><b>Sublimation</b></td><td>Added</td></tr>
+          <tr><td>Gas → Solid</td><td><b>Deposition</b></td><td>Removed</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Sublimation Examples — Very Frequently Asked</div>
+        <ul>
+          <li><strong>Dry ice</strong> (solid CO₂) → directly becomes gas</li>
+          <li><strong>Naphthalene</strong> (camphor balls) → directly becomes vapour</li>
+          <li><strong>Iodine</strong> → sublimates on gentle heating</li>
+          <li><strong>Ammonium chloride (NH₄Cl)</strong> → sublimates</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Real Life Examples</div>
+        <p>Ice melting → melting. Water boiling → vaporisation. Dew forming on grass → condensation. Snow forming from water vapour in clouds → deposition.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-label">Section 3 — Physical vs Chemical Change</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF4EC">⚗️</div>
+      <span class="c-title">Physical Change vs Chemical Change</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This is one of the <strong>most tested topics</strong> in General Science. The key question is: <em>does the substance become something new?</em></p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Physical Change</th><th>Chemical Change</th></tr>
+          <tr><td>New substance formed?</td><td><b>No</b></td><td><b>Yes</b></td></tr>
+          <tr><td>Reversible?</td><td>Usually yes</td><td>Usually no</td></tr>
+          <tr><td>Chemical composition</td><td>Unchanged</td><td>Changed</td></tr>
+          <tr><td>Energy change</td><td>Small</td><td>Large</td></tr>
+          <tr><td>Examples</td><td>Melting ice, tearing paper, dissolving sugar</td><td>Burning wood, rusting iron, cooking egg</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Tricky Examples — These Confuse Students</div>
+        <ul>
+          <li><strong>Dissolving sugar in water</strong> → Physical (sugar can be recovered)</li>
+          <li><strong>Dissolving salt in water</strong> → Physical</li>
+          <li><strong>Burning of candle</strong> → BOTH (wax melts = physical; wax burns = chemical)</li>
+          <li><strong>Rusting of iron</strong> → Chemical (iron becomes iron oxide — new substance)</li>
+          <li><strong>Digestion of food</strong> → Chemical</li>
+          <li><strong>Cutting of wood</strong> → Physical</li>
+          <li><strong>Burning of wood</strong> → Chemical</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec-label">Section 4 — Elements, Compounds & Mixtures</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4F4">🔬</div>
+      <span class="c-title">Pure Substances — Elements & Compounds</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>All matter is either a <strong>pure substance</strong> or a <strong>mixture</strong>. Pure substances have a fixed composition throughout.</p>
+      <div class="analogy-box">
+        <div class="an-label">Simple Analogy</div>
+        <p>Think of <strong>elements</strong> as single Lego colours. <strong>Compounds</strong> are specific Lego structures built from those colours in fixed ratios. <strong>Mixtures</strong> are random piles of Lego — any colour, any amount.</p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td><b>Element</b></td><td>Made of ONE type of atom only. Cannot be broken down further by chemical means.</td><td>Gold (Au), Oxygen (O), Iron (Fe), Carbon (C)</td></tr>
+          <tr><td><b>Compound</b></td><td>Two or more elements combined chemically in a fixed ratio. Has new properties different from its elements.</td><td>Water (H₂O), Salt (NaCl), CO₂, Rust (Fe₂O₃)</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Facts About Compounds</div>
+        <ul>
+          <li>Properties are completely <strong>different</strong> from the elements that form them</li>
+          <li>Hydrogen + Oxygen = Water (H is flammable, O supports burning, but water extinguishes fire!)</li>
+          <li>Sodium (Na) is a reactive metal + Chlorine (Cl₂) is a poisonous gas = Table salt (NaCl) — safe to eat!</li>
+          <li>Separated only by <strong>chemical methods</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FEF3E2">🥣</div>
+      <span class="c-title">Mixtures — Homogeneous & Heterogeneous</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A <strong>mixture</strong> contains two or more substances mixed together but <em>not chemically combined</em>. Each substance keeps its own properties.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Homogeneous Mixture</th><th>Heterogeneous Mixture</th></tr>
+          <tr><td>Appearance</td><td>Same throughout (uniform)</td><td>Different in different parts</td></tr>
+          <tr><td>Can you see the parts?</td><td>No</td><td>Yes (sometimes)</td></tr>
+          <tr><td>Also called</td><td><b>Solution</b></td><td>Suspension / Colloid</td></tr>
+          <tr><td>Examples</td><td>Salt water, air, alloys, vinegar</td><td>Sand + water, salad, granite, smoke</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Compound vs Mixture — The Key Differences</div>
+        <ul>
+          <li>Compound: <strong>fixed ratio</strong> of elements · Mixture: <strong>any ratio</strong></li>
+          <li>Compound: <strong>new properties</strong> · Mixture: components <strong>keep their own properties</strong></li>
+          <li>Compound: separated by <strong>chemical methods</strong> · Mixture: separated by <strong>physical methods</strong></li>
+          <li>Air is a <strong>mixture</strong> (not a compound) — its composition varies slightly</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Alloys</div>
+        <p>Alloys (brass, bronze, steel) are <strong>mixtures</strong> — NOT compounds, even though they look like metals. This is very commonly asked. Brass = copper + zinc. Bronze = copper + tin. Steel = iron + carbon.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="sec-label">Section 5 — Separation Techniques</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF4EC">🔧</div>
+      <span class="c-title">Methods of Separating Mixtures</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Since mixture components keep their individual properties, we can use those properties to separate them. Each method is based on a <strong>specific physical property</strong>.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Method</th><th>Based On</th><th>Used For</th><th>Example</th></tr>
+          <tr><td><b>Filtration</b></td><td>Particle size</td><td>Insoluble solid from liquid</td><td>Sand from water</td></tr>
+          <tr><td><b>Evaporation</b></td><td>Volatility</td><td>Dissolved solid from solution</td><td>Salt from seawater</td></tr>
+          <tr><td><b>Distillation</b></td><td>Boiling point</td><td>Liquids with different boiling points</td><td>Water from alcohol</td></tr>
+          <tr><td><b>Fractional Distillation</b></td><td>Boiling point differences</td><td>Liquids with close boiling points</td><td>Crude oil refining, air separation</td></tr>
+          <tr><td><b>Chromatography</b></td><td>Adsorption / solubility</td><td>Dyes, pigments, inks</td><td>Separating ink colours</td></tr>
+          <tr><td><b>Centrifugation</b></td><td>Density / particle size</td><td>Cream from milk, blood components</td><td>Dairy, medical labs</td></tr>
+          <tr><td><b>Magnetic separation</b></td><td>Magnetic property</td><td>Magnetic from non-magnetic</td><td>Iron from sulphur</td></tr>
+          <tr><td><b>Sublimation</b></td><td>Subliming property</td><td>Sublimable solid from non-sublimable</td><td>Camphor from salt</td></tr>
+          <tr><td><b>Crystallisation</b></td><td>Solubility</td><td>Pure solid from impure solution</td><td>Sugar crystals, alum</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Most Asked in Exams</div>
+        <ul>
+          <li><strong>Fractional distillation</strong> is used to separate crude petroleum into petrol, diesel, kerosene, LPG</li>
+          <li><strong>Fractional distillation of liquid air</strong> separates nitrogen (bp −196°C) and oxygen (bp −183°C)</li>
+          <li><strong>Chromatography</strong> — used to detect doping in athletes, separate blood samples, test food colours</li>
+          <li><strong>Centrifugation</strong> — separates cream from milk, RBC from plasma, butter from curd</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="sec-label">Section 6 — Solutions, Suspensions & Colloids</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🌊</div>
+      <span class="c-title">Solution, Suspension & Colloid</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>These are <strong>three types of mixtures</strong>, classified by the size of particles dispersed in them.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Solution</th><th>Colloid</th><th>Suspension</th></tr>
+          <tr><td>Particle size</td><td>&lt;1 nm</td><td>1–100 nm</td><td>&gt;100 nm</td></tr>
+          <tr><td>Appearance</td><td>Clear/transparent</td><td>Cloudy, translucent</td><td>Opaque, settles</td></tr>
+          <tr><td>Passes through filter?</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+          <tr><td>Settles on standing?</td><td>No</td><td>No</td><td><b>Yes</b></td></tr>
+          <tr><td>Tyndall Effect?</td><td>No</td><td><b>Yes</b></td><td>Yes</td></tr>
+          <tr><td>Examples</td><td>Salt water, air, brass</td><td>Milk, fog, blood, jelly</td><td>Chalk in water, muddy water</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Tyndall Effect — Important Concept</div>
+        <ul>
+          <li>The <strong>scattering of light</strong> by particles in a colloid is called the Tyndall Effect</li>
+          <li>Example: When sunlight enters a dusty room through a small hole, you see the beam — that's Tyndall Effect</li>
+          <li>Blue colour of sky = Tyndall Effect (scattering by air molecules)</li>
+          <li>True solutions do <strong>NOT</strong> show Tyndall Effect</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Is Milk a Solution?</div>
+        <p><strong>Milk is a colloid</strong> (emulsion — fat droplets in water), NOT a solution. Blood is also a colloid. Fog and clouds are colloids (aerosol). This distinction is frequently tested.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="sec-label">Section 7 — Properties of Matter</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FEF3E2">📏</div>
+      <span class="c-title">Physical & Chemical Properties</span>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Every substance has properties that help us identify and use it. They fall into two groups:</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Physical Property</th><th>Chemical Property</th></tr>
+          <tr><td>Observed/measured <b>without</b> changing the substance</td><td>Observed only when substance <b>undergoes a reaction</b></td></tr>
+          <tr><td>Colour, smell, density, melting point, boiling point, hardness, solubility, conductivity</td><td>Flammability, reactivity with acid, rusting, ability to oxidise/reduce</td></tr>
+          <tr><td>No new substance formed</td><td>New substance formed</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Frequently Tested Physical Properties</div>
+        <ul>
+          <li><strong>Density</strong> = Mass ÷ Volume. Water density = 1 g/cm³. Ice floats because ice density &lt; water density</li>
+          <li><strong>Malleability</strong> — can be beaten into sheets (metals like gold, silver, copper)</li>
+          <li><strong>Ductility</strong> — can be drawn into wires (gold is most ductile metal)</li>
+          <li><strong>Conductivity</strong> — Silver is best conductor of heat AND electricity</li>
+          <li><strong>Hardest natural substance</strong> = Diamond (form of carbon)</li>
+          <li><strong>Softest natural substance</strong> = Talc</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════ QUICK REFERENCE ══════════ -->
+<div id="quickref" class="pane">
+
+  <div class="intro-box">
+    <p>Use this page for <strong>last-minute revision</strong> before your exam. All the high-yield facts from this module, organised for quick scanning.</p>
+  </div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Matter — Basics</div>
+      <ul>
+        <li>Matter = has <b>mass + volume</b></li>
+        <li>Light, heat, sound = <em>NOT matter</em></li>
+        <li>4 states: solid, liquid, gas, <b>plasma</b></li>
+        <li>Plasma = most abundant state in universe</li>
+        <li>Only <b>gases</b> are highly compressible</li>
+        <li><b>Mercury</b> = only liquid metal at room temp</li>
+        <li><b>Bromine</b> = only liquid non-metal at room temp</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Changes of State</div>
+      <ul>
+        <li>Solid→Liquid = <b>Melting</b></li>
+        <li>Liquid→Solid = <b>Freezing</b></li>
+        <li>Liquid→Gas = <b>Vaporisation</b></li>
+        <li>Gas→Liquid = <b>Condensation</b></li>
+        <li>Solid→Gas = <b>Sublimation</b></li>
+        <li>Sublimes: <em>dry ice, camphor, iodine, NH₄Cl</em></li>
+        <li>Latent heat = heat absorbed/released during change</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Physical vs Chemical Change</div>
+      <ul>
+        <li>Physical = <b>no new substance</b> formed</li>
+        <li>Chemical = <b>new substance</b> formed</li>
+        <li>Dissolving sugar = <em>Physical</em></li>
+        <li>Rusting = <em>Chemical</em></li>
+        <li>Burning candle = <em>Both</em></li>
+        <li>Digestion = <em>Chemical</em></li>
+        <li>Cutting wood = Physical · Burning wood = Chemical</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Elements, Compounds & Mixtures</div>
+      <ul>
+        <li>Element = one type of atom only</li>
+        <li>Compound = fixed ratio, new properties</li>
+        <li>Mixture = any ratio, own properties kept</li>
+        <li><b>Air = mixture</b> (not compound)</li>
+        <li>Alloys = <em>mixtures</em> (brass, bronze, steel)</li>
+        <li>Brass = Cu + Zn · Bronze = Cu + Sn</li>
+        <li>Steel = Fe + C (0.2–2%)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Separation Methods</div>
+      <ul>
+        <li>Filtration — particle size (sand/water)</li>
+        <li>Distillation — boiling point (water/alcohol)</li>
+        <li>Fractional distillation — <em>crude oil, liquid air</em></li>
+        <li>Chromatography — dyes, pigments, doping tests</li>
+        <li>Centrifugation — cream from milk, blood</li>
+        <li>Sublimation — camphor from salt</li>
+        <li>Magnetic separation — iron from sulphur</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Solution / Colloid / Suspension</div>
+      <ul>
+        <li>Solution — &lt;1nm, clear, <b>no Tyndall</b></li>
+        <li>Colloid — 1–100nm, cloudy, <b>Tyndall yes</b></li>
+        <li>Suspension — &gt;100nm, settles down</li>
+        <li><b>Milk = colloid</b> (not solution)</li>
+        <li><b>Blood = colloid</b></li>
+        <li>Sky is blue → Tyndall Effect</li>
+        <li>Fog, clouds, jelly = colloids</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Important Physical Properties</div>
+      <ul>
+        <li>Hardest natural substance = <em>Diamond</em></li>
+        <li>Softest mineral = <em>Talc</em></li>
+        <li>Best conductor of electricity = <em>Silver</em></li>
+        <li>Most malleable/ductile metal = <em>Gold</em></li>
+        <li>Ice floats → density of ice &lt; water</li>
+        <li>Water density = 1 g/cm³ at 4°C</li>
+        <li>Density = Mass ÷ Volume</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div><!-- /quickref -->
+
+<!-- ══════════ QUIZ ══════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">25</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 25 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit & See Results</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset</button>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">
+  Olive Defence Entrance Academy &nbsp;·&nbsp; General Science C01 &nbsp;·&nbsp; CDS · NDA · AFCAT
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ── QUESTIONS ────────────────────────────────────────────────────────────────
+const QS = [
+
+// EASY (10 questions)
+{d:'EASY',e:'CDS 2022',
+q:'Which of the following is NOT matter?',
+opts:['Air','Water vapour','Light','Smoke'],ans:2,
+rule:'Matter = mass + volume',
+exp:'Light is a form of energy — it has no mass and does not occupy space, so it is NOT matter. Air, water vapour, and smoke all have mass and occupy space.'},
+
+{d:'EASY',e:'NDA 2021',
+q:'Which state of matter is highly compressible?',
+opts:['Solid','Liquid','Gas','Plasma'],ans:2,
+rule:'Gases have widely spaced particles',
+exp:'Gases are highly compressible because their particles are very far apart with lots of empty space between them. Solids and liquids cannot be significantly compressed.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'The direct conversion of a solid into gas without passing through the liquid state is called:',
+opts:['Evaporation','Condensation','Sublimation','Distillation'],ans:2,
+rule:'Sublimation = Solid → Gas directly',
+exp:'Sublimation is the process by which a solid converts directly into gas without becoming liquid first. Examples: dry ice (CO₂), camphor, iodine, naphthalene.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'Which of the following is an example of a chemical change?',
+opts:['Melting of ice','Dissolving sugar in water','Rusting of iron','Cutting of paper'],ans:2,
+rule:'Chemical change = new substance formed',
+exp:'Rusting of iron is a chemical change because a new substance (iron oxide / rust) is formed. The other options — melting ice, dissolving sugar, cutting paper — do not form new substances.'},
+
+{d:'EASY',e:'NDA 2022',
+q:'Air is an example of:',
+opts:['Element','Compound','Homogeneous mixture','Heterogeneous mixture'],ans:2,
+rule:'Air = mixture of gases in variable proportion',
+exp:'Air is a homogeneous mixture of gases (nitrogen ~78%, oxygen ~21%, argon, CO₂, etc.). It is NOT a compound because its composition varies and each gas retains its own properties.'},
+
+{d:'EASY',e:'AFCAT 2021',
+q:'Which metal is liquid at room temperature?',
+opts:['Iron','Aluminium','Mercury','Copper'],ans:2,
+rule:'Mercury — only liquid metal at room temp',
+exp:'Mercury (Hg) is the only metal that exists as a liquid at room temperature. All other common metals are solids. Bromine is the only non-metal that is liquid at room temperature.'},
+
+{d:'EASY',e:'CDS 2021',
+q:'The process of separating cream from milk is based on:',
+opts:['Filtration','Centrifugation','Distillation','Evaporation'],ans:1,
+rule:'Centrifugation separates by density difference',
+exp:'Centrifugation uses high-speed rotation to separate components of different densities. Cream (lower density fat) separates from milk (higher density) this way. This is also used to separate blood components.'},
+
+{d:'EASY',e:'NDA 2020',
+q:'What is the hardest naturally occurring substance?',
+opts:['Gold','Quartz','Diamond','Talc'],ans:2,
+rule:'Diamond = hardest natural substance (carbon)',
+exp:'Diamond is the hardest naturally occurring substance. It is a form of pure carbon where atoms are arranged in a very strong crystal structure. Talc is the softest mineral, used in talcum powder.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'Brass is an alloy of:',
+opts:['Copper and tin','Copper and zinc','Iron and carbon','Aluminium and copper'],ans:1,
+rule:'Brass = Cu + Zn (alloys are mixtures)',
+exp:'Brass is an alloy (mixture) of copper and zinc. Bronze is copper + tin. Steel is iron + carbon. Remember: alloys are mixtures, NOT compounds — this is a very common exam trap.'},
+
+{d:'EASY',e:'CDS 2020',
+q:'The scattering of light by colloidal particles is known as:',
+opts:['Reflection','Diffraction','Tyndall Effect','Photoelectric effect'],ans:2,
+rule:'Tyndall Effect = light scattering in colloids',
+exp:'The Tyndall Effect is the scattering of light by particles in a colloid. When you see a beam of light in a dusty room or foggy headlights, that is the Tyndall Effect. True solutions do NOT show this effect.'},
+
+// MEDIUM (10 questions)
+{d:'MEDIUM',e:'CDS 2022',
+q:'Which of the following is a homogeneous mixture?',
+opts:['Muddy water','Sand and sugar','Salt solution','Granite rock'],ans:2,
+rule:'Homogeneous mixture = uniform composition throughout',
+exp:'Salt solution (saltwater) has uniform composition throughout — you cannot distinguish the salt from the water visually. Muddy water and granite are heterogeneous. Sand and sugar is also heterogeneous (you can see both components).'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'The boiling point of liquid nitrogen is −196°C and liquid oxygen is −183°C. Which method is used to separate them from liquid air?',
+opts:['Simple distillation','Filtration','Fractional distillation','Chromatography'],ans:2,
+rule:'Fractional distillation separates liquids with close boiling points',
+exp:'Fractional distillation is used when two liquids have different but close boiling points. Liquid air is separated this way — nitrogen (−196°C) evaporates first, then oxygen (−183°C). Simple distillation is used when boiling points differ greatly.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'A student dissolves copper sulphate in water and then adds a piece of iron. The iron turns blue-green and copper deposits on it. This is an example of:',
+opts:['Physical change only','Chemical change only','Both physical and chemical change','Neither physical nor chemical change'],ans:1,
+rule:'New substances formed = chemical change',
+exp:'This is a chemical change because new substances are formed (iron sulphate in solution + copper metal deposited). Iron displaces copper from copper sulphate — a displacement reaction. New substances with new properties are formed.'},
+
+{d:'MEDIUM',e:'CDS 2021',
+q:'Which of the following CANNOT be separated by physical methods?',
+opts:['Air','Sea water','Steel','Water (H₂O)'],ans:3,
+rule:'Compounds separated only by chemical methods',
+exp:'Water (H₂O) is a compound — its elements (hydrogen and oxygen) are chemically bonded in a fixed ratio. It can only be separated by chemical methods like electrolysis. Air, seawater, and steel are all mixtures that can be separated by physical methods.'},
+
+{d:'MEDIUM',e:'NDA 2021',
+q:'Which of the following is a colloid?',
+opts:['Salt water','Sugar solution','Milk','Muddy river water'],ans:2,
+rule:'Milk = emulsion (colloid), not a solution',
+exp:'Milk is a colloid — specifically an emulsion — where fat droplets (1–100 nm) are dispersed in water. Salt water and sugar solution are true solutions (particles < 1 nm). Muddy river water is a suspension (particles > 100 nm that settle).'},
+
+{d:'MEDIUM',e:'AFCAT 2021',
+q:'The burning of a candle is considered:',
+opts:['Only a physical change','Only a chemical change','Both physical and chemical change','Neither change'],ans:2,
+rule:'Candle burning = both physical (wax melts) + chemical (wax burns)',
+exp:'Burning a candle involves BOTH types of change: (1) Physical change — solid wax melts to liquid wax (reversible, no new substance). (2) Chemical change — wax burns with oxygen to form CO₂ and water vapour (new substances formed, irreversible).'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Steel is an alloy. Which of the following best describes it?',
+opts:['A compound of iron and carbon','A mixture of iron and carbon','A pure element','An oxide of iron'],ans:1,
+rule:'Alloys = mixtures (not compounds)',
+exp:'Steel is a mixture (alloy) of iron and carbon. It is NOT a compound because: (1) its composition is not fixed, (2) it is made by mixing, (3) it can be separated by physical methods. Alloys retain metallic properties of their components.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Which of the following properties of gold makes it useful for making jewellery?',
+opts:['High melting point','Malleability and ductility','High density','Magnetic property'],ans:1,
+rule:'Malleability = beaten into shapes; Ductility = drawn into wires',
+exp:'Gold is highly malleable (can be beaten into thin sheets) and ductile (can be drawn into thin wires), making it ideal for jewellery. Gold is also the most malleable and ductile of all metals. It is also non-reactive (does not tarnish).'},
+
+{d:'MEDIUM',e:'AFCAT 2020',
+q:'During the fractional distillation of crude petroleum, which fraction is collected at the LOWEST temperature?',
+opts:['Diesel','Kerosene','Petrol (gasoline)','Lubricating oil'],ans:2,
+rule:'Lowest boiling point fraction comes out first',
+exp:'In fractional distillation of crude oil, fractions with lower boiling points evaporate first and are collected at the top of the fractionating column. Petrol/gasoline has the lowest boiling point (~40–75°C) among common fuels, so it is collected first at the lowest temperature.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Ice floats on water because:',
+opts:['Ice is lighter by weight','Density of ice is less than water','Ice has more volume than water at same weight','Both B and C'],ans:3,
+rule:'Density of ice (0.92) < water (1.0) at same temperature',
+exp:'Ice floats on water because the density of ice (0.917 g/cm³) is less than that of water (1.0 g/cm³). This means ice has more volume per unit mass than liquid water. This unusual property occurs because water molecules form a hexagonal crystal structure in ice, creating more open space.'},
+
+// HARD (5 questions)
+{d:'HARD',e:'CDS 2023',
+q:'Identify the incorrect statement about colloids:',
+opts:[
+  'Colloid particles pass through ordinary filter paper',
+  'Colloids show the Tyndall Effect',
+  'Blood is an example of a colloid',
+  'Colloid particles settle down rapidly on standing'
+],ans:3,
+rule:'Colloid particles do NOT settle on standing (unlike suspension)',
+exp:'Colloid particles (1–100 nm) do NOT settle down on standing — that is a property of suspensions. Colloids are stable and do not settle. The other statements are correct: colloid particles pass through filter paper (but not semi-permeable membranes), they show Tyndall Effect, and blood is indeed a colloid.'},
+
+{d:'HARD',e:'NDA 2023',
+q:'Which of the following pairs are BOTH examples of sublimation?',
+opts:[
+  'Dry ice and table salt',
+  'Camphor and iodine',
+  'Sugar and naphthalene',
+  'Wax and ammonium chloride'
+],ans:1,
+rule:'Sublimation: dry ice, camphor, iodine, NH₄Cl, naphthalene',
+exp:'Camphor and iodine both sublime — they convert directly from solid to vapour without melting. Dry ice (solid CO₂) also sublimes. Table salt does NOT sublime (it melts at 801°C). Sugar melts (does not sublime). Wax melts. Ammonium chloride does sublime, but the question asked for a pair where BOTH sublime.'},
+
+{d:'HARD',e:'AFCAT 2023',
+q:'A mixture of salt and water is heated until all water evaporates. The salt remaining is then dissolved in fresh water. What type of changes occurred respectively?',
+opts:[
+  'Chemical, Physical',
+  'Physical, Chemical',
+  'Physical, Physical',
+  'Chemical, Chemical'
+],ans:2,
+rule:'Evaporation and dissolving are both physical changes',
+exp:'Both steps are physical changes: (1) Evaporation of water — no new substance is formed; the salt remains unchanged. (2) Dissolving salt in water — the salt and water are simply mixed; no chemical reaction occurs and both can be recovered. Physical change = no new substance formed, usually reversible.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'The blue colour of the sky is due to:',
+opts:[
+  'Reflection of sunlight by the ocean',
+  'Absorption of red light by the atmosphere',
+  'Scattering of sunlight by air molecules (Tyndall Effect)',
+  'Refraction of sunlight by the ozone layer'
+],ans:2,
+rule:'Blue sky = Tyndall Effect (scattering by air/dust particles)',
+exp:'The blue colour of the sky is caused by the Tyndall Effect — scattering of sunlight by tiny air molecules, dust, and aerosol particles in the atmosphere. Blue light (shorter wavelength) is scattered more than red light (longer wavelength). This is also why sunsets appear red/orange — at sunset, light travels through more atmosphere, and only the less-scattered red light reaches us.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Which of the following statements about compounds is CORRECT?',
+opts:[
+  'Compounds can be separated by physical methods',
+  'Properties of a compound are the same as its constituent elements',
+  'The ratio of elements in a compound can vary',
+  'Sodium chloride is a compound formed by a highly reactive metal and a poisonous gas, but is safe to consume'
+],ans:3,
+rule:'Compounds have new properties different from their elements',
+exp:'Statement D is correct — NaCl (table salt) is formed from sodium (a reactive, explosive metal) and chlorine (a toxic green gas), yet the compound is safe to eat. This perfectly illustrates that compounds have ENTIRELY NEW properties. The other statements are wrong: compounds cannot be separated by physical methods; their properties are different from constituent elements; and the element ratio in a compound is always fixed.'},
+
+];
+
+// ── ENGINE ───────────────────────────────────────────────────────────────────
+const answers = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const labs = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML='';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card';div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+            <span class="opt-lbl">${labs[j]}</span>${o}
+          </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Matter · C01</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  document.getElementById(`ai${qi}`).textContent=`Selected: ${labs[oi]}`;
+  document.getElementById(`ai${qi}`).style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{
+    if(a===null) return;
+    if(a===QS[i].ans) c++; else w++;
+  });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){
+      ai.textContent='Skipped';ai.style.color='var(--dim)';skp++;
+    } else if(answers[i]===q.ans){
+      ai.textContent='✓ Correct';ai.style.color='var(--green)';cor++;
+      card.classList.add('correct');
+    } else {
+      ai.textContent='✗ Wrong';ai.style.color='var(--red)';wrg++;
+      card.classList.add('wrong');
+    }
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! You have a strong command of this topic.'}
+  else if(pct>=70){grade='Good';msg='Above average. Review the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Decent start. Go through the theory section again.'}
+  else{grade='Needs Work';msg='Don\'t worry — revisit the concept cards and try again.'}
+
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const open=bd.classList.contains('open');
+  bd.classList.toggle('open',!open);
+  hd.classList.toggle('open',!open);
+}
+
+build();
+</script>
+</body>
+</html>

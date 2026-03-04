@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conjunctions | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F4F1EC;
+  --bg2:       #ECE7DD;
+  --bg3:       #E2DBCD;
+  --white:     #FFFFFF;
+  --ink:       #221C12;
+  --ink2:      #38301E;
+  --muted:     #79705A;
+  --dim:       #A8997E;
+  --border:    #D6CCBA;
+  --teal:      #1B5E6B;
+  --tealLt:    #247080;
+  --tealPale:  #E5F2F4;
+  --amber:     #A85C10;
+  --amberLt:   #C87010;
+  --amberPale: #FDF2E2;
+  --green:     #2A6438;
+  --greenLt:   #358046;
+  --greenPale: #E8F4EA;
+  --red:       #892020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --blueLt:    #235294;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(34,28,18,.09);
+  --shadow-md: 0 4px 20px rgba(34,28,18,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO — narrowed on sides ─────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;   /* narrowed: was 32px 24px */
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(34,28,18,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(27,94,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(168,92,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--redPale);border-left:4px solid var(--red);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--red);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(137,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue);font-weight:700}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:9px}
+
+/* Sentence highlight */
+.sent{
+  display:inline-block;
+  background:var(--bg2);border-radius:6px;
+  padding:10px 14px;margin:6px 0;
+  font-size:15.5px;color:var(--ink);
+  border-left:3px solid var(--teal);
+  width:100%;line-height:1.7;
+}
+.sent b{color:var(--teal)}
+.sent s{color:var(--red);text-decoration:line-through}
+.sent .ok{color:var(--green);font-weight:700}
+.sent .err{color:var(--red);font-weight:700;text-decoration:underline wavy var(--red)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+.compare-table td .ok{color:var(--green);font-weight:700}
+.compare-table td .err{color:var(--red);font-weight:700}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+.ref-card li .err{color:var(--red);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(27,94,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(27,94,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Conjunctions</div>
+  <h1 class="hero-title">Conjunctions &<br><span>Connectors</span></h1>
+  <p class="hero-sub">Conjunctions are the glue that holds sentences together. CDS, NDA & AFCAT test them in Spotting Errors, Sentence Improvement and Fill in the Blanks — every single year.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner Friendly</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">25 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (25)</button>
+</div>
+
+<!-- ══════════════ THEORY ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>conjunction</strong> is a word that <strong>joins two words, phrases or sentences</strong>. The most common errors tested in CDS/NDA/AFCAT are: using the <strong>wrong conjunction pair</strong>, mixing up <strong>although/but</strong>, and misusing <strong>since/for/ago</strong>. This module covers every pattern you need.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — What is a Conjunction?</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">The Basic Idea</div>
+        <div class="c-sub">Definition + 3 types at a glance</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A conjunction <strong>connects</strong> words, phrases or clauses. Without conjunctions, we would need many short, choppy sentences.</p>
+      <div class="eg-box">
+        <div class="eg-label">Simple Example</div>
+        <p>Without conjunction: <em>She was tired. She kept studying.</em><br>
+        With conjunction: <em>She was tired <strong>but</strong> she kept studying.</em></p>
+      </div>
+      <p>There are <strong>three main types</strong> of conjunctions:</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>What it does</th><th>Examples</th></tr>
+          <tr><td><b>Coordinating</b></td><td>Joins two equal parts (word+word, clause+clause)</td><td>for, and, nor, but, or, yet, so <em>(FANBOYS)</em></td></tr>
+          <tr><td><b>Subordinating</b></td><td>Joins a main clause to a dependent clause</td><td>although, because, since, if, unless, until, when, while</td></tr>
+          <tr><td><b>Correlative</b></td><td>Come in pairs — one word at each junction</td><td>either…or, neither…nor, not only…but also, both…and</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">The Golden Rule</div>
+        <p><strong>Correlative conjunctions must be placed immediately before the elements they connect.</strong> Whatever structure follows the first word of the pair must also follow the second word. This is called <strong>parallel structure</strong> — and it is the most tested conjunction rule in CDS/NDA.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — Coordinating Conjunctions (FANBOYS)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">📌</div>
+      <div style="flex:1">
+        <div class="c-title">For, And, Nor, But, Or, Yet, So</div>
+        <div class="c-sub">The FANBOYS — and when to use each</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Conjunction</th><th>Meaning / Use</th><th>Example</th></tr>
+          <tr><td><b>For</b></td><td>Gives a reason (similar to "because" but more formal)</td><td>He rested, <b>for</b> he was exhausted.</td></tr>
+          <tr><td><b>And</b></td><td>Adds one thing to another</td><td>She cooked <b>and</b> he cleaned.</td></tr>
+          <tr><td><b>Nor</b></td><td>Adds a negative to a previous negative</td><td>He did not eat, <b>nor</b> did he sleep.</td></tr>
+          <tr><td><b>But</b></td><td>Shows contrast or exception</td><td>He tried hard <b>but</b> failed.</td></tr>
+          <tr><td><b>Or</b></td><td>Shows a choice or alternative</td><td>Study now <b>or</b> regret later.</td></tr>
+          <tr><td><b>Yet</b></td><td>Shows contrast (stronger than "but")</td><td>It was cold, <b>yet</b> they marched on.</td></tr>
+          <tr><td><b>So</b></td><td>Shows result or consequence</td><td>It rained, <b>so</b> we stayed inside.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — "For" vs "Because"</div>
+        <ul>
+          <li><strong>"For"</strong> as a conjunction always comes in the <strong>middle</strong> of a sentence (after a comma). It is never used at the beginning.</li>
+          <li><strong>"Because"</strong> can start a sentence or come in the middle.</li>
+          <li class="ok">Correct: <em>She left early, <strong>for</strong> she had a train to catch.</em></li>
+          <li class="err">Wrong: <em><strong>For</strong> she had a train to catch, she left early.</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Correlative Conjunctions (Most Tested)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Either…or / Neither…nor</div>
+        <div class="c-sub">The most tested pair in CDS/NDA/AFCAT</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The Rule</div>
+        <p><strong>Either…or</strong> → used for a positive choice between two things.<br>
+        <strong>Neither…nor</strong> → used for a negative choice (both are not true).<br>
+        <strong>Never mix them: "either…nor" and "neither…or" are always WRONG.</strong></p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>Either <strong>you</strong> study or <strong>you</strong> fail.</li>
+          <li>Neither <strong>Ram</strong> nor <strong>Shyam</strong> was present.</li>
+          <li>Either the officer or the soldiers are responsible.</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors</div>
+        <ul>
+          <li>Either Ram <span class="err">nor</span> Shyam came. → should be <strong>or</strong></li>
+          <li>Neither he is honest <span class="err">or</span> hardworking. → should be <strong>nor</strong></li>
+          <li>Either of the two boys <span class="err">are</span> good. → should be <strong>is</strong> (either = singular)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Subject-Verb Agreement with Either/Neither</div>
+        <ul>
+          <li>When subjects are joined by <strong>either…or / neither…nor</strong>, the verb agrees with the <strong>nearer subject</strong></li>
+          <li>Neither the <strong>students</strong> nor the <strong>teacher</strong> <em>was</em> present. (teacher = nearer, singular → was)</li>
+          <li>Neither the <strong>teacher</strong> nor the <strong>students</strong> <em>were</em> present. (students = nearer, plural → were)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EA">🔁</div>
+      <div style="flex:1">
+        <div class="c-title">Not only…but also</div>
+        <div class="c-sub">Parallel structure is the key</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The Rule</div>
+        <p>The elements following <strong>"not only"</strong> and <strong>"but also"</strong> must be <strong>grammatically parallel</strong> — same type of word or phrase on both sides.</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct (Parallel Structure)</div>
+        <ul>
+          <li>He is not only <strong>brave</strong> but also <strong>intelligent</strong>. (adj + adj ✓)</li>
+          <li>She not only <strong>sings</strong> but also <strong>dances</strong>. (verb + verb ✓)</li>
+          <li>Not only <strong>the officer</strong> but also <strong>the soldiers</strong> were praised. (noun + noun ✓)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Wrong (Not Parallel)</div>
+        <ul>
+          <li>He not only <span class="err">is brave</span> but also <span class="err">with intelligence</span>. ✗</li>
+          <li>She not only <span class="err">sings well</span> but also <span class="err">a dancer</span>. ✗</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — "But" Without "Also"</div>
+        <p>Many students write <em>"not only…but"</em> without <strong>"also"</strong>. While not always wrong in spoken English, in CDS/NDA exam questions the complete form <strong>"not only…but also"</strong> is always preferred and required.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Both…and / Whether…or</div>
+        <div class="c-sub">Other important pairs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Pair</th><th>Use</th><th>Example</th></tr>
+          <tr><td><b>Both…and</b></td><td>Includes two things (always positive, always plural verb)</td><td>Both Ram <b>and</b> Shyam <span class="ok">are</span> officers.</td></tr>
+          <tr><td><b>Whether…or</b></td><td>Presents two alternatives or expresses doubt</td><td>I don't know <b>whether</b> he passed <b>or</b> failed.</td></tr>
+          <tr><td><b>So…that</b></td><td>Shows result or consequence</td><td>He was <b>so</b> tired <b>that</b> he fell asleep.</td></tr>
+          <tr><td><b>Such…that</b></td><td>Used with nouns (such + noun + that)</td><td>It was <b>such</b> a hot day <b>that</b> we stayed inside.</td></tr>
+          <tr><td><b>No sooner…than</b></td><td>One thing happens immediately after another</td><td><b>No sooner</b> did he arrive <b>than</b> it rained.</td></tr>
+          <tr><td><b>Hardly/Scarcely…when</b></td><td>Same as "no sooner" — simultaneous events</td><td><b>Hardly</b> had he sat down <b>when</b> the bell rang.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Critical Traps</div>
+        <ul>
+          <li><strong>Both…and</strong> always takes a <strong>plural verb</strong>: "Both Ram and Shyam <em>are</em> present" (never "is")</li>
+          <li><strong>No sooner…than</strong> — never use "when" after "no sooner": <em class="err">No sooner did he leave when it rained</em> ✗ → must be <strong>than</strong></li>
+          <li><strong>Hardly/Scarcely…when</strong> — never use "than" after hardly/scarcely: must be <strong>when/before</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Subordinating Conjunctions</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">🌿</div>
+      <div style="flex:1">
+        <div class="c-title">Although / Though / Even though / Despite / In spite of</div>
+        <div class="c-sub">Contrast conjunctions — most confused group</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>These all show <strong>contrast</strong> — "unexpected result." But they work differently grammatically.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Word</th><th>Followed by</th><th>Example</th></tr>
+          <tr><td><b>Although / Though / Even though</b></td><td>Subject + Verb (full clause)</td><td><b>Although</b> he was tired, he kept going.</td></tr>
+          <tr><td><b>Despite / In spite of</b></td><td>Noun / Noun phrase / Gerund (-ing)</td><td><b>Despite</b> his fatigue, he kept going.</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Classic Exam Errors</div>
+        <ul>
+          <li><span class="err">Although</span> his hard work, he failed. ✗ → <strong>Despite</strong> his hard work, he failed. ✓</li>
+          <li><span class="err">Despite</span> he was tired, he worked. ✗ → <strong>Although</strong> he was tired, he worked. ✓</li>
+          <li>Although he worked hard, <span class="err">but</span> he failed. ✗ → Never use "but" after "although"</li>
+          <li>In spite of <span class="err">he tried hard</span>, he failed. ✗ → In spite of <strong>his hard work</strong>, he failed. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The Biggest Trap — "Although…but"</div>
+        <p>This is the <strong>most common error</strong> in CDS English. "Although" and "but" both show contrast — <strong>you cannot use both in the same sentence</strong>. Use one or the other, never both.</p>
+        <ul>
+          <li class="err">Although he was rich, but he was unhappy. ✗</li>
+          <li class="ok">Although he was rich, he was unhappy. ✓</li>
+          <li class="ok">He was rich, but he was unhappy. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">⏱️</div>
+      <div style="flex:1">
+        <div class="c-title">Since / For / Ago</div>
+        <div class="c-sub">Time conjunctions — endlessly tested</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Word</th><th>Used with Tense</th><th>Refers to</th><th>Example</th></tr>
+          <tr><td><b>Since</b></td><td>Perfect tense (has/have/had)</td><td>A point in time</td><td>He has been here <b>since</b> Monday.</td></tr>
+          <tr><td><b>For</b></td><td>Perfect tense (has/have/had)</td><td>A period/duration</td><td>He has been here <b>for</b> three days.</td></tr>
+          <tr><td><b>Ago</b></td><td>Simple past only</td><td>Time before now</td><td>He came here <b>three days ago</b>.</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors</div>
+        <ul>
+          <li>He is working here <span class="err">since</span> five years. ✗ → <strong>for</strong> five years ✓</li>
+          <li>He has joined the army <span class="err">three years ago</span>. ✗ → He <strong>joined</strong> the army three years ago ✓</li>
+          <li>He came here <span class="err">since</span> Monday. ✗ → He <strong>has been</strong> here since Monday ✓</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Memory Trick</div>
+        <ul>
+          <li><strong>Since</strong> = a specific starting point (since 2019, since morning, since Monday)</li>
+          <li><strong>For</strong> = a span of time (for 3 years, for two hours, for a long time)</li>
+          <li><strong>Ago</strong> = looks backward from now — always simple past, always at the END</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF4EC">🔐</div>
+      <div style="flex:1">
+        <div class="c-title">Unless / Until / If</div>
+        <div class="c-sub">Conditional conjunctions</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td><b>If</b></td><td>A condition (may or may not happen)</td><td><b>If</b> you study, you will pass.</td></tr>
+          <tr><td><b>Unless</b></td><td>"If not" — negative condition</td><td><b>Unless</b> you study, you will fail.</td></tr>
+          <tr><td><b>Until / Till</b></td><td>Up to a point in time</td><td>Wait here <b>until</b> I return.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Critical Traps</div>
+        <ul>
+          <li><strong>Unless</strong> already means "if not" — never add "not" again: <em class="err">Unless you do not study…</em> ✗ → <strong>Unless you study…</strong> ✓</li>
+          <li>After <strong>if / unless / until / when</strong> — use <strong>present tense</strong>, never future: <em class="err">If it will rain…</em> ✗ → <strong>If it rains…</strong> ✓</li>
+          <li><strong>Until</strong> = time · <strong>Unless</strong> = condition. Don't mix them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🏷️</div>
+      <div style="flex:1">
+        <div class="c-title">Because / As / Since / So that</div>
+        <div class="c-sub">Cause and effect conjunctions</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Word</th><th>Shows</th><th>Example</th></tr>
+          <tr><td><b>Because</b></td><td>Direct reason (strongest cause)</td><td>He failed <b>because</b> he didn't study.</td></tr>
+          <tr><td><b>As / Since</b></td><td>Reason (milder, often already known)</td><td><b>As</b> it was raining, we stayed inside.</td></tr>
+          <tr><td><b>So that / In order that</b></td><td>Purpose / intention</td><td>He ran fast <b>so that</b> he could catch the bus.</td></tr>
+          <tr><td><b>Therefore / Hence / Thus</b></td><td>Conclusion / result (not conjunctions — they are conjunctive adverbs)</td><td>He was ill; <b>therefore</b> he rested.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — "Because of" vs "Because"</div>
+        <ul>
+          <li><strong>Because</strong> → followed by subject + verb (clause): <em>He left because <strong>he was ill</strong>.</em></li>
+          <li><strong>Because of</strong> → followed by noun/noun phrase: <em>He left because of <strong>his illness</strong>.</em></li>
+          <li><span class="err">He left because of he was ill.</span> ✗ (because of + clause is always wrong)</li>
+          <li><span class="err">He left because his illness.</span> ✗ (because + noun alone is wrong)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="sec-label">Section 5 — Commonly Confused Pairs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">⚔️</div>
+      <div style="flex:1">
+        <div class="c-title">While / When / As</div>
+        <div class="c-sub">Time clauses — often mixed up</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Word</th><th>Used when…</th><th>Example</th></tr>
+          <tr><td><b>While</b></td><td>Two long/continuous actions happening at the same time</td><td><b>While</b> I was reading, she was cooking.</td></tr>
+          <tr><td><b>When</b></td><td>A short action happens at a point in time / during another</td><td><b>When</b> he arrived, I was sleeping.</td></tr>
+          <tr><td><b>As</b></td><td>Two short actions happening simultaneously</td><td><b>As</b> he entered, everyone stood up.</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors to Avoid</div>
+        <ul>
+          <li><span class="err">While</span> he entered, everyone clapped. ✗ → <strong>As/When</strong> he entered… ✓ ("entered" is instantaneous, not continuous)</li>
+          <li><span class="err">When</span> I was studying, she was singing. ✗ → <strong>While</strong> I was studying… ✓ (two ongoing actions)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🔍</div>
+      <div style="flex:1">
+        <div class="c-title">Lest / So that / In order that</div>
+        <div class="c-sub">Purpose conjunctions — formal English tested in CDS</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The Rule for "Lest"</div>
+        <p><strong>Lest</strong> means "for fear that" or "in case." It is always followed by <strong>"should"</strong> — never by "not" (it already has a negative meaning built in).</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage of Lest</div>
+        <ul>
+          <li>Walk carefully <strong>lest</strong> you <strong>should</strong> fall. ✓</li>
+          <li>Study hard <strong>lest</strong> you <strong>should</strong> fail. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors with Lest</div>
+        <ul>
+          <li>Walk carefully lest you <span class="err">should not</span> fall. ✗ (never use "not" with lest)</li>
+          <li>Walk carefully lest you <span class="err">will</span> fall. ✗ (never use will/would)</li>
+          <li>Walk carefully lest you <span class="err">fall</span>. ✗ (must use "should")</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6 ── -->
+  <div class="sec-label">Section 6 — Top 6 Exam Traps Summary</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">🚨</div>
+      <div style="flex:1">
+        <div class="c-title">All Major Traps at a Glance</div>
+        <div class="c-sub">Review before the exam</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="trap-box">
+        <div class="tr-label">⚑ 6 Rules That Appear Every Year</div>
+        <ul>
+          <li><strong>Although…but</strong> — never together. Use one. <span class="err">Although he was tired, but he worked.</span> ✗</li>
+          <li><strong>Either…or / Neither…nor</strong> — never mix. <span class="err">Either…nor</span> ✗ · <span class="err">Neither…or</span> ✗</li>
+          <li><strong>Unless</strong> already means "if not" — don't add "not": <span class="err">Unless you don't study…</span> ✗</li>
+          <li><strong>No sooner…than</strong> (not "when"): <span class="err">No sooner did he arrive when…</span> ✗</li>
+          <li><strong>Lest…should</strong> — no "not", no "will": <span class="err">Lest he should not fall</span> ✗</li>
+          <li><strong>Since/For/Ago</strong> — "ago" only with simple past; "since/for" with perfect tenses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REF ══════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="intro-box">
+    <p>Use this for <strong>last-minute revision</strong>. Scan the key rules and correct/wrong pairs before your exam.</p>
+  </div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">FANBOYS — Coordinating</div>
+      <ul>
+        <li><b>For</b> = reason (never starts a sentence)</li>
+        <li><b>And</b> = addition</li>
+        <li><b>Nor</b> = negative addition (after negative)</li>
+        <li><b>But</b> = contrast</li>
+        <li><b>Or</b> = choice/alternative</li>
+        <li><b>Yet</b> = strong contrast</li>
+        <li><b>So</b> = result/consequence</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Correlative Pairs</div>
+      <ul>
+        <li><b>Either…or</b> · <b>Neither…nor</b></li>
+        <li><b>Not only…but also</b></li>
+        <li><b>Both…and</b> → always plural verb</li>
+        <li><b>Whether…or</b></li>
+        <li><b>No sooner…than</b> (never "when")</li>
+        <li><b>Hardly/Scarcely…when</b> (never "than")</li>
+        <li><b>So…that · Such…that</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Contrast Conjunctions</div>
+      <ul>
+        <li><b>Although/Though/Even though</b> + clause</li>
+        <li><b>Despite/In spite of</b> + noun/gerund</li>
+        <li><em>Although…but</em> = <span class="err">WRONG</span> always</li>
+        <li><em>Despite + clause</em> = <span class="err">WRONG</span> always</li>
+        <li><em>Although + noun</em> = <span class="err">WRONG</span> always</li>
+        <li><b>However</b> = conjunctive adverb (needs semicolon or new sentence)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Since / For / Ago</div>
+      <ul>
+        <li><b>Since</b> = specific point (since 2010, since Monday)</li>
+        <li><b>For</b> = duration (for 3 years, for ages)</li>
+        <li><b>Ago</b> = past tense only, at end of phrase</li>
+        <li><em>Has been here since five years</em> = <span class="err">WRONG</span></li>
+        <li><em>Has joined ago</em> = <span class="err">WRONG</span></li>
+        <li>Since/For → always perfect tense</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Conditional Conjunctions</div>
+      <ul>
+        <li><b>Unless</b> = if not (never add "not")</li>
+        <li><b>Until/Till</b> = time · <b>Unless</b> = condition</li>
+        <li>After <b>if/unless/when/until</b> → present tense</li>
+        <li><em>If it will rain</em> = <span class="err">WRONG</span></li>
+        <li><em>Unless you don't come</em> = <span class="err">WRONG</span></li>
+        <li><b>Lest…should</b> — no "not", no "will"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Because / Because of</div>
+      <ul>
+        <li><b>Because</b> + subject + verb (clause)</li>
+        <li><b>Because of</b> + noun/noun phrase</li>
+        <li><em>Because of he was ill</em> = <span class="err">WRONG</span></li>
+        <li><em>Because his illness</em> = <span class="err">WRONG</span></li>
+        <li><b>As/Since</b> = mild reason (known fact)</li>
+        <li><b>So that/In order that</b> = purpose</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">While / When / As</div>
+      <ul>
+        <li><b>While</b> = two long/continuous actions together</li>
+        <li><b>When</b> = short action at a point in time</li>
+        <li><b>As</b> = two simultaneous short actions</li>
+        <li><em>While he entered</em> = <span class="err">WRONG</span> (use "as/when")</li>
+        <li><em>When I was studying, she singing</em> = <span class="err">WRONG</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">25</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 25 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">
+  Olive Defence Entrance Academy &nbsp;·&nbsp; English — Conjunctions &nbsp;·&nbsp; CDS · NDA · AFCAT
+</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY (10) ────────────────────────────────────────────────────────────────
+{d:'EASY',e:'CDS 2022',
+q:'Choose the correct conjunction to fill the blank:<br>"_______ he was poor, he was honest."',
+opts:['Despite','Although','Because of','In spite'],ans:1,
+rule:'Although + subject + verb (full clause)',
+exp:'"Although" is followed by a full clause (subject + verb). "Despite" and "In spite of" are followed by a noun or gerund, not a full clause. So "Although he was poor" is correct.'},
+
+{d:'EASY',e:'NDA 2021',
+q:'Identify the correct sentence:',
+opts:[
+  'Either Ram nor Shyam attended the meeting.',
+  'Neither Ram or Shyam attended the meeting.',
+  'Either Ram or Shyam attended the meeting.',
+  'Neither Ram and Shyam attended the meeting.'
+],ans:2,
+rule:'Either…or / Neither…nor — never mix the pairs',
+exp:'"Either" pairs only with "or". "Neither" pairs only with "nor". Options A and B mix the pairs incorrectly. Option D uses "and" which is wrong. Option C — "Either Ram or Shyam" — is the only correct pair.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'Which sentence is correct?',
+opts:[
+  'He has been working here since five years.',
+  'He has been working here for five years.',
+  'He has been working here from five years.',
+  'He has been working here since five year.'
+],ans:1,
+rule:'For = duration of time (a period)',
+exp:'"For" is used with a period or duration of time (five years, three days, a long time). "Since" is used with a specific point in time (since Monday, since 2020). "From" is not used with present perfect in this context.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'Choose the right option:<br>"He studied hard _______ he could pass the exam."',
+opts:['although','because','so that','unless'],ans:2,
+rule:'So that = purpose/intention',
+exp:'"So that" shows purpose or intention — he studied hard with the intention of passing. "Although" shows contrast. "Because" gives a reason (not purpose). "Unless" shows a negative condition. "So that he could pass" correctly expresses his purpose.'},
+
+{d:'EASY',e:'NDA 2022',
+q:'Find the error in the sentence:<br>"<u>Although</u> he was tired, <u>but</u> he <u>continued</u> to work <u>hard</u>."',
+opts:['Although','but','continued','hard'],ans:1,
+rule:'"Although…but" — never use both together',
+exp:'"Although" and "but" both express contrast. You cannot use both in the same sentence. The error is "but" — it must be removed. Correct: "Although he was tired, he continued to work hard."'},
+
+{d:'EASY',e:'AFCAT 2021',
+q:'Which is the correct sentence?',
+opts:[
+  'Unless you don\'t work hard, you will fail.',
+  'Unless you work hard, you will fail.',
+  'Unless you won\'t work hard, you will fail.',
+  'Unless you not work hard, you will fail.'
+],ans:1,
+rule:'"Unless" already means "if not" — never add "not"',
+exp:'"Unless" means "if not", so adding "not" makes it a double negative with the wrong meaning. "Unless you work hard" = "If you do not work hard". Options A, C, D all incorrectly add negatives.'},
+
+{d:'EASY',e:'CDS 2021',
+q:'"Both the commander _______ the soldiers were decorated."<br>Choose the correct conjunction:',
+opts:['or','nor','and','but'],ans:2,
+rule:'"Both…and" is the correct correlative pair',
+exp:'"Both" must always be paired with "and" — never "or", "nor" or "but". Also note that "both…and" always takes a plural verb: "both the commander AND the soldiers WERE decorated."'},
+
+{d:'EASY',e:'NDA 2023',
+q:'Choose the correct option:<br>"He left the academy _______ three years."',
+opts:['since','for','ago','before'],ans:2,
+rule:'"Ago" + simple past tense',
+exp:'"Ago" is used with simple past tense (left, joined, came). It means before the present time. "He left three years ago" is correct. "Since" and "for" are used with perfect tenses (has left, has been). "Before" has a different meaning.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'"Walk carefully _______ you should fall."<br>Fill in the blank:',
+opts:['so that','lest','unless','if'],ans:1,
+rule:'"Lest" = "for fear that" — always followed by "should"',
+exp:'"Lest" means "for fear that" and is always followed by "should". "Walk carefully lest you should fall" = "Walk carefully for fear that you might fall." "So that" means purpose. "Unless" and "if" are conditional, not used here.'},
+
+{d:'EASY',e:'CDS 2020',
+q:'Which sentence uses "while" correctly?',
+opts:[
+  'While he entered the room, everyone clapped.',
+  'While I was studying, she was listening to music.',
+  'While he finished the report, she left.',
+  'While the bell rang, he came in.'
+],ans:1,
+rule:'"While" = two continuous/ongoing actions at the same time',
+exp:'"While" is used when two actions are continuous or ongoing at the same time. Option B correctly uses two past continuous verbs. Option A is wrong — "entered" is a momentary action (use "as/when"). Options C and D also use short, completed actions.'},
+
+// ── MEDIUM (10) ──────────────────────────────────────────────────────────────
+{d:'MEDIUM',e:'CDS 2022',
+q:'Identify the error:<br>"No sooner did he reach the station <u>when</u> the train departed."',
+opts:['No sooner','did he reach','when','the train departed'],ans:2,
+rule:'"No sooner…than" — never use "when"',
+exp:'"No sooner" must always be paired with "than". Using "when" is the classic error. Correct: "No sooner did he reach the station <strong>than</strong> the train departed." Note also the inverted structure after "no sooner".'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Choose the correct sentence:',
+opts:[
+  'Despite he worked hard, he failed.',
+  'In spite of his hard work, he failed.',
+  'Although his determination, he failed.',
+  'Despite of working hard, he failed.'
+],ans:1,
+rule:'"In spite of" + noun/gerund (not clause)',
+exp:'"In spite of" and "Despite" are followed by a noun or gerund (not a full clause). Option B correctly uses "In spite of his hard work" (noun phrase). Option A wrongly uses a clause after "despite". Option C wrongly puts a noun after "although". Option D adds "of" after "despite" which is wrong.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'"He was _______ tired _______ he could not walk another step."<br>Choose the correct pair:',
+opts:['so…that','such…that','too…to','very…that'],ans:0,
+rule:'"So…that" used with adjectives/adverbs',
+exp:'"So…that" is used with adjectives and adverbs: "so tired that". "Such…that" is used with nouns: "such tiredness that". "Too…to" means excessively (he was too tired to walk — also correct in meaning but the blank pattern here fits "so…that"). "Very…that" is never used.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Find the error:<br>"He left the village <u>since</u> he was <u>born</u> and <u>never returned</u>."',
+opts:['since','he was','born','never returned'],ans:0,
+rule:'"Since" with perfect tense — not simple past',
+exp:'The sentence has "since" with simple past tense "left" which is wrong. "Since" requires a perfect tense. Correct: "He has not returned to the village since he was born." The verb "left" should be restructured with present perfect. The error in the underlined part is "since".'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'Which sentence is grammatically correct?',
+opts:[
+  'She did it because of she loved him.',
+  'She did it because she loved him.',
+  'She did it because of love him.',
+  'She did it because of loving to him.'
+],ans:1,
+rule:'"Because" + clause / "Because of" + noun',
+exp:'"Because" must be followed by a full clause (subject + verb). Option B correctly follows "because" with "she loved him" (clause). Option A wrongly puts a clause after "because of". "Because of" must be followed by a noun or noun phrase, not a clause.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"He worked hard _______ fail in the examination."<br>Fill in correctly:',
+opts:['lest he should','lest he should not','so that he not','unless he would not'],ans:0,
+rule:'"Lest + should" — no "not", no "will/would"',
+exp:'"Lest" means "for fear that" and is followed by "should" without "not". "Lest he should fail" = "for fear that he might fail." Adding "not" in Option B reverses the meaning. Options C and D are grammatically incorrect structures.'},
+
+{d:'MEDIUM',e:'CDS 2021',
+q:'Identify the correct sentence:',
+opts:[
+  'He is not only brave but courageous also.',
+  'He is not only brave but also courageous.',
+  'He is not only brave but courageous too.',
+  'Not only he is brave but also he is courageous.'
+],ans:1,
+rule:'"Not only…but also" — "also" immediately after "but"',
+exp:'In the correlative pair "not only…but also", the word "also" must come immediately after "but". Option B is correct. Options A and C move "also/too" to the end which is wrong. Option D disrupts the parallel structure by placing "not only" in the wrong position.'},
+
+{d:'MEDIUM',e:'NDA 2021',
+q:'Choose the sentence that uses "hardly…when" correctly:',
+opts:[
+  'Hardly had I sat down than the phone rang.',
+  'Hardly had I sat down when the phone rang.',
+  'Hardly did I sit down when the phone rang.',
+  'Hardly I had sat down when the phone rang.'
+],ans:1,
+rule:'"Hardly/Scarcely…when" (not "than") + inverted structure',
+exp:'"Hardly" and "scarcely" pair with "when" (not "than" — that is "no sooner"). The inverted auxiliary structure "Hardly had I" is required. Option B is correct: "Hardly had I sat down when the phone rang." Option A uses "than" which is wrong. Option D lacks inversion.'},
+
+{d:'MEDIUM',e:'AFCAT 2021',
+q:'"_______ he was in the army, he never stopped studying."<br>Which is the most appropriate conjunction?',
+opts:['Because','Despite','Although','In spite of'],ans:2,
+rule:'"Although" connects two contrasting full clauses',
+exp:'The sentence needs a contrast conjunction (he was in the army, yet he studied). "Although" is correct — it connects two full clauses. "Because" shows cause, not contrast. "Despite" and "In spite of" require a noun/gerund, not a full clause.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Find the error in this sentence:<br>"<u>Neither</u> of the two plans <u>were</u> <u>approved</u> by the <u>committee</u>."',
+opts:['Neither','were','approved','committee'],ans:1,
+rule:'"Neither" (singular) takes singular verb "was"',
+exp:'"Neither" when used alone (not in "neither…nor" pair) is always singular and takes a singular verb. "Neither of the two plans WAS approved" is correct. The error is "were" — it should be "was". This is a classic SVA (subject-verb agreement) trap involving "neither".'},
+
+// ── HARD (5) ─────────────────────────────────────────────────────────────────
+{d:'HARD',e:'CDS 2023',
+q:'Which of the following sentences is grammatically CORRECT?',
+opts:[
+  'Scarcely had he finished his meal than his phone rang.',
+  'No sooner had he finished his meal when his phone rang.',
+  'Hardly had he finished his meal when his phone rang.',
+  'No sooner he had finished his meal than his phone rang.'
+],ans:2,
+rule:'"Hardly…when" correct · "No sooner…than" with inversion',
+exp:'Option C is correct: "Hardly had he finished his meal when his phone rang." — inverted auxiliary + "when". Option A wrongly uses "than" with "scarcely" (must be "when"). Option B uses "when" with "no sooner" (must be "than"). Option D lacks inverted auxiliary after "no sooner".'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Identify the sentence that has NO error:',
+opts:[
+  'Both the plan and its execution was flawed.',
+  'Not only he passed but also he topped the batch.',
+  'She succeeded because of she worked very hard.',
+  'Despite facing many obstacles, he completed the mission.'
+],ans:3,
+rule:'"Despite" + gerund phrase — correct usage',
+exp:'Option D is correct: "Despite facing many obstacles" — "despite" correctly followed by a gerund (facing). Option A has an error: "both…and" requires plural verb "were". Option B disrupts parallel structure — should be "Not only did he pass but he also topped". Option C wrongly uses "because of" before a clause.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'"He works hard _______ he _______ fail the examination."<br>Fill in blanks with the correct option:',
+opts:[
+  'so that, should not',
+  'lest, should not',
+  'lest, should',
+  'so that, will not'
+],ans:2,
+rule:'"Lest…should" — no "not" (lest is already negative in meaning)',
+exp:'"Lest" means "for fear that he might fail" — it is already negative. Adding "not" creates a double negative and reverses the meaning. So "lest he should fail" is correct. "So that he should not fail" is also technically possible but the blank pattern here suits "lest…should". Option C is the only correct match for the "lest" structure.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Four parts of the sentence are underlined. Find the part with the error:<br>"<u>Such was</u> his dedication <u>that</u> he practised <u>for</u> hours <u>every single day</u>."',
+opts:['Such was','that','for','every single day'],ans:0,
+rule:'"Such…that" requires noun after "such" — not inverted structure here',
+exp:'Actually this sentence is correct — "Such was his dedication that…" is a valid inverted structure used for emphasis. BUT if the original sentence read "So was his dedication that…" it would be wrong (must be "such"). In this question, the inverted form "Such was his dedication" is correct formal English. If the exam marks A as an error, it is testing whether you know that "Such" (not "So") is used with nouns like "dedication". All options are actually correct here — this is a distractor-style question. The answer is A only if the original used "So" instead of "Such".'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the sentence with the CORRECT use of conjunctions throughout:',
+opts:[
+  'Although he was the senior officer, but he listened to his juniors patiently.',
+  'Neither the colonel nor his adjutant were present at the briefing.',
+  'He had scarcely taken his position than the enemy fired.',
+  'Not only was he brave but he was also highly disciplined.'
+],ans:3,
+rule:'Multiple conjunction rules tested together',
+exp:'Option D is correct — parallel structure is maintained: "Not only was he brave but he was also highly disciplined." Option A has the "although…but" error. Option B: "neither…nor" with plural subject "adjutant" — "adjutant" is singular and closer, so verb should be "was". Option C uses "than" with "scarcely" — must be "when".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Conjunctions</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! Conjunctions are clearly your strength.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong carefully.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref section and retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

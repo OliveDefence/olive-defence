@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CA-03 · Defence & Military 2025–26 | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F2F3F0;
+  --bg2:       #E5E7E2;
+  --bg3:       #D5D8D0;
+  --white:     #FFFFFF;
+  --ink:       #181C14;
+  --ink2:      #252C1C;
+  --muted:     #5A6448;
+  --dim:       #8A9470;
+  --border:    #C4CABC;
+  --teal:      #3A5A1C;
+  --tealLt:    #4A7020;
+  --tealPale:  #EBF2E2;
+  --amber:     #8A5C08;
+  --amberLt:   #AC7210;
+  --amberPale: #FDF4E0;
+  --green:     #1E5C30;
+  --greenLt:   #267840;
+  --greenPale: #E6F4EC;
+  --red:       #8B1A1A;
+  --redLt:     #AA2222;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3060;
+  --blueLt:    #203870;
+  --bluePale:  #EAF0FA;
+  --purple:    #4A2080;
+  --purplePale:#F0EAFA;
+  --orange:    #8A3808;
+  --orangePale:#FEF0E4;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(24,28,20,.09);
+  --shadow-md: 0 4px 20px rgba(24,28,20,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#2A3A14 0%,#3A5A1C 60%,#4A6A28 100%);
+  margin:0 -16px;padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(22px,5vw,32px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#D4E8A0;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(212,232,160,.2);color:#D4E8A0}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+.chip-r{background:rgba(255,100,100,.15);color:#FFAAAA}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(24,28,20,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(58,90,28,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+/* Event rows */
+.ev-list{list-style:none;padding:0;margin:12px 0}
+.ev-item{
+  display:flex;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--bg3);align-items:flex-start;
+}
+.ev-item:last-child{border-bottom:none}
+.ev-month{
+  min-width:54px;font-size:11px;font-weight:800;
+  color:var(--white);background:var(--teal);
+  border-radius:6px;padding:3px 7px;text-align:center;
+  letter-spacing:.5px;text-transform:uppercase;flex-shrink:0;margin-top:2px;
+}
+.ev-month.red{background:var(--red)}
+.ev-month.blue{background:var(--blue)}
+.ev-month.amber{background:var(--amber)}
+.ev-month.purple{background:var(--purple)}
+.ev-content{flex:1}
+.ev-title{font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.5;margin-bottom:3px}
+.ev-detail{font-size:14.5px;color:var(--ink2);line-height:1.65}
+.ev-detail b{color:var(--teal);font-weight:700}
+.ev-tag{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:1px 8px;border-radius:4px;margin-left:6px;
+  vertical-align:middle;letter-spacing:.5px;text-transform:uppercase;
+}
+.tag-hot{background:var(--redPale);color:var(--red)}
+.tag-imp{background:var(--amberPale);color:var(--amber)}
+.tag-new{background:var(--tealPale);color:var(--teal)}
+
+/* Exercise table */
+.ex-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+.ex-table th{
+  background:var(--teal);color:#fff;
+  padding:9px 10px;text-align:left;
+  font-size:12px;font-weight:700;letter-spacing:.5px;
+}
+.ex-table td{
+  padding:9px 10px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.6;
+}
+.ex-table tr:nth-child(even) td{background:var(--bg)}
+.ex-table td b{color:var(--teal);font-weight:700}
+.ex-table td .army{color:#4A6A28;font-weight:700;font-size:12px}
+.ex-table td .navy{color:#1A3060;font-weight:700;font-size:12px}
+.ex-table td .airforce{color:#8A3808;font-weight:700;font-size:12px}
+.ex-table td .joint{color:#4A2080;font-weight:700;font-size:12px}
+
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(138,92,8,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(139,26,26,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.sindoor-box{
+  background:linear-gradient(135deg,#FCEAEA,#FFF0F0);
+  border:2px solid rgba(139,26,26,.25);
+  border-radius:var(--radius);padding:18px;margin:14px 0;
+}
+.sindoor-box .sl-label{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.sindoor-box p,.sindoor-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.sindoor-box ul{list-style:none;padding:0}
+.sindoor-box li{padding:5px 0 5px 22px;position:relative}
+.sindoor-box li::before{content:'◉';position:absolute;left:0;font-size:10px;color:var(--red);top:8px}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:14.5px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-topic{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.topic-op{background:var(--redPale);color:var(--red)}
+.topic-ex{background:var(--tealPale);color:var(--teal)}
+.topic-ap{background:var(--bluePale);color:var(--blue)}
+.topic-wp{background:var(--orangePale);color:var(--orange)}
+.topic-na{background:var(--purplePale);color:var(--purple)}
+.q-date{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(58,90,28,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(58,90,28,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:linear-gradient(135deg,#2A3A14,#3A5A1C);
+  border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#D4E8A0;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:20px}
+  .tab{padding:12px 12px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+  .ex-table{font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Current Affairs · CA-03 · April 2026 Exam</div>
+  <h1 class="hero-title">Defence &<br><span>Military Affairs</span></h1>
+  <p class="hero-sub">Jan 2025 → Mar 2026 · Topic-wise organised · Operation Sindoor, Military Exercises, Key Appointments, Weapons & Inductions — everything that matters for your exam.</p>
+  <div class="hero-chips">
+    <span class="chip chip-r">🔴 Highest Priority</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">30 Practice Questions</span>
+    <span class="chip chip-w">Jan 2025 → Mar 2026</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Notes</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (30)</button>
+</div>
+
+<!-- ══════════════ NOTES ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>This module covers all <strong>defence & military current affairs from January 2025 to March 2026</strong> — organised topic-wise so you can revise each type together. <strong>Operation Sindoor is the highest-priority topic</strong> and will almost certainly appear in your exam.</p>
+  </div>
+
+  <!-- TOPIC 1: OPERATION SINDOOR -->
+  <div class="sec-label">Topic 1 — Operation Sindoor (Most Important)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Operation Sindoor — Complete Summary</div>
+        <div class="c-sub">India's biggest military action since 1971 · May 2025</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="sindoor-box">
+        <div class="sl-label">🔴 Operation Sindoor — Key Facts</div>
+        <ul>
+          <li><strong>Trigger:</strong> Pahalgam terror attack on <strong>22 April 2025</strong> — 26 civilians killed (targeted on religious grounds) in Jammu & Kashmir</li>
+          <li><strong>Operation launched:</strong> <strong>7 May 2025</strong> (night of 6–7 May) — India's tri-services military action</li>
+          <li><strong>Targets hit:</strong> <strong>9 terror infrastructure sites</strong> — including JeM HQ in Bahawalpur & LeT's Muridke training facility, in Pakistan and PoK</li>
+          <li><strong>Duration:</strong> <strong>7 May to 10 May 2025</strong> (4 days)</li>
+          <li><strong>Ceasefire:</strong> Pakistan DGMO called Indian DGMO — ceasefire effective from <strong>1700 hrs IST on 10 May 2025</strong></li>
+          <li><strong>Terror groups targeted:</strong> Jaish-e-Mohammed (JeM) and Lashkar-e-Taiba (LeT)</li>
+          <li><strong>Weapons used by India:</strong> BrahMos cruise missiles, SCALP-EG missiles, Harop anti-radiation drones, Crystal Maze & Rampage rockets</li>
+          <li><strong>Air defence star:</strong> Indigenous <strong>Akashteer system</strong> neutralised hundreds of Pakistani drones and missiles</li>
+          <li><strong>Pakistan's Operation:</strong> Pakistan called its retaliation <strong>Operation Bunyan-un-Marsoos</strong></li>
+          <li><strong>India's new doctrine (PM Modi, 12 May):</strong> Any terror attack = assured retaliation · No nuclear blackmail · No distinction between terrorists and harbouring state · "Terror and talks cannot go together"</li>
+          <li><strong>Indus Waters Treaty</strong> — India suspended the treaty ("Blood and water cannot flow together")</li>
+          <li><strong>Attari-Wagah border</strong> — closed by India</li>
+          <li><strong>Pakistan promoted</strong> Army Chief Asim Munir to <strong>Field Marshal</strong> (20 May 2025)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Traps — Don't Get These Wrong</div>
+        <ul>
+          <li>Pahalgam attack = <strong>22 April 2025</strong> · Operation Sindoor launched = <strong>7 May 2025</strong></li>
+          <li>Targets: <strong>9 sites</strong> — terrorist infrastructure only, not Pakistan military/civilian initially</li>
+          <li>India struck <strong>11 Pakistani airbases</strong> in the later phase (9–10 May)</li>
+          <li>Ceasefire: <strong>Pakistan's DGMO contacted India's DGMO</strong> (not the other way around)</li>
+          <li><strong>Akashteer</strong> = Indigenous air defence system that intercepted drones · Different from S-400</li>
+          <li>Operation Sindoor is described as India's most significant military action since the <strong>1971 Bangladesh Liberation War</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPIC 2: APPOINTMENTS -->
+  <div class="sec-label">Topic 2 — Key Defence Appointments</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EBF2E2">⭐</div>
+      <div style="flex:1">
+        <div class="c-title">Chiefs of the Armed Forces (Current)</div>
+        <div class="c-sub">CDS, Army, Navy, Air Force — who holds what as of 2026</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <span class="ev-month red">CDS</span>
+          <div class="ev-content">
+            <div class="ev-title">Gen Anil Chauhan — Chief of Defence Staff <span class="ev-tag tag-hot">HOT</span></div>
+            <div class="ev-detail">India's <b>2nd CDS</b> · Appointed <b>28 Sep 2022</b> · Extension granted by ACC on <b>24 Sep 2025</b> — tenure extended till <b>30 May 2026</b> · Also serves as Secretary, Dept of Military Affairs · "China Expert" with multiple postings in Eastern Command · Was Director General of Military Operations (DGMO) during Balakot airstrike 2019</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month" style="background:#4A3A20">Army</span>
+          <div class="ev-content">
+            <div class="ev-title">Gen Upendra Dwivedi — Chief of Army Staff (COAS)</div>
+            <div class="ev-detail">Current Chief of Army Staff · Scheduled to retire in <b>July 2026</b> on reaching age 62 · Led the Army's role in Operation Sindoor</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month blue">Navy</span>
+          <div class="ev-content">
+            <div class="ev-title">Admiral Dinesh Kumar Tripathi — Chief of Naval Staff (CNS)</div>
+            <div class="ev-detail">Current Chief of Naval Staff · Scheduled to retire in <b>May 2026</b> on reaching age 62</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month" style="background:#6A3010">IAF</span>
+          <div class="ev-content">
+            <div class="ev-title">Air Chief Marshal A.P. Singh — Chief of Air Staff (CAS)</div>
+            <div class="ev-detail">Took charge on <b>30 Sep 2024</b> · Scheduled to serve until <b>31 Oct 2026</b> · Led IAF during Operation Sindoor</div>
+          </div>
+        </li>
+      </ul>
+      <div class="fact-box">
+        <div class="fb-label">Key Context — Why This Matters</div>
+        <ul>
+          <li>With CDS Chauhan retiring May 2026, Army Chief retiring July 2026 and Navy Chief retiring May 2026 — India faces <strong>multiple top-level transitions</strong> in one window</li>
+          <li>India's <strong>1st CDS</strong> was <strong>Gen Bipin Rawat</strong> — died in a helicopter crash near Coonoor, Tamil Nadu on <strong>8 December 2021</strong></li>
+          <li>The post of CDS was created in <strong>January 2020</strong> on recommendation of Kargil Review Committee</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPIC 3: MILITARY EXERCISES -->
+  <div class="sec-label">Topic 3 — Military Exercises (Jan 2025 – Mar 2026)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🌐</div>
+      <div style="flex:1">
+        <div class="c-title">Army Exercises — Bilateral & Multilateral</div>
+        <div class="c-sub">All major army exercises with country, edition & location</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="ex-table">
+          <tr><th>Exercise</th><th>Country / Type</th><th>Meaning / Focus</th><th>2025 Edition</th></tr>
+          <tr><td><b>Yudh Abhyas</b></td><td><span class="army">ARMY</span> India–USA</td><td>"Practice of War" · High-altitude mountain warfare · Alaska, USA</td><td>Sep 2025 (Alaska)</td></tr>
+          <tr><td><b>Shakti</b></td><td><span class="army">ARMY</span> India–France</td><td>Counter-insurgency, company-level drills</td><td>2025</td></tr>
+          <tr><td><b>Surya Kiran</b></td><td><span class="army">ARMY</span> India–Nepal</td><td>High-altitude infantry training · Bilateral</td><td>Annual</td></tr>
+          <tr><td><b>Sampriti</b></td><td><span class="army">ARMY</span> India–Bangladesh</td><td>Sub-conventional ops, HADR</td><td>2025</td></tr>
+          <tr><td><b>Ekuverin</b></td><td><span class="army">ARMY</span> India–Maldives</td><td>"Friends" in Dhivehi · Counter-insurgency, HADR · 13th edition hosted by Maldives</td><td>Feb 2025 (Maldives)</td></tr>
+          <tr><td><b>Mitra Shakti</b></td><td><span class="army">ARMY</span> India–Sri Lanka</td><td>Sub-conventional, civil-military ops</td><td>2025</td></tr>
+          <tr><td><b>Dustlik</b></td><td><span class="army">ARMY</span> India–Uzbekistan</td><td>Urban counter-terror, close-quarter battle</td><td>2025</td></tr>
+          <tr><td><b>Khanjar</b></td><td><span class="army">ARMY</span> India–Kyrgyzstan</td><td>Mountain warfare, counter-terror · "Dagger"</td><td>2025 (Khanjar-XII)</td></tr>
+          <tr><td><b>Cyclone</b></td><td><span class="army">ARMY</span> India–Egypt</td><td>Special forces, desert terrain · Mahajan, Rajasthan</td><td>2025</td></tr>
+          <tr><td><b>Nomadic Elephant</b></td><td><span class="army">ARMY</span> India–Mongolia</td><td>Counter-insurgency operations</td><td>2025</td></tr>
+          <tr><td><b>Dharma Guardian</b></td><td><span class="army">ARMY</span> India–Japan</td><td>7th edition · <b>Chaubattia, Uttarakhand</b></td><td>Feb 2026 (7th ed.)</td></tr>
+          <tr><td><b>Bold Kurukshetra</b></td><td><span class="army">ARMY</span> India–Singapore</td><td>Armoured warfare · 13th ed. Devlali, Maharashtra</td><td>2025</td></tr>
+          <tr><td><b>Agni Warrior</b></td><td><span class="army">ARMY</span> India–Singapore</td><td>Artillery · 13th ed. Devlali, Nov 2024</td><td>Nov 2024</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">⚓</div>
+      <div style="flex:1">
+        <div class="c-title">Naval & Air Force Exercises</div>
+        <div class="c-sub">Key maritime and aerial exercises of 2025–26</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="ex-table">
+          <tr><th>Exercise</th><th>Type</th><th>Country / Focus</th><th>Key Fact</th></tr>
+          <tr><td><b>MILAN 2026</b></td><td><span class="navy">NAVY</span> Multilateral</td><td>13th edition · Visakhapatnam, AP · Inaugurated by Defence Minister Rajnath Singh</td><td>Feb 2026 · One of world's largest multilateral naval exercises</td></tr>
+          <tr><td><b>Malabar</b></td><td><span class="navy">NAVY</span> Quad</td><td>India, USA, Japan, Australia · Carrier strike, ASW, air defence</td><td>Annual · Core Quad exercise</td></tr>
+          <tr><td><b>Varuna</b></td><td><span class="navy">NAVY</span> India–France</td><td>High-end maritime ops, ASW, air defence at sea</td><td>Annual</td></tr>
+          <tr><td><b>JIMEX</b></td><td><span class="navy">NAVY</span> India–Japan</td><td>Japan India Maritime Exercise · Naval tactics and communications</td><td>Annual</td></tr>
+          <tr><td><b>AUSINDEX</b></td><td><span class="navy">NAVY</span> India–Australia</td><td>ASW and surface warfare</td><td>Biennial</td></tr>
+          <tr><td><b>Bongosagar</b></td><td><span class="navy">NAVY</span> India–Bangladesh</td><td>Maritime domain awareness, sea-lane security</td><td>Annual</td></tr>
+          <tr><td><b>Tiger Triumph</b></td><td><span class="joint">TRI-SERVICE</span> India–USA</td><td>Amphibious ops, HADR · Eastern seaboard</td><td>One of few tri-service exercises</td></tr>
+          <tr><td><b>TROPEX</b></td><td><span class="navy">NAVY</span> Domestic</td><td>Theatre Level Operational Readiness Exercise · Indian Navy's biggest</td><td>Annual domestic</td></tr>
+          <tr><td><b>Garuda / Desert Knight</b></td><td><span class="airforce">AIF</span> India–France</td><td>Air combat and refuelling</td><td>Bilateral</td></tr>
+          <tr><td><b>Indradhanush</b></td><td><span class="airforce">IAF</span> India–UK</td><td>Air combat training · "Rainbow"</td><td>Bilateral</td></tr>
+          <tr><td><b>Veer Guardian</b></td><td><span class="airforce">IAF</span> India–Japan</td><td>Air combat training · Japan</td><td>2024–25</td></tr>
+          <tr><td><b>Bright Star</b></td><td><span class="joint">MULTI</span> Egypt-hosted</td><td>India participated in Bright Star 2025 in Egypt</td><td>2025</td></tr>
+          <tr><td><b>Talisman Sabre 2025</b></td><td><span class="joint">MULTI</span> 19 countries</td><td>India participated · Showed growing global military cooperation</td><td>2025</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Memory Trick — Exercise Names & Countries</div>
+        <ul>
+          <li><b>Shakti</b> = India–France (Army) · <b>Garuda/Varuna</b> = India–France (Air/Navy)</li>
+          <li><b>Yudh Abhyas</b> = India–USA (Army) · <b>Tiger Triumph</b> = India–USA (Tri-Service)</li>
+          <li><b>Dharma Guardian</b> = India–Japan (Army) · <b>Veer Guardian</b> = India–Japan (Air Force)</li>
+          <li><b>Ekuverin</b> = India–Maldives · means "Friends" in Dhivehi</li>
+          <li><b>Surya Kiran</b> = India–Nepal · <b>Sampriti</b> = India–Bangladesh</li>
+          <li><b>Malabar</b> = Quad Naval (India, USA, Japan, Australia)</li>
+          <li><b>MILAN</b> = India's biggest multilateral naval exercise (hosted at Visakhapatnam)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPIC 4: WEAPONS & INDUCTIONS -->
+  <div class="sec-label">Topic 4 — Weapons, Inductions & Defence Deals</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FEF0E4">✈️</div>
+      <div style="flex:1">
+        <div class="c-title">Air Force — Tejas & Weapons</div>
+        <div class="c-sub">HAL Tejas Mk1A — India's biggest indigenous defence contract</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <span class="ev-month amber">Sep 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">97 Tejas Mk1A aircraft ordered — India's biggest ever indigenous defence contract <span class="ev-tag tag-hot">HOT</span></div>
+            <div class="ev-detail">MoD contracted HAL for <b>97 Tejas Mk1A</b> (68 single-seater + 29 twin-seater) · Contract worth <b>~₹1.1 lakh crore</b> combined with earlier 83-aircraft deal · Indigenous content over <b>64%</b> · Deliveries begin <b>2027–28</b> · Replaces MiG-21 fleet · Features: UTTAM AESA Radar, Astra BVR missiles, ASRAAM close-combat missiles</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month" style="background:#3A3020">Mar 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Astra Mk1 missile successfully tested from Tejas</div>
+            <div class="ev-detail">Direct hit on target over <b>100 km away</b> on 12 March 2025 · Astra = India's indigenous BVR (Beyond Visual Range) air-to-air missile developed by DRDO · Being integrated on Tejas, Su-30MKI, Navy's MiG-29</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month" style="background:#5A3010">Ongoing</span>
+          <div class="ev-content">
+            <div class="ev-title">Astra Mk2 integration on Tejas — trials expected mid-2026</div>
+            <div class="ev-detail">Range: <b>140–160 km</b> · Being integrated on Tejas Mk1 and Mk1A · Full production by 2027 · Cost: ₹7 crore vs ₹25 crore for European Meteor missile</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🚢</div>
+      <div style="flex:1">
+        <div class="c-title">Navy — Ships Commissioned & BrahMos</div>
+        <div class="c-sub">New ships inducted and India's most powerful missile</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <span class="ev-month blue">Feb 2026</span>
+          <div class="ev-content">
+            <div class="ev-title">INS Anjadip commissioned — 4th Anti-Submarine Warfare ship <span class="ev-tag tag-new">NEW</span></div>
+            <div class="ev-detail">Commissioned at <b>Chennai Port</b> on 27 February 2026 · 4th vessel under <b>ASW-SWC (Anti-Submarine Warfare Shallow Water Craft)</b> project</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month blue">Early 2026</span>
+          <div class="ev-content">
+            <div class="ev-title">INS Aridhaman — India's 3rd nuclear submarine (SSBN) <span class="ev-tag tag-hot">HOT</span></div>
+            <div class="ev-detail"><b>Arihant-class SSBN</b> · Designated S4 · Strengthens India's <b>nuclear triad</b> (land + air + sea nuclear capability) · Joins INS Arihant (1st) and INS Arighaat (2nd)</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month blue">Jun 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">INS Udaygiri and INS Himgiri commissioned with BrahMos</div>
+            <div class="ev-detail"><b>Nilgiri-class stealth frigates</b> · Commissioned June 2025 with full BrahMos integration · BrahMos now arms <b>13 destroyers + 14 stealth frigates</b> in Indian Navy · 65–85% indigenous production of BrahMos components by 2025</div>
+          </div>
+        </li>
+      </ul>
+      <div class="fact-box">
+        <div class="fb-label">BrahMos — Key Facts</div>
+        <ul>
+          <li><strong>BrahMos</strong> = India + Russia joint cruise missile · Speed <b>Mach 3</b> (upgradable to Mach 7 with BrahMos-II)</li>
+          <li>Range: <b>290–600 km</b> · Warhead: 300 kg · Deployed on all 3 services (land, sea, air)</li>
+          <li>India exported BrahMos to <b>Philippines in 2025</b> — first export of BrahMos</li>
+          <li>BrahMos production unit inaugurated in <b>Lucknow</b></li>
+          <li><strong>BrahMos-NG</strong> (Next Generation) = smaller, lighter · For Tejas and Rafale · Under development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EBF2E2">🛡️</div>
+      <div style="flex:1">
+        <div class="c-title">DRDO Milestones & Other Inductions 2025</div>
+        <div class="c-sub">Indigenous weapons, air defence, and defence reforms</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <span class="ev-month">Apr 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">IDD&IS Mk-IIA (Sahastra Shakti) tested — laser-based anti-drone system</div>
+            <div class="ev-detail">Directed Energy Weapon (DEW) · <b>30 kW power</b>, <b>5 km range</b> · Also called <b>Sahastra Shakti</b> · For counter-drone (C-UAS) role · Indian Army already has Mk-I (7 units) inducted 2024</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month red">May 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Akashteer — India's indigenous air defence system proved in Operation Sindoor <span class="ev-tag tag-hot">HOT</span></div>
+            <div class="ev-detail">Intercepted <b>hundreds of Pakistani drones and missiles</b> · Integrated Command & Control system for Army Air Defence · Distinguished from S-400 (Russian imported system)</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month amber">Mar 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Ashwini radar deal — ₹2,906 crore with Bharat Electronics Limited</div>
+            <div class="ev-detail">MoD signed deal for <b>18 Ashwini low-level tracking radars</b> on 12 March 2025 · AESA-based radar for air defence · BEL (Bharat Electronics Limited) to supply</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month">2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Akash-NG (Next Generation) surface-to-air missile inducted</div>
+            <div class="ev-detail">Range: <b>80 km</b> · Weight: 350 kg · Ku-band radar seeker · Precision against drones and stealth targets · Developed by DRDO</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month">2025</span>
+          <div class="ev-content">
+            <div class="ev-title">India's defence exports reach ~₹21,083 crore ($2.5 billion) in FY 2023–24</div>
+            <div class="ev-detail">32.5% jump from previous year · Goal: $5 billion exports by 2025 · India = <b>2nd largest military by active personnel</b> (1.44 million) · <b>3rd largest defence budget</b> (₹6.21 lakh crore ≈ $74 billion for 2025–26)</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month">2025</span>
+          <div class="ev-content">
+            <div class="ev-title">2025 declared "Year of Reforms" by Ministry of Defence</div>
+            <div class="ev-detail">Focus on Jointness & Integration · Establishing <b>Integrated Theatre Commands (ITC)</b> · MoD also cleared High-Altitude Pseudo-Satellite (AS-HAPS) for IAF in Feb 2026</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOPIC 5: NOTABLE EVENTS -->
+  <div class="sec-label">Topic 5 — Other Notable Defence Events</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EBF2E2">📅</div>
+      <div style="flex:1">
+        <div class="c-title">Other Key Events Jan 2025 → Mar 2026</div>
+        <div class="c-sub">International Fleet Review, defence policy, India–Pakistan aftermath</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <ul class="ev-list">
+        <li class="ev-item">
+          <span class="ev-month blue">Feb 2026</span>
+          <div class="ev-content">
+            <div class="ev-title">International Fleet Review (IFR) 2026 — Visakhapatnam <span class="ev-tag tag-new">NEW</span></div>
+            <div class="ev-detail">13th edition of <b>Exercise MILAN</b> also held simultaneously at Visakhapatnam · INS Tarangini (sail training ship) was prominent participant · Inaugurated by Defence Minister <b>Rajnath Singh</b></div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month blue">Feb 2026</span>
+          <div class="ev-content">
+            <div class="ev-title">DAC clears High-Altitude Pseudo-Satellites (AS-HAPS) for IAF</div>
+            <div class="ev-detail">Defence Acquisition Council (DAC) granted AoN (Acceptance of Necessity) · Airship-based HAPS will provide persistent surveillance at high altitude · Under Aatmanirbhar Bharat initiative</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month red">May 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Post Operation Sindoor — India suspends Indus Waters Treaty</div>
+            <div class="ev-detail">India suspended the <b>1960 Indus Waters Treaty</b> with Pakistan · Closed <b>Attari–Wagah border</b> · Pakistani military advisors in New Delhi declared <b>Persona Non Grata</b> · Pakistani High Commission strength reduced from 55 to 30</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month amber">Sep 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">CDS Gen Anil Chauhan's tenure extended to May 2026</div>
+            <div class="ev-detail">ACC approved extension on <b>24 September 2025</b> · Extended from 30 Sep 2025 to <b>30 May 2026</b> · Theaterisation (Integrated Theatre Commands) is his main agenda</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month purple">Dec 2025</span>
+          <div class="ev-content">
+            <div class="ev-title">DAC clears IDD&IS Mk-II for Indian Army — counter-drone DEW</div>
+            <div class="ev-detail">Defence Acquisition Council cleared procurement of <b>IDD&IS Mk-II</b> on 29 December 2025 · Army and IAF seeking 16 units initially · For counter-UAS (drone) role</div>
+          </div>
+        </li>
+        <li class="ev-item">
+          <span class="ev-month">2025</span>
+          <div class="ev-content">
+            <div class="ev-title">Defence Defence Corridors — UP & Tamil Nadu operational</div>
+            <div class="ev-detail">Two Defence Industrial Corridors in <b>Uttar Pradesh</b> and <b>Tamil Nadu</b> boosting indigenous defence manufacturing · Part of Aatmanirbhar Bharat initiative · Over 70% of defence needs met domestically</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REF ══════════════ -->
+<div id="quickref" class="pane">
+  <div class="intro-box">
+    <p>All <strong>high-yield defence facts</strong> in one place — scan this 10 minutes before your exam.</p>
+  </div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔴 Operation Sindoor</div>
+      <ul>
+        <li>Trigger: <b>Pahalgam attack</b> — 22 Apr 2025 · 26 civilians killed</li>
+        <li>Launched: <b>7 May 2025</b> · Duration: 7–10 May</li>
+        <li>Targets: <b>9 terror sites</b> (JeM HQ Bahawalpur + LeT Muridke)</li>
+        <li>Later phase: <b>11 Pakistani airbases</b> struck (9–10 May)</li>
+        <li>Ceasefire: Pakistan DGMO called India DGMO · 1700 hrs IST 10 May</li>
+        <li>Pakistan's operation: <em>Bunyan-un-Marsoos</em></li>
+        <li>India's air defence hero: <em>Akashteer system</em></li>
+        <li>India's new doctrine: No distinction between terrorists & harbouring state</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⭐ Current Chiefs (2026)</div>
+      <ul>
+        <li><b>CDS:</b> Gen Anil Chauhan · Till 30 May 2026</li>
+        <li><b>Army (COAS):</b> Gen Upendra Dwivedi</li>
+        <li><b>Navy (CNS):</b> Adm Dinesh K. Tripathi</li>
+        <li><b>IAF (CAS):</b> ACM A.P. Singh · Since 30 Sep 2024</li>
+        <li>1st CDS: Gen Bipin Rawat (died 8 Dec 2021, Coonoor crash)</li>
+        <li>CDS post created: <em>January 2020</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🏋️ Army Exercises — Country Links</div>
+      <ul>
+        <li><b>Yudh Abhyas</b> — India–USA · High altitude</li>
+        <li><b>Shakti</b> — India–France</li>
+        <li><b>Dharma Guardian</b> — India–Japan · 7th ed. Feb 2026, Chaubattia</li>
+        <li><b>Surya Kiran</b> — India–Nepal</li>
+        <li><b>Ekuverin</b> — India–Maldives · "Friends" · 13th ed. Feb 2025</li>
+        <li><b>Sampriti</b> — India–Bangladesh</li>
+        <li><b>Dustlik</b> — India–Uzbekistan</li>
+        <li><b>Cyclone</b> — India–Egypt · Mahajan, Rajasthan</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚓ Naval & Air Exercises</div>
+      <ul>
+        <li><b>MILAN 2026</b> — 13th ed. Visakhapatnam · Multilateral</li>
+        <li><b>Malabar</b> — Quad (India, USA, Japan, Australia)</li>
+        <li><b>Varuna</b> — India–France (Navy)</li>
+        <li><b>JIMEX</b> — India–Japan (Navy)</li>
+        <li><b>Tiger Triumph</b> — India–USA (Tri-Service)</li>
+        <li><b>TROPEX</b> — Indian Navy domestic (biggest)</li>
+        <li><b>Indradhanush</b> — India–UK (Air Force)</li>
+        <li><b>Veer Guardian</b> — India–Japan (Air Force)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">✈️ Tejas & Weapons</div>
+      <ul>
+        <li>97 Tejas Mk1A — Sep 2025 · Biggest indigenous contract</li>
+        <li>Total IAF Tejas order: <em>180 aircraft</em> (~₹1.1 lakh crore)</li>
+        <li>Tejas replaces: <em>MiG-21 fleet</em></li>
+        <li>Astra Mk1 tested from Tejas: 12 Mar 2025 · Hit at 100+ km</li>
+        <li>Astra Mk2: Range 140–160 km · Trials mid-2026</li>
+        <li>Akash-NG inducted: 80 km range · Counter drones + stealth</li>
+        <li>Akashteer: Indigenous army air defence C2 system</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🚢 Navy — Ships & BrahMos</div>
+      <ul>
+        <li>INS Anjadip — 27 Feb 2026, Chennai · 4th ASW-SWC ship</li>
+        <li>INS Aridhaman — 3rd SSBN nuclear sub · Early 2026</li>
+        <li>INS Udaygiri + INS Himgiri — Jun 2025 · Nilgiri-class frigates</li>
+        <li>BrahMos: Mach 3 · 290–600 km · India+Russia</li>
+        <li>BrahMos exported to: <em>Philippines (2025)</em> — first export</li>
+        <li>BrahMos production unit: <em>Lucknow</em></li>
+        <li>Nuclear triad: Arihant (1st) · Arighaat (2nd) · Aridhaman (3rd)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🛡️ DRDO & Policy</div>
+      <ul>
+        <li>IDD&IS Mk-IIA (Sahastra Shakti): 30 kW DEW tested Apr 2025</li>
+        <li>Ashwini radar deal: ₹2,906 cr · 18 units · BEL · Mar 2025</li>
+        <li>2025 = "Year of Reforms" by MoD</li>
+        <li>Defence budget 2025–26: ₹6.21 lakh crore (~$74 billion)</li>
+        <li>Defence exports FY24: ₹21,083 crore ($2.5 billion)</li>
+        <li>Defence corridors: <em>UP + Tamil Nadu</em></li>
+        <li>India = 2nd largest military (personnel) · 3rd largest defence budget</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">30</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 30 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+</div>
+
+<div class="page-footer">
+  Olive Defence Entrance Academy &nbsp;·&nbsp; CA-03 Defence & Military 2025–26 &nbsp;·&nbsp; CDS · NDA · AFCAT
+</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── OPERATION SINDOOR (10) ────────────────────────────────────────────────
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Operation Sindoor was launched by India in response to which terrorist attack?',
+opts:['Uri attack (2016)','Pulwama attack (2019)','Pahalgam attack (April 2025)','Parliament attack (2001)'],ans:2,
+rule:'Pahalgam attack — 22 April 2025',
+exp:'Operation Sindoor was launched on 7 May 2025 in direct response to the Pahalgam terrorist attack of 22 April 2025 in Jammu & Kashmir, in which 26 civilians were killed — targeted specifically on religious grounds. The attackers were backed by Pakistan-based groups Jaish-e-Mohammed and Lashkar-e-Taiba.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'How many terror infrastructure sites were targeted in the first phase of Operation Sindoor on 7 May 2025?',
+opts:['5','7','9','11'],ans:2,
+rule:'9 terror sites targeted — including JeM HQ Bahawalpur + LeT Muridke',
+exp:'In the initial strikes on the night of 6–7 May 2025, India targeted 9 terror infrastructure sites — including the Jaish-e-Mohammed headquarters in Bahawalpur and the Lashkar-e-Taiba training facility in Muridke, in Pakistan and Pakistan-occupied Kashmir. India later struck 11 Pakistani airbases in the phase of 9–10 May.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Which indigenous Indian system shot down hundreds of Pakistani drones and missiles during Operation Sindoor?',
+opts:['S-400 Triumf','BrahMos','Akashteer','Akash-NG'],ans:2,
+rule:'Akashteer — India\'s indigenous army air defence Command & Control system',
+exp:'Akashteer is India\'s indigenous Integrated Command and Control system for Army Air Defence. During Operation Sindoor, it proved its capability by neutralising hundreds of Pakistani drones and missiles. It is different from the S-400 (imported from Russia) and the Akash missile system. Akashteer provides real-time threat identification and interception coordination.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Pakistan called its retaliatory operation during May 2025 conflict by what name?',
+opts:['Operation Ghazwa','Operation Bunyan-un-Marsoos','Operation Swift Retort','Operation Zarb-e-Azb'],ans:1,
+rule:'Pakistan\'s operation = Bunyan-un-Marsoos',
+exp:'Pakistan named its retaliatory military operation "Bunyan-un-Marsoos" (meaning a fortified wall in Arabic, from the Quran). India\'s operation was Operation Sindoor. The conflict lasted from 7 to 10 May 2025, ending with a ceasefire after Pakistan\'s DGMO contacted India\'s DGMO.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'The ceasefire during Operation Sindoor came into effect at:',
+opts:['1200 hrs IST on 9 May 2025','0600 hrs IST on 10 May 2025','1700 hrs IST on 10 May 2025','0001 hrs IST on 11 May 2025'],ans:2,
+rule:'Ceasefire: 1700 hrs IST, 10 May 2025 — Pakistan DGMO called India DGMO',
+exp:'The ceasefire was agreed between the DGMOs of India and Pakistan — Pakistan\'s DGMO initiated the call to India\'s DGMO. Both sides agreed to stop all firing and military action on land, air and sea from 1700 hours IST on 10 May 2025. Even after ceasefire, waves of Pakistani UAVs intruded into Indian territory but were intercepted.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Which treaty did India suspend after Operation Sindoor, with PM Modi saying "Blood and water cannot flow together"?',
+opts:['Shimla Agreement','Lahore Declaration','Indus Waters Treaty','Karachi Agreement'],ans:2,
+rule:'Indus Waters Treaty (1960) suspended by India after Operation Sindoor',
+exp:'India suspended the Indus Waters Treaty of 1960 — a water-sharing treaty for the rivers of the Indus system between India and Pakistan. PM Modi declared "Blood and water cannot flow together." This suspension gave India full control over western rivers like Jhelum and Chenab, enabling construction of new reservoirs in J&K, Ladakh, Punjab and Haryana.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'To which rank was Pakistan\'s Army Chief Asim Munir promoted during the 2025 India-Pakistan conflict?',
+opts:['General','Field Marshal','Admiral of the Fleet','Marshal of Air Force'],ans:1,
+rule:'Asim Munir promoted to Field Marshal — 20 May 2025',
+exp:'The Pakistan government promoted Army Chief General Asim Munir to the rank of Field Marshal on 20 May 2025, citing his "leadership" during the Operation Sindoor conflict. Field Marshal is a five-star rank, the highest in the Pakistan Army. The tenure of Air Chief Marshal Zaheer Ahmad Babar was also extended.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Operation Sindoor is described as India\'s most significant military action since which event?',
+opts:['Kargil War (1999)','Balakot Airstrikes (2019)','Bangladesh Liberation War (1971)','Surgical Strikes (2016)'],ans:2,
+rule:'Most significant since Bangladesh Liberation War of 1971',
+exp:'Multiple defence analysts and institutional assessments have described Operation Sindoor as India\'s most significant and daring military strikes on Pakistani targets since the Bangladesh Liberation War of 1971. Unlike the 2016 surgical strikes and 2019 Balakot airstrikes which were restrained, Operation Sindoor expanded to striking deep inside Pakistan and hitting 11 Pakistani airbases.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Which missiles/weapons did India NOT reportedly use in Operation Sindoor?',
+opts:['BrahMos cruise missiles','SCALP-EG missiles','Prithvi ballistic missiles','Harop anti-radiation drones'],ans:2,
+rule:'Prithvi ballistic missiles were NOT used — BrahMos, SCALP, Harop drones were used',
+exp:'India reportedly used BrahMos cruise missiles, SCALP-EG air-launched cruise missiles (French), Harop anti-radiation drones (Israeli), Crystal Maze, and Rampage rockets. Prithvi is a short-range ballistic missile — it was NOT used in Operation Sindoor. The operation used primarily air-launched precision-guided weapons to minimise collateral damage.'},
+
+{topic:'OPERATION SINDOOR',tc:'topic-op',date:'May 2025',
+q:'Which two terrorist groups\' infrastructure was specifically targeted in Operation Sindoor?',
+opts:['Hizbul Mujahideen and Al-Qaeda','Jaish-e-Mohammed (JeM) and Lashkar-e-Taiba (LeT)','Taliban and ISIS-K','Al-Badr and Haqqani Network'],ans:1,
+rule:'JeM (HQ Bahawalpur) and LeT (Muridke training camp) — main targets',
+exp:'Operation Sindoor specifically targeted the infrastructure of Jaish-e-Mohammed (JeM) and Lashkar-e-Taiba (LeT) — the two Pakistan-based terrorist groups responsible for numerous attacks on India. The JeM headquarters in Bahawalpur and the LeT\'s main training facility in Muridke were among the 9 priority targets. High-value JeM operatives including Yusuf Azhar, involved in the IC-814 hijacking, were eliminated.'},
+
+// ── EXERCISES (8) ────────────────────────────────────────────────────────────
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'Exercise "Ekuverin" is conducted between India and which country? What does "Ekuverin" mean?',
+opts:['Nepal — Brothers','Maldives — Friends','Sri Lanka — Unity','Bangladesh — Alliance'],ans:1,
+rule:'Ekuverin = India–Maldives · "Friends" in Dhivehi',
+exp:'Exercise Ekuverin is a bilateral joint military exercise between India and the Maldives. "Ekuverin" means "Friends" in the Dhivehi language. The 13th edition was held in February 2025, hosted by the Maldives at the Official Composite Training Center in Maafilaafushi. The exercise focuses on counter-insurgency coordination and joint HADR operations.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'Feb 2026',
+q:'Where was the 13th edition of Exercise MILAN 2026 inaugurated?',
+opts:['Mumbai','Kochi','Visakhapatnam','Chennai'],ans:2,
+rule:'MILAN 2026 — 13th edition — Visakhapatnam, Andhra Pradesh',
+exp:'The 13th edition of Exercise MILAN-2026 was inaugurated at Visakhapatnam, Andhra Pradesh in February 2026 by Defence Minister Rajnath Singh. MILAN is one of the world\'s largest multilateral naval exercises, hosted by India. The International Fleet Review (IFR) 2026 was also held simultaneously at Visakhapatnam.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'Exercise "Dharma Guardian" is the bilateral army exercise between India and:',
+opts:['South Korea','Australia','Japan','France'],ans:2,
+rule:'Dharma Guardian = India–Japan Army exercise',
+exp:'Dharma Guardian is the annual bilateral joint military exercise between India and Japan (Army). The 7th edition commenced on 24 February 2026 at the Foreign Training Node, Chaubattia, Uttarakhand. The exercise focuses on urban operations, jungle warfare, and counter-terrorism. Veer Guardian (Air Force) and JIMEX (Navy) are the other India-Japan exercises.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'Which exercise is conducted between India and USA involving all three services — Army, Navy and Air Force (Tri-Service)?',
+opts:['Yudh Abhyas','Malabar','Tiger Triumph','Vajra Prahar'],ans:2,
+rule:'Tiger Triumph = India–USA Tri-Service exercise (Amphibious + HADR)',
+exp:'Tiger Triumph is a unique tri-service exercise between India and the USA, involving the Army, Navy and Air Force. It focuses on amphibious operations and Humanitarian Assistance and Disaster Relief (HADR). Yudh Abhyas is only Army. Malabar is Quad naval. Tiger Triumph is conducted on India\'s eastern seaboard.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'The naval exercise "Malabar" involves which four countries?',
+opts:['India, USA, France, Japan','India, USA, Japan, Australia','India, USA, Australia, UK','India, Japan, Australia, France'],ans:1,
+rule:'Malabar = Quad Naval: India, USA, Japan, Australia',
+exp:'Exercise Malabar is the premier Quad naval exercise involving India, USA, Japan, and Australia — the four nations of the Quad (Quadrilateral Security Dialogue). It focuses on carrier strike operations, Anti-Submarine Warfare (ASW), air defence at sea, and complex multi-ship coordination. It is the cornerstone of India\'s naval cooperation in the Indo-Pacific.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'Sep 2025',
+q:'Exercise Yudh Abhyas 2025 between India and USA was held at which location?',
+opts:['Rajasthan, India','Alaska, USA','Hawaii, USA','Ladakh, India'],ans:1,
+rule:'Yudh Abhyas 2025 — Alaska, USA (Sep 1–14, 2025)',
+exp:'Exercise Yudh Abhyas 2025 was held in Alaska, USA from September 1–14, 2025. The exercise focuses on high-altitude and mountain warfare under sub-arctic conditions. The location of Yudh Abhyas alternates between India and the USA each year. The 2025 edition was notable for the largest Indian Army troop mobilisation for this exercise.'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'India participated in Exercise "Cyclone 2025" with which country, and where was it held?',
+opts:['Israel · Rajasthan','Egypt · Rajasthan (Mahajan Field Firing Range)','Jordan · Gujarat','UAE · Punjab'],ans:1,
+rule:'Cyclone = India–Egypt · Mahajan Field Firing Range, Rajasthan',
+exp:'Exercise Cyclone 2025 is a bilateral exercise between India and Egypt, conducted at the Mahajan Field Firing Range in Rajasthan. The 14-day exercise aims to enhance interoperability of special forces and share professional skills in desert terrain operations. Egypt is also connected to India through Exercise Bright Star (multilateral).'},
+
+{topic:'EXERCISES',tc:'topic-ex',date:'2025',
+q:'India\'s biggest domestic naval exercise is called:',
+opts:['CORPAT','Bongosagar','TROPEX','AUSINDEX'],ans:2,
+rule:'TROPEX = Theatre Level Operational Readiness Exercise — Indian Navy\'s biggest domestic exercise',
+exp:'TROPEX (Theatre Level Operational Readiness Exercise) is the Indian Navy\'s largest and most comprehensive domestic maritime exercise. It is conducted annually and involves the Indian Navy, Army and Air Force together with friendly foreign navies. It tests the Navy\'s operational readiness across all domains including submarine, surface, and air operations.'},
+
+// ── APPOINTMENTS (4) ──────────────────────────────────────────────────────────
+{topic:'APPOINTMENTS',tc:'topic-ap',date:'2022–2026',
+q:'Who is the current (2nd) Chief of Defence Staff (CDS) of India, and when was his tenure extended?',
+opts:['Gen Bipin Rawat · Jan 2020','Gen Anil Chauhan · Extension: Sep 2025, till May 2026','Gen Upendra Dwivedi · Jan 2025','Adm Dinesh Tripathi · Sep 2024'],ans:1,
+rule:'CDS = Gen Anil Chauhan (2nd CDS) · Extension approved 24 Sep 2025 till 30 May 2026',
+exp:'General Anil Chauhan is India\'s 2nd Chief of Defence Staff, appointed on 28 September 2022. The Appointments Committee of the Cabinet (ACC) extended his tenure on 24 September 2025 until 30 May 2026. He is also Secretary of the Department of Military Affairs. India\'s 1st CDS was Gen Bipin Rawat who died in a helicopter crash near Coonoor, Tamil Nadu on 8 December 2021.'},
+
+{topic:'APPOINTMENTS',tc:'topic-ap',date:'Sep 2024',
+q:'Who is the current Chief of Air Staff (CAS) of India and when did he take charge?',
+opts:['ACM Birender Singh Dhanoa · Jan 2025','ACM A.P. Singh · 30 Sep 2024','ACM V.R. Chaudhari · Nov 2024','ACM Arup Raha · Sep 2024'],ans:1,
+rule:'Air Chief Marshal A.P. Singh — CAS since 30 Sep 2024 · Served till Oct 2026',
+exp:'Air Chief Marshal A.P. Singh became the Chief of Air Staff (CAS) on 30 September 2024. He led the Indian Air Force during Operation Sindoor in May 2025. He is scheduled to serve until October 31, 2026. Unlike the Army Chief and Navy Chief who retire at age 62, the IAF Chief\'s longer tenure gives the government more continuity at the top.'},
+
+{topic:'APPOINTMENTS',tc:'topic-ap',date:'2020',
+q:'The post of Chief of Defence Staff (CDS) was created in India in:',
+opts:['December 2019 (announced)/ January 2020 (effective)','January 2017','March 2022','After Kargil War in 1999 directly'],ans:0,
+rule:'CDS created: announced Dec 2019 by PM Modi, 1st CDS Gen Bipin Rawat took charge 1 Jan 2020',
+exp:'The post of CDS was announced by PM Narendra Modi on Independence Day 2019 and created effective 1 January 2020, when Gen Bipin Rawat became India\'s first CDS. The post was recommended by the Kargil Review Committee (1999) and the Group of Ministers report (2001) but took two decades to be implemented. The CDS ensures jointness among the three armed forces.'},
+
+{topic:'APPOINTMENTS',tc:'topic-ap',date:'2025',
+q:'India\'s defence budget for 2025–26 is approximately:',
+opts:['₹3.5 lakh crore ($42 billion)','₹6.21 lakh crore (~$74 billion)','₹9 lakh crore ($108 billion)','₹4.8 lakh crore ($58 billion)'],ans:1,
+rule:'Defence budget 2025–26: ₹6.21 lakh crore (~$74 billion) — 3rd largest globally',
+exp:'India\'s defence budget for 2025–26 is approximately ₹6.21 lakh crore, equivalent to about $74 billion. This makes India the third-largest defence spender globally. India is also the second-largest military by active personnel with 1.44 million soldiers. India\'s defence exports reached ₹21,083 crore ($2.5 billion) in FY 2023-24.'},
+
+// ── WEAPONS & NAVY (8) ────────────────────────────────────────────────────────
+{topic:'WEAPONS',tc:'topic-wp',date:'Sep 2025',
+q:'In September 2025, India signed the biggest ever indigenous defence contract for which aircraft?',
+opts:['HAL Tejas Mk2','HAL Tejas Mk1A — 97 aircraft','DRDO AMCA','Sukhoi Su-30MKI upgrade'],ans:1,
+rule:'97 Tejas Mk1A — Sep 2025 — India\'s biggest indigenous defence contract',
+exp:'On 25 September 2025, the Ministry of Defence contracted HAL to supply 97 indigenously designed Tejas Mk-1A fighter aircraft (68 single-seat + 29 twin-seat) to the IAF. Combined with the earlier 83-aircraft contract (2021), the total order stands at 180 Tejas Mk1A aircraft worth approximately ₹1.1 lakh crore. This is the biggest ever indigenous defence manufacturing contract in India. Deliveries begin 2027–28, replacing the MiG-21 fleet.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'Jun 2025',
+q:'BrahMos missile was first exported to which country in 2025?',
+opts:['Vietnam','Indonesia','Philippines','Malaysia'],ans:2,
+rule:'BrahMos first export = Philippines (2025)',
+exp:'In 2025, India successfully exported the BrahMos supersonic cruise missile to the Philippines — the first ever export of BrahMos. The Philippines became the first foreign nation to receive the BrahMos. Vietnam and Indonesia are reportedly in the queue as future customers. BrahMos is a joint venture between India\'s DRDO and Russia\'s NPO Mashinostroyeniya.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'2025',
+q:'Which of the following correctly describes the BrahMos missile?',
+opts:[
+  'Subsonic air-to-air missile developed only by India',
+  'Supersonic cruise missile, India-Russia joint venture, Mach 3, range 290–600 km',
+  'Hypersonic ballistic missile, range 5000 km',
+  'Short-range surface-to-air missile for air defence'
+],ans:1,
+rule:'BrahMos = supersonic cruise missile, India+Russia, Mach 3, 290–600 km, all-3-service deployment',
+exp:'BrahMos is a supersonic cruise missile developed as a joint venture between India\'s DRDO (Brahmaputra) and Russia\'s NPO Mashinostroyeniya (Moskva) — hence "Brah-Mos". It flies at Mach 3, has a range of 290–600 km, and carries a 300 kg warhead. It is deployed across all three services — Army, Navy and Air Force. A new BrahMos production unit was inaugurated in Lucknow.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'Feb 2026',
+q:'INS Anjadip, commissioned in February 2026, is what type of vessel?',
+opts:[
+  'Nuclear ballistic missile submarine (SSBN)',
+  'Aircraft carrier',
+  'Anti-Submarine Warfare Shallow Water Craft (ASW-SWC)',
+  'Stealth destroyer'
+],ans:2,
+rule:'INS Anjadip = 4th ASW-SWC ship · Commissioned 27 Feb 2026 at Chennai',
+exp:'INS Anjadip is the fourth vessel under the Anti-Submarine Warfare Shallow Water Craft (ASW-SWC) project. It was commissioned into the Indian Navy at Chennai Port on 27 February 2026. ASW-SWC vessels are specialised craft designed for operations in shallow coastal waters to detect and neutralise submarines — a critical capability for India\'s coastal defence.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'2026',
+q:'India\'s third nuclear ballistic missile submarine (SSBN), INS Aridhaman, belongs to which class?',
+opts:['Scorpène class','Chakra class','Arihant class','Kalvari class'],ans:2,
+rule:'INS Aridhaman = 3rd Arihant-class SSBN · Strengthens nuclear triad',
+exp:'INS Aridhaman is India\'s third nuclear-powered ballistic missile submarine (SSBN), belonging to the Arihant class (designated S4). It was expected to be commissioned in early 2026. The class includes INS Arihant (1st, operational) and INS Arighaat (2nd). SSBNs provide the "sea-based leg" of India\'s nuclear triad — essential for second-strike capability.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'Apr 2025',
+q:'DRDO\'s "Sahastra Shakti" is the name given to which type of weapon system?',
+opts:['Long-range ballistic missile','Laser-based Directed Energy Weapon (DEW) for counter-drone role','Advanced fighter aircraft','Nuclear submarine propulsion system'],ans:1,
+rule:'Sahastra Shakti = IDD&IS Mk-IIA = 30 kW laser DEW · Tested April 2025',
+exp:'Sahastra Shakti (IDD&IS Mk-IIA) is a laser-based Directed Energy Weapon (DEW) developed by DRDO for counter-drone (C-UAS) and counter-UAV roles. It was tested on 13 April 2025 with 30 kW power output and 5 km range. The Indian Army already inducted the earlier Mk-I variant (7 units) in 2024. The DAC cleared procurement of Mk-II on 29 December 2025.'},
+
+{topic:'WEAPONS',tc:'topic-wp',date:'Mar 2025',
+q:'Astra Mk1 missile, tested from a Tejas fighter jet on 12 March 2025, is classified as:',
+opts:[
+  'Surface-to-air missile (SAM)',
+  'Anti-tank guided missile (ATGM)',
+  'Beyond Visual Range Air-to-Air Missile (BVRAAM)',
+  'Land-attack cruise missile'
+],ans:2,
+rule:'Astra = India\'s BVR (Beyond Visual Range) Air-to-Air Missile · DRDO-developed',
+exp:'Astra is India\'s indigenously developed Beyond Visual Range Air-to-Air Missile (BVRAAM), developed by DRDO. On 12 March 2025, it was successfully test-fired from a Tejas Mk1 fighter jet, achieving a direct hit on a target over 100 km away. Astra Mk1 is already in service on Su-30MKI aircraft. The next-generation Astra Mk2 (range 140–160 km) is under development.'},
+
+{topic:'NAVY',tc:'topic-na',date:'Jun 2025',
+q:'INS Udaygiri and INS Himgiri, commissioned in June 2025, belong to which class of warships?',
+opts:['Rajput class (destroyers)','Shivalik class (frigates)','Nilgiri class (stealth frigates)','Vikrant class (carriers)'],ans:2,
+rule:'Nilgiri-class stealth frigates · Commissioned June 2025 with BrahMos',
+exp:'INS Udaygiri and INS Himgiri are Nilgiri-class stealth frigates commissioned in June 2025 with full BrahMos missile integration. The Nilgiri class (Project 17A) are advanced stealth frigates featuring radar-absorbent structures, advanced sensors, and BrahMos as the principal strike weapon. As of 2025, BrahMos already arms 13 Indian Navy destroyers and 14 stealth frigates.'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const TOTAL = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-topic ${q.tc}">${q.topic}</span>
+        <span class="q-date">${q.date}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Why This Answer</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">CA-03 · Defence 2025–26</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=87){grade='Outstanding';msg='Excellent! You are fully prepared on Defence Current Affairs.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Good start. Re-read the notes and try again.'}
+  else{grade='Needs Work';msg:"Don't worry — go through the Quick Ref and retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

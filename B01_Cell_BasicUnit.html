@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B01 · The Cell | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F3F5F0;
+  --bg2:       #E8EDE3;
+  --bg3:       #DCE3D5;
+  --white:     #FFFFFF;
+  --ink:       #1A2214;
+  --ink2:      #2C3A22;
+  --muted:     #6A7A5A;
+  --dim:       #9AAA85;
+  --border:    #C8D4BC;
+  --teal:      #1F6B4A;
+  --tealLt:    #27854E;
+  --tealPale:  #E6F4EE;
+  --amber:     #9A6010;
+  --amberLt:   #BF7812;
+  --amberPale: #FDF4E3;
+  --green:     #2A6835;
+  --greenLt:   #348040;
+  --greenPale: #EAF5EC;
+  --red:       #8B2020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(26,34,20,.09);
+  --shadow-md: 0 4px 20px rgba(26,34,20,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#C8F0A0;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(200,240,160,.18);color:#C8F0A0}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(26,34,20,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(31,107,74,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(154,96,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(139,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+
+.analogy-box{
+  background:#F0F7FF;border-left:4px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;
+}
+.analogy-box .an-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:6px;
+}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+
+/* organelle mini-cards */
+.org-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.org-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:10px;padding:13px 14px;
+}
+.org-card .org-name{
+  font-size:13px;font-weight:800;color:var(--teal);
+  margin-bottom:4px;display:flex;align-items:center;gap:6px;
+}
+.org-card .org-nick{
+  font-size:11px;font-weight:700;color:var(--amber);
+  background:var(--amberPale);border-radius:4px;
+  padding:1px 7px;
+}
+.org-card p{font-size:14px;color:var(--ink2);line-height:1.6}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(31,107,74,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(31,107,74,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#C8F0A0;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+  .org-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Biology · Module B01</div>
+  <h1 class="hero-title">The Cell —<br><span>Basic Unit of Life</span></h1>
+  <p class="hero-sub">Every living thing — from a single bacterium to the human body — is made of cells. This module covers everything about cells that appears in CDS, NDA & AFCAT General Science, explained from scratch.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner Friendly</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">25 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (25)</button>
+</div>
+
+<!-- ══════════════ THEORY ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>In this module you will learn: <strong>what a cell is</strong>, the difference between <strong>plant and animal cells</strong>, key <strong>organelles and their functions</strong>, <strong>prokaryotes vs eukaryotes</strong>, and <strong>cell division basics</strong>. All of these appear directly in CDS/NDA/AFCAT every year.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-label">Section 1 — What is a Cell?</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4EE">🔬</div>
+      <div style="flex:1">
+        <div class="c-title">Definition & Discovery</div>
+        <div class="c-sub">Who discovered the cell and why it matters</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A <strong>cell</strong> is the smallest structural and functional unit of all living organisms. It is the basic building block of life — everything a living thing does (breathe, digest, grow, reproduce) happens inside or because of cells.</p>
+      <div class="analogy-box">
+        <div class="an-label">Think of it this way</div>
+        <p>If a living body is like a building, then <strong>cells are the bricks</strong>. Each brick is self-contained, does its job, and together they make the whole structure work.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Discovery Timeline — Frequently Asked</div>
+        <ul>
+          <li><strong>Robert Hooke (1665)</strong> — first observed cells in a slice of cork using a microscope. Named them "cells" (because they looked like small rooms).</li>
+          <li><strong>Anton van Leeuwenhoek</strong> — first observed living cells (bacteria, RBCs, sperm)</li>
+          <li><strong>Schleiden (1838)</strong> — all plants are made of cells</li>
+          <li><strong>Schwann (1839)</strong> — all animals are made of cells</li>
+          <li><strong>Virchow (1855)</strong> — "Omnis cellula e cellula" — every cell comes from a pre-existing cell</li>
+          <li><strong>Cell Theory</strong> = Schleiden + Schwann + Virchow together</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p><strong>Robert Hooke</strong> observed cells in <strong>dead cork</strong> — not living cells. The first to see <strong>living cells</strong> was <strong>Leeuwenhoek</strong>. This distinction is frequently tested.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-label">Section 2 — Prokaryotic vs Eukaryotic Cells</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🧬</div>
+      <div style="flex:1">
+        <div class="c-title">Two Types of Cells</div>
+        <div class="c-sub">The most fundamental division in biology</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>All cells in the world fall into just <strong>two categories</strong> based on whether they have a proper nucleus or not.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Prokaryotic</th><th>Eukaryotic</th></tr>
+          <tr><td>Nucleus</td><td><b>No true nucleus</b> — DNA floats freely in cytoplasm (nucleoid region)</td><td><b>True nucleus</b> enclosed in nuclear membrane</td></tr>
+          <tr><td>Size</td><td>Very small (1–10 µm)</td><td>Larger (10–100 µm)</td></tr>
+          <tr><td>Membrane-bound organelles</td><td>Absent (no mitochondria, ER, Golgi)</td><td>Present (mitochondria, ER, Golgi, etc.)</td></tr>
+          <tr><td>DNA shape</td><td>Circular, single chromosome</td><td>Linear, multiple chromosomes</td></tr>
+          <tr><td>Cell wall</td><td>Present (made of peptidoglycan)</td><td>Present in plants (cellulose), fungi (chitin); absent in animals</td></tr>
+          <tr><td>Ribosomes</td><td>70S (smaller)</td><td>80S (larger); 70S in mitochondria/chloroplast</td></tr>
+          <tr><td>Examples</td><td>Bacteria, Cyanobacteria (blue-green algae), Mycoplasma</td><td>Plants, Animals, Fungi, Protists</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Top Exam Traps</div>
+        <ul>
+          <li><strong>Mycoplasma</strong> = prokaryote AND the smallest living cell AND has no cell wall</li>
+          <li><strong>Viruses</strong> are NOT cells — they are non-cellular (acellular). They have no cytoplasm, no organelles.</li>
+          <li>Mitochondria and chloroplasts have <strong>70S ribosomes</strong> (like prokaryotes) — this supports the endosymbiotic theory</li>
+          <li><strong>PPLO</strong> (Pleuropneumonia-like organisms) = Mycoplasma = smallest self-replicating organism</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-label">Section 3 — Plant Cell vs Animal Cell</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF5EC">🌿</div>
+      <div style="flex:1">
+        <div class="c-title">Key Differences</div>
+        <div class="c-sub">What plant cells have that animal cells don't — and vice versa</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Plant Cell</th><th>Animal Cell</th></tr>
+          <tr><td>Cell wall</td><td><b>Present</b> (cellulose)</td><td>Absent</td></tr>
+          <tr><td>Chloroplasts</td><td><b>Present</b> (for photosynthesis)</td><td>Absent</td></tr>
+          <tr><td>Central vacuole</td><td><b>Large, single</b> central vacuole</td><td>Small, many or absent</td></tr>
+          <tr><td>Centrioles</td><td>Absent (except lower plants)</td><td><b>Present</b> (for cell division)</td></tr>
+          <tr><td>Lysosomes</td><td>Rare</td><td><b>Common</b> ("suicide bags")</td></tr>
+          <tr><td>Plastids</td><td><b>Present</b> (chloro-, leuco-, chromo-)</td><td>Absent</td></tr>
+          <tr><td>Shape</td><td>Fixed, rectangular (due to cell wall)</td><td>Irregular, flexible</td></tr>
+          <tr><td>Glycogen storage</td><td>Absent (stores starch)</td><td><b>Present</b></td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Memory Trick — What Only PLANTS Have</div>
+        <ul>
+          <li><strong>C</strong>ell wall · <strong>C</strong>hloroplasts · <strong>C</strong>entral vacuole · <strong>P</strong>lastids = <em>"Plants have 3 Cs and P"</em></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Memory Trick — What Only ANIMALS Have</div>
+        <ul>
+          <li><strong>C</strong>entrioles · <strong>L</strong>ysosomes · <strong>G</strong>lycogen = <em>"Animals have CLG"</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec-label">Section 4 — Cell Organelles & Their Functions</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🏭</div>
+      <div style="flex:1">
+        <div class="c-title">Cell Membrane & Cell Wall</div>
+        <div class="c-sub">The outer boundary of every cell</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Every cell is surrounded by a <strong>cell membrane</strong> (also called plasma membrane). In plant cells, there is also a stiff <strong>cell wall</strong> outside the membrane.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th></th><th>Cell Membrane</th><th>Cell Wall</th></tr>
+          <tr><td>Present in</td><td>ALL cells (plant + animal)</td><td>Plants, Fungi, Bacteria (not animals)</td></tr>
+          <tr><td>Made of</td><td>Phospholipid bilayer + proteins (Fluid Mosaic Model)</td><td>Cellulose (plants) · Chitin (fungi) · Peptidoglycan (bacteria)</td></tr>
+          <tr><td>Function</td><td>Controls what enters and exits the cell (selectively permeable)</td><td>Provides shape, rigidity, protection</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Fluid Mosaic Model — Singer & Nicolson (1972)</div>
+        <p>The cell membrane is described as a <strong>fluid mosaic</strong> — "fluid" because the phospholipid molecules can move around, and "mosaic" because proteins are scattered throughout like tiles in a mosaic. This is the accepted model for all cell membranes.</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>The cell membrane is <strong>selectively permeable</strong> (lets some things in, blocks others). It is <strong>NOT</strong> fully permeable or fully impermeable. This exact phrase — "selectively permeable" — is tested directly.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4EE">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Mitochondria</div>
+        <div class="c-sub">Powerhouse of the cell</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Mitochondria</strong> are the sites of <strong>cellular respiration</strong> — they convert food (glucose) into energy in the form of <strong>ATP</strong> (Adenosine Triphosphate).</p>
+      <div class="analogy-box">
+        <div class="an-label">Simple Analogy</div>
+        <p>Mitochondria are like the <strong>power plant</strong> of a city. The city (cell) needs electricity (ATP) to function. The power plant burns fuel (glucose) and generates the electricity.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Facts — Very Frequently Asked</div>
+        <ul>
+          <li>Called the <strong>"Powerhouse of the cell"</strong></li>
+          <li>Has a <strong>double membrane</strong> — outer membrane (smooth) + inner membrane (folded into <strong>cristae</strong>)</li>
+          <li>The inner fluid is called <strong>matrix</strong></li>
+          <li>Has its own <strong>DNA and ribosomes (70S)</strong> — can self-replicate (semi-autonomous)</li>
+          <li>ATP = <strong>energy currency</strong> of the cell</li>
+          <li>Present in ALL eukaryotic cells except RBCs (Red Blood Cells in humans)</li>
+          <li>Most mitochondria found in cells with high energy demand — liver, muscle, heart</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>Human <strong>Red Blood Cells (RBCs)</strong> have <strong>NO mitochondria</strong> and no nucleus. They rely entirely on anaerobic respiration (glycolysis) for energy. This is a very common question in CDS/NDA.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF5EC">☀️</div>
+      <div style="flex:1">
+        <div class="c-title">Chloroplast</div>
+        <div class="c-sub">The kitchen of the plant cell</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Chloroplasts</strong> are found only in plant cells and some algae. They contain <strong>chlorophyll</strong> — the green pigment that traps sunlight and uses it to make food through <strong>photosynthesis</strong>.</p>
+      <div class="fact-box">
+        <div class="fb-label">Key Facts</div>
+        <ul>
+          <li>Contains green pigment <strong>chlorophyll</strong> (gives plants their colour)</li>
+          <li>Has a <strong>double membrane</strong>, like mitochondria</li>
+          <li>Internal membrane system = <strong>thylakoids</strong> (stacked into grana)</li>
+          <li>Inner fluid = <strong>stroma</strong> (where Calvin cycle happens)</li>
+          <li>Has its own <strong>DNA and 70S ribosomes</strong> — semi-autonomous</li>
+          <li>Site of <strong>photosynthesis</strong>: CO₂ + H₂O + sunlight → glucose + O₂</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Types of Plastids</div>
+        <ul>
+          <li><strong>Chloroplasts</strong> — green, contain chlorophyll, photosynthesis</li>
+          <li><strong>Chromoplasts</strong> — coloured (red, orange, yellow) — give colour to fruits and flowers</li>
+          <li><strong>Leucoplasts</strong> — colourless — store starch, oils, proteins (e.g. in potato, seeds)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF4E3">📦</div>
+      <div style="flex:1">
+        <div class="c-title">All Other Key Organelles</div>
+        <div class="c-sub">Nucleus, ER, Golgi, Ribosomes, Lysosomes, Vacuole</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="org-grid">
+        <div class="org-card">
+          <div class="org-name">🧠 Nucleus <span class="org-nick">Control Centre</span></div>
+          <p>Brain of the cell. Contains DNA (genetic material). Surrounded by nuclear envelope with pores. Contains nucleolus (makes ribosomes). Controls all cell activities.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">🏗️ Ribosome <span class="org-nick">Protein Factory</span></div>
+          <p>Site of protein synthesis. No membrane. Two types: 70S (prokaryotes, mitochondria, chloroplasts) and 80S (eukaryote cytoplasm). Discovered by George Palade.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">🛣️ Endoplasmic Reticulum <span class="org-nick">Transport Network</span></div>
+          <p>Rough ER (has ribosomes) — makes proteins. Smooth ER (no ribosomes) — makes lipids, detoxifies. Forms a network of channels throughout the cell.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">📮 Golgi Apparatus <span class="org-nick">Post Office</span></div>
+          <p>Packages and ships proteins made by ribosomes. Modifies, sorts, and sends materials to correct destinations inside or outside the cell. Also makes lysosomes.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">💣 Lysosome <span class="org-nick">Suicide Bag</span></div>
+          <p>Contains digestive enzymes. Breaks down worn-out organelles, bacteria, and dead cells (autophagy). If lysosome bursts — the cell self-destructs. Found mainly in animal cells.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">💧 Vacuole <span class="org-nick">Storage Tank</span></div>
+          <p>Stores water, sap, waste. Plant cells have ONE large central vacuole (maintains cell turgidity). Animal cells have several small vacuoles or none.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">🌀 Centrosome <span class="org-nick">Division Helper</span></div>
+          <p>Contains centrioles. Forms the spindle fibres during cell division. Present in animal cells. Absent in higher plant cells. Made of microtubules arranged in 9+0 pattern.</p>
+        </div>
+        <div class="org-card">
+          <div class="org-name">🔋 Peroxisome</div>
+          <p>Breaks down fatty acids and amino acids. Neutralises toxic hydrogen peroxide (H₂O₂) using catalase enzyme. Important in liver and kidney cells.</p>
+        </div>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Nicknames That Are Directly Asked</div>
+        <ul>
+          <li>Mitochondria = <strong>Powerhouse of the cell</strong></li>
+          <li>Nucleus = <strong>Control centre / Brain of the cell</strong></li>
+          <li>Ribosome = <strong>Protein factory</strong></li>
+          <li>Lysosome = <strong>Suicide bag</strong> (autolysis)</li>
+          <li>Golgi apparatus = <strong>Post office / Traffic police of the cell</strong></li>
+          <li>Cell membrane = <strong>Selectively permeable membrane</strong></li>
+          <li>Chloroplast = <strong>Kitchen of the cell</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="sec-label">Section 5 — Cell Division</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🔁</div>
+      <div style="flex:1">
+        <div class="c-title">Mitosis & Meiosis</div>
+        <div class="c-sub">Two types of cell division — how and where each occurs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Cells reproduce by dividing. There are two types of division, and they serve completely different purposes.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Mitosis</th><th>Meiosis</th></tr>
+          <tr><td>Also called</td><td><b>Equational division</b></td><td><b>Reductional division</b></td></tr>
+          <tr><td>Divisions</td><td>One division</td><td>Two divisions (Meiosis I + II)</td></tr>
+          <tr><td>Daughter cells produced</td><td><b>2</b> daughter cells</td><td><b>4</b> daughter cells</td></tr>
+          <tr><td>Chromosome number</td><td><b>Same</b> as parent (diploid → diploid)</td><td><b>Half</b> of parent (diploid → haploid)</td></tr>
+          <tr><td>Where it occurs</td><td>Body (somatic) cells — skin, liver, bones</td><td>Reproductive cells — testes, ovary</td></tr>
+          <tr><td>Purpose</td><td>Growth, repair, replacement of cells</td><td>Formation of gametes (sperm and eggs)</td></tr>
+          <tr><td>Genetic variation</td><td><b>No</b> — daughter cells identical to parent</td><td><b>Yes</b> — crossing over creates variation</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Stages of Mitosis — PMAT</div>
+        <ul>
+          <li><strong>P</strong>rophase — chromosomes condense, nuclear envelope breaks down</li>
+          <li><strong>M</strong>etaphase — chromosomes line up at centre (equatorial plate)</li>
+          <li><strong>A</strong>naphase — sister chromatids pulled to opposite poles</li>
+          <li><strong>T</strong>elophase — nuclear envelopes reform, cell pinches</li>
+          <li>Before all this: <strong>Interphase</strong> — DNA replication (S phase)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Traps</div>
+        <ul>
+          <li>Mitosis in a <strong>human cell</strong> produces 2 cells each with <strong>46 chromosomes</strong></li>
+          <li>Meiosis produces 4 cells each with <strong>23 chromosomes</strong> (haploid)</li>
+          <li><strong>Cancer</strong> = uncontrolled mitosis</li>
+          <li>DNA replication occurs in <strong>Interphase</strong> (S phase) — NOT during mitosis itself</li>
+          <li>Chromosomes are most visible (most condensed) during <strong>Metaphase</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="sec-label">Section 6 — Special Cell Facts</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">🌟</div>
+      <div style="flex:1">
+        <div class="c-title">High-Yield Facts for Exam</div>
+        <div class="c-sub">These facts appear almost every year</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="purple-box">
+        <div class="pl-label">Must-Know Cell Facts</div>
+        <ul>
+          <li><strong>Largest cell</strong> in the human body = <em>Ovum (egg cell)</em></li>
+          <li><strong>Longest cell</strong> in the human body = <em>Neuron (nerve cell)</em></li>
+          <li><strong>Smallest cell</strong> = <em>Mycoplasma (PPLO)</em></li>
+          <li><strong>Largest cell</strong> in nature = <em>Ostrich egg</em></li>
+          <li><strong>Most abundant cell</strong> in human blood = <em>RBC (Red Blood Cell)</em></li>
+          <li>Human RBC has <strong>NO nucleus</strong> and <strong>NO mitochondria</strong> — survives ~120 days</li>
+          <li><strong>Nerve cells (neurons)</strong> do NOT divide (no mitosis after birth in most neurons)</li>
+          <li><strong>Totipotent cells</strong> = can become any cell type (embryonic stem cells)</li>
+          <li>A typical human body has about <strong>37 trillion cells</strong></li>
+          <li><strong>Water</strong> = most abundant molecule in a cell (~70%)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Most Common Traps</div>
+        <ul>
+          <li>RBC has no nucleus — so it cannot divide and cannot make new proteins</li>
+          <li>Viruses are <strong>non-cellular</strong> — they are NOT made of cells. They need a host cell to replicate.</li>
+          <li>The cell theory does NOT apply to viruses</li>
+          <li>Largest human cell = Ovum · Longest human cell = Neuron (these are different questions!)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REF ══════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="intro-box">
+    <p>All the <strong>high-yield facts</strong> from this module in one place. Scan this page before your exam.</p>
+  </div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Cell Discovery</div>
+      <ul>
+        <li><b>Robert Hooke (1665)</b> — discovered cell in dead cork</li>
+        <li><b>Leeuwenhoek</b> — first saw living cells</li>
+        <li><b>Schleiden (1838)</b> — plants made of cells</li>
+        <li><b>Schwann (1839)</b> — animals made of cells</li>
+        <li><b>Virchow (1855)</b> — cells from pre-existing cells</li>
+        <li>Cell theory = Schleiden + Schwann + Virchow</li>
+        <li>Viruses = <em>NOT cells</em> — acellular</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Prokaryote vs Eukaryote</div>
+      <ul>
+        <li>Prokaryote = <b>no true nucleus</b>, no membrane-bound organelles</li>
+        <li>Bacteria, Cyanobacteria = prokaryotes</li>
+        <li>Eukaryote = true nucleus, all organelles</li>
+        <li><b>Mycoplasma</b> = smallest living cell, no cell wall</li>
+        <li>Prokaryote ribosomes = <em>70S</em></li>
+        <li>Eukaryote ribosomes = <em>80S</em> (70S in mitochondria)</li>
+        <li>Viruses = <em>acellular</em> (not prokaryote or eukaryote)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Plant vs Animal Cell</div>
+      <ul>
+        <li>Only plant: <b>Cell wall, Chloroplast, Central vacuole, Plastids</b></li>
+        <li>Only animal: <b>Centrioles, Lysosomes, Glycogen</b></li>
+        <li>Cell wall = cellulose (plant) · chitin (fungi)</li>
+        <li>Plant stores <em>starch</em> · Animal stores <em>glycogen</em></li>
+        <li>Fluid Mosaic Model = Singer & Nicolson 1972</li>
+        <li>Cell membrane = <em>selectively permeable</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Organelle Nicknames</div>
+      <ul>
+        <li>Mitochondria = <em>Powerhouse of the cell</em></li>
+        <li>Nucleus = <em>Control centre / Brain</em></li>
+        <li>Ribosome = <em>Protein factory</em></li>
+        <li>Lysosome = <em>Suicide bag</em></li>
+        <li>Golgi body = <em>Post office / Traffic police</em></li>
+        <li>Chloroplast = <em>Kitchen of the cell</em></li>
+        <li>Vacuole = <em>Storage tank</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Mitochondria Facts</div>
+      <ul>
+        <li>Double membrane — outer smooth, inner <b>cristae</b></li>
+        <li>Inner fluid = <b>matrix</b></li>
+        <li>Has own DNA + <em>70S ribosomes</em></li>
+        <li>Makes <b>ATP</b> — energy currency of cell</li>
+        <li>Absent in human <em>RBCs</em></li>
+        <li>Most in liver, muscle, heart cells</li>
+        <li>Semi-autonomous organelle</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Mitosis vs Meiosis</div>
+      <ul>
+        <li>Mitosis = 2 cells, same chromosomes, somatic cells</li>
+        <li>Meiosis = 4 cells, half chromosomes, sex cells</li>
+        <li>Mitosis stages: <b>PMAT</b> (Prophase, Metaphase, Anaphase, Telophase)</li>
+        <li>DNA replication = <em>Interphase (S phase)</em></li>
+        <li>Chromosomes most visible = <em>Metaphase</em></li>
+        <li>Cancer = <em>uncontrolled mitosis</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Special Cell Facts</div>
+      <ul>
+        <li>Largest human cell = <em>Ovum</em></li>
+        <li>Longest human cell = <em>Neuron</em></li>
+        <li>Smallest cell = <em>Mycoplasma</em></li>
+        <li>Largest cell in nature = <em>Ostrich egg</em></li>
+        <li>RBC = no nucleus, no mitochondria, lives ~120 days</li>
+        <li>Neurons = do NOT divide after birth</li>
+        <li>Water = most abundant molecule in cell (~70%)</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">25</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 25 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">
+  Olive Defence Entrance Academy &nbsp;·&nbsp; Biology B01 — The Cell &nbsp;·&nbsp; CDS · NDA · AFCAT
+</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY (10) ────────────────────────────────────────────────────────────────
+{d:'EASY',e:'CDS 2022',
+q:'Who first observed cells using a microscope?',
+opts:['Anton van Leeuwenhoek','Robert Hooke','Rudolf Virchow','Matthias Schleiden'],ans:1,
+rule:'Robert Hooke (1665) — cork cells',
+exp:'Robert Hooke first observed and named cells in 1665, while examining a thin slice of cork under a microscope. He called them "cells" because they reminded him of small rooms. However, he observed dead cells. Leeuwenhoek was the first to observe living cells.'},
+
+{d:'EASY',e:'NDA 2021',
+q:'Which of the following is called the "Powerhouse of the cell"?',
+opts:['Nucleus','Ribosome','Mitochondria','Chloroplast'],ans:2,
+rule:'Mitochondria = Powerhouse (makes ATP)',
+exp:'Mitochondria are called the powerhouse of the cell because they produce ATP (Adenosine Triphosphate) through cellular respiration — the energy currency used by all cell activities. They convert chemical energy from food into usable ATP energy.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'Which organelle is responsible for protein synthesis in a cell?',
+opts:['Mitochondria','Ribosome','Golgi apparatus','Lysosome'],ans:1,
+rule:'Ribosome = protein factory',
+exp:'Ribosomes are the sites of protein synthesis — they read the genetic instructions (mRNA) and build proteins from amino acids. They are called the "protein factory" of the cell. Ribosomes are found in all cells, attached to rough ER or floating freely in cytoplasm.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'Which of the following is present in plant cells but NOT in animal cells?',
+opts:['Mitochondria','Ribosome','Cell wall','Nucleus'],ans:2,
+rule:'Cell wall — only in plant cells (cellulose)',
+exp:'Cell wall made of cellulose is present only in plant cells — it provides rigidity and shape. Animal cells have only a cell membrane (no cell wall). Mitochondria, ribosomes, and nucleus are present in both plant and animal cells.'},
+
+{d:'EASY',e:'NDA 2022',
+q:'The "suicide bag" of the cell is:',
+opts:['Vacuole','Lysosome','Golgi apparatus','Endoplasmic reticulum'],ans:1,
+rule:'Lysosome = suicide bag (autolysis)',
+exp:'Lysosomes are called the "suicide bag" of the cell because they contain powerful digestive enzymes. If a lysosome bursts, it releases these enzymes into the cell which then digest and destroy the cell itself — a process called autolysis. Lysosomes are most common in animal cells.'},
+
+{d:'EASY',e:'AFCAT 2021',
+q:'Human Red Blood Cells (RBCs) lack:',
+opts:['Cell membrane','Haemoglobin','Nucleus','Cytoplasm'],ans:2,
+rule:'RBC has no nucleus and no mitochondria',
+exp:'Mature human Red Blood Cells lack a nucleus (and also mitochondria). They lose their nucleus during development to make more room for haemoglobin — the protein that carries oxygen. Because they have no nucleus, RBCs cannot divide or make new proteins. They survive for about 120 days.'},
+
+{d:'EASY',e:'CDS 2021',
+q:'The process by which plants make food using sunlight occurs in the:',
+opts:['Mitochondria','Nucleus','Chloroplast','Ribosome'],ans:2,
+rule:'Chloroplast = site of photosynthesis',
+exp:'Photosynthesis takes place in chloroplasts — organelles found only in plant cells and some algae. Chloroplasts contain chlorophyll (the green pigment) that absorbs sunlight and uses it to convert CO₂ and water into glucose and oxygen. Mitochondria do the opposite — they break down glucose to release energy.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'Which type of cell division results in the formation of gametes (sperm and egg)?',
+opts:['Mitosis','Meiosis','Binary fission','Budding'],ans:1,
+rule:'Meiosis = produces gametes (haploid cells)',
+exp:'Meiosis is the type of cell division that produces gametes (sex cells — sperm and egg). It reduces the chromosome number by half (from 46 to 23 in humans), so that when sperm and egg fuse, the resulting cell has the correct number (46). Mitosis is for growth and repair, not reproduction.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'Which is the largest cell in the human body?',
+opts:['Neuron','RBC','Ovum','Liver cell'],ans:2,
+rule:'Ovum = largest cell in the human body',
+exp:'The ovum (egg cell) is the largest cell in the human body — it is just visible to the naked eye at about 0.1 mm. The longest cell is the neuron (nerve cell) which can be over 1 metre long. These are different — "largest" refers to volume, "longest" refers to length.'},
+
+{d:'EASY',e:'CDS 2020',
+q:'The cell theory was proposed by:',
+opts:['Darwin and Wallace','Hooke and Leeuwenhoek','Schleiden, Schwann and Virchow','Watson and Crick'],ans:2,
+rule:'Cell theory = Schleiden + Schwann + Virchow',
+exp:'Cell Theory was developed by three scientists: Schleiden (1838 — plants are made of cells), Schwann (1839 — animals are made of cells), and Virchow (1855 — cells arise from pre-existing cells). Watson and Crick proposed the double helix structure of DNA. Darwin and Wallace proposed evolution by natural selection.'},
+
+// ── MEDIUM (10) ──────────────────────────────────────────────────────────────
+{d:'MEDIUM',e:'CDS 2022',
+q:'Which of the following is NOT a difference between prokaryotic and eukaryotic cells?',
+opts:[
+  'Prokaryotes have no true nucleus',
+  'Prokaryotes have 70S ribosomes; eukaryotes have 80S',
+  'Both prokaryotes and eukaryotes have cell membranes',
+  'Prokaryotes have membrane-bound mitochondria'
+],ans:3,
+rule:'Prokaryotes have NO membrane-bound organelles',
+exp:'Prokaryotes do NOT have membrane-bound mitochondria or any membrane-bound organelles — this is the key defining feature. Options A and B are correct differences. Option C is correct — both types of cells have a cell membrane. Option D is the incorrect statement because prokaryotes lack mitochondria entirely.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Which organelle is described by the Fluid Mosaic Model?',
+opts:['Cell wall','Nuclear membrane','Cell membrane (plasma membrane)','Mitochondrial membrane'],ans:2,
+rule:'Fluid Mosaic Model — Singer & Nicolson 1972 — plasma membrane',
+exp:'The Fluid Mosaic Model, proposed by Singer and Nicolson in 1972, describes the structure of the cell membrane (plasma membrane). It is "fluid" because phospholipids can move around, and "mosaic" because proteins are embedded throughout like tiles. This model applies to all cellular membranes but specifically describes the plasma membrane.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'The number of chromosomes in a human cell after mitosis is:',
+opts:['23','46','92','48'],ans:1,
+rule:'Mitosis preserves chromosome number (diploid → diploid)',
+exp:'Mitosis is equational division — it maintains the same chromosome number. A normal human body cell has 46 chromosomes. After mitosis, each of the two daughter cells also has 46 chromosomes. Meiosis halves the number to 23 (in sperm and egg cells).'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Which of the following statements about mitochondria is CORRECT?',
+opts:[
+  'Mitochondria are found only in plant cells',
+  'Mitochondria have their own DNA and ribosomes',
+  'Mitochondria have a single membrane',
+  'Mitochondria are the site of protein synthesis'
+],ans:1,
+rule:'Mitochondria = semi-autonomous (own DNA + 70S ribosomes)',
+exp:'Mitochondria are semi-autonomous organelles — they have their own circular DNA and 70S ribosomes, which means they can synthesise some of their own proteins. This is evidence for the endosymbiotic theory. Mitochondria are found in all eukaryotic cells (not just plants), have a double membrane, and are the site of cellular respiration (not primarily protein synthesis — that\'s ribosomes).'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'Which of the following is present in both plant and animal cells?',
+opts:['Chloroplast','Cell wall','Centriole','Mitochondria'],ans:3,
+rule:'Mitochondria present in ALL eukaryotic cells',
+exp:'Mitochondria are present in all eukaryotic cells — both plant and animal cells. Chloroplasts and cell walls are found only in plant cells. Centrioles are found mainly in animal cells (and lower plant cells) but are absent in higher plant cells.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'The stage of mitosis during which chromosomes are most clearly visible and easy to count is:',
+opts:['Prophase','Metaphase','Anaphase','Telophase'],ans:1,
+rule:'Metaphase — chromosomes align at equatorial plate, most condensed',
+exp:'During Metaphase, chromosomes are fully condensed and lined up at the equatorial plate (middle of the cell), making them most clearly visible and easy to count under a microscope. This is why karyotyping (chromosome analysis) is done using metaphase chromosomes. In Prophase they start condensing; in Anaphase they are being pulled apart.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Lysosomes are produced by which organelle?',
+opts:['Mitochondria','Endoplasmic reticulum','Golgi apparatus','Nucleus'],ans:2,
+rule:'Golgi apparatus produces lysosomes',
+exp:'Lysosomes are produced by the Golgi apparatus. The Golgi body packages enzymes into vesicles that become lysosomes. The Golgi apparatus acts as the "post office" — it receives proteins from the rough ER, modifies them, packages them, and sends them to their destination. One destination is forming lysosomes.'},
+
+{d:'MEDIUM',e:'NDA 2021',
+q:'Which of the following has NO cell wall?',
+opts:['Bacteria','Fungi','Plant cell','Animal cell'],ans:3,
+rule:'Animal cells have NO cell wall — only cell membrane',
+exp:'Animal cells do not have a cell wall — they are enclosed only by a flexible cell membrane. Bacteria have a cell wall made of peptidoglycan. Fungi have a cell wall made of chitin. Plant cells have a cell wall made of cellulose. The absence of a cell wall makes animal cells more flexible in shape.'},
+
+{d:'MEDIUM',e:'AFCAT 2021',
+q:'The cristae are the folded inner membranes found in:',
+opts:['Chloroplast','Nucleus','Mitochondria','Golgi apparatus'],ans:2,
+rule:'Cristae = folded inner membrane of mitochondria',
+exp:'Cristae are the folds of the inner membrane of mitochondria. These folds greatly increase the surface area available for chemical reactions (specifically, the electron transport chain that produces ATP). The fluid inside mitochondria (inside the inner membrane) is called the matrix.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Which of the following correctly matches an organelle with its function?',
+opts:[
+  'Ribosome — energy production',
+  'Chloroplast — protein synthesis',
+  'Golgi apparatus — packaging and transport of proteins',
+  'Mitochondria — photosynthesis'
+],ans:2,
+rule:'Golgi = post office — packages and ships proteins',
+exp:'The Golgi apparatus modifies, packages and transports proteins to their destinations. Option A is wrong — ribosomes make proteins (not energy). Option B is wrong — chloroplasts do photosynthesis (not protein synthesis). Option D is wrong — mitochondria do cellular respiration, not photosynthesis (that\'s chloroplasts).'},
+
+// ── HARD (5) ─────────────────────────────────────────────────────────────────
+{d:'HARD',e:'CDS 2024',
+q:'Which of the following statements is INCORRECT?',
+opts:[
+  'Mycoplasma is the smallest known living cell and lacks a cell wall',
+  'Mitochondria contain 70S ribosomes, similar to prokaryotes',
+  'Meiosis results in four haploid cells from one diploid parent cell',
+  'Viruses are the smallest living prokaryotic cells'
+],ans:3,
+rule:'Viruses are acellular — NOT living cells, NOT prokaryotes',
+exp:'Option D is incorrect — viruses are NOT living cells and NOT prokaryotes. Viruses are acellular (non-cellular) entities. They have no cytoplasm, no organelles, no cell membrane of their own, and they cannot replicate independently. They are not classified as prokaryotes or eukaryotes. Options A, B, and C are all correct facts.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'A student is observing cells under a microscope. He notices the cells have a large central vacuole, a cell wall, but NO centrioles. These are MOST likely:',
+opts:[
+  'Animal cells',
+  'Bacterial cells',
+  'Higher plant cells',
+  'Fungal cells'
+],ans:2,
+rule:'Higher plants = cell wall + central vacuole + no centrioles',
+exp:'Higher plant cells have: a large central vacuole (for storage and turgidity), a cell wall (cellulose), but NO centrioles (centrioles are absent in higher plants — only present in lower plants and animal cells). Animal cells have centrioles but no cell wall or large central vacuole. Bacteria have no large vacuole. Fungi have chitin cell wall but no large central vacuole.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'The endosymbiotic theory explains the origin of mitochondria and chloroplasts. Which evidence BEST supports this theory?',
+opts:[
+  'Both organelles have a double membrane',
+  'Both organelles contain their own DNA and 70S ribosomes (like bacteria)',
+  'Both organelles produce ATP',
+  'Both organelles are found in eukaryotic cells only'
+],ans:1,
+rule:'Endosymbiotic theory — own DNA + 70S ribosomes (like ancient bacteria)',
+exp:'The strongest evidence for the endosymbiotic theory is that both mitochondria and chloroplasts contain their own circular DNA and 70S ribosomes — identical to those found in bacteria. This suggests they were once free-living bacteria that were engulfed by larger cells and eventually became permanent organelles. The double membrane is also evidence (outer = host cell membrane, inner = original bacterial membrane), but the DNA/ribosome evidence is most direct.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'In which phase of the cell cycle does DNA replication occur?',
+opts:['Prophase','S phase of Interphase','G2 phase','Metaphase'],ans:1,
+rule:'DNA replication = S phase (Synthesis phase) of Interphase',
+exp:'DNA replication occurs during the S phase (Synthesis phase) of Interphase — the stage BEFORE mitosis begins. The cell cycle has three interphase stages: G1 (cell grows), S (DNA replicates), G2 (cell prepares for division). Mitosis itself (PMAT) only involves the physical separation of already-duplicated chromosomes. This is frequently confused — mitosis does not replicate DNA.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Which of the following is the correct sequence from smallest to largest?',
+opts:[
+  'Virus → Mycoplasma → Bacteria → RBC → Ovum',
+  'Mycoplasma → Virus → Bacteria → Ovum → RBC',
+  'Virus → Bacteria → Mycoplasma → Ovum → RBC',
+  'Bacteria → Virus → Mycoplasma → RBC → Ovum'
+],ans:0,
+rule:'Size: Virus < Mycoplasma < Bacteria < RBC < Ovum',
+exp:'The correct size order from smallest to largest is: Virus (20–300 nm) → Mycoplasma (~100–300 nm, smallest living cell) → Bacteria (1–10 µm) → RBC (~6–8 µm, but larger than most bacteria) → Ovum (~100 µm, largest human cell). This question tests precise knowledge of cell and particle sizes.'},
+
+];
+
+// ── ENGINE ─────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Biology · B01</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! You have mastered the basics of the cell.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and try again."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

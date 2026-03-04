@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P01 · Mechanics | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F2F4F7;
+  --bg2:       #E6E9EF;
+  --bg3:       #D8DCE6;
+  --white:     #FFFFFF;
+  --ink:       #141824;
+  --ink2:      #222A3C;
+  --muted:     #5A6480;
+  --dim:       #8A94A8;
+  --border:    #C4CAD8;
+  --teal:      #1A4A7A;
+  --tealLt:    #235294;
+  --tealPale:  #E8EFF8;
+  --amber:     #9A5C10;
+  --amberLt:   #BC7012;
+  --amberPale: #FDF3E2;
+  --green:     #1E6B38;
+  --greenLt:   #268044;
+  --greenPale: #E8F4EC;
+  --red:       #8B2020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --orange:    #C05A10;
+  --orangePale:#FEF0E4;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(20,24,36,.09);
+  --shadow-md: 0 4px 20px rgba(20,24,36,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#A8D4FF;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(168,212,255,.18);color:#A8D4FF}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(20,24,36,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(26,74,122,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(154,92,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(139,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+
+.formula-box{
+  background:var(--ink2);border-radius:10px;
+  padding:16px 18px;margin:14px 0;
+}
+.formula-box .fl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:#A8D4FF;text-transform:uppercase;margin-bottom:10px;
+}
+.formula-box ul{list-style:none;padding:0}
+.formula-box li{
+  font-size:15.5px;color:#E8F0FF;padding:6px 0 6px 20px;
+  position:relative;line-height:1.7;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.formula-box li:last-child{border-bottom:none}
+.formula-box li::before{content:'f';position:absolute;left:0;
+  color:#A8D4FF;font-weight:800;font-size:11px;font-style:italic;top:9px}
+.formula-box li b{color:#FFD87A}
+.formula-box li em{color:#A8D4FF;font-style:normal}
+
+.analogy-box{
+  background:#F0F4FF;border-left:4px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;
+}
+.analogy-box .an-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:6px;
+}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;
+  font-size:9px;color:var(--purple);top:10px}
+
+.orange-box{
+  background:var(--orangePale);border:1.5px solid rgba(192,90,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.orange-box .ol-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--orange);text-transform:uppercase;margin-bottom:8px;
+}
+.orange-box p,.orange-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.orange-box ul{list-style:none;padding:0}
+.orange-box li{padding:5px 0 5px 20px;position:relative}
+.orange-box li::before{content:'★';position:absolute;left:0;
+  font-size:10px;color:var(--orange);top:8px}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(26,74,122,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(26,74,122,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#A8D4FF;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Physics · Module P01</div>
+  <h1 class="hero-title">Mechanics —<br><span>Motion, Force & Energy</span></h1>
+  <p class="hero-sub">Mechanics is the study of how things move and why. From Newton's laws to simple machines — these concepts appear in CDS, NDA & AFCAT every single year, and are completely learnable even from scratch.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner Friendly</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">25 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (25)</button>
+</div>
+
+<!-- ══════════════ THEORY ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>This module covers: <strong>distance vs displacement</strong>, <strong>speed vs velocity</strong>, <strong>Newton's three laws</strong>, <strong>gravitation</strong>, <strong>friction</strong>, <strong>work, energy and power</strong>, and <strong>simple machines</strong>. No complex math — just the concepts, formulas in plain English, and the exact patterns that appear in CDS/NDA/AFCAT.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-label">Section 1 — Motion: Distance, Displacement, Speed & Velocity</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8EFF8">📏</div>
+      <div style="flex:1">
+        <div class="c-title">Distance vs Displacement</div>
+        <div class="c-sub">Scalar vs vector — the first distinction in mechanics</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When an object moves, we can describe its change in position in two ways — <strong>distance</strong> (how much total path it covered) and <strong>displacement</strong> (how far it is from where it started, in a straight line).</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Distance</th><th>Displacement</th></tr>
+          <tr><td>Definition</td><td>Total path length covered</td><td>Shortest straight-line distance from start to end point</td></tr>
+          <tr><td>Type</td><td><b>Scalar</b> (magnitude only)</td><td><b>Vector</b> (magnitude + direction)</td></tr>
+          <tr><td>Can be zero?</td><td>Only if object doesn't move</td><td>Can be zero even if object moves (e.g. full circle)</td></tr>
+          <tr><td>Can be negative?</td><td>Never</td><td>Yes (depends on direction)</td></tr>
+          <tr><td>Example</td><td>Running 400m on a track</td><td>Back at start = 0 displacement</td></tr>
+        </table>
+      </div>
+      <div class="analogy-box">
+        <div class="an-label">Simple Analogy</div>
+        <p>Imagine walking from your room to the kitchen and back. <strong>Distance</strong> = total steps walked. <strong>Displacement</strong> = zero (you ended where you started).</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>If a person runs one complete lap of a circular track of radius r, distance = <strong>2πr</strong> but displacement = <strong>zero</strong>. This exact scenario appears in CDS/NDA multiple times.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EC">🚀</div>
+      <div style="flex:1">
+        <div class="c-title">Speed, Velocity & Acceleration</div>
+        <div class="c-sub">How fast, how fast in which direction, and how fast is it changing</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Quantity</th><th>Definition</th><th>Type</th><th>Formula</th></tr>
+          <tr><td><b>Speed</b></td><td>Distance covered per unit time</td><td>Scalar</td><td>Speed = Distance ÷ Time</td></tr>
+          <tr><td><b>Velocity</b></td><td>Displacement per unit time</td><td>Vector</td><td>Velocity = Displacement ÷ Time</td></tr>
+          <tr><td><b>Acceleration</b></td><td>Rate of change of velocity</td><td>Vector</td><td>a = (v − u) ÷ t</td></tr>
+        </table>
+      </div>
+      <div class="formula-box">
+        <div class="fl-label">Equations of Motion (3 Golden Equations)</div>
+        <ul>
+          <li><b>v = u + at</b> &nbsp;→&nbsp; <em>Final velocity = Initial velocity + (acceleration × time)</em></li>
+          <li><b>s = ut + ½at²</b> &nbsp;→&nbsp; <em>Distance = (initial vel × time) + ½(accel × time²)</em></li>
+          <li><b>v² = u² + 2as</b> &nbsp;→&nbsp; <em>Final vel² = Initial vel² + 2(accel × distance)</em></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Points</div>
+        <ul>
+          <li>SI unit of speed/velocity = <strong>metre per second (m/s)</strong></li>
+          <li>SI unit of acceleration = <strong>m/s²</strong></li>
+          <li>A body moving in a <strong>circle at constant speed</strong> still has acceleration (centripetal) — because direction keeps changing</li>
+          <li><strong>Uniform motion</strong> = constant speed in a straight line (zero acceleration)</li>
+          <li><strong>Retardation / Deceleration</strong> = negative acceleration (slowing down)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-label">Section 2 — Newton's Three Laws of Motion</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF3E2">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">First Law — Law of Inertia</div>
+        <div class="c-sub">"An object at rest stays at rest…"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Newton's First Law</div>
+        <p>An object continues to be in its state of <strong>rest or uniform motion</strong> in a straight line unless acted upon by an <strong>external unbalanced force</strong>.</p>
+      </div>
+      <p><strong>Inertia</strong> is the tendency of an object to resist change in its state of motion. More mass = more inertia.</p>
+      <div class="eg-box">
+        <div class="eg-label">Real-Life Examples</div>
+        <ul>
+          <li>When a bus suddenly brakes, passengers lean forward (their body resists the change — inertia of motion)</li>
+          <li>When a bus suddenly starts moving, passengers lean backward (inertia of rest)</li>
+          <li>A ball rolling on a smooth surface keeps rolling — no friction means nothing stops it</li>
+          <li>Shaking a wet umbrella — water flies off (inertia of motion of water droplets)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>The First Law is also called the <strong>"Law of Inertia"</strong>. Inertia depends on <strong>mass only</strong> — NOT on velocity, shape, or size. A heavier truck has more inertia than a bicycle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8EFF8">💪</div>
+      <div style="flex:1">
+        <div class="c-title">Second Law — Law of Force & Acceleration</div>
+        <div class="c-sub">F = ma — the most used formula in mechanics</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Newton's Second Law</div>
+        <p>The rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force.<br><br>
+        <strong>F = ma</strong> &nbsp;→&nbsp; Force = Mass × Acceleration</p>
+      </div>
+      <div class="formula-box">
+        <div class="fl-label">Key Formulas from Second Law</div>
+        <ul>
+          <li><b>F = ma</b> &nbsp;→&nbsp; <em>Force (N) = mass (kg) × acceleration (m/s²)</em></li>
+          <li><b>Momentum (p) = mv</b> &nbsp;→&nbsp; <em>mass × velocity. SI unit = kg·m/s</em></li>
+          <li><b>F = Δp ÷ t</b> &nbsp;→&nbsp; <em>Force = change in momentum ÷ time</em></li>
+          <li><b>Impulse = F × t = Δp</b> &nbsp;→&nbsp; <em>Force × time = change in momentum</em></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Points</div>
+        <ul>
+          <li>SI unit of Force = <strong>Newton (N)</strong> = kg·m/s²</li>
+          <li>SI unit of Momentum = <strong>kg·m/s</strong></li>
+          <li><strong>Impulse</strong> explains why: catching a ball slowly hurts less (longer time = smaller force)</li>
+          <li>A fielder draws their hands back while catching a ball — to increase time and reduce force (impulse)</li>
+          <li>Seat belts, airbags, and padding all work on the <strong>impulse principle</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Third Law — Law of Action & Reaction</div>
+        <div class="c-sub">"Every action has an equal and opposite reaction"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Newton's Third Law</div>
+        <p>For every action, there is an <strong>equal and opposite reaction</strong>. The two forces always act on <strong>different objects</strong> — never on the same object.</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Real-Life Examples</div>
+        <ul>
+          <li><strong>Rocket propulsion</strong> — gases pushed backward (action), rocket pushed forward (reaction)</li>
+          <li><strong>Recoil of a gun</strong> — bullet goes forward, gun kicks backward</li>
+          <li><strong>Swimming</strong> — swimmer pushes water backward, water pushes swimmer forward</li>
+          <li><strong>Walking</strong> — foot pushes ground backward, ground pushes foot forward</li>
+          <li><strong>Boat & oar</strong> — oar pushes water, water pushes boat forward</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Conservation of Momentum</div>
+        <p>The Third Law leads to the <strong>Law of Conservation of Momentum</strong>: in the absence of external forces, the total momentum of a system remains constant. Gun + bullet example: momentum before firing = 0. After firing: bullet forward momentum = gun backward momentum (recoil). This is directly tested.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-label">Section 3 — Gravitation</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8EFF8">🌍</div>
+      <div style="flex:1">
+        <div class="c-title">Newton's Law of Gravitation & 'g'</div>
+        <div class="c-sub">Why things fall and how fast they fall</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Universal Law of Gravitation</div>
+        <p>Every two objects in the universe attract each other with a force that is:<br>
+        — <strong>directly proportional</strong> to the product of their masses<br>
+        — <strong>inversely proportional</strong> to the square of the distance between them</p>
+      </div>
+      <div class="formula-box">
+        <div class="fl-label">Gravitation Formulas</div>
+        <ul>
+          <li><b>F = Gm₁m₂ / r²</b> &nbsp;→&nbsp; <em>G = 6.67 × 10⁻¹¹ N·m²/kg² (Universal constant)</em></li>
+          <li><b>g = GM/R²</b> &nbsp;→&nbsp; <em>g on Earth surface ≈ 9.8 m/s² (use 10 m/s² in exams)</em></li>
+          <li><b>Weight = mg</b> &nbsp;→&nbsp; <em>Weight (N) = mass (kg) × g (m/s²)</em></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Facts on 'g' — Very Frequently Asked</div>
+        <ul>
+          <li><strong>g decreases</strong> as you go higher above Earth's surface</li>
+          <li><strong>g decreases</strong> as you go deeper inside the Earth</li>
+          <li><strong>g is maximum</strong> at the poles (Earth is flatter, closer to centre)</li>
+          <li><strong>g is minimum</strong> at the equator</li>
+          <li><strong>g on Moon</strong> = g/6 = about 1.63 m/s² (1/6th of Earth's)</li>
+          <li><strong>Mass</strong> = constant everywhere · <strong>Weight</strong> = varies with location</li>
+          <li>In free fall / space — <strong>weightlessness</strong> (weight = 0, mass ≠ 0)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Most Tested Trap — Mass vs Weight</div>
+        <ul>
+          <li><strong>Mass</strong> = amount of matter. Measured in kg. Does NOT change anywhere in universe.</li>
+          <li><strong>Weight</strong> = gravitational force on the mass = mg. Changes with location (moon, poles, equator).</li>
+          <li>An astronaut in space has mass but is <strong>weightless</strong> (apparent weight = 0).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec-label">Section 4 — Friction</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FEF0E4">🔥</div>
+      <div style="flex:1">
+        <div class="c-title">Friction — The Necessary Evil</div>
+        <div class="c-sub">Types, causes, and how to increase or reduce it</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Friction</strong> is a force that opposes the relative motion between two surfaces in contact. It acts parallel to the surface and opposite to the direction of motion.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+          <tr><td><b>Static friction</b></td><td>Acts when object is at rest — prevents start of motion. Highest friction.</td><td>Pushing a heavy box that won't move</td></tr>
+          <tr><td><b>Sliding/Kinetic friction</b></td><td>Acts when object is moving. Less than static.</td><td>Block sliding on a table</td></tr>
+          <tr><td><b>Rolling friction</b></td><td>Acts when object rolls. Least of all three.</td><td>Ball rolling on ground</td></tr>
+          <tr><td><b>Fluid friction</b></td><td>Resistance in liquids/gases. Also called drag/viscosity.</td><td>Fish swimming in water</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Order of Friction (Highest → Lowest)</div>
+        <ul>
+          <li>Static > Sliding (Kinetic) > Rolling</li>
+          <li>This is why <strong>wheels were invented</strong> — rolling friction is far less than sliding</li>
+          <li>Friction <strong>increases</strong> with: rough surfaces, more weight (normal force)</li>
+          <li>Friction <strong>decreases</strong> with: smooth surfaces, lubrication (oil/grease), ball bearings, streamlining</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Friction — Friend or Enemy?</div>
+        <p><strong>Useful friction:</strong> walking, writing, brakes, matches, climbing<br>
+        <strong>Harmful friction:</strong> wear and tear of machines, heat generated in engines, tyre wear</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="sec-label">Section 5 — Work, Energy & Power</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8EFF8">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Work & Energy</div>
+        <div class="c-sub">Definitions, formulas and conservation law</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Definition of Work (in Physics)</div>
+        <p>Work is done when a <strong>force causes displacement</strong> in the direction of the force.<br>
+        <strong>W = F × d × cos θ</strong> &nbsp;(θ = angle between force and displacement)</p>
+      </div>
+      <div class="formula-box">
+        <div class="fl-label">Work, Energy & Power Formulas</div>
+        <ul>
+          <li><b>Work (W) = F × d</b> &nbsp;→&nbsp; <em>Unit = Joule (J). 1 J = 1 N × 1 m</em></li>
+          <li><b>KE = ½mv²</b> &nbsp;→&nbsp; <em>Kinetic energy = ½ × mass × velocity²</em></li>
+          <li><b>PE = mgh</b> &nbsp;→&nbsp; <em>Potential energy = mass × g × height</em></li>
+          <li><b>Power (P) = W ÷ t</b> &nbsp;→&nbsp; <em>Unit = Watt (W). 1 Watt = 1 J/s</em></li>
+          <li><b>1 Horsepower = 746 Watts</b></li>
+          <li><b>1 kWh = 3.6 × 10⁶ J</b> &nbsp;→&nbsp; <em>unit of electrical energy (unit of electricity)</em></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Law of Conservation of Energy</div>
+        <ul>
+          <li>Energy can neither be created nor destroyed — only <strong>converted from one form to another</strong></li>
+          <li>Total KE + PE = constant (in absence of friction) — called <strong>mechanical energy</strong></li>
+          <li>At the <strong>highest point</strong> of a pendulum: PE is maximum, KE is zero</li>
+          <li>At the <strong>lowest point</strong> of a pendulum: KE is maximum, PE is zero</li>
+          <li>A falling object: PE converts to KE as it falls</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ When is Work ZERO?</div>
+        <ul>
+          <li>Force is applied but <strong>no displacement</strong> (pushing a wall — no work done)</li>
+          <li>Force is <strong>perpendicular</strong> to displacement (cos 90° = 0): a coolie carrying luggage on his head while walking horizontally — force is upward, displacement is horizontal — work done by coolie = 0</li>
+          <li>This "coolie" example is a classic CDS/NDA question</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="sec-label">Section 6 — Simple Machines & Pressure</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EC">🔧</div>
+      <div style="flex:1">
+        <div class="c-title">Simple Machines</div>
+        <div class="c-sub">Lever, pulley, inclined plane — mechanical advantage explained</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Simple machines help us do work more easily — they don't reduce the total work done, but they allow us to apply a <strong>smaller force over a larger distance</strong>.</p>
+      <div class="formula-box">
+        <div class="fl-label">Mechanical Advantage (MA)</div>
+        <ul>
+          <li><b>MA = Load ÷ Effort</b> &nbsp;→&nbsp; <em>Ratio of output force to input force</em></li>
+          <li><b>Efficiency = (Output work ÷ Input work) × 100%</b></li>
+          <li><em>No machine is 100% efficient</em> (friction always causes some energy loss)</li>
+        </ul>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Machine</th><th>Class / Type</th><th>Example</th><th>MA</th></tr>
+          <tr><td><b>Lever — Class 1</b></td><td>Fulcrum between load and effort</td><td>See-saw, scissors, pliers, crowbar</td><td>Can be > or < 1</td></tr>
+          <tr><td><b>Lever — Class 2</b></td><td>Load between fulcrum and effort</td><td>Wheelbarrow, nutcracker, bottle opener</td><td>Always > 1</td></tr>
+          <tr><td><b>Lever — Class 3</b></td><td>Effort between fulcrum and load</td><td>Tweezers, broom, forceps, human forearm</td><td>Always < 1</td></tr>
+          <tr><td><b>Pulley (fixed)</b></td><td>Changes direction of force</td><td>Drawing water from well</td><td>= 1</td></tr>
+          <tr><td><b>Pulley (movable)</b></td><td>Reduces effort needed</td><td>Cranes, elevators</td><td>> 1</td></tr>
+          <tr><td><b>Inclined plane</b></td><td>Spreads work over longer distance</td><td>Ramp, screw, wedge</td><td>> 1</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Human Body as a Machine</div>
+        <ul>
+          <li><strong>Forearm</strong> = Class 3 lever (bicep effort is between elbow fulcrum and hand load)</li>
+          <li><strong>Head nodding</strong> = Class 1 lever (neck vertebra is fulcrum)</li>
+          <li><strong>Standing on tiptoe</strong> = Class 2 lever (ball of foot is fulcrum, body weight is load, calf muscle is effort)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF3E2">🌊</div>
+      <div style="flex:1">
+        <div class="c-title">Pressure — Pascal's Law & Archimedes' Principle</div>
+        <div class="c-sub">Fluids, buoyancy and why ships float</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="formula-box">
+        <div class="fl-label">Pressure Formulas</div>
+        <ul>
+          <li><b>Pressure = Force ÷ Area</b> &nbsp;→&nbsp; <em>Unit = Pascal (Pa) = N/m²</em></li>
+          <li><b>Fluid pressure = ρgh</b> &nbsp;→&nbsp; <em>density × g × height of fluid column</em></li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Pascal's Law</div>
+        <p>Pressure applied to an enclosed liquid is transmitted <strong>equally in all directions</strong>. This is the principle behind <strong>hydraulic machines</strong> — hydraulic brakes, hydraulic lift, hydraulic jack.</p>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Archimedes' Principle</div>
+        <p>When a body is wholly or partially immersed in a fluid, it experiences an <strong>upward buoyant force</strong> equal to the <strong>weight of the fluid displaced</strong>.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Applications — Frequently Asked</div>
+        <ul>
+          <li>A ship floats because it displaces water equal to its own weight</li>
+          <li>Iron is denser than water, but an iron <strong>ship floats</strong> because of its hollow shape (displaces more water)</li>
+          <li><strong>Hydrometer</strong> — measures density/specific gravity of liquids using Archimedes' principle</li>
+          <li><strong>Lactometer</strong> — checks purity of milk</li>
+          <li><strong>Dead Sea</strong> — very high salt content → high density → people float easily</li>
+          <li>A body sinks if its density > liquid; floats if density ≤ liquid</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Pressure Traps</div>
+        <ul>
+          <li><strong>Sharp knife cuts easily</strong> — same force, smaller area = more pressure</li>
+          <li><strong>Snowshoes</strong> spread weight over large area = less pressure (don't sink in snow)</li>
+          <li><strong>High heels</strong> = small area = very high pressure on floor</li>
+          <li>Atmospheric pressure at sea level = <strong>1 atm = 101325 Pa ≈ 1.013 × 10⁵ Pa</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="sec-label">Section 7 — Projectile & Circular Motion</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Projectile Motion & Circular Motion</div>
+        <div class="c-sub">Combined motion concepts for NDA level</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="fact-box">
+        <div class="fb-label">Projectile Motion — Key Facts</div>
+        <ul>
+          <li>Projectile = object thrown at an angle, moves under gravity only</li>
+          <li>Horizontal velocity remains <strong>constant</strong> (no air resistance assumed)</li>
+          <li>Vertical velocity changes due to <strong>gravity (g)</strong></li>
+          <li><strong>Maximum range</strong> achieved at angle of <strong>45°</strong></li>
+          <li>At the highest point: vertical velocity = 0, horizontal velocity = unchanged</li>
+          <li>Path is always a <strong>parabola</strong></li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Circular Motion — Key Facts</div>
+        <ul>
+          <li>Object moving in circle has <strong>centripetal acceleration</strong> — directed toward centre</li>
+          <li><strong>Centripetal force</strong> = mv²/r (always directed inward toward centre)</li>
+          <li><strong>Centrifugal force</strong> = apparent outward force felt by the moving object (not a real force — it's a pseudo/fictitious force)</li>
+          <li>A satellite in orbit is in <strong>continuous free fall</strong> — centripetal force = gravitational force</li>
+          <li>Banking of roads — allows vehicles to take turns safely without skidding</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Key Trap — Centripetal vs Centrifugal</div>
+        <p><strong>Centripetal</strong> is a real force directed inward (gravity for satellites, tension for a stone in a sling, friction for a car on a curve). <strong>Centrifugal</strong> is NOT a real force — it is a feeling of being pushed outward due to inertia. This distinction is directly tested in NDA.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REF ══════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="intro-box">
+    <p>All <strong>key formulas, laws and facts</strong> from this module — scan this before your exam.</p>
+  </div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Distance vs Displacement</div>
+      <ul>
+        <li><b>Distance</b> = total path covered (scalar)</li>
+        <li><b>Displacement</b> = shortest straight line, start to end (vector)</li>
+        <li>One full circle → distance = 2πr · displacement = <em>zero</em></li>
+        <li>Speed = Distance ÷ Time (scalar)</li>
+        <li>Velocity = Displacement ÷ Time (vector)</li>
+        <li>Acceleration = Change in velocity ÷ Time</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Equations of Motion</div>
+      <ul>
+        <li><b>v = u + at</b></li>
+        <li><b>s = ut + ½at²</b></li>
+        <li><b>v² = u² + 2as</b></li>
+        <li>u = initial velocity · v = final velocity</li>
+        <li>a = acceleration · s = distance · t = time</li>
+        <li>For free fall: a = g = 9.8 m/s² (use 10)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Newton's Three Laws</div>
+      <ul>
+        <li><b>1st Law</b> = Law of Inertia · F = 0 → no change in motion</li>
+        <li>Inertia ∝ mass only</li>
+        <li><b>2nd Law</b>: F = ma · Momentum = mv</li>
+        <li>SI unit of force = <em>Newton (N)</em></li>
+        <li><b>3rd Law</b>: Action = equal and opposite Reaction</li>
+        <li>Rocket, recoil of gun, swimming = 3rd law</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Gravitation</div>
+      <ul>
+        <li>F = Gm₁m₂/r² · G = 6.67×10⁻¹¹ N·m²/kg²</li>
+        <li>g on Earth ≈ <em>9.8 m/s²</em> (use 10 in exam)</li>
+        <li>g on Moon = <em>g/6</em></li>
+        <li>g max at <em>poles</em> · g min at <em>equator</em></li>
+        <li>g decreases going up OR going deep inside Earth</li>
+        <li>Mass = constant · Weight = mg (varies)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Friction</div>
+      <ul>
+        <li>Static > Sliding > Rolling (order)</li>
+        <li>Rolling friction is <em>least</em> → wheels invented</li>
+        <li>Friction increases: rough surface, more weight</li>
+        <li>Friction decreases: lubricants, ball bearings</li>
+        <li>Useful: walking, brakes, writing, matches</li>
+        <li>Harmful: wear & tear, heat in machines</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Work, Energy & Power</div>
+      <ul>
+        <li>W = F×d · Unit = <em>Joule (J)</em></li>
+        <li>Work = zero when F ⊥ displacement (coolie example)</li>
+        <li>KE = ½mv² · PE = mgh</li>
+        <li>Power = W÷t · Unit = <em>Watt (W)</em></li>
+        <li>1 HP = 746 W · 1 kWh = 3.6×10⁶ J</li>
+        <li>Pendulum bottom: KE max · Top: PE max</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Levers & Machines</div>
+      <ul>
+        <li>Class 1: Fulcrum between load & effort → see-saw, scissors</li>
+        <li>Class 2: Load in middle → wheelbarrow, nutcracker</li>
+        <li>Class 3: Effort in middle → tweezers, forearm</li>
+        <li>MA = Load ÷ Effort</li>
+        <li>No machine = 100% efficient (friction)</li>
+        <li>Hydraulic machines work on <em>Pascal's Law</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Pressure & Buoyancy</div>
+      <ul>
+        <li>Pressure = Force ÷ Area · Unit = <em>Pascal (Pa)</em></li>
+        <li>Pascal's Law → hydraulic brakes, lift, jack</li>
+        <li>Archimedes: buoyant force = weight of fluid displaced</li>
+        <li>Object floats if density ≤ liquid density</li>
+        <li>Dead Sea: high salt → high density → easy floating</li>
+        <li>Hydrometer → measures liquid density</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">25</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 25 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">
+  Olive Defence Entrance Academy &nbsp;·&nbsp; Physics P01 — Mechanics &nbsp;·&nbsp; CDS · NDA · AFCAT
+</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY (10) ────────────────────────────────────────────────────────────────
+{d:'EASY',e:'CDS 2022',
+q:'A person runs one complete round of a circular track. What is his displacement?',
+opts:['Equal to the circumference','Equal to the diameter','Zero','Equal to the radius'],ans:2,
+rule:'Displacement = shortest straight-line distance from start to end point',
+exp:'Displacement is the straight-line distance from the starting point to the ending point. Since the person completes one full round and returns to the same starting point, his displacement is zero. His distance covered equals the circumference (2πr), but displacement is zero.'},
+
+{d:'EASY',e:'NDA 2021',
+q:'Newton\'s First Law of Motion is also known as the:',
+opts:['Law of Force','Law of Inertia','Law of Momentum','Law of Action-Reaction'],ans:1,
+rule:'First Law = Law of Inertia',
+exp:'Newton\'s First Law states that a body remains at rest or in uniform motion unless acted upon by an external force. This tendency to resist change is called "inertia" — so the First Law is called the Law of Inertia. The Second Law is the Law of Force (F = ma). The Third Law is Law of Action-Reaction.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'A rocket moves forward by expelling gases backward. This is an example of:',
+opts:['Newton\'s First Law','Newton\'s Second Law','Newton\'s Third Law','Law of Gravitation'],ans:2,
+rule:'Third Law: every action has equal and opposite reaction',
+exp:'Rocket propulsion is a classic example of Newton\'s Third Law. The rocket exerts force on gases pushing them backward (action). The gases exert an equal and opposite force on the rocket pushing it forward (reaction). Similarly, a gun\'s recoil and a swimmer pushing water backward are Third Law examples.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'The value of acceleration due to gravity (g) on the Moon is approximately:',
+opts:['Same as Earth','Twice that of Earth','One-sixth of Earth','One-third of Earth'],ans:2,
+rule:"g on Moon = g/6 (Moon's mass and radius are much smaller)",
+exp:"The Moon's gravitational acceleration is approximately 1/6th of Earth's. This is because the Moon has much less mass and a smaller radius than Earth. An astronaut who weighs 60 kg on Earth would weigh only 10 kg on the Moon. The mass remains the same (60 kg) but the weight changes."},
+
+{d:'EASY',e:'NDA 2022',
+q:'Which of the following is a scalar quantity?',
+opts:['Force','Velocity','Acceleration','Speed'],ans:3,
+rule:'Scalar = magnitude only. Speed has no direction.',
+exp:'Speed is a scalar quantity — it only tells us how fast an object is moving (magnitude), with no direction. Force, velocity, and acceleration are all vector quantities because they have both magnitude and direction. Distance and mass are also scalars.'},
+
+{d:'EASY',e:'AFCAT 2021',
+q:'A fielder pulls his hands back while catching a fast-moving cricket ball. This is done to:',
+opts:['Increase the force on the ball','Reduce the force on his hands by increasing time of contact','Reduce the momentum of the ball','Follow Newton\'s First Law'],ans:1,
+rule:'Impulse = F×t. Larger t → smaller F for same momentum change',
+exp:'By drawing hands back, the fielder increases the time over which the ball comes to rest. Since Impulse = Force × time, and the change in momentum is fixed, a larger time means a smaller force on the hands. This is the impulse-momentum principle (from Newton\'s Second Law). Seat belts and airbags work on the same principle.'},
+
+{d:'EASY',e:'CDS 2021',
+q:'The SI unit of Force is:',
+opts:['Joule','Pascal','Newton','Watt'],ans:2,
+rule:'SI unit of force = Newton (N) = kg·m/s²',
+exp:'The SI unit of force is the Newton (N), named after Sir Isaac Newton. 1 Newton = 1 kg × 1 m/s². Joule is the unit of energy/work. Pascal is the unit of pressure. Watt is the unit of power.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'The order of friction from highest to lowest is:',
+opts:['Rolling > Sliding > Static','Static > Rolling > Sliding','Static > Sliding > Rolling','Sliding > Static > Rolling'],ans:2,
+rule:'Static > Sliding (Kinetic) > Rolling',
+exp:'Static friction is the highest (it must be overcome to start motion). Sliding/kinetic friction is less (once motion has started). Rolling friction is the least (which is why wheels were invented — they convert sliding to rolling). This order is directly tested in CDS/NDA.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'A coolie carries a bag on his head while walking horizontally. The work done by the coolie on the bag is:',
+opts:['Maximum','Minimum but not zero','Zero','Equal to the weight × distance walked'],ans:2,
+rule:'Work = F×d×cosθ. Force up, displacement horizontal → θ=90° → cos90°=0 → W=0',
+exp:'Work is done only when force causes displacement in the same direction. The coolie applies an upward force (to hold the bag against gravity), but the displacement is horizontal. Since force and displacement are perpendicular (90° angle), cos 90° = 0, so work done by the coolie on the bag = 0. This is one of the most classic questions in CDS General Science.'},
+
+{d:'EASY',e:'CDS 2020',
+q:'Hydraulic brakes in automobiles work on the principle of:',
+opts:['Archimedes\' Principle','Bernoulli\'s Principle','Pascal\'s Law','Newton\'s Third Law'],ans:2,
+rule:"Pascal's Law: pressure in enclosed liquid transmitted equally in all directions",
+exp:"Hydraulic brakes work on Pascal's Law, which states that pressure applied to an enclosed fluid is transmitted undiminished in all directions. When you press the brake pedal, pressure is transmitted through the brake fluid equally to all brake pads. Archimedes' principle explains buoyancy. Bernoulli's principle explains flight."},
+
+// ── MEDIUM (10) ──────────────────────────────────────────────────────────────
+{d:'MEDIUM',e:'CDS 2022',
+q:'A ball is thrown vertically upward. At the highest point, which of the following is correct?',
+opts:[
+  'Both velocity and acceleration are zero',
+  'Velocity is zero but acceleration due to gravity acts downward',
+  'Velocity is maximum and acceleration is zero',
+  'Both velocity and acceleration are maximum'
+],ans:1,
+rule:'At highest point: velocity = 0, acceleration = g (downward) always',
+exp:'At the highest point of a vertical throw, the ball momentarily stops (velocity = 0). However, gravity continues to act on it throughout the journey — acceleration due to gravity (g = 9.8 m/s² downward) never stops. It is a common mistake to think acceleration is also zero at the top. Only velocity is zero, not acceleration.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Which of the following correctly states the Law of Conservation of Momentum?',
+opts:[
+  'Momentum is always zero in any system',
+  'Total momentum of an isolated system remains constant if no external force acts on it',
+  'Momentum of each particle in a system is conserved',
+  'Momentum increases with velocity in all cases'
+],ans:1,
+rule:'Conservation of momentum: total momentum constant when no external force',
+exp:'The Law of Conservation of Momentum states that in the absence of external forces, the total momentum of a system remains constant. This explains gun recoil (total momentum was zero before firing, so bullet momentum forward = gun momentum backward), rocket propulsion, and explosions. The key condition is "no external force".'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'A man weighs 60 kg on Earth. What will be his mass on the Moon?',
+opts:['10 kg','60 kg','360 kg','6 kg'],ans:1,
+rule:'Mass is constant everywhere. Only weight changes with gravity.',
+exp:'Mass is the amount of matter in a body — it NEVER changes regardless of location. The man\'s mass remains 60 kg on the Moon, on Mars, or anywhere in the universe. What changes is his WEIGHT: W = mg. On Moon, g = g_earth/6, so weight = 60 × (9.8/6) ≈ 100 N (compared to 588 N on Earth). But mass = 60 kg always.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'A simple machine has a mechanical advantage of 4. This means:',
+opts:[
+  'The machine does 4 times more work than input',
+  'The output force is 4 times the input force',
+  'The input force is 4 times the output force',
+  'The machine is 400% efficient'
+],ans:1,
+rule:'MA = Load ÷ Effort. MA=4 means output force = 4× input force.',
+exp:'Mechanical Advantage (MA) = Output force (Load) ÷ Input force (Effort). MA = 4 means the machine multiplies your force by 4 — you apply a small force and get 4 times that force as output. It does NOT do more total work (work in = work out, minus losses). MA > 1 means force is multiplied; the trade-off is you move through a larger distance.'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'An iron nail sinks in water but a ship made of iron floats. The correct reason is:',
+opts:[
+  'The ship is lighter than the nail',
+  'The ship is made of a different type of iron',
+  'The ship displaces water equal to its own weight due to its shape',
+  'Ships have special anti-gravity technology'],ans:2,
+rule:"Archimedes: body floats if weight of displaced fluid = body's weight",
+exp:"A ship floats because of its hollow, curved shape — it displaces a volume of water whose weight equals the ship's total weight (including air inside). A solid iron nail is denser than water (7.8 g/cm³ vs 1 g/cm³) so it sinks. But a hollow iron ship has an average density less than water because of the large air space inside — so it floats. This is Archimedes' principle in action."},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'At which angle of projection does a projectile have maximum horizontal range?',
+opts:['30°','60°','45°','90°'],ans:2,
+rule:'Maximum range of projectile = angle of 45°',
+exp:'The horizontal range of a projectile is maximum when it is projected at 45° to the horizontal. At this angle, there is the best balance between the horizontal component (which carries it forward) and the vertical component (which gives it height and time of flight). At 90°, the projectile goes straight up and comes straight down — no horizontal range.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Which class of lever is the human forearm?',
+opts:['Class 1 lever','Class 2 lever','Class 3 lever','Not a lever'],ans:2,
+rule:'Class 3: Effort (muscle) between Fulcrum (elbow) and Load (hand)',
+exp:'The human forearm is a Class 3 lever. The fulcrum is the elbow joint, the effort is applied by the bicep muscle (between the elbow and hand), and the load is whatever the hand is holding. In Class 3 levers, the effort is always between fulcrum and load — so MA is always less than 1 (you apply more force than the output), but you gain in speed and range of movement.'},
+
+{d:'MEDIUM',e:'NDA 2021',
+q:'A body is moving in a circle with constant speed. Which of the following is true?',
+opts:[
+  'Velocity is constant and acceleration is zero',
+  'Both velocity and speed are constant',
+  'Speed is constant but velocity and acceleration keep changing',
+  'Acceleration is zero because speed is constant'
+],ans:2,
+rule:'Circular motion: speed = constant, but velocity and acceleration change (direction changes)',
+exp:'In uniform circular motion, the speed (magnitude of velocity) is constant, but the direction of motion keeps changing at every point. Since velocity is a vector (magnitude + direction), changing direction means velocity is changing — hence acceleration exists (centripetal acceleration, directed toward the centre). This is a fundamental concept that distinguishes scalar (speed) from vector (velocity).'},
+
+{d:'MEDIUM',e:'AFCAT 2021',
+q:'Which of the following is NOT a unit of energy?',
+opts:['Joule','Calorie','Kilowatt-hour','Newton'],ans:3,
+rule:'Newton is unit of force, not energy. Energy units: J, cal, kWh, erg',
+exp:'Newton is the SI unit of FORCE (not energy). The SI unit of energy is the Joule (J). Other units of energy include: Calorie (heat energy), kilowatt-hour (kWh — electrical energy, the "unit" in electricity bills), erg (CGS unit), and electron-volt (eV). Watt is the unit of power, not energy.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'When a spring is compressed and then released, which energy transformation occurs?',
+opts:[
+  'Kinetic energy → Potential energy',
+  'Potential energy → Kinetic energy',
+  'Heat energy → Kinetic energy',
+  'Chemical energy → Potential energy'
+],ans:1,
+rule:'Compressed spring: PE stored. On release: PE → KE',
+exp:'A compressed spring stores elastic potential energy. When released, this potential energy converts into kinetic energy as the spring pushes the object. This is conservation of energy in action — energy changes form but the total amount remains constant. Similarly: a stretched bow has PE → arrow has KE when released.'},
+
+// ── HARD (5) ─────────────────────────────────────────────────────────────────
+{d:'HARD',e:'CDS 2024',
+q:'A gun of mass 5 kg fires a bullet of mass 50 g at 300 m/s. What is the recoil velocity of the gun?',
+opts:['3 m/s','30 m/s','0.3 m/s','300 m/s'],ans:0,
+rule:'Conservation of momentum: m₁v₁ = m₂v₂ (total momentum = 0 before firing)',
+exp:'Before firing, total momentum = 0 (both gun and bullet at rest). By conservation of momentum, total momentum after = 0. So: gun momentum + bullet momentum = 0. (5 kg × V_gun) + (0.05 kg × 300 m/s) = 0. 5V_gun = −15. V_gun = −3 m/s. The recoil velocity is 3 m/s (negative sign means opposite direction to bullet). Answer = 3 m/s.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'A body is dropped from rest and falls freely. After 2 seconds (g = 10 m/s²), what is its velocity and the distance fallen?',
+opts:['v = 10 m/s, s = 10 m','v = 20 m/s, s = 20 m','v = 20 m/s, s = 40 m','v = 20 m/s, s = 80 m'],ans:1,
+rule:'v = u + gt and s = ut + ½gt² with u = 0, g = 10, t = 2',
+exp:'Using equations of motion with u = 0 (dropped from rest), g = 10 m/s², t = 2 s: Velocity: v = u + gt = 0 + 10×2 = 20 m/s. Distance: s = ut + ½gt² = 0 + ½×10×4 = 20 m. So after 2 seconds: velocity = 20 m/s, distance fallen = 20 m.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'A block is placed on a rough horizontal surface. Which of the following statements is INCORRECT?',
+opts:[
+  'Static friction acts when the block is at rest and a force is applied but not enough to move it',
+  'Kinetic friction is less than maximum static friction',
+  'Rolling friction is greater than sliding friction',
+  'Friction force acts in the direction opposite to the applied force'
+],ans:2,
+rule:'Rolling friction is LESS than sliding friction (not greater)',
+exp:'Statement C is incorrect. Rolling friction is LESS than sliding friction — this is the whole reason wheels and ball bearings were invented. The order is: Static friction > Sliding (kinetic) friction > Rolling friction. Statement A is correct (static friction resists motion until force threshold). Statement B is correct (kinetic < max static). Statement D is correct (friction opposes motion).'},
+
+{d:'HARD',e:'CDS 2024',
+q:'An astronaut in a spacecraft orbiting Earth feels weightless. The correct explanation is:',
+opts:[
+  'Gravity does not reach the spacecraft at that altitude',
+  'The spacecraft is beyond Earth\'s atmosphere so no gravity acts',
+  'Both the spacecraft and astronaut are in continuous free fall toward Earth — apparent weight is zero',
+  'The astronaut\'s mass becomes zero in space'
+],ans:2,
+rule:'Weightlessness in orbit = both spacecraft and person in continuous free fall',
+exp:'The astronaut feels weightless because both the spacecraft and the astronaut are falling freely toward Earth at the same rate (centripetal acceleration = gravitational acceleration). There is no normal force (reaction from floor) — hence apparent weight = 0. Gravity most definitely acts at orbital altitude — it IS what keeps the satellite in orbit! Mass never becomes zero. This is a very important conceptual question.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'A see-saw is balanced with a 40 kg child sitting 2 m from the fulcrum on one side. How far from the fulcrum must a 20 kg child sit on the other side to balance it? (g = 10 m/s²)',
+opts:['1 m','4 m','2 m','8 m'],ans:1,
+rule:'Torque balance: Load₁ × d₁ = Load₂ × d₂',
+exp:'For a lever to be balanced, torques on both sides must be equal: Force₁ × distance₁ = Force₂ × distance₂. (40 kg × g × 2 m) = (20 kg × g × d). g cancels: 40 × 2 = 20 × d → 80 = 20d → d = 4 m. The 20 kg child must sit 4 metres from the fulcrum. This is the principle of moments — a smaller force at a greater distance can balance a larger force at a smaller distance.'},
+
+];
+
+// ── ENGINE ─────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Physics · P01</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! You have a strong grip on Mechanics.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and formulas and retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>
