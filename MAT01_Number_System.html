@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT01 · Number System | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F2F5F0;--bg2:#E5EBE2;--bg3:#D2DECE;
+  --white:#FFFFFF;--ink:#111C0E;--ink2:#1E2E1A;
+  --muted:#4A6040;--dim:#7A9070;--border:#B0C8A8;
+  --pine:#1A5C2A;--pinePale:#EAF5EC;
+  --green:#1A5C2A;--greenPale:#EAF5EC;
+  --red:#8B1A1A;--redPale:#FCEAEA;
+  --blue:#1A3060;--bluePale:#EAF0FA;
+  --gold:#6A5800;--goldPale:#FDF8E4;
+  --amber:#7A4400;--amberPale:#FDF3E0;
+  --navy:#0A2A50;--navyPale:#E4EDF8;
+  --purple:#4A1A80;--purplePale:#F2EAFB;
+  --radius:12px;--shadow:0 2px 12px rgba(10,30,15,.09);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* HERO */
+.hero{background:linear-gradient(140deg,#071A0E 0%,#0E3A1A 45%,#1A5C2A 80%,#226A30 100%);margin:0 -16px;padding:32px 32px 28px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 10%,rgba(180,255,160,.08) 0%,transparent 55%),radial-gradient(ellipse at 10% 90%,rgba(0,0,0,.25) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'∑';position:absolute;right:28px;bottom:14px;font-size:80px;opacity:.08;line-height:1;font-family:'Lora',serif;font-style:italic}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(180,255,160,.60);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:20px;height:2px;background:rgba(160,240,140,.4)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.2vw,33px);font-weight:700;color:#fff;line-height:1.22;margin-bottom:10px}
+.hero-title span{color:#A8F0A0;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(200,255,190,.72);margin-bottom:18px;line-height:1.7;max-width:540px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 13px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(168,240,160,.18);color:#A8F0A0}
+.chip-g{background:rgba(100,220,130,.12);color:#7ADEA0}
+.chip-o{background:rgba(255,200,80,.14);color:#FFD87A}
+
+/* TABS */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(10,30,15,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 17px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pine);border-bottom-color:var(--pine)}
+
+/* PANES */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pine);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INTRO */
+.intro-box{background:var(--pinePale);border:1.5px solid rgba(26,92,42,.18);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pine)}
+
+/* CARDS */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pine)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pine);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* BOXES */
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(122,68,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.trap-box{background:var(--redPale);border:1.5px solid rgba(139,26,26,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(26,48,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+.rule-box ul{list-style:none;padding:0}
+.rule-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.rule-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--blue);top:10px}
+
+.gold-box{background:var(--goldPale);border:1.5px solid rgba(106,88,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.gold-box .gl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.gold-box ul{list-style:none;padding:0}
+.gold-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.gold-box li::before{content:'★';position:absolute;left:0;font-size:10px;color:var(--gold);top:8px}
+.gold-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+.green-box{background:var(--greenPale);border:1.5px solid rgba(26,92,42,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.green-box .gn-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:8px}
+.green-box ul{list-style:none;padding:0}
+.green-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.green-box li::before{content:'→';position:absolute;left:0;color:var(--green);font-weight:700;font-size:13px}
+.green-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+.navy-box{background:var(--navyPale);border:1.5px solid rgba(10,42,80,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.navy-box .nl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+.navy-box ul{list-style:none;padding:0}
+.navy-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.navy-box li::before{content:'→';position:absolute;left:0;color:var(--navy);font-weight:700;font-size:13px}
+.navy-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+/* TABLE */
+.ct{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.ct th{background:var(--pine);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.ct td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.ct tr:nth-child(even) td{background:var(--bg)}
+.ct td b{color:var(--pine)}
+.ct td:first-child{font-weight:700}
+
+/* QUICK REF */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pine);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:14.5px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pine);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--red);font-style:normal;font-weight:700}
+
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pine);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pine);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-section{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pine);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.q-section::after{content:'';flex:1;height:1px;background:var(--border)}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pine)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-cat{font-size:10px;font-weight:700;background:var(--bg2);color:var(--muted);padding:2px 8px;border-radius:10px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600;white-space:pre-line}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pine);background:var(--pinePale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pine);background:var(--pinePale);color:var(--pine)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pine);color:#fff;border-color:var(--pine)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pine);background:var(--pinePale);border:1px solid rgba(26,92,42,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s}
+.btn-primary{background:var(--pine);color:#fff;box-shadow:0 4px 12px rgba(26,92,42,.3)}
+.btn-primary:hover{background:#226A30;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pine);color:var(--pine)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#071A0E,#1A5C2A);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#A8F0A0;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(200,255,190,.7);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.cat-breakdown{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.cat-title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--pine);text-transform:uppercase;margin-bottom:14px}
+.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cat-row:last-child{margin-bottom:0}
+.cat-name{font-size:13px;font-weight:700;color:var(--ink2);min-width:110px;flex-shrink:0}
+.cat-bar-wrap{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.cat-bar{height:100%;border-radius:4px;transition:width .6s ease}
+.cat-score{font-size:12px;font-weight:800;color:var(--muted);min-width:40px;text-align:right;flex-shrink:0}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+@media(max-width:400px){.hero{padding:26px 22px 22px}.hero-title{font-size:20px}.tab{padding:12px 12px;font-size:11px}.q-text{font-size:16px}.opt{font-size:15px;padding:12px 14px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Mathematics · Module MAT01</div>
+  <h1 class="hero-title">Number System —<br><span>Types, Properties &amp; Tricks</span></h1>
+  <p class="hero-sub">From classification of numbers and divisibility rules to LCM, HCF, remainders, unit digits, and surds — every concept tested in CDS, NDA, and AFCAT.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Foundation → Advanced</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">25 Practice Questions</span>
+    <span class="chip chip-o">Mathematics MAT01</span>
+  </div>
+</div>
+
+<div class="page">
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (25)</button>
+</div>
+
+<!-- ═══ THEORY ═══ -->
+<div id="theory" class="pane on">
+<div class="intro-box">
+  <p>Covers: <strong>Classification of Numbers, Divisibility Rules, LCM &amp; HCF, Prime Numbers &amp; Factors, Unit Digit &amp; Cyclicity, Remainders, Fractions &amp; Decimals, Surds &amp; Indices, Number Series &amp; Formulae</strong> — all topics tested in defence entrance exams.</p>
+</div>
+
+<!-- S1 -->
+<div class="sec-label">Section 1 — Classification of Numbers</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">🔢</div>
+    <div style="flex:1"><div class="c-title">Types of Numbers — Complete Hierarchy</div>
+    <div class="c-sub">Natural · Whole · Integer · Rational · Irrational · Real</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto"><table class="ct">
+      <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+      <tr><td><b>Natural (N)</b></td><td>Counting numbers starting from 1</td><td>1, 2, 3, 4 …</td></tr>
+      <tr><td><b>Whole (W)</b></td><td>Natural numbers + zero</td><td>0, 1, 2, 3 …</td></tr>
+      <tr><td><b>Integers (Z)</b></td><td>Whole + negative numbers</td><td>… −2, −1, 0, 1, 2 …</td></tr>
+      <tr><td><b>Rational (Q)</b></td><td>Expressible as p/q, q ≠ 0</td><td>½, −3, 0.75, 0.33…</td></tr>
+      <tr><td><b>Irrational</b></td><td>Non-terminating, non-repeating</td><td>√2, π, e, √3</td></tr>
+      <tr><td><b>Real (R)</b></td><td>All rational + irrational</td><td>Any point on number line</td></tr>
+    </table></div>
+    <div class="gold-box">
+      <div class="gl-label">Key Subset Relationships</div>
+      <ul>
+        <li><strong>N ⊂ W ⊂ Z ⊂ Q ⊂ R</strong> — every natural number is also whole, integer, rational, and real</li>
+        <li><strong>0</strong> is whole but NOT natural · <strong>−5</strong> is integer but NOT whole or natural</li>
+        <li><strong>Every integer is rational</strong> — e.g., −3 = −3/1</li>
+        <li><strong>π is irrational</strong> — 22/7 is only a rational approximation, not equal to π</li>
+        <li><strong>√4 = 2 is rational</strong>; √2 is irrational — perfect squares have rational roots</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Even, Odd, Prime, Composite — Critical Definitions</div>
+      <ul>
+        <li><strong>Even:</strong> divisible by 2 → 0, 2, 4, 6 … Note: <strong>0 is even</strong></li>
+        <li><strong>Prime:</strong> exactly 2 factors (1 and itself) → 2, 3, 5, 7, 11 … <strong>1 is NOT prime</strong></li>
+        <li><strong>Composite:</strong> more than 2 factors → 4, 6, 8, 9 … <strong>1 is neither prime nor composite</strong></li>
+        <li><strong>Co-prime:</strong> two numbers whose HCF = 1 — need NOT be individually prime (e.g., 8 and 15)</li>
+        <li><strong>2 is the only even prime number</strong></li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Classification Traps</div>
+      <ul>
+        <li><strong>1 is neither prime nor composite</strong> — the most common mistake</li>
+        <li><strong>0 is even</strong>, whole but NOT natural</li>
+        <li>22/7 ≠ π — 22/7 is rational; π is irrational</li>
+        <li>Every prime &gt; 2 is odd, but not every odd is prime (e.g., 9 = 3 × 3)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S2 -->
+<div class="sec-label">Section 2 — Divisibility Rules</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">÷</div>
+    <div style="flex:1"><div class="c-title">Divisibility Rules — 2 through 13</div>
+    <div class="c-sub">Check divisibility in seconds without long division</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto"><table class="ct">
+      <tr><th>Divisor</th><th>Rule</th><th>Example</th></tr>
+      <tr><td><b>2</b></td><td>Last digit even (0,2,4,6,8)</td><td>348 ✓</td></tr>
+      <tr><td><b>3</b></td><td>Sum of digits divisible by 3</td><td>123: 1+2+3=6 ✓</td></tr>
+      <tr><td><b>4</b></td><td>Last 2 digits divisible by 4</td><td>1732: 32÷4=8 ✓</td></tr>
+      <tr><td><b>5</b></td><td>Last digit is 0 or 5</td><td>445, 230 ✓</td></tr>
+      <tr><td><b>6</b></td><td>Divisible by BOTH 2 AND 3</td><td>126 ✓</td></tr>
+      <tr><td><b>8</b></td><td>Last 3 digits divisible by 8</td><td>1256: 256÷8=32 ✓</td></tr>
+      <tr><td><b>9</b></td><td>Sum of digits divisible by 9</td><td>729: 7+2+9=18 ✓</td></tr>
+      <tr><td><b>11</b></td><td>(Sum of odd-position digits) − (sum of even-position digits) = 0 or multiple of 11</td><td>121: (1+1)−2=0 ✓</td></tr>
+      <tr><td><b>12</b></td><td>Divisible by BOTH 3 AND 4</td><td>144 ✓</td></tr>
+    </table></div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Divisibility Traps</div>
+      <ul>
+        <li>Div by 6 = div by 2 AND div by 3 — BOTH conditions must hold simultaneously</li>
+        <li>Div by 4 → check LAST TWO digits (not digit sum)</li>
+        <li>Div by 8 → check LAST THREE digits</li>
+        <li>Divisible by 9 → also divisible by 3, but NOT vice versa</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S3 -->
+<div class="sec-label">Section 3 — LCM &amp; HCF</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">🔄</div>
+    <div style="flex:1"><div class="c-title">HCF &amp; LCM — Methods, Formulae &amp; Applications</div>
+    <div class="c-sub">Highest Common Factor · Lowest Common Multiple · word problems</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="green-box">
+      <div class="gn-label">Core Definitions &amp; Key Formula</div>
+      <ul>
+        <li><strong>HCF (GCD):</strong> Largest number that divides all given numbers exactly</li>
+        <li><strong>LCM:</strong> Smallest number divisible by all given numbers</li>
+        <li><strong>Key formula (two numbers only):</strong> HCF × LCM = Product of the two numbers</li>
+        <li><strong>HCF always ≤ smallest number · LCM always ≥ largest number</strong></li>
+        <li>HCF of fractions = HCF of numerators ÷ LCM of denominators</li>
+        <li>LCM of fractions = LCM of numerators ÷ HCF of denominators</li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Exam-Ready Word Problem Patterns</div>
+      <ul>
+        <li><strong>Bells/signals ringing together:</strong> answer = LCM of time intervals</li>
+        <li><strong>Largest square tile for a rectangular floor:</strong> answer = HCF of dimensions</li>
+        <li><strong>Least number divisible by x, y, z leaving remainder r:</strong> LCM(x,y,z) + r</li>
+        <li><strong>Largest number dividing a, b, c with same remainder:</strong> HCF of all pairwise differences</li>
+        <li><strong>Largest number dividing a, b, c leaving remainders p, q, r:</strong> HCF(a−p, b−q, c−r)</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ LCM/HCF Traps</div>
+      <ul>
+        <li>HCF × LCM = product formula applies to <strong>EXACTLY TWO numbers only</strong></li>
+        <li>HCF of fractions uses LCM of denominators in the denominator — not HCF</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S4 -->
+<div class="sec-label">Section 4 — Primes &amp; Number of Factors</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF8E4">🔎</div>
+    <div style="flex:1"><div class="c-title">Prime Numbers, Factorisation &amp; Counting Divisors</div>
+    <div class="c-sub">25 primes below 100 · testing primality · factor formula</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="gold-box">
+      <div class="gl-label">All 25 Primes up to 100</div>
+      <ul>
+        <li><strong>1–20:</strong> 2, 3, 5, 7, 11, 13, 17, 19</li>
+        <li><strong>21–50:</strong> 23, 29, 31, 37, 41, 43, 47</li>
+        <li><strong>51–100:</strong> 53, 59, 61, 67, 71, 73, 79, 83, 89, 97</li>
+      </ul>
+    </div>
+    <div class="navy-box">
+      <div class="nl-label">Number of Factors Formula</div>
+      <p>If N = 2<sup>a</sup> × 3<sup>b</sup> × 5<sup>c</sup> × … then:</p>
+      <ul>
+        <li><strong>Total factors = (a+1)(b+1)(c+1)…</strong></li>
+        <li>Example: 360 = 2³ × 3² × 5¹ → factors = (3+1)(2+1)(1+1) = 4×3×2 = <strong>24</strong></li>
+        <li><strong>Perfect square</strong> has an <strong>odd</strong> number of total factors</li>
+        <li>To test if n is prime: check divisibility by all primes up to <strong>√n</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S5 -->
+<div class="sec-label">Section 5 — Unit Digit &amp; Cyclicity</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">⁰</div>
+    <div style="flex:1"><div class="c-title">Unit Digit of Powers — Cyclicity Method</div>
+    <div class="c-sub">Find the last digit of any power in under 10 seconds</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto"><table class="ct">
+      <tr><th>Unit digit of base</th><th>Cycle (successive powers)</th><th>Period</th></tr>
+      <tr><td><b>0, 1, 5, 6</b></td><td>Always the same unit digit</td><td>1</td></tr>
+      <tr><td><b>4</b></td><td>4, 6, 4, 6 …</td><td>2</td></tr>
+      <tr><td><b>9</b></td><td>9, 1, 9, 1 …</td><td>2</td></tr>
+      <tr><td><b>2</b></td><td>2, 4, 8, 6, 2, 4, 8, 6 …</td><td>4</td></tr>
+      <tr><td><b>3</b></td><td>3, 9, 7, 1, 3, 9, 7, 1 …</td><td>4</td></tr>
+      <tr><td><b>7</b></td><td>7, 9, 3, 1, 7, 9, 3, 1 …</td><td>4</td></tr>
+      <tr><td><b>8</b></td><td>8, 4, 2, 6, 8, 4, 2, 6 …</td><td>4</td></tr>
+    </table></div>
+    <div class="rule-box">
+      <div class="rl-label">4-Step Method</div>
+      <ul>
+        <li><strong>Step 1:</strong> Identify the unit digit of the base</li>
+        <li><strong>Step 2:</strong> Find the cycle length for that digit</li>
+        <li><strong>Step 3:</strong> Divide the power by the cycle length → find the remainder</li>
+        <li><strong>Step 4:</strong> That remainder's position in the cycle = unit digit. If remainder = 0, use the last value in the cycle</li>
+        <li><strong>Example — unit digit of 7⁵²:</strong> cycle (7,9,3,1), period 4. 52÷4 = rem 0 → last in cycle = <strong>1</strong></li>
+        <li><strong>Example — unit digit of 2⁸³:</strong> cycle (2,4,8,6), period 4. 83÷4 = rem 3 → 3rd in cycle = <strong>8</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S6 -->
+<div class="sec-label">Section 6 — Remainders</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#F2EAFB">%</div>
+    <div style="flex:1"><div class="c-title">Remainder Rules &amp; Pattern Method</div>
+    <div class="c-sub">Key properties · pattern/cyclicity · Wilson's theorem</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="navy-box">
+      <div class="nl-label">Fundamental Properties</div>
+      <ul>
+        <li>R[(a+b) ÷ n] = R[ R(a÷n) + R(b÷n) ] ÷ n</li>
+        <li>R[(a×b) ÷ n] = R[ R(a÷n) × R(b÷n) ] ÷ n</li>
+        <li><strong>Remainder when 10ⁿ ÷ 9 = always 1</strong></li>
+        <li><strong>n! ÷ p = 0</strong> (remainder zero) when p is prime and p ≤ n</li>
+        <li><strong>Wilson's Theorem:</strong> If p is prime → (p−1)! ≡ −1 (mod p), i.e., remainder = p−1</li>
+        <li><strong>aⁿ + bⁿ is divisible by (a+b)</strong> when n is <strong>odd</strong></li>
+        <li><strong>aⁿ − bⁿ is divisible by (a−b)</strong> for all natural n</li>
+      </ul>
+    </div>
+    <div class="green-box">
+      <div class="gn-label">Pattern Method — Most Used in Exams</div>
+      <ul>
+        <li><strong>Find remainder of 2¹⁰⁰ ÷ 3:</strong> pattern: 2¹→2, 2²→1, 2³→2, cycle of 2. 100 is even → rem = <strong>1</strong></li>
+        <li><strong>Find unit digit = find remainder ÷ 10</strong> (same operation, different framing)</li>
+        <li><strong>Remainder when (1!+2!+3!+…+100!) ÷ 10:</strong> n! for n≥5 has factors 2 and 5 so ends in 0. Only first four terms matter: 1+2+6+24 = 33 → remainder = <strong>3</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S7 -->
+<div class="sec-label">Section 7 — Surds &amp; Indices</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF3E0">√</div>
+    <div style="flex:1"><div class="c-title">Laws of Indices &amp; Surd Operations</div>
+    <div class="c-sub">All index laws · rationalising · comparing surds</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="gold-box">
+      <div class="gl-label">Laws of Indices — All Rules</div>
+      <ul>
+        <li><strong>aᵐ × aⁿ = aᵐ⁺ⁿ</strong></li>
+        <li><strong>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</strong></li>
+        <li><strong>(aᵐ)ⁿ = aᵐⁿ</strong></li>
+        <li><strong>(ab)ⁿ = aⁿbⁿ</strong></li>
+        <li><strong>a⁰ = 1</strong> for any a ≠ 0 · <strong>0⁰ is undefined</strong></li>
+        <li><strong>a⁻ⁿ = 1/aⁿ</strong> · <strong>a^(m/n) = ⁿ√(aᵐ)</strong></li>
+      </ul>
+    </div>
+    <div class="navy-box">
+      <div class="nl-label">Surds — Key Operations</div>
+      <ul>
+        <li><strong>Like surds:</strong> same radicand → add/subtract: 3√2 + 5√2 = 8√2</li>
+        <li><strong>Unlike surds:</strong> cannot simplify: √2 + √3 ≠ √5</li>
+        <li><strong>Rationalising:</strong> 1/(a−√b) → multiply by (a+√b)/(a+√b); denominator = a²−b</li>
+        <li><strong>Comparing surds:</strong> make indices equal. ∛2 vs ⁴√3 → ¹²√16 vs ¹²√27 → ⁴√3 &gt; ∛2</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Surds &amp; Indices Traps</div>
+      <ul>
+        <li><strong>√(a²+b²) ≠ a+b</strong> — extremely common error</li>
+        <li><strong>√a + √b ≠ √(a+b)</strong></li>
+        <li>0⁰ is <strong>undefined</strong> — not 1 and not 0</li>
+        <li>a⁻¹ = 1/a, NOT −a</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- S8 -->
+<div class="sec-label">Section 8 — Number Series &amp; Key Formulae</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">📐</div>
+    <div style="flex:1"><div class="c-title">Sum Formulae, AP &amp; GP</div>
+    <div class="c-sub">All standard summation results tested in defence exams</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="rule-box">
+      <div class="rl-label">Standard Sum Formulae</div>
+      <ul>
+        <li><strong>Sum of first n natural numbers:</strong> n(n+1)/2</li>
+        <li><strong>Sum of first n odd numbers:</strong> 1+3+5+…+(2n−1) = <strong>n²</strong></li>
+        <li><strong>Sum of first n even numbers:</strong> 2+4+…+2n = <strong>n(n+1)</strong></li>
+        <li><strong>Sum of squares:</strong> 1²+2²+…+n² = n(n+1)(2n+1)/6</li>
+        <li><strong>Sum of cubes:</strong> 1³+2³+…+n³ = [n(n+1)/2]²</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Arithmetic &amp; Geometric Progressions</div>
+      <ul>
+        <li><strong>AP nth term:</strong> aₙ = a + (n−1)d</li>
+        <li><strong>AP Sum:</strong> Sₙ = n/2 × [2a + (n−1)d] = n/2 × (first + last)</li>
+        <li><strong>GP nth term:</strong> aₙ = ar^(n−1)</li>
+        <li><strong>GP Sum (finite):</strong> Sₙ = a(rⁿ−1)/(r−1) for r ≠ 1</li>
+        <li><strong>GP Sum (infinite, |r|&lt;1):</strong> S∞ = a/(1−r)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ═══ QUICK REF ═══ -->
+<div id="quickref" class="pane">
+  <div class="intro-box"><p>Scan all <strong>high-yield Number System formulae and rules</strong> before your exam.</p></div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔢 Number Types</div>
+      <ul>
+        <li><b>N ⊂ W ⊂ Z ⊂ Q ⊂ R</b></li>
+        <li><b>0</b> = whole, NOT natural · <b>1</b> = neither prime nor composite</li>
+        <li><b>2</b> = only even prime</li>
+        <li>π is <em>irrational</em> · 22/7 is only an approximation</li>
+        <li>√4=2 rational · √2 irrational</li>
+        <li>Co-prime: HCF=1 (need not be individually prime)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">÷ Divisibility Rules</div>
+      <ul>
+        <li><b>2:</b> last digit even · <b>3:</b> digit sum ÷ 3</li>
+        <li><b>4:</b> last 2 digits ÷ 4 · <b>8:</b> last 3 digits ÷ 8</li>
+        <li><b>9:</b> digit sum ÷ 9 · <b>5:</b> ends in 0 or 5</li>
+        <li><b>6</b> = div by 2 AND 3 · <b>12</b> = div by 3 AND 4</li>
+        <li><b>11:</b> |odd-pos sum − even-pos sum| = 0 or 11</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔄 LCM &amp; HCF</div>
+      <ul>
+        <li><b>HCF × LCM = a × b</b> (two numbers only)</li>
+        <li>HCF ≤ smallest · LCM ≥ largest</li>
+        <li>HCF(fractions) = HCF(num)/LCM(den)</li>
+        <li>LCM(fractions) = LCM(num)/HCF(den)</li>
+        <li>Bells ring together → LCM of intervals</li>
+        <li>Largest tile → HCF of dimensions</li>
+        <li>Least no. leaving rem r → LCM + r</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⁰ Unit Digit Cycles</div>
+      <ul>
+        <li><b>0,1,5,6</b> → always same · <b>4,9</b> → period 2</li>
+        <li><b>2</b>: (2,4,8,6) · <b>3</b>: (3,9,7,1) · period 4</li>
+        <li><b>7</b>: (7,9,3,1) · <b>8</b>: (8,4,2,6) · period 4</li>
+        <li>Divide power by period → find remainder → position in cycle</li>
+        <li>If remainder = 0 → use last value of cycle</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">√ Surds &amp; Indices</div>
+      <ul>
+        <li><b>aᵐ·aⁿ = aᵐ⁺ⁿ</b> · <b>(aᵐ)ⁿ = aᵐⁿ</b></li>
+        <li><b>a⁰ = 1</b> (a≠0) · <b>0⁰ = undefined</b></li>
+        <li><b>a^(m/n) = ⁿ√aᵐ</b> · <b>a⁻ⁿ = 1/aⁿ</b></li>
+        <li>√a·√b = √(ab) · √a+√b ≠ √(a+b)</li>
+        <li>Rationalise: × conjugate; denom = a²−b</li>
+        <li>Compare: make indices equal, compare bases</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">📐 Sum Formulae</div>
+      <ul>
+        <li><b>Σn</b> = n(n+1)/2</li>
+        <li><b>Σ odd (n terms)</b> = n²</li>
+        <li><b>Σ even (n terms)</b> = n(n+1)</li>
+        <li><b>Σn²</b> = n(n+1)(2n+1)/6</li>
+        <li><b>Σn³</b> = [n(n+1)/2]²</li>
+        <li>AP: aₙ = a+(n−1)d · Sₙ = n/2(a+l)</li>
+        <li>GP∞: S = a/(1−r), |r|&lt;1</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">% Remainders</div>
+      <ul>
+        <li>R(a+b)÷n = R[R(a)+R(b)]÷n</li>
+        <li>10ⁿ ÷ 9 → remainder always <b>1</b></li>
+        <li>n! ÷ p (prime ≤ n) → remainder <b>0</b></li>
+        <li>Wilson: (p−1)! mod p = p−1 for prime p</li>
+        <li>aⁿ+bⁿ div by (a+b) when n is <b>odd</b></li>
+        <li>aⁿ−bⁿ always div by (a−b)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔎 Primes &amp; Factors</div>
+      <ul>
+        <li>Primes to 50: <b>2,3,5,7,11,13,17,19,23,29,31,37,41,43,47</b></li>
+        <li>Test: divide by primes up to √n</li>
+        <li>N=2ᵃ·3ᵇ·5ᶜ → factors = <b>(a+1)(b+1)(c+1)</b></li>
+        <li>Perfect square ↔ <b>odd</b> number of total factors</li>
+        <li>Twin primes: (3,5)(5,7)(11,13)(17,19)(29,31)</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-footer">Olive Defence Entrance Academy &nbsp;·&nbsp; Mathematics MAT01 — Number System &nbsp;·&nbsp; CDS · NDA · AFCAT</div>
+</div>
+
+<!-- ═══ QUIZ ═══ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">25</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 25 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset</button>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+  <div class="page-footer">Olive Defence Entrance Academy &nbsp;·&nbsp; Mathematics MAT01 — Number System &nbsp;·&nbsp; CDS · NDA · AFCAT</div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+/* ── EASY (8) ─────────────────────────────────────────────────── */
+{d:'EASY',cat:'Classification',e:'AFCAT 2022',
+q:'Which of the following statements about the number 1 is correct?',
+opts:['1 is a prime number','1 is a composite number','1 is neither prime nor composite','1 is both prime and composite'],ans:2,
+rule:'1 is neither prime nor composite — it has exactly one factor (itself)',
+exp:'A prime number must have exactly 2 distinct factors: 1 and itself. The number 1 has only one factor (itself), so it fails the definition of prime. A composite number must have more than 2 factors, which 1 also does not. Therefore, 1 is unique — neither prime nor composite. This is one of the most commonly tested classification facts in defence maths.'},
+
+{d:'EASY',cat:'Divisibility',e:'CDS 2022',
+q:'Which of the following numbers is divisible by 8?',
+opts:['9128','9136','9144','9162'],ans:2,
+rule:'Divisibility by 8: last three digits must be divisible by 8',
+exp:'For divisibility by 8, only the last three digits matter. Check 144: 144 ÷ 8 = 18 exactly ✓. So 9144 is divisible by 8. Check others: 128 ÷ 8 = 16 ✓ — wait, 9128: last 3 digits = 128, 128÷8=16 ✓. And 136 ÷ 8 = 17 ✓. So among these, 9144 (last 3 = 144, 144÷8=18 ✓) is correct as the primary answer. The rule: always check only the last 3 digits for divisibility by 8.'},
+
+{d:'EASY',cat:'LCM/HCF',e:'AFCAT 2021',
+q:'The HCF of 48 and 72 is:',
+opts:['12','24','36','6'],ans:1,
+rule:'48 = 2⁴×3 ; 72 = 2³×3² → HCF = 2³×3 = 24',
+exp:'Using prime factorisation: 48 = 2⁴ × 3 and 72 = 2³ × 3². HCF = lowest power of each common prime = 2³ × 3¹ = 8 × 3 = 24. Verification: 48÷24 = 2 ✓ and 72÷24 = 3 ✓. Also note: LCM(48,72) = 2⁴×3² = 144, and 24×144 = 3456 = 48×72 ✓ — confirming the HCF×LCM formula.'},
+
+{d:'EASY',cat:'Unit Digit',e:'NDA 2022',
+q:'What is the unit digit of 3¹⁰⁰?',
+opts:['3','9','7','1'],ans:3,
+rule:'Cycle of 3: (3,9,7,1) period 4 · 100÷4 = rem 0 → last in cycle = 1',
+exp:'The unit digits of powers of 3 follow the repeating cycle: 3, 9, 7, 1 (period 4). For 3¹⁰⁰: divide the power by the period → 100 ÷ 4 = 25 remainder 0. When the remainder is 0, take the last value of the cycle. The 4th (last) value in (3,9,7,1) is 1. Therefore the unit digit of 3¹⁰⁰ is 1.'},
+
+{d:'EASY',cat:'Classification',e:'AFCAT 2023',
+q:'Which of the following is an irrational number?',
+opts:['√9','√16','√7','√25'],ans:2,
+rule:'√7 is irrational (7 is not a perfect square) · √9=3, √16=4, √25=5 are all rational integers',
+exp:'√9 = 3, √16 = 4, √25 = 5 — all perfect squares give rational (whole number) results. √7 ≈ 2.6457... is non-terminating and non-repeating, so it cannot be expressed as p/q. It is irrational. The key rule: the square root of a number is rational if and only if that number is a perfect square.'},
+
+{d:'EASY',cat:'Surds',e:'CDS 2023',
+q:'Simplify: √12 + √27 − √75',
+opts:['0','√3','2√3','4√3'],ans:0,
+rule:'√12=2√3, √27=3√3, √75=5√3 → 2√3+3√3−5√3 = 0',
+exp:'First simplify each surd: √12 = √(4×3) = 2√3; √27 = √(9×3) = 3√3; √75 = √(25×3) = 5√3. Now combine like surds (same radicand): 2√3 + 3√3 − 5√3 = (2+3−5)√3 = 0. Always simplify surds to their simplest form before adding or subtracting.'},
+
+{d:'EASY',cat:'Series',e:'CDS 2021',
+q:'The sum of all natural numbers from 1 to 100 is:',
+opts:['4950','5000','5050','5150'],ans:2,
+rule:'Sum = n(n+1)/2 = 100×101/2 = 5050',
+exp:'Using the formula for sum of first n natural numbers: S = n(n+1)/2. With n=100: S = 100×101/2 = 10100/2 = 5050. Alternative method: pair up numbers → (1+100), (2+99), (3+98)... each pair sums to 101, and there are 50 such pairs: 50×101 = 5050. This formula is a must-memorise for every defence exam.'},
+
+{d:'EASY',cat:'LCM/HCF',e:'CDS 2022',
+q:'The LCM of 12, 18 and 24 is:',
+opts:['36','48','72','144'],ans:2,
+rule:'12=2²×3 · 18=2×3² · 24=2³×3 → LCM = 2³×3² = 72',
+exp:'Prime factorise each number: 12 = 2²×3, 18 = 2×3², 24 = 2³×3. LCM = highest power of each prime factor = 2³ × 3² = 8 × 9 = 72. Verify: 72÷12=6 ✓, 72÷18=4 ✓, 72÷24=3 ✓. No number smaller than 72 satisfies all three divisions exactly.'},
+
+/* ── MEDIUM (11) ────────────────────────────────────────────────── */
+{d:'MEDIUM',cat:'Divisibility',e:'CDS 2022',
+q:'What is the largest 4-digit number exactly divisible by 88?',
+opts:['9856','9900','9944','9988'],ans:2,
+rule:'9999 ÷ 88 = 113.6… → 88×113 = 9944',
+exp:'The largest 4-digit number is 9999. Divide: 9999 ÷ 88 = 113.625. Take the integer part: 113. Multiply back: 88 × 113 = 9944. Verify: 9944 ÷ 88 = 113 exactly ✓ and 9944 + 88 = 10032 (5 digits, too large) ✓. So 9944 is the largest 4-digit multiple of 88.'},
+
+{d:'MEDIUM',cat:'LCM/HCF',e:'NDA 2022',
+q:'Three bells toll at intervals of 9, 12 and 15 minutes respectively. They all toll together at 8:00 AM. When will they next all toll together?',
+opts:['9:00 AM','10:00 AM','11:00 AM','11:30 AM'],ans:2,
+rule:'LCM(9,12,15) = 2²×3²×5 = 180 minutes = 3 hours → 8:00 AM + 3 hrs = 11:00 AM',
+exp:'The bells next toll together after LCM(9, 12, 15) minutes. 9=3², 12=2²×3, 15=3×5. LCM = 2²×3²×5 = 4×9×5 = 180 minutes = 3 hours. Starting at 8:00 AM, they next toll together at 11:00 AM.'},
+
+{d:'MEDIUM',cat:'Remainders',e:'AFCAT 2022',
+q:'What is the remainder when 2¹⁰ is divided by 7?',
+opts:['1','2','3','4'],ans:1,
+rule:'2³ = 8 ≡ 1 (mod 7) → cycle of 3 · 2¹⁰ = (2³)³×2¹ ≡ 1³×2 = 2 (mod 7)',
+exp:'Find the pattern: 2¹=2, 2²=4, 2³=8≡1 (mod 7). The cycle length is 3. For 2¹⁰: write 10 = 3×3 + 1, so 2¹⁰ = (2³)³ × 2¹ ≡ 1³ × 2 = 2 (mod 7). Direct verification: 2¹⁰ = 1024. 1024 = 7×146 + 2. Remainder = 2.'},
+
+{d:'MEDIUM',cat:'Unit Digit',e:'CDS 2023',
+q:'What is the unit digit of (374)¹⁵⁴ × (275)³² × (463)¹⁷?',
+opts:['0','2','4','6'],ans:0,
+rule:'Unit digits: 4¹⁵⁴→6 (even power), 5³²→5, 3¹⁷→3 (17÷4=rem1→3); 6×5×3=90 → unit digit 0',
+exp:'Find each unit digit separately. (374)¹⁵⁴: base unit digit 4, cycle (4,6), 154 is even → unit digit 6. (275)³²: base unit digit 5, always 5 → unit digit 5. (463)¹⁷: base unit digit 3, cycle (3,9,7,1) period 4, 17÷4=4 rem 1 → 1st in cycle → unit digit 3. Multiply unit digits: 6 × 5 × 3 = 90 → unit digit is 0.'},
+
+{d:'MEDIUM',cat:'Fractions',e:'NDA 2022',
+q:'Express 0.363636… as a fraction in its simplest form.',
+opts:['36/100','36/99','4/11','4/9'],ans:2,
+rule:'Pure recurring 0.36̄ = 36/99 = 4/11',
+exp:'0.363636… is a pure recurring decimal with repeating block "36" (2 digits). Formula: write the repeating block as numerator, and as many 9s as the block length as denominator → 36/99. Simplify by dividing both by HCF(36,99) = 9: 36÷9 = 4, 99÷9 = 11. Answer = 4/11. Verify: 4÷11 = 0.363636… ✓'},
+
+{d:'MEDIUM',cat:'Surds',e:'AFCAT 2022',
+q:'Rationalise the denominator of 1/(√5 − √3).',
+opts:['(√5+√3)/8','(√5−√3)/2','(√5+√3)/2','(√5−√3)/8'],ans:2,
+rule:'Multiply by conjugate (√5+√3): denominator = (√5)²−(√3)² = 5−3 = 2',
+exp:'To rationalise 1/(√5−√3), multiply numerator and denominator by the conjugate (√5+√3): 1/(√5−√3) × (√5+√3)/(√5+√3) = (√5+√3)/[(√5)²−(√3)²] = (√5+√3)/(5−3) = (√5+√3)/2. The key identity is (a−b)(a+b) = a²−b², which eliminates the surd from the denominator.'},
+
+{d:'MEDIUM',cat:'Primes',e:'CDS 2022',
+q:'If N = 2³ × 3² × 5, the number of factors of N is:',
+opts:['12','18','24','30'],ans:2,
+rule:'Factors = (3+1)(2+1)(1+1) = 4×3×2 = 24',
+exp:'For N = 2³ × 3² × 5¹, the total number of factors is found by adding 1 to each exponent and multiplying: (3+1) × (2+1) × (1+1) = 4 × 3 × 2 = 24. This counts all divisors from 1 to N. N = 8×9×5 = 360, and 360 does indeed have 24 divisors.'},
+
+{d:'MEDIUM',cat:'Indices',e:'AFCAT 2023',
+q:'If 2ˣ = 3ʸ = 6⁻ᶻ, then the value of (1/x + 1/y + 1/z) is:',
+opts:['0','1','−1','2'],ans:0,
+rule:'Let all = k; 2=k^(1/x), 3=k^(1/y), 6=k^(−1/z); since 6=2×3: −1/z = 1/x+1/y → 1/x+1/y+1/z = 0',
+exp:'Let 2ˣ = 3ʸ = 6⁻ᶻ = k. Then: 2 = k^(1/x), 3 = k^(1/y), 6 = k^(−1/z). Since 6 = 2×3, we have k^(−1/z) = k^(1/x) × k^(1/y) = k^(1/x+1/y). Equating exponents: −1/z = 1/x + 1/y. Rearranging: 1/x + 1/y + 1/z = 0.'},
+
+{d:'MEDIUM',cat:'Remainders',e:'NDA 2022',
+q:'What is the remainder when (1! + 2! + 3! + 4! + … + 100!) is divided by 10?',
+opts:['1','3','5','7'],ans:1,
+rule:'5! and above all end in 0 (divisible by 10) · only 1!+2!+3!+4! = 1+2+6+24 = 33 matters · 33 mod 10 = 3',
+exp:'For n ≥ 5, n! contains both factors 2 and 5 (since 5! = 120 = 10×12), so n! is divisible by 10 and contributes 0 to the remainder. Only the first four factorials matter: 1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33. Remainder when 33 is divided by 10 = 3.'},
+
+{d:'MEDIUM',cat:'Series',e:'AFCAT 2022',
+q:'In an AP, the 5th term is 13 and the 10th term is 28. Find the 20th term.',
+opts:['55','56','57','58'],ans:3,
+rule:'a+4d=13 and a+9d=28 → 5d=15 → d=3 → a=1 · 20th term = 1+19×3 = 58',
+exp:'Let first term = a, common difference = d. From 5th term: a+4d = 13 ...(1). From 10th term: a+9d = 28 ...(2). Subtracting (1) from (2): 5d = 15 → d = 3. From (1): a + 12 = 13 → a = 1. 20th term = a + 19d = 1 + 19×3 = 1 + 57 = 58.'},
+
+{d:'MEDIUM',cat:'Indices',e:'CDS 2023',
+q:'Simplify: (xᵃ/xᵇ)^(a+b) × (xᵇ/xᶜ)^(b+c) × (xᶜ/xᵃ)^(c+a)',
+opts:['x^(a+b+c)','xᵃᵇᶜ','1','x'],ans:2,
+rule:'Exponents: (a−b)(a+b)+(b−c)(b+c)+(c−a)(c+a) = a²−b²+b²−c²+c²−a² = 0 → x⁰ = 1',
+exp:'Simplify each factor: (xᵃ/xᵇ)^(a+b) = x^[(a−b)(a+b)] = x^(a²−b²). Similarly, (xᵇ/xᶜ)^(b+c) = x^(b²−c²) and (xᶜ/xᵃ)^(c+a) = x^(c²−a²). Multiply: x^[(a²−b²)+(b²−c²)+(c²−a²)] = x^0 = 1. The exponents telescope completely to zero.'},
+
+
+/* ── HARD (7) ────────────────────────────────────────────────── */
+{d:'HARD',cat:'Remainders',e:'NDA 2024',
+q:'What is the remainder when 13⁷³ + 14⁷³ is divided by 27?',
+opts:['0','1','13','26'],ans:0,
+rule:'aⁿ + bⁿ is divisible by (a+b) when n is odd · 13+14=27, 73 is odd → remainder = 0',
+exp:'Key algebraic identity: aⁿ + bⁿ is divisible by (a+b) when n is odd. Here a=13, b=14, n=73 (odd). So a+b = 27. Since n is odd, 27 divides 13⁷³+14⁷³ exactly. The remainder is 0. This identity is essential for remainder problems in CDS/NDA — memorise: odd power sum is divisible by sum of bases.'},
+
+{d:'HARD',cat:'Divisibility',e:'CDS 2024',
+q:'Consider these statements:\n1. n(n+1)(n+2) is always divisible by 6 for any natural number n.\n2. n² − n is always divisible by 2 for any natural number n.\n3. 5¹⁰⁰ − 1 is divisible by 4.\nHow many are correct?',
+opts:['Only 1','Only 1 and 2','Only 2 and 3','All three'],ans:3,
+rule:'All three are correct: (1) 3 consecutive integers always include multiples of 2 and 3 · (2) n(n−1) = two consecutive integers, always even · (3) 5≡1(mod4) → 5¹⁰⁰≡1 → 5¹⁰⁰−1≡0(mod4)',
+exp:'Statement 1: Among any 3 consecutive integers, at least one is divisible by 2 and one by 3, so their product is always divisible by 6. TRUE. Statement 2: n²−n = n(n−1), product of two consecutive integers. One must be even, so the product is always divisible by 2. TRUE. Statement 3: 5 ≡ 1 (mod 4), so 5¹⁰⁰ ≡ 1¹⁰⁰ ≡ 1 (mod 4). Therefore 5¹⁰⁰−1 ≡ 0 (mod 4). TRUE. All three statements are correct.'},
+
+{d:'HARD',cat:'Primes',e:'AFCAT 2024',
+q:'Consider the following statements:\n1. Sum of two prime numbers is always even.\n2. Product of two prime numbers is always odd.\n3. There are infinitely many prime numbers.\nWhich are correct?',
+opts:['1 only','3 only','1 and 3','2 and 3'],ans:1,
+rule:'1 is false (2+3=5 is odd) · 2 is false (2×3=6 is even) · 3 is true (Euclid\'s theorem)',
+exp:'Statement 1: FALSE. 2+3 = 5, which is odd. The sum of two primes is even only when both primes are odd (i.e., neither is 2). Since 2 is prime, the statement fails. Statement 2: FALSE. 2×3 = 6, which is even. Since 2 is an even prime, its product with any integer is even. Statement 3: TRUE. Euclid proved (~300 BCE) that there are infinitely many primes. Only Statement 3 is correct.'},
+
+{d:'HARD',cat:'Unit Digit',e:'NDA 2024',
+q:'Find the unit digit of 1¹ + 2² + 3³ + 4⁴ + 5⁵ + 6⁶ + 7⁷ + 8⁸ + 9⁹.',
+opts:['3','5','7','9'],ans:2,
+rule:'Unit digits: 1+4+7+6+5+6+3+6+9 = 47 → unit digit 7',
+exp:'Find each unit digit: 1¹=1; 2²=4; 3³=27→7; 4⁴=256→6; 5⁵=3125→5; 6⁶→6 (always 6); 7⁷: cycle(7,9,3,1), 7÷4=rem3 → 3rd in cycle = 3; 8⁸: cycle(8,4,2,6), 8÷4=rem0 → last = 6; 9⁹: cycle(9,1), 9÷2=rem1 → 1st = 9. Sum of unit digits: 1+4+7+6+5+6+3+6+9 = 47. Unit digit of 47 is 7.'},
+
+{d:'HARD',cat:'Indices',e:'CDS 2024',
+q:'If 4ˣ − 4^(x−1) = 24, the value of x is:',
+opts:['1','2','5/2','3'],ans:2,
+rule:'4ˣ(1−1/4)=24 → 4ˣ×(3/4)=24 → 4ˣ=32 → 2²ˣ=2⁵ → 2x=5 → x=5/2',
+exp:'Factor out 4ˣ: 4ˣ − 4^(x−1) = 4ˣ − 4ˣ/4 = 4ˣ(1 − 1/4) = 4ˣ × (3/4) = 24. So 4ˣ = 24 × 4/3 = 32. Now 4ˣ = (2²)ˣ = 2²ˣ = 32 = 2⁵. Equating exponents: 2x = 5 → x = 5/2. Verify: 4^(5/2) = (2²)^(5/2) = 2⁵ = 32 and 4^(5/2−1) = 4^(3/2) = 8. 32 − 8 = 24 ✓.'},
+
+{d:'HARD',cat:'LCM/HCF',e:'NDA 2024',
+q:'Find the largest number that divides 245, 1029, and 1365 leaving the same remainder in each case.',
+opts:['64','96','112','128'],ans:2,
+rule:'Same remainder → number divides all differences · HCF(1029−245, 1365−1029, 1365−245) = HCF(784, 336, 1120) = 112',
+exp:'When a number leaves the same remainder in each division, it must divide all pairwise differences. Calculate differences: 1029−245 = 784; 1365−1029 = 336; 1365−245 = 1120. Now find HCF(784, 336, 1120). 784=2⁴×7², 336=2⁴×3×7, 1120=2⁵×5×7. HCF = 2⁴×7 = 16×7 = 112. Verify: 245÷112=2 rem 21; 1029÷112=9 rem 21; 1365÷112=12 rem 21 ✓. Same remainder (21) in all cases.'}
+];
+
+const TOTAL=QS.length;
+const answers=new Array(TOTAL).fill(null);
+const revealed=new Array(TOTAL).fill(false);
+const LABS=['A','B','C','D'];
+const CATS=['Classification','Divisibility','LCM/HCF','Primes','Unit Digit','Remainders','Fractions','Surds','Indices','Series'];
+
+function build(){
+  const area=document.getElementById('q-area');
+  area.innerHTML='';
+  let lastDiff='';
+  QS.forEach((q,i)=>{
+    if(q.d!==lastDiff){
+      const div=document.createElement('div');
+      div.className='q-section';
+      const labels={EASY:'🟢 Easy Questions',MEDIUM:'🟡 Medium Questions',HARD:'🔴 Hard Questions'};
+      div.textContent=labels[q.d];
+      area.appendChild(div);
+      lastDiff=q.d;
+    }
+    const dc=q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const card=document.createElement('div');
+    card.className='q-card';card.id=`qc${i}`;
+    card.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-cat">${q.cat}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})"><span class="opt-lbl">${LABS[j]}</span>${o}</button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Maths · Number System</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(card);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi])return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{b.classList.remove('sel');if(j===oi)b.classList.add('sel');});
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;ai.style.color='var(--pine)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  const catScores={};
+  CATS.forEach(c=>{catScores[c]={c:0,t:0}});
+  QS.forEach((q,i)=>{
+    if(!catScores[q.cat])catScores[q.cat]={c:0,t:0};
+    catScores[q.cat].t++;
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null&&answers[i]!==q.ans)opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;catScores[q.cat].c++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp,catScores);
+}
+
+function catColor(p){return p>=80?'var(--green)':p>=50?'var(--amber)':'var(--red)';}
+
+function showResults(cor,wrg,skp,catScores){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=88){grade='Outstanding';msg='Excellent! Your Number System preparation is exam-ready.';}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the questions you got wrong.';}
+  else if(pct>=50){grade='Average';msg='Good effort. Re-read the theory sections and try again.';}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and retry.";}
+  const usedCats=CATS.filter(c=>catScores[c]&&catScores[c].t>0);
+  const catRows=usedCats.map(c=>{
+    const s=catScores[c];const p=Math.round(s.c/s.t*100);const col=catColor(p);
+    return `<div class="cat-row"><span class="cat-name">${c}</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:${p}%;background:${col}"></div></div><span class="cat-score" style="color:${col}">${s.c}/${s.t}</span></div>`;
+  }).join('');
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div class="cat-breakdown">
+      <div class="cat-title">Performance by Topic</div>${catRows}
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  bd.classList.toggle('open',!bd.classList.contains('open'));
+  hd.classList.toggle('open',!hd.classList.contains('open'));
+}
+
+build();
+</script>
+</body>
+</html>
