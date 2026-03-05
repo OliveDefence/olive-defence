@@ -3,23 +3,174 @@
 
 <head>
 <title>Biology Notes – Olive Defence Entrance Academy</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background:#f5f5f5;
+}
+
+h1{
+margin-top:30px;
+}
+
+.legend{
+margin-top:10px;
+font-size:14px;
+color:#444;
+}
+
+.chapter{
+padding:14px;
+margin:12px auto;
+width:320px;
+border-radius:8px;
+font-size:18px;
+font-weight:bold;
+text-align:center;
+cursor:pointer;
+}
+
+.free{
+background:#e8f5e9;
+}
+
+.free a{
+text-decoration:none;
+color:#2e7d32;
+}
+
+.locked{
+background:#ffe6e6;
+color:#c62828;
+}
+
+.chapter:hover{
+transform:scale(1.03);
+transition:0.2s;
+}
+
+</style>
+
 </head>
 
-<body style="text-align:center; font-family:Arial;">
+<body>
 
 <h1>Biology Notes</h1>
 
-<h3>Free Sample Lesson</h3>
+<p class="legend">
+✓ Free Lesson | 🔒 Paid Chapter | ✅ High Priority for CDS / NDA / AFCAT
+</p>
 
+<br>
+
+<div class="chapter free">
 <a href="B01_Cell_BasicUnit.html">
-Cell Basics
+✓ Cell – Basic Unit of Life (Free) ✅
+</a>
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Tissues
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Plant Physiology
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Digestive System ✅
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Respiratory System
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Circulatory System ✅
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Excretory System
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Nervous System
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Endocrine System
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Reproductive System
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Genetics and Heredity ✅
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Evolution
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Microorganisms
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Human Diseases ✅
+</div>
+
+<div class="chapter locked" onclick="showPopup()">
+🔒 Ecology and Environment
+</div>
+
+
+<div id="popup" style="display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+border-radius:10px;
+width:300px;
+text-align:center;
+">
+
+<h3>Unlock Full Biology Course</h3>
+
+<p>This chapter is available only for enrolled students.</p>
+
+<a href="YOUR_RAZORPAY_LINK" target="_blank">
+<button style="padding:10px 20px;font-size:16px;">
+Join Course
+</button>
 </a>
 
 <br><br>
 
-<p>More chapters available for enrolled students.</p>
+<button onclick="closePopup()">Close</button>
+
+</div>
+
+
+<script>
+
+function showPopup(){
+document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+</script>
 
 </body>
-
 
 </html>
