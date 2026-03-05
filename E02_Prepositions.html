@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG · Prepositions | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F5F0E8;--bg2:#EDE7D9;--bg3:#DFD8C8;
+  --white:#FFFFFF;--ink:#1C1610;--ink2:#2E2416;
+  --muted:#6A5C48;--dim:#9A8C78;--border:#C8BCAA;
+  --teal:#1A6B6B;--tealLt:#1F8080;--tealPale:#E6F4F4;
+  --amber:#B06010;--amberLt:#CC7218;--amberPale:#FDF4E3;
+  --green:#1E6030;--greenPale:#EAF5EC;
+  --red:#8B2020;--redPale:#FCEAEA;
+  --blue:#1A3F72;--bluePale:#EAF0FA;
+  --purple:#5B2D8E;--purplePale:#F3EEFB;
+  --orange:#A04010;--orangePale:#FEF0E4;
+  --radius:12px;--shadow:0 2px 12px rgba(28,22,16,.09);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1A4A4A 0%,#1A6B6B 60%,#208080 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(23px,5.5vw,33px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero-title span{color:#A8E8E8;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(168,232,232,.2);color:#A8E8E8}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* TABS */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(28,22,16,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* PANES */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INTRO */
+.intro-box{background:var(--tealPale);border:1.5px solid rgba(26,107,107,.2);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* CARDS */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* BOXES */
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(176,96,16,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--greenPale);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+
+.wrong-box{background:var(--redPale);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.wrong-box .wl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:6px}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--red);font-weight:800;font-size:12px}
+
+.trap-box{background:var(--redPale);border:1.5px solid rgba(139,32,32,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+.rule-box ul{list-style:none;padding:0}
+.rule-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.rule-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--blue);top:10px}
+
+.purple-box{background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+
+/* FP TABLE */
+.fp-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14.5px}
+.fp-table th{background:var(--teal);color:#fff;padding:9px 12px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.5px}
+.fp-table td{padding:9px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.6}
+.fp-table tr:nth-child(even) td{background:var(--bg)}
+.fp-table td:first-child{font-weight:700;color:var(--teal);white-space:nowrap}
+.fp-table td .w{color:var(--red);font-weight:700}
+.fp-table td .r{color:var(--green);font-weight:700}
+
+/* PHRASAL VERB ROWS */
+.pv-list{list-style:none;padding:0;margin:12px 0}
+.pv-item{border-bottom:1px solid var(--bg3);padding:11px 0}
+.pv-item:last-child{border-bottom:none}
+.pv-verb{font-size:15.5px;font-weight:800;color:var(--teal);margin-bottom:3px}
+.pv-mean{font-size:14.5px;color:var(--muted);font-weight:600;margin-bottom:4px}
+.pv-eg{font-size:14.5px;color:var(--ink2);line-height:1.6}
+.pv-eg em{color:var(--amber);font-style:italic}
+
+/* QUICK REF */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:14.5px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--red);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700;font-style:normal}
+
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-b{background:var(--greenPale);color:var(--green)}
+.diff-fp{background:var(--amberPale);color:var(--amber)}
+.diff-pv{background:var(--purplePale);color:var(--purple)}
+.diff-ce{background:var(--redPale);color:var(--red)}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--teal);background:var(--tealPale);border:1px solid rgba(26,107,107,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(26,107,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:var(--teal);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#A8E8E8;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+@media(max-width:400px){.hero{padding:22px 16px 20px}.hero-title{font-size:21px}.tab{padding:12px 12px;font-size:11px}.q-text{font-size:16px}.opt{font-size:15px;padding:12px 14px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English · Prepositions</div>
+  <h1 class="hero-title">Prepositions —<br><span>Fixed, Phrasal & Errors</span></h1>
+  <p class="hero-sub">Exhaustive coverage of Fixed Prepositions (Medium + Hard) and essential Phrasal Verbs (UPSC-level) — organised topic-wise with exam traps, common errors, and a 35-question practice quiz.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Medium + Hard Level</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">35 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (35)</button>
+</div>
+
+<!-- ══════════ THEORY ══════════ -->
+<div id="theory" class="pane on">
+
+<div class="intro-box">
+  <p>This module covers three pillars: <strong>Basic preposition rules</strong> (at/in/on — the tricky cases), <strong>Fixed Prepositions</strong> (medium + hard: verbs, adjectives, nouns with fixed prepositions), and <strong>Phrasal Verbs</strong> (UPSC-level, exhaustive). Each section ends with the exact <strong>common errors</strong> that appear in exams.</p>
+</div>
+
+<!-- ══ PART 1: BASICS ══ -->
+<div class="sec-label">Part 1 — Preposition Basics: AT / IN / ON (Tricky Cases)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E6F4F4">🕐</div>
+    <div style="flex:1"><div class="c-title">Time Prepositions — AT / IN / ON</div>
+    <div class="c-sub">The exact rules + the cases that trick everyone</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Preposition</th><th>Used with</th><th>Examples</th></tr>
+        <tr><td>AT</td><td>Exact time · Meal times · Night/Dawn/Noon/Midnight · Festivals (some)</td><td>at 5 pm · at noon · at midnight · at dawn · at breakfast · at Christmas · at Easter · at the weekend (BrE)</td></tr>
+        <tr><td>IN</td><td>Months · Years · Seasons · Centuries · Long periods · Parts of day (morning/afternoon/evening)</td><td>in January · in 2025 · in summer · in the morning · in the 21st century · in the past · in the future</td></tr>
+        <tr><td>ON</td><td>Days · Dates · Specific mornings/evenings (with day name)</td><td>on Monday · on 15 August · on Christmas Day · on the morning of 5th · on time (punctual)</td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ High-Frequency Exam Traps</div>
+      <ul>
+        <li><span style="color:var(--red)">✗ in night</span> → <span style="color:var(--green)">✓ <strong>at night</strong></span> (always "at night")</li>
+        <li><span style="color:var(--red)">✗ on morning</span> → <span style="color:var(--green)">✓ <strong>in the morning</strong></span> BUT <strong>on Monday morning</strong> (day + morning = ON)</li>
+        <li><span style="color:var(--red)">✗ at the morning</span> → <span style="color:var(--green)">✓ <strong>in the morning</strong></span></li>
+        <li><span style="color:var(--red)">✗ in time</span> (punctual) → <span style="color:var(--green)">✓ <strong>on time</strong></span> · "in time" = before deadline (both correct but different meanings)</li>
+        <li><span style="color:var(--red)">✗ at the weekend</span> (AmE) → <span style="color:var(--green)">✓ <strong>at the weekend</strong> (BrE)</span> / <strong>on the weekend</strong> (AmE) — exams use BrE</li>
+        <li>No preposition before: <strong>last, next, this, every</strong> → ✗ "on last Monday" → ✓ "<strong>last Monday</strong>"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">📍</div>
+    <div style="flex:1"><div class="c-title">Place Prepositions — AT / IN / ON (Tricky Cases)</div>
+    <div class="c-sub">Transport, surfaces, addresses — the confusing ones</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Preposition</th><th>Rule</th><th>Examples</th></tr>
+        <tr><td>AT</td><td>Exact point / specific location viewed as a point</td><td>at the door · at the bus stop · at school (activity) · at work · at home · at the top · at the bottom · at the end of the road</td></tr>
+        <tr><td>IN</td><td>Enclosed space / inside something / cities/countries</td><td>in the room · in Delhi · in India · in the box · in the car · in bed · in hospital (BrE) · in the newspaper · in a queue</td></tr>
+        <tr><td>ON</td><td>Surface contact / transport (flat/open)</td><td>on the table · on the wall · on the bus/train/plane · on the floor · on the left/right · on the coast · on a farm · on the first floor · on the internet · on television</td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Classic Exam Traps — Transport</div>
+      <ul>
+        <li><strong>on</strong> the bus / train / plane / ship / bicycle → (open/flat transport)</li>
+        <li><strong>in</strong> the car / taxi / lift (elevator) → (enclosed, small)</li>
+        <li><span style="color:var(--red)">✗ in the bus</span> → <span style="color:var(--green)">✓ <strong>on the bus</strong></span></li>
+        <li><span style="color:var(--red)">✗ on the car</span> → <span style="color:var(--green)">✓ <strong>in the car</strong></span></li>
+        <li>"in hospital" (BrE, as a patient) vs "at the hospital" (visiting)</li>
+        <li>"at school" = attending as student · "in school" = inside the building</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PART 2: FIXED PREPOSITIONS ══ -->
+<div class="sec-label">Part 2 — Fixed Prepositions (Medium & Hard) — Verbs</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF4E3">🔒</div>
+    <div style="flex:1"><div class="c-title">Verbs + Fixed Prepositions — Group A</div>
+    <div class="c-sub">Abide, abstain, accuse, acquit, adhere, admit, agree, aim, allude…</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Verb</th><th>Correct Prep</th><th>Example · Common Error</th></tr>
+        <tr><td>Abide by</td><td><strong>by</strong></td><td>You must abide <strong>by</strong> the rules · <span class="w">✗ abide with</span></td></tr>
+        <tr><td>Abstain from</td><td><strong>from</strong></td><td>He abstained <strong>from</strong> voting · <span class="w">✗ abstain of</span></td></tr>
+        <tr><td>Accuse of</td><td><strong>of</strong></td><td>He was accused <strong>of</strong> theft · <span class="w">✗ accused for/with</span></td></tr>
+        <tr><td>Acquit of</td><td><strong>of</strong></td><td>She was acquitted <strong>of</strong> all charges · <span class="w">✗ acquitted from</span></td></tr>
+        <tr><td>Adhere to</td><td><strong>to</strong></td><td>Adhere <strong>to</strong> the plan · <span class="w">✗ adhere with</span></td></tr>
+        <tr><td>Admit to / of</td><td><strong>to</strong> (guilt) · <strong>of</strong> (no other option)</td><td>He admitted <strong>to</strong> the crime · The problem admits <strong>of</strong> no solution</td></tr>
+        <tr><td>Agree with (person/opinion) · Agree to (proposal) · Agree on (topic)</td><td>with/to/on</td><td>I agree <strong>with</strong> you · agreed <strong>to</strong> the plan · agreed <strong>on</strong> a date</td></tr>
+        <tr><td>Aim at</td><td><strong>at</strong></td><td>Aim <strong>at</strong> the target · <span class="w">✗ aim towards/to</span></td></tr>
+        <tr><td>Allude to</td><td><strong>to</strong></td><td>He alluded <strong>to</strong> an old incident · <span class="w">✗ allude at/about</span></td></tr>
+        <tr><td>Apologise for (reason) · Apologise to (person)</td><td>for/to</td><td>Apologise <strong>for</strong> the delay · apologise <strong>to</strong> her</td></tr>
+        <tr><td>Apply for (job) · Apply to (person/body)</td><td>for/to</td><td>Apply <strong>for</strong> the post · Apply <strong>to</strong> the manager</td></tr>
+        <tr><td>Arrive at (small place) · Arrive in (city/country)</td><td>at / in</td><td>Arrived <strong>at</strong> the station · Arrived <strong>in</strong> Delhi · <span class="w">✗ arrived to</span></td></tr>
+        <tr><td>Aspire to / after</td><td><strong>to/after</strong></td><td>Aspires <strong>to</strong> become an officer · <span class="w">✗ aspire for</span></td></tr>
+        <tr><td>Atone for</td><td><strong>for</strong></td><td>Atone <strong>for</strong> one's sins · <span class="w">✗ atone of</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF4E3">🔒</div>
+    <div style="flex:1"><div class="c-title">Verbs + Fixed Prepositions — Group B</div>
+    <div class="c-sub">Believe, blame, boast, charge, comply, confide, consist, differ, dispose…</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Verb</th><th>Correct Prep</th><th>Example · Common Error</th></tr>
+        <tr><td>Believe in</td><td><strong>in</strong></td><td>I believe <strong>in</strong> hard work · <span class="w">✗ believe on</span></td></tr>
+        <tr><td>Blame for / on</td><td><strong>for</strong> (blame person <strong>for</strong>) · <strong>on</strong> (blame <strong>on</strong> something)</td><td>He blamed me <strong>for</strong> the loss · He blamed the loss <strong>on</strong> bad luck</td></tr>
+        <tr><td>Boast of / about</td><td><strong>of / about</strong></td><td>Boasting <strong>of/about</strong> his wealth · <span class="w">✗ boast for</span></td></tr>
+        <tr><td>Charge with</td><td><strong>with</strong></td><td>Charged <strong>with</strong> murder · <span class="w">✗ charged of/for</span></td></tr>
+        <tr><td>Comply with</td><td><strong>with</strong></td><td>Comply <strong>with</strong> the rules · <span class="w">✗ comply to</span></td></tr>
+        <tr><td>Confide in</td><td><strong>in</strong></td><td>Confide <strong>in</strong> a friend (trust) · <span class="w">✗ confide to/with</span></td></tr>
+        <tr><td>Congratulate on</td><td><strong>on</strong></td><td>Congratulate him <strong>on</strong> his success · <span class="w">✗ congratulate for</span></td></tr>
+        <tr><td>Consist of</td><td><strong>of</strong></td><td>The team consists <strong>of</strong> 11 players · <span class="w">✗ consists from</span></td></tr>
+        <tr><td>Convict of</td><td><strong>of</strong></td><td>Convicted <strong>of</strong> fraud · <span class="w">✗ convicted for</span></td></tr>
+        <tr><td>Deal in (trade) · Deal with (handle)</td><td>in/with</td><td>Deals <strong>in</strong> spices · Deal <strong>with</strong> the problem</td></tr>
+        <tr><td>Differ from (be different) · Differ with (disagree)</td><td>from/with</td><td>This differs <strong>from</strong> that · I differ <strong>with</strong> you on this</td></tr>
+        <tr><td>Dispose of</td><td><strong>of</strong></td><td>Dispose <strong>of</strong> the waste · <span class="w">✗ dispose off</span></td></tr>
+        <tr><td>Doubt about / of</td><td><strong>about</strong></td><td>I have no doubt <strong>about</strong> it · <span class="w">✗ doubt on</span></td></tr>
+        <tr><td>Enquire about / into · Enquire of (person)</td><td>about/into/of</td><td>Enquired <strong>about</strong> the result · Enquire <strong>into</strong> the matter</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF4E3">🔒</div>
+    <div style="flex:1"><div class="c-title">Verbs + Fixed Prepositions — Group C</div>
+    <div class="c-sub">Excel, hanker, indulge, insist, interfere, invest, object, persist, prevail…</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Verb</th><th>Correct Prep</th><th>Example · Common Error</th></tr>
+        <tr><td>Excel in / at</td><td><strong>in / at</strong></td><td>Excel <strong>in</strong> mathematics · <span class="w">✗ excel at English</span> (both fine but "in" more common in CDS)</td></tr>
+        <tr><td>Hanker after / for</td><td><strong>after / for</strong></td><td>Hankering <strong>after</strong> fame · <span class="w">✗ hanker about</span></td></tr>
+        <tr><td>Hint at</td><td><strong>at</strong></td><td>She hinted <strong>at</strong> a promotion · <span class="w">✗ hint about/for</span></td></tr>
+        <tr><td>Ignorant of</td><td><strong>of</strong></td><td>Ignorant <strong>of</strong> the fact · <span class="w">✗ ignorant about</span></td></tr>
+        <tr><td>Indulge in</td><td><strong>in</strong></td><td>Indulging <strong>in</strong> gossip · <span class="w">✗ indulge with/at</span></td></tr>
+        <tr><td>Insist on</td><td><strong>on</strong></td><td>Insists <strong>on</strong> punctuality · <span class="w">✗ insist for</span></td></tr>
+        <tr><td>Interfere in (affair) · Interfere with (obstruct)</td><td>in/with</td><td>Don't interfere <strong>in</strong> my work · Interfere <strong>with</strong> the process</td></tr>
+        <tr><td>Invest in</td><td><strong>in</strong></td><td>Invest <strong>in</strong> education · <span class="w">✗ invest on</span></td></tr>
+        <tr><td>Object to</td><td><strong>to</strong></td><td>Objects <strong>to</strong> the proposal · <span class="w">✗ object against</span></td></tr>
+        <tr><td>Persist in</td><td><strong>in</strong></td><td>Persist <strong>in</strong> trying · <span class="w">✗ persist with (wrong in formal)</span></td></tr>
+        <tr><td>Prevail on/upon (persuade) · Prevail over (win against)</td><td>on/upon/over</td><td>Prevailed <strong>upon</strong> him to stay · Prevailed <strong>over</strong> enemies</td></tr>
+        <tr><td>Prohibit from</td><td><strong>from</strong></td><td>Prohibited <strong>from</strong> entering · <span class="w">✗ prohibited to enter</span></td></tr>
+        <tr><td>Qualify for</td><td><strong>for</strong></td><td>Qualified <strong>for</strong> the finals · <span class="w">✗ qualify in</span></td></tr>
+        <tr><td>Refrain from</td><td><strong>from</strong></td><td>Refrain <strong>from</strong> smoking · <span class="w">✗ refrain of</span></td></tr>
+        <tr><td>Rejoice at / in / over</td><td><strong>at / in / over</strong></td><td>Rejoiced <strong>at</strong> the news · <span class="w">✗ rejoice on</span></td></tr>
+        <tr><td>Rely on / upon</td><td><strong>on / upon</strong></td><td>Rely <strong>on</strong> your instincts · <span class="w">✗ rely at</span></td></tr>
+        <tr><td>Result in (cause) · Result from (be caused by)</td><td>in/from</td><td>Carelessness resulted <strong>in</strong> failure · Failure resulted <strong>from</strong> carelessness</td></tr>
+        <tr><td>Revert to</td><td><strong>to</strong></td><td>Revert <strong>to</strong> the original plan · <span class="w">✗ revert back (redundant)</span></td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ "Revert back" — Classic CDS/NDA Error</div>
+      <p>"Revert" already means to go back. "Revert back" is redundant. The correct form is simply "<strong>revert to</strong>" — this error appears in almost every CDS sentence correction paper.</p>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF4E3">🔒</div>
+    <div style="flex:1"><div class="c-title">Verbs + Fixed Prepositions — Group D</div>
+    <div class="c-sub">Search, strive, succumb, tamper, vest, yearn + more confusable pairs</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Verb</th><th>Correct Prep</th><th>Example · Common Error</th></tr>
+        <tr><td>Search for (seek) · Search (a person/place) — no prep</td><td>for / —</td><td>Searching <strong>for</strong> the key · Police searched the building <span class="w">(no "for")</span></td></tr>
+        <tr><td>Strive for / after / to</td><td><strong>for/after</strong></td><td>Strive <strong>for</strong> excellence · <span class="w">✗ strive to achieve (strive + to V is also fine)</span></td></tr>
+        <tr><td>Succumb to</td><td><strong>to</strong></td><td>Succumbed <strong>to</strong> pressure · <span class="w">✗ succumb by</span></td></tr>
+        <tr><td>Tamper with</td><td><strong>with</strong></td><td>Tampered <strong>with</strong> evidence · <span class="w">✗ tamper in/to</span></td></tr>
+        <tr><td>Vest in / with</td><td><strong>in/with</strong></td><td>Power vested <strong>in</strong> the President · Vested <strong>with</strong> authority</td></tr>
+        <tr><td>Yearn for / after</td><td><strong>for</strong></td><td>Yearning <strong>for</strong> freedom · <span class="w">✗ yearn of</span></td></tr>
+        <tr><td>Attend to (give attention) · Attend (be present) — no prep</td><td>to / —</td><td>Attend <strong>to</strong> the patient · <span class="r">✓</span> Attend the meeting <span class="w">(no "to")</span></td></tr>
+        <tr><td>Listen to</td><td><strong>to</strong></td><td>Listen <strong>to</strong> music · <span class="w">✗ listen music</span></td></tr>
+        <tr><td>Provide for (financially) · Provide with (supply)</td><td>for/with</td><td>Provides <strong>for</strong> his family · Provided them <strong>with</strong> tools</td></tr>
+        <tr><td>Remind of</td><td><strong>of</strong></td><td>Reminds me <strong>of</strong> home · <span class="w">✗ remind about</span></td></tr>
+        <tr><td>Repent of / for</td><td><strong>of</strong></td><td>Repented <strong>of</strong> his sins · <span class="w">✗ repent for (less formal)</span></td></tr>
+        <tr><td>Suspect of</td><td><strong>of</strong></td><td>Suspected <strong>of</strong> cheating · <span class="w">✗ suspected for</span></td></tr>
+        <tr><td>Warn of / about / against</td><td><strong>of/against</strong></td><td>Warned <strong>of</strong> danger · Warned <strong>against</strong> going</td></tr>
+        <tr><td>Withdraw from</td><td><strong>from</strong></td><td>Withdrew <strong>from</strong> the race · <span class="w">✗ withdraw of</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ADJECTIVES WITH FIXED PREPOSITIONS -->
+<div class="sec-label">Part 2b — Adjectives + Fixed Prepositions (High Frequency)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">📐</div>
+    <div style="flex:1"><div class="c-title">Adjectives + Fixed Prepositions — Complete Table</div>
+    <div class="c-sub">Averse, competent, confident, eligible, envious, guilty, indifferent…</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Adjective + Prep</th><th>Example</th><th>Common Error</th></tr>
+        <tr><td>Averse <strong>to</strong></td><td>Averse <strong>to</strong> risk</td><td><span class="w">✗ averse from/of</span></td></tr>
+        <tr><td>Anxious about (worried) · Anxious for (eager)</td><td>Anxious <strong>about</strong> the result · Anxious <strong>for</strong> promotion</td><td><span class="w">✗ anxious of</span></td></tr>
+        <tr><td>Blind to (unable to see truth) · Blind in (eye)</td><td>Blind <strong>to</strong> faults · Blind <strong>in</strong> one eye</td><td><span class="w">✗ blind of</span></td></tr>
+        <tr><td>Capable of</td><td>Capable <strong>of</strong> great things</td><td><span class="w">✗ capable to/for</span></td></tr>
+        <tr><td>Competent in / at</td><td>Competent <strong>in</strong> English</td><td><span class="w">✗ competent of</span></td></tr>
+        <tr><td>Confident of</td><td>Confident <strong>of</strong> success</td><td><span class="w">✗ confident about (less formal)</span></td></tr>
+        <tr><td>Conscious of</td><td>Conscious <strong>of</strong> his mistake</td><td><span class="w">✗ conscious about</span></td></tr>
+        <tr><td>Disgusted with (person) · Disgusted at/by (act)</td><td>Disgusted <strong>with</strong> him · Disgusted <strong>at</strong> the sight</td><td><span class="w">✗ disgusted from</span></td></tr>
+        <tr><td>Eligible for</td><td>Eligible <strong>for</strong> promotion</td><td><span class="w">✗ eligible to/of</span></td></tr>
+        <tr><td>Envious of</td><td>Envious <strong>of</strong> her success</td><td><span class="w">✗ envious from</span></td></tr>
+        <tr><td>Faithful to</td><td>Faithful <strong>to</strong> one's country</td><td><span class="w">✗ faithful with</span></td></tr>
+        <tr><td>Fond of</td><td>Fond <strong>of</strong> music</td><td><span class="w">✗ fond with/for</span></td></tr>
+        <tr><td>Good at (skill) · Good for (benefit) · Good of (kind action)</td><td>Good <strong>at</strong> maths · Good <strong>for</strong> health · Good <strong>of</strong> you to help</td><td>Mix-up between "at/for/of" — all tested</td></tr>
+        <tr><td>Guilty of</td><td>Guilty <strong>of</strong> neglect</td><td><span class="w">✗ guilty for</span></td></tr>
+        <tr><td>Ignorant of</td><td>Ignorant <strong>of</strong> the law</td><td><span class="w">✗ ignorant about</span></td></tr>
+        <tr><td>Indifferent to</td><td>Indifferent <strong>to</strong> praise</td><td><span class="w">✗ indifferent about/towards</span></td></tr>
+        <tr><td>Inferior to · Superior to</td><td>Inferior <strong>to</strong> his rival</td><td><span class="w">✗ inferior than</span> (NEVER "than")</td></tr>
+        <tr><td>Junior to · Senior to</td><td>Junior <strong>to</strong> him by 3 years</td><td><span class="w">✗ junior than</span> (NEVER "than")</td></tr>
+        <tr><td>Jealous of</td><td>Jealous <strong>of</strong> his success</td><td><span class="w">✗ jealous about</span></td></tr>
+        <tr><td>Keen on</td><td>Keen <strong>on</strong> cricket</td><td><span class="w">✗ keen of/about</span></td></tr>
+        <tr><td>Lament over / for</td><td>Lamented <strong>over</strong> the loss</td><td><span class="w">✗ lament on</span></td></tr>
+        <tr><td>Married to</td><td>Married <strong>to</strong> a doctor</td><td><span class="w">✗ married with</span></td></tr>
+        <tr><td>Necessary for (purpose) · Necessary to (person)</td><td>Necessary <strong>for</strong> success · Necessary <strong>to</strong> me</td><td><span class="w">✗ necessary of</span></td></tr>
+        <tr><td>Popular with</td><td>Popular <strong>with</strong> students</td><td><span class="w">✗ popular among (different nuance)</span></td></tr>
+        <tr><td>Prejudiced against</td><td>Prejudiced <strong>against</strong> women</td><td><span class="w">✗ prejudiced towards (opposite meaning!)</span></td></tr>
+        <tr><td>Proud of</td><td>Proud <strong>of</strong> India</td><td><span class="w">✗ proud about/for</span></td></tr>
+        <tr><td>Sensitive to</td><td>Sensitive <strong>to</strong> criticism</td><td><span class="w">✗ sensitive about (different nuance)</span></td></tr>
+        <tr><td>Tired of (bored) · Tired from (exhausted)</td><td>Tired <strong>of</strong> waiting · Tired <strong>from</strong> walking</td><td>These have different meanings — both tested!</td></tr>
+        <tr><td>Worthy of</td><td>Worthy <strong>of</strong> praise</td><td><span class="w">✗ worthy for/to</span></td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Most Tested Pair — Superior/Inferior/Junior/Senior</div>
+      <p>These four words ALWAYS take <strong>"to"</strong> — NEVER "than". This mistake is tested in EVERY CDS paper: <span style="color:var(--red)">✗ "He is senior than me"</span> → <span style="color:var(--green)">✓ "<strong>He is senior to me</strong>"</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- NOUNS WITH FIXED PREPOSITIONS -->
+<div class="sec-label">Part 2c — Nouns + Fixed Prepositions (High Frequency)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#F3EEFB">📦</div>
+    <div style="flex:1"><div class="c-title">Nouns + Fixed Prepositions</div>
+    <div class="c-sub">Access, authority, confidence, exception, fondness, hatred, impact…</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="fp-table">
+        <tr><th>Noun + Prep</th><th>Example</th><th>Error</th></tr>
+        <tr><td>Access to</td><td>Access <strong>to</strong> information</td><td><span class="w">✗ access of/for</span></td></tr>
+        <tr><td>Authority on (expert) · Authority over (power)</td><td>Authority <strong>on</strong> the subject · Authority <strong>over</strong> staff</td><td>Both correct — different meanings</td></tr>
+        <tr><td>Confidence in</td><td>Confidence <strong>in</strong> oneself</td><td><span class="w">✗ confidence on/about</span></td></tr>
+        <tr><td>Exception to</td><td>Exception <strong>to</strong> the rule</td><td><span class="w">✗ exception of/for</span></td></tr>
+        <tr><td>Fondness for</td><td>Fondness <strong>for</strong> sweets</td><td><span class="w">✗ fondness of/about</span></td></tr>
+        <tr><td>Hatred for / of</td><td>Hatred <strong>for/of</strong> injustice</td><td><span class="w">✗ hatred against</span></td></tr>
+        <tr><td>Ignorance of</td><td>Ignorance <strong>of</strong> the law</td><td><span class="w">✗ ignorance about</span></td></tr>
+        <tr><td>Impact on</td><td>Impact <strong>on</strong> students</td><td><span class="w">✗ impact of</span> (when used as noun after "have")</td></tr>
+        <tr><td>Increase in</td><td>Increase <strong>in</strong> prices</td><td><span class="w">✗ increase of prices</span></td></tr>
+        <tr><td>Inquiry into (investigation) · Inquiry about (seeking info)</td><td>Inquiry <strong>into</strong> the matter · Inquiry <strong>about</strong> fees</td><td>Frequently confused</td></tr>
+        <tr><td>Interest in</td><td>Interest <strong>in</strong> music</td><td><span class="w">✗ interest for/about</span></td></tr>
+        <tr><td>Need for</td><td>Need <strong>for</strong> change</td><td><span class="w">✗ need of change (need of = "in need of")</span></td></tr>
+        <tr><td>Objection to</td><td>Objection <strong>to</strong> the plan</td><td><span class="w">✗ objection against/about</span></td></tr>
+        <tr><td>Remedy for</td><td>Remedy <strong>for</strong> the problem</td><td><span class="w">✗ remedy of/to</span></td></tr>
+        <tr><td>Respect for</td><td>Respect <strong>for</strong> elders</td><td><span class="w">✗ respect of/towards</span></td></tr>
+        <tr><td>Sympathy for / with</td><td>Sympathy <strong>for</strong> the victim · Sympathy <strong>with</strong> the cause</td><td>Both correct — context-dependent</td></tr>
+        <tr><td>Zeal for</td><td>Zeal <strong>for</strong> work</td><td><span class="w">✗ zeal of/in</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PART 3: PHRASAL VERBS ══ -->
+<div class="sec-label">Part 3 — Phrasal Verbs (UPSC/CDS Level — Exhaustive)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E6F4F4">💡</div>
+    <div style="flex:1"><div class="c-title">Phrasal Verbs with BREAK, BRING, CALL, CARRY</div>
+    <div class="c-sub">Most used group — most frequently tested</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <ul class="pv-list">
+      <li class="pv-item"><div class="pv-verb">Break down</div><div class="pv-mean">1. Stop functioning · 2. Lose emotional control · 3. Analyse into parts</div><div class="pv-eg">The car <em>broke down</em> on the highway · She <em>broke down</em> in tears · <em>Break down</em> the problem into steps</div></li>
+      <li class="pv-item"><div class="pv-verb">Break in / into</div><div class="pv-mean">Enter by force · Interrupt a conversation</div><div class="pv-eg">Thieves <em>broke into</em> the house · He <em>broke in</em> while she was talking</div></li>
+      <li class="pv-item"><div class="pv-verb">Break off</div><div class="pv-mean">Stop suddenly · End a relationship/engagement</div><div class="pv-eg">The negotiations <em>broke off</em> · She <em>broke off</em> the engagement</div></li>
+      <li class="pv-item"><div class="pv-verb">Break out</div><div class="pv-mean">Escape · Begin suddenly (war, fire, disease)</div><div class="pv-eg">Prisoners <em>broke out</em> · War <em>broke out</em> in 1939</div></li>
+      <li class="pv-item"><div class="pv-verb">Break through</div><div class="pv-mean">Achieve a major advance / overcome a barrier</div><div class="pv-eg">Scientists <em>broke through</em> in cancer research</div></li>
+      <li class="pv-item"><div class="pv-verb">Break up</div><div class="pv-mean">End a relationship · Dissolve/disperse · School term ends</div><div class="pv-eg">They <em>broke up</em> after 5 years · Police <em>broke up</em> the crowd</div></li>
+      <li class="pv-item"><div class="pv-verb">Bring about</div><div class="pv-mean">Cause (something) to happen</div><div class="pv-eg">The treaty <em>brought about</em> peace</div></li>
+      <li class="pv-item"><div class="pv-verb">Bring forward</div><div class="pv-mean">Move to an earlier time · Propose</div><div class="pv-eg">The meeting was <em>brought forward</em> to Monday</div></li>
+      <li class="pv-item"><div class="pv-verb">Bring out</div><div class="pv-mean">Publish · Make visible · Reveal a quality</div><div class="pv-eg">The publisher <em>brought out</em> a new edition · Hardship <em>brings out</em> the best in people</div></li>
+      <li class="pv-item"><div class="pv-verb">Bring round / around</div><div class="pv-mean">Persuade · Restore to consciousness</div><div class="pv-eg">I <em>brought him round</em> to my view · The doctor <em>brought</em> him <em>round</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Bring up</div><div class="pv-mean">Raise children · Mention a topic · Vomit</div><div class="pv-eg">She was <em>brought up</em> in Delhi · He <em>brought up</em> the question again</div></li>
+      <li class="pv-item"><div class="pv-verb">Call for</div><div class="pv-mean">Demand/require · Go to collect</div><div class="pv-eg">The situation <em>calls for</em> urgent action · I'll <em>call for</em> you at 8</div></li>
+      <li class="pv-item"><div class="pv-verb">Call off</div><div class="pv-mean">Cancel</div><div class="pv-eg">The match was <em>called off</em> due to rain</div></li>
+      <li class="pv-item"><div class="pv-verb">Call on / upon</div><div class="pv-mean">Visit (briefly) · Request/appeal formally</div><div class="pv-eg"><em>Called on</em> the minister · <em>Called upon</em> to address the nation</div></li>
+      <li class="pv-item"><div class="pv-verb">Carry on</div><div class="pv-mean">Continue · Conduct (business)</div><div class="pv-eg"><em>Carry on</em> with your work · Carries <em>on</em> a business</div></li>
+      <li class="pv-item"><div class="pv-verb">Carry out</div><div class="pv-mean">Perform/execute (a task, plan, order)</div><div class="pv-eg"><em>Carry out</em> the instructions · The operation was <em>carried out</em> successfully</div></li>
+      <li class="pv-item"><div class="pv-verb">Carry through</div><div class="pv-mean">Complete successfully despite difficulties</div><div class="pv-eg">Her determination <em>carried</em> her <em>through</em> the crisis</div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E6F4F4">💡</div>
+    <div style="flex:1"><div class="c-title">Phrasal Verbs with COME, CUT, FALL, GET</div>
+    <div class="c-sub">Critical group — meaning changes completely with each particle</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <ul class="pv-list">
+      <li class="pv-item"><div class="pv-verb">Come across</div><div class="pv-mean">Encounter unexpectedly · Seem / make an impression</div><div class="pv-eg">I <em>came across</em> an old letter · She <em>comes across</em> as confident</div></li>
+      <li class="pv-item"><div class="pv-verb">Come about</div><div class="pv-mean">Happen (especially unexpectedly)</div><div class="pv-eg">How did this situation <em>come about</em>?</div></li>
+      <li class="pv-item"><div class="pv-verb">Come off</div><div class="pv-mean">Succeed · Detach · (Stain) be removed</div><div class="pv-eg">The plan <em>came off</em> well · The button <em>came off</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Come round / around</div><div class="pv-mean">Regain consciousness · Be persuaded · Recur (date)</div><div class="pv-eg">She <em>came round</em> after 10 minutes · He finally <em>came round</em> to our view</div></li>
+      <li class="pv-item"><div class="pv-verb">Come up with</div><div class="pv-mean">Produce / find (idea, solution)</div><div class="pv-eg">She <em>came up with</em> a brilliant idea</div></li>
+      <li class="pv-item"><div class="pv-verb">Cut down on</div><div class="pv-mean">Reduce consumption</div><div class="pv-eg"><em>Cut down on</em> sugar · <em>Cut down</em> expenses</div></li>
+      <li class="pv-item"><div class="pv-verb">Cut off</div><div class="pv-mean">Disconnect · Interrupt · Isolate</div><div class="pv-eg">The village was <em>cut off</em> by floods · He was <em>cut off</em> mid-sentence</div></li>
+      <li class="pv-item"><div class="pv-verb">Cut out</div><div class="pv-mean">Remove by cutting · Stop doing (habit) · Engine stops</div><div class="pv-eg"><em>Cut out</em> the middleman · <em>Cut out</em> junk food · The engine <em>cut out</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Fall back on</div><div class="pv-mean">Use as a last resort</div><div class="pv-eg">He had savings to <em>fall back on</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Fall in with</div><div class="pv-mean">Agree with · Join by chance</div><div class="pv-eg">He <em>fell in with</em> our plans · <em>Fell in with</em> bad company</div></li>
+      <li class="pv-item"><div class="pv-verb">Fall out</div><div class="pv-mean">Quarrel · Fall (from position) · Happen (result)</div><div class="pv-eg">The brothers <em>fell out</em> over property · It <em>fell out</em> that she was right</div></li>
+      <li class="pv-item"><div class="pv-verb">Fall through</div><div class="pv-mean">Fail / not materialise</div><div class="pv-eg">The deal <em>fell through</em> at the last minute</div></li>
+      <li class="pv-item"><div class="pv-verb">Get across</div><div class="pv-mean">Communicate successfully · Cross over</div><div class="pv-eg">She couldn't <em>get</em> her point <em>across</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Get along / on with</div><div class="pv-mean">Have a good relationship with · Make progress</div><div class="pv-eg">They <em>get along well</em> · How are you <em>getting on</em> with the project?</div></li>
+      <li class="pv-item"><div class="pv-verb">Get at</div><div class="pv-mean">Imply/hint · Criticise repeatedly · Reach</div><div class="pv-eg">What are you <em>getting at</em>? · She was always <em>getting at</em> him</div></li>
+      <li class="pv-item"><div class="pv-verb">Get away with</div><div class="pv-mean">Escape consequences</div><div class="pv-eg">He <em>got away with</em> cheating</div></li>
+      <li class="pv-item"><div class="pv-verb">Get over</div><div class="pv-mean">Recover from · Overcome · Communicate</div><div class="pv-eg"><em>Got over</em> the illness · <em>Getting over</em> the problem</div></li>
+      <li class="pv-item"><div class="pv-verb">Get round / around</div><div class="pv-mean">Find a way to avoid an obstacle · Persuade</div><div class="pv-eg"><em>Got round</em> the regulation · She can always <em>get round</em> him</div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E6F4F4">💡</div>
+    <div style="flex:1"><div class="c-title">Phrasal Verbs with GIVE, GO, HOLD, KEEP, LOOK</div>
+    <div class="c-sub">High-frequency group for UPSC comprehension and fill-in-blank</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <ul class="pv-list">
+      <li class="pv-item"><div class="pv-verb">Give away</div><div class="pv-mean">Reveal (a secret) · Distribute free · Betray</div><div class="pv-eg">His accent <em>gave him away</em> · <em>Gave away</em> prizes</div></li>
+      <li class="pv-item"><div class="pv-verb">Give in</div><div class="pv-mean">Yield/surrender · Submit (homework)</div><div class="pv-eg">He finally <em>gave in</em> · <em>Give in</em> your assignments</div></li>
+      <li class="pv-item"><div class="pv-verb">Give out</div><div class="pv-mean">Distribute · Be exhausted/run out · Announce</div><div class="pv-eg"><em>Give out</em> pamphlets · His strength <em>gave out</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Give up</div><div class="pv-mean">Abandon/stop · Surrender · Stop hoping</div><div class="pv-eg"><em>Give up</em> smoking · Never <em>give up</em> · <em>Gave</em> himself <em>up</em> to police</div></li>
+      <li class="pv-item"><div class="pv-verb">Go about</div><div class="pv-mean">Deal with / approach a task · Move around</div><div class="pv-eg">How do you <em>go about</em> solving this?</div></li>
+      <li class="pv-item"><div class="pv-verb">Go back on</div><div class="pv-mean">Break a promise</div><div class="pv-eg">He <em>went back on</em> his word</div></li>
+      <li class="pv-item"><div class="pv-verb">Go off</div><div class="pv-mean">Explode · Ring (alarm) · Food spoil · Stop liking</div><div class="pv-eg">The bomb <em>went off</em> · Alarm <em>went off</em> · Milk has <em>gone off</em> · I've <em>gone off</em> coffee</div></li>
+      <li class="pv-item"><div class="pv-verb">Go over</div><div class="pv-mean">Review/examine · Be received (well/badly)</div><div class="pv-eg"><em>Go over</em> the notes · The speech <em>went over</em> well</div></li>
+      <li class="pv-item"><div class="pv-verb">Go through</div><div class="pv-mean">Experience (hardship) · Examine carefully · Be approved</div><div class="pv-eg"><em>Went through</em> a difficult time · <em>Go through</em> the document · The bill <em>went through</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Hold back</div><div class="pv-mean">Restrain · Hesitate to reveal · Impede</div><div class="pv-eg"><em>Held back</em> his anger · <em>Hold back</em> information</div></li>
+      <li class="pv-item"><div class="pv-verb">Hold out</div><div class="pv-mean">Resist · Offer (hope) · Last (supply)</div><div class="pv-eg">The army <em>held out</em> for weeks · The food won't <em>hold out</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Keep up with</div><div class="pv-mean">Maintain pace · Stay informed</div><div class="pv-eg">Can't <em>keep up with</em> the class · <em>Keep up with</em> current affairs</div></li>
+      <li class="pv-item"><div class="pv-verb">Look after</div><div class="pv-mean">Take care of</div><div class="pv-eg"><em>Look after</em> the children</div></li>
+      <li class="pv-item"><div class="pv-verb">Look down on</div><div class="pv-mean">Despise/consider inferior</div><div class="pv-eg">She <em>looks down on</em> those less educated</div></li>
+      <li class="pv-item"><div class="pv-verb">Look into</div><div class="pv-mean">Investigate</div><div class="pv-eg">Police are <em>looking into</em> the matter</div></li>
+      <li class="pv-item"><div class="pv-verb">Look up</div><div class="pv-mean">Find information · Improve (situation) · Visit</div><div class="pv-eg"><em>Look up</em> the word in the dictionary · Things are <em>looking up</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Look up to</div><div class="pv-mean">Respect/admire</div><div class="pv-eg">He <em>looks up to</em> his mentor</div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E6F4F4">💡</div>
+    <div style="flex:1"><div class="c-title">Phrasal Verbs with MAKE, PUT, RUN, SET, TAKE, TURN</div>
+    <div class="c-sub">Final group — UPSC essay + comprehension level</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <ul class="pv-list">
+      <li class="pv-item"><div class="pv-verb">Make for</div><div class="pv-mean">Move towards · Contribute to</div><div class="pv-eg"><em>Made for</em> the exit · Discipline <em>makes for</em> success</div></li>
+      <li class="pv-item"><div class="pv-verb">Make out</div><div class="pv-mean">Understand · Claim/pretend · Write (cheque) · See/hear with difficulty</div><div class="pv-eg">Can't <em>make out</em> what he's saying · <em>Made out</em> she was ill</div></li>
+      <li class="pv-item"><div class="pv-verb">Make up</div><div class="pv-mean">Invent (story) · Compensate · Reconcile · Apply cosmetics</div><div class="pv-eg"><em>Made up</em> an excuse · <em>Made up</em> for lost time · They <em>made up</em> after the fight</div></li>
+      <li class="pv-item"><div class="pv-verb">Make up for</div><div class="pv-mean">Compensate for</div><div class="pv-eg">Nothing can <em>make up for</em> the loss</div></li>
+      <li class="pv-item"><div class="pv-verb">Put across / over</div><div class="pv-mean">Communicate effectively</div><div class="pv-eg"><em>Put across</em> her argument clearly</div></li>
+      <li class="pv-item"><div class="pv-verb">Put off</div><div class="pv-mean">Postpone · Discourage · Distract</div><div class="pv-eg"><em>Put off</em> the meeting · The smell <em>put</em> me <em>off</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Put out</div><div class="pv-mean">Extinguish · Publish · Inconvenience · Dislocate</div><div class="pv-eg"><em>Put out</em> the fire · <em>Put out</em> a statement · I don't want to <em>put</em> you <em>out</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Put up with</div><div class="pv-mean">Tolerate</div><div class="pv-eg">I can't <em>put up with</em> this noise any longer</div></li>
+      <li class="pv-item"><div class="pv-verb">Run down</div><div class="pv-mean">Criticise unfairly · Hit with vehicle · Decline/weaken · Become flat (battery)</div><div class="pv-eg">Always <em>running down</em> others · The factory has <em>run down</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Run into</div><div class="pv-mean">Meet by chance · Encounter (problem) · Amount to</div><div class="pv-eg"><em>Ran into</em> an old friend · <em>Ran into</em> difficulties · Debts <em>running into</em> millions</div></li>
+      <li class="pv-item"><div class="pv-verb">Run out of</div><div class="pv-mean">Exhaust the supply of</div><div class="pv-eg">We've <em>run out of</em> time</div></li>
+      <li class="pv-item"><div class="pv-verb">Set about</div><div class="pv-mean">Begin (a task energetically) · Attack</div><div class="pv-eg"><em>Set about</em> solving the problem · They <em>set about</em> him</div></li>
+      <li class="pv-item"><div class="pv-verb">Set aside</div><div class="pv-mean">Save/reserve · Ignore (a feeling) · Overturn (verdict)</div><div class="pv-eg"><em>Set aside</em> time for reading · <em>Set aside</em> the judgment</div></li>
+      <li class="pv-item"><div class="pv-verb">Set up</div><div class="pv-mean">Establish · Arrange · Frame (someone)</div><div class="pv-eg"><em>Set up</em> a company · <em>Set up</em> a meeting · He was <em>set up</em> by his colleagues</div></li>
+      <li class="pv-item"><div class="pv-verb">Take after</div><div class="pv-mean">Resemble (parent)</div><div class="pv-eg">She <em>takes after</em> her mother</div></li>
+      <li class="pv-item"><div class="pv-verb">Take for granted</div><div class="pv-mean">Not appreciate · Assume without question</div><div class="pv-eg">Don't <em>take</em> your health <em>for granted</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Take on</div><div class="pv-mean">Accept responsibility · Employ · Oppose (someone stronger)</div><div class="pv-eg"><em>Took on</em> extra work · <em>Taking on</em> new staff · <em>Took on</em> the champion</div></li>
+      <li class="pv-item"><div class="pv-verb">Take to</div><div class="pv-mean">Begin a habit · Develop a liking for · Go to a place</div><div class="pv-eg"><em>Took to</em> drinking · She <em>took to</em> him immediately</div></li>
+      <li class="pv-item"><div class="pv-verb">Turn down</div><div class="pv-mean">Reject · Reduce volume/heat</div><div class="pv-eg"><em>Turned down</em> the offer · <em>Turn down</em> the music</div></li>
+      <li class="pv-item"><div class="pv-verb">Turn out</div><div class="pv-mean">Result / prove to be · Attend · Produce · Evict</div><div class="pv-eg">Things <em>turned out</em> well · A large crowd <em>turned out</em></div></li>
+      <li class="pv-item"><div class="pv-verb">Turn over</div><div class="pv-mean">Hand over · Think about carefully · Generate (money) · Overturn</div><div class="pv-eg"><em>Turned over</em> the suspect to police · <em>Turn over</em> the idea in your mind</div></li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ══════════ QUICK REF ══════════ -->
+<div id="quickref" class="pane">
+  <div class="intro-box"><p>All <strong>high-frequency fixed prepositions and common errors</strong> in one place — scan this before your exam.</p></div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ NEVER "than" — Always "to"</div>
+      <ul>
+        <li><b>Superior to</b> · <b>Inferior to</b> · <b>Senior to</b> · <b>Junior to</b></li>
+        <li><b>Prior to</b> · <b>Preferable to</b> · <b>Anterior to</b> · <b>Posterior to</b></li>
+        <li><em>✗ He is senior than me</em> → <span class="ok">✓ senior to me</span></li>
+        <li><em>✗ This is preferable than that</em> → <span class="ok">✓ preferable to</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ Always "of" — Not "for/from"</div>
+      <ul>
+        <li><b>Accused of</b> · <b>Acquitted of</b> · <b>Convicted of</b></li>
+        <li><b>Guilty of</b> · <b>Proud of</b> · <b>Fond of</b> · <b>Capable of</b></li>
+        <li><b>Suspicious of</b> · <b>Worthy of</b> · <b>Envious of</b></li>
+        <li><b>Consist of</b> · <b>Boast of</b> · <b>Remind of</b></li>
+        <li><em>✗ charged of</em> → <span class="ok">✓ charged with</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ Always "with" — Not "to/by"</div>
+      <ul>
+        <li><b>Charged with</b> · <b>Comply with</b> · <b>Tamper with</b></li>
+        <li><b>Disgusted with (person)</b> · <b>Pleased with</b></li>
+        <li><b>Interfere with (obstruct)</b> · <b>Popular with</b></li>
+        <li><em>✗ comply to</em> → <span class="ok">✓ comply with</span></li>
+        <li><em>✗ married with</em> → <span class="ok">✓ married to</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ Confusable Pairs — Both Right, Different Meanings</div>
+      <ul>
+        <li><b>Agree with</b> (person) · <b>Agree to</b> (proposal) · <b>Agree on</b> (topic)</li>
+        <li><b>Tired of</b> (bored) · <b>Tired from</b> (exhausted)</li>
+        <li><b>Anxious about</b> (worried) · <b>Anxious for</b> (eager)</li>
+        <li><b>Result in</b> (cause) · <b>Result from</b> (caused by)</li>
+        <li><b>Deal in</b> (trade) · <b>Deal with</b> (handle)</li>
+        <li><b>Differ from</b> (different) · <b>Differ with</b> (disagree)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ Always "from" — Not "of/to"</div>
+      <ul>
+        <li><b>Abstain from</b> · <b>Refrain from</b> · <b>Desist from</b></li>
+        <li><b>Prohibit from</b> · <b>Deter from</b> · <b>Dissuade from</b></li>
+        <li><b>Exempt from</b> · <b>Withdraw from</b> · <b>Differ from</b></li>
+        <li><em>✗ refrain of</em> → <span class="ok">✓ refrain from</span></li>
+        <li><em>✗ abstain of</em> → <span class="ok">✓ abstain from</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ "Revert back" and Other Redundancy Errors</div>
+      <ul>
+        <li><em>✗ Revert back</em> → <span class="ok">✓ revert to</span> ("revert" = go back)</li>
+        <li><em>✗ Return back</em> → <span class="ok">✓ return</span></li>
+        <li><em>✗ Repeat again</em> → <span class="ok">✓ repeat</span></li>
+        <li><em>✗ Dispose off</em> → <span class="ok">✓ dispose of</span></li>
+        <li><em>✗ in night</em> → <span class="ok">✓ at night</span></li>
+        <li><em>✗ on last Monday</em> → <span class="ok">✓ last Monday</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Phrasal Verb Meanings</div>
+      <ul>
+        <li><b>Call off</b> = cancel · <b>Put off</b> = postpone/discourage</li>
+        <li><b>Bring about</b> = cause · <b>Bring off</b> = succeed against odds</li>
+        <li><b>Give in</b> = yield · <b>Give up</b> = abandon completely</li>
+        <li><b>Fall through</b> = fail/not happen · <b>Fall out</b> = quarrel</li>
+        <li><b>Break out</b> = escape/begin suddenly · <b>Break off</b> = stop/end</li>
+        <li><b>Go off</b> = explode/ring/spoil · <b>Go back on</b> = break promise</li>
+        <li><b>Run into</b> = meet by chance/encounter problem</li>
+        <li><b>Set up</b> = establish · <b>Set aside</b> = reserve/overturn</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Transport Prepositions — Quick Fix</div>
+      <ul>
+        <li><b>ON</b> the bus / train / plane / ship / bicycle / horse</li>
+        <li><b>IN</b> the car / taxi / van / lift (elevator)</li>
+        <li><em>✗ in the bus</em> → <span class="ok">✓ on the bus</span></li>
+        <li><em>✗ on the car</em> → <span class="ok">✓ in the car</span></li>
+        <li><b>AT</b> night · <b>IN</b> the morning · <b>ON</b> Monday morning</li>
+        <li><b>No prep</b> before: last, next, this, every</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════ QUIZ ══════════ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">35</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 35 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+</div>
+
+<div class="page-footer">Olive Defence Entrance Academy &nbsp;·&nbsp; English — Prepositions &nbsp;·&nbsp; CDS · NDA · AFCAT</div>
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── BASICS (6) ──────────────────────────────────────────────────────────────
+{cat:'BASICS',cc:'diff-b',
+q:'Choose the correct sentence:',
+opts:['She arrived to the airport early.','She arrived at the airport early.','She arrived in the airport early.','She arrived on the airport early.'],ans:1,
+rule:'Arrive at (specific/small place) · arrive in (city/country) · NEVER "arrive to"',
+exp:'"Arrive to" is never correct in standard English. Use "arrive at" for specific locations (airport, station, school) and "arrive in" for cities and countries. The error "arrived to" is extremely common and appears in almost every CDS spotting the error section.'},
+
+{cat:'BASICS',cc:'diff-b',
+q:'He was born _____ Monday morning.',
+opts:['in','at','on','during'],ans:2,
+rule:'ON + day name · ON + day + morning/evening (not "in")',
+exp:'When a day of the week is combined with morning/afternoon/evening, we use "on" — not "in". "In the morning" (no day) but "on Monday morning" (day + morning). This is a classic trap: students write "in Monday morning" which is wrong.'},
+
+{cat:'BASICS',cc:'diff-b',
+q:'Identify the error: "She travels in the bus to school every day."',
+opts:['travels in','in the bus','to school','every day'],ans:1,
+rule:'"on the bus" — large/open transport takes ON',
+exp:'We say "on the bus / train / plane / ship" but "in the car / taxi". The bus is a large open vehicle, so we use "on". "In the bus" is incorrect. The correct sentence: "She travels on the bus to school every day."'},
+
+{cat:'BASICS',cc:'diff-b',
+q:'He has been working here _____ 2019.',
+opts:['for','since','from','during'],ans:1,
+rule:'"Since" = specific point in time · used with perfect tenses',
+exp:'"Since" is used with a specific point in time (since 2019, since Monday, since childhood) and must be used with a perfect tense. "For" is used for a duration (for 5 years, for a long time). "He has been working here since 2019" is correct. "From 2019" is wrong with perfect tense.'},
+
+{cat:'BASICS',cc:'diff-b',
+q:'The exam is _____ 10th April.',
+opts:['in','at','on','by'],ans:2,
+rule:'"on" + specific date',
+exp:'Specific dates always take "on" — "on 10th April", "on 15 August", "on Christmas Day". "In" is for months, years, seasons. "At" is for exact times. "By" means before or not later than (different meaning).'},
+
+{cat:'BASICS',cc:'diff-b',
+q:'There is no preposition needed in which sentence?',
+opts:['She went ___ home early.','He arrived ___ the station.','I met him ___ last Sunday.','She waited ___ the bus stop.'],ans:2,
+rule:'No preposition before: last, next, this, every, one (specific time adjectives)',
+exp:'We never use a preposition before "last", "next", "this", or "every" when used with time. "On last Sunday" is wrong — correct is simply "last Sunday". Similarly: this morning, next week, every day — no preposition. The others need: went home (no prep — fixed), arrived at, waited at.'},
+
+// ── FIXED PREPOSITIONS (17) ──────────────────────────────────────────────────
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'He is senior _____ me by three years.',
+opts:['than','from','to','over'],ans:2,
+rule:'Senior/Junior/Superior/Inferior + "to" — NEVER "than"',
+exp:'Senior, junior, superior, inferior, prior, preferable — all these comparative adjectives take "to", never "than". This is one of the most frequently tested errors in CDS/NDA. "He is senior than me" is wrong. Correct: "He is senior to me."'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'He was accused _____ theft.',
+opts:['for','of','with','by'],ans:1,
+rule:'Accuse + of · Charge + with (these two are always confused)',
+exp:'"Accused of" and "charged with" are a classic confusable pair. The pattern: accuse/convict/acquit/suspect + "of". Charge/credit/trust/present + "with". "Accused for" and "accused with" are both wrong.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'She was charged _____ murder.',
+opts:['of','for','with','about'],ans:2,
+rule:'Charge + with (crime) · Accuse + of (crime)',
+exp:'"Charged with" is always the correct form. Compare: "She was accused of murder" (accused + of) vs "She was charged with murder" (charged + with). Both mean she is alleged to have committed murder, but the prepositions are fixed and different.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'I object _____ the proposal strongly.',
+opts:['against','about','to','for'],ans:2,
+rule:'Object + to · Objection + to (never "against")',
+exp:'"Object to" is the correct collocation. Students often write "object against" by analogy with "protest against" — but "object" always takes "to". Similarly, the noun: "objection to the plan". "Object about" is also wrong.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'She is married _____ a doctor.',
+opts:['with','to','of','by'],ans:1,
+rule:'Married + to (never "with")',
+exp:'"Married to" is the standard form. "Married with" is a very common Indian English error. The ceremony is "marry someone" (no prep) but the state is "married to someone". Exception in informal/American English: "married with children" (meaning having children) — but this means something different and is not tested.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'The committee consists _____ twelve members.',
+opts:['from','of','with','by'],ans:1,
+rule:'Consist + of (always — never "from" or "with")',
+exp:'"Consist of" is fixed. "The team consists of 11 players." "Consists from" is wrong. Note: "Consist in" means to have as its essential nature: "Happiness consists in contentment." This "consist in" is rare but can appear in UPSC-level questions.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'He was acquitted _____ all charges.',
+opts:['from','for','of','by'],ans:2,
+rule:'Acquit + of (same pattern as accuse/convict/suspect)',
+exp:'The legal trio: accused of, convicted of, acquitted of — all take "of". The pattern is about the offense/charge, and we use "of" for the offense. "Acquitted from" is wrong. "Acquitted for" is also wrong.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'You must comply _____ the instructions.',
+opts:['to','with','by','for'],ans:1,
+rule:'Comply + with (rules, laws, orders, instructions)',
+exp:'"Comply with" is fixed. It means to act according to rules, laws, wishes, or instructions. "Comply to" is a very common error. Similarly: "abide by" and "adhere to" also mean to follow rules — different prepositions but same idea.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'Please revert _____ us at the earliest.',
+opts:['back to','to','at','towards'],ans:1,
+rule:'"Revert to" — "revert back" is redundant and wrong',
+exp:'"Revert" already contains the meaning of "going back", so "revert back" is redundant and incorrect. The correct form is simply "revert to". This is one of the most commonly tested errors in CDS spotting-the-error. "Please revert to us" = Please respond/reply to us.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'The result _____ negligence was a fatal accident.',
+opts:['from','of','in','due to'],ans:0,
+rule:'"Result from" = caused by something · "result in" = leads to something',
+exp:'"Result from" means something is the effect/outcome of a cause: "The accident resulted from negligence." "Result in" means something causes a consequence: "Negligence resulted in an accident." The question asks what the result (effect) is — the result comes FROM negligence, so "result from" is correct here.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'She is indifferent _____ criticism.',
+opts:['about','of','to','for'],ans:2,
+rule:'Indifferent + to (always)',
+exp:'"Indifferent to" is fixed. It means not caring about or unaffected by something. "Indifferent about" is a common error. Compare: "sensitive to criticism" (affected by) vs "indifferent to criticism" (not affected) — both use "to".'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'The new policy is prejudicial _____ small businesses.',
+opts:['against','for','to','towards'],ans:2,
+rule:'Prejudicial + to (harmful to)',
+exp:'"Prejudicial to" means harmful or damaging to something. "Prejudicial to public interest" is a legal/formal phrase. "Prejudiced against" means biased — these are different words with different prepositions. "Prejudicial to" = causing harm. Do not confuse with "prejudiced against" = having bias.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'He prevailed _____ his friend to join the army.',
+opts:['over','on','against','at'],ans:1,
+rule:'Prevail on/upon = persuade · Prevail over = win against',
+exp:'"Prevail on/upon someone" means to persuade someone (after much effort). "Prevailed over" means to defeat or win against someone. The question asks about persuading his friend — so "prevailed on/upon" is correct. "Prevailed over" would mean he defeated his friend, which is a different meaning.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'She is tired _____ waiting for hours.',
+opts:['from','with','by','of'],ans:3,
+rule:'"Tired of" = bored/fed up · "Tired from" = physically exhausted due to',
+exp:'"Tired of" means bored, fed up, or unable to tolerate any more: "tired of waiting, tired of excuses." "Tired from" means physically exhausted because of an activity: "tired from running, tired from the journey." Here, waiting for hours = bored/fed up, so "tired of" is correct.'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'She has great confidence _____ her ability.',
+opts:['on','about','in','of'],ans:2,
+rule:'Confidence + in (always)',
+exp:'"Confidence in" is the correct preposition. "He has confidence in himself." "She has confidence in the team." "Confidence on" and "confidence about" are both incorrect in formal English. Similarly: "faith in", "belief in", "trust in" — this group always takes "in".'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'The principal congratulated him _____ winning the prize.',
+opts:['for','on','about','at'],ans:1,
+rule:'Congratulate + on (achievement/event)',
+exp:'"Congratulate on" is fixed. The pattern: congratulate someone on something. "Congratulated for" is a very common error. Other similar patterns: felicitate on, compliment on. Compare: "praise for" (different verb) vs "congratulate on".'},
+
+{cat:'FIXED PREP',cc:'diff-fp',
+q:'Which sentence is CORRECT?',
+opts:[
+  'She disposed off the waste properly.',
+  'She disposed of the waste properly.',
+  'She disposed the waste properly.',
+  'She disposed out the waste properly.'
+],ans:1,
+rule:'"Dispose of" — never "dispose off"',
+exp:'"Dispose of" is the correct phrasal verb meaning to get rid of something. "Dispose off" is a very common Indian English error — it does not exist in standard English. The correct form: "disposed of the waste", "disposed of the old files". "Dispose off" appears commonly in official Indian documents but is grammatically incorrect.'},
+
+// ── PHRASAL VERBS (8) ────────────────────────────────────────────────────────
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'The match was _____ due to rain.',
+opts:['called off','called out','called up','called on'],ans:0,
+rule:'"Call off" = cancel · Call on = visit/request · Call up = summon/telephone',
+exp:'"Call off" means to cancel an event or activity. "The match was called off" = the match was cancelled. "Call on" means to visit or to formally request someone to do something. "Call up" means to summon (especially to military service) or to telephone. "Call out" means to shout or to challenge.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'I could not _____ what he was trying to say.',
+opts:['make up','make off','make out','make over'],ans:2,
+rule:'"Make out" = understand/hear/see with difficulty',
+exp:'"Make out" has several meanings: 1) to understand: "I can\'t make out what he means" 2) to see/hear with difficulty: "Can you make out that sign?" 3) to pretend/claim: "She made out she was ill." "Make up" = invent/reconcile. "Make off" = escape. "Make over" = renovate/transfer ownership.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'She _____ a brilliant solution to the problem.',
+opts:['came off with','came up with','came across with','came round with'],ans:1,
+rule:'"Come up with" = produce/find an idea or solution',
+exp:'"Come up with" means to produce or think of an idea, plan, or solution. "She came up with a brilliant idea." It is a very common UPSC/CDS reading comprehension and fill-in-the-blank phrasal verb. "Come across" = encounter unexpectedly. "Come off" = succeed/detach. "Come round" = regain consciousness/be persuaded.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'The negotiations _____ without any agreement.',
+opts:['broke out','broke into','broke off','broke through'],ans:2,
+rule:'"Break off" = stop suddenly, especially talks/engagement',
+exp:'"Break off" means to stop suddenly, especially in the context of negotiations, talks, or a relationship/engagement. "The talks broke off." "Break out" = begin suddenly (war, fire) or escape. "Break into" = enter by force. "Break through" = achieve a major advance.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'He _____ his word and did not keep the promise.',
+opts:['went back on','went off on','went away from','went out on'],ans:0,
+rule:'"Go back on" = break a promise or commitment',
+exp:'"Go back on" means to break or fail to honour a promise, agreement, or commitment. "He went back on his word" = he broke his promise. This is an important phrasal verb for both reading comprehension and vocabulary questions in UPSC/CDS. Other "go" phrases: "go off" = explode/spoil, "go through" = experience/examine.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'The deal _____ at the last minute, causing huge losses.',
+opts:['fell out','fell through','fell back','fell off'],ans:1,
+rule:'"Fall through" = fail to happen, not materialise',
+exp:'"Fall through" means that a plan or deal fails to happen or does not come to fruition. "The merger fell through" = the merger did not happen. "Fall out" = quarrel. "Fall back" = retreat. "Fall off" = decrease or detach. This is frequently tested in CDS sentence completion.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'The manager _____ the new employee\'s idea immediately.',
+opts:['turned off','turned down','turned out','turned over'],ans:1,
+rule:'"Turn down" = reject (an offer, idea, person)',
+exp:'"Turn down" means to refuse or reject. "He turned down the offer." "Turn off" = switch off or cause to lose interest. "Turn out" = result/prove to be/appear. "Turn over" = hand over/think carefully/generate revenue. In reading comprehension, "turn down" is the most commonly tested of these.'},
+
+{cat:'PHRASAL VB',cc:'diff-pv',
+q:'The strict military training _____ the best qualities in the recruits.',
+opts:['brought off','brought round','brought out','brought up'],ans:2,
+rule:'"Bring out" = reveal/make visible a quality or characteristic',
+exp:'"Bring out" means to make something visible or to reveal a quality: "Hardship brings out the best in people." "Bring off" = succeed at something difficult. "Bring round" = persuade or restore to consciousness. "Bring up" = raise children or mention a topic. In the context of revealing qualities, "bring out" is the correct answer.'},
+
+// ── COMMON ERRORS (4) ────────────────────────────────────────────────────────
+{cat:'COMMON ERRORS',cc:'diff-ce',
+q:'Spot the error: "He is very much desirous for success in life."',
+opts:['He is very much','desirous for','success in life','No error'],ans:1,
+rule:'"Desirous of" — not "desirous for"',
+exp:'"Desirous" takes the preposition "of" — not "for". Correct: "He is very much desirous of success." This is a common error because "desire for" (noun + preposition) is correct ("a desire for success"), but the adjective "desirous" always takes "of". The difference between the noun and adjective form is frequently tested.'},
+
+{cat:'COMMON ERRORS',cc:'diff-ce',
+q:'Spot the error: "He entered into the room quietly."',
+opts:['He entered','into the room','quietly','No error'],ans:1,
+rule:'"Enter" does not take "into" for a room/building — just "enter the room"',
+exp:'"Enter into" is only correct for abstract things like agreements, alliances, negotiations: "enter into an agreement", "enter into negotiations". For physical spaces (room, building, country), we simply say "enter the room" — no "into". Correct: "He entered the room quietly." This error appears in almost every CDS error spotting paper.'},
+
+{cat:'COMMON ERRORS',cc:'diff-ce',
+q:'Spot the error: "The teacher asked him to repeat again the answer."',
+opts:['The teacher asked him','to repeat again','the answer','No error'],ans:1,
+rule:'"Repeat" already means to say/do again — "repeat again" is redundant',
+exp:'"Repeat" means to say or do something again — so "repeat again" is redundant (saying "again again"). Correct: "The teacher asked him to repeat the answer." Similar redundancies to avoid: "revert back" (revert = go back), "return back" (return = come back), "advance forward" (advance = go forward), "end result" (result is always the end).'},
+
+{cat:'COMMON ERRORS',cc:'diff-ce',
+q:'Identify the INCORRECT sentence:',
+opts:[
+  'She is confident of her success.',
+  'He is envious of her promotion.',
+  'They are angry at the decision.',
+  'She is eligible for the scholarship.'
+],ans:2,
+rule:'"Angry with" (person) · "Angry at/about" (situation/thing) — "angry at the decision" is acceptable but "angry with the decision" would be wrong',
+exp:'All options are actually debatable, but in standard formal English for exams: "Angry with" is used for people ("angry with him") and "angry at/about" is used for situations/things ("angry at the decision" or "angry about the delay"). Option C uses "angry at" for a decision (a thing), which is acceptable. However, some exam keys mark "angry at" as wrong when a person is implied — always prefer "angry with" for people. The truly standard error tested here is that all others are definitively correct fixed prepositions.'},
+
+];
+
+// ENGINE
+const TOTAL = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${q.cc}">${q.cat}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">English · Prepositions</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null&&answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! Your preposition mastery is exam-ready.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg:'Good effort. Re-read the fixed preposition tables and retry.'}
+  else{grade='Needs Work';msg:"Don't worry — go through the Quick Ref cards and try again."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>
