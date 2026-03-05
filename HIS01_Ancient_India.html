@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIS01 · Ancient India | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F5F0E5;--bg2:#EDE5D5;--bg3:#DDD2BE;
+  --white:#FFFFFF;--ink:#1C1408;--ink2:#2E200A;
+  --muted:#6A5530;--dim:#9A8060;--border:#C8B898;
+  --terra:#8B3A00;--terraPale:#FDF5E4;
+  --amber:#8B4800;--amberPale:#FDF3E0;
+  --green:#1A5820;--greenPale:#EAF5EC;
+  --red:#8B1A1A;--redPale:#FCEAEA;
+  --blue:#1A3060;--bluePale:#EAF0FA;
+  --gold:#8B6A00;--goldPale:#FDF8E4;
+  --moss:#3A5A1A;--mossPale:#EEF5E4;
+  --navy:#1A2A6C;--navyPale:#E8EDF8;
+  --purple:#5A1A80;--purplePale:#F2EAFB;
+  --radius:12px;--shadow:0 2px 12px rgba(28,20,8,.09);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* HERO */
+.hero{background:linear-gradient(140deg,#2A1A00 0%,#5C3A08 45%,#7A5010 80%,#8B6020 100%);margin:0 -16px;padding:32px 32px 28px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 10%,rgba(255,200,80,.10) 0%,transparent 55%),radial-gradient(ellipse at 10% 90%,rgba(0,0,0,.25) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'𓂀';position:absolute;right:26px;bottom:16px;font-size:60px;opacity:.10;line-height:1}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,220,140,.65);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:20px;height:2px;background:rgba(255,200,80,.4)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.2vw,33px);font-weight:700;color:#fff;line-height:1.22;margin-bottom:10px}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,220,160,.72);margin-bottom:18px;line-height:1.7;max-width:540px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 13px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.12);color:#7ADEA0}
+.chip-o{background:rgba(255,140,60,.15);color:#FFAA60}
+
+/* TABS */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(28,20,8,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 17px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--terra);border-bottom-color:var(--terra)}
+
+/* PANES */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--terra);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INTRO */
+.intro-box{background:var(--terraPale);border:1.5px solid rgba(139,58,0,.18);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--terra)}
+
+/* CARDS */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--terra)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--terra);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* BOXES */
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(139,72,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.trap-box{background:var(--redPale);border:1.5px solid rgba(139,26,26,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(26,48,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+.rule-box ul{list-style:none;padding:0}
+.rule-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.rule-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--blue);top:10px}
+
+.gold-box{background:var(--goldPale);border:1.5px solid rgba(139,106,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.gold-box .gl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.gold-box ul{list-style:none;padding:0}
+.gold-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.gold-box li::before{content:'★';position:absolute;left:0;font-size:10px;color:var(--gold);top:8px}
+.gold-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+.moss-box{background:var(--mossPale);border:1.5px solid rgba(58,90,26,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.moss-box .ml-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--moss);text-transform:uppercase;margin-bottom:8px}
+.moss-box ul{list-style:none;padding:0}
+.moss-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.moss-box li::before{content:'→';position:absolute;left:0;color:var(--moss);font-weight:700;font-size:13px}
+
+.navy-box{background:var(--navyPale);border:1.5px solid rgba(26,42,108,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.navy-box .nl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+.navy-box ul{list-style:none;padding:0}
+.navy-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.navy-box li::before{content:'→';position:absolute;left:0;color:var(--navy);font-weight:700;font-size:13px}
+.navy-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+/* TABLE */
+.ct{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.ct th{background:var(--terra);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.ct td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.ct tr:nth-child(even) td{background:var(--bg)}
+.ct td b{color:var(--terra)}
+.ct td:first-child{font-weight:700}
+
+/* TIMELINE */
+.timeline{list-style:none;padding:0;margin:12px 0;position:relative}
+.timeline::before{content:'';position:absolute;left:22px;top:8px;bottom:8px;width:2px;background:var(--border)}
+.tl-item{display:flex;gap:14px;margin-bottom:16px;position:relative}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--terra);border:3px solid var(--white);box-shadow:0 0 0 2px var(--terra);flex-shrink:0;margin-top:4px;z-index:1}
+.tl-dot.gold{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.tl-dot.green{background:var(--green);box-shadow:0 0 0 2px var(--green)}
+.tl-year{font-size:13px;font-weight:800;color:var(--terra);min-width:52px;margin-top:2px;flex-shrink:0}
+.tl-content{flex:1}
+.tl-title{font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.tl-detail{font-size:14.5px;color:var(--ink2);line-height:1.65}
+.tl-detail b{color:var(--terra)}
+
+/* QUICK REF */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--terra);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:14.5px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--terra);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--red);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--terra);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--terra);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-section{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--terra);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.q-section::after{content:'';flex:1;height:1px;background:var(--border)}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--terra)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-cat{font-size:10px;font-weight:700;background:var(--bg2);color:var(--muted);padding:2px 8px;border-radius:10px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600;white-space:pre-line}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--terra);background:var(--terraPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--terra);background:var(--terraPale);color:var(--terra)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--terra);color:#fff;border-color:var(--terra)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--terra);background:var(--terraPale);border:1px solid rgba(139,58,0,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--terra);color:#fff;box-shadow:0 4px 12px rgba(139,58,0,.3)}
+.btn-primary:hover{background:#964800;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--terra);color:var(--terra)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#2A1A00,#7A5010);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,220,140,.7);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.cat-breakdown{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.cat-title{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--terra);text-transform:uppercase;margin-bottom:14px}
+.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cat-row:last-child{margin-bottom:0}
+.cat-name{font-size:13px;font-weight:700;color:var(--ink2);min-width:100px;flex-shrink:0}
+.cat-bar-wrap{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.cat-bar{height:100%;border-radius:4px;transition:width .6s ease}
+.cat-score{font-size:12px;font-weight:800;color:var(--muted);min-width:40px;text-align:right;flex-shrink:0}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+@media(max-width:400px){.hero{padding:26px 22px 22px}.hero-title{font-size:20px}.tab{padding:12px 12px;font-size:11px}.q-text{font-size:16px}.opt{font-size:15px;padding:12px 14px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">History · Module HIS01</div>
+  <h1 class="hero-title">Ancient India —<br><span>Stone Age to Gupta Empire</span></h1>
+  <p class="hero-sub">From Prehistoric India and the Indus Valley Civilisation to Buddhism, Jainism, the Mauryas, and the Gupta Golden Age — everything examiners test, in one lesson.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Stone Age → 750 CE</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">45 Practice Questions</span>
+    <span class="chip chip-o">History HIS01</span>
+  </div>
+</div>
+
+<div class="page">
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (45)</button>
+</div>
+
+<!-- ═══ THEORY ═══ -->
+<div id="theory" class="pane on">
+
+<div class="intro-box">
+  <p>Covers: <strong>Prehistoric India, Indus Valley Civilisation, Vedic Age, Jainism &amp; Buddhism, Mahajanapadas, Maurya Empire, Post-Mauryan Dynasties, Sangam Age, Gupta Empire</strong> and themes of art, architecture, science and economy.</p>
+</div>
+
+<div class="sec-label">Section 1 — Prehistoric India &amp; Stone Ages</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF5E4">🪨</div>
+    <div style="flex:1"><div class="c-title">Stone Age Periods &amp; Key Sites</div>
+    <div class="c-sub">Palaeolithic → Mesolithic → Neolithic → Chalcolithic</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="ct">
+        <tr><th>Period</th><th>Time</th><th>Key Features</th><th>Key Sites</th></tr>
+        <tr><td><b>Palaeolithic</b></td><td>500,000–10,000 BCE</td><td>Crude stone tools; cave paintings; hunter-gatherers; no pottery</td><td>Bhimbetka (MP), Hunsgi (Karnataka), Attirampakkam (Tamil Nadu)</td></tr>
+        <tr><td><b>Mesolithic</b></td><td>10,000–6,000 BCE</td><td>Microliths; semi-nomadic; animal domestication began</td><td>Bagor (Rajasthan), Adamgarh (MP)</td></tr>
+        <tr><td><b>Neolithic</b></td><td>6,000–2,000 BCE</td><td>Polished stone tools; settled agriculture; pottery; cattle rearing</td><td>Mehrgarh (earliest, Baluchistan), Burzahom (Kashmir), Chirand (Bihar)</td></tr>
+        <tr><td><b>Chalcolithic</b></td><td>3,000–500 BCE</td><td>First metal (copper) use; painted pottery; pre-Harappan phase</td><td>Ahar, Gilund (Rajasthan); Kayatha, Malwa (MP); Jorwe (Maharashtra)</td></tr>
+      </table>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Most Tested Sites</div>
+      <ul>
+        <li><strong>Bhimbetka</strong> — Raisen district, MP · Cave paintings 30,000 BCE · UNESCO World Heritage Site (2003)</li>
+        <li><strong>Mehrgarh</strong> (Baluchistan, Pakistan) — earliest Neolithic site in subcontinent (~7000 BCE) · precursor to IVC</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 2 — Indus Valley Civilisation (IVC)</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">🏙️</div>
+    <div style="flex:1"><div class="c-title">IVC Overview &amp; Key Facts</div>
+    <div class="c-sub">2600–1900 BCE · Urban Bronze Age · Also called Harappan Civilisation</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="gold-box">
+      <div class="gl-label">Core IVC Facts — All Tested</div>
+      <ul>
+        <li>Period: ~3300 BCE–1300 BCE · Mature phase: <strong>2600–1900 BCE</strong></li>
+        <li>Harappa discovered by <strong>Dayaram Sahni (1921)</strong> · Mohenjo-daro by <strong>R.D. Banerji (1922)</strong></li>
+        <li>Largest IVC site: <strong>Rakhigarhi (Haryana)</strong> — largest in world</li>
+        <li>Script: <strong>undeciphered pictographic</strong> — written right to left</li>
+        <li>Crops: <strong>wheat, barley, cotton</strong> — first cotton growers in the world</li>
+        <li>Traded with <strong>Mesopotamia</strong> — seals found there as evidence</li>
+        <li>No temples, no clear monarchy, no evidence of iron</li>
+        <li>Bronze Age civilisation — used <strong>copper and bronze only</strong></li>
+      </ul>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ct">
+        <tr><th>Site</th><th>Location</th><th>Key Finds</th></tr>
+        <tr><td><b>Harappa</b></td><td>Punjab, Pakistan</td><td>Granaries, coffin burial, red sandstone male torso</td></tr>
+        <tr><td><b>Mohenjo-daro</b></td><td>Sindh, Pakistan</td><td>Great Bath, Dancing Girl (bronze), Priest-King (steatite), Great Granary, Assembly Hall</td></tr>
+        <tr><td><b>Lothal</b></td><td>Gujarat, India</td><td>Dockyard (world's first), bead factory, rice husk, Persian Gulf seals</td></tr>
+        <tr><td><b>Kalibangan</b></td><td>Rajasthan, India</td><td>Fire altars, earliest ploughed field, bangle factory</td></tr>
+        <tr><td><b>Dholavira</b></td><td>Gujarat, India</td><td>Water conservation system, stadium, largest IVC inscription board</td></tr>
+        <tr><td><b>Rakhigarhi</b></td><td>Haryana, India</td><td>Largest IVC site; DNA evidence; fire altars; cemetery</td></tr>
+        <tr><td><b>Chanhudaro</b></td><td>Sindh, Pakistan</td><td>Bead-making; inkpot; <b>only site without a citadel</b></td></tr>
+        <tr><td><b>Sutkagendor</b></td><td>Baluchistan, Pakistan</td><td>Westernmost IVC site</td></tr>
+        <tr><td><b>Manda</b></td><td>J&amp;K, India</td><td>Northernmost IVC site</td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ IVC Exam Traps</div>
+      <ul>
+        <li>Great Bath = <strong>Mohenjo-daro</strong> · Dockyard = <strong>Lothal</strong></li>
+        <li>Dancing Girl (bronze) = Mohenjo-daro · Fire altars = <strong>Kalibangan</strong></li>
+        <li>IVC people had NO knowledge of iron (Bronze Age only)</li>
+        <li>Largest site = <strong>Rakhigarhi</strong> (not Mohenjo-daro)</li>
+        <li>Only city without a citadel = <strong>Chanhudaro</strong></li>
+        <li>Sutkagendor = <strong>Westernmost</strong> · Manda (J&amp;K) = <strong>Northernmost</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 3 — Vedic Age</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FEF0E4">📿</div>
+    <div style="flex:1"><div class="c-title">Early Vedic Age (1500–1000 BCE)</div>
+    <div class="c-sub">Rigvedic period — Aryans, society, the four Vedas</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="moss-box">
+      <div class="ml-label">Early Vedic Key Facts</div>
+      <ul>
+        <li>Aryans settled in <strong>Saptasindhu</strong> (seven rivers region) — present Punjab &amp; Haryana</li>
+        <li><strong>Rigveda</strong> = oldest of the four Vedas; oldest Indo-European literary document</li>
+        <li>Four Vedas: <strong>Rigveda</strong> (hymns) · <strong>Samaveda</strong> (melodies) · <strong>Yajurveda</strong> (rituals) · <strong>Atharvaveda</strong> (magic/medicine)</li>
+        <li>Tribal society led by <strong>Rajan</strong> · assisted by <strong>Purohita</strong> (priest) &amp; <strong>Senani</strong> (army chief)</li>
+        <li>Two assemblies: <strong>Sabha</strong> (smaller, select) and <strong>Samiti</strong> (larger, tribal)</li>
+        <li>Economy: primarily <strong>pastoral</strong> (cattle-based) · cow was a unit of value</li>
+        <li>Varna = occupational (not hereditary yet)</li>
+        <li>Women respected — Gargi, Lopamudra, Vishpala were scholars/warriors</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FEF0E4">🕉️</div>
+    <div style="flex:1"><div class="c-title">Later Vedic Age (1000–600 BCE) &amp; Vedic Literature</div>
+    <div class="c-sub">Social changes + complete hierarchy of Vedic texts</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="fact-box">
+      <div class="fb-label">Key Changes — Later Vedic Period</div>
+      <ul>
+        <li>Aryans moved to <strong>Gangetic plains (Aryavarta)</strong> — used iron tools to clear forests</li>
+        <li>Agriculture became dominant over pastoralism</li>
+        <li><strong>Varna system became hereditary and rigid</strong> — Brahmin, Kshatriya, Vaishya, Shudra</li>
+        <li>Women's position <strong>declined</strong> — excluded from assemblies; child marriage appeared</li>
+        <li>New large kingdoms (Janapadas) replaced tribal units</li>
+        <li>Elaborate Yajnas (Ashvamedha, Rajasuya) led to Upanishadic reaction</li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Vedic Literature — Complete Hierarchy</div>
+      <ul>
+        <li><strong>4 Vedas (Shruti)</strong> — Rigveda, Samaveda, Yajurveda, Atharvaveda</li>
+        <li><strong>Brahmanas</strong> — Prose texts explaining Vedic rituals (e.g., Shatapatha Brahmana)</li>
+        <li><strong>Aranyakas</strong> — "Forest texts" — transitional ritual → philosophy</li>
+        <li><strong>Upanishads (108)</strong> — Philosophy; Vedanta (end of Vedas); concepts: Brahman, Atman, Karma, Moksha · Key: Brihadaranyaka, Chandogya, Kena, Katha</li>
+        <li><strong>Vedangas (6)</strong> — Siksha, Kalpa, Vyakarana, Nirukta, Chandas, Jyotisha</li>
+        <li><strong>Smritis</strong> — Law books: Manusmriti (most important)</li>
+        <li><strong>Puranas (18)</strong> — Mythological; oldest = Matsya Purana</li>
+        <li><strong>2 Epics:</strong> Mahabharata (Vyasa, 1 lakh shlokas — world's longest) · Ramayana (Valmiki, 24,000 shlokas)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 4 — Jainism &amp; Buddhism</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">☸️</div>
+    <div style="flex:1"><div class="c-title">Buddhism — Life of Buddha &amp; Key Teachings</div>
+    <div class="c-sub">Most tested topic in Ancient India for CDS/NDA/AFCAT</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="gold-box">
+      <div class="gl-label">Life of Gautama Buddha — Exam Essentials</div>
+      <ul>
+        <li><strong>Birth:</strong> 563 BCE · <strong>Lumbini</strong> (Nepal) · Clan: Shakya · Name: Siddhartha Gautama</li>
+        <li><strong>Father:</strong> Suddhodhana · <strong>Mother:</strong> Mahamaya · <strong>Foster mother:</strong> Prajapati Gautami</li>
+        <li><strong>Wife:</strong> Yashodhara · <strong>Son:</strong> Rahula</li>
+        <li>Four Sights (renunciation trigger): old man, sick man, dead man, ascetic</li>
+        <li><strong>Great Renunciation:</strong> age 29 · left home</li>
+        <li><strong>Enlightenment (Nirvana/Bodhi):</strong> Bodh Gaya · under Peepal tree · age 35</li>
+        <li><strong>First Sermon (Dhammachakkapavattana):</strong> <strong>Sarnath</strong> (Deer Park) near Varanasi</li>
+        <li><strong>Death (Mahaparinirvana):</strong> 483 BCE · <strong>Kushinagar</strong> (UP) · age 80</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Four Buddhist Councils</div>
+      <ul>
+        <li><strong>1st:</strong> 483 BCE · <strong>Rajagriha</strong> · Presided: Mahakassapa · Patron: <strong>Ajatashatru</strong></li>
+        <li><strong>2nd:</strong> 383 BCE · <strong>Vaishali</strong> · Presided: Sabakami · Patron: <strong>Kalashoka</strong></li>
+        <li><strong>3rd:</strong> 250 BCE · <strong>Pataliputra</strong> · Presided: Moggaliputta Tissa · Patron: <strong>Ashoka</strong> · Added Abhidhamma Pitaka</li>
+        <li><strong>4th:</strong> 1st century CE · <strong>Kashmir</strong> · Presided: Vasumitra · Patron: <strong>Kanishka</strong> · Split into Hinayana &amp; Mahayana</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Core Buddhist Teachings</div>
+      <ul>
+        <li><strong>Four Noble Truths:</strong> Dukkha (suffering) · Tanha (craving as cause) · Nirodha (end of suffering) · Marga (Eightfold Path)</li>
+        <li><strong>Eightfold Path:</strong> Right View, Intention, Speech, Action, Livelihood, Effort, Mindfulness, Concentration</li>
+        <li><strong>Three Jewels:</strong> Buddha, Dhamma, Sangha</li>
+        <li><strong>Tripitaka:</strong> Sutta Pitaka + Vinaya Pitaka + Abhidhamma Pitaka</li>
+        <li>Hinayana = individual salvation · Mahayana = universal salvation · Vajrayana = Tantric</li>
+        <li>Texts: Hinayana in <strong>Pali</strong>; Mahayana in <strong>Sanskrit</strong></li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Buddhist Traps</div>
+      <ul>
+        <li>Enlightenment = <strong>Bodh Gaya</strong> · First sermon = <strong>Sarnath</strong> (NOT the same place)</li>
+        <li>3rd Council patron = <strong>Ashoka</strong> · 4th Council patron = <strong>Kanishka</strong></li>
+        <li>2nd Council patron = <strong>Kalashoka</strong> (NOT Ashoka)</li>
+        <li>Hinayana/Mahayana split = <strong>4th Council</strong> (Kashmir)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">🌸</div>
+    <div style="flex:1"><div class="c-title">Jainism — Mahavira &amp; Key Concepts</div>
+    <div class="c-sub">24 Tirthankaras, Five Vows, Syadvada — all exam essentials</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="moss-box">
+      <div class="ml-label">Life of Mahavira — Key Facts</div>
+      <ul>
+        <li><strong>Birth:</strong> 599 BCE · <strong>Kundagrama</strong> (near Vaishali, Bihar) · Name: Vardhamana</li>
+        <li>Clan: Lichhavi (Kshatriya) · Father: Siddhartha · Mother: Trishala</li>
+        <li>Wife: Yashoda · Daughter: Priyadarshana</li>
+        <li><strong>Enlightenment (Kaivalya):</strong> after 12 years penance · Jrimbhikagrama · under Sal tree · age 42</li>
+        <li>Titles: <strong>Mahavira</strong> (Great Hero) and <strong>Jina</strong> (Conqueror)</li>
+        <li><strong>Death (Nirvana):</strong> 527 BCE · <strong>Pavapuri</strong> (Bihar) · age 72</li>
+        <li>24th &amp; last Tirthankara · 1st Tirthankara = Rishabhadeva (Adinath) · 23rd = Parshvanatha</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Core Jain Teachings</div>
+      <ul>
+        <li><strong>Five Vows (Pancha Mahavratas):</strong> Ahimsa, Satya, Asteya, <strong>Brahmacharya</strong> (added by Mahavira), Aparigraha · Parshvanatha had only 4 (no Brahmacharya)</li>
+        <li><strong>Triratna:</strong> Right Faith, Right Knowledge, Right Conduct</li>
+        <li><strong>Syadvada / Anekantavada:</strong> Theory of relative truth — "perhaps it is so"</li>
+        <li>Two sects: <strong>Digambara</strong> (sky-clad, naked) and <strong>Svetambara</strong> (white-clad)</li>
+        <li>Split at Pataliputra Council (~300 BCE) — Digambaras followed Bhadrabahu</li>
+        <li>Oldest Jain text: <strong>Acaranga Sutra</strong> (describes Mahavira's life)</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Jainism Traps</div>
+      <ul>
+        <li>Both Mahavira and Buddha were <strong>Kshatriyas</strong>, not Brahmins</li>
+        <li>Parshvanatha had <strong>4 vows</strong> — Mahavira added <strong>Brahmacharya</strong> as 5th</li>
+        <li>Jainism is more rigid on <strong>Ahimsa</strong> than Buddhism</li>
+        <li>Both reject authority of the <strong>Vedas</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 5 — Mahajanapadas &amp; Pre-Mauryan Kingdoms</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF0FA">🗺️</div>
+    <div style="flex:1"><div class="c-title">16 Mahajanapadas &amp; Rise of Magadha</div>
+    <div class="c-sub">~600 BCE · Political landscape before the Mauryas</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="fact-box">
+      <div class="fb-label">Key Mahajanapadas</div>
+      <ul>
+        <li><strong>Magadha</strong> (Rajagriha/Pataliputra) — most powerful; dominated all others</li>
+        <li><strong>Vajji</strong> (Vaishali) — world's first known republic; Lichhavi clan prominent</li>
+        <li><strong>Koshala</strong> (Shravasti) — king Prasenjit was Buddha's patron</li>
+        <li><strong>Avanti</strong> (Ujjain) · <strong>Gandhara</strong> (Taxila) · <strong>Kasi</strong> (Varanasi)</li>
+        <li>Two state types: <strong>Monarchies</strong> and <strong>Republics (Ganas)</strong></li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Why Magadha Dominated</div>
+      <ul>
+        <li>Location at junction of Son &amp; Ganga rivers</li>
+        <li>Rich iron ore deposits → iron weapons advantage</li>
+        <li>Fertile alluvial plains; forest-elephants; trade route control</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Pre-Mauryan Dynasties of Magadha</div>
+      <ul>
+        <li><strong>Haryanka dynasty:</strong> Founded by <strong>Bimbisara</strong> · contemporary of Buddha · capital Rajagriha · son Ajatashatru killed him (patricide) and expanded Magadha</li>
+        <li><strong>Shishunaga dynasty:</strong> Destroyed the power of Avanti</li>
+        <li><strong>Nanda dynasty (344–322 BCE):</strong> Founded by <strong>Mahapadma Nanda</strong> · "Ekarat" · first non-Kshatriya dynasty · massive army · capital moved to <strong>Pataliputra</strong> · last ruler Dhana Nanda defeated by Chandragupta + Chanakya</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 6 — Maurya Empire (322–185 BCE)</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF5E4">👑</div>
+    <div style="flex:1"><div class="c-title">Chandragupta Maurya, Chanakya &amp; Ashoka</div>
+    <div class="c-sub">First pan-Indian empire · Arthashastra · Kalinga War · Edicts</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="moss-box">
+      <div class="ml-label">Chandragupta Maurya — Key Facts</div>
+      <ul>
+        <li>Founded Maurya Empire in <strong>322 BCE</strong> after overthrowing Dhana Nanda</li>
+        <li>Guided by <strong>Kautilya (Chanakya/Vishnugupta)</strong> — wrote <strong>Arthashastra</strong></li>
+        <li>Defeated <strong>Seleucus Nicator</strong> in 305 BCE · Seleucus sent ambassador <strong>Megasthenes</strong> · Megasthenes wrote <strong>Indica</strong></li>
+        <li>Converted to <strong>Jainism</strong> · migrated to Shravanabelagola · died by <strong>Sallekana</strong> (fasting)</li>
+        <li>Son: <strong>Bindusara</strong> → Grandson: <strong>Ashoka</strong></li>
+      </ul>
+    </div>
+    <div class="gold-box">
+      <div class="gl-label">Ashoka the Great (268–232 BCE) — Exam-Critical</div>
+      <ul>
+        <li><strong>Kalinga War:</strong> ~261 BCE · 100,000 killed · transformed Ashoka completely</li>
+        <li>Embraced <strong>Buddhism</strong> after Kalinga · propagated <strong>Dhamma</strong> (universal moral code)</li>
+        <li>Edicts inscribed in <strong>Brahmi script</strong> (most) · Kharosthi (NW) · Aramaic/Greek (Afghanistan)</li>
+        <li><strong>Brahmi deciphered by James Prinsep in 1837</strong></li>
+        <li>Sent missionaries: son <strong>Mahendra</strong> and daughter <strong>Sanghamitta</strong> to Sri Lanka</li>
+        <li>14 Major Rock Edicts, 7 Pillar Edicts, Minor Rock Edicts</li>
+        <li><strong>Lion Capital at Sarnath</strong> = India's National Emblem</li>
+        <li><strong>Ashoka Chakra</strong> (24-spoked wheel) = on Indian flag</li>
+        <li>"Satyameva Jayate" = from <strong>Mundaka Upanishad</strong></li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Maurya/Ashoka Traps</div>
+      <ul>
+        <li>Ashoka's Dhamma ≠ Buddhism — broader universal moral code</li>
+        <li>James Prinsep deciphered <strong>Brahmi</strong> (not Harappan script — still undeciphered)</li>
+        <li>"Satyameva Jayate" = <strong>Mundaka Upanishad</strong> (not Ashoka's edicts)</li>
+        <li>Chandragupta converted to <strong>Jainism</strong> (NOT Buddhism)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 7 — Post-Mauryan Dynasties &amp; Sangam Age</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#F2EAFB">🏺</div>
+    <div style="flex:1"><div class="c-title">Shungas, Indo-Greeks, Shakas, Kushanas &amp; Sangam</div>
+    <div class="c-sub">200 BCE – 300 CE · Foreign dynasties, Kanishka, Tamil kingdoms</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="fact-box">
+      <div class="fb-label">Key Post-Mauryan Dynasties</div>
+      <ul>
+        <li><strong>Shunga (185–73 BCE):</strong> Pushyamitra Shunga killed last Maurya Brihadratha · Ashvamedha revived · persecuted Buddhists</li>
+        <li><strong>Indo-Greeks:</strong> First to issue <strong>gold coins</strong> in India · bilingual coins · <strong>Menander (Milinda)</strong> most famous; converted to Buddhism · <em>Milindapanha</em> = dialogue with monk Nagasena</li>
+        <li><strong>Shakas (Scythians):</strong> Introduced Satraps system · <strong>Rudradaman I</strong> greatest Shaka king · <strong>Junagarh inscription</strong> = first long inscription in chaste Sanskrit</li>
+        <li><strong>Kushanas:</strong> Greatest ruler: <strong>Kanishka I</strong> · <strong>Saka Era begins 78 CE</strong> · Capital: <strong>Purushapura (Peshawar)</strong> · Patron of 4th Buddhist Council · Mahayana Buddhism</li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Kanishka's Court — Key Scholars</div>
+      <ul>
+        <li><strong>Nagarjuna</strong> — Buddhist philosopher (Madhyamika school)</li>
+        <li><strong>Asvaghosha</strong> — wrote Buddhacharita (first Sanskrit epic)</li>
+        <li><strong>Charaka</strong> — physician; wrote Charakasamhita (medicine)</li>
+        <li><strong>Vasumitra</strong> — presided 4th Buddhist Council</li>
+        <li><strong>Gandhara School of Art</strong> — Greco-Roman influence; first human images of Buddha (grey schist)</li>
+        <li><strong>Mathura School</strong> — purely indigenous; red sandstone; smiling Buddha</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Sangam Age — South India (300 BCE – 300 CE)</div>
+      <ul>
+        <li>Three Tamil kingdoms: <strong>Cheras</strong> (Kerala) · <strong>Cholas</strong> (Kaveri delta) · <strong>Pandyas</strong> (Madurai)</li>
+        <li><strong>Tolkappiyam</strong> = oldest Tamil grammar · Tirukkural by <strong>Thiruvalluvar</strong> = "Tamil Veda"</li>
+        <li>Sangam poems: <strong>Akam</strong> (love) and <strong>Puram</strong> (heroism/war) · five landscape settings called <strong>Tinai</strong></li>
+        <li>Active trade with Rome — Roman gold coins found across South India</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 8 — Gupta Empire (320–550 CE) — Golden Age</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FDF5E4">✨</div>
+    <div style="flex:1"><div class="c-title">Gupta Rulers &amp; India's Golden Age</div>
+    <div class="c-sub">320–550 CE · Chandragupta I to Skandagupta · art, science, Nalanda</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <ul class="timeline">
+      <li class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-year">320 CE</div>
+        <div class="tl-content">
+          <div class="tl-title">Chandragupta I — Founder, Gupta Era</div>
+          <div class="tl-detail">Gupta Samvat = 320 CE · Married Lichchhavi princess <b>Kumaradevi</b> · Title: <b>Maharajadhiraja</b></div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-year">335–375</div>
+        <div class="tl-content">
+          <div class="tl-title">Samudragupta — "Napoleon of India"</div>
+          <div class="tl-detail"><b>Allahabad Pillar inscription</b> by court poet <b>Harishena</b> · Dharma Vijaya policy · Also poet (Kaviraja) · Performed Ashvamedha · Epithet by historian <b>V.A. Smith</b></div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-year">380–415</div>
+        <div class="tl-content">
+          <div class="tl-title">Chandragupta II (Vikramaditya) — Peak of Gupta Power</div>
+          <div class="tl-detail">Defeated Shakas of Western India · issued first <b>silver coins</b> · Chinese pilgrim <b>Fa-hien (Faxian)</b> visited (399–414 CE) · Navaratnas included: <b>Kalidasa, Aryabhatta, Varahamihira</b></div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">415–455</div>
+        <div class="tl-content">
+          <div class="tl-title">Kumaragupta I — Founded Nalanda</div>
+          <div class="tl-detail">Founder of <b>Nalanda University</b> · issued Peacock coins</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">455–467</div>
+        <div class="tl-content">
+          <div class="tl-title">Skandagupta — Last Great Gupta Ruler</div>
+          <div class="tl-detail">Repelled <b>Huna invasions</b> · Gupta Empire ended ~550 CE after Huna pressure</div>
+        </div>
+      </li>
+    </ul>
+    <div class="gold-box">
+      <div class="gl-label">Gupta Era Achievements — Golden Age</div>
+      <ul>
+        <li><strong>Aryabhatta</strong> — π = 3.1416 · Earth revolves around Sun · wrote <strong>Aryabhatiya</strong></li>
+        <li><strong>Varahamihira</strong> — wrote Brihat Samhita and Panchasiddhantika (astronomy)</li>
+        <li><strong>Kalidasa</strong> — greatest Sanskrit poet · Works: Abhijnanasakuntalam, Meghadutam, Raghuvamsa, Kumarasambhava</li>
+        <li><strong>Nalanda University</strong> — founded by Kumaragupta I · greatest ancient Asian university</li>
+        <li><strong>Fa-hien</strong> — noted India's prosperity, hospitals, charitable institutions</li>
+        <li><strong>Iron Pillar at Mehrauli (Delhi)</strong> — Chandragupta II · rust-free due to high phosphorus</li>
+        <li><strong>Ajanta caves</strong> — paintings (Gupta period) · UNESCO World Heritage Site</li>
+        <li>Gupta temples: first use of <strong>shikhara</strong> (tower) · Dashavatara Temple (Deogarh)</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Gupta Exam Traps</div>
+      <ul>
+        <li>"Napoleon of India" = <strong>Samudragupta</strong> (NOT Chandragupta II)</li>
+        <li>Fa-hien visited under <strong>Chandragupta II</strong> — NOT Samudragupta</li>
+        <li>Nalanda University = <strong>Kumaragupta I</strong> (NOT Chandragupta II)</li>
+        <li><strong>Hiuen Tsang (Xuanzang)</strong> visited under <strong>Harsha</strong> (7th CE) — AFTER the Guptas</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Section 9 — Art, Architecture &amp; Key Texts</div>
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">🎨</div>
+    <div style="flex:1"><div class="c-title">Schools of Art, Buddhist Architecture &amp; Important Texts</div>
+    <div class="c-sub">Gandhara · Mathura · Amaravati · Stupa · Important literary works</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="ct">
+        <tr><th>School</th><th>Location / Period</th><th>Features</th><th>Material</th></tr>
+        <tr><td><b>Gandhara</b></td><td>NW India · 1st–5th CE</td><td>Greco-Roman influence; first human Buddha images; wavy hair, toga-like robe</td><td>Grey/bluish schist</td></tr>
+        <tr><td><b>Mathura</b></td><td>Mathura, UP · 1st–12th CE</td><td>Purely indigenous; shaved/thin-turbaned head; smiling Buddha</td><td>Red Sikri sandstone</td></tr>
+        <tr><td><b>Amaravati</b></td><td>Andhra Pradesh · 2nd BCE–3rd CE</td><td>Narrative; dynamic; decorative; stories of Buddha's life</td><td>White marble</td></tr>
+      </table>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Buddhist Architecture</div>
+      <ul>
+        <li><strong>Stupa</strong> — hemispherical dome over Buddha's relics · Parts: Anda, Harmika, Chattra, Vedika, Torana</li>
+        <li><strong>Great Stupa at Sanchi</strong> — built by Ashoka; gateways (toranas) added by <strong>Satavahanas</strong> · UNESCO World Heritage Site</li>
+        <li><strong>Chaitya</strong> — prayer hall (apsidal arch) · notable: Karle (Maharashtra)</li>
+        <li><strong>Vihara</strong> — monastery</li>
+        <li>Ajanta — 29 caves (paintings, Gupta era) · Ellora — 34 caves (Hindu + Buddhist + Jain)</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Key Texts &amp; Authors</div>
+      <ul>
+        <li><strong>Arthashastra</strong> — Kautilya (statecraft)</li>
+        <li><strong>Indica</strong> — Megasthenes (Mauryan India)</li>
+        <li><strong>Buddhacharita</strong> — Asvaghosha (first Sanskrit epic, Kanishka's court)</li>
+        <li><strong>Aryabhatiya</strong> — Aryabhatta (maths/astronomy)</li>
+        <li><strong>Charakasamhita</strong> — Charaka (medicine, Kanishka's court)</li>
+        <li><strong>Harshacharita</strong> — Banabhatta (biography of Harsha)</li>
+        <li><strong>Milindapanha</strong> — dialogue of Menander + Nagasena</li>
+        <li><strong>Tirukkural</strong> — Thiruvalluvar ("Tamil Veda")</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ═══ QUICK REF ═══ -->
+<div id="quickref" class="pane">
+  <div class="intro-box"><p>Scan all <strong>high-yield Ancient India facts</strong> before your exam.</p></div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">🏙️ IVC Key Facts</div>
+      <ul>
+        <li><b>Harappa discovered:</b> Dayaram Sahni, 1921</li>
+        <li><b>Mohenjo-daro:</b> R.D. Banerji, 1922</li>
+        <li>Largest IVC site: <b>Rakhigarhi</b> (Haryana)</li>
+        <li>Great Bath + Dancing Girl + Priest-King: <b>Mohenjo-daro</b></li>
+        <li>Dockyard: <b>Lothal</b> (Gujarat) · Fire altars: <b>Kalibangan</b></li>
+        <li>No citadel: <b>Chanhudaro</b> · Westernmost: <b>Sutkagendor</b></li>
+        <li>Northernmost: <b>Manda</b> (J&amp;K)</li>
+        <li>Crops: <b>wheat, barley, cotton</b></li>
+        <li>Script: <em>undeciphered</em> pictographic · Bronze Age only</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">☸️ Buddha — Dates &amp; Places</div>
+      <ul>
+        <li>Birth: <b>563 BCE, Lumbini</b> (Nepal)</li>
+        <li>Enlightenment: <b>Bodh Gaya</b> · Peepal tree</li>
+        <li>First sermon: <b>Sarnath</b> (Deer Park)</li>
+        <li>Death: <b>483 BCE, Kushinagar</b> (UP)</li>
+        <li>1st Council: Rajagriha · <b>Ajatashatru</b></li>
+        <li>2nd Council: Vaishali · <b>Kalashoka</b></li>
+        <li>3rd Council: Pataliputra · <b>Ashoka</b></li>
+        <li>4th Council: Kashmir · <b>Kanishka</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🌸 Mahavira — Jainism</div>
+      <ul>
+        <li>Birth: <b>599 BCE, Kundagrama</b> (Bihar)</li>
+        <li>Enlightenment: <b>Jrimbhikagrama</b> · under Sal tree</li>
+        <li>Death: <b>527 BCE, Pavapuri</b> (Bihar)</li>
+        <li>24th Tirthankara; 1st = <b>Rishabhadeva</b></li>
+        <li>Five vows: 4 (Parshvanatha) + <b>Brahmacharya</b> (Mahavira)</li>
+        <li>Syadvada = <em>relative truth theory</em></li>
+        <li>Digambara vs Svetambara: <em>Pataliputra Council</em></li>
+        <li>Oldest Jain text: <b>Acaranga Sutra</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">👑 Maurya Empire</div>
+      <ul>
+        <li>Founded: <b>322 BCE</b> · Chandragupta Maurya</li>
+        <li>Arthashastra = <b>Kautilya</b> · Indica = <b>Megasthenes</b></li>
+        <li>Chandragupta defeated: <b>Seleucus Nicator (305 BCE)</b></li>
+        <li>Chandragupta converted to: <b>Jainism</b></li>
+        <li>Kalinga War: <b>261 BCE</b></li>
+        <li>Brahmi deciphered by: <b>James Prinsep, 1837</b></li>
+        <li>National Emblem = <b>Sarnath Lion Capital</b></li>
+        <li>Satyameva Jayate = <b>Mundaka Upanishad</b></li>
+        <li>Ashoka's Dhamma ≠ <em>Buddhism</em> (universal moral code)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">✨ Gupta Empire</div>
+      <ul>
+        <li>Founded: <b>Chandragupta I</b> · 320 CE</li>
+        <li>"Napoleon of India" = <b>Samudragupta</b> (V.A. Smith)</li>
+        <li>Allahabad Pillar inscription = poet <b>Harishena</b></li>
+        <li>Fa-hien visited: <b>Chandragupta II</b> (399–414 CE)</li>
+        <li>Nalanda University: <b>Kumaragupta I</b></li>
+        <li>Aryabhatta: π · Earth's revolution · <b>Aryabhatiya</b></li>
+        <li>Iron Pillar (Delhi) = rust-free · <b>high phosphorus</b></li>
+        <li>Hiuen Tsang = <b>Harsha</b> (not Gupta period)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🎨 Art Schools</div>
+      <ul>
+        <li><b>Gandhara</b> — Greco-Roman · Grey schist · First Buddha images</li>
+        <li><b>Mathura</b> — Indigenous · Red sandstone · Smiling Buddha</li>
+        <li><b>Amaravati</b> — Narrative · White marble · Andhra Pradesh</li>
+        <li>Sanchi Stupa = Ashoka + <b>Satavahanas</b> (gateways)</li>
+        <li>Ajanta = paintings · 29 caves · Gupta era</li>
+        <li>Ellora = 34 caves (Hindu + Buddhist + Jain)</li>
+        <li>Chaitya = prayer hall · Vihara = monastery</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🗺️ Post-Mauryan Dynasties</div>
+      <ul>
+        <li>Indo-Greeks: First <b>gold coins</b> · Menander = Milinda</li>
+        <li>Milindapanha = Milinda + monk <b>Nagasena</b></li>
+        <li>Kanishka: <b>Saka Era (78 CE)</b> · Capital Peshawar</li>
+        <li>Kanishka's scholars: Nagarjuna, Asvaghosha, Charaka</li>
+        <li>Rudradaman I: Junagarh inscription (first pure Sanskrit)</li>
+        <li>Shunga: Pushyamitra Shunga · killed last Maurya</li>
+        <li>Sangam: <b>Chera, Chola, Pandya</b> · Tinai = landscape convention</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">📚 Important Texts &amp; Authors</div>
+      <ul>
+        <li><b>Arthashastra</b> — Kautilya</li>
+        <li><b>Indica</b> — Megasthenes</li>
+        <li><b>Buddhacharita</b> — Asvaghosha</li>
+        <li><b>Aryabhatiya</b> — Aryabhatta</li>
+        <li><b>Charakasamhita</b> — Charaka (medicine)</li>
+        <li><b>Harshacharita</b> — Banabhatta</li>
+        <li><b>Milindapanha</b> — Menander + Nagasena</li>
+        <li><b>Tirukkural</b> — Thiruvalluvar</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-footer">Olive Defence Entrance Academy · History HIS01 — Ancient India · CDS · NDA · AFCAT</div>
+</div><!-- /quickref -->
+
+<!-- ═══ QUIZ ═══ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">45</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 45 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset</button>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+  <div class="page-footer">Olive Defence Entrance Academy · History HIS01 — Ancient India · CDS · NDA · AFCAT</div>
+</div><!-- /quiz -->
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+/* ── EASY (15) ─────────────────────────────────────────────────────── */
+{d:'EASY',cat:'IVC',e:'CDS 2022',
+q:'The Great Bath, one of the most remarkable urban structures of the ancient world, was found at which Indus Valley site?',
+opts:['Harappa','Mohenjo-daro','Lothal','Kalibangan'],ans:1,
+rule:'Great Bath = Mohenjo-daro (Sindh, Pakistan)',
+exp:'The Great Bath is located at Mohenjo-daro. It measures roughly 12 m × 7 m × 2.4 m, was lined with baked bricks sealed with bitumen, and was likely used for ritual bathing. Lothal had the world\'s first dockyard; Kalibangan had fire altars; Harappa had large granaries. This is one of the most frequently tested IVC facts.'},
+
+{d:'EASY',cat:'IVC',e:'NDA 2022',
+q:'Who discovered the Harappa site in 1921, marking the beginning of the study of the Indus Valley Civilisation?',
+opts:['R.D. Banerji','John Marshall','Dayaram Sahni','Mortimer Wheeler'],ans:2,
+rule:'Harappa = Dayaram Sahni (1921) · Mohenjo-daro = R.D. Banerji (1922)',
+exp:'Harappa was discovered by Dayaram Sahni in 1921 during excavations supervised by John Marshall of the Archaeological Survey of India. Mohenjo-daro was discovered the following year (1922) by R.D. Banerji. John Marshall published the first comprehensive report on the IVC in 1931. Mortimer Wheeler later conducted more systematic excavations at Harappa in the 1940s.'},
+
+{d:'EASY',cat:'Buddhism',e:'AFCAT 2022',
+q:'Where did Gautama Buddha deliver his first sermon after attaining enlightenment at Bodh Gaya?',
+opts:['Lumbini','Kushinagar','Sarnath','Vaishali'],ans:2,
+rule:'First sermon (Dhammachakkapavattana) = Sarnath (Deer Park), near Varanasi',
+exp:'After attaining enlightenment at Bodh Gaya, the Buddha delivered his first sermon at Sarnath (the Deer Park / Mrigadava) near Varanasi. This event is called "Dhammachakkapavattana" — Turning the Wheel of the Law. He preached to his five former companions. Lumbini was his birthplace; Bodh Gaya was enlightenment; Kushinagar was his death (Mahaparinirvana).'},
+
+{d:'EASY',cat:'IVC',e:'CDS 2021',
+q:'The famous "Dancing Girl" bronze figurine was found at which Indus Valley site?',
+opts:['Harappa','Lothal','Kalibangan','Mohenjo-daro'],ans:3,
+rule:'Dancing Girl (bronze) = Mohenjo-daro · Priest-King (steatite) = Mohenjo-daro',
+exp:'The "Dancing Girl" is a small bronze figurine found at Mohenjo-daro. Made using the lost-wax (cire perdue) technique, it depicts a young girl with bangles on her arms. The steatite "Priest-King" bust was also found at Mohenjo-daro. Lothal had the first dockyard; Kalibangan had fire altars and the first ploughed field.'},
+
+{d:'EASY',cat:'Buddhism',e:'NDA 2021',
+q:'Which of the following is NOT one of the Four Noble Truths of Buddhism?',
+opts:['Life is suffering (Dukkha)','Suffering arises from craving (Tanha)','Salvation comes through Vedic rituals','There is a path to end suffering'],ans:2,
+rule:'Four Noble Truths involve Dukkha, Tanha, Nirodha, Marga — Buddhism rejects Vedic rituals entirely',
+exp:'The Four Noble Truths are: Dukkha (life is suffering), Samudaya (suffering arises from craving/Tanha), Nirodha (suffering can be ended), and Marga (the Eightfold Path leads to its end). Buddhism explicitly rejected the authority of the Vedas and their ritual system as a path to liberation. This is a fundamental difference between Buddhism and the Brahmanical tradition.'},
+
+{d:'EASY',cat:'Maurya',e:'AFCAT 2021',
+q:'The Arthashastra, an ancient treatise on statecraft, was written by which scholar who was also Chandragupta Maurya\'s chief minister?',
+opts:['Megasthenes','Patanjali','Kautilya (Chanakya)','Nagarjuna'],ans:2,
+rule:'Arthashastra = Kautilya (also called Chanakya or Vishnugupta)',
+exp:'Kautilya, also known as Chanakya or Vishnugupta, wrote the Arthashastra — a comprehensive manual on statecraft, military strategy, law, and economic policy. He helped Chandragupta Maurya overthrow the Nanda dynasty and establish the Maurya Empire. Megasthenes was the Greek ambassador sent to Chandragupta\'s court; he wrote Indica. Nagarjuna was a Buddhist philosopher in Kanishka\'s court.'},
+
+{d:'EASY',cat:'Maurya',e:'CDS 2023',
+q:'The Kalinga War fought by Emperor Ashoka took place approximately in:',
+opts:['273 BCE','261 BCE','232 BCE','305 BCE'],ans:1,
+rule:'Kalinga War ≈ 261 BCE · Led to Ashoka\'s conversion to Buddhism and propagation of Dhamma',
+exp:'The Kalinga War was fought around 261 BCE and was the defining event of Ashoka\'s reign. The massive bloodshed (reportedly 100,000 killed and 150,000 deported) deeply affected him. He subsequently adopted Buddhism and propagated the policy of Dhamma — a universal ethical code. His remorse is expressed in the 13th Major Rock Edict.'},
+
+{d:'EASY',cat:'Jainism',e:'NDA 2023',
+q:'Vardhamana Mahavira, the 24th Tirthankara of Jainism, attained liberation (Nirvana) at which place?',
+opts:['Kundagrama','Bodh Gaya','Pavapuri','Jrimbhikagrama'],ans:2,
+rule:'Mahavira\'s Nirvana = Pavapuri (Bihar) · 527 BCE · age 72',
+exp:'Vardhamana Mahavira attained Nirvana (liberation) at Pavapuri in Bihar in 527 BCE at the age of 72. Pavapuri is today a major Jain pilgrimage site. Kundagrama (near Vaishali) was his birthplace. Jrimbhikagrama was where he attained Kaivalya (enlightenment) under a Sal tree. Bodh Gaya was where Gautama Buddha attained enlightenment — a common confusion in exams.'},
+
+{d:'EASY',cat:'Gupta',e:'AFCAT 2023',
+q:'Which Chinese Buddhist pilgrim visited India during the reign of Chandragupta II (Vikramaditya)?',
+opts:['Hiuen Tsang','I-tsing','Fa-hien (Faxian)','Wang Xuance'],ans:2,
+rule:'Fa-hien (399–414 CE) visited under Chandragupta II · Hiuen Tsang visited under Harsha (7th CE)',
+exp:'Fa-hien (Faxian) visited India from 399 to 414 CE during the reign of Chandragupta II. He came to study Buddhism and collect scriptures. His account praises the prosperity and order of the Gupta Empire. Hiuen Tsang (Xuanzang) visited India much later (629–645 CE) under Emperor Harsha — after the Gupta period had ended.'},
+
+{d:'EASY',cat:'Maurya',e:'CDS 2022',
+q:'The Brahmi script used in Ashoka\'s inscriptions was first successfully deciphered by:',
+opts:['William Jones','Max Müller','James Prinsep','Alexander Cunningham'],ans:2,
+rule:'Brahmi script deciphered by James Prinsep in 1837',
+exp:'James Prinsep, a British officer working at the Calcutta Mint, successfully deciphered the Brahmi script in 1837. This breakthrough allowed scholars to read Ashoka\'s edicts for the first time in centuries. William Jones founded the Asiatic Society of Bengal; Max Müller translated the Vedas; Alexander Cunningham was the first Director General of the Archaeological Survey of India.'},
+
+{d:'EASY',cat:'Buddhism',e:'NDA 2022',
+q:'The first Buddhist Council was held at Rajagriha under the patronage of which king?',
+opts:['Ashoka','Kanishka','Ajatashatru','Bimbisara'],ans:2,
+rule:'1st Buddhist Council: Rajagriha · 483 BCE · Patron: Ajatashatru · Presided by Mahakassapa',
+exp:'The first Buddhist Council was held at Rajagriha (modern Rajgir, Bihar) in 483 BCE shortly after Buddha\'s death, under the patronage of King Ajatashatru. It was presided over by Mahakassapa. The council compiled the Vinaya Pitaka and Sutta Pitaka. Ashoka patronised the 3rd Council; Kanishka patronised the 4th Council.'},
+
+{d:'EASY',cat:'Gupta',e:'AFCAT 2022',
+q:'Nalanda University, the great ancient centre of Buddhist learning, was founded by which Gupta ruler?',
+opts:['Chandragupta I','Samudragupta','Chandragupta II','Kumaragupta I'],ans:3,
+rule:'Nalanda University founded by Kumaragupta I (415–455 CE)',
+exp:'Nalanda University was founded by Kumaragupta I (415–455 CE) of the Gupta dynasty. It became one of the world\'s first residential universities and a global centre of learning for over 700 years, attracting students from China, Korea, Japan, Tibet, and Central Asia. The university was destroyed by Bakhtiyar Khilji in 1193 CE.'},
+
+{d:'EASY',cat:'IVC',e:'CDS 2023',
+q:'The world\'s first known dockyard, evidence of maritime trade in the Indus Valley Civilisation, was found at:',
+opts:['Harappa','Mohenjo-daro','Dholavira','Lothal'],ans:3,
+rule:'Dockyard = Lothal (Gujarat) — world\'s earliest known dockyard (~2400 BCE)',
+exp:'The world\'s earliest known dockyard was discovered at Lothal in Gujarat. This trapezoidal dockyard was connected to an estuary of the Sabarmati River and could accommodate seagoing ships. It provides evidence of IVC maritime trade with the Persian Gulf and Mesopotamia. Dholavira is famous for its elaborate water conservation system, but does not have a dockyard.'},
+
+{d:'EASY',cat:'Jainism',e:'NDA 2023',
+q:'The 23rd Tirthankara Parshvanatha prescribed four vows. Which vow did Mahavira add to make it five?',
+opts:['Ahimsa (non-violence)','Satya (truth)','Brahmacharya (celibacy)','Aparigraha (non-possession)'],ans:2,
+rule:'Mahavira added Brahmacharya as the 5th vow to the 4 vows of Parshvanatha',
+exp:'Parshvanatha, the 23rd Tirthankara, prescribed four vows: Ahimsa, Satya, Asteya, and Aparigraha. Mahavira, the 24th Tirthankara, added a fifth — Brahmacharya (celibacy). These five together are called the Pancha Mahavratas. This difference between Parshvanatha\'s four vows and Mahavira\'s five is a frequently tested fact.'},
+
+{d:'EASY',cat:'Post-Mauryan',e:'AFCAT 2023',
+q:'The Indo-Greek king Menander (Milinda) is famous for his philosophical dialogue with which Buddhist monk, recorded in the Milindapanha?',
+opts:['Upagupta','Nagarjuna','Nagasena','Moggaliputta Tissa'],ans:2,
+rule:'Milindapanha = dialogue between Menander (Milinda) and Buddhist monk Nagasena',
+exp:'The Milindapanha records the philosophical dialogue between the Indo-Greek king Menander I (Milinda) and the Buddhist monk Nagasena. Menander asks penetrating questions about Buddhist philosophy, and Nagasena answers with brilliant analogies. This reportedly led to Menander\'s conversion to Buddhism. Moggaliputta Tissa presided over the 3rd Buddhist Council under Ashoka.'},
+
+/* ── MEDIUM (18) ────────────────────────────────────────────────────── */
+{d:'MEDIUM',cat:'IVC',e:'CDS 2022',
+q:'Which of the following sites is the LARGEST known Indus Valley Civilisation site in the world, surpassing even Mohenjo-daro in area?',
+opts:['Harappa','Lothal','Rakhigarhi','Dholavira'],ans:2,
+rule:'Rakhigarhi (Haryana, India) = largest known IVC site globally',
+exp:'Rakhigarhi in Haryana, India is the largest known Indus Valley Civilisation site in the world, spread over approximately 350 hectares — larger than Mohenjo-daro. Excavations have revealed multiple mounds, streets, drains, fire altars, and a large cemetery. A 2018 DNA study of a skeleton found here attracted significant attention regarding theories of Aryan migration.'},
+
+{d:'MEDIUM',cat:'Jainism',e:'NDA 2022',
+q:'The concept of "Syadvada" (also called Anekantavada) is a core philosophical doctrine of Jainism. What does it mean?',
+opts:['The soul is eternal and indestructible','Truth is relative — reality can be perceived differently from different viewpoints','Ahimsa is the highest virtue and non-violence must be absolute','The universe is governed by an all-powerful Creator God'],ans:1,
+rule:'Syadvada / Anekantavada = Jain doctrine of relative/many-sided truth — "perhaps it is so"',
+exp:'Syadvada (or Anekantavada — "doctrine of many-sidedness") holds that truth and reality are perceived differently from different viewpoints. No single perspective is complete — "syat" means "perhaps" or "in some respect." This doctrine distinguishes Jainism from the more absolutist philosophies of Buddhism and Vedanta. The seven modes of predication (Saptabhangi) systematise this logic.'},
+
+{d:'MEDIUM',cat:'Buddhism',e:'AFCAT 2022',
+q:'Which Buddhist Council led to the formal division of Buddhism into the Hinayana and Mahayana sects?',
+opts:['1st Council at Rajagriha','2nd Council at Vaishali','3rd Council at Pataliputra','4th Council at Kashmir'],ans:3,
+rule:'4th Buddhist Council (Kashmir) under Kanishka = formal Hinayana vs Mahayana split',
+exp:'The 4th Buddhist Council was held at Kundalvana in Kashmir during the reign of Kanishka (1st century CE), presided over by Vasumitra. This council resulted in the formal division of Buddhism into Hinayana (Theravada — "Lesser Vehicle," focusing on individual salvation) and Mahayana ("Greater Vehicle," emphasising universal salvation through Bodhisattvas).'},
+
+{d:'MEDIUM',cat:'Post-Mauryan',e:'CDS 2023',
+q:'The Saka Era (78 CE), which forms the basis of India\'s National Calendar, is generally attributed to which ruler?',
+opts:['Chandragupta Maurya','Ashoka','Kanishka of the Kushana dynasty','Vikramaditya of Ujjain'],ans:2,
+rule:'Saka Era (78 CE) = attributed to Kanishka · used in India\'s National Calendar since 1957',
+exp:'The Saka Era beginning in 78 CE is generally attributed to Kanishka, the great Kushana king. India\'s National Calendar (adopted in 1957) is based on the Saka Era — it begins with Chaitra 1 of the Saka Era (approximately March 22 in the Gregorian calendar). Note that the Vikrama Era (57 BCE) is different from the Saka Era.'},
+
+{d:'MEDIUM',cat:'Maurya',e:'NDA 2023',
+q:'Which Mahajanapada is widely regarded as the world\'s first known republic (Gana-sangha)?',
+opts:['Magadha','Koshala','Avanti','Vajji (Vaishali)'],ans:3,
+rule:'Vajji (Vaishali) confederation = world\'s first known republic · Lichhavi clan most prominent',
+exp:'The Vajji confederation, with its capital at Vaishali, is widely cited as the world\'s first known republic (Gana-sangha). It was a confederacy of several clans, the most prominent being the Lichchhavis. Collective decisions were made through an assembly (Santhagara). Both Mahavira (a Lichhavi by clan) and Buddha were connected to the Vaishali region.'},
+
+{d:'MEDIUM',cat:'Gupta',e:'AFCAT 2023',
+q:'The Allahabad Pillar Inscription, the primary source for Samudragupta\'s military conquests, was composed by which court poet?',
+opts:['Kalidasa','Harishena','Banabhatta','Vishakhadatta'],ans:1,
+rule:'Allahabad Pillar Inscription = composed by Harishena, court poet of Samudragupta',
+exp:'The Allahabad (Prayagraj) Pillar Inscription was composed in Sanskrit by Harishena, the court poet of Samudragupta. It describes Samudragupta\'s extensive military campaigns. This inscription is why V.A. Smith called Samudragupta the "Napoleon of India." Banabhatta wrote Harshacharita; Kalidasa was in Chandragupta II\'s court.'},
+
+{d:'MEDIUM',cat:'Post-Mauryan',e:'CDS 2022',
+q:'The Gandhara School of Art is distinguished from the Mathura School primarily by:',
+opts:['Use of red sandstone and purely indigenous Indian artistic elements','Strong Greco-Roman influence with wavy hair and toga-like drapery on Buddha figures','Exclusive focus on Jain Tirthankaras carved in white marble','Highly abstract geometric designs with no human representation'],ans:1,
+rule:'Gandhara = Greco-Roman influence (wavy hair, toga) in grey schist · Mathura = purely indigenous in red sandstone',
+exp:'The Gandhara School (NW India, 1st–5th century CE) shows strong Hellenistic influence due to Alexander\'s invasion and subsequent Indo-Greek kingdoms. Buddha images have wavy Greco-Roman hair, toga-like robes, carved in grey/bluish schist. The Mathura School (UP) was entirely indigenous — Buddha images in red Sikri sandstone with a distinctly Indian smiling face. Amaravati (Andhra Pradesh) used white marble and a narrative style.'},
+
+{d:'MEDIUM',cat:'Maurya',e:'NDA 2022',
+q:'Chandragupta Maurya defeated which Greek general and gained control of vast northwestern territories in 305 BCE?',
+opts:['Alexander the Great','Antiochus I','Seleucus Nicator','Ptolemy I'],ans:2,
+rule:'Chandragupta defeated Seleucus Nicator (305 BCE) · received territories · sent Megasthenes as ambassador',
+exp:'After Alexander\'s death (323 BCE), Seleucus Nicator inherited the eastern portion of Alexander\'s empire. Chandragupta Maurya defeated Seleucus in 305 BCE. The peace treaty gave Chandragupta territories of eastern Afghanistan, Baluchistan, and parts of Persia. In exchange, Chandragupta gave Seleucus 500 war elephants. Seleucus also sent Megasthenes to Chandragupta\'s court, who wrote the Indica.'},
+
+{d:'MEDIUM',cat:'Post-Mauryan',e:'AFCAT 2022',
+q:'The Junagarh (Girnar) Rock Inscription is significant because it is:',
+opts:['The longest inscription of Emperor Ashoka','The first long inscription written in chaste classical Sanskrit','The earliest known inscription in the Brahmi script','An inscription by Chandragupta Maurya about his military victories'],ans:1,
+rule:'Junagarh/Girnar inscription = Rudradaman I (Shaka) · first long inscription in chaste classical Sanskrit (2nd CE)',
+exp:'The Junagarh (Girnar) inscription in Gujarat was composed during the reign of Rudradaman I, the greatest ruler of the Western Kshatrapas (Shakas), in the 2nd century CE. It is historically significant as the first long inscription in chaste classical Sanskrit. It describes Rudradaman\'s military conquests and the repair of the Sudarshana Lake originally built during Chandragupta Maurya\'s time.'},
+
+{d:'MEDIUM',cat:'Buddhism',e:'CDS 2023',
+q:'What is a "Stupa" in Buddhist architecture, and what are its key structural components?',
+opts:['A prayer hall with an apsidal arch; key parts are the nave and apse','A monastery for resident monks; divided into cells around a central courtyard','A hemispherical dome built over the relics of the Buddha or revered monks','A carved ornamental gateway marking the entrance to a sacred enclosure'],ans:2,
+rule:'Stupa = hemispherical relic dome · Parts: Anda, Harmika, Chattra, Vedika, Torana',
+exp:'A Stupa is a hemispherical dome (Anda) built over the relics of the Buddha or revered Buddhist monks. Key structural components: Anda (the dome), Harmika (a railed balcony on top), Chattra (umbrella-shaped spire), Vedika (surrounding railing), and Torana (ornamental gateways). A Chaitya is a prayer hall with an apsidal arch. A Vihara is a monastery.'},
+
+{d:'MEDIUM',cat:'Maurya',e:'NDA 2023',
+q:'Ashoka\'s "Dhamma" was NOT simply identical to Buddhism. Which best describes the key distinction?',
+opts:['Dhamma was exclusively for Buddhist monks','Dhamma was a universal ethical code broader than Buddhism — emphasising tolerance, non-violence and welfare for all','Dhamma required all subjects to convert to Buddhism','Dhamma was Ashoka\'s personal philosophy rejecting all organised religion'],ans:1,
+rule:'Ashoka\'s Dhamma = universal moral code (tolerance, ahimsa, welfare) — broader than specifically Buddhist doctrine',
+exp:'Ashoka\'s Dhamma was not identical to Buddhism. It was a set of universal ethical principles applicable to all — Brahmins, Ajivikas, Jains, and Buddhists alike. It included non-violence, respect for parents and teachers, tolerance of all religious sects, welfare of animals and humans, generosity, and truthfulness. Ashoka never forced conversion to Buddhism.'},
+
+{d:'MEDIUM',cat:'Post-Mauryan',e:'AFCAT 2023',
+q:'The Sanchi Stupa was originally built by Ashoka in the 3rd century BCE. Who later added the famous elaborately carved gateways (Toranas)?',
+opts:['Gupta dynasty','Kushana dynasty','Satavahana dynasty','Pallava dynasty'],ans:2,
+rule:'Sanchi Stupa: Ashoka (built the dome) + Satavahanas (added the 4 ornate Toranas/gateways)',
+exp:'The Great Stupa at Sanchi (Madhya Pradesh) was originally built by Emperor Ashoka in the 3rd century BCE. The four elaborately carved gateways (Toranas) were added by the Satavahana dynasty (1st century BCE–1st century CE). The toranas depict scenes from the Jataka tales and the life of the Buddha in vivid narrative relief. Sanchi is a UNESCO World Heritage Site.'},
+
+{d:'MEDIUM',cat:'Vedic',e:'CDS 2022',
+q:'The Rigveda mentions two important assemblies — Sabha and Samiti. Which correctly distinguishes them?',
+opts:['Sabha was a judicial court for settling disputes; Samiti was a war council','Sabha was a smaller, select assembly; Samiti was a larger general tribal gathering of all adult males','Sabha was exclusively for Brahmin priests; Samiti was only for Kshatriya warriors','Both were identical bodies performing the same functions under different names'],ans:1,
+rule:'Sabha = smaller select body · Samiti = larger general tribal assembly of all adult males',
+exp:'In the Early Vedic period, the Sabha was a smaller, select assembly — perhaps of elders or village notables. The Samiti was a larger general assembly of all adult males of the tribe that elected the Rajan (king). Both were important checks on royal power. Their existence is cited as evidence of proto-democratic traditions in ancient India.'},
+
+{d:'MEDIUM',cat:'Gupta',e:'NDA 2022',
+q:'The Iron Pillar of Delhi (Mehrauli), dating to the Gupta period, is famous for which remarkable property?',
+opts:['It is the tallest iron pillar ever constructed in ancient Asia','It was erected by Ashoka as the largest of his victory pillars','It has remained virtually rust-free for over 1,600 years due to its unique metallurgical composition','It bears the most complete genealogy of the Gupta dynasty'],ans:2,
+rule:'Iron Pillar = rust-free for 1,600+ years due to high phosphorus content in the iron alloy',
+exp:'The Iron Pillar of Delhi (Mehrauli), erected during the reign of Chandragupta II (approx. 400 CE), is world-famous for its remarkable resistance to corrosion despite over 1,600 years of exposure. Modern metallurgical analysis found that its high phosphorus content (over 1%) creates a thin protective layer of iron hydrogen phosphate on the surface, preventing rust. It bears a Sanskrit inscription praising King Chandra, identified with Chandragupta II.'},
+
+{d:'MEDIUM',cat:'Vedic',e:'AFCAT 2022',
+q:'What is the correct chronological order of the Vedic literary tradition from earliest to most philosophically advanced?',
+opts:['Vedas → Upanishads → Aranyakas → Brahmanas','Upanishads → Brahmanas → Aranyakas → Vedas','Vedas → Brahmanas → Aranyakas → Upanishads','Brahmanas → Vedas → Upanishads → Aranyakas'],ans:2,
+rule:'Vedas → Brahmanas → Aranyakas → Upanishads (chronological and philosophical progression)',
+exp:'The correct order is: Vedas (hymns, earliest, ~1500 BCE) → Brahmanas (prose texts explaining Vedic rituals, ~1000 BCE) → Aranyakas ("forest texts," transitional, ~800 BCE) → Upanishads (philosophical conclusions, "Vedanta" — end of the Vedas, ~700–200 BCE). This progression shows a movement from polytheistic ritual religion toward philosophical inquiry into the nature of Brahman and Atman.'},
+
+{d:'MEDIUM',cat:'Post-Mauryan',e:'CDS 2023',
+q:'Kanishka I of the Kushana dynasty is known for patronising which form of Buddhism, and which scholars at his court?',
+opts:['Theravada Buddhism · scholars: Ashvaghosa, Nagarjuna, Charaka, Vasumitra','Hinayana Buddhism · scholars: Nagasena, Moggaliputta Tissa, Upagupta','Mahayana Buddhism · scholars: Asvaghosha, Nagarjuna, Charaka, Vasumitra','Vajrayana Buddhism · scholars: Padmasambhava, Milarepa, Atisha'],ans:2,
+rule:'Kanishka = patron of Mahayana Buddhism · scholars: Asvaghosha, Nagarjuna, Charaka, Vasumitra',
+exp:'Kanishka patronised Mahayana Buddhism and convened the 4th Buddhist Council in Kashmir. His court had: Asvaghosha (wrote Buddhacharita — first Sanskrit epic), Nagarjuna (Buddhist philosopher, Madhyamika school), Charaka (physician, wrote Charakasamhita), and Vasumitra (presided over the 4th Buddhist Council). Kanishka also had the Gandhara School of Art flourish under his patronage.'},
+
+{d:'MEDIUM',cat:'Gupta',e:'NDA 2023',
+q:'Samudragupta\'s epithet "Napoleon of India" was given by which historian, and on what primary basis?',
+opts:['R.C. Majumdar · for his administrative reforms','A.L. Basham · for his cultural contributions to the Golden Age','V.A. Smith · for his extensive military conquests described in the Allahabad Pillar Inscription','D.D. Kosambi · for defeating the Kushanas and Shakas'],ans:2,
+rule:'"Napoleon of India" = V.A. Smith · based on Samudragupta\'s military conquests in the Allahabad Inscription',
+exp:'The epithet "Napoleon of India" for Samudragupta was given by historian V.A. Smith, primarily on the basis of the military conquests described in the Allahabad Pillar Inscription (composed by his poet Harishena). The inscription describes a vast "digvijaya" — defeating kings in north India, accepting tribute from southern kings. Like Napoleon, Samudragupta was also accomplished in the arts (he was a poet and musician — "Kaviraja").'},
+
+/* ── HARD (12) ──────────────────────────────────────────────────────── */
+{d:'HARD',cat:'IVC',e:'CDS 2024',
+q:'Consider the following statements about the Indus Valley Civilisation:\n1. IVC people were the world\'s first cultivators of cotton.\n2. Chanhudaro is the only major IVC site without a citadel.\n3. IVC people had knowledge of iron metallurgy.\nWhich statements are correct?',
+opts:['1 and 2 only','2 and 3 only','1 and 3 only','All three'],ans:0,
+rule:'Statements 1 & 2 correct · IVC was Bronze Age — NO iron knowledge (iron came in Later Vedic period)',
+exp:'Statement 1 is CORRECT — IVC people were the world\'s first known cultivators of cotton (~3000 BCE). Statement 2 is CORRECT — Chanhudaro is the only major IVC city without a separate citadel. Statement 3 is WRONG — The IVC was a Bronze Age civilisation. They used copper and bronze but had no knowledge of iron. Iron technology came to India during the Later Vedic period (~1000–700 BCE).'},
+
+{d:'HARD',cat:'Buddhism',e:'NDA 2024',
+q:'Match each Buddhist Council with its CORRECT patron king:\nA. 1st Council (Rajagriha) — Ajatashatru\nB. 2nd Council (Vaishali) — Ashoka\nC. 3rd Council (Pataliputra) — Kanishka\nD. 4th Council (Kashmir) — Vasumitra (presided)',
+opts:['A and D are correctly matched; B and C are wrong','All four are correctly matched','Only B and C are wrong; A and D correct','Only A is correctly matched; B, C and D are all wrong'],ans:0,
+rule:'2nd Council patron = Kalashoka (NOT Ashoka) · 3rd Council patron = Ashoka (NOT Kanishka) · D is about the president, not patron',
+exp:'A is CORRECT — 1st Council at Rajagriha, patron Ajatashatru. B is WRONG — the 2nd Council at Vaishali (383 BCE) was patronised by King Kalashoka, NOT Ashoka. C is WRONG — the 3rd Council at Pataliputra (250 BCE) was patronised by Ashoka, NOT Kanishka. D is about Vasumitra who presided (not patron) — Kanishka was the patron of the 4th Council. So only A is correctly matched.'},
+
+{d:'HARD',cat:'Maurya',e:'AFCAT 2024',
+q:'Ashoka\'s inscriptions were written in multiple languages and scripts. Which of the following correctly describes the range of scripts used?',
+opts:['Only Brahmi was used, uniformly across the entire empire','Brahmi (most widely used), Kharosthi (northwest), Aramaic and Greek (Afghanistan/Bactria)','Only Prakrit language was used but in three scripts: Brahmi, Kharosthi, and Devanagari','Sanskrit was the primary language with Brahmi script used everywhere'],ans:1,
+rule:'Ashoka\'s scripts: Brahmi (most common) · Kharosthi (NW) · Aramaic and Greek (Afghanistan)',
+exp:'Ashoka\'s inscriptions used multiple scripts reflecting the linguistic diversity of his vast empire. Brahmi (written left to right) was used in most of the empire. Kharosthi (written right to left) was used in the northwest. Greek and Aramaic scripts were used in the Kandahar inscriptions in Afghanistan. The language was mostly Prakrit (local dialects), not Sanskrit. James Prinsep deciphered Brahmi in 1837.'},
+
+{d:'HARD',cat:'Vedic',e:'CDS 2024',
+q:'Which of the following pairs is INCORRECTLY matched (Ancient Vedic text/work — its description)?',
+opts:['Shatapatha Brahmana — A Brahmana text explaining Vedic rituals in prose','Acaranga Sutra — The oldest Upanishad dealing with the concept of Brahman and Atman','Brihadaranyaka Upanishad — One of the oldest and largest Upanishads','Tolkappiyam — The oldest known grammar of the Tamil language'],ans:1,
+rule:'Acaranga Sutra is the oldest Jain text (describes Mahavira\'s life) — NOT an Upanishad',
+exp:'The Acaranga Sutra is the oldest known text of Jainism — it is one of the 12 principal Angas of Jain scripture and describes the life and teachings of Mahavira. It has nothing to do with the Vedic tradition or Upanishads. The oldest Upanishad dealing with Brahman and Atman concepts is the Brihadaranyaka Upanishad (option C — correctly described). The Shatapatha Brahmana and Tolkappiyam (oldest Tamil grammar) are also correctly described.'},
+
+{d:'HARD',cat:'Gupta',e:'NDA 2024',
+q:'Which of the following pairs is INCORRECTLY matched (Ancient literary work — its author)?',
+opts:['Buddhacharita — Asvaghosha','Mudrarakshasa — Vishakhadatta','Harshacharita — Kalidasa','Aryabhatiya — Aryabhatta'],ans:2,
+rule:'Harshacharita was written by Banabhatta (court poet of Harsha) — NOT Kalidasa',
+exp:'Harshacharita (biography of Emperor Harsha) was written by Banabhatta, the court poet of Harsha — not Kalidasa. Kalidasa was in the court of Chandragupta II of the Gupta dynasty (several centuries earlier). All other pairs are correct: Buddhacharita was written by Asvaghosha; Mudrarakshasa (a play about Chandragupta Maurya\'s rise) was written by Vishakhadatta; Aryabhatiya was written by Aryabhatta.'},
+
+{d:'HARD',cat:'IVC',e:'AFCAT 2024',
+q:'Consider the following statements about Indus Valley Civilisation sites:\n1. Lothal is located in Gujarat and had the world\'s first known dockyard.\n2. Dholavira, also in Gujarat, is known for its water conservation system and the largest known IVC inscription board.\n3. Sutkagendor in Baluchistan is the northernmost IVC site.\nWhich are correct?',
+opts:['1 and 2 only','1 and 3 only','2 and 3 only','All three'],ans:0,
+rule:'1 & 2 correct · Sutkagendor is the WESTERNMOST (not northernmost) IVC site · Manda (J&K) is northernmost',
+exp:'Statement 1 is CORRECT — Lothal (Gujarat) had the world\'s first known dockyard (~2400 BCE). Statement 2 is CORRECT — Dholavira (Gujarat) is famous for its remarkable water conservation system and the largest IVC inscription board. Statement 3 is WRONG — Sutkagendor (Baluchistan) is the WESTERNMOST IVC site. The NORTHERNMOST is Manda in Jammu &amp; Kashmir.'},
+
+{d:'HARD',cat:'Post-Mauryan',e:'CDS 2024',
+q:'The Shunga dynasty replaced the Mauryas in 185 BCE. Which of the following correctly describes the founder of the Shunga dynasty and the circumstances?',
+opts:['Vasudeva Shunga, a Brahmin minister who overthrew the last Maurya in battle','Pushyamitra Shunga, the Commander-in-Chief (Senapati) who killed the last Maurya king Brihadratha during a military parade','Agnimitra Shunga who defeated Ashoka\'s successor in the Kalinga War','Devabhuti, who was the last Maurya ruler and also founded the Shunga dynasty'],ans:1,
+rule:'Shunga founder: Pushyamitra Shunga · killed last Maurya king Brihadratha during a military parade review',
+exp:'The Shunga dynasty was founded by Pushyamitra Shunga, who was the Commander-in-Chief of the Maurya army. He killed the last Maurya king Brihadratha during a military parade/review, around 185 BCE. Pushyamitra was a Brahmin and his reign saw a revival of Brahmanical traditions — he performed the Ashvamedha (horse sacrifice) twice, as mentioned in Kalidasa\'s Malavikagnimitra.'},
+
+{d:'HARD',cat:'Buddhism',e:'NDA 2024',
+q:'Consider the following pairs (Buddhist text — its significance):\n1. Tripitaka — The three "baskets" of Buddhist scripture: Sutta, Vinaya, Abhidhamma\n2. Jataka Tales — Stories of the Buddha\'s past lives, part of the Khuddaka Nikaya\n3. Milindapanha — A commentary on the Vedas reconciling them with Buddhist philosophy\nWhich pairs are correctly matched?',
+opts:['1 and 2 only','2 and 3 only','1 and 3 only','All three'],ans:0,
+rule:'1 & 2 correct · Milindapanha = dialogue between King Milinda (Menander) and monk Nagasena — NOT a Vedic commentary',
+exp:'Pair 1 is CORRECT — The Tripitaka ("Three Baskets") is the canonical scripture of Theravada Buddhism: Sutta Pitaka, Vinaya Pitaka, and Abhidhamma Pitaka. Pair 2 is CORRECT — The Jataka Tales are stories of the Buddha\'s previous lives (as a Bodhisattva), forming part of the Khuddaka Nikaya. Pair 3 is WRONG — The Milindapanha records the philosophical dialogue between Menander (Milinda) and the Buddhist monk Nagasena. It has nothing to do with the Vedas.'},
+
+{d:'HARD',cat:'Gupta',e:'AFCAT 2024',
+q:'Which of the following statements about Aryabhatta and his contributions is INCORRECT?',
+opts:['He calculated the value of pi (π) as approximately 3.1416','He stated that the Earth rotates on its axis and revolves around the Sun','He wrote the mathematical-astronomical work called Aryabhatiya','He invented the numeral zero and introduced it into the decimal place-value system as a symbol'],ans:3,
+rule:'Aryabhatta used the concept of zero but did NOT invent the numeral zero as a symbol — he used a positional system without a separate zero symbol',
+exp:'Aryabhatta (born 476 CE, Gupta period) made extraordinary contributions: he calculated π as 3.1416, stated the Earth rotates on its axis, computed the solar year, and wrote the Aryabhatiya. However, Option D is incorrect — Aryabhatta did NOT "invent" the numeral zero as a written symbol. He used a positional number system that implied the concept of zero. Brahmagupta (7th CE) was the first to formally define zero\'s mathematical properties.'},
+
+{d:'HARD',cat:'Vedic',e:'CDS 2024',
+q:'The Upanishads represent the philosophical culmination of Vedic thought. Which of the following correctly describes their philosophical content?',
+opts:['They exclusively contain hymns and prayers to Vedic gods like Indra, Agni, and Varuna','They provide detailed instructions for performing elaborate Vedic sacrifices like the Ashvamedha','They explore the relationship between Brahman (universal soul/reality) and Atman (individual soul), karma, and moksha','They contain the earliest known Indian law codes including Manusmriti and Yajnavalkya Smriti'],ans:2,
+rule:'Upanishads = philosophical texts on Brahman, Atman, Karma, Moksha — "Vedanta" (end/culmination of the Vedas)',
+exp:'The Upanishads (108 traditionally, 13 considered principal) are the philosophical culmination of Vedic thought — called "Vedanta." Their core content: the nature of Brahman (ultimate universal reality), the relationship between Brahman and Atman (individual soul), the doctrine of Karma, and Moksha (liberation through realisation of the unity of Atman and Brahman). Hymns to Vedic gods are in the Rigveda. Sacrifice instructions are in Brahmanas. Law codes (Smritis) are a separate category.'},
+
+{d:'HARD',cat:'Post-Mauryan',e:'NDA 2024',
+q:'Consider the following about the Sangam Age of South India:\n1. The three Tamil kingdoms were Cheras (Kerala coast), Cholas (Kaveri delta), and Pandyas (Madurai).\n2. Tolkappiyam is the oldest known Tamil grammar, predating even the Sangam literature.\n3. The Sangam poem categories of Akam (love) and Puram (heroism) were associated with specific landscape settings called Tinai.\nWhich are correct?',
+opts:['1 only','1 and 2 only','1 and 3 only','All three'],ans:3,
+rule:'All three correct: three kingdoms, Tolkappiyam (oldest Tamil grammar), Akam/Puram with Tinai landscape convention',
+exp:'All three statements are correct. Statement 1 — The three main Tamil kingdoms were the Cheras (western coast, Kerala), Cholas (Kaveri river delta), and Pandyas (Madurai). Statement 2 — Tolkappiyam by Tolkappiyar is the oldest known Tamil grammar and foundational work of Tamil literary tradition. Statement 3 — Sangam poetry used the Tinai (landscape/ecological) convention: five landscape settings each associated with specific themes of love (Akam) or heroism (Puram).'},
+
+{d:'HARD',cat:'Maurya',e:'AFCAT 2024',
+q:'Which of the following is NOT an accurate description of Mauryan administration?',
+opts:['The empire was divided into provinces each headed by a prince of the royal family called Kumara','Ashoka\'s officers called Rajukas were responsible for revenue administration and judicial functions in rural areas','The Mauryan state maintained a large spy network (Gudhapurushas) for gathering intelligence','The Arthashastra recommends a fully democratic system where all administrative decisions were made by elected village assemblies'],ans:3,
+rule:'Arthashastra describes a strong centralised monarchy — NOT a democratic system.',
+exp:'The Arthashastra by Kautilya describes a highly centralised monarchical system. Option A is correct — provinces were headed by royal princes (Kumaras). Option B is correct — Rajukas were important Mauryan officials for revenue and justice. Option C is correct — the Arthashastra has extensive sections on espionage. Only D is wrong — the Arthashastra advocates monarchy, not democracy. Village assemblies existed but did not make all administrative decisions.'}
+];
+
+/* ── ENGINE ─────────────────────────────────────────────────────────── */
+const TOTAL = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS = ['A','B','C','D'];
+const CATS = ['IVC','Vedic','Buddhism','Jainism','Maurya','Post-Mauryan','Gupta'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  let lastDiff = '';
+  QS.forEach((q,i)=>{
+    if(q.d !== lastDiff){
+      const div = document.createElement('div');
+      div.className = 'q-section';
+      const labels = {EASY:'🟢 Easy Questions (1–15)',MEDIUM:'🟡 Medium Questions (16–33)',HARD:'🔴 Hard Questions (34–45)'};
+      div.textContent = labels[q.d];
+      area.appendChild(div);
+      lastDiff = q.d;
+    }
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const card = document.createElement('div');
+    card.className='q-card'; card.id=`qc${i}`;
+    card.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-cat">${q.cat}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">History · Ancient India</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(card);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{b.classList.remove('sel');if(j===oi)b.classList.add('sel');});
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--terra)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  const catScores={};
+  CATS.forEach(c=>{catScores[c]={c:0,t:0}});
+  QS.forEach((q,i)=>{
+    catScores[q.cat].t++;
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null&&answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;catScores[q.cat].c++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp,catScores);
+}
+
+function catColor(pct){
+  if(pct>=80) return 'var(--green)';
+  if(pct>=50) return 'var(--amber)';
+  return 'var(--red)';
+}
+
+function showResults(cor,wrg,skp,catScores){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=88){grade='Outstanding';msg='Excellent! Your Ancient India preparation is exam-ready.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Good effort. Re-read the theory and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and retry."}
+  const catRows=CATS.map(c=>{
+    const s=catScores[c];
+    if(s.t===0) return '';
+    const p=Math.round(s.c/s.t*100);
+    const col=catColor(p);
+    return `<div class="cat-row"><span class="cat-name">${c}</span><div class="cat-bar-wrap"><div class="cat-bar" style="width:${p}%;background:${col}"></div></div><span class="cat-score" style="color:${col}">${s.c}/${s.t}</span></div>`;
+  }).join('');
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div class="cat-breakdown">
+      <div class="cat-title">Performance by Topic</div>
+      ${catRows}
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  bd.classList.toggle('open',!bd.classList.contains('open'));
+  hd.classList.toggle('open',!hd.classList.contains('open'));
+}
+
+build();
+</script>
+</body>
+</html>

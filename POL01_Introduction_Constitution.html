@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POL01 · Introduction to the Constitution | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F4F1EC;--bg2:#EAE5DC;--bg3:#DAD3C8;
+  --white:#FFFFFF;--ink:#1A1410;--ink2:#2A2018;
+  --muted:#6A5C48;--dim:#9A8C78;--border:#C8BAA8;
+  --teal:#7A3A00;--tealLt:#964800;--tealPale:#FDF2E6;
+  --amber:#5A3A00;--amberLt:#784E00;--amberPale:#FDF7EC;
+  --green:#1A5C30;--greenLt:#228040;--greenPale:#EAF5EC;
+  --red:#8B1A1A;--redLt:#AA2222;--redPale:#FCEAEA;
+  --blue:#1A3060;--blueLt:#203878;--bluePale:#EAF0FA;
+  --purple:#4A1A80;--purplePale:#F0EAFA;
+  --saffron:#C05A00;--saffPale:#FEF3E4;
+  --navy:#0A1F5C;--navyPale:#E8EDF8;
+  --radius:12px;--shadow:0 2px 12px rgba(26,20,16,.09);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,#0A1F5C 0%,#1A3A8A 55%,#2A4AAA 100%);
+  margin:0 -16px;padding:30px 28px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 15%,rgba(255,255,255,.07) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'🇮🇳';position:absolute;right:24px;bottom:20px;font-size:52px;opacity:.12;line-height:1}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:20px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.2vw,32px);font-weight:700;color:#fff;line-height:1.22;margin-bottom:10px}
+.hero-title span{color:#FFD080;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.7;max-width:540px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 13px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,208,128,.18);color:#FFD080}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+.chip-o{background:rgba(255,140,60,.16);color:#FFAA60}
+
+/* ── TABS ── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(26,20,16,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 17px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--navy);border-bottom-color:var(--navy)}
+
+/* ── PANES ── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--navy);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO ── */
+.intro-box{background:var(--navyPale);border:1.5px solid rgba(10,31,92,.18);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--navy)}
+
+/* ── CONCEPT CARDS ── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--navy)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--navy);font-weight:700}
+.c-body em{color:var(--saffron);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ── */
+.fact-box{background:var(--saffPale);border:1.5px solid rgba(192,90,0,.22);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--saffron);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--saffron);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--greenPale);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+
+.trap-box{background:var(--redPale);border:1.5px solid rgba(139,26,26,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(26,48,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+.rule-box ul{list-style:none;padding:0}
+.rule-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.72}
+.rule-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--blue);top:10px}
+
+.purple-box{background:var(--purplePale);border:1.5px solid rgba(74,26,128,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+
+.navy-box{background:var(--navyPale);border:1.5px solid rgba(10,31,92,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.navy-box .nl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:8px}
+.navy-box ul{list-style:none;padding:0}
+.navy-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.navy-box li::before{content:'→';position:absolute;left:0;color:var(--navy);font-weight:700;font-size:13px}
+.navy-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{background:var(--navy);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--navy)}
+
+/* TIMELINE */
+.timeline{list-style:none;padding:0;margin:12px 0;position:relative}
+.timeline::before{content:'';position:absolute;left:22px;top:8px;bottom:8px;width:2px;background:var(--border)}
+.tl-item{display:flex;gap:14px;margin-bottom:16px;position:relative}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--navy);border:3px solid var(--white);box-shadow:0 0 0 2px var(--navy);flex-shrink:0;margin-top:4px;z-index:1}
+.tl-dot.amber{background:var(--saffron);box-shadow:0 0 0 2px var(--saffron)}
+.tl-dot.green{background:var(--green);box-shadow:0 0 0 2px var(--green)}
+.tl-dot.red{background:var(--red);box-shadow:0 0 0 2px var(--red)}
+.tl-year{font-size:13px;font-weight:800;color:var(--navy);min-width:38px;margin-top:2px}
+.tl-content{flex:1}
+.tl-title{font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.tl-detail{font-size:14.5px;color:var(--ink2);line-height:1.65}
+.tl-detail b{color:var(--navy)}
+
+/* SOURCE GRID */
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.src-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.src-card .sc-country{font-size:11px;font-weight:800;color:var(--saffron);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.src-card .sc-features{font-size:14px;color:var(--ink2);line-height:1.6}
+
+/* ── QUICK REF ── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--navy);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:14.5px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--navy);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--red);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+
+/* ── QUIZ ── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--saffron)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--navy);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--navy)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--saffPale);color:var(--saffron)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--navy);background:var(--navyPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--navy);background:var(--navyPale);color:var(--navy)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--navy);color:#fff;border-color:var(--navy)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--saffron);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--navy);background:var(--navyPale);border:1px solid rgba(10,31,92,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 4px 12px rgba(10,31,92,.3)}
+.btn-primary:hover{background:var(--blueLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#0A1F5C,#1A3A8A);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD080;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+@media(max-width:400px){
+  .hero{padding:24px 20px 20px}
+  .hero-title{font-size:20px}
+  .tab{padding:12px 12px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+  .src-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">Polity · Module POL01</div>
+  <h1 class="hero-title">Introduction to the<br><span>Constitution of India</span></h1>
+  <p class="hero-sub">From its historical background and making to its unique features and philosophical foundations — everything examiners test about the Constitution, built for CDS, NDA and AFCAT.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner + Advanced</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">40 Practice Questions</span>
+    <span class="chip chip-o">Polity POL01</span>
+  </div>
+</div>
+
+<div class="page">
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab"    onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"    onclick="switchTab('quiz')">Quiz (40)</button>
+</div>
+
+<!-- ═══════════ THEORY ═══════════ -->
+<div id="theory" class="pane on">
+
+<div class="intro-box">
+  <p>This module covers: <strong>historical background</strong> of the Constitution, the <strong>Constituent Assembly</strong> and its working, the <strong>Preamble</strong> and its keywords, <strong>unique features</strong> of the Indian Constitution, the <strong>sources</strong> from which features were borrowed, and the philosophical basis — <strong>Federalism, Secularism, Socialism and Parliamentary democracy</strong>.</p>
+</div>
+
+<!-- SECTION 1 -->
+<div class="sec-label">Section 1 — Historical Background</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E8EDF8">📜</div>
+    <div style="flex:1"><div class="c-title">From British Rule to Constitution</div>
+    <div class="c-sub">Key acts and events that shaped the Constitution</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>India's Constitution did not emerge overnight. It was the culmination of a long struggle against British rule and a gradual constitutional evolution through a series of Acts.</p>
+    <ul class="timeline">
+      <li class="tl-item">
+        <div class="tl-dot amber"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--saffron);margin-top:2px">1858</div>
+        <div class="tl-content">
+          <div class="tl-title">Government of India Act, 1858</div>
+          <div class="tl-detail">Transfer of power from <b>East India Company</b> to the <b>British Crown</b>. India governed by Secretary of State for India. Gave birth to the office of Viceroy.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--navy);margin-top:2px">1861</div>
+        <div class="tl-content">
+          <div class="tl-title">Indian Councils Act, 1861</div>
+          <div class="tl-detail">Indians associated with legislative councils for the first time. Introduced <b>portfolio system</b>. Devolution of legislative powers to provinces began.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot amber"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--saffron);margin-top:2px">1909</div>
+        <div class="tl-content">
+          <div class="tl-title">Morley–Minto Reforms (Indian Councils Act, 1909)</div>
+          <div class="tl-detail">Introduced <b>separate electorates</b> for Muslims — the most controversial feature. Also introduced element of election to legislative councils. <b>Laid seeds of Partition.</b></div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--navy);margin-top:2px">1919</div>
+        <div class="tl-content">
+          <div class="tl-title">Montagu–Chelmsford Reforms (GoI Act, 1919)</div>
+          <div class="tl-detail">Introduced <b>Dyarchy</b> (dual government) in provinces — subjects divided into "transferred" (ministers) and "reserved" (governor). Created a <b>bicameral legislature</b> at the centre. Introduced direct elections. Established <b>Public Service Commission</b>.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot green"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--green);margin-top:2px">1935</div>
+        <div class="tl-content">
+          <div class="tl-title">Government of India Act, 1935 — Most Important</div>
+          <div class="tl-detail">The <b>single most important source</b> of India's Constitution. Provided for: <b>All India Federation</b>, abolished Dyarchy at provinces (introduced Provincial Autonomy), introduced Dyarchy at Centre, established <b>Federal Court</b>, <b>RBI</b>, and <b>Federal Public Service Commission</b>. Divided subjects into 3 lists (Federal, Provincial, Concurrent). The Constitution of India borrowed its <b>federal structure, emergency provisions, Public Service Commissions, and office of Governor</b> from this Act.</div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-dot red"></div>
+        <div style="min-width:38px;font-size:13px;font-weight:800;color:var(--red);margin-top:2px">1947</div>
+        <div class="tl-content">
+          <div class="tl-title">Indian Independence Act, 1947</div>
+          <div class="tl-detail">Passed by British Parliament. Ended British authority over India. Created two independent dominions: <b>India and Pakistan</b>. Constituent Assembly became a <b>sovereign body</b>. India adopted its new Constitution on <b>26 Nov 1949</b>, effective <b>26 Jan 1950</b>.</div>
+        </div>
+      </li>
+    </ul>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Frequently Tested Traps</div>
+      <ul>
+        <li>GoI Act 1935 is the <strong>biggest single source</strong> of the Indian Constitution (~250 of 395 original Articles were adapted from it)</li>
+        <li>The <strong>Federal Court</strong> established by GoI Act 1935 was predecessor to the Supreme Court of India</li>
+        <li>Dyarchy was introduced at <strong>provinces in 1919</strong> and abolished there in <strong>1935</strong> (introduced at Centre in 1935)</li>
+        <li><strong>Separate electorates</strong> for Muslims = Morley–Minto 1909 (NOT 1919 or 1935)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="sec-label">Section 2 — The Constituent Assembly</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FEF3E4">🏛️</div>
+    <div style="flex:1"><div class="c-title">Formation & Composition</div>
+    <div class="c-sub">How the Constituent Assembly was formed, who was in it</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="navy-box">
+      <div class="nl-label">Formation of the Constituent Assembly</div>
+      <ul>
+        <li>Demand first made by <strong>M.N. Roy</strong> (1934) — earliest demand for a Constituent Assembly</li>
+        <li>Demand accepted officially in <strong>August Offer, 1940</strong> by Lord Linlithgow</li>
+        <li>Assembly set up under <strong>Cabinet Mission Plan, 1946</strong></li>
+        <li>Total strength: <strong>389 members</strong> (292 from provinces + 93 princely states + 4 from Chief Commissioner's provinces)</li>
+        <li>After Partition: reduced to <strong>299 members</strong></li>
+        <li>Elected by <strong>Provincial Legislative Assemblies</strong> using proportional representation (single transferable vote)</li>
+        <li>Not directly elected by people — hence sometimes called "unrepresentative"</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Key People — Most Tested</div>
+      <ul>
+        <li><strong>Dr Rajendra Prasad</strong> — President of the Constituent Assembly</li>
+        <li><strong>Dr B.R. Ambedkar</strong> — Chairman of the Drafting Committee ("Father of the Indian Constitution" / "Chief Architect")</li>
+        <li><strong>Sir B.N. Rau</strong> — Constitutional Advisor (drafted initial document)</li>
+        <li><strong>Jawaharlal Nehru</strong> — moved the <strong>Objectives Resolution</strong> on 13 Dec 1946</li>
+        <li><strong>H.C. Mukherjee</strong> — Vice-President of the Constituent Assembly</li>
+        <li><strong>T.T. Krishnamachari</strong> — Member, Drafting Committee (replaced B.L. Mitter)</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Key Dates — All Tested</div>
+      <ul>
+        <li>First session: <strong>9 December 1946</strong> (temporary chairman: Dr Sachchidananda Sinha)</li>
+        <li>Objectives Resolution moved: <strong>13 December 1946</strong> by Nehru</li>
+        <li>Objectives Resolution adopted: <strong>22 January 1947</strong></li>
+        <li>Constitution adopted: <strong>26 November 1949</strong> (Constitution Day / National Law Day)</li>
+        <li>Constitution enforced: <strong>26 January 1950</strong> (Republic Day)</li>
+        <li>Time taken to draft: <strong>2 years, 11 months and 18 days</strong></li>
+        <li>Total sessions: <strong>11 sessions</strong></li>
+        <li>Cost of making the Constitution: approximately <strong>₹64 lakh</strong></li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Exam Traps</div>
+      <ul>
+        <li>26 November = <strong>Constitution Day</strong> (declared in 2015 to mark 125th birth anniversary of Ambedkar) · Also called <strong>National Law Day</strong></li>
+        <li>26 January = <strong>Republic Day</strong> — Constitution came into force · Also chosen because Congress declared Purna Swaraj on 26 Jan <strong>1930</strong></li>
+        <li>The Constituent Assembly was <strong>not elected by universal adult franchise</strong> — elected by provincial assembly members</li>
+        <li>Dr Ambedkar's committee was the <strong>Drafting Committee</strong> — NOT the full Constituent Assembly</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="sec-label">Section 3 — The Preamble</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">📋</div>
+    <div style="flex:1"><div class="c-title">The Preamble — Soul of the Constitution</div>
+    <div class="c-sub">Every word of the Preamble is tested in CDS/NDA</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="rule-box">
+      <div class="rl-label">The Preamble — Key Phrases Decoded</div>
+      <ul>
+        <li><strong>"We, the People of India"</strong> — Source of the Constitution is the people (not Parliament, not CA). India is sovereign.</li>
+        <li><strong>"Sovereign"</strong> — India has supreme power; no external authority. Can acquire/cede territory.</li>
+        <li><strong>"Socialist"</strong> — Added by <strong>42nd Amendment, 1976</strong>. Mixed economy — neither pure capitalism nor pure communism. Reduce inequality.</li>
+        <li><strong>"Secular"</strong> — Added by <strong>42nd Amendment, 1976</strong>. No state religion; all religions treated equally.</li>
+        <li><strong>"Democratic"</strong> — Government by the people (universal adult franchise). Directly elected Lok Sabha. Free and fair elections.</li>
+        <li><strong>"Republic"</strong> — Head of State (President) is elected, not hereditary. No room for monarchy.</li>
+        <li><strong>"Justice"</strong> — Social, Economic, Political (taken from Russian Revolution).</li>
+        <li><strong>"Liberty"</strong> — Of thought, expression, belief, faith and worship (from French Revolution).</li>
+        <li><strong>"Equality"</strong> — Of status and opportunity.</li>
+        <li><strong>"Fraternity"</strong> — Brotherhood among all citizens. Assures dignity of individual and unity and integrity of the nation.</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Objectives Resolution → Preamble</div>
+      <ul>
+        <li>The Preamble is based on the <strong>Objectives Resolution</strong> moved by Nehru</li>
+        <li>Idea of Preamble borrowed from the <strong>USA</strong></li>
+        <li>The Supreme Court (Berubari Case, 1960) first held that the Preamble is NOT part of the Constitution</li>
+        <li>In the <strong>Kesavananda Bharati case (1973)</strong>, SC overruled and held the Preamble IS part of the Constitution and can be amended — but <strong>Basic Structure cannot be destroyed</strong></li>
+        <li>Preamble has been amended only <strong>once</strong> — by the <strong>42nd Amendment (1976)</strong> which added "Socialist", "Secular", and changed "unity of the nation" to "unity and integrity of the nation"</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Most Tested Preamble Facts</div>
+      <ul>
+        <li>"Socialist" and "Secular" were NOT in the original Preamble — added in <strong>1976 (42nd Amendment)</strong></li>
+        <li>The Preamble was amended only <strong>once</strong> in India's entire history</li>
+        <li>Preamble is NOT enforceable in a court of law — it cannot give any rights</li>
+        <li>"Fraternity" is unique — borrowed idea from the <strong>French Revolution</strong> slogan (Liberté, Égalité, Fraternité)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="sec-label">Section 4 — Sources of the Constitution</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#F0EAFA">🌍</div>
+    <div style="flex:1"><div class="c-title">Features Borrowed from Other Constitutions</div>
+    <div class="c-sub">Every source is asked at least once in every CDS exam</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="src-grid">
+      <div class="src-card">
+        <div class="sc-country">🇬🇧 UK (Britain)</div>
+        <div class="sc-features">Parliamentary government · Rule of Law · Writs · Single citizenship · Cabinet system · Bicameralism · Nomination of members to Rajya Sabha · Office of CAG</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇺🇸 USA</div>
+        <div class="sc-features">Preamble · Fundamental Rights · Judicial Review · Independence of judiciary · Impeachment of President · Functions of Vice-President · Supreme Court</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇮🇪 Ireland</div>
+        <div class="sc-features">Directive Principles of State Policy · Nomination of members to Rajya Sabha (also UK) · Method of presidential election</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇨🇦 Canada</div>
+        <div class="sc-features">Federal system with strong centre · Residuary powers with Centre · Advisory jurisdiction of Supreme Court · Office of Lieutenant Governor</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇦🇺 Australia</div>
+        <div class="sc-features">Concurrent list · Freedom of trade and commerce · Joint sitting of Parliament · Preamble language style</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇩🇪 Germany (Weimar)</div>
+        <div class="sc-features">Suspension of Fundamental Rights during Emergency · Emergency provisions</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇷🇺 Soviet Union (USSR)</div>
+        <div class="sc-features">Fundamental Duties · Social, Economic, Political justice in Preamble · Five Year Plans (concept)</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇿🇦 South Africa</div>
+        <div class="sc-features">Procedure for amendment of Constitution (Article 368) · Election of members of Rajya Sabha</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇯🇵 Japan</div>
+        <div class="sc-features">Procedure established by Law (Article 21 — Right to Life)</div>
+      </div>
+      <div class="src-card">
+        <div class="sc-country">🇫🇷 France</div>
+        <div class="sc-features">Republic · Liberty, Equality, Fraternity · Ideals of Preamble</div>
+      </div>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Most Confused Source Pairs</div>
+      <ul>
+        <li><strong>DPSP</strong> = Ireland (NOT UK, NOT USA) — most commonly confused</li>
+        <li><strong>Fundamental Rights</strong> = USA (NOT UK — UK has no written FR)</li>
+        <li><strong>Parliamentary system / Cabinet / Rule of Law</strong> = UK</li>
+        <li><strong>Fundamental Duties</strong> = USSR (added by 42nd Amendment)</li>
+        <li><strong>Residuary powers with Centre</strong> = Canada (NOT USA — in USA residuary with States)</li>
+        <li><strong>Concurrent List</strong> = Australia</li>
+        <li><strong>Judicial Review</strong> = USA · <strong>Procedure established by Law</strong> = Japan</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="sec-label">Section 5 — Unique Features of the Indian Constitution</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E8EDF8">⭐</div>
+    <div style="flex:1"><div class="c-title">What Makes the Indian Constitution Unique</div>
+    <div class="c-sub">Lengthiest, most unique features — all examined</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="navy-box">
+      <div class="nl-label">Unique Structural Features</div>
+      <ul>
+        <li><strong>Lengthiest written constitution</strong> in the world — Originally 395 Articles, 8 Schedules, 22 Parts. Currently <strong>448 Articles, 12 Schedules, 25 Parts</strong>.</li>
+        <li><strong>Drawn from many sources</strong> — nicknamed "Bag of borrowings" but uniquely synthesised</li>
+        <li><strong>Rigid and Flexible</strong> — Some provisions can be amended by simple majority (flexible), others require special majority + state ratification (rigid). Blend of both.</li>
+        <li><strong>Federal with Unitary bias</strong> — India described as a "Union of States" (not federation). Centre dominates in times of emergency. Single Constitution, single citizenship, IAS/IPS, etc.</li>
+        <li><strong>Parliamentary government</strong> — Executive accountable to legislature. President is nominal head; real executive is PM + Cabinet.</li>
+        <li><strong>Integrated and Independent Judiciary</strong> — Single court system; Supreme Court at top. Judges cannot be easily removed.</li>
+        <li><strong>Fundamental Rights</strong> (Part III) — Justiciable (enforceable in court). Six categories. Originally 7, now 6 (Right to Property removed as FR by 44th Amendment 1978).</li>
+        <li><strong>Directive Principles</strong> (Part IV) — Non-justiciable but fundamental in governance. From Irish Constitution.</li>
+        <li><strong>Fundamental Duties</strong> (Part IV-A) — Added by 42nd Amendment 1976. Originally 10, now <strong>11</strong> (86th Amendment 2002 added 11th).</li>
+        <li><strong>Secular State</strong> — No state religion. State shall not discriminate on grounds of religion.</li>
+        <li><strong>Universal Adult Franchise</strong> — All citizens 18+ can vote (lowered from 21 by 61st Amendment, 1989).</li>
+        <li><strong>Single Citizenship</strong> — Unlike USA (dual citizenship), India provides only single citizenship.</li>
+        <li><strong>Emergency Provisions</strong> — Three types: National Emergency (Art 352), President's Rule (Art 356), Financial Emergency (Art 360).</li>
+        <li><strong>Three-tier Government</strong> — 73rd and 74th Amendments (1992) added Panchayati Raj (Part IX) and Municipalities (Part IX-A).</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Numbers Every Candidate Must Know</div>
+      <ul>
+        <li>Original Articles: <strong>395</strong> · Current Articles: <strong>448</strong></li>
+        <li>Original Schedules: <strong>8</strong> · Current Schedules: <strong>12</strong></li>
+        <li>Original Parts: <strong>22</strong> · Current Parts: <strong>25</strong></li>
+        <li>Fundamental Rights: originally <strong>7</strong> now <strong>6</strong> (Right to Property removed)</li>
+        <li>Fundamental Duties: originally <strong>10</strong> now <strong>11</strong></li>
+        <li>Voting age: <strong>18 years</strong> (reduced from 21 by 61st Amendment, 1989)</li>
+        <li>Constitutional Amendments till 2024: <strong>106</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="sec-label">Section 6 — Schedules of the Constitution</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FEF3E4">📑</div>
+    <div style="flex:1"><div class="c-title">All 12 Schedules — What Each Contains</div>
+    <div class="c-sub">High-frequency in CDS — must know which schedule = what</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr><th>Schedule</th><th>Contains</th><th>Exam Note</th></tr>
+        <tr><td><b>1st</b></td><td>Names of States and Union Territories + territories of each</td><td>Most amended schedule</td></tr>
+        <tr><td><b>2nd</b></td><td>Salaries, allowances, privileges of President, Governors, Speakers, Judges, CAG</td><td>—</td></tr>
+        <tr><td><b>3rd</b></td><td>Forms of Oaths and Affirmations</td><td>—</td></tr>
+        <tr><td><b>4th</b></td><td>Allocation of seats in the Rajya Sabha</td><td>—</td></tr>
+        <tr><td><b>5th</b></td><td>Administration of Scheduled Areas and Scheduled Tribes</td><td>—</td></tr>
+        <tr><td><b>6th</b></td><td>Administration of Tribal Areas in NE India (Assam, Meghalaya, Tripura, Mizoram)</td><td>Different from 5th</td></tr>
+        <tr><td><b>7th</b></td><td>Three Lists — <b>Union List (List I)</b>, <b>State List (List II)</b>, <b>Concurrent List (List III)</b></td><td>Most important for CDS</td></tr>
+        <tr><td><b>8th</b></td><td>Official languages of India — currently <b>22 languages</b></td><td>Originally 14; Sindhi added 1967</td></tr>
+        <tr><td><b>9th</b></td><td>Acts/Regulations protected from judicial review (land reforms, etc.)</td><td>Added by 1st Amendment 1951</td></tr>
+        <tr><td><b>10th</b></td><td>Anti-defection law (disqualification of members)</td><td>Added by 52nd Amendment 1985</td></tr>
+        <tr><td><b>11th</b></td><td>Powers and functions of Panchayats (29 subjects)</td><td>Added by 73rd Amendment 1992</td></tr>
+        <tr><td><b>12th</b></td><td>Powers and functions of Municipalities (18 subjects)</td><td>Added by 74th Amendment 1992</td></tr>
+      </table>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">7th Schedule — Three Lists (Critical)</div>
+      <ul>
+        <li><strong>Union List (List I)</strong> — 100 subjects (originally 97) · Parliament alone can legislate · Defence, foreign affairs, atomic energy, railways, banking, currency</li>
+        <li><strong>State List (List II)</strong> — 61 subjects (originally 66) · State legislatures · Police, public order, agriculture, land, trade within state, local government</li>
+        <li><strong>Concurrent List (List III)</strong> — 52 subjects (originally 47) · Both Parliament and States · Education, forests, trade unions, marriage, adoption, succession · In conflict, <strong>Parliament's law prevails</strong></li>
+        <li><strong>Residuary powers</strong> — with <strong>Parliament</strong> (Article 248) — borrowed from Canada</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="sec-label">Section 7 — Federalism & Nature of the Indian State</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#E8EDF8">🗺️</div>
+    <div style="flex:1"><div class="c-title">Federal Features & Unitary Bias</div>
+    <div class="c-sub">India: neither purely federal nor purely unitary — a unique blend</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr><th>Federal Features</th><th>Unitary / Anti-Federal Features</th></tr>
+        <tr><td>Written Constitution</td><td><b>Single Constitution</b> for Union + States</td></tr>
+        <tr><td>Division of powers (3 Lists)</td><td><b>Residuary powers with Centre</b></td></tr>
+        <tr><td>Supremacy of Constitution</td><td>Centre can override State List in national interest</td></tr>
+        <tr><td>Independent judiciary</td><td><b>Single citizenship</b> (no dual citizenship)</td></tr>
+        <tr><td>Bicameral legislature</td><td>Governor appointed by <b>Centre</b>, not elected</td></tr>
+        <tr><td>Rajya Sabha represents States</td><td>Parliament can alter State boundaries (Art 3)</td></tr>
+        <tr><td>Written fundamental rights</td><td>All-India Services (IAS, IPS) — Centre controls</td></tr>
+        <tr><td>Separate courts at different levels</td><td>Emergency provisions destroy federalism temporarily</td></tr>
+      </table>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Key Terms — Precisely Defined</div>
+      <ul>
+        <li><strong>"Union of States"</strong> — Dr Ambedkar used this term deliberately. "Federation" implies right of secession; "Union" does not. India is <strong>indestructible</strong>.</li>
+        <li><strong>Quasi-federal</strong> — Term used by K.C. Wheare to describe India: "federal in form but unitary in spirit"</li>
+        <li><strong>Cooperative federalism</strong> — States and Centre working together (e.g., GST Council)</li>
+        <li><strong>Competitive federalism</strong> — States competing with each other to attract investment (NITI Aayog approach)</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Article 1 — Critical</div>
+      <p><strong>Article 1</strong> declares India as a "<strong>Union of States</strong>" — NOT "federation of states". This is directly tested. The word "Union" implies the states have no right to secede. The Union is indestructible; states can be created or destroyed by Parliament (Article 3).</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="sec-label">Section 8 — Key Constitutional Amendments</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#FCEAEA">⚖️</div>
+    <div style="flex:1"><div class="c-title">Most Important Constitutional Amendments</div>
+    <div class="c-sub">These amendments appear in every exam — know them all</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr><th>Amendment</th><th>Year</th><th>Key Change</th></tr>
+        <tr><td><b>1st</b></td><td>1951</td><td>Added 9th Schedule; restricted FR on property; social reforms protection</td></tr>
+        <tr><td><b>7th</b></td><td>1956</td><td>Reorganisation of States on linguistic basis</td></tr>
+        <tr><td><b>24th</b></td><td>1971</td><td>Parliament can amend any part including FR (after Golak Nath case)</td></tr>
+        <tr><td><b>25th</b></td><td>1971</td><td>Limited Right to Property; inserted Art 31C (DPSP over FR)</td></tr>
+        <tr><td><b>42nd</b></td><td>1976</td><td><b>"Mini-Constitution"</b> — Added Socialist, Secular, Integrity to Preamble; added Fundamental Duties; made DPSP superior; curtailed judicial review; created Administrative Tribunals</td></tr>
+        <tr><td><b>44th</b></td><td>1978</td><td>Removed Right to Property as Fundamental Right (now Art 300A, legal right only); restored judicial powers diluted by 42nd; changed definition of Emergency to "armed rebellion"</td></tr>
+        <tr><td><b>52nd</b></td><td>1985</td><td>Added 10th Schedule — Anti-defection law</td></tr>
+        <tr><td><b>61st</b></td><td>1989</td><td>Lowered voting age from 21 to <b>18</b></td></tr>
+        <tr><td><b>73rd</b></td><td>1992</td><td>Constitutional status to Panchayati Raj; added Part IX and 11th Schedule</td></tr>
+        <tr><td><b>74th</b></td><td>1992</td><td>Constitutional status to Urban Local Bodies; added Part IX-A and 12th Schedule</td></tr>
+        <tr><td><b>86th</b></td><td>2002</td><td>Right to Education (Art 21A); added 11th Fundamental Duty; made primary education compulsory</td></tr>
+        <tr><td><b>91st</b></td><td>2003</td><td>Limited size of Council of Ministers to 15% of Lok Sabha; strengthened anti-defection</td></tr>
+        <tr><td><b>97th</b></td><td>2011</td><td>Constitutional status to cooperative societies; Art 19(1)(c) amended</td></tr>
+        <tr><td><b>101st</b></td><td>2016</td><td>Introduced GST; amended 7th Schedule; created GST Council (Art 279A)</td></tr>
+        <tr><td><b>103rd</b></td><td>2019</td><td>10% reservation for Economically Weaker Sections (EWS)</td></tr>
+        <tr><td><b>106th</b></td><td>2023</td><td>Women's reservation — 33% seats in Lok Sabha and State Assemblies</td></tr>
+      </table>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ 42nd Amendment — "Mini Constitution"</div>
+      <ul>
+        <li>Made during <strong>Emergency (1975–77)</strong> by Indira Gandhi government</li>
+        <li>Added words to Preamble: <strong>Socialist, Secular, Integrity</strong></li>
+        <li>Added <strong>Fundamental Duties</strong> (10 originally, Part IV-A)</li>
+        <li>Made DPSP override Fundamental Rights — later reversed by 44th Amendment</li>
+        <li>Most controversial and far-reaching amendment in India's history</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9 -->
+<div class="sec-label">Section 9 — Basic Structure Doctrine</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:#EAF5EC">🏛️</div>
+    <div style="flex:1"><div class="c-title">Basic Structure Doctrine</div>
+    <div class="c-sub">Kesavananda Bharati — the most important constitutional case</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="rule-box">
+      <div class="rl-label">The Basic Structure Doctrine — Origin</div>
+      <p>In <strong>Kesavananda Bharati v. State of Kerala (1973)</strong>, a 13-judge bench of the Supreme Court held by a <strong>7:6 majority</strong> that while Parliament can amend any part of the Constitution (including Fundamental Rights) under Article 368, it <strong>cannot destroy or alter the Basic Structure</strong> of the Constitution.</p>
+    </div>
+    <div class="navy-box">
+      <div class="nl-label">Elements of Basic Structure (from various SC cases)</div>
+      <ul>
+        <li>Supremacy of the Constitution</li>
+        <li>Republican and democratic form of government</li>
+        <li>Secular character of the Constitution</li>
+        <li>Separation of powers between legislature, executive and judiciary</li>
+        <li>Federal character of the Constitution</li>
+        <li>Judicial review (power of courts to review legislation)</li>
+        <li>Rule of Law</li>
+        <li>Free and fair elections</li>
+        <li>Independence of Judiciary</li>
+        <li>Unity and sovereignty of India</li>
+        <li>Welfare state (Directive Principles)</li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Related Key Cases</div>
+      <ul>
+        <li><strong>Shankari Prasad case (1951)</strong> — FR can be amended under Art 368</li>
+        <li><strong>Golak Nath case (1967)</strong> — FR CANNOT be amended (overruled later)</li>
+        <li><strong>Kesavananda Bharati (1973)</strong> — FR can be amended but not Basic Structure</li>
+        <li><strong>Minerva Mills case (1980)</strong> — Reaffirmed Basic Structure; harmony between FR and DPSP essential</li>
+        <li><strong>Indra Sawhney case (1992)</strong> — 50% cap on reservations; creamy layer exclusion</li>
+        <li><strong>S.R. Bommai case (1994)</strong> — Federalism is basic structure; President's Rule subject to judicial review</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════ QUICK REF ═══════════ -->
+<div id="quickref" class="pane">
+  <div class="intro-box"><p>Scan all <strong>high-yield facts</strong> from this module before your exam.</p></div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">📅 Key Dates</div>
+      <ul>
+        <li><b>9 Dec 1946</b> — First session of CA (Sachchidananda Sinha, temp chair)</li>
+        <li><b>13 Dec 1946</b> — Objectives Resolution moved by Nehru</li>
+        <li><b>26 Nov 1949</b> — Constitution adopted (Constitution Day)</li>
+        <li><b>26 Jan 1950</b> — Constitution came into force (Republic Day)</li>
+        <li>Time taken: <b>2 years, 11 months, 18 days</b></li>
+        <li>Cost: <b>~₹64 lakh</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">👥 Key People</div>
+      <ul>
+        <li><b>Rajendra Prasad</b> — President of CA</li>
+        <li><b>B.R. Ambedkar</b> — Chairman, Drafting Committee</li>
+        <li><b>Sir B.N. Rau</b> — Constitutional Advisor</li>
+        <li><b>Nehru</b> — Moved Objectives Resolution</li>
+        <li><b>M.N. Roy</b> — First demanded CA (1934)</li>
+        <li><b>H.C. Mukherjee</b> — VP of Constituent Assembly</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🌍 Sources — Country → Feature</div>
+      <ul>
+        <li><b>UK</b> — Parliamentary govt, Rule of Law, Writs, CAG</li>
+        <li><b>USA</b> — FR, Preamble, Judicial Review, Impeachment</li>
+        <li><b>Ireland</b> — DPSP, Presidential election method</li>
+        <li><b>Canada</b> — Strong Centre, Residuary powers, Lt. Governor</li>
+        <li><b>Australia</b> — Concurrent List, Joint Sitting</li>
+        <li><b>USSR</b> — Fundamental Duties, Social Justice</li>
+        <li><b>Germany</b> — Emergency provisions</li>
+        <li><b>South Africa</b> — Amendment procedure (Art 368)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔢 Numbers to Remember</div>
+      <ul>
+        <li>Original Articles: <b>395</b> · Now: <b>448</b></li>
+        <li>Original Schedules: <b>8</b> · Now: <b>12</b></li>
+        <li>Original Parts: <b>22</b> · Now: <b>25</b></li>
+        <li>CA original members: <b>389</b> · After Partition: <b>299</b></li>
+        <li>Fundamental Rights: <b>6</b> (was 7)</li>
+        <li>Fundamental Duties: <b>11</b> (was 10)</li>
+        <li>Voting age: <b>18</b> (was 21 before 61st Amendment)</li>
+        <li>8th Schedule languages: <b>22</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚖️ Key Amendments</div>
+      <ul>
+        <li><b>1st (1951)</b> — 9th Schedule added</li>
+        <li><b>42nd (1976)</b> — "Mini Constitution"; Socialist + Secular; Fundamental Duties</li>
+        <li><b>44th (1978)</b> — Removed Right to Property as FR</li>
+        <li><b>52nd (1985)</b> — Anti-defection (10th Schedule)</li>
+        <li><b>61st (1989)</b> — Voting age 21 → 18</li>
+        <li><b>73rd/74th (1992)</b> — Panchayati Raj + Municipalities</li>
+        <li><b>86th (2002)</b> — Right to Education + 11th FD</li>
+        <li><b>101st (2016)</b> — GST</li>
+        <li><b>106th (2023)</b> — Women's 33% reservation</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">📑 Key Schedules</div>
+      <ul>
+        <li><b>1st</b> — States and UTs</li>
+        <li><b>7th</b> — Three Lists (Union, State, Concurrent)</li>
+        <li><b>8th</b> — 22 Official Languages</li>
+        <li><b>9th</b> — Acts beyond judicial review (1st Amend.)</li>
+        <li><b>10th</b> — Anti-defection law (52nd Amend.)</li>
+        <li><b>11th</b> — Panchayat subjects (29)</li>
+        <li><b>12th</b> — Municipality subjects (18)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🏛️ Preamble Keywords</div>
+      <ul>
+        <li><b>Socialist + Secular + Integrity</b> — added by 42nd Amend. 1976</li>
+        <li>Preamble amended only <b>once</b> — 42nd Amendment</li>
+        <li>Justice — from <b>Russian Revolution</b></li>
+        <li>Liberty, Equality, Fraternity — from <b>French Revolution</b></li>
+        <li>Preamble idea — from <b>USA</b></li>
+        <li>Preamble is part of Constitution — <b>Kesavananda Bharati (1973)</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🗺️ Key Historical Acts</div>
+      <ul>
+        <li><b>1858</b> — Company → Crown; Viceroy created</li>
+        <li><b>1909</b> — Morley-Minto; Separate electorates for Muslims</li>
+        <li><b>1919</b> — Dyarchy in provinces; Bicameral legislature at Centre</li>
+        <li><b>1935</b> — Biggest source; 3 Lists; Federal Court; RBI; Provincial autonomy</li>
+        <li><b>1947</b> — Independence Act; CA became sovereign</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">40</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 40 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">↺ Reset</button>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+</div>
+
+<div class="page-footer">Olive Defence Entrance Academy &nbsp;·&nbsp; Polity POL01 — Introduction to the Constitution &nbsp;·&nbsp; CDS · NDA · AFCAT</div>
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY (14) ────────────────────────────────────────────────────────────────
+{d:'EASY',e:'CDS 2022',
+q:'Who was the Chairman of the Drafting Committee of the Constituent Assembly?',
+opts:['Dr Rajendra Prasad','Jawaharlal Nehru','Dr B.R. Ambedkar','Sir B.N. Rau'],ans:2,
+rule:'Ambedkar = Chairman, Drafting Committee — "Father of the Constitution"',
+exp:'Dr B.R. Ambedkar was the Chairman of the Drafting Committee — hence called the "Father" or "Chief Architect" of the Indian Constitution. Dr Rajendra Prasad was the President of the full Constituent Assembly (not just the drafting committee). Sir B.N. Rau was the Constitutional Advisor who prepared the initial draft. Nehru moved the Objectives Resolution.'},
+
+{d:'EASY',e:'NDA 2022',
+q:'The Constitution of India was adopted on:',
+opts:['26 January 1950','26 November 1949','15 August 1947','26 January 1947'],ans:1,
+rule:'Adopted: 26 Nov 1949 (Constitution Day) · Enforced: 26 Jan 1950 (Republic Day)',
+exp:'The Constituent Assembly adopted the Constitution on 26 November 1949 — this date is now observed as Constitution Day (Samvidhan Divas). It came into force on 26 January 1950 — Republic Day. The date 26 January was chosen to commemorate the declaration of Purna Swaraj (complete independence) by the Indian National Congress on 26 January 1930.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'Which country\'s constitution is the single largest source of the Indian Constitution?',
+opts:['United Kingdom','United States of America','Canada','Government of India Act, 1935'],ans:3,
+rule:'GoI Act 1935 = biggest single source (~250 of original 395 articles adapted from it)',
+exp:'The Government of India Act, 1935 is the single largest source of the Indian Constitution. Nearly 250 of the original 395 Articles were either lifted verbatim or adapted from it. It provided for the federal structure, emergency provisions, Public Service Commissions, the office of Governor, and the three-tier legislative structure. Dr Ambedkar himself called it "a machine with a brake but no engine."'},
+
+{d:'EASY',e:'CDS 2021',
+q:'The Preamble to the Constitution of India was amended by which Constitutional Amendment?',
+opts:['24th Amendment','40th Amendment','42nd Amendment','44th Amendment'],ans:2,
+rule:'Preamble amended only once — 42nd Amendment (1976) — added Socialist, Secular, Integrity',
+exp:'The Preamble has been amended only once in India\'s entire constitutional history — by the 42nd Constitutional Amendment Act of 1976 during Indira Gandhi\'s Emergency. Three words were added: "Socialist", "Secular" and "Integrity". The phrase "unity of the nation" was also changed to "unity and integrity of the nation".'},
+
+{d:'EASY',e:'NDA 2023',
+q:'The Directive Principles of State Policy in the Indian Constitution were borrowed from the constitution of:',
+opts:['USA','UK','Ireland','Australia'],ans:2,
+rule:'DPSP = Ireland (most commonly confused with UK)',
+exp:'The Directive Principles of State Policy (Part IV, Articles 36-51) were borrowed from the Irish Constitution of 1937. Ireland itself borrowed the concept from the Spanish Constitution. The DPSP are non-justiciable (not enforceable in court) but are fundamental in the governance of the country and it is the duty of the state to apply them in making laws.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'India is described in Article 1 of the Constitution as:',
+opts:['A Federal State','A Federation of States','A Union of States','A Confederation of States'],ans:2,
+rule:'Article 1: India is a "Union of States" — NOT federation',
+exp:'Article 1 declares India to be a "Union of States". Dr B.R. Ambedkar deliberately chose the word "Union" over "Federation" because a federation implies that the constituent units have the right to secede, which India does not allow. The Union of India is indestructible, while states can be created, merged, or their boundaries altered by Parliament under Article 3.'},
+
+{d:'EASY',e:'CDS 2020',
+q:'Fundamental Duties were added to the Constitution by which amendment?',
+opts:['40th Amendment','42nd Amendment','44th Amendment','52nd Amendment'],ans:1,
+rule:'Fundamental Duties added by 42nd Amendment (1976) — on recommendation of Swaran Singh Committee',
+exp:'The Fundamental Duties were added to the Constitution by the 42nd Constitutional Amendment Act, 1976 on the recommendations of the Swaran Singh Committee. Originally 10 Fundamental Duties were added (Part IV-A, Article 51A). The 86th Amendment (2002) added the 11th Fundamental Duty relating to providing opportunities for education to one\'s child/ward between 6-14 years.'},
+
+{d:'EASY',e:'NDA 2021',
+q:'The voting age in India was reduced from 21 years to 18 years by which amendment?',
+opts:['52nd Amendment','61st Amendment','73rd Amendment','86th Amendment'],ans:1,
+rule:'61st Amendment (1989) reduced voting age from 21 to 18 years',
+exp:'The 61st Constitutional Amendment Act, 1989 reduced the voting age for Lok Sabha and State Legislative Assembly elections from 21 years to 18 years. This was done to give the youth a larger role in the democratic process. The amendment modified Article 326 of the Constitution which deals with elections to the House of the People and to the Legislative Assemblies of States.'},
+
+{d:'EASY',e:'AFCAT 2021',
+q:'Who moved the Objectives Resolution in the Constituent Assembly?',
+opts:['Dr B.R. Ambedkar','Dr Rajendra Prasad','Jawaharlal Nehru','Sardar Vallabhbhai Patel'],ans:2,
+rule:'Objectives Resolution moved by Nehru on 13 December 1946',
+exp:'Jawaharlal Nehru moved the historic Objectives Resolution on 13 December 1946 in the Constituent Assembly. It was adopted on 22 January 1947. The Objectives Resolution laid down the philosophical foundations of the Constitution and became the basis of the Preamble. It declared India to be a sovereign, democratic republic and guaranteed justice, liberty, equality, and fraternity.'},
+
+{d:'EASY',e:'CDS 2022',
+q:'The Anti-Defection Law is contained in which Schedule of the Constitution?',
+opts:['8th Schedule','9th Schedule','10th Schedule','11th Schedule'],ans:2,
+rule:'10th Schedule = Anti-defection law · Added by 52nd Amendment (1985)',
+exp:'The 10th Schedule of the Constitution, added by the 52nd Constitutional Amendment Act of 1985, contains the provisions relating to disqualification of Members of Parliament and State Legislatures on grounds of defection. It is commonly called the "Anti-Defection Law". A member is disqualified if they voluntarily give up party membership or vote/abstain contrary to party directions without party permission.'},
+
+{d:'EASY',e:'NDA 2022',
+q:'The Preamble to the Indian Constitution derives its inspiration from the Objectives Resolution. Who first made the demand for a Constituent Assembly?',
+opts:['Jawaharlal Nehru','Mahatma Gandhi','M.N. Roy','B.R. Ambedkar'],ans:2,
+rule:'M.N. Roy — first demanded Constituent Assembly in 1934',
+exp:'M.N. Roy (Manabendra Nath Roy) first made the demand for a Constituent Assembly in 1934. The demand was later accepted officially in the August Offer of 1940 and formally implemented through the Cabinet Mission Plan of 1946. M.N. Roy was a pioneer of the Communist movement in India and also founded the Radical Democratic Party.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'Which of the following was NOT added by the 42nd Constitutional Amendment?',
+opts:['The word Socialist in the Preamble','The word Secular in the Preamble','Fundamental Duties','Right to Education'],ans:3,
+rule:'Right to Education (Art 21A) was added by 86th Amendment (2002), not 42nd',
+exp:'The 42nd Amendment (1976) added "Socialist", "Secular" and "Integrity" to the Preamble, and also added Fundamental Duties (Part IV-A). The Right to Education as a Fundamental Right (Article 21A) was added by the 86th Constitutional Amendment in 2002. The 86th Amendment also added the 11th Fundamental Duty related to providing education to children.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'How many languages are listed in the 8th Schedule of the Indian Constitution?',
+opts:['14','18','22','25'],ans:2,
+rule:'8th Schedule currently has 22 languages (originally 14)',
+exp:'The 8th Schedule of the Constitution originally listed 14 languages. Sindhi was added by the 21st Amendment (1967). Konkani, Manipuri, and Nepali were added by the 71st Amendment (1992). Bodo, Dogri, Maithili, and Santhali were added by the 92nd Amendment (2003), bringing the total to 22 languages. There are demands to add more languages including Bhojpuri, Tulu and others.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'The concept of Judicial Review in the Indian Constitution was borrowed from:',
+opts:['UK','Ireland','USA','Canada'],ans:2,
+rule:'Judicial Review = USA · "Procedure established by Law" = Japan',
+exp:'The concept of Judicial Review — the power of courts to examine the constitutional validity of legislative and executive actions — was borrowed from the United States Constitution. In India, Judicial Review is contained in Articles 13, 32 and 226. The Indian version of Judicial Review, however, is slightly narrower than the American version. "Procedure established by Law" (Article 21) was borrowed from Japan.'},
+
+// ── MEDIUM (16) ──────────────────────────────────────────────────────────────
+{d:'MEDIUM',e:'CDS 2022',
+q:'Which of the following pairs is INCORRECTLY matched (Constitutional feature — Source country)?',
+opts:[
+  'Fundamental Rights — USA',
+  'Directive Principles — Ireland',
+  'Amendment procedure — South Africa',
+  'Residuary powers with States — Canada'
+],ans:3,
+rule:'In Canada, residuary powers are with CENTRE — same as India (NOT with States)',
+exp:'In Canada, residuary powers (powers not listed in any list) vest with the Central government — India borrowed this feature from Canada. In the USA, residuary powers vest with the States. India\'s constitution gives residuary powers to Parliament (Article 248 and Entry 97 of Union List). So "residuary powers with States — Canada" is incorrectly matched. All other pairs are correct.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'The Kesavananda Bharati case (1973) is significant because:',
+opts:[
+  'It declared that Parliament cannot amend Fundamental Rights at all',
+  'It held that Parliament can amend any part of Constitution including FR but cannot destroy its Basic Structure',
+  'It held that Fundamental Rights are absolute and cannot be restricted',
+  'It struck down the Emergency of 1975 as unconstitutional'
+],ans:1,
+rule:'Kesavananda Bharati (1973): FR can be amended but Basic Structure cannot be destroyed',
+exp:'The Kesavananda Bharati v. State of Kerala (1973) case was decided by the largest ever bench of 13 judges of the Supreme Court. By a 7:6 majority, the court held that while Parliament has wide power to amend the Constitution including Fundamental Rights (as held earlier in Shankari Prasad 1951), it cannot destroy or damage the Basic Structure of the Constitution. This doctrine has since been consistently applied.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'The Government of India Act, 1919 (Montagu-Chelmsford Reforms) introduced:',
+opts:[
+  'Separate electorates for Muslims',
+  'Dyarchy in provinces and a bicameral legislature at the Centre',
+  'All India Federation with three lists of subjects',
+  'Transfer of power from the East India Company to the Crown'
+],ans:1,
+rule:'1919 = Dyarchy in provinces + Bicameral legislature at Centre',
+exp:'The Government of India Act, 1919 (Montagu-Chelmsford Reforms) introduced Dyarchy in provinces — subjects were divided into "transferred" (administered by ministers responsible to legislature) and "reserved" (administered by the Governor). It also created a bicameral legislature at the Centre for the first time (Central Legislative Assembly + Council of State). Separate electorates were introduced by the 1909 Act; the three-list system by the 1935 Act; transfer from Company to Crown by the 1858 Act.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Which Schedule of the Constitution contains the Union List, State List and Concurrent List?',
+opts:['5th Schedule','6th Schedule','7th Schedule','9th Schedule'],ans:2,
+rule:'7th Schedule = Three Lists (Union, State, Concurrent)',
+exp:'The 7th Schedule of the Constitution contains the three lists that divide legislative subjects between Parliament and State Legislatures. The Union List (currently 100 subjects) — Parliament has exclusive power. The State List (currently 61 subjects) — State Legislatures have power. The Concurrent List (currently 52 subjects) — both can legislate, but Parliament\'s law prevails in case of conflict. Residuary powers go to Parliament.'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'In the Preamble of the Constitution, the phrase "We, the People of India" signifies:',
+opts:[
+  'That the Constitution was written by representatives of the people',
+  'That the ultimate source and authority of the Constitution is the people of India',
+  'That the Constitution applies only to citizens and not foreigners',
+  'That the Constituent Assembly had a democratic mandate from the people'
+],ans:1,
+rule:'"We the People" = People are sovereign source of the Constitution (not CA, not Parliament)',
+exp:'"We, the People of India" at the beginning of the Preamble signifies that the Constitution derives its authority not from Parliament or the Constituent Assembly but from the people of India themselves. The people are sovereign — they have given the Constitution to themselves. This phrase was borrowed from the Preamble of the US Constitution. It also establishes that Parliament cannot override the Constitution since the Constitution\'s authority is superior.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'Right to Property was removed as a Fundamental Right by which Constitutional Amendment?',
+opts:['42nd Amendment, 1976','44th Amendment, 1978','52nd Amendment, 1985','45th Amendment, 1980'],ans:1,
+rule:'44th Amendment (1978) removed Right to Property as FR — now Article 300A (legal right)',
+exp:'The Right to Property was originally a Fundamental Right under Article 31. It was abolished as a Fundamental Right by the 44th Constitutional Amendment Act, 1978 under the Janata Government led by Morarji Desai. It was moved to Article 300A as a mere legal/constitutional right (not a fundamental right). This means if the state acquires your property, you cannot go directly to the Supreme Court under Article 32 — you must first go to a High Court.'},
+
+{d:'MEDIUM',e:'CDS 2021',
+q:'The Concurrent List in the Indian Constitution was borrowed from which country?',
+opts:['USA','Canada','Ireland','Australia'],ans:3,
+rule:'Concurrent List = Australia',
+exp:'The concept of the Concurrent List was borrowed from the Australian Constitution. In Australia, the federal system divides powers between the Commonwealth (Centre) and States, with a concurrent list for subjects both can legislate on. In India, the Concurrent List (List III in the 7th Schedule) currently has 52 subjects including education, forests, marriage, adoption, succession, and trade unions. In case of conflict, Parliament\'s law prevails over State law.'},
+
+{d:'MEDIUM',e:'NDA 2021',
+q:'The Constituent Assembly first met under the temporary chairmanship of:',
+opts:['Dr B.R. Ambedkar','Dr Rajendra Prasad','Dr Sachchidananda Sinha','H.C. Mukherjee'],ans:2,
+rule:'Temp chairman: Dr Sachchidananda Sinha (9 Dec 1946) · Permanent: Rajendra Prasad (11 Dec)',
+exp:'When the Constituent Assembly met for the first time on 9 December 1946, Dr Sachchidananda Sinha (the oldest member of the Assembly) served as its temporary/pro-tem chairman. Dr Rajendra Prasad was elected as the permanent President of the Constituent Assembly on 11 December 1946. H.C. Mukherjee was elected as the Vice-President of the Constituent Assembly.'},
+
+{d:'MEDIUM',e:'AFCAT 2021',
+q:'Which of the following features makes the Indian Constitution "quasi-federal" in nature?',
+opts:[
+  'Presence of Fundamental Rights',
+  'Single Constitution with division of powers but strong Centre',
+  'Universal Adult Franchise',
+  'Parliamentary form of government'
+],ans:1,
+rule:'Quasi-federal = federal form + unitary spirit (single constitution, strong centre, residuary with Centre)',
+exp:'K.C. Wheare described India as "quasi-federal" — federal in form but unitary in spirit. The features that contribute to this are: a single Constitution for both Centre and States, residuary powers with the Centre, a single citizenship, the Centre\'s power to alter state boundaries, the Governor being appointed by the Centre, emergency provisions that can make India virtually unitary, and All-India Services under central control. These unitary biases coexist with the federal structure of three lists.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Which case established that the Preamble is an integral part of the Constitution?',
+opts:['Berubari Union case (1960)','Kesavananda Bharati case (1973)','Golak Nath case (1967)','Minerva Mills case (1980)'],ans:1,
+rule:'Kesavananda Bharati (1973) held Preamble IS part of Constitution · Berubari (1960) said it is NOT',
+exp:'In the Berubari Union case (1960), the Supreme Court held that the Preamble is not part of the Constitution and cannot be used to interpret its provisions. However, in the landmark Kesavananda Bharati case (1973), the Supreme Court overruled this and held that the Preamble IS part of the Constitution and can therefore be used as a key to interpreting the Constitution. The Preamble was also held to be amendable, but its Basic Structure cannot be altered.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Which amendment gave constitutional status to Panchayati Raj institutions by adding Part IX to the Constitution?',
+opts:['70th Amendment','72nd Amendment','73rd Amendment','74th Amendment'],ans:2,
+rule:'73rd Amendment (1992) = Panchayati Raj (Part IX, 11th Schedule) · 74th = Municipalities',
+exp:'The 73rd Constitutional Amendment Act, 1992 gave constitutional status to Panchayati Raj institutions by adding Part IX (Articles 243-243O) and the 11th Schedule (29 subjects) to the Constitution. It came into force on 24 April 1993 — this date is now celebrated as Panchayati Raj Diwas. The 74th Amendment simultaneously did the same for Urban Local Bodies (municipalities), adding Part IX-A and the 12th Schedule (18 subjects).'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'The 9th Schedule of the Constitution was added by the:',
+opts:['Original Constitution','1st Constitutional Amendment (1951)','7th Amendment (1956)','42nd Amendment (1976)'],ans:1,
+rule:'9th Schedule added by 1st Amendment (1951) to protect land reform laws from judicial review',
+exp:'The 9th Schedule was added by the 1st Constitutional Amendment Act of 1951. It was created to protect certain laws from judicial review, particularly land reform laws that redistributed zamindari lands. Parliament wanted to ensure these laws could not be challenged in court as violations of Fundamental Rights (especially the right to property at that time). In I.R. Coelho v. State of Tamil Nadu (2007), the Supreme Court held that laws added to the 9th Schedule after 24 April 1973 can be judicially reviewed.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'The S.R. Bommai case (1994) is significant in Indian constitutional law because it:',
+opts:[
+  'Established the Basic Structure doctrine',
+  'Ruled that federalism is part of the Basic Structure and President\'s Rule is subject to judicial review',
+  'Defined the scope of Fundamental Rights',
+  'Held that the Preamble can be amended'
+],ans:1,
+rule:'S.R. Bommai (1994): Federalism = Basic Structure · President\'s Rule under Art 356 = judicially reviewable',
+exp:'The S.R. Bommai v. Union of India (1994) case was a landmark 9-judge bench judgment. The Supreme Court held: (1) Federalism is part of the Basic Structure of the Constitution; (2) The President\'s power to impose President\'s Rule under Article 356 is subject to judicial review; (3) If the proclamation of President\'s Rule is found to be unconstitutional, the court can order revival of the dismissed government. This significantly curtailed the arbitrary use of Article 356.'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'Which of the following is NOT a feature of the Indian federal system?',
+opts:[
+  'Written Constitution',
+  'Division of powers between Centre and States',
+  'Dual citizenship (central and state)',
+  'Independent Judiciary'
+],ans:2,
+rule:'India has SINGLE citizenship — NOT dual. Dual citizenship is a feature of USA.',
+exp:'India provides for only single citizenship — all Indians are citizens of India, not of their respective states. This is an anti-federal or unitary feature. In contrast, in the USA, a person is simultaneously a citizen of the USA and the state they reside in (dual citizenship). Single citizenship in India means all Indians enjoy the same rights regardless of which state they live in, and state governments cannot grant separate citizenship.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'Which of the following correctly describes the "doctrine of Basic Structure"?',
+opts:[
+  'The President cannot be removed even by impeachment',
+  'Parliament cannot amend the Constitution at all',
+  'Parliament can amend the Constitution but cannot destroy its essential features',
+  'The Constitution cannot be amended without a referendum'
+],ans:2,
+rule:'Basic Structure doctrine: amendments permitted but essential features (sovereignty, democracy, FR, etc.) cannot be destroyed',
+exp:'The Basic Structure doctrine, evolved in Kesavananda Bharati (1973) and strengthened in Minerva Mills (1980), holds that Parliament\'s constituent power under Article 368 does not enable it to abrogate or destroy the fundamental features or the basic structure of the Constitution. Parliament can amend, modify, or even delete individual provisions but cannot use its amending power to destroy the Constitution\'s identity. Basic Structure elements include: supremacy of Constitution, republican form, secular character, separation of powers, judicial review.'},
+
+{d:'MEDIUM',e:'CDS 2024',
+q:'The Morley-Minto Reforms of 1909 are significant because they:',
+opts:[
+  'Introduced Dyarchy in the provinces',
+  'Transferred power from the East India Company to the Crown',
+  'Introduced separate electorates for Muslims, sowing seeds of partition',
+  'Created the Federal Court of India'
+],ans:2,
+rule:'Morley-Minto 1909 = Separate electorates for Muslims (most controversial; sowed seeds of partition)',
+exp:'The Morley-Minto Reforms (Indian Councils Act, 1909) are historically significant primarily for introducing the system of separate electorates for Muslims — Muslims would elect their own representatives. This was seen as a deliberate British policy of "divide and rule" and is considered one of the root causes of the eventual partition of India in 1947. Dyarchy was introduced by 1919 reforms. Transfer from Company to Crown happened in 1858. Federal Court was created by the 1935 Act.'},
+
+// ── HARD (10) ────────────────────────────────────────────────────────────────
+{d:'HARD',e:'CDS 2023',
+q:'Consider the following statements about the Constituent Assembly:\n1. The Constituent Assembly was elected on the basis of universal adult franchise.\n2. The total strength of the CA after Partition was 299 members.\n3. The CA took exactly 3 years to complete the Constitution.\nWhich of the above is/are correct?',
+opts:['Only 2','1 and 2','2 and 3','All three'],ans:0,
+rule:'Only Statement 2 is correct. CA was not elected by universal adult franchise; time taken was 2yr 11m 18d (not 3yr)',
+exp:'Statement 1 is WRONG — The Constituent Assembly was not elected by universal adult franchise. It was elected by the members of the existing Provincial Legislative Assemblies using proportional representation by single transferable vote. Only a small fraction of India\'s population (those who could vote in provincial elections under restricted franchise) chose the CA members. Statement 2 is CORRECT — after partition, the CA\'s strength was reduced to 299. Statement 3 is WRONG — the CA took 2 years, 11 months and 18 days, not exactly 3 years.'},
+
+{d:'HARD',e:'NDA 2023',
+q:'Which of the following statements about the Preamble is INCORRECT?',
+opts:[
+  'The Preamble was amended by the 42nd Amendment in 1976',
+  'The words "Socialist" and "Secular" were part of the original Preamble of 1950',
+  'The Preamble cannot be enforced in a court of law',
+  'The Preamble is part of the Constitution as held in Kesavananda Bharati case'
+],ans:1,
+rule:'"Socialist" and "Secular" were added in 1976 (42nd Amendment) — NOT in original 1950 Preamble',
+exp:'Statement B is incorrect — "Socialist" and "Secular" were NOT in the original Preamble of 1950. They were added by the 42nd Constitutional Amendment in 1976. The original Preamble described India as a "Sovereign Democratic Republic". All other statements are correct: the Preamble was amended once (42nd Amend. 1976), it is not enforceable in court (only interpretive value), and Kesavananda Bharati (1973) established it as part of the Constitution.'},
+
+{d:'HARD',e:'AFCAT 2023',
+q:'The Indra Sawhney case (1992) laid down which landmark principles? (Choose the most complete answer)',
+opts:[
+  'Reservations cannot exceed 50% of total posts; creamy layer must be excluded from OBC reservations',
+  'Reservations can go up to 75% in exceptional circumstances',
+  'Reservations apply to all private sector jobs as well',
+  'The Basic Structure doctrine prevents any reservation policy'
+],ans:0,
+rule:'Indra Sawhney (1992): 50% reservation ceiling + creamy layer exclusion from OBC reservations',
+exp:'The Indra Sawhney v. Union of India (1992) case (also known as the Mandal Commission case) laid down several landmark principles: (1) Reservations for OBCs are constitutionally valid; (2) The total quantum of reservations ordinarily should not exceed 50% (though in exceptional circumstances, limited exceptions are possible); (3) The "creamy layer" (economically well-off sections) among OBCs must be excluded from reservations; (4) Reservations in promotions are not constitutionally valid for OBCs (though later amended).'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Match the following constitutional provisions with the amendments:\nA. Anti-defection Law B. Voting age reduced to 18 C. Women\'s 33% reservation D. GST',
+opts:[
+  'A-52nd, B-61st, C-106th, D-101st',
+  'A-52nd, B-60th, C-103rd, D-100th',
+  'A-51st, B-61st, C-104th, D-101st',
+  'A-52nd, B-61st, C-103rd, D-101st'
+],ans:0,
+rule:'52nd (Anti-defection) · 61st (Voting age) · 106th (Women\'s reservation) · 101st (GST)',
+exp:'A. Anti-defection Law (10th Schedule) — 52nd Amendment, 1985. B. Voting age reduced from 21 to 18 years — 61st Amendment, 1989. C. Women\'s reservation of 33% seats in Lok Sabha and State Assemblies — 106th Amendment, 2023 (also called "Nari Shakti Vandan Adhiniyam"). D. GST (Goods and Services Tax) — 101st Amendment, 2016, which also created Article 279A for the GST Council. Option A is the only completely correct match.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Which of the following is NOT part of the "Basic Structure" of the Constitution as identified by the Supreme Court?',
+opts:[
+  'Separation of Powers',
+  'Judicial Review',
+  'Parliamentary form of Government',
+  'Specific provisions of the Directive Principles of State Policy'
+],ans:3,
+rule:'Specific DPSP provisions are NOT Basic Structure — but "welfare state" broadly is. DPSP as a category is basic structure; individual provisions are not.',
+exp:'The Basic Structure doctrine identifies broad constitutional features, not specific provisions. The Supreme Court has held that separation of powers, judicial review, and the parliamentary form of government are part of Basic Structure. However, specific individual provisions of the Directive Principles are not individually part of the Basic Structure — only the concept of "welfare state" or the "balance between FR and DPSP" has been held to be basic structure (Minerva Mills, 1980). Specific DPSP articles can be modified by Parliament within constitutional limits.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'The Government of India Act, 1935 introduced "Dyarchy at the Centre." This meant:',
+opts:[
+  'The Governor-General shared power with an elected Prime Minister',
+  'Federal subjects were divided into "reserved" and "transferred" — but the Federal part never actually came into force',
+  'Both the Centre and Provinces had equal powers',
+  'Two separate governments existed in Delhi simultaneously'
+],ans:1,
+rule:'1935 Dyarchy at Centre = reserved + transferred subjects at federal level · BUT Federal provisions NEVER came into force',
+exp:'The GoI Act 1935 introduced Dyarchy at the Centre — subjects were divided into "reserved" (controlled by Governor-General\'s councillors) and "transferred" (controlled by ministers responsible to the legislature). However, the Federal part of the 1935 Act never actually came into force because the required number of princely states never acceded to join the federation. What came into force in 1937 was the provincial part of the Act (Provincial Autonomy), not the Federal structure.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Consider the following about the 9th Schedule:\n1. It was added by the original Constitution framers in 1950.\n2. Laws placed in the 9th Schedule are completely immune from judicial review.\n3. Acts added to the 9th Schedule after April 1973 can be judicially reviewed.\nWhich statements are correct?',
+opts:['Only 3','1 and 2','2 and 3','Only 2'],ans:0,
+rule:'Only Statement 3 is correct (I.R. Coelho 2007). 9th Schedule added by 1st Amend. (1951), not original; immunity not absolute after 1973.',
+exp:'Statement 1 is WRONG — the 9th Schedule was NOT part of the original Constitution. It was added by the 1st Constitutional Amendment Act, 1951. Statement 2 is WRONG — laws in the 9th Schedule are NOT completely immune from judicial review. In I.R. Coelho v. State of Tamil Nadu (2007), the Supreme Court held that laws inserted into the 9th Schedule after 24 April 1973 (Kesavananda Bharati date) can be judicially reviewed if they violate the Basic Structure. Statement 3 is CORRECT.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Which of the following features of the Indian Constitution reflects its "unitary" character rather than "federal"?',
+opts:[
+  'Division of powers between Centre and States through three lists',
+  'Independent judiciary with Supreme Court at apex',
+  'Parliament\'s power to create or reorganise States under Article 3 without State consent',
+  'Rajya Sabha as representative of States in Parliament'
+],ans:2,
+rule:'Art 3: Parliament can create/reorganise States without consent of that State — purely unitary feature',
+exp:'Article 3 gives Parliament the unilateral power to create new states, merge existing states, alter state boundaries, change names of states — without the consent of the concerned state legislature. The concerned state\'s legislature is only consulted (given opportunity to express views), but its consent is NOT binding. This is a strongly unitary feature. In contrast, in a true federation like the USA, no state can be divided or its boundaries changed without that state\'s consent. All other options reflect federal features.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'The 101st Constitutional Amendment (2016) that introduced GST made which significant change to the 7th Schedule?',
+opts:[
+  'Added a 4th list exclusively for GST matters',
+  'Removed Entry 92 (taxes on sale of newspapers) and Entry 92C from Union List; removed Entry 54 from State List — creating a unified national tax',
+  'Transferred all taxation subjects from State List to Union List',
+  'Made the Concurrent List the exclusive domain for all tax matters'
+],ans:1,
+rule:'101st Amend: deleted specific tax entries from Union and State Lists to enable unified GST; created Art 279A for GST Council',
+exp:'The 101st Constitutional Amendment (2016) made specific changes to the 7th Schedule to enable GST. It amended the Union List (List I) — deleting Entry 92 (taxes on sale of newspapers), Entry 92C (taxes on services), and other entries. It amended the State List (List II) — deleting Entry 54 (taxes on sale of goods, except newspapers) among others. The amendment also inserted Article 246A (special provision for GST) and Article 279A (GST Council). A unified GST replaced the multiple cascading taxes.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'The Constituent Assembly of India was set up under the provisions of which plan, and how was the Constituent Assembly different from a directly elected body?',
+opts:[
+  'Cripps Mission (1942) — elected by all adults directly',
+  'Cabinet Mission Plan (1946) — elected by members of Provincial Legislative Assemblies, not directly by people',
+  'Wavell Plan (1945) — nominated by the Viceroy',
+  'Mountbatten Plan (1947) — elected by universal adult franchise for the first time'
+],ans:1,
+rule:'CA set up under Cabinet Mission Plan (1946) · Elected indirectly by Provincial Legislative Assembly members',
+exp:'The Constituent Assembly was set up under the Cabinet Mission Plan of 1946 (Lord Pethick-Lawrence, Sir Stafford Cripps, A.V. Alexander). The members were not directly elected by the people of India. Instead, they were elected by the members of the existing Provincial Legislative Assemblies (which had themselves been elected by a limited franchise). This is why critics called the CA an "unrepresentative" body. Nevertheless, the CA represented diverse sections and worked for nearly 3 years to produce the Constitution.'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const TOTAL = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Polity · POL01</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--navy)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null&&answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=88){grade='Outstanding';msg='Excellent! Your Polity preparation is exam-ready.'}
+  else if(pct>=70){grade='Good';msg:'Well done. Revisit the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg:'Good effort. Re-read the theory cards and try again.'}
+  else{grade='Needs Work';msg:"Don't worry — go through the Quick Ref and retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>
