@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouns | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F6F1E8;
+  --bg2:       #EDE5D4;
+  --bg3:       #E2D6BF;
+  --white:     #FFFFFF;
+  --ink:       #1E1200;
+  --ink2:      #342000;
+  --muted:     #7A6040;
+  --dim:       #AA8C5C;
+  --border:    #D8C89C;
+  --pri:       #8A4E00;
+  --priLt:     #AA6200;
+  --priPale:   #FDF4E0;
+  --ac1:       #0A5858;
+  --ac1Lt:     #0E7070;
+  --ac1Pale:   #E0F2F2;
+  --ac2:       #245E28;
+  --ac2Lt:     #2E7A34;
+  --ac2Pale:   #E4F2E6;
+  --ac3:       #7A1E10;
+  --ac3Lt:     #9E2818;
+  --ac3Pale:   #FCEAED;
+  --ac4:       #162048;
+  --ac4Lt:     #1E2C64;
+  --ac4Pale:   #E4E8F6;
+  --ac5:       #541860;
+  --ac5Pale:   #F4EAF8;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(30,18,0,.10);
+  --shadow-md: 0 4px 20px rgba(30,18,0,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#1A3A1A 0%,#2D5A2D 55%,#3A7A3A 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(140,255,120,.08) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(140,255,120,.04);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#A8F0A8;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(168,240,168,.18);color:#A8F0A8}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+/* ── TAB BAR ── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(30,18,0,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(138,78,0,.22);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(10,88,88,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(122,30,16,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(22,32,72,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(84,24,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── TABLES ── */
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.5;font-size:15px}
+.degree-table td:first-child{font-weight:700;color:var(--ink)}
+.degree-table .hi-row td{background:#E4F2E6!important}
+.degree-table .hi-row td:first-child{color:var(--ac2)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.tag-irr{background:var(--priPale);color:var(--pri);border:1px solid rgba(138,78,0,.25)}
+.tag-defect{background:var(--ac3Pale);color:var(--ac3);border:1px solid rgba(122,30,16,.25)}
+.tag-mil{background:var(--ac4Pale);color:var(--ac4);border:1px solid rgba(22,32,72,.25)}
+.tag-exam{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(36,94,40,.25)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── SUFFIX STRIP ── */
+.suffix-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+.suf-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;box-shadow:var(--shadow)}
+.suf-tag{display:inline-block;font-family:'Lora',serif;font-size:19px;font-weight:700;color:var(--pri);background:var(--priPale);border-radius:6px;padding:2px 10px;margin-bottom:8px}
+.suf-desc{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.suf-examples{font-size:14px;color:var(--ink2);line-height:1.8}
+.suf-examples span{color:var(--ac1);font-weight:700}
+@media(max-width:420px){.suffix-grid{grid-template-columns:1fr}}
+
+/* ── QUICK REF ── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(138,78,0,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(138,78,0,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#1A3A1A 0%,#3A7A3A 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#A8F0A8;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .tab{padding:12px 14px;font-size:11px}
+  .hero-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-kicker">Olive Defence · English Grammar</div>
+  <div class="hero-title">E13 — <span>Nouns</span></div>
+  <div class="hero-sub">Types · Tricky plurals · Collective nouns · Noun-forming suffixes · Gender · Case · Exam traps for CDS · NDA · AFCAT</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-y">6 Sections</span>
+    <span class="chip chip-g">15 Questions</span>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab" onclick="switchTab('plurals')">Plural List</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz</button>
+</div>
+
+<!-- ═══════════════════════ THEORY ═══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>noun</strong> is a word that names a person, place, thing, quality, action, or idea. In CDS/NDA/AFCAT English, nouns are tested through <strong>error spotting, fill-in-the-blank, and sentence improvement</strong> questions. The highest-yield areas are: <strong>tricky plural forms, collective noun–verb agreement, countable/uncountable errors, noun-forming suffixes, and gender/case usage</strong>. This module covers all of them systematically.</p>
+  </div>
+
+  <!-- ── SECTION 1 — TYPES ── -->
+  <div class="sec-label">Section 1 — Types of Nouns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🗂️</div>
+      <div style="flex:1">
+        <div class="c-title">The Five Main Types</div>
+        <div class="c-sub">Proper · Common · Collective · Abstract · Material / Concrete</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td><b>Proper Noun</b></td><td>Name of a specific person, place, or institution</td><td>Arjun, Delhi, Indian Army, Ganga, NDA Khadakwasla</td></tr>
+          <tr><td><b>Common Noun</b></td><td>General name for a class of persons or things</td><td>soldier, river, academy, city, officer, weapon</td></tr>
+          <tr><td><b>Collective Noun</b></td><td>Name for a group treated as a single unit</td><td>army, fleet, jury, crew, pride (lions), parliament (owls)</td></tr>
+          <tr><td><b>Abstract Noun</b></td><td>Name for a quality, state, idea, or feeling</td><td>bravery, discipline, freedom, loyalty, integrity, courage</td></tr>
+          <tr><td><b>Material / Concrete Noun</b></td><td>Physical substance that can be perceived by the senses</td><td>gold, water, wood, steel, air, sand, rice</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Proper Noun Capitalisation Rule</div>
+        <p>Proper nouns are <strong>always capitalised</strong>, regardless of position in a sentence. This is a direct error-spotting test item. Titles used as part of a name are capitalised (<strong>General Rawat</strong>), but titles used generically are not (<strong>the general</strong> saluted the flag).</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Abstract Noun vs Adjective Confusion</div>
+        <ul>
+          <li>Adjective: She is <strong>brave</strong>. (modifies a noun/pronoun via linking verb)</li>
+          <li>Abstract Noun: Her <strong>bravery</strong> inspired the platoon. (subject — names a quality)</li>
+          <li>✗ "Her <em>brave</em> inspired the platoon." → ✓ "Her <strong>bravery</strong> inspired the platoon."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">🔢</div>
+      <div style="flex:1">
+        <div class="c-title">Countable vs Uncountable Nouns</div>
+        <div class="c-sub">Articles, quantifiers, and verb agreement — the most tested noun rule</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Countable nouns</strong> have singular and plural forms and can be preceded by a/an or a number. <strong>Uncountable nouns</strong> have no plural form and cannot take a/an or a number directly.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Countable</th><th>Uncountable — Common Exam Examples</th></tr>
+          <tr><td>soldier / soldiers</td><td>information (not "informations")</td></tr>
+          <tr><td>order / orders</td><td>advice (not "advices")</td></tr>
+          <tr><td>report / reports</td><td>luggage / baggage (not "luggages")</td></tr>
+          <tr><td>weapon / weapons</td><td>equipment (not "equipments")</td></tr>
+          <tr><td>suggestion / suggestions</td><td>furniture (not "furnitures")</td></tr>
+          <tr><td>idea / ideas</td><td>news (treated as singular: "The news is good.")</td></tr>
+          <tr><td>victory / victories</td><td>scenery (not "sceneries")</td></tr>
+          <tr><td>permission / permissions</td><td>ammunition (not "ammunitions")</td></tr>
+          <tr><td>aircraft (same for pl.)</td><td>progress (not "progresses" in this sense)</td></tr>
+          <tr><td>staff / staffs (rare)</td><td>traffic (not "traffics")</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Quantifier Rules — Countable vs Uncountable</div>
+        <ul>
+          <li><strong>many / few / fewer / a number of</strong> → Countable: "many soldiers", "few errors"</li>
+          <li><strong>much / little / less / a great deal of / a lot of</strong> → Uncountable: "much ammunition", "little progress"</li>
+          <li><strong>some / any / a lot of / plenty of / most</strong> → Both: "some soldiers" / "some ammunition"</li>
+          <li><strong>"Less" vs "fewer"</strong>: fewer for countable (fewer cadets), less for uncountable (less time)</li>
+          <li><strong>"Amount" vs "number"</strong>: amount of (uncountable), number of (countable)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Most Tested Uncountable Errors</div>
+        <ul>
+          <li>✗ "The officer gave us many <em>advices</em>." → ✓ "…much <strong>advice</strong>." / "…several pieces of advice."</li>
+          <li>✗ "We have received important <em>informations</em>." → ✓ "…important <strong>information</strong>."</li>
+          <li>✗ "All the <em>lugages</em> were checked." → ✓ "All the <strong>luggage</strong> was checked."</li>
+          <li>✗ "He had <em>less</em> options." → ✓ "He had <strong>fewer</strong> options." (countable noun)</li>
+          <li>✗ "The <em>equipments</em> arrived." → ✓ "The <strong>equipment</strong> arrived."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 — COLLECTIVE NOUNS ── -->
+  <div class="sec-label">Section 2 — Collective Nouns &amp; Verb Agreement</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">🦁</div>
+      <div style="flex:1">
+        <div class="c-title">Collective Nouns — Animals &amp; People</div>
+        <div class="c-sub">Army of ants · Pride of lions · Jury of peers · Fleet of ships — exam favourites</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Collective nouns for <strong>animals</strong> are a direct test item in vocabulary sections. Military and institutional collective nouns appear in verb-agreement questions.</p>
+      <div class="fact-box">
+        <div class="fb-label">Animals — Must Know for Exam</div>
+        <ul>
+          <li>A <strong>pride</strong> of lions &nbsp;|&nbsp; A <strong>pack</strong> of wolves / hounds</li>
+          <li>A <strong>herd</strong> of cattle / elephants / horses</li>
+          <li>A <strong>flock</strong> of birds / sheep / geese</li>
+          <li>A <strong>school / shoal</strong> of fish</li>
+          <li>A <strong>swarm</strong> of bees / locusts</li>
+          <li>A <strong>gaggle</strong> of geese (on land); a <strong>skein</strong> of geese (in flight)</li>
+          <li>A <strong>murder</strong> of crows &nbsp;|&nbsp; A <strong>parliament</strong> of owls</li>
+          <li>A <strong>colony</strong> of ants / bats / penguins</li>
+          <li>A <strong>pod</strong> of whales / dolphins</li>
+          <li>A <strong>litter</strong> of kittens / puppies &nbsp;|&nbsp; A <strong>brood</strong> of chicks</li>
+          <li>A <strong>troop</strong> of monkeys &nbsp;|&nbsp; A <strong>crash</strong> of rhinoceroses</li>
+          <li>A <strong>sleuth</strong> of bears &nbsp;|&nbsp; A <strong>tower</strong> of giraffes</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">People &amp; Military — Must Know</div>
+        <ul>
+          <li>A <strong>crew</strong> of sailors &nbsp;|&nbsp; A <strong>fleet</strong> of ships / aircraft</li>
+          <li>A <strong>squadron</strong> of aircraft / cavalry</li>
+          <li>A <strong>regiment</strong> / <strong>battalion</strong> / <strong>brigade</strong> of soldiers</li>
+          <li>A <strong>panel</strong> of judges &nbsp;|&nbsp; A <strong>jury</strong> of peers</li>
+          <li>A <strong>board</strong> of directors &nbsp;|&nbsp; A <strong>cabinet</strong> of ministers</li>
+          <li>A <strong>faculty</strong> of professors &nbsp;|&nbsp; A <strong>staff</strong> of employees</li>
+          <li>A <strong>choir</strong> of singers &nbsp;|&nbsp; A <strong>band</strong> of musicians</li>
+          <li>A <strong>gang</strong> of thieves &nbsp;|&nbsp; A <strong>mob</strong> of rioters</li>
+          <li>A <strong>team</strong> of players &nbsp;|&nbsp; A <strong>squad</strong> of soldiers / players</li>
+          <li>A <strong>congregation</strong> of worshippers &nbsp;|&nbsp; A <strong>audience</strong> of spectators</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Collective Noun — Singular or Plural Verb?</div>
+        <div class="c-sub">Unit as a whole → singular · Members acting individually → plural</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This is the most commonly tested collective noun rule in CDS/NDA error-spotting questions. The key principle:</p>
+      <div class="rule-box">
+        <div class="rl-label">The Core Rule</div>
+        <p>If the collective noun refers to the group acting as <strong>one unit</strong> → use a <strong>singular verb</strong>.<br>If it refers to members acting <strong>individually / separately</strong> → use a <strong>plural verb</strong>.</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage Examples</div>
+        <ul>
+          <li>The committee <strong>has</strong> reached a decision. (acting as one unit) ✓</li>
+          <li>The committee <strong>are</strong> divided in their opinions. (members individually) ✓</li>
+          <li>The jury <strong>has</strong> returned a verdict. (one unit) ✓</li>
+          <li>The crew <strong>were</strong> arguing among themselves. (individually) ✓</li>
+          <li>The army <strong>is</strong> advancing northward. (unit) ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ These Always Take Singular Verbs (No exception)</div>
+        <ul>
+          <li><strong>news</strong> — "The news <strong>is</strong> good." (never "are")</li>
+          <li><strong>mathematics, physics, economics, politics, athletics, gymnastics</strong> — singular despite -s ending: "Mathematics <strong>is</strong> essential."</li>
+          <li><strong>the United States, the United Nations, the Netherlands</strong> — singular: "The United States <strong>has</strong> deployed its forces."</li>
+          <li><strong>cattle, police, people</strong> — always plural: "The cattle <strong>are</strong> grazing." / "The police <strong>have</strong> arrived."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 — NUMBER / PLURALS ── -->
+  <div class="sec-label">Section 3 — Number: Tricky Plural Forms</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Irregular &amp; Tricky Plural Rules</div>
+        <div class="c-sub">Foreign plurals · Same form · Compound nouns · -f/-fe → -ves</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Regular plurals add <strong>-s</strong> or <strong>-es</strong>. The high-yield exam errors come from irregular, Latin/Greek-origin, and compound-noun plurals.</p>
+      <div class="fact-box">
+        <div class="fb-label">Key Irregular Plural Patterns</div>
+        <ul>
+          <li><strong>Vowel change</strong>: man→men, woman→women, foot→feet, tooth→teeth, goose→geese, mouse→mice, louse→lice</li>
+          <li><strong>-en suffix</strong>: child→children, ox→oxen, brother→brethren (archaic/religious)</li>
+          <li><strong>-f/-fe → -ves</strong>: leaf→leaves, wolf→wolves, knife→knives, life→lives, wife→wives, self→selves, shelf→shelves, half→halves, calf→calves, thief→thieves — <em>but</em>: roof→<strong>roofs</strong>, chief→<strong>chiefs</strong>, proof→<strong>proofs</strong>, cliff→<strong>cliffs</strong></li>
+          <li><strong>Same singular &amp; plural</strong>: sheep, deer, fish (also fishes for species), aircraft, spacecraft, series, species, means, offspring, corps, headquarters</li>
+          <li><strong>-is → -es (Greek)</strong>: crisis→crises, analysis→analyses, basis→bases, thesis→theses, axis→axes, hypothesis→hypotheses, oasis→oases, parenthesis→parentheses</li>
+          <li><strong>-um → -a (Latin)</strong>: datum→data, medium→media, curriculum→curricula, bacterium→bacteria, memorandum→memoranda (also memorandums)</li>
+          <li><strong>-us → -i (Latin)</strong>: alumnus→alumni, syllabus→syllabi (also syllabuses), cactus→cacti, radius→radii, nucleus→nuclei, stimulus→stimuli, focus→foci</li>
+          <li><strong>-on → -a (Greek)</strong>: criterion→criteria, phenomenon→phenomena</li>
+          <li><strong>-a → -ae (Latin)</strong>: alumnae (fem.), larvae, antennae (also antennas)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Compound Noun Plurals — The Main Noun Takes the -s</div>
+        <ul>
+          <li>mother-in-law → <strong>mothers</strong>-in-law (not "mother-in-laws")</li>
+          <li>commander-in-chief → <strong>commanders</strong>-in-chief</li>
+          <li>court martial → <strong>courts</strong> martial</li>
+          <li>aide-de-camp → <strong>aides</strong>-de-camp</li>
+          <li>passer-by → <strong>passers</strong>-by</li>
+          <li>man-of-war → <strong>men</strong>-of-war</li>
+          <li>looker-on → <strong>lookers</strong>-on</li>
+          <li>step-son → step<strong>sons</strong> (solid compound — last word pluralised)</li>
+          <li>Major General → Major <strong>Generals</strong> (title + rank — last element pluralised)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Data", "Criteria", "Phenomena" — Plural, Not Singular</div>
+        <ul>
+          <li>✗ "The <em>data</em> is inconclusive." → ✓ "The <strong>data are</strong> inconclusive." (data = pl. of datum)</li>
+          <li>✗ "This <em>criteria</em> is important." → ✓ "This <strong>criterion</strong> is important." / "These <strong>criteria are</strong>…"</li>
+          <li>✗ "This <em>phenomena</em> was observed." → ✓ "This <strong>phenomenon</strong> was observed."</li>
+          <li>Note: In informal/modern usage "data is" is becoming accepted, but in defence exam context, always treat these as plural.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 — NOUN-FORMING SUFFIXES ── -->
+  <div class="sec-label">Section 4 — Noun-Forming Suffixes</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">✏️</div>
+      <div style="flex:1">
+        <div class="c-title">Suffixes That Form Nouns</div>
+        <div class="c-sub">From verbs, adjectives &amp; other nouns — tested in fill-in-the-blank &amp; word-formation</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The ability to identify the correct noun form of a word using the right suffix is tested directly in <strong>fill-in-the-blank and error-spotting</strong> questions. Master these 12 key suffixes:</p>
+      <div class="suffix-grid">
+
+        <div class="suf-card">
+          <div class="suf-tag">-tion / -sion / -ation</div>
+          <div class="suf-desc">Verb → Noun (state/process)</div>
+          <div class="suf-examples">act → <span>action</span><br>decide → <span>decision</span><br>operate → <span>operation</span><br>communicate → <span>communication</span><br>permit → <span>permission</span><br>conclude → <span>conclusion</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ment</div>
+          <div class="suf-desc">Verb → Noun (result/action)</div>
+          <div class="suf-examples">achieve → <span>achievement</span><br>deploy → <span>deployment</span><br>manage → <span>management</span><br>govern → <span>government</span><br>assess → <span>assessment</span><br>establish → <span>establishment</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ness</div>
+          <div class="suf-desc">Adjective → Noun (state/quality)</div>
+          <div class="suf-examples">brave → <span>braveness</span><br>dark → <span>darkness</span><br>fit → <span>fitness</span><br>aware → <span>awareness</span><br>ready → <span>readiness</span><br>hard → <span>hardness</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ity / -ty</div>
+          <div class="suf-desc">Adjective → Noun (quality)</div>
+          <div class="suf-examples">able → <span>ability</span><br>loyal → <span>loyalty</span><br>secure → <span>security</span><br>national → <span>nationality</span><br>equal → <span>equality</span><br>real → <span>reality</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ance / -ence</div>
+          <div class="suf-desc">Verb/Adj → Noun (state/quality)</div>
+          <div class="suf-examples">perform → <span>performance</span><br>resist → <span>resistance</span><br>obey → <span>obedience</span><br>depend → <span>dependence</span><br>insist → <span>insistence</span><br>excel → <span>excellence</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-er / -or / -ar</div>
+          <div class="suf-desc">Verb → Noun (agent/doer)</div>
+          <div class="suf-examples">command → <span>commander</span><br>lead → <span>leader</span><br>instruct → <span>instructor</span><br>act → <span>actor</span><br>supervise → <span>supervisor</span><br>lie → <span>liar</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ery / -ry / -ary</div>
+          <div class="suf-desc">Noun/Adj → Noun (place/collection/practice)</div>
+          <div class="suf-examples">brave → <span>bravery</span><br>slave → <span>slavery</span><br>artill- → <span>artillery</span><br>infant- → <span>infantry</span><br>caval- → <span>cavalry</span><br>arm → <span>armoury</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ship</div>
+          <div class="suf-desc">Noun → Noun (state/skill/position)</div>
+          <div class="suf-examples">leader → <span>leadership</span><br>friend → <span>friendship</span><br>officer → <span>officership</span><br>member → <span>membership</span><br>scholar → <span>scholarship</span><br>citizen → <span>citizenship</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-hood</div>
+          <div class="suf-desc">Noun → Noun (state/condition)</div>
+          <div class="suf-examples">brother → <span>brotherhood</span><br>man → <span>manhood</span><br>child → <span>childhood</span><br>soldier → <span>soldierdom</span><br>nation → <span>nationhood</span><br>neighbour → <span>neighbourhood</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-ism / -ist</div>
+          <div class="suf-desc">Noun/Adj → Noun (doctrine/follower)</div>
+          <div class="suf-examples">patriot → <span>patriotism</span><br>terror → <span>terrorism</span><br>nation → <span>nationalism</span><br>special → <span>specialist</span><br>science → <span>scientist</span><br>ideal → <span>idealism / idealist</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-al / -age</div>
+          <div class="suf-desc">Verb → Noun (action/result)</div>
+          <div class="suf-examples">arrive → <span>arrival</span><br>deny → <span>denial</span><br>propose → <span>proposal</span><br>carry → <span>carriage</span><br>store → <span>storage</span><br>break → <span>breakage</span></div>
+        </div>
+
+        <div class="suf-card">
+          <div class="suf-tag">-th / -th (vowel shift)</div>
+          <div class="suf-desc">Adjective/Verb → Abstract Noun</div>
+          <div class="suf-examples">warm → <span>warmth</span><br>strong → <span>strength</span><br>wide → <span>width</span><br>long → <span>length</span><br>deep → <span>depth</span><br>grow → <span>growth</span></div>
+        </div>
+
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Suffix Selection Errors</div>
+        <ul>
+          <li>✗ "He showed great <em>couragement</em>." → ✓ "He showed great <strong>courage</strong>." (-ment does not attach to "courage")</li>
+          <li>✗ "The <em>wideness</em> of the river…" → ✓ "The <strong>width</strong> of the river…" (-th is the correct suffix here)</li>
+          <li>✗ "His <em>strongness</em> was admired." → ✓ "His <strong>strength</strong> was admired."</li>
+          <li>✗ "The army showed great <em>resistation</em>." → ✓ "…great <strong>resistance</strong>." (-ance, not -ation)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 — GENDER ── -->
+  <div class="sec-label">Section 5 — Gender of Nouns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">♂️</div>
+      <div style="flex:1">
+        <div class="c-title">Masculine, Feminine &amp; Common Gender</div>
+        <div class="c-sub">Irregular feminine forms · Epicene nouns · Tricky pairs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Gender in English nouns is tested mainly through <strong>irregular masculine-feminine pairs</strong> and the use of <strong>epicene (common/neuter) nouns</strong>.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Masculine</th><th>Feminine</th><th>Masculine</th><th>Feminine</th></tr>
+          <tr><td>duke</td><td><b>duchess</b></td><td>actor</td><td><b>actress</b></td></tr>
+          <tr><td>emperor</td><td><b>empress</b></td><td>heir</td><td><b>heiress</b></td></tr>
+          <tr><td>host</td><td><b>hostess</b></td><td>master</td><td><b>mistress</b></td></tr>
+          <tr><td>steward</td><td><b>stewardess</b></td><td>poet</td><td><b>poetess</b></td></tr>
+          <tr><td>shepherd</td><td><b>shepherdess</b></td><td>murderer</td><td><b>murderess</b></td></tr>
+          <tr><td>lion</td><td><b>lioness</b></td><td>tiger</td><td><b>tigress</b></td></tr>
+          <tr><td>hero</td><td><b>heroine</b></td><td>fox</td><td><b>vixen</b></td></tr>
+          <tr><td>drake</td><td><b>duck</b></td><td>gander</td><td><b>goose</b></td></tr>
+          <tr><td>ram</td><td><b>ewe</b></td><td>bull / steer</td><td><b>cow</b></td></tr>
+          <tr><td>colt</td><td><b>filly</b></td><td>boar</td><td><b>sow</b></td></tr>
+          <tr><td>drone</td><td><b>queen bee</b></td><td>monk</td><td><b>nun</b></td></tr>
+          <tr><td>wizard</td><td><b>witch</b></td><td>widower</td><td><b>widow</b></td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Epicene / Common Gender Nouns (Same for M &amp; F)</div>
+        <ul>
+          <li>friend, student, teacher, doctor, officer, soldier, leader, parent, child, cousin, enemy, ally, spy, pilot, recruit, cadet</li>
+          <li>These take pronouns based on context: "The officer lost <strong>their</strong> composure." (gender-neutral) or "…<strong>his/her</strong> composure."</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Ships, Countries, Vehicles — Traditionally Feminine</div>
+        <ul>
+          <li>Traditionally: "The ship lost <strong>her</strong> anchor." / "India is proud of <strong>her</strong> armed forces."</li>
+          <li>Modern formal writing increasingly uses "it" for ships/countries — both may appear in exams; recognise the traditional usage as correct in older exam questions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6 — CASE ── -->
+  <div class="sec-label">Section 6 — Case of Nouns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">📌</div>
+      <div style="flex:1">
+        <div class="c-title">Nominative, Objective &amp; Possessive Case</div>
+        <div class="c-sub">Apostrophe rules · s' vs 's · Possessive of inanimate nouns</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Case</th><th>Function</th><th>Example</th></tr>
+          <tr><td><b>Nominative</b></td><td>Subject of a verb</td><td>"The <b>general</b> inspected the troops."</td></tr>
+          <tr><td><b>Objective</b></td><td>Object of a verb or preposition</td><td>"They followed the <b>general</b>." / "reported to the <b>general</b>"</td></tr>
+          <tr><td><b>Possessive</b></td><td>Shows ownership — formed with apostrophe</td><td>"The <b>general's</b> orders were clear."</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Possessive Apostrophe Rules — High Exam Frequency</div>
+        <ul>
+          <li><strong>Singular noun</strong>: add <strong>'s</strong> → the soldier's rifle, the officer's rank</li>
+          <li><strong>Plural noun ending in -s</strong>: add <strong>'</strong> (apostrophe only) → the soldiers' rifles, the officers' mess</li>
+          <li><strong>Plural noun NOT ending in -s</strong>: add <strong>'s</strong> → children's welfare, men's team, women's corps</li>
+          <li><strong>Singular noun ending in -s</strong>: both forms acceptable → James's orders OR James' orders (both correct in exams)</li>
+          <li><strong>Compound noun</strong>: possessive on the last word → mother-in-law's advice, commander-in-chief's directive</li>
+          <li><strong>Joint possession</strong>: 's on the last noun → Ram and Shyam's project (shared)</li>
+          <li><strong>Separate possession</strong>: 's on each → Ram's and Shyam's projects (individual)</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">"Of" Phrase — Inanimate Nouns</div>
+        <p>For <strong>inanimate / lifeless nouns</strong>, prefer the "of" phrase over the apostrophe-s construction.<br><br>
+        ✓ "The roof <strong>of</strong> the building" (not "the building's roof")<br>
+        ✓ "The legs <strong>of</strong> the table" (not "the table's legs")<br><br>
+        Exception: Time, weight, distance, money, and personified nouns can use 's → "a day's march", "a stone's throw", "India's heritage", "one hour's notice"</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════ PLURAL LIST ═══════════════════════ -->
+<div id="plurals" class="pane">
+
+  <div class="intro-box">
+    <p>This is the <strong>complete exam-relevant plural list</strong>. Irregular forms and foreign-origin words are the most tested. Items marked <span class="degree-tag tag-exam">Exam</span> have appeared in past CDS/NDA/AFCAT papers. Items marked <span class="degree-tag tag-irr">Tricky</span> are common error-spotting traps.</p>
+  </div>
+
+  <div class="sec-label">Irregular Plurals — Vowel Change &amp; -en</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Singular</th><th>Plural</th><th>Category</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>man</td><td>men</td><td><span class="degree-tag tag-exam">Exam</span></td><td>also: gentleman → gentlemen; doorman → doormen</td></tr>
+        <tr class="hi-row"><td>woman</td><td>women</td><td><span class="degree-tag tag-exam">Exam</span></td><td>pronounced "wimin"</td></tr>
+        <tr><td>child</td><td>children</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>-en suffix; never "childs"</td></tr>
+        <tr><td>ox</td><td>oxen</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>-en suffix; "ox" has no regular form</td></tr>
+        <tr><td>foot</td><td>feet</td><td></td><td>also: barefoot → barefoot (adjective)</td></tr>
+        <tr><td>tooth</td><td>teeth</td><td><span class="degree-tag tag-exam">Exam</span></td><td></td></tr>
+        <tr><td>goose</td><td>geese</td><td><span class="degree-tag tag-exam">Exam</span></td><td>but: mongoose → mongooses (not "mongeese")</td></tr>
+        <tr><td>mouse</td><td>mice</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>computer mice or computer mouses (both accepted)</td></tr>
+        <tr><td>louse</td><td>lice</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">-f / -fe → -ves (and exceptions)</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Singular</th><th>Plural</th><th>Category</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>leaf</td><td>leaves</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-f → -ves pattern</td></tr>
+        <tr class="hi-row"><td>knife</td><td>knives</td><td><span class="degree-tag tag-exam">Exam</span></td><td></td></tr>
+        <tr><td>wolf</td><td>wolves</td><td></td><td></td></tr>
+        <tr><td>life</td><td>lives</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>"life" and "live" (verb) — different words</td></tr>
+        <tr><td>shelf</td><td>shelves</td><td></td><td></td></tr>
+        <tr><td>half</td><td>halves</td><td><span class="degree-tag tag-exam">Exam</span></td><td></td></tr>
+        <tr><td>calf</td><td>calves</td><td></td><td></td></tr>
+        <tr><td>thief</td><td>thieves</td><td><span class="degree-tag tag-exam">Exam</span></td><td></td></tr>
+        <tr class="hi-row"><td>roof</td><td>roofs ✓</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>NOT "rooves" — common exam trap</td></tr>
+        <tr class="hi-row"><td>chief</td><td>chiefs ✓</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>NOT "chieves"</td></tr>
+        <tr><td>proof</td><td>proofs ✓</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>NOT "prooves"</td></tr>
+        <tr><td>cliff</td><td>cliffs ✓</td><td></td><td>double -ff: always -s</td></tr>
+        <tr><td>belief</td><td>beliefs ✓</td><td><span class="degree-tag tag-exam">Exam</span></td><td>NOT "believes" (that's the verb)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Latin &amp; Greek Origin Plurals</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Singular</th><th>Plural</th><th>Category</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>criterion</td><td>criteria</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-on → -a (Greek); "this criteria is" = error</td></tr>
+        <tr class="hi-row"><td>phenomenon</td><td>phenomena</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-on → -a; "this phenomena" = error</td></tr>
+        <tr class="hi-row"><td>datum</td><td>data</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-um → -a; "data are" is formally correct</td></tr>
+        <tr><td>medium</td><td>media</td><td><span class="degree-tag tag-exam">Exam</span></td><td>also: mediums (spiritualists)</td></tr>
+        <tr><td>curriculum</td><td>curricula</td><td></td><td>also: curriculums</td></tr>
+        <tr><td>bacterium</td><td>bacteria</td><td></td><td></td></tr>
+        <tr><td>memorandum</td><td>memoranda</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>also: memorandums (both used)</td></tr>
+        <tr class="hi-row"><td>analysis</td><td>analyses</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-is → -es (Greek)</td></tr>
+        <tr class="hi-row"><td>crisis</td><td>crises</td><td><span class="degree-tag tag-exam">Exam</span></td><td></td></tr>
+        <tr><td>basis</td><td>bases</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>base (foundation) → bases; also basis → bases</td></tr>
+        <tr><td>thesis</td><td>theses</td><td></td><td></td></tr>
+        <tr><td>hypothesis</td><td>hypotheses</td><td></td><td></td></tr>
+        <tr class="hi-row"><td>alumnus (m.)</td><td>alumni</td><td><span class="degree-tag tag-exam">Exam</span></td><td>-us → -i; alumna (f.) → alumnae</td></tr>
+        <tr><td>syllabus</td><td>syllabi</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>also: syllabuses</td></tr>
+        <tr><td>radius</td><td>radii</td><td></td><td></td></tr>
+        <tr><td>nucleus</td><td>nuclei</td><td></td><td></td></tr>
+        <tr><td>stimulus</td><td>stimuli</td><td></td><td></td></tr>
+        <tr><td>focus</td><td>foci</td><td><span class="degree-tag tag-irr">Tricky</span></td><td>also: focuses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Same Singular &amp; Plural Form</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Noun</th><th>Example (plural use)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>sheep</td><td>fifty sheep graze</td><td><span class="degree-tag tag-exam">Exam</span> — never "sheeps"</td></tr>
+        <tr class="hi-row"><td>deer</td><td>three deer crossed</td><td><span class="degree-tag tag-exam">Exam</span> — never "deers"</td></tr>
+        <tr><td>fish</td><td>ten fish in the tank</td><td>"fishes" = different species; "fish" = same species</td></tr>
+        <tr class="hi-row"><td>aircraft</td><td>five aircraft in formation</td><td><span class="degree-tag tag-exam">Exam</span> — never "aircrafts"</td></tr>
+        <tr><td>spacecraft</td><td>two spacecraft launched</td><td></td></tr>
+        <tr class="hi-row"><td>series</td><td>three series aired</td><td><span class="degree-tag tag-irr">Tricky</span> — never "serieses"</td></tr>
+        <tr><td>species</td><td>several species exist</td><td></td></tr>
+        <tr><td>means</td><td>all means were tried</td><td>also acceptable as singular: "every means was tried"</td></tr>
+        <tr><td>corps</td><td>two corps deployed</td><td><span class="degree-tag tag-exam">Exam</span> military term; "corps" is always same form (silent p)</td></tr>
+        <tr><td>headquarters</td><td>Headquarters is located…</td><td>takes singular verb as institution</td></tr>
+        <tr><td>offspring</td><td>all offspring were healthy</td><td>never "offsprings"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Compound Noun Plurals</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Singular</th><th>Correct Plural</th><th>Wrong Form</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>mother-in-law</td><td>mothers-in-law</td><td>❌ mother-in-laws</td></tr>
+        <tr class="hi-row"><td>commander-in-chief</td><td>commanders-in-chief</td><td>❌ commander-in-chiefs</td></tr>
+        <tr class="hi-row"><td>court martial</td><td>courts martial</td><td>❌ court martials</td></tr>
+        <tr><td>aide-de-camp</td><td>aides-de-camp</td><td>❌ aide-de-camps</td></tr>
+        <tr><td>passer-by</td><td>passers-by</td><td>❌ passer-bys</td></tr>
+        <tr><td>man-of-war</td><td>men-of-war</td><td>❌ man-of-wars</td></tr>
+        <tr><td>looker-on</td><td>lookers-on</td><td>❌ looker-ons</td></tr>
+        <tr><td>son-in-law</td><td>sons-in-law</td><td>❌ son-in-laws</td></tr>
+        <tr><td>editor-in-chief</td><td>editors-in-chief</td><td>❌ editor-in-chiefs</td></tr>
+        <tr><td>Major General</td><td>Major Generals</td><td>❌ Majors General (rare British form)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /plurals -->
+
+<!-- ═══════════════════════ QUICK REF ═══════════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Quick Reference — Core Rules</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Countable vs Uncountable — Key Pairs</div>
+      <ul>
+        <li><b>Uncountable (no plural)</b>: information, advice, luggage, equipment, furniture, news, scenery, ammunition, traffic, progress, poetry</li>
+        <li><b>many/few/fewer</b> → countable; <b>much/little/less</b> → uncountable</li>
+        <li><b>number of</b> → countable; <b>amount of</b> → uncountable</li>
+        <li><span class="err">✗ "advices / informations / equipments"</span></li>
+        <li><span class="err">✗ "less options"</span> → <span class="ok">✓ "fewer options"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Collective Noun — Verb Agreement</div>
+      <ul>
+        <li><b>Unit as one</b> → singular verb: "The jury <em>has</em> decided."</li>
+        <li><b>Members individually</b> → plural: "The jury <em>are</em> divided."</li>
+        <li><b>Always singular</b>: news, mathematics, physics, economics, athletics, gymnastics, The United States</li>
+        <li><b>Always plural</b>: cattle, police, people, gentry, poultry, vermin</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Tricky Latin/Greek Plurals</div>
+      <ul>
+        <li><b>criterion → criteria</b> (not "criterias")</li>
+        <li><b>phenomenon → phenomena</b></li>
+        <li><b>datum → data</b> (data = plural)</li>
+        <li><b>analysis → analyses</b></li>
+        <li><b>crisis → crises</b></li>
+        <li><b>alumnus → alumni</b></li>
+        <li><b>medium → media</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Same Singular &amp; Plural</div>
+      <ul>
+        <li><b>sheep, deer, fish, aircraft, spacecraft</b> — no -s added</li>
+        <li><b>series, species, means, offspring</b> — same form</li>
+        <li><b>corps</b> — silent p; singular &amp; plural same</li>
+        <li><span class="err">✗ "sheeps / deers / aircrafts"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Compound Noun Plurals</div>
+      <ul>
+        <li>Main noun takes -s: <b>mothers</b>-in-law, <b>commanders</b>-in-chief</li>
+        <li>Military: <b>courts</b> martial, <b>aides</b>-de-camp</li>
+        <li><span class="err">✗ "mother-in-laws / court martials"</span></li>
+        <li>Solid compounds: last word → <b>step<em>sons</em>, hand<em>bags</em></b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Possessive Apostrophe Rules</div>
+      <ul>
+        <li>Singular: add <b>'s</b> → soldier's rifle</li>
+        <li>Plural ending in -s: add <b>'</b> → soldiers' mess</li>
+        <li>Plural NOT ending in -s: add <b>'s</b> → children's welfare, men's team</li>
+        <li>Inanimate noun: prefer "of" → "legs <em>of</em> the table"</li>
+        <li>Time/distance: use 's → "a day's march", "a stone's throw"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Noun-Forming Suffixes</div>
+      <ul>
+        <li><b>-tion/-sion</b>: operate → operation, decide → decision</li>
+        <li><b>-ment</b>: achieve → achievement, deploy → deployment</li>
+        <li><b>-ness</b>: fit → fitness, ready → readiness</li>
+        <li><b>-ity</b>: loyal → loyalty, equal → equality</li>
+        <li><b>-th</b>: strong → strength, deep → depth, long → length</li>
+        <li><b>-ship</b>: leader → leadership, member → membership</li>
+        <li><b>-ance/-ence</b>: resist → resistance, depend → dependence</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Animal Collective Nouns — Exam Favourites</div>
+      <ul>
+        <li>A <b>pride</b> of lions · A <b>pack</b> of wolves</li>
+        <li>A <b>murder</b> of crows · A <b>parliament</b> of owls</li>
+        <li>A <b>pod</b> of whales · A <b>school</b> of fish</li>
+        <li>A <b>gaggle</b> of geese (land) · A <b>skein</b> (flight)</li>
+        <li>A <b>swarm</b> of bees · A <b>colony</b> of ants</li>
+        <li>A <b>troop</b> of monkeys · A <b>tower</b> of giraffes</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · E13 Nouns · CDS · NDA · AFCAT English</div>
+
+</div><!-- /page -->
+<script>
+const QS = [
+
+// ── EASY ─────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Uncountable Noun',
+q:'Spot the error in the sentence:<br>"The commanding officer gave us many <u>useful</u> <u>advices</u> before the <u>mission</u>."',
+opts:['useful','advices','mission','No error'],ans:1,
+rule:'"Advice" is an uncountable noun — it has no plural form; "many" should be replaced by "much" or "a lot of"',
+exp:'"Advice" is an uncountable noun and cannot be pluralised. The form "advices" does not exist in standard English. The correct form is "much useful advice" or "a lot of useful advice". The quantifier "many" is for countable nouns; "much" is correct for uncountable nouns. "Useful" and "mission" are both correct. The error is "advices" — it should be "advice". Answer: "advices" → "advice".'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Collective Noun — Animals',
+q:'Choose the correct collective noun:<br>"The rangers spotted a ______ of lions resting in the shade."',
+opts:['pack','herd','pride','flock'],ans:2,
+rule:'The collective noun for lions is "a pride" — this is a standard exam vocabulary question',
+exp:'Each animal has a specific collective noun. "Pack" (A) is used for wolves, hounds, or dogs. "Herd" (B) is used for cattle, elephants, or horses. "Flock" (D) is used for birds, sheep, or geese. "Pride" (C) is the correct and specific collective noun for lions. Answer: C.'},
+
+{d:'EASY',e:'CDS 2022',type:'Irregular Plural',
+q:'Which sentence uses the CORRECT plural form?',
+opts:[
+  'Three deers were spotted near the perimeter.',
+  'The sheeps grazed along the hillside.',
+  'Two aircraft were scrambled immediately.',
+  'The gooses flew in formation overhead.'
+],ans:2,
+rule:'"Aircraft" has the same form in singular and plural — never "aircrafts"',
+exp:'"Deer" has the same form in both singular and plural — "deers" (A) is incorrect. "Sheep" likewise does not change — "sheeps" (B) is incorrect. "Geese" is the plural of "goose" — "gooses" (D) is incorrect. "Aircraft" (C) correctly uses the same form for the plural — "two aircraft were scrambled" is right. Answer: C.'},
+
+{d:'EASY',e:'NDA 2023',type:'Compound Noun Plural',
+q:'Choose the CORRECT plural of "mother-in-law":',
+opts:['mother-in-laws','mothers-in-laws','mothers-in-law','mother-in-law\'s'],ans:2,
+rule:'In hyphenated compound nouns, the principal/main noun takes the plural suffix',
+exp:'In compound nouns formed with a noun + preposition + noun, the main (principal) noun takes the plural marker. "Mother" is the principal noun in "mother-in-law", so it becomes "mothers" while the rest stays unchanged: "mothers-in-law". "Mother-in-laws" (A) pluralises the last word — incorrect. "Mothers-in-laws" (B) adds -s twice — incorrect. Option D is a possessive form, not a plural. Answer: C.'},
+
+{d:'EASY',e:'AFCAT 2023',type:'Countable vs Uncountable — Quantifier',
+q:'Choose the correct option:<br>"There is ______ traffic on the highway due to the military convoy."',
+opts:['many','few','much','a number of'],ans:2,
+rule:'"Traffic" is an uncountable noun — use "much", not "many" or "a number of"',
+exp:'"Traffic" is an uncountable noun — it cannot be counted individually and does not take a plural form. "Many" (A) is used with countable plural nouns. "Few" (B) is used with countable nouns and implies scarcity — not suitable here. "A number of" (D) is used with countable nouns. "Much" (C) is the correct quantifier for uncountable nouns. Answer: C.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Collective Noun — Verb Agreement',
+q:'Spot the error:<br>"The jury <u>are</u> expected to deliver <u>their</u> verdict <u>by noon</u>."',
+opts:['are','their','by noon','No error'],ans:3,
+rule:'When the jury acts as a divided body (implied individual opinions → "their"), plural verb "are" is also acceptable — no error',
+exp:'This is a deliberate exam trap. When "jury" is used with "their" (implying the members act individually), the plural verb "are" is the consistent and correct choice. "The jury are expected…their verdict" maintains agreement — the jury members as individuals are expected to deliver the collective verdict. All three underlined portions are grammatically consistent: "are" (plural, matching individual members implied by "their") + "their" (appropriate pronoun for plural usage) + "by noon" (correct prepositional phrase). This sentence has no error. Answer: No error.'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Latin Plural',
+q:'Which sentence is grammatically CORRECT?',
+opts:[
+  'The criterias for selection were clearly defined.',
+  'This phenomena has been observed multiple times.',
+  'The data suggest that the mission was successful.',
+  'The mediums of communication have improved greatly.'
+],ans:2,
+rule:'"Data" is the plural of "datum" — it takes a plural verb; "criteria" and "phenomena" are already plural',
+exp:'"Criterias" (A) — "criteria" is already the plural of "criterion"; adding -s is wrong. "This phenomena" (B) — "phenomena" is plural (of "phenomenon"); "this" signals singular — use "this phenomenon". "Mediums" (D) — while "mediums" is valid for spiritualist practitioners, "media" is the correct plural for communications channels; "mediums of communication" is nonstandard. "The data suggest" (C) — "data" is the plural of "datum" and correctly takes a plural verb "suggest". Answer: C.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Noun-Forming Suffix',
+q:'Choose the correct noun form to fill in the blank:<br>"The cadet\'s ______ during the crisis earned him a commendation."',
+opts:['brave','braveness','bravery','braving'],ans:2,
+rule:'"Bravery" (suffix -ery) is the standard abstract noun from "brave"; "braveness" is uncommon and non-standard in formal use',
+exp:'"Brave" (A) is an adjective — it cannot function as the subject complement (noun) here. "Braveness" (B) is technically formed with -ness, but "braveness" is extremely rare and non-standard; "bravery" is the established formal noun. "Braving" (D) is a verb participle, not a noun in the required sense. "Bravery" (C) is the correct, established abstract noun formed with the suffix -ery, widely used in formal and military contexts. Answer: C.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Possessive Apostrophe',
+q:'Spot the error:<br>"All the <u>officers\'</u> uniforms were inspected, and the <u>women\'s</u> corps had <u>the best</u> turnout."',
+opts:["officers'","women's",'the best','No error'],ans:3,
+rule:'Plural ending in -s → apostrophe only (officers\'); plural NOT ending in -s → add \'s (women\'s) — both are correct',
+exp:'"Officers\'" — "officers" is a plural noun ending in -s, so the possessive is formed by adding only an apostrophe: "officers\'" ✓. "Women\'s" — "women" is a plural noun that does NOT end in -s, so the possessive is formed by adding \'s: "women\'s" ✓. "The best" — superlative used correctly as an adjective modifying "turnout" ✓. All three are grammatically correct. The sentence has no error. Answer: No error.'},
+
+{d:'MEDIUM',e:'NDA 2024',type:'Always Singular Noun',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The news about the border operations are encouraging.',
+  'Mathematics are considered the foundation of engineering.',
+  'The athletics meet was held at the academy grounds.',
+  'The police has arrived at the scene of the incident.'
+],ans:2,
+rule:'"News", "mathematics", "athletics" take singular verbs; "police" always takes a plural verb',
+exp:'"The news…are" (A) — "news" always takes a singular verb: "the news is encouraging" ✗. "Mathematics are" (B) — subjects ending in -ics (mathematics, physics, economics) take singular verbs: "Mathematics is" ✗. "The police has" (D) — "police" is a plural noun and always takes a plural verb: "the police have" ✗. "The athletics meet was held" (C) — here "athletics" modifies "meet" (it is used as an adjective/compound noun), and "meet" is the head noun taking "was" ✓. Answer: C.'},
+
+{d:'MEDIUM',e:'AFCAT 2024',type:'Gender — Irregular Feminine',
+q:'Choose the correct feminine of "drake":',
+opts:['draken','drakess','duck','goose'],ans:2,
+rule:'"Drake" (male duck) → "duck" (female) — an entirely different word for the feminine form',
+exp:'Some masculine-feminine pairs in English use completely different words (called "suppletive" pairs). "Drake" is the male of the duck species, and its feminine counterpart is simply "duck". "Draken" (A) and "drakess" (B) do not exist. "Goose" (D) is the female of the "gander" — a different bird entirely. The correct feminine of "drake" is "duck". Answer: C.'},
+
+// ── HARD ─────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'Tricky Plural — -f Exception',
+q:'Which of the following has a correctly formed plural?',
+opts:[
+  'The soldier checked the rooves of all buildings.',
+  'The panel reviewed all the prooves submitted.',
+  'The unit chiefs signed the joint operation order.',
+  'The thiefs were apprehended near the base.'
+],ans:2,
+rule:'"Chief → chiefs" and "proof → proofs" follow -s pattern (NOT -ves); "roof → roofs", "thief → thieves"',
+exp:'The -f/-fe to -ves rule does not apply to all words ending in -f. Option A: "rooves" is wrong — "roof" becomes "roofs" ✓. Option B: "prooves" is wrong — "proof" becomes "proofs" ✓. Option D: "thiefs" is wrong — "thief" does follow the -f→-ves rule: "thieves" ✓. Option C: "chiefs" is correct — "chief" follows the -s pattern (not -ves): "chiefs" ✓. Answer: C.'},
+
+{d:'HARD',e:'NDA 2023',type:'Collective Noun Trap',
+q:'Spot the error:<br>"The committee <u>have announced</u> its decision to <u>postpone</u> the <u>examination</u>."',
+opts:['have announced','postpone','examination','No error'],ans:0,
+rule:'When a pronoun "its" (singular) is used, the collective noun must take a singular verb to maintain agreement',
+exp:'This question tests internal consistency of pronoun-verb agreement with collective nouns. The collective noun "committee" can take either singular or plural agreement, but the two must be consistent within the same clause. Here, "have announced" (plural verb) is immediately followed by "its" (singular possessive pronoun) — this is inconsistent. The correct sentence should be either: "The committee <strong>has</strong> announced its decision…" (both singular), or "The committee <strong>have</strong> announced <strong>their</strong> decision…" (both plural). The error is "have announced" — it should be "has announced" (to match "its"). Answer: "have announced" → "has announced".'},
+
+{d:'HARD',e:'AFCAT 2023',type:'Noun Suffix Selection',
+q:'Choose the correctly formed noun for the blank:<br>"The ______ of the two nations resulted in a stronger strategic partnership."',
+opts:['allied','alliancement','alliance','alliancy'],ans:2,
+rule:'"Alliance" = correct noun; formed from "ally" using the -ance suffix; the other options are not standard English nouns',
+exp:'"Allied" (A) is an adjective/past participle, not a noun. "Alliancement" (B) is not a word — "-ment" does not attach to "alliance". "Alliancy" (D) is not a recognised English noun. "Alliance" (C) is the correct abstract noun, formed using the suffix -ance, meaning a union or association formed for mutual benefit — perfectly suited for the context of two nations. Answer: C.'},
+
+{d:'HARD',e:'CDS 2024',type:'Compound Noun — Court Martial',
+q:'Which sentence uses the plural of "court martial" correctly?',
+opts:[
+  'Three court martials were convened after the incident.',
+  'Three courts martial were convened after the incident.',
+  'Three court-martials were convened after the incident.',
+  'Three courts-martial were convened after the incident.'
+],ans:1,
+rule:'"Court martial" → "courts martial" — the noun "court" is pluralised; "martial" is an adjective modifying it',
+exp:'"Court martial" is a noun phrase where "court" is the head noun and "martial" is a postpositive adjective meaning "of a military nature". In English compound noun phrases of this type (noun + postpositive adjective), the head noun takes the plural: "courts martial" — not "court martials". Both unhyphenated forms are used; the standard formal/legal form is "courts martial" (B). "Court martials" (A) wrongly pluralises the adjective. "Court-martials" (C) with a hyphen pluralises the wrong element. "Courts-martial" (D) with a hyphen is sometimes seen but the hyphenless form is preferred in military usage. Answer: B.'},
+
+{d:'HARD',e:'NDA 2024',type:'Abstract Noun — Vowel Shift Suffix',
+q:'Choose the correct noun formed from the adjective "strong":',
+opts:['strongness','stronghood','strongth','strength'],ans:3,
+rule:'"Strength" uses the -th suffix with a vowel shift (o→e) — not "strongness"; consonant changes occur in this suffix pattern',
+exp:'Several English adjectives form abstract nouns using the suffix <strong>-th</strong>, which often involves a vowel or consonant shift: strong → <strong>strength</strong> (vowel shifts: o→e), long → length, wide → width, warm → warmth, deep → depth, broad → breadth. "Strongness" (A) would technically be formed by -ness, but "strongness" is not a standard English word — "strength" is the established form. "Stronghood" (B) does not exist — -hood attaches to nouns like "brother, child, man". "Strongth" (C) incorrectly applies -th without the required vowel shift. "Strength" (D) is the correct established abstract noun with the vowel shift pattern. Answer: D.'},
+
+];
+
+// ── ENGINE ──────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Nouns</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Noun rules — plurals, collective nouns, suffixes, and case — are no challenge for you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the Latin/Greek plural forms and the collective noun verb-agreement rules.'}
+  else if(pct>=50){grade='Average';msg='Good start. Focus on the Plural List tab and uncountable noun traps in Theory.'}
+  else{grade='Needs Work';msg='Begin with countable vs uncountable rules, then work through irregular plurals and compound noun forms.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,plurals:1,quickref:2,quiz:3}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

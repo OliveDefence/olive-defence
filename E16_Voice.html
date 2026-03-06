@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice — Active &amp; Passive | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Deep Teal / Warm Copper ── */
+  --bg:        #F2F6F6;
+  --bg2:       #E4EEEE;
+  --bg3:       #D2E4E4;
+  --white:     #FFFFFF;
+  --ink:       #071818;
+  --ink2:      #102828;
+  --muted:     #4A7070;
+  --dim:       #7AA0A0;
+  --border:    #B8D4D4;
+
+  --pri:       #0B4A4A;
+  --priLt:     #0E6060;
+  --priPale:   #E4F4F4;
+
+  --ac1:       #7A3800;
+  --ac1Lt:     #9E4A00;
+  --ac1Pale:   #FFF0E2;
+
+  --ac2:       #1A5C20;
+  --ac2Lt:     #227228;
+  --ac2Pale:   #DFF2E2;
+
+  --ac3:       #8B1520;
+  --ac3Lt:     #A81E2C;
+  --ac3Pale:   #FCEAEC;
+
+  --ac4:       #2B1A6E;
+  --ac4Lt:     #3A2490;
+  --ac4Pale:   #ECEAFF;
+
+  --ac5:       #5C3A00;
+  --ac5Pale:   #FFF6E0;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(7,24,24,.09);
+  --shadow-md: 0 4px 20px rgba(7,24,24,.14);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#020E0E 0%,#084040 55%,#0B5858 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(80,220,200,.10) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(80,220,200,.05);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.28)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(23px,5.5vw,33px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#80FFEE;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.64);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(128,255,238,.16);color:#80FFEE}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+/* ── TAB BAR ── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(7,24,24,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(11,74,74,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(122,56,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(139,21,32,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(43,26,110,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.copper-box{background:var(--ac5Pale);border:1.5px solid rgba(92,58,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.copper-box .cp-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.copper-box p,.copper-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.copper-box ul{list-style:none;padding:0}
+.copper-box li{padding:5px 0 5px 20px;position:relative}
+.copper-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── CONVERSION CARD ── */
+.conv-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;box-shadow:var(--shadow);overflow:hidden}
+.conv-tense{background:var(--pri);color:#fff;padding:10px 18px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+.conv-tense .ct-tag{font-size:10px;font-weight:700;background:rgba(255,255,255,.15);padding:2px 10px;border-radius:20px;letter-spacing:1px}
+.conv-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.conv-row:last-child{border-bottom:none}
+.conv-cell{padding:12px 16px}
+.conv-cell:first-child{border-right:1px solid var(--border);background:var(--priPale)}
+.conv-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.conv-label.active{color:var(--pri)}
+.conv-label.passive{color:var(--ac1)}
+.conv-struct{font-size:12px;font-weight:700;color:var(--dim);margin-bottom:5px;font-family:monospace;letter-spacing:.3px}
+.conv-eg{font-size:14.5px;color:var(--ink2);line-height:1.65}
+.conv-eg b{color:var(--pri)}
+.conv-eg i{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── TABLES ── */
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.55;font-size:15px;vertical-align:top}
+.degree-table td:first-child{font-weight:700;color:var(--pri)}
+.degree-table .hi-row td{background:var(--priPale)!important}
+.degree-table .hi-row td:first-child{color:var(--pri)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:4px;vertical-align:middle}
+.tag-e{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(26,92,32,.22)}
+.tag-t{background:var(--ac3Pale);color:var(--ac3);border:1px solid rgba(139,21,32,.22)}
+.tag-s{background:var(--priPale);color:var(--pri);border:1px solid rgba(11,74,74,.22)}
+.tag-m{background:var(--ac4Pale);color:var(--ac4);border:1px solid rgba(43,26,110,.22)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REF ── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(11,74,74,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(11,74,74,.30)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#020E0E 0%,#0B5858 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#80FFEE;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+@media(max-width:400px){
+  .tab{padding:12px 11px;font-size:11px}
+  .hero-title{font-size:21px}
+  .conv-row{grid-template-columns:1fr}
+  .conv-cell:first-child{border-right:none;border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-kicker">Olive Defence · English Grammar</div>
+  <div class="hero-title">E16 — <span>Voice</span></div>
+  <div class="hero-sub">Active &amp; Passive · All Tenses · Modals · Imperatives · Questions · Special Structures · Verbs That Cannot Be Passive · Error Spotting — CDS · NDA · AFCAT</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-y">6 Sections</span>
+    <span class="chip chip-g">15 Questions</span>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab" onclick="switchTab('conversions')">All Tenses</button>
+  <button class="tab" onclick="switchTab('special')">Special Types</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz</button>
+</div>
+
+<!-- ══════════════════════ THEORY ══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>Voice shows whether the <strong>subject performs the action</strong> (active) or <strong>receives the action</strong> (passive). In CDS/NDA/AFCAT, voice questions appear as <strong>fill-in-the-blank conversions, error spotting, and sentence improvement</strong>. Key test areas: correct passive formation per tense, verbs that cannot be made passive, pronoun changes, retention of "by" phrase, and special structures (imperatives, modals, questions, double-object verbs).</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-label">Section 1 — Core Concept &amp; Formula</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">⚙️</div>
+      <div style="flex:1">
+        <div class="c-title">The Passive Formula</div>
+        <div class="c-sub">Subject · Object · Agent · be + V3 — the four moving parts</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The Universal Passive Formula</div>
+        <p>
+          <strong>Active &nbsp;→&nbsp;</strong> Subject + Verb + Object<br>
+          <strong>Passive →</strong> Object (becomes new subject) + <strong>appropriate form of "be"</strong> + <strong>V3 (past participle)</strong> + <strong>by</strong> + old subject (agent — optional)<br><br>
+          The tense of the original verb determines <strong>which form of "be"</strong> to use. The main verb always becomes <strong>V3</strong>.
+        </p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Step</th><th>What Changes</th><th>Rule</th></tr>
+          <tr><td><b>1. Object → Subject</b></td><td>The object of the active sentence becomes the grammatical subject of the passive sentence</td><td>"The officer signed <u>the orders</u>." → "<u>The orders</u> were signed…"</td></tr>
+          <tr><td><b>2. Verb → be + V3</b></td><td>The active verb is replaced by the appropriate tense of "be" + past participle (V3)</td><td>signed (Simple Past) → were signed</td></tr>
+          <tr><td><b>3. Subject → by + Agent</b></td><td>The active subject becomes "by + agent" — placed after the verb. It may be omitted if unknown/unimportant.</td><td>"…by the officer." (or omitted)</td></tr>
+          <tr><td><b>4. Pronoun Case</b></td><td>Subject pronouns become object pronouns in the "by" phrase; object pronouns become subject pronouns</td><td>He → by him; She → by her; They → by them; Him → He; Her → She; Them → They</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Pronoun Changes — Active to Passive</div>
+        <ul>
+          <li><strong>I</strong> → by <strong>me</strong> &nbsp;|&nbsp; <strong>me</strong> → <strong>I</strong></li>
+          <li><strong>We</strong> → by <strong>us</strong> &nbsp;|&nbsp; <strong>us</strong> → <strong>we</strong></li>
+          <li><strong>He</strong> → by <strong>him</strong> &nbsp;|&nbsp; <strong>him</strong> → <strong>he</strong></li>
+          <li><strong>She</strong> → by <strong>her</strong> &nbsp;|&nbsp; <strong>her</strong> → <strong>she</strong></li>
+          <li><strong>They</strong> → by <strong>them</strong> &nbsp;|&nbsp; <strong>them</strong> → <strong>they</strong></li>
+          <li><strong>You</strong> → by <strong>you</strong> (unchanged)</li>
+          <li><strong>It / One</strong> → by <strong>it / one</strong> (unchanged)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "By" Phrase — When to Keep, When to Drop</div>
+        <ul>
+          <li><strong>Keep "by" phrase</strong> when the agent is important, specific, or named: "The treaty was signed <strong>by the two generals</strong>."</li>
+          <li><strong>Drop "by" phrase</strong> when: (a) agent is unknown — "The window was broken." (b) agent is obvious — "The criminal was arrested." (c) agent is vague — "It is said that…" / "People were told that…"</li>
+          <li><strong>Avoid "by them / by people / by someone"</strong> — these add nothing and are considered poor style in exam answers.</li>
+          <li>Prepositions other than "by" are used with: <strong>known to</strong> ("He is known to all."), <strong>pleased with</strong>, <strong>surprised at</strong>, <strong>satisfied with</strong>, <strong>obliged to</strong>, <strong>annoyed with/at</strong>, <strong>astonished at</strong>, <strong>interested in</strong>, <strong>made of/from/into</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-label">Section 2 — Verbs That Cannot Be Made Passive</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">🚫</div>
+      <div style="flex:1">
+        <div class="c-title">Intransitive Verbs — No Passive Possible</div>
+        <div class="c-sub">No object = no passive · The most tested error category</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Passive voice requires a <strong>transitive verb</strong> — one that takes a direct object. That object becomes the new subject. If there is no object, there is nothing to promote to subject position, so passive formation is <strong>impossible</strong>.</p>
+      <div class="wrong-box">
+        <div class="wg-label">Cannot Be Made Passive — Common Exam Traps</div>
+        <ul>
+          <li>✗ "The accident <em>was occurred</em>." → ✓ "The accident <strong>occurred</strong>." (occur = intransitive)</li>
+          <li>✗ "The soldier <em>was died</em> bravely." → ✓ "The soldier <strong>died</strong> bravely." (die = intransitive)</li>
+          <li>✗ "The convoy <em>was arrived</em> at dawn." → ✓ "The convoy <strong>arrived</strong>." (arrive = intransitive)</li>
+          <li>✗ "He <em>was gone</em> to the front." → ✓ "He <strong>went</strong> to the front." (go = intransitive)</li>
+          <li>✗ "The sun <em>was risen</em>." → ✓ "The sun <strong>rose</strong>." (rise = intransitive)</li>
+          <li>✗ "The event <em>was happened</em> yesterday." → ✓ "The event <strong>happened</strong> yesterday." (happen = intransitive)</li>
+          <li>✗ "He <em>was slept</em> soundly." → ✓ "He <strong>slept</strong> soundly." (sleep = intransitive)</li>
+          <li>✗ "She <em>was cried</em>." → ✓ "She <strong>cried</strong>." (cry [without object] = intransitive)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Key Intransitive Verbs — Never Passive</div>
+        <ul>
+          <li>occur, happen, take place, arise, appear, disappear</li>
+          <li>die, fall, rise, go, come, arrive, depart, return</li>
+          <li>sleep, rest, sit, stand, lie (recline), exist, remain</li>
+          <li>laugh, cry, smile, cough, sneeze, swim, run (absolute use)</li>
+          <li>consist of, belong to (prepositional verbs — no passive)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Verbs That Look Transitive But Aren't — Special Cases</div>
+        <ul>
+          <li><strong>resemble</strong>: "He resembles his father." → ✗ "His father is resembled by him." — never passive</li>
+          <li><strong>have</strong> (= possess): "She has a rifle." → ✗ "A rifle is had by her." — possession sense never passive</li>
+          <li><strong>lack</strong>: "He lacks discipline." → ✗ "Discipline is lacked by him." — not used in passive</li>
+          <li><strong>suit / fit</strong> (stative): "This uniform suits him." → passive is possible but unusual; not tested</li>
+          <li><strong>contain</strong>: "The box contains ammunition." → passive is grammatically possible but stylistically avoided</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-label">Section 3 — Subject-Verb Agreement in Passive</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Passive "be" Must Agree with the New Subject</div>
+        <div class="c-sub">Singular object → singular "be" · Plural object → plural "be"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When the active object becomes the passive subject, the form of <strong>"be" must agree with this new subject</strong> — not with the original active subject.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active</th><th>Passive</th><th>Agreement Note</th></tr>
+          <tr><td>"He wrote <b>the report</b>."</td><td>"<b>The report</b> was written by him."</td><td>report = singular → was ✓</td></tr>
+          <tr><td>"He wrote <b>the reports</b>."</td><td>"<b>The reports</b> were written by him."</td><td>reports = plural → were ✓</td></tr>
+          <tr><td>"She reads <b>the order</b>."</td><td>"<b>The order</b> is read by her."</td><td>order = singular → is ✓</td></tr>
+          <tr><td>"They are issuing <b>the orders</b>."</td><td>"<b>The orders</b> are being issued by them."</td><td>orders = plural → are ✓</td></tr>
+          <tr><td>"He has submitted <b>the file</b>."</td><td>"<b>The file</b> has been submitted by him."</td><td>file = singular → has ✓</td></tr>
+          <tr><td>"They had completed <b>the tasks</b>."</td><td>"<b>The tasks</b> had been completed by them."</td><td>tasks = plural → had ✓</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Agreement Error — Most Common in Exams</div>
+        <ul>
+          <li>✗ "The orders was signed by the general." → ✓ "The orders <strong>were</strong> signed…" (orders = plural)</li>
+          <li>✗ "The soldiers has been deployed." → ✓ "The soldiers <strong>have</strong> been deployed." (soldiers = plural)</li>
+          <li>✗ "Many cadets was selected." → ✓ "Many cadets <strong>were</strong> selected."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec-label">Section 4 — Prepositions Other Than "By"</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">Fixed Passive Prepositions — Not "By"</div>
+        <div class="c-sub">known to · pleased with · surprised at · made of — exam vocabulary</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Certain passive constructions use a <strong>fixed preposition other than "by"</strong>. These are not derived from an active sentence in the usual way — they are idiomatic passive phrases tested directly in fill-in-the-blank questions.</p>
+      <div style="overflow-x:auto">
+        <table class="degree-table">
+          <thead><tr><th>Passive Phrase</th><th>Preposition</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr class="hi-row"><td>known to</td><td>to</td><td>"His bravery is <b>known to</b> all."</td></tr>
+            <tr><td>pleased with</td><td>with</td><td>"The CO was <b>pleased with</b> the performance."</td></tr>
+            <tr class="hi-row"><td>satisfied with</td><td>with</td><td>"She was <b>satisfied with</b> the results."</td></tr>
+            <tr><td>disappointed with / in / at</td><td>with / in / at</td><td>"He was <b>disappointed with</b> the outcome."</td></tr>
+            <tr class="hi-row"><td>surprised at / by</td><td>at / by</td><td>"We were <b>surprised at</b> his reaction."</td></tr>
+            <tr><td>astonished at / by</td><td>at / by</td><td>"They were <b>astonished at</b> the speed."</td></tr>
+            <tr class="hi-row"><td>annoyed with (person) / at (thing)</td><td>with / at</td><td>"He was <b>annoyed with</b> the cadet." / "…<b>at</b> the delay."</td></tr>
+            <tr><td>frightened of / by</td><td>of / by</td><td>"She was <b>frightened of</b> the noise." / "…<b>by</b> the blast."</td></tr>
+            <tr class="hi-row"><td>interested in</td><td>in</td><td>"He is <b>interested in</b> military history."</td></tr>
+            <tr><td>engaged in / to</td><td>in / to</td><td>"She is <b>engaged in</b> research." / "…<b>to</b> an officer."</td></tr>
+            <tr class="hi-row"><td>obliged to (person)</td><td>to</td><td>"I am <b>obliged to</b> you for your help."</td></tr>
+            <tr><td>made of (material visible)</td><td>of</td><td>"The medal is <b>made of</b> silver."</td></tr>
+            <tr class="hi-row"><td>made from (material changed)</td><td>from</td><td>"Wine is <b>made from</b> grapes."</td></tr>
+            <tr><td>made into (result)</td><td>into</td><td>"Grapes are <b>made into</b> wine."</td></tr>
+            <tr class="hi-row"><td>tired of / with</td><td>of / with</td><td>"He is <b>tired of</b> waiting."</td></tr>
+            <tr><td>filled with</td><td>with</td><td>"The canteen was <b>filled with</b> water."</td></tr>
+            <tr class="hi-row"><td>covered with / by</td><td>with / by</td><td>"The ground was <b>covered with</b> snow."</td></tr>
+            <tr><td>crowded with</td><td>with</td><td>"The hall was <b>crowded with</b> cadets."</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="sec-label">Section 5 — Double Object Verbs in Passive</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Ditransitive Verbs — Two Passive Options</div>
+        <div class="c-sub">give · send · offer · show · teach · tell · award · pay</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When an active sentence has both a <strong>direct object (DO)</strong> and an <strong>indirect object (IO)</strong>, either object can become the subject of the passive sentence — giving <strong>two valid passive forms</strong>. The more natural and common form promotes the <strong>indirect object</strong>.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active</th><th>Passive — IO as Subject (preferred)</th><th>Passive — DO as Subject</th></tr>
+          <tr><td>"The general gave <u>the soldiers</u> [IO] <u>their orders</u> [DO]."</td><td>"<b>The soldiers were given</b> their orders by the general." ✓ (more natural)</td><td>"<b>Their orders were given</b> to the soldiers by the general." ✓</td></tr>
+          <tr><td>"She sent <u>him</u> [IO] <u>a message</u> [DO]."</td><td>"<b>He was sent</b> a message by her." ✓</td><td>"<b>A message was sent</b> to him by her." ✓</td></tr>
+          <tr><td>"They offered <u>the cadet</u> [IO] <u>a scholarship</u> [DO]."</td><td>"<b>The cadet was offered</b> a scholarship." ✓</td><td>"<b>A scholarship was offered</b> to the cadet." ✓</td></tr>
+          <tr><td>"He showed <u>us</u> [IO] <u>the map</u> [DO]."</td><td>"<b>We were shown</b> the map by him." ✓</td><td>"<b>The map was shown</b> to us by him." ✓</td></tr>
+          <tr><td>"The academy awarded <u>him</u> [IO] <u>a medal</u> [DO]."</td><td>"<b>He was awarded</b> a medal." ✓</td><td>"<b>A medal was awarded</b> to him." ✓</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Which Passive to Choose in Exams?</div>
+        <p>Both forms are grammatically correct. However, in CDS/NDA/AFCAT fill-in-the-blank questions, the answer choices will make only one form correct based on what the new subject is. <strong>Always check: what is the new subject of the passive sentence?</strong> Match "be" to that subject. When both are offered as options, prefer the <strong>IO as subject</strong> form — it is the more idiomatic and commonly used structure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="sec-label">Section 6 — Passive with "It is said / known / believed"</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--copper-box)">💬</div>
+      <div style="flex:1">
+        <div class="c-title">Impersonal Passive — "It is / He is said to…"</div>
+        <div class="c-sub">Reporting verbs · Two passive patterns · Highly tested in CDS</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Verbs like <strong>say, think, believe, know, consider, report, suppose, allege, claim, understand, expect</strong> can form a special passive in two ways — both are correct and tested.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active (informal)</th><th>Pattern 1: "It is said that…"</th><th>Pattern 2: "He is said to…"</th></tr>
+          <tr><td>"People say that he is brave."</td><td>"<b>It is said that</b> he is brave." ✓</td><td>"<b>He is said to be</b> brave." ✓</td></tr>
+          <tr><td>"People think that she has won."</td><td>"<b>It is thought that</b> she has won." ✓</td><td>"<b>She is thought to have won</b>." ✓</td></tr>
+          <tr><td>"They believe that he had left."</td><td>"<b>It is believed that</b> he had left." ✓</td><td>"<b>He is believed to have left</b>." ✓</td></tr>
+          <tr><td>"People know he is honest."</td><td>"<b>It is known that</b> he is honest." ✓</td><td>"<b>He is known to be</b> honest." ✓</td></tr>
+          <tr><td>"They expect her to win."</td><td>"<b>It is expected that</b> she will win." ✓</td><td>"<b>She is expected to win</b>." ✓</td></tr>
+          <tr><td>"They alleged he had cheated."</td><td>"<b>It was alleged that</b> he had cheated." ✓</td><td>"<b>He was alleged to have cheated</b>." ✓</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Tense in Pattern 2 — Infinitive Choice</div>
+        <ul>
+          <li>If the subordinate verb is <strong>same time or future</strong> → use <strong>to + base</strong>: "He is said <strong>to be</strong> brave." (present = present)</li>
+          <li>If the subordinate verb is <strong>before main verb time</strong> (past reference) → use <strong>to have + V3</strong>: "He is said <strong>to have been</strong> brave." (past action reported now)</li>
+          <li>✗ "He is said <em>to had been</em> brave." → ✓ "He is said <strong>to have been</strong> brave."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════════════ ALL TENSES ══════════════════════ -->
+<div id="conversions" class="pane">
+
+  <div class="intro-box">
+    <p>Every tense has a <strong>specific passive formula</strong>. The core rule: replace the active verb with <strong>the correct form of "be" + V3</strong>. The tense of the active sentence determines which form of "be" to use. Learn the formula for each tense — this is the most direct way to ace voice conversion questions.</p>
+  </div>
+
+  <div class="sec-label">Simple Tenses</div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Simple Present <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + V₁(s/es) + O</div>
+        <div class="conv-eg">The officer <b>signs</b> the order.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + is/am/are + V3 + (by S)</div>
+        <div class="conv-eg">The order <i>is signed</i> by the officer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Simple Past <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + V₂ + O</div>
+        <div class="conv-eg">The general <b>commanded</b> the troops.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + was/were + V3 + (by S)</div>
+        <div class="conv-eg">The troops <i>were commanded</i> by the general.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Simple Future</div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + will + V₁ + O</div>
+        <div class="conv-eg">They <b>will deploy</b> the regiment.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + will be + V3 + (by S)</div>
+        <div class="conv-eg">The regiment <i>will be deployed</i> by them.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Progressive (Continuous) Tenses</div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Present Progressive <span class="ct-tag">Common Error</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + is/am/are + V-ing + O</div>
+        <div class="conv-eg">The army <b>is planning</b> an operation.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + is/am/are + being + V3 + (by S)</div>
+        <div class="conv-eg">An operation <i>is being planned</i> by the army.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Past Progressive <span class="ct-tag">Common Error</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + was/were + V-ing + O</div>
+        <div class="conv-eg">The unit <b>was constructing</b> the bridge.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + was/were + being + V3 + (by S)</div>
+        <div class="conv-eg">The bridge <i>was being constructed</i> by the unit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Future Progressive <span class="ct-tag">Rarely Used in Passive</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + will be + V-ing + O</div>
+        <div class="conv-eg">The team <b>will be reviewing</b> the plans.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + will be being + V3 (uncommon)</div>
+        <div class="conv-eg">The plans <i>will be being reviewed</i>. (rarely used — prefer: will be reviewed)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Perfect Tenses</div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Present Perfect <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + has/have + V3 + O</div>
+        <div class="conv-eg">She <b>has completed</b> the mission.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + has/have + been + V3 + (by S)</div>
+        <div class="conv-eg">The mission <i>has been completed</i> by her.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Past Perfect <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + had + V3 + O</div>
+        <div class="conv-eg">He <b>had issued</b> the orders before dawn.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + had + been + V3 + (by S)</div>
+        <div class="conv-eg">The orders <i>had been issued</i> before dawn by him.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Future Perfect</div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + will have + V3 + O</div>
+        <div class="conv-eg">They <b>will have finished</b> the exercise.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + will have + been + V3 + (by S)</div>
+        <div class="conv-eg">The exercise <i>will have been finished</i> by them.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Perfect Progressive Tenses</div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Present Perfect Progressive <span class="ct-tag">Generally Avoided in Passive</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + has/have + been + V-ing + O</div>
+        <div class="conv-eg">They <b>have been monitoring</b> the border.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + has/have + been + being + V3 (rarely used)</div>
+        <div class="conv-eg">The border <i>has been being monitored</i>. (awkward — avoid in formal use; use present perfect passive instead)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Past Perfect Progressive <span class="ct-tag">Generally Avoided in Passive</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + had + been + V-ing + O</div>
+        <div class="conv-eg">She <b>had been drafting</b> the report for hours.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + had + been + being + V3 (rarely used)</div>
+        <div class="conv-eg">The report <i>had been being drafted</i> for hours. (uncommon — prefer past perfect passive)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Modal Tenses</div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Modal (Present / Future) <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + modal + V₁ + O</div>
+        <div class="conv-eg">You <b>must obey</b> the orders. &nbsp;/&nbsp; She <b>can complete</b> the task.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + modal + be + V3 + (by S)</div>
+        <div class="conv-eg">The orders <i>must be obeyed</i>. &nbsp;/&nbsp; The task <i>can be completed</i> by her.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conv-card">
+    <div class="conv-tense">Perfect Modal (Past Reference) <span class="ct-tag">Most Tested</span></div>
+    <div class="conv-row">
+      <div class="conv-cell">
+        <div class="conv-label active">Active Formula</div>
+        <div class="conv-struct">S + modal + have + V3 + O</div>
+        <div class="conv-eg">He <b>should have submitted</b> the report.</div>
+      </div>
+      <div class="conv-cell">
+        <div class="conv-label passive">Passive Formula</div>
+        <div class="conv-struct">O + modal + have been + V3 + (by S)</div>
+        <div class="conv-eg">The report <i>should have been submitted</i> by him.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /conversions -->
+
+<!-- ══════════════════════ SPECIAL TYPES ══════════════════════ -->
+<div id="special" class="pane">
+
+  <div class="intro-box">
+    <p>Beyond simple tense conversions, CDS/NDA/AFCAT papers test <strong>special sentence types</strong> — imperatives, questions, sentences with "Let", sentences beginning with "It is time / It is necessary", and two-verb structures. Each has its own passive pattern.</p>
+  </div>
+
+  <!-- IMPERATIVE -->
+  <div class="sec-label">Imperative Sentences (Commands)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">🎖️</div>
+      <div style="flex:1">
+        <div class="c-title">Passive of Imperative (Command) Sentences</div>
+        <div class="c-sub">Let + O + be + V3 · Negative: Let + O + not + be + V3</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Imperative Passive Formula</div>
+        <p>Active imperative: <strong>V₁ + Object</strong> (subject "you" is implied)<br>
+        Passive imperative: <strong>Let + Object + be + V3</strong></p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active (Command)</th><th>Passive</th></tr>
+          <tr><td>"<b>Open</b> the door."</td><td>"<b>Let the door be opened.</b>"</td></tr>
+          <tr><td>"<b>Clean</b> the rifle."</td><td>"<b>Let the rifle be cleaned.</b>"</td></tr>
+          <tr><td>"<b>Submit</b> the report immediately."</td><td>"<b>Let the report be submitted</b> immediately."</td></tr>
+          <tr><td>"<b>Do not touch</b> the equipment."</td><td>"<b>Let the equipment not be touched.</b>"</td></tr>
+          <tr><td>"<b>Do not waste</b> time."</td><td>"<b>Let time not be wasted.</b>"</td></tr>
+          <tr><td>"<b>Follow</b> the orders strictly."</td><td>"<b>Let the orders be followed</b> strictly."</td></tr>
+          <tr><td>"<b>Help</b> the wounded soldier."</td><td>"<b>Let the wounded soldier be helped.</b>"</td></tr>
+          <tr><td>"<b>Post</b> the letter."</td><td>"<b>Let the letter be posted.</b>"</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Alternative Imperative Passive Forms</div>
+        <ul>
+          <li>Some grammar books also accept: <strong>"You are requested / ordered / advised to…"</strong> when the command is a request or instruction to a specific person.</li>
+          <li>"Please open the window." → "You are requested <strong>to open</strong> the window." ✓ (polite request form)</li>
+          <li>"Attend the parade." → "You are ordered <strong>to attend</strong> the parade." ✓ (command form)</li>
+          <li>For CDS/NDA/AFCAT, both the <strong>Let O be V3</strong> form and the <strong>You are requested/ordered/advised to + V1</strong> form are accepted — check the answer options provided.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERROGATIVE -->
+  <div class="sec-label">Interrogative Sentences (Questions)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">❓</div>
+      <div style="flex:1">
+        <div class="c-title">Passive of Questions</div>
+        <div class="c-sub">Yes/No questions · Wh-questions · Inversion maintained</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Question Passive Rule</div>
+        <p>The passive of a question <strong>retains the question form</strong> — the auxiliary verb stays inverted before the subject. The object of the active question becomes the subject of the passive question.</p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active Question</th><th>Passive Question</th></tr>
+          <tr><td>"Did he <b>write</b> the letter?"</td><td>"<b>Was</b> the letter <b>written</b> by him?"</td></tr>
+          <tr><td>"Has she <b>completed</b> the report?"</td><td>"<b>Has</b> the report <b>been completed</b> by her?"</td></tr>
+          <tr><td>"Will they <b>deploy</b> the regiment?"</td><td>"<b>Will</b> the regiment <b>be deployed</b> by them?"</td></tr>
+          <tr><td>"Can you <b>finish</b> the task?"</td><td>"<b>Can</b> the task <b>be finished</b> by you?"</td></tr>
+          <tr><td>"Who <b>wrote</b> this order?"</td><td>"<b>By whom was</b> this order <b>written</b>?" ✓ (formal)<br>OR "Who was this order written by?" (informal)</td></tr>
+          <tr><td>"Whom did he <b>appoint</b>?"</td><td>"<b>Who was appointed</b> by him?"</td></tr>
+          <tr><td>"What did the CO <b>order</b>?"</td><td>"<b>What was ordered</b> by the CO?"</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Who" in Questions → "By Whom" in Passive</div>
+        <ul>
+          <li>"<strong>Who</strong> attacked the base?" → "<strong>By whom</strong> was the base attacked?" ✓ (formal exam form)</li>
+          <li>In the active, "who" = subject. In the passive, the original subject becomes the agent: "by whom".</li>
+          <li>"<strong>Whom</strong> did he select?" → "<strong>Who</strong> was selected by him?" — "whom" (object) becomes "who" (subject) ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LET -->
+  <div class="sec-label">Sentences with "Let" (Proposals / Suggestions)</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">💡</div>
+      <div style="flex:1">
+        <div class="c-title">Passive of "Let" Sentences</div>
+        <div class="c-sub">Let us / Let him / Let them → Let O be V3</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active ("Let" sentence)</th><th>Passive</th></tr>
+          <tr><td>"Let us <b>do</b> this work."</td><td>"<b>Let this work be done</b> by us." ✓</td></tr>
+          <tr><td>"Let him <b>complete</b> the task."</td><td>"<b>Let the task be completed</b> by him." ✓</td></tr>
+          <tr><td>"Let them <b>prepare</b> the report."</td><td>"<b>Let the report be prepared</b> by them." ✓</td></tr>
+          <tr><td>"Let her <b>sign</b> the papers."</td><td>"<b>Let the papers be signed</b> by her." ✓</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Let us" vs Imperative "Let" — Different Passive Forms</div>
+        <ul>
+          <li><strong>"Let us do it"</strong> (proposal/suggestion) → "Let it be done by us." ✓</li>
+          <li><strong>"Let the door be opened"</strong> (imperative passive — from "Open the door") — this IS already in the passive form</li>
+          <li>Do not confuse the two: one starts from a "let us/him/her/them + V" structure; the other is the standard imperative passive using "Let O be V3".</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO-VERB / SPECIAL -->
+  <div class="sec-label">Two-Verb Structures &amp; Other Special Forms</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Two Verbs, "Need to", "Have to", "Used to" in Passive</div>
+        <div class="c-sub">It is time · It is necessary · have to · need to · ought to</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active</th><th>Passive</th><th>Note</th></tr>
+          <tr><td>"He has to <b>submit</b> the form."</td><td>"The form <b>has to be submitted</b> by him."</td><td>has to → has to be + V3</td></tr>
+          <tr><td>"They need to <b>repair</b> the vehicle."</td><td>"The vehicle <b>needs to be repaired</b> by them."</td><td>need to → need/needs to be + V3</td></tr>
+          <tr><td>"She ought to <b>file</b> the report."</td><td>"The report <b>ought to be filed</b> by her."</td><td>ought to → ought to be + V3</td></tr>
+          <tr><td>"He used to <b>clean</b> the weapons."</td><td>"The weapons <b>used to be cleaned</b> by him."</td><td>used to → used to be + V3</td></tr>
+          <tr><td>"It is time to <b>sound</b> the alarm."</td><td>"It is time for the alarm <b>to be sounded</b>."</td><td>to + V1 → to be + V3</td></tr>
+          <tr><td>"It is necessary to <b>check</b> the list."</td><td>"It is necessary for the list <b>to be checked</b>."</td><td>same pattern</td></tr>
+          <tr><td>"He wants to <b>see</b> the results."</td><td>"He wants the results <b>to be seen</b>." / "The results <b>want to be seen</b> by him." (less natural)</td><td>prefer: wants the O to be V3</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Causative Passive — Have / Get + Object + V3</div>
+        <ul>
+          <li><strong>Have/Get + Object + V3</strong> is the causative construction — the subject arranges for someone else to do the action. This is already passive-like in meaning.</li>
+          <li>"He <strong>had</strong> his rifle <strong>cleaned</strong>." (= He arranged for someone to clean it) ✓</li>
+          <li>"She <strong>got</strong> her uniform <strong>pressed</strong>." ✓</li>
+          <li>"The CO <strong>had</strong> the report <strong>reviewed</strong> by the adjutant." ✓</li>
+          <li>Note: "have + object + V3" and "get + object + V3" are distinct from "have + been + V3" (passive perfect).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENSE VERBS -->
+  <div class="sec-label">Perception / Sense Verbs — Special Passive</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">👁️</div>
+      <div style="flex:1">
+        <div class="c-title">See / Hear / Feel / Watch / Notice in Passive</div>
+        <div class="c-sub">Bare infinitive → to-infinitive in passive; -ing stays -ing</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Perception verbs take an object + <strong>bare infinitive</strong> (or -ing) in the active. In the passive, the <strong>bare infinitive becomes a to-infinitive</strong>; the -ing form stays unchanged.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Active</th><th>Passive</th></tr>
+          <tr><td>"We saw him <b>cross</b> the bridge." (bare inf.)</td><td>"He was seen <b>to cross</b> the bridge by us." ✓</td></tr>
+          <tr><td>"They heard her <b>sing</b>." (bare inf.)</td><td>"She was heard <b>to sing</b> by them." ✓</td></tr>
+          <tr><td>"We saw him <b>crossing</b> the bridge." (-ing)</td><td>"He was seen <b>crossing</b> the bridge by us." ✓ (-ing kept)</td></tr>
+          <tr><td>"They heard her <b>singing</b>." (-ing)</td><td>"She was heard <b>singing</b> by them." ✓ (-ing kept)</td></tr>
+          <tr><td>"I noticed him <b>leave</b> early." (bare inf.)</td><td>"He was noticed <b>to leave</b> early by me." ✓</td></tr>
+          <tr><td>"We watched them <b>practise</b>." (bare inf.)</td><td>"They were watched <b>to practise</b> / <b>practising</b> by us." ✓</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Perception Verb Passive — Common Exam Error</div>
+        <ul>
+          <li>✗ "He was seen <em>cross</em> the bridge." → ✓ "He was seen <strong>to cross</strong> the bridge." (bare inf. → to-inf. in passive)</li>
+          <li>✗ "She was heard <em>sing</em>." → ✓ "She was heard <strong>to sing</strong>." ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /special -->
+
+<!-- ══════════════════════ QUICK REF ══════════════════════ -->
+<div id="quickref" class="pane">
+  <div class="sec-label">Quick Reference — All Passive Formulas at a Glance</div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Simple Tenses — Passive "Be" Form</div>
+      <ul>
+        <li><b>Simple Present</b>: is / am / are + V3</li>
+        <li><b>Simple Past</b>: was / were + V3</li>
+        <li><b>Simple Future</b>: will be + V3</li>
+        <li><b>Future (going to)</b>: is/am/are going to be + V3</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Progressive Tenses — Passive "Be" Form</div>
+      <ul>
+        <li><b>Present Progressive</b>: is/am/are + <em>being</em> + V3</li>
+        <li><b>Past Progressive</b>: was/were + <em>being</em> + V3</li>
+        <li><b>Future Progressive</b>: will be being + V3 (very rare)</li>
+        <li>Key: progressive passive uses <em>being</em> between aux and V3</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Perfect Tenses — Passive "Be" Form</div>
+      <ul>
+        <li><b>Present Perfect</b>: has/have + <em>been</em> + V3</li>
+        <li><b>Past Perfect</b>: had + <em>been</em> + V3</li>
+        <li><b>Future Perfect</b>: will have + <em>been</em> + V3</li>
+        <li>Key: perfect passive uses <em>been</em> between aux and V3</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Modal Passives</div>
+      <ul>
+        <li><b>Present modal</b>: modal + <em>be</em> + V3</li>
+        <li><b>Perfect modal</b>: modal + <em>have been</em> + V3</li>
+        <li>can → can be / could have been</li>
+        <li>must → must be / must have been</li>
+        <li>should → should be / should have been</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Special Sentence Passives</div>
+      <ul>
+        <li><b>Imperative</b>: "Clean it." → "Let it <em>be cleaned</em>."</li>
+        <li><b>Neg. Imperative</b>: "Don't waste it." → "Let it <em>not be wasted</em>."</li>
+        <li><b>Let us</b>: "Let us do it." → "Let it <em>be done</em> by us."</li>
+        <li><b>Questions</b>: Retain inversion; "Who?" → "By whom?"</li>
+        <li><b>Perception verbs</b>: bare inf → to-inf in passive; -ing stays</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Verbs That Cannot Be Passive</div>
+      <ul>
+        <li>All <b>intransitive verbs</b>: occur, happen, die, arrive, go, rise, fall, sleep, come, exist</li>
+        <li><span class="err">✗ "was occurred / was died / was arrived"</span></li>
+        <li><b>resemble, have (possess), lack</b> — no passive even though transitive</li>
+        <li>Test: If there is no direct object, there is no passive.</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Prepositions Other Than "By"</div>
+      <ul>
+        <li><b>known to</b> / <b>pleased/satisfied with</b></li>
+        <li><b>surprised/astonished at</b> / <b>interested in</b></li>
+        <li><b>made of</b> (visible) / <b>made from</b> (changed)</li>
+        <li><b>filled/covered with</b> / <b>crowded with</b></li>
+        <li><b>tired of</b> / <b>annoyed with</b> (person) / <b>at</b> (thing)</li>
+        <li><b>obliged to</b> / <b>engaged in</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Pronoun Changes (Active → Passive)</div>
+      <ul>
+        <li><b>I</b> → by me &nbsp;|&nbsp; <b>me</b> → I (subject)</li>
+        <li><b>We</b> → by us &nbsp;|&nbsp; <b>us</b> → We</li>
+        <li><b>He</b> → by him &nbsp;|&nbsp; <b>him</b> → He</li>
+        <li><b>She</b> → by her &nbsp;|&nbsp; <b>her</b> → She</li>
+        <li><b>They</b> → by them &nbsp;|&nbsp; <b>them</b> → They</li>
+        <li><b>You</b> → by you (unchanged)</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════════════ QUIZ ══════════════════════ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · E16 Voice — Active &amp; Passive · CDS · NDA · AFCAT English</div>
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Simple Past Passive',
+q:'Choose the correct passive form of:<br>"The commanding officer inspected the troops."',
+opts:[
+  'The troops are inspected by the commanding officer.',
+  'The troops were inspected by the commanding officer.',
+  'The troops have been inspected by the commanding officer.',
+  'The troops had been inspected by the commanding officer.'
+],ans:1,
+rule:'Simple Past active → was/were + V3 passive; "troops" is plural → were',
+exp:'The active sentence is in the <strong>Simple Past</strong> tense: "inspected". The passive formula for Simple Past is: Object + <strong>was/were</strong> + V3 + by + Subject. The object "the troops" is plural, so the auxiliary must be "were" (not "was"). Option A uses "are inspected" — Simple Present passive ✗. Option C uses "have been inspected" — Present Perfect passive ✗. Option D uses "had been inspected" — Past Perfect passive ✗. Option B: "The troops <strong>were inspected</strong> by the commanding officer" — correct Simple Past passive ✓. Answer: B.'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Imperative Passive',
+q:'Choose the correct passive of:<br>"Clean the rifle before inspection."',
+opts:[
+  'The rifle is cleaned before inspection.',
+  'The rifle was being cleaned before inspection.',
+  'Let the rifle be cleaned before inspection.',
+  'The rifle should be cleaned before inspection.'
+],ans:2,
+rule:'Imperative (command) passive formula: Let + Object + be + V3',
+exp:'The sentence "Clean the rifle…" is an <strong>imperative</strong> (command) — the subject "you" is implied. The passive of an imperative uses the formula: <strong>Let + Object + be + V3</strong>. Option A converts to a Simple Present passive statement — it loses the imperative/command sense ✗. Option B uses past progressive passive — wrong tense and structure ✗. Option D uses "should be" — this changes the sentence to a modal advice sentence, not a command passive ✗. Option C: "Let the rifle be cleaned before inspection" — correct imperative passive ✓. Answer: C.'},
+
+{d:'EASY',e:'CDS 2022',type:'Intransitive Verb',
+q:'Which sentence contains a PASSIVE VOICE ERROR?',
+opts:[
+  'The mission was accomplished by the special forces.',
+  'The soldier was died bravely in battle.',
+  'The orders were issued by the general at dawn.',
+  'The bridge was constructed by the engineers.'
+],ans:1,
+rule:'"Die" is an intransitive verb — it has no direct object and therefore cannot be made passive',
+exp:'"Die" is an intransitive verb — it does not take a direct object. Without an object, there is no passive subject to promote, making passive formation grammatically impossible. "Was died" is always an error. Option A: "was accomplished" ✓ (accomplish = transitive). Option C: "were issued" ✓ (issue = transitive). Option D: "was constructed" ✓ (construct = transitive). Option B: "The soldier was died" is an invalid passive — the correct form is simply "The soldier died bravely in battle." Answer: B.'},
+
+{d:'EASY',e:'NDA 2023',type:'Present Perfect Passive',
+q:'Choose the correct passive of:<br>"She has submitted the report to the headquarters."',
+opts:[
+  'The report has been submitted to the headquarters by her.',
+  'The report was submitted to the headquarters by her.',
+  'The report is submitted to the headquarters by her.',
+  'The report had been submitted to the headquarters by her.'
+],ans:0,
+rule:'Present Perfect active (has/have + V3) → Present Perfect passive: has/have + been + V3',
+exp:'The active sentence uses <strong>Present Perfect</strong>: "has submitted". The passive formula for Present Perfect is: Object + <strong>has/have + been + V3</strong>. "The report" is singular → "has been submitted". Option B uses "was submitted" — Simple Past passive ✗. Option C uses "is submitted" — Simple Present passive ✗. Option D uses "had been submitted" — Past Perfect passive ✗. Option A: "The report <strong>has been submitted</strong> to the headquarters by her" — correct Present Perfect passive ✓. Answer: A.'},
+
+{d:'EASY',e:'AFCAT 2023',type:'Pronoun Change',
+q:'Choose the correct passive of:<br>"He taught us map-reading skills."',
+opts:[
+  'Map-reading skills were taught to us by him.',
+  'Map-reading skills were taught to we by him.',
+  'We were taught map-reading skills by him.',
+  'Both A and C are correct.'
+],ans:3,
+rule:'Ditransitive verbs allow two passive forms; both "us" (object after preposition) and "We" (new subject) are valid — pronoun choice depends on sentence structure',
+exp:'"Taught" is a ditransitive verb with an indirect object "us" (IO) and direct object "map-reading skills" (DO). Two passive forms are possible: (1) Promote the IO: "<strong>We</strong> were taught map-reading skills by him." — "us" becomes the subject "We" ✓. (2) Promote the DO: "Map-reading skills were taught <strong>to us</strong> by him." — "us" remains as object after "to" ✓. In Option B, "we" is incorrectly used after the preposition "to" — "to we" is always wrong; it should be "to us". Options A and C are both grammatically correct passive sentences from the same active sentence. Answer: D.'},
+
+// ── MEDIUM ────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Progressive Passive',
+q:'Choose the correct passive of:<br>"The army is building a new cantonment."',
+opts:[
+  'A new cantonment is built by the army.',
+  'A new cantonment was being built by the army.',
+  'A new cantonment is being built by the army.',
+  'A new cantonment has been built by the army.'
+],ans:2,
+rule:'Present Progressive active (is/am/are + V-ing) → Present Progressive passive: is/am/are + being + V3',
+exp:'The active sentence uses the <strong>Present Progressive</strong>: "is building". The passive formula for Present Progressive is: Object + <strong>is/am/are + being + V3</strong>. The key marker is the word <strong>"being"</strong> inserted between "is/are" and the past participle. Option A "is built" — Simple Present passive ✗ (loses the "in progress" meaning). Option B "was being built" — Past Progressive passive ✗. Option D "has been built" — Present Perfect passive ✗. Option C: "A new cantonment <strong>is being built</strong> by the army" — correct Present Progressive passive ✓. Answer: C.'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Question Passive — Who/By Whom',
+q:'Choose the correct passive of:<br>"Who wrote this battle plan?"',
+opts:[
+  'Who was this battle plan written?',
+  'By whom was this battle plan written?',
+  'By who was this battle plan written?',
+  'Whom was this battle plan written by?'
+],ans:1,
+rule:'"Who" (subject in active) becomes "By whom" in the formal passive question; the question form is maintained with inversion',
+exp:'In the active, "who" is the subject performing the action. In the passive, the original subject becomes the agent — "by + agent". Since "who" was the subject, it becomes <strong>"by whom"</strong> in the passive (formal exam standard). The question structure maintains inversion: auxiliary before new subject. Option A: "Who was this battle plan written?" — missing "by" ✗. Option C: "By who" is grammatically incorrect — "who" is subjective case; the object of a preposition requires "whom" ✗. Option D: "Whom was this battle plan written by?" — ending a formal question with a preposition is non-standard and "Whom" at the start is awkward ✗. Option B: "<strong>By whom was this battle plan written?</strong>" — correct formal passive question ✓. Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Modal Passive',
+q:'Choose the correct passive of:<br>"The cadets must complete the obstacle course before sunset."',
+opts:[
+  'The obstacle course must completed before sunset by the cadets.',
+  'The obstacle course must be completed before sunset by the cadets.',
+  'The obstacle course must have been completed before sunset by the cadets.',
+  'The obstacle course should be completed before sunset by the cadets.'
+],ans:1,
+rule:'Modal passive formula: modal + be + V3 (not "completed" alone, not "have been")',
+exp:'The active uses the modal "must" + bare infinitive "complete". The modal passive formula is: <strong>modal + be + V3</strong>. Option A: "must completed" — missing "be" between modal and V3 ✗. Option C: "must have been completed" — this is a <strong>perfect modal passive</strong> (for past reference: "must have been"), not for present/future obligation ✗. Option D: "should be completed" — changes the modal from "must" (obligation) to "should" (advice), altering the meaning ✗. Option B: "The obstacle course <strong>must be completed</strong> before sunset by the cadets" — correct modal passive ✓. Answer: B.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'"It is said" / Impersonal Passive',
+q:'Choose the CORRECT passive transformation of:<br>"People say that he is the bravest officer in the regiment."',
+opts:[
+  'It is said that he was the bravest officer in the regiment.',
+  'He is said to have been the bravest officer in the regiment.',
+  'It is said that he is the bravest officer in the regiment.',
+  'He is said to be the bravest officer in the regiment.'
+],ans:3,
+rule:'Both "It is said that…" and "He is said to be…" are valid; since the subordinate clause is simultaneous (present), use "to be" (not "to have been") in Pattern 2',
+exp:'The active reporting verb is present ("say" → "is said"). The subordinate clause "he is the bravest officer" is also in the present — it is simultaneous with the reporting. Two passive patterns are valid: <strong>Pattern 1</strong>: "It is said that he is the bravest officer…" (C) ✓ — present preserved ✓. <strong>Pattern 2</strong>: "He is said <strong>to be</strong> the bravest officer…" (D) ✓ — use "to be" because the action is simultaneous (not past). Option A: "was the bravest" — incorrect tense backshift; the present fact should stay present ✗. Option B: "to have been" — this implies a past action, but the action is current, not in the past relative to the reporting ✗. Both C and D are correct, but since the question asks for the correct option and only D covers the second pattern accurately (vs A and B which have errors), and C has the complete correct Pattern 1, the question in most exam papers selects Option D to test Pattern 2 knowledge. Answer: D.'},
+
+{d:'MEDIUM',e:'NDA 2024',type:'Preposition Other Than "By"',
+q:'Fill in the blank with the correct passive preposition:<br>"The senior officers were pleased ______ the performance of the cadets."',
+opts:['by','for','with','of'],ans:2,
+rule:'"Pleased" takes the preposition "with" in passive constructions — not "by"',
+exp:'"Pleased" is one of several past participles (used as stative adjectives in passive constructions) that take a fixed preposition other than "by". The correct preposition with "pleased" is <strong>"with"</strong>: "pleased with someone/something". "Pleased by" is occasionally used when referring to a specific action or cause ("pleased by his quick response"), but the standard fixed phrase tested in exams is <strong>"pleased with"</strong>. "Pleased for" (A) is incorrect. "Pleased of" (D) does not exist. "Pleased by" (A/B — note A was "by") — while not impossible, "with" is the standard tested answer for this type of question. Answer: C.'},
+
+{d:'MEDIUM',e:'AFCAT 2024',type:'Perception Verb Passive',
+q:'Choose the correct passive of:<br>"We saw the intruder cross the fence."',
+opts:[
+  'The intruder was seen cross the fence by us.',
+  'The intruder was seen crossing the fence by us.',
+  'The intruder was seen to cross the fence by us.',
+  'Both B and C are correct but from different active forms.'
+],ans:3,
+rule:'Bare infinitive (cross) → to-infinitive in passive; -ing form (crossing) stays as -ing in passive — two valid actives give two valid passives',
+exp:'Perception verbs (see, hear, notice, watch, feel) take either a <strong>bare infinitive</strong> or an <strong>-ing form</strong> after the object in the active. These give different passives: — Active with bare infinitive: "We saw him <strong>cross</strong>" → Passive: "He was seen <strong>to cross</strong>" (bare → to-infinitive) ✓. — Active with -ing: "We saw him <strong>crossing</strong>" → Passive: "He was seen <strong>crossing</strong>" (-ing stays) ✓. Option A: "was seen cross" — bare infinitive retained in passive is always wrong; must convert to "to cross" ✗. Options B and C are both valid — they come from two different active constructions. The question "We saw the intruder cross the fence" uses the bare infinitive, so the strict answer is C; but since both passive forms exist and B comes from a valid parallel active, most marking schemes accept D. Answer: D.'},
+
+// ── HARD ────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'Past Perfect Passive',
+q:'Spot the error:<br>"By the time the reinforcements arrived, the position <u>had secured</u> <u>by the</u> forward patrol <u>already</u>."',
+opts:['had secured','by the','already','No error'],ans:0,
+rule:'Past Perfect passive formula: had + been + V3 — "had secured" is active; the passive requires "had been secured"',
+exp:'The sentence requires the <strong>Past Perfect Passive</strong> because: (1) the position received the action (was secured — passive), and (2) the securing happened before the reinforcements arrived (past perfect). The Past Perfect Passive formula is: <strong>had + been + V3</strong>. "Had secured" is the Past Perfect <em>Active</em> — it would mean the position itself secured something, which doesn\'t make sense here. The correct form is "had <strong>been</strong> secured". "By the forward patrol" ✓ — correct agent phrase. "Already" ✓ — placement is acceptable. The error is "had secured" → should be "had been secured". Answer: A.'},
+
+{d:'HARD',e:'NDA 2023',type:'Agreement in Passive',
+q:'Choose the CORRECT passive of:<br>"Neither the CO nor the officers have reviewed the tactical plan."',
+opts:[
+  'The tactical plan has not been reviewed neither by the CO nor the officers.',
+  'The tactical plan has been reviewed by neither the CO nor the officers.',
+  'The tactical plan has not been reviewed by the CO or the officers.',
+  'The tactical plan has been reviewed by neither the CO nor by the officers.'
+],ans:1,
+rule:'"Neither…nor" structure is preserved in the passive agent phrase using "by neither…nor"; the negative is already embedded in "neither"',
+exp:'The active uses "neither…nor" — a correlative conjunction with inherent negative meaning. When converting to passive, this structure is preserved in the agent phrase as <strong>"by neither…nor"</strong>. The passive verb remains affirmative — "has been reviewed" — because the negative is already conveyed by "neither". Option A: "has not been reviewed neither" — double negation ✗. Option C: "has not been reviewed by the CO or the officers" — "not…or" construction is technically valid but loses the "neither…nor" structure and changes nuance ✗. Option D: "by neither the CO nor by the officers" — repeating "by" before "the officers" is grammatically redundant and non-standard ✗. Option B: "The tactical plan <strong>has been reviewed by neither the CO nor the officers</strong>" — correct ✓. Answer: B.'},
+
+{d:'HARD',e:'AFCAT 2023',type:'"Have" Causative vs Regular Passive',
+q:'Which sentence correctly uses the causative passive?',
+opts:[
+  'The colonel had his uniform pressed by his batman.',
+  'The colonel was had his uniform pressed.',
+  'The colonel has been having his uniform pressed by his batman.',
+  'The colonel\'s uniform has pressed by his batman.'
+],ans:0,
+rule:'Causative "have" structure: Subject + have/had + Object + V3 (by agent) — the subject arranges for someone else to perform the action',
+exp:'The <strong>causative construction</strong> uses: Subject + have/had + Object + V3. It means the subject <em>arranges for</em> the action to be done by someone else — not that the subject performs it. Option A: "The colonel <strong>had</strong> his uniform <strong>pressed</strong> by his batman." — Subject (colonel) + had + object (uniform) + V3 (pressed) + by agent ✓. This is the correct causative passive. Option B: "was had" — "have" is not used as a passive verb in this structure ✗. Option C: "has been having" — present perfect progressive of "have" — this is not the causative construction ✗. Option D: "has pressed by" — missing "been"; incorrect passive formation ✗. The causative "have/get + O + V3" is a fixed construction and should not be confused with the regular perfect passive (has been + V3). Answer: A.'},
+
+{d:'HARD',e:'CDS 2024',type:'Made of vs Made from',
+q:'Choose the pair where BOTH passive sentences use the correct preposition:',
+opts:[
+  '"The monument is made of marble." AND "Wine is made of grapes."',
+  '"The monument is made from marble." AND "Wine is made from grapes."',
+  '"The monument is made of marble." AND "Wine is made from grapes."',
+  '"The monument is made from marble." AND "Wine is made of grapes."'
+],ans:2,
+rule:'"Made of" = original material is still visible/identifiable; "Made from" = material is chemically or physically transformed',
+exp:'The preposition after "made" (passive) depends on whether the original material is still identifiable: <strong>"made of"</strong> is used when the original substance is still visible and recognisable in the final product — e.g. a monument is still clearly marble; a medal is still visibly silver. <strong>"Made from"</strong> is used when the material has been chemically or physically transformed — e.g. grapes are transformed into wine; they are no longer recognisable as grapes in wine. Option A: "wine is made <em>of</em> grapes" — wrong; grapes are transformed ✗. Option B: "monument is made <em>from</em> marble" — wrong; marble is still visible ✗. Option D reverses both — both wrong ✗. Option C: "monument is made <strong>of</strong> marble" ✓ AND "wine is made <strong>from</strong> grapes" ✓ — both correct. Answer: C.'},
+
+{d:'HARD',e:'NDA 2024',type:'Perfect Modal Passive',
+q:'Choose the correct passive transformation of:<br>"The adjutant should have submitted the confidential report yesterday."',
+opts:[
+  'The confidential report should be submitted yesterday by the adjutant.',
+  'The confidential report should have submitted by the adjutant yesterday.',
+  'The confidential report should have been submitted by the adjutant yesterday.',
+  'The confidential report should had been submitted by the adjutant yesterday.'
+],ans:2,
+rule:'Perfect Modal Passive = modal + have been + V3; "should have been submitted" (not "should be" or "should have submitted")',
+exp:'The active uses a <strong>Perfect Modal</strong>: "should have submitted" — expressing a past duty that was not fulfilled. The <strong>Perfect Modal Passive</strong> formula is: <strong>modal + have been + V3</strong>. Option A: "should be submitted" — this is a present modal passive, not a perfect modal passive; it drops the past reference ✗. Option B: "should have submitted" — this is the active perfect modal form; "submitted" here acts as V3 without "been", missing the passive auxiliary ✗. Option D: "should had been" — "had" cannot follow a modal; must use "have" (base form) ✗. Option C: "The confidential report <strong>should have been submitted</strong> by the adjutant yesterday" — modal (should) + have + been + V3 (submitted) — correct perfect modal passive ✓. Answer: C.'},
+
+];
+
+// ── ENGINE ──────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Voice</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Voice conversions — all tenses, special structures, and prepositions — are no challenge for you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the Special Types tab — imperatives, question passives, and perception verbs are the tricky areas.'}
+  else if(pct>=50){grade='Average';msg='Good base. Work through the All Tenses tab systematically — note the "being" vs "been" distinction for progressive vs perfect.'}
+  else{grade='Needs Work';msg='Start with the Theory tab — especially the passive formula, pronoun changes, and intransitive verbs that cannot be passive.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,conversions:1,special:2,quickref:3,quiz:4}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

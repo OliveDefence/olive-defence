@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Terminology | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Deep Plum / Antique Gold ── */
+  --bg:        #F5F2F8;
+  --bg2:       #EDE8F4;
+  --bg3:       #E0D8EC;
+  --white:     #FFFFFF;
+  --ink:       #14091E;
+  --ink2:      #261640;
+  --muted:     #6B5A80;
+  --dim:       #9C88B0;
+  --border:    #CEBFE0;
+
+  --pri:       #4A1A7A;
+  --priLt:     #6228A0;
+  --priPale:   #F0EAFF;
+
+  --ac1:       #0A5858;
+  --ac1Lt:     #0E7070;
+  --ac1Pale:   #DCF5F5;
+
+  --ac2:       #1A5C20;
+  --ac2Lt:     #227228;
+  --ac2Pale:   #DFF2E2;
+
+  --ac3:       #8B1520;
+  --ac3Lt:     #A81E2C;
+  --ac3Pale:   #FCEAEC;
+
+  --ac4:       #5C3A00;
+  --ac4Lt:     #7A4E00;
+  --ac4Pale:   #FFF3DC;
+
+  --ac5:       #1A3066;
+  --ac5Pale:   #EAF0FF;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(20,9,30,.09);
+  --shadow-md: 0 4px 20px rgba(20,9,30,.14);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0E0418 0%,#36106A 55%,#4A1A80 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(200,160,255,.10) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(200,160,255,.05);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.50);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.28)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5vw,32px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#D4A8FF;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(212,168,255,.18);color:#D4A8FF}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+/* ── TAB BAR ── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(20,9,30,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(74,26,122,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(10,88,88,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(139,21,32,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(92,58,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(26,48,102,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── TERM CARDS (the hero widget) ── */
+.term-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}
+.term-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:0;box-shadow:var(--shadow);overflow:hidden;display:flex;align-items:stretch}
+.term-stripe{width:6px;flex-shrink:0}
+.term-inner{padding:14px 16px;flex:1}
+.term-name{font-family:'Lora',serif;font-size:17px;font-weight:700;color:var(--pri);margin-bottom:3px}
+.term-aka{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.term-def{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:6px}
+.term-eg{font-size:14px;color:var(--muted);font-style:italic;line-height:1.65}
+.term-eg strong{color:var(--pri);font-style:normal;font-weight:700}
+.term-eg em{color:var(--ac3);font-style:normal;font-weight:700}
+/* stripe colours by category */
+.s-verb{background:var(--pri)}
+.s-noun{background:#0A5858}
+.s-pron{background:#1A5C20}
+.s-adj{background:#8B1520}
+.s-clause{background:#5C3A00}
+.s-phrase{background:#1A3066}
+.s-misc{background:#6E1A3E}
+
+/* ── TABLES ── */
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.55;font-size:15px;vertical-align:top}
+.degree-table td:first-child{font-weight:700;color:var(--pri)}
+.degree-table .hi-row td{background:var(--priPale)!important}
+.degree-table .hi-row td:first-child{color:var(--pri)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.tag-v{background:var(--priPale);color:var(--pri);border:1px solid rgba(74,26,122,.22)}
+.tag-n{background:var(--ac1Pale);color:var(--ac1);border:1px solid rgba(10,88,88,.22)}
+.tag-p{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(26,92,32,.22)}
+.tag-c{background:var(--ac4Pale);color:var(--ac4);border:1px solid rgba(92,58,0,.22)}
+.tag-m{background:#FFF3DC;color:#5C3A00;border:1px solid rgba(92,58,0,.22)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REF ── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(74,26,122,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(74,26,122,.28)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#0E0418 0%,#4A1A80 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#D4A8FF;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .tab{padding:12px 12px;font-size:11px}
+  .hero-title{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-kicker">Olive Defence · English Grammar</div>
+  <div class="hero-title">E15 — <span>Grammar Terminology</span></div>
+  <div class="hero-sub">Parts of Speech · Verb Forms · Moods · Pronoun Types · Noun Types · Clause &amp; Phrase Types · Academic Grammar Vocabulary — CDS · NDA · AFCAT</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-y">8 Categories</span>
+    <span class="chip chip-g">15 Questions</span>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('terms')">Terms A–Z</button>
+  <button class="tab" onclick="switchTab('pos')">Parts of Speech</button>
+  <button class="tab" onclick="switchTab('structures')">Structures</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz</button>
+</div>
+
+<!-- ═══════════════ TERMS A–Z ═══════════════ -->
+<div id="terms" class="pane on">
+
+  <div class="intro-box">
+    <p>These are the <strong>technical names</strong> used in English grammar — the vocabulary of grammar itself. Knowing these terms allows you to understand question instructions, recognise what is being tested, and read grammar explanations confidently. They appear in <strong>instructions, metalinguistic questions, and comprehension passages</strong> in CDS/NDA/AFCAT papers.</p>
+  </div>
+
+  <!-- VERB FORMS -->
+  <div class="sec-label">Verb Forms &amp; Non-Finite Structures</div>
+
+  <div class="term-grid">
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Infinitive</div>
+        <div class="term-aka">Also: To-Infinitive · Bare Infinitive</div>
+        <div class="term-def">The base form of a verb. The <strong>to-infinitive</strong> includes "to" before the base form; the <strong>bare infinitive</strong> omits "to" (used after modals and certain verbs).</div>
+        <div class="term-eg">To-infinitive: "He decided <strong>to advance</strong>." &nbsp;|&nbsp; Bare: "He must <strong>report</strong> now."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Gerund</div>
+        <div class="term-aka">Also: Verbal Noun · -ing Noun</div>
+        <div class="term-def">A verb ending in <strong>-ing</strong> that functions as a <strong>noun</strong>. It can be a subject, object, or complement — but it is NOT an adjective or part of a verb phrase.</div>
+        <div class="term-eg">"<strong>Marching</strong> builds discipline." (subject) &nbsp;|&nbsp; "He enjoys <strong>commanding</strong>." (object)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Participle</div>
+        <div class="term-aka">Present Participle · Past Participle · Participial Phrase</div>
+        <div class="term-def">A verb form used as an <strong>adjective</strong> or as part of a verb tense. The <strong>present participle</strong> ends in -ing; the <strong>past participle</strong> is V3 (the third principal part).</div>
+        <div class="term-eg">Present: "the <strong>advancing</strong> troops" &nbsp;|&nbsp; Past: "the <strong>defeated</strong> enemy" &nbsp;|&nbsp; In tense: "She has <strong>completed</strong> training."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Participle Phrase</div>
+        <div class="term-aka">Also: Participial Clause · Dangling Participle (error form)</div>
+        <div class="term-def">A phrase beginning with a participle that modifies a noun. It must be placed immediately next to the noun it modifies — if separated, it becomes a <strong>dangling participle</strong> (a common exam error).</div>
+        <div class="term-eg">✓ "<strong>Exhausted by the march</strong>, the soldiers rested." (modifies soldiers)<br><em>✗ "Exhausted by the march, the tent was set up." (dangles — tent can't be exhausted)</em></div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Infinitive Phrase</div>
+        <div class="term-aka">Also: Infinitive Clause</div>
+        <div class="term-def">A phrase starting with a to-infinitive that acts as a noun, adjective, or adverb within the sentence.</div>
+        <div class="term-eg">"<strong>To lead from the front</strong> is the officer's duty." (noun — subject) &nbsp;|&nbsp; "He trained <strong>to qualify</strong>." (adverb — purpose)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Finite Verb</div>
+        <div class="term-aka">Also: Tensed Verb · Predicate Verb</div>
+        <div class="term-def">A verb that is marked for tense, person, and number. Every complete sentence must contain at least one finite verb — it is the main predicate of the clause.</div>
+        <div class="term-eg">"The officer <strong>commands</strong> the platoon." — 'commands' is finite (present, 3rd person singular)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Non-Finite Verb</div>
+        <div class="term-aka">Infinitive · Gerund · Participle</div>
+        <div class="term-def">A verb form that is <strong>not marked for tense or person</strong> — it cannot alone serve as the predicate of a sentence. The three non-finite forms are the infinitive, gerund, and participle.</div>
+        <div class="term-eg">"<strong>To win</strong> requires sacrifice." — 'to win' = non-finite (no tense/person marker)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Transitive Verb</div>
+        <div class="term-aka">Also: Vt · Takes a Direct Object</div>
+        <div class="term-def">A verb that requires a <strong>direct object</strong> to complete its meaning. The action passes from the subject through the verb to the object.</div>
+        <div class="term-eg">"She <strong>leads</strong> <u>the unit</u>." — 'leads' is transitive; 'the unit' is the direct object.</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Intransitive Verb</div>
+        <div class="term-aka">Also: Vi · No Direct Object</div>
+        <div class="term-def">A verb that does <strong>not require a direct object</strong> — its meaning is complete without one. Intransitive verbs cannot be made passive.</div>
+        <div class="term-eg">"The troops <strong>marched</strong>." / "The sun <strong>rose</strong>." / "He <strong>arrived</strong>." — no object possible</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Ditransitive Verb</div>
+        <div class="term-aka">Also: Double-Object Verb</div>
+        <div class="term-def">A verb that takes <strong>two objects</strong>: a direct object (what) and an indirect object (to whom / for whom).</div>
+        <div class="term-eg">"He <strong>gave</strong> <u>the platoon</u> [IO] <u>its orders</u> [DO]." &nbsp;|&nbsp; "She <strong>taught</strong> <u>the recruits</u> [IO] <u>fieldcraft</u> [DO]."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Linking Verb</div>
+        <div class="term-aka">Also: Copula · Copular Verb · Be-Verb</div>
+        <div class="term-def">A verb that <strong>connects the subject to a subject complement</strong> (predicate adjective or predicate noun) rather than expressing action. The subject complement describes or renames the subject.</div>
+        <div class="term-eg">be, seem, appear, become, feel, look, smell, taste, sound, remain, grow, turn<br>"The officer <strong>seems</strong> confident." ('confident' = predicate adjective describing the officer)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Auxiliary Verb</div>
+        <div class="term-aka">Also: Helping Verb · Primary Auxiliary</div>
+        <div class="term-def">A verb that accompanies a main verb to express tense, voice, mood, or aspect. The three <strong>primary auxiliaries</strong> are <em>be</em>, <em>have</em>, and <em>do</em>.</div>
+        <div class="term-eg">"He <strong>is</strong> training." / "She <strong>has</strong> completed." / "<strong>Do</strong> you agree?"</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Modal Auxiliary</div>
+        <div class="term-aka">Also: Modal Verb · Defective Verb</div>
+        <div class="term-def">An auxiliary verb that expresses <strong>possibility, ability, permission, obligation, or condition</strong>. Modals are "defective" — they have no infinitive, no -ing form, no -s in 3rd person, and no past participle.</div>
+        <div class="term-eg">can, could, may, might, shall, should, will, would, must, ought to, used to, need, dare</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Semi-Modal</div>
+        <div class="term-aka">Also: Marginal Modal · Quasi-Modal</div>
+        <div class="term-def">Verbs that behave <strong>sometimes like modals, sometimes like ordinary verbs</strong> — they have two patterns of use depending on context.</div>
+        <div class="term-eg">need, dare, used to, ought to, have to, be able to, be going to<br>"He <strong>need not</strong> report." (modal) vs "He <strong>needs to</strong> report." (main verb)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Stative Verb</div>
+        <div class="term-aka">Also: State Verb · Non-Action Verb</div>
+        <div class="term-def">A verb that describes a <strong>state or condition</strong> rather than an action. Stative verbs do not normally appear in progressive (-ing) tenses.</div>
+        <div class="term-eg">know, believe, understand, want, own, contain, seem, appear, resemble<br><em>✗ "I am knowing." → ✓ "I know."</em></div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Dynamic Verb</div>
+        <div class="term-aka">Also: Action Verb · Event Verb</div>
+        <div class="term-def">A verb that describes a <strong>deliberate action or process</strong> — the opposite of a stative verb. Dynamic verbs can be used in progressive tenses.</div>
+        <div class="term-eg">run, fight, build, write, march, command, train, eat, speak, decide</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Phrasal Verb</div>
+        <div class="term-aka">Also: Multi-Word Verb · Verb-Particle Combination</div>
+        <div class="term-def">A verb combined with a preposition or adverb particle to create a new meaning that differs from the individual words.</div>
+        <div class="term-eg">"call off" (cancel) / "give up" (surrender) / "look into" (investigate) / "carry out" (execute) / "stand down" (withdraw)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOODS -->
+  <div class="sec-label">Verb Moods</div>
+
+  <div class="term-grid">
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Indicative Mood</div>
+        <div class="term-aka">Most common mood — statements &amp; questions</div>
+        <div class="term-def">Used to state <strong>facts, ask questions, or make ordinary assertions</strong>. This is the default mood of the verb in most sentences.</div>
+        <div class="term-eg">"The army <strong>advances</strong> at dawn." / "Did the officer <strong>report</strong>?" / "She <strong>completed</strong> the course."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Imperative Mood</div>
+        <div class="term-aka">Also: Command Form · Directive Mood</div>
+        <div class="term-def">Used to give <strong>commands, instructions, requests, or invitations</strong>. The subject (you) is understood and not stated. The verb is in base form.</div>
+        <div class="term-eg">"<strong>Report</strong> to HQ immediately." / "<strong>Stand</strong> at ease." / "<strong>Do not enter</strong> the restricted zone."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Subjunctive Mood</div>
+        <div class="term-aka">Also: Conditional / Hypothetical / Optative (in wishes)</div>
+        <div class="term-def">Used for <strong>hypothetical situations, wishes, conditions contrary to fact, and formal demands/suggestions</strong>. In modern English it survives mainly in: (1) "were" for all persons in unreal conditions; (2) bare base form after that-clauses of demand/suggestion.</div>
+        <div class="term-eg">Hypothetical: "If I <strong>were</strong> the CO…" (not 'was') &nbsp;|&nbsp; Demand: "The board recommends that he <strong>be present</strong>." (not 'is')</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Conditional Mood</div>
+        <div class="term-aka">Also: Part of Subjunctive / Would-clause</div>
+        <div class="term-def">Expresses an action or state <strong>dependent on a condition</strong>. Formed with would/could/might + base verb (in the main clause of conditionals).</div>
+        <div class="term-eg">"If he trained harder, he <strong>would pass</strong>." / "She <strong>could have been</strong> selected."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe s-verb"></div>
+      <div class="term-inner">
+        <div class="term-name">Interrogative Mood</div>
+        <div class="term-aka">Also: Question Form (not a classical mood in all grammar traditions)</div>
+        <div class="term-def">The form of a sentence used to <strong>ask a question</strong>. Formed by inverting the subject and auxiliary verb, or by using a question word (who, what, where, when, why, how).</div>
+        <div class="term-eg">"<strong>Has</strong> he reported?" (inversion) &nbsp;|&nbsp; "<strong>Where</strong> is the convoy?" (wh-question)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TENSE & ASPECT -->
+  <div class="sec-label">Tense, Aspect &amp; Voice</div>
+
+  <div class="term-grid">
+
+    <div class="term-card">
+      <div class="term-stripe" style="background:#5C3A00"></div>
+      <div class="term-inner">
+        <div class="term-name">Aspect</div>
+        <div class="term-aka">Simple · Progressive (Continuous) · Perfect · Perfect Progressive</div>
+        <div class="term-def">Aspect describes <strong>how an action unfolds in time</strong> — whether it is ongoing, completed, habitual, or was completed before another event. It combines with tense (past/present/future).</div>
+        <div class="term-eg"><strong>Simple</strong>: "He marched." &nbsp;|&nbsp; <strong>Progressive</strong>: "He was marching." &nbsp;|&nbsp; <strong>Perfect</strong>: "He had marched." &nbsp;|&nbsp; <strong>Perfect Progressive</strong>: "He had been marching."</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe" style="background:#5C3A00"></div>
+      <div class="term-inner">
+        <div class="term-name">Active Voice</div>
+        <div class="term-aka">vs Passive Voice</div>
+        <div class="term-def">In the <strong>active voice</strong>, the grammatical subject performs the action. The sentence structure is Subject → Verb → Object.</div>
+        <div class="term-eg">"The officer <strong>signed</strong> the orders." (subject = doer)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe" style="background:#5C3A00"></div>
+      <div class="term-inner">
+        <div class="term-name">Passive Voice</div>
+        <div class="term-aka">Structure: be + past participle (+ by agent)</div>
+        <div class="term-def">In the <strong>passive voice</strong>, the grammatical subject receives the action. Formed with <em>be</em> + V3. The original doer may appear as "by + agent" or be omitted.</div>
+        <div class="term-eg">"The orders <strong>were signed</strong> by the officer." (subject = receiver) &nbsp;|&nbsp; "The base <strong>was secured</strong>." (agent omitted)</div>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <div class="term-stripe" style="background:#5C3A00"></div>
+      <div class="term-inner">
+        <div class="term-name">Sequence of Tenses</div>
+        <div class="term-aka">Also: Tense Harmony · Backshift (in reported speech)</div>
+        <div class="term-def">The grammatical rule requiring that when the main clause is in a past tense, the subordinate clause verb must also shift to a past form. Exceptions apply to universal truths and current facts.</div>
+        <div class="term-eg">"He said he <strong>was</strong> ready." (backshift: is → was) &nbsp;|&nbsp; Exception: "He said water <strong>boils</strong> at 100°C." (universal truth stays present)</div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /terms -->
+
+<!-- ═══════════════ PARTS OF SPEECH ═══════════════ -->
+<div id="pos" class="pane">
+
+  <div class="sec-label">Noun Types</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Proper Noun</td><td>Name of a specific person, place, or institution — always capitalised</td><td>Arjun Singh, Delhi, Indian Army, NDA Khadakwasla</td></tr>
+        <tr><td>Common Noun</td><td>General name for a class of things or beings</td><td>soldier, river, city, weapon, officer</td></tr>
+        <tr class="hi-row"><td>Collective Noun</td><td>Name for a group treated as a unit</td><td>army, jury, fleet, pride (lions), crew, committee</td></tr>
+        <tr><td>Abstract Noun</td><td>Name for a quality, idea, emotion, or state — not physically perceptible</td><td>bravery, discipline, loyalty, justice, freedom</td></tr>
+        <tr class="hi-row"><td>Material / Concrete Noun</td><td>Physical substance perceived by the senses</td><td>steel, water, air, sand, wood, gold</td></tr>
+        <tr><td>Countable Noun</td><td>Can be counted; has both singular and plural forms; takes a/an</td><td>soldier/soldiers, order/orders, weapon/weapons</td></tr>
+        <tr class="hi-row"><td>Uncountable Noun</td><td>Cannot be individually counted; no plural; cannot take a/an directly</td><td>information, advice, luggage, equipment, ammunition</td></tr>
+        <tr><td>Compound Noun</td><td>Two or more words combined to name one concept</td><td>court martial, commander-in-chief, aircraft, battlefield</td></tr>
+        <tr class="hi-row"><td>Verbal Noun (Gerund)</td><td>A verb -ing form functioning as a noun</td><td>"Training is essential." / "He enjoys commanding."</td></tr>
+        <tr><td>Noun in Apposition</td><td>A noun or noun phrase placed next to another noun to rename or describe it — separated by commas</td><td>"Captain Roy, <strong>the commanding officer</strong>, addressed the troops."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Pronoun Types</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Personal Pronoun</td><td>Refers to specific persons or things; changes form for person, number, gender, and case</td><td>I, me, you, he, him, she, her, it, we, us, they, them</td></tr>
+        <tr><td>Possessive Pronoun</td><td>Shows ownership — stands alone without a following noun</td><td>mine, yours, his, hers, its, ours, theirs</td></tr>
+        <tr class="hi-row"><td>Possessive Adjective</td><td>Shows ownership — precedes and modifies a noun (technically a determiner)</td><td>my, your, his, her, its, our, their</td></tr>
+        <tr><td>Reflexive Pronoun</td><td>Refers back to the subject; ends in -self / -selves</td><td>myself, yourself, himself, herself, itself, ourselves, themselves</td></tr>
+        <tr class="hi-row"><td>Emphatic Pronoun</td><td>Same form as reflexive but used to add emphasis — can be removed without changing meaning</td><td>"The general <strong>himself</strong> inspected the troops."</td></tr>
+        <tr><td>Demonstrative Pronoun</td><td>Points to specific nouns — near or far, singular or plural</td><td>this, that, these, those &nbsp;→&nbsp; "This is the plan."</td></tr>
+        <tr class="hi-row"><td>Interrogative Pronoun</td><td>Used to ask questions</td><td>who, whom, whose, which, what</td></tr>
+        <tr><td>Relative Pronoun</td><td>Introduces a relative clause and refers back to an antecedent noun</td><td>who, whom, whose, which, that &nbsp;→&nbsp; "the soldier <strong>who</strong> led the patrol"</td></tr>
+        <tr class="hi-row"><td>Indefinite Pronoun</td><td>Refers to unspecified persons or things — most take singular verbs</td><td>everyone, someone, anyone, no one, each, either, neither, both, all, some, none, many, few</td></tr>
+        <tr><td>Reciprocal Pronoun</td><td>Expresses a mutual action between two or more subjects</td><td>each other (two people), one another (three or more)</td></tr>
+        <tr class="hi-row"><td>Impersonal Pronoun</td><td>"It" or "one" used without referring to a specific person or thing — dummy subject or generic reference</td><td>"<strong>It</strong> is raining." / "<strong>One</strong> must obey orders." / "<strong>It</strong> was decided that…"</td></tr>
+        <tr><td>Distributive Pronoun</td><td>Refers to persons or things one at a time — always singular</td><td>each, either, neither &nbsp;→&nbsp; "Each of the cadets <strong>has</strong> a role."</td></tr>
+        <tr class="hi-row"><td>Dummy Subject / Expletive</td><td>"It" or "There" used to fill the subject position when the logical subject comes later</td><td>"<strong>There</strong> are three options." / "<strong>It</strong> seems that he left."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Adjective &amp; Adverb Types</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Attributive Adjective</td><td>Placed directly before the noun it modifies</td><td>"a <strong>brave</strong> soldier" / "the <strong>final</strong> assault"</td></tr>
+        <tr><td>Predicative Adjective</td><td>Placed after a linking verb, describing the subject</td><td>"The officer is <strong>confident</strong>." / "He seems <strong>tired</strong>."</td></tr>
+        <tr class="hi-row"><td>Postpositive Adjective</td><td>Placed immediately after the noun — occurs with specific adjectives and in set phrases</td><td>"the General <strong>elect</strong>" / "something <strong>important</strong>" / "courts martial"</td></tr>
+        <tr><td>Absolute Adjective</td><td>An adjective whose meaning is already superlative — cannot logically be graded or compared</td><td>unique, perfect, complete, total, absolute, dead, pregnant, infinite</td></tr>
+        <tr class="hi-row"><td>Degree Adverb</td><td>An adverb that modifies the intensity of an adjective or another adverb</td><td>very, quite, rather, too, enough, fairly, extremely, almost, nearly</td></tr>
+        <tr><td>Flat Adverb</td><td>An adverb with the same form as its corresponding adjective — does not add -ly</td><td>fast, hard, late, high, near, deep, wide, sharp, close</td></tr>
+        <tr class="hi-row"><td>Sentence Adverb</td><td>An adverb that modifies the entire sentence rather than a single verb or adjective — usually placed at the start</td><td>"<strong>Fortunately</strong>, no casualties were reported." / "<strong>Obviously</strong>, he was mistaken."</td></tr>
+        <tr><td>Conjunctive Adverb</td><td>An adverb that connects two independent clauses and shows their logical relationship</td><td>however, therefore, moreover, furthermore, nevertheless, consequently, thus, meanwhile</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Determiner, Preposition &amp; Conjunction Types</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Term</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Definite Article</td><td>"The" — refers to a specific, known noun</td><td>"<strong>The</strong> general inspected the base."</td></tr>
+        <tr><td>Indefinite Article</td><td>"A" / "An" — refers to a non-specific noun; "an" before vowel sounds</td><td>"<strong>A</strong> soldier arrived." / "<strong>An</strong> officer was present."</td></tr>
+        <tr class="hi-row"><td>Determiner</td><td>A word that precedes and limits a noun — includes articles, demonstratives, possessives, quantifiers, and numbers</td><td>the, a, an, this, those, my, every, some, three, which</td></tr>
+        <tr><td>Coordinating Conjunction</td><td>Joins two grammatically equal elements (words, phrases, or independent clauses) — FANBOYS</td><td>for, and, nor, but, or, yet, so</td></tr>
+        <tr class="hi-row"><td>Subordinating Conjunction</td><td>Introduces a subordinate (dependent) clause and shows its relationship to the main clause</td><td>because, although, since, when, while, if, unless, until, as, though, after, before</td></tr>
+        <tr><td>Correlative Conjunction</td><td>Paired conjunctions that work together to join equal elements</td><td>both…and, either…or, neither…nor, not only…but also, whether…or, as…as</td></tr>
+        <tr class="hi-row"><td>Preposition</td><td>Shows the relationship of a noun/pronoun to another word — location, direction, time, manner, agent</td><td>in, on, at, by, with, from, to, through, between, among, despite, regarding</td></tr>
+        <tr><td>Interjection</td><td>An exclamatory word or phrase expressing sudden emotion — grammatically independent of the sentence</td><td>Oh! Alas! Bravo! Well! Indeed! Halt! Attention!</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /pos -->
+
+<!-- ═══════════════ STRUCTURES ═══════════════ -->
+<div id="structures" class="pane">
+
+  <div class="sec-label">Clause Types</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">📋</div>
+      <div style="flex:1">
+        <div class="c-title">Independent vs Dependent Clauses</div>
+        <div class="c-sub">Main Clause · Subordinate Clause · Key structural distinction</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+          <tr><td><b>Independent Clause<br>(Main Clause)</b></td><td>A clause that expresses a complete thought and can stand alone as a sentence. It has a subject and a finite verb.</td><td>"The convoy <b>arrived</b> at dawn." — complete by itself ✓</td></tr>
+          <tr><td><b>Dependent Clause<br>(Subordinate Clause)</b></td><td>A clause that cannot stand alone — it depends on a main clause to complete its meaning. Introduced by a subordinating conjunction or relative pronoun.</td><td>"<b>Although the road was clear</b>, the convoy was delayed." — cannot stand alone ✓</td></tr>
+          <tr><td><b>Co-ordinate Clause</b></td><td>Two or more independent clauses of equal grammatical rank joined by a coordinating conjunction (FANBOYS).</td><td>"The officer <b>gave the order</b> <b>and</b> the troops <b>advanced</b>."</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">Types of Subordinate Clauses</div>
+        <div class="c-sub">Noun · Adjective (Relative) · Adverb — the three functions</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Function</th><th>Introduced by</th><th>Example</th></tr>
+          <tr><td><b>Noun Clause</b></td><td>Acts as subject, object, or complement of the main verb</td><td>that, what, whether, if, who, how, why, when</td><td>"He reported <b>that the mission was complete</b>." (object)</td></tr>
+          <tr><td><b>Adjective Clause<br>(Relative Clause)</b></td><td>Modifies a noun or pronoun in the main clause</td><td>who, whom, whose, which, that</td><td>"The officer <b>who led the patrol</b> was decorated."</td></tr>
+          <tr><td><b>Adverb Clause</b></td><td>Modifies the main verb or entire main clause — shows time, cause, condition, contrast, manner, purpose, result</td><td>when, because, if, although, so that, as, until, since, unless, while</td><td>"<b>Although he was tired</b>, he continued the march." (contrast)</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Adverb Clause Sub-Types — All Tested</div>
+        <ul>
+          <li><strong>Time</strong>: when, while, as, before, after, since, until, as soon as, by the time</li>
+          <li><strong>Cause / Reason</strong>: because, since, as, for, inasmuch as</li>
+          <li><strong>Condition</strong>: if, unless, provided that, as long as, in case, supposing</li>
+          <li><strong>Concession / Contrast</strong>: although, though, even though, even if, whereas, while</li>
+          <li><strong>Purpose</strong>: so that, in order that, lest (negative purpose)</li>
+          <li><strong>Result / Consequence</strong>: so…that, such…that</li>
+          <li><strong>Manner</strong>: as if, as though, as (in the same way that)</li>
+          <li><strong>Comparison</strong>: than, as…as, the more…the more</li>
+          <li><strong>Place</strong>: where, wherever</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">📐</div>
+      <div style="flex:1">
+        <div class="c-title">Defining vs Non-Defining Relative Clauses</div>
+        <div class="c-sub">Restrictive vs Non-Restrictive · Comma usage · "That" vs "Which"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Definition</th><th>Punctuation</th><th>Pronoun</th></tr>
+          <tr><td><b>Defining (Restrictive)</b></td><td>Identifies which specific noun is meant — essential to the meaning; its removal changes the sentence meaning</td><td>No commas</td><td>who / whom / that / which</td></tr>
+          <tr><td><b>Non-Defining (Non-Restrictive)</b></td><td>Adds extra information about an already-identified noun — not essential; can be removed without changing the core meaning</td><td>Set off by commas</td><td>who / whom / which (NOT "that")</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Contrast Examples</div>
+        <ul>
+          <li>Defining: "The officer <strong>who led the patrol</strong> was decorated." (identifies which officer — no commas) ✓</li>
+          <li>Non-defining: "Captain Roy, <strong>who led the patrol</strong>, was decorated." (Roy is already identified — commas required) ✓</li>
+          <li>✗ "Captain Roy, <em>that</em> led the patrol, was decorated." → non-defining clauses cannot use "that"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Phrase Types</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Phrase Type</th><th>Head Word</th><th>Function</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Noun Phrase (NP)</td><td>Noun</td><td>Functions as subject, object, or complement</td><td>"<strong>The experienced commanding officer</strong> gave orders."</td></tr>
+        <tr><td>Verb Phrase (VP)</td><td>Main verb + auxiliaries</td><td>The predicate of the clause</td><td>"She <strong>has been training</strong> for six months."</td></tr>
+        <tr class="hi-row"><td>Adjective Phrase (AdjP)</td><td>Adjective</td><td>Modifies a noun (attributive) or subject (predicative)</td><td>"He is <strong>very capable of leading</strong>."</td></tr>
+        <tr><td>Adverb Phrase (AdvP)</td><td>Adverb</td><td>Modifies verb, adjective, or another adverb</td><td>"She ran <strong>extremely quickly</strong>."</td></tr>
+        <tr class="hi-row"><td>Prepositional Phrase (PP)</td><td>Preposition</td><td>Modifies noun (adjective function) or verb (adverb function)</td><td>"The troops <strong>in the valley</strong> advanced." / "He reported <strong>at dawn</strong>."</td></tr>
+        <tr><td>Infinitive Phrase</td><td>to + base verb</td><td>Noun, adjective, or adverb function</td><td>"<strong>To serve the nation</strong> is an honour." (noun — subject)</td></tr>
+        <tr class="hi-row"><td>Gerund Phrase</td><td>Gerund (-ing noun)</td><td>Noun function — subject, object, complement</td><td>"<strong>Leading from the front</strong> is the hallmark of a good officer."</td></tr>
+        <tr><td>Participial Phrase</td><td>Participle</td><td>Adjective function — modifies a noun</td><td>"<strong>Exhausted by the long march</strong>, the soldiers rested."</td></tr>
+        <tr class="hi-row"><td>Absolute Phrase</td><td>Noun + participle (no conjunction)</td><td>Modifies the whole sentence — acts like an adverb clause without a conjunction</td><td>"<strong>His orders given</strong>, the colonel left the briefing room."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Sentence Types &amp; Other Key Terms</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🏗️</div>
+      <div style="flex:1">
+        <div class="c-title">Sentence Structure Types</div>
+        <div class="c-sub">Simple · Compound · Complex · Compound-Complex</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Structure</th><th>Example</th></tr>
+          <tr><td><b>Simple Sentence</b></td><td>One independent clause</td><td>"The platoon <b>advanced</b>."</td></tr>
+          <tr><td><b>Compound Sentence</b></td><td>Two or more independent clauses joined by a coordinating conjunction or semicolon</td><td>"The platoon <b>advanced</b>, but the enemy <b>retreated</b>."</td></tr>
+          <tr><td><b>Complex Sentence</b></td><td>One independent clause + one or more dependent (subordinate) clauses</td><td>"<b>Although the road was mined</b>, the platoon advanced."</td></tr>
+          <tr><td><b>Compound-Complex Sentence</b></td><td>Two or more independent clauses + one or more dependent clauses</td><td>"<b>Although it was dark</b>, the patrol moved forward and secured the perimeter."</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">🔤</div>
+      <div style="flex:1">
+        <div class="c-title">Other Key Grammar Terms</div>
+        <div class="c-sub">Antecedent · Apposition · Ellipsis · Concord · Inversion · Dangling Modifier</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Term</th><th>Definition</th><th>Example / Note</th></tr>
+          <tr><td><b>Antecedent</b></td><td>The noun or noun phrase that a pronoun refers back to. Pronoun and antecedent must agree in number, gender, and person.</td><td>"The <b>officer</b> submitted <b>his</b> report." — 'officer' is the antecedent of 'his'</td></tr>
+          <tr><td><b>Apposition / Appositive</b></td><td>A noun or noun phrase placed next to another noun to rename or explain it. Usually set off by commas.</td><td>"Captain Roy, <b>the commanding officer</b>, gave the briefing."</td></tr>
+          <tr><td><b>Ellipsis</b></td><td>The omission of words understood from context. Common in comparisons and after auxiliaries.</td><td>"She trains harder than he [does]." / "He can march and [he can] swim."</td></tr>
+          <tr><td><b>Concord</b></td><td>Agreement between grammatically related words — most commonly subject-verb agreement and pronoun-antecedent agreement.</td><td>"Each of the officers <b>has</b> his duty." (concord of number)</td></tr>
+          <tr><td><b>Inversion</b></td><td>Reversing the normal subject-verb order. Occurs in questions, after negative adverbs fronted for emphasis, and in conditionals without "if".</td><td>"<b>Never have</b> I seen such courage." / "<b>Had he known</b>, he would have acted." (conditional inversion)</td></tr>
+          <tr><td><b>Dangling Modifier</b></td><td>A modifier (usually a participial phrase) that does not logically attach to the intended word — a common exam error.</td><td>✗ "Running through the forest, <b>the bridge</b> appeared." → Bridge can't run. ✓ "Running through the forest, <b>he</b> saw the bridge."</td></tr>
+          <tr><td><b>Misplaced Modifier</b></td><td>A modifier placed too far from the word it modifies, creating ambiguity or wrong meaning.</td><td>✗ "He almost drove <b>his car</b> to Delhi." → ✓ "He drove his car <b>almost</b> to Delhi."</td></tr>
+          <tr><td><b>Subject Complement</b></td><td>A noun, pronoun, or adjective that follows a linking verb and describes or renames the subject.</td><td>"She is <b>an officer</b>." (predicate noun) / "He seems <b>confident</b>." (predicate adjective)</td></tr>
+          <tr><td><b>Object Complement</b></td><td>A noun or adjective that follows a direct object and describes or renames it.</td><td>"They elected him <b>captain</b>." / "She found the task <b>difficult</b>."</td></tr>
+          <tr><td><b>Parallelism</b></td><td>Using the same grammatical form for elements that are equal in thought — essential for lists, comparisons, and correlative conjunctions.</td><td>✗ "He likes to march, swimming, and rest." → ✓ "He likes <b>marching, swimming, and resting</b>."</td></tr>
+          <tr><td><b>Reported Speech</b></td><td>Also called <em>Indirect Speech</em> — reporting what someone said without quoting directly. Requires tense backshift, pronoun changes, and time/place adverb changes.</td><td>Direct: "I will report tomorrow." → Indirect: "He said he <b>would</b> report the <b>next day</b>."</td></tr>
+          <tr><td><b>Cleft Sentence</b></td><td>A construction that divides a simple sentence into two clauses for emphasis — using "it is/was…that/who" or "what…is/was".</td><td>"<b>It was the general who</b> made the decision." / "<b>What surprised us was</b> his calm."</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /structures -->
+
+<!-- ═══════════════ QUICK REF ═══════════════ -->
+<div id="quickref" class="pane">
+  <div class="sec-label">Quick Reference — Term Groups at a Glance</div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Verb Non-Finite Forms</div>
+      <ul>
+        <li><b>Infinitive</b>: to + base ("to march") or bare ("must march")</li>
+        <li><b>Gerund</b>: -ing form acting as noun ("Training is essential")</li>
+        <li><b>Present Participle</b>: -ing form as adjective ("the marching troops")</li>
+        <li><b>Past Participle</b>: V3 form as adjective or in perfect/passive ("completed")</li>
+        <li><b>Participial Phrase</b>: phrase starting with participle — must touch its noun</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Five Verb Moods</div>
+      <ul>
+        <li><b>Indicative</b>: facts &amp; statements ("He marched.")</li>
+        <li><b>Imperative</b>: commands ("March!")</li>
+        <li><b>Subjunctive</b>: hypothetical / wish ("If I <em>were</em>…" / "that he <em>be</em> present")</li>
+        <li><b>Conditional</b>: result of condition ("would pass")</li>
+        <li><b>Interrogative</b>: questions ("Did he report?")</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Pronoun Types — All 13</div>
+      <ul>
+        <li><b>Personal</b>: I, you, he, she, it, we, they</li>
+        <li><b>Possessive</b>: mine, yours, his, hers (stand alone)</li>
+        <li><b>Reflexive</b>: myself, himself (action back to subject)</li>
+        <li><b>Emphatic</b>: same form — adds stress, removable</li>
+        <li><b>Demonstrative</b>: this, that, these, those</li>
+        <li><b>Interrogative</b>: who, whom, what, which, whose</li>
+        <li><b>Relative</b>: who, whom, which, that (in relative clause)</li>
+        <li><b>Indefinite</b>: everyone, someone, none, each, both</li>
+        <li><b>Reciprocal</b>: each other, one another</li>
+        <li><b>Impersonal</b>: it / one (dummy or generic)</li>
+        <li><b>Distributive</b>: each, either, neither (one at a time)</li>
+        <li><b>Dummy / Expletive</b>: there / it (structural fillers)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Clause Types</div>
+      <ul>
+        <li><b>Main / Independent</b>: stands alone; complete thought</li>
+        <li><b>Subordinate / Dependent</b>: cannot stand alone</li>
+        <li><b>Noun Clause</b>: acts as noun (that, what, whether…)</li>
+        <li><b>Adjective / Relative Clause</b>: modifies noun (who, which, that…)</li>
+        <li><b>Adverb Clause</b>: modifies verb — time, cause, condition, contrast, purpose, result, manner</li>
+        <li><b>Defining</b>: no commas; essential; uses "that"</li>
+        <li><b>Non-Defining</b>: commas; extra info; no "that"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Sentence Structure Types</div>
+      <ul>
+        <li><b>Simple</b>: one independent clause</li>
+        <li><b>Compound</b>: 2+ independent clauses (FANBOYS / semicolon)</li>
+        <li><b>Complex</b>: 1 independent + 1+ dependent clause</li>
+        <li><b>Compound-Complex</b>: 2+ independent + 1+ dependent</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Modifiers — Errors to Know</div>
+      <ul>
+        <li><b>Dangling Modifier</b>: modifier has no logical noun to attach to in the sentence</li>
+        <li><b>Misplaced Modifier</b>: modifier is too far from the word it modifies</li>
+        <li><b>Squinting Modifier</b>: ambiguously placed — could modify words on either side</li>
+        <li>Rule: modifier must be placed as close as possible to the word it modifies</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Conjunction Types</div>
+      <ul>
+        <li><b>Coordinating</b>: FANBOYS — join equal elements</li>
+        <li><b>Subordinating</b>: introduce dependent clauses — because, although, if, when, since, unless</li>
+        <li><b>Correlative</b>: pairs — both…and, either…or, neither…nor, not only…but also</li>
+        <li><b>Conjunctive Adverb</b>: however, therefore, moreover (connect independent clauses)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Structural Terms</div>
+      <ul>
+        <li><b>Antecedent</b>: noun a pronoun refers back to</li>
+        <li><b>Appositive</b>: noun renaming another noun (commas)</li>
+        <li><b>Ellipsis</b>: omitted words understood from context</li>
+        <li><b>Concord</b>: grammatical agreement (S-V, pronoun-antecedent)</li>
+        <li><b>Inversion</b>: reversed subject-auxiliary order</li>
+        <li><b>Parallelism</b>: equal structures for equal ideas</li>
+        <li><b>Cleft Sentence</b>: "It was X that…" — for emphasis</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════ QUIZ ═══════════════ -->
+<div id="quiz" class="pane">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div id="q-area"></div>
+  <div id="results"></div>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · E15 Grammar Terminology · CDS · NDA · AFCAT English</div>
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Verb Form',
+q:'In the sentence "Training hard every day builds real discipline," the word "Training" is best described as a:',
+opts:['Present Participle','Gerund','Infinitive','Finite Verb'],ans:1,
+rule:'A word ending in -ing that acts as the subject of the sentence is a Gerund (verbal noun) — not a present participle',
+exp:'"Training" here is the subject of the verb "builds" — it names the activity and functions as a noun. This makes it a <strong>Gerund</strong> (also called a verbal noun). A Present Participle (A) also ends in -ing, but it functions as an adjective or as part of a progressive verb phrase — e.g. "the training soldier" or "he is training". Here it is not modifying a noun; it is the subject noun. An Infinitive (C) requires "to" before the base verb. A Finite Verb (D) is marked for tense/person — "training" alone is not. Answer: B.'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Pronoun Type',
+q:'"The general himself inspected the troops before the parade." — The word "himself" in this sentence is an example of a:',
+opts:['Reflexive Pronoun','Emphatic Pronoun','Relative Pronoun','Impersonal Pronoun'],ans:1,
+rule:'When -self/-selves adds emphasis to a noun but can be removed without changing the meaning, it is Emphatic; when it redirects the verb\'s action back to the subject, it is Reflexive',
+exp:'The key test: <strong>can "himself" be removed without changing the core meaning?</strong> "The general inspected the troops before the parade." — yes, the sentence is still complete and means the same thing. "Himself" is purely emphatic — it stresses that the general personally carried out the inspection. If it were reflexive, the general would be inspecting himself (as object). A Reflexive Pronoun (A) would be used as the verb\'s object: "He hurt himself." A Relative Pronoun (C) introduces a relative clause. An Impersonal Pronoun (D) is "it" or "one" without specific reference. Answer: B.'},
+
+{d:'EASY',e:'CDS 2022',type:'Clause Type',
+q:'"Although he was exhausted, the soldier completed the march." — The underlined clause "Although he was exhausted" is a:',
+opts:['Noun Clause','Adjective Clause','Adverb Clause of Condition','Adverb Clause of Concession'],ans:3,
+rule:'"Although" introduces a concession — it acknowledges an opposing fact while the main clause asserts something contrary to expectation',
+exp:'"Although" is a subordinating conjunction that signals concession — it acknowledges a fact (he was exhausted) that makes the main clause result (completing the march) surprising or contrary to expectation. This is an <strong>Adverb Clause of Concession</strong>. It is not a Noun Clause (A) — it doesn\'t act as subject or object. It is not an Adjective Clause (B) — it doesn\'t modify a noun using a relative pronoun. An Adverb Clause of Condition (C) would be introduced by "if" or "unless". "Although" = concession. Answer: D.'},
+
+{d:'EASY',e:'NDA 2023',type:'Mood',
+q:'"If I were the commanding officer, I would restructure the training programme." — The verb "were" in this sentence represents which mood?',
+opts:['Indicative Mood','Imperative Mood','Subjunctive Mood','Conditional Mood'],ans:2,
+rule:'The Subjunctive Mood uses "were" for all persons (not "was") in hypothetical/contrary-to-fact conditions',
+exp:'The sentence describes a hypothetical, contrary-to-fact situation — the speaker is not the commanding officer. In formal English, the <strong>Subjunctive Mood</strong> uses "were" for all persons (I/he/she/they) to signal that the condition is imaginary, not real. Using "was" here would be Indicative (stating a fact). The Imperative Mood (B) gives commands. The Conditional Mood (D) refers to the "would" clause — the result. The "if" clause uses the subjunctive. Answer: C.'},
+
+{d:'EASY',e:'AFCAT 2023',type:'Phrase Type',
+q:'"Exhausted by the long patrol, the soldiers requested a rest halt." — The opening phrase "Exhausted by the long patrol" is best described as a:',
+opts:['Gerund Phrase','Infinitive Phrase','Participial Phrase','Prepositional Phrase'],ans:2,
+rule:'A phrase beginning with a past or present participle that modifies a noun is a Participial Phrase',
+exp:'"Exhausted" is a past participle — it describes the state of the soldiers. The phrase "Exhausted by the long patrol" begins with this participle and modifies the subject noun "soldiers". This is a <strong>Participial (Participial) Phrase</strong> functioning as an adjective. A Gerund Phrase (A) begins with a gerund and acts as a noun. An Infinitive Phrase (B) begins with "to + verb". A Prepositional Phrase (D) begins with a preposition. Answer: C.'},
+
+// ── MEDIUM ────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Defining vs Non-Defining Clause',
+q:'Which sentence uses a NON-DEFINING relative clause correctly?',
+opts:[
+  'The officer that won the gallantry award was promoted.',
+  'The officer, who won the gallantry award, was promoted.',
+  'The officer, that won the gallantry award, was promoted.',
+  'The officer who won the gallantry award was promoted.'
+],ans:1,
+rule:'Non-defining relative clauses are set off by commas and cannot use "that" — they use "who/which" only',
+exp:'A non-defining (non-restrictive) relative clause adds extra information about an already-identified noun and is set off by commas. Options A and D have no commas — they are defining (restrictive) clauses identifying which officer. Option C uses "that" in a comma-set clause — this is wrong; non-defining clauses cannot use "that". Option B: "The officer, <strong>who</strong> won the gallantry award, was promoted." — correctly uses commas and "who" for a non-defining clause (implying we already know which officer). Answer: B.'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Complement Type',
+q:'"They elected Captain Roy commanding officer of the regiment." — The phrase "commanding officer of the regiment" is best described as a(n):',
+opts:['Subject Complement','Object Complement','Indirect Object','Appositive'],ans:1,
+rule:'An Object Complement follows the direct object and renames or describes it — here it renames "Captain Roy" (the object)',
+exp:'Structure: They [subject] elected [verb] Captain Roy [direct object] commanding officer of the regiment [?]. The phrase "commanding officer of the regiment" comes after the direct object "Captain Roy" and renames him — it tells us what Captain Roy was elected as. This is an <strong>Object Complement</strong>. A Subject Complement (A) follows a linking verb and describes the subject. An Indirect Object (C) answers "to whom" before the direct object. An Appositive (D) is set off by commas next to a noun to rename it — here there are no commas and it follows the direct object, not a noun in isolation. Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',type:'Modifier Error',
+q:'Identify the sentence with a DANGLING MODIFIER:',
+opts:[
+  'Running at full speed, the soldier reached the objective.',
+  'Trained in mountain warfare, the unit scaled the peak.',
+  'Having reviewed the report, the briefing was concluded by the colonel.',
+  'Wounded in action, the medic treated him immediately.'
+],ans:2,
+rule:'A dangling participle occurs when the participial phrase does not logically attach to the grammatical subject of the main clause',
+exp:'A dangling modifier is a participial phrase whose implied subject does not match the grammatical subject of the main clause. Option A: "Running at full speed" → the soldier was running ✓. Option B: "Trained in mountain warfare" → the unit was trained ✓. Option D: "Wounded in action" → the unstated subject of "wounded" is the soldier, and "him" = the soldier ✓ (acceptable). Option C: "Having reviewed the report" implies the colonel reviewed it — but the grammatical subject of the main clause is "the briefing". The briefing cannot review a report. This is a <strong>dangling modifier</strong>. Correct: "Having reviewed the report, the colonel concluded the briefing." Answer: C.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Conjunction Type',
+q:'"Not only did the cadet excel in physical training, but he also scored highest in the written examination." — The connectors "not only…but also" are an example of:',
+opts:['Coordinating Conjunctions','Subordinating Conjunctions','Correlative Conjunctions','Conjunctive Adverbs'],ans:2,
+rule:'Correlative conjunctions work in pairs to join grammatically equal and parallel elements',
+exp:'"Not only…but also" is a <strong>correlative conjunction</strong> pair — they work together as a matched set to connect two parallel equal structures. Coordinating Conjunctions (A) are single-word FANBOYS connectors (and, but, or, yet, so, for, nor). Subordinating Conjunctions (B) introduce dependent clauses (because, although, if, when). Conjunctive Adverbs (D) are adverbs like "however", "therefore", "moreover" that connect two independent clauses and can be moved within the second clause. "Not only…but also" is a correlative pair. Other pairs: both…and, either…or, neither…nor, whether…or. Answer: C.'},
+
+{d:'MEDIUM',e:'NDA 2024',type:'Clause Identification',
+q:'In "He reported that the enemy had retreated across the river," the underlined clause "that the enemy had retreated across the river" functions as a:',
+opts:['Adverb Clause of Reason','Adjective Clause','Noun Clause (Object)','Noun Clause (Subject)'],ans:2,
+rule:'A "that" clause functioning as the direct object of a reporting verb (reported, said, told, knew) is a Noun Clause acting as Object',
+exp:'"Reported" is the main verb. What did he report? "That the enemy had retreated across the river." This clause answers the question "what?" — it is the direct object of "reported". A clause functioning as the direct object of a verb is a <strong>Noun Clause</strong>. It is functioning as the <strong>Object</strong> (not the subject — a noun clause as subject would come before the verb: "That he succeeded surprised everyone"). It is not an Adverb Clause (A) — it does not modify the verb by giving reason/time/condition. It is not an Adjective Clause (B) — it does not follow a noun to describe it. Answer: C.'},
+
+{d:'MEDIUM',e:'AFCAT 2024',type:'Verb Classification',
+q:'"The general appeared confident before the press conference." — The word "appeared" in this sentence is functioning as a:',
+opts:['Transitive Verb','Intransitive Verb','Linking (Copular) Verb','Auxiliary Verb'],ans:2,
+rule:'"Appeared" here connects the subject (general) to a predicate adjective (confident) — this is the linking verb function',
+exp:'This question tests whether "appeared" is functioning as a dynamic/intransitive verb meaning "to show up" or as a linking verb meaning "to seem". In this sentence, "confident" is a predicate adjective describing the general — not an adverb describing how he appeared. The test: replace "appeared" with "was" — "The general was confident." ✓ The meaning holds. This confirms "appeared" = <strong>linking (copular) verb</strong>. Transitive (A) would require a direct object. Pure Intransitive (B) — "appeared" can be intransitive ("he appeared at the door") but not in this sentence. Auxiliary (D) would require a main verb to accompany it. Answer: C.'},
+
+// ── HARD ────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'Ellipsis',
+q:'Which sentence correctly uses ellipsis (the deliberate omission of understood words)?',
+opts:[
+  'He can march faster than she can march.',
+  'He can march faster than she can.',
+  'He can march faster than her.',
+  'Both B and C are acceptable, but for different grammatical reasons.'
+],ans:3,
+rule:'Ellipsis after auxiliary: "she can" = "she can [march]" — correct; "than her" uses the accusative pronoun after "than" as a preposition — also standard',
+exp:'Option A is grammatically correct but redundant — "march" is unnecessarily repeated. Option B uses <strong>ellipsis</strong>: "than she can [march]" — the verb "march" is omitted because it is understood from context. This is the classic ellipsis pattern after an auxiliary. Option C uses "than her" — treating "than" as a preposition followed by the objective pronoun. This is standard in informal and many formal contexts. Grammatically, B treats "than" as a conjunction (with ellipsis of the verb) and C treats "than" as a preposition. Both are considered acceptable in modern standard English grammar, but for different reasons. In defence exam context, both B and C may be presented as correct — the key is understanding the underlying grammatical justification. Answer: D.'},
+
+{d:'HARD',e:'NDA 2023',type:'Absolute Phrase',
+q:'"His orders given, the colonel left the operations room." — The opening construction "His orders given" is best described as a(n):',
+opts:['Participial Phrase','Gerund Phrase','Absolute Phrase','Adverb Clause'],ans:2,
+rule:'An Absolute Phrase = noun + participle, with no conjunction, modifying the whole sentence — it is NOT a clause (no finite verb) and NOT attached to a specific noun in the main clause',
+exp:'An <strong>Absolute Phrase</strong> consists of a noun (or pronoun) + a participle and modifies the entire main clause rather than a single word. It has no conjunction connecting it to the main clause and no finite verb — making it a phrase, not a clause. "His orders given": "his orders" = noun, "given" = past participle. It modifies the whole situation described by "the colonel left". Compare Participial Phrase (A): begins with a participle and modifies a specific noun in the main clause ("Exhausted, the colonel left" — "exhausted" modifies "colonel"). Gerund Phrase (B): acts as a noun. Adverb Clause (D): has a finite verb and a conjunction. None of these fit. Answer: C.'},
+
+{d:'HARD',e:'AFCAT 2023',type:'Impersonal Pronoun',
+q:'"It is essential that every officer maintain the highest standards of conduct." — In this sentence, "It" is functioning as a(n) ____ and "maintain" is in the _____ mood.',
+opts:[
+  'Impersonal pronoun; Indicative mood',
+  'Dummy subject (expletive); Subjunctive mood',
+  'Impersonal pronoun; Imperative mood',
+  'Emphatic pronoun; Subjunctive mood'
+],ans:1,
+rule:'"It" here is a dummy/expletive subject with no referent; "maintain" (base form, not "maintains") after "essential that" is the mandative subjunctive',
+exp:'Two grammar terms are tested simultaneously. First: "It" in "It is essential that…" has no referent — it does not refer to any person or thing. It is a <strong>dummy subject (expletive)</strong> filling the grammatical subject position while the real subject ("that every officer maintain…") is postponed. Second: after adjectives like "essential, necessary, important, vital" + "that", the verb in the that-clause uses the <strong>subjunctive mood</strong> (bare base form, no inflection): "maintain" (not "maintains"). This is the <strong>mandative subjunctive</strong>. It is not Indicative (A, C) — that would be "maintains". It is not Imperative (C). "It" is not Emphatic (D). Answer: B.'},
+
+{d:'HARD',e:'CDS 2024',type:'Cleft Sentence',
+q:'"It was the intelligence report that alerted the general to the threat." — This construction is an example of a:',
+opts:['Complex Sentence with a Noun Clause','Cleft Sentence for Emphasis','Sentence with an Expletive Subject and Adjective Clause','Both B and C — cleft sentences are by definition B and can be described as C.'],ans:3,
+rule:'A cleft sentence ("It is/was X that/who…") is simultaneously a rhetorical device for emphasis AND structurally an expletive "it" + linking verb + noun phrase + relative/that-clause',
+exp:'A <strong>cleft sentence</strong> uses the structure "It is/was + [focused element] + that/who + [rest of sentence]" to place emphasis on the focused element. Option B is correct — this is indeed a cleft sentence. But Option C is also structurally accurate: "It" is a dummy/expletive subject (not referring to anything); "was" is the linking verb; "the intelligence report" is the subject complement; and "that alerted the general to the threat" is a relative/adjective clause modifying "the intelligence report". Both descriptions (B and C) are valid and accurate simultaneously — they describe the same construction from different angles. Recognising that a single sentence can be accurately described in two grammatical ways is a higher-order grammar skill. Answer: D.'},
+
+{d:'HARD',e:'NDA 2024',type:'Correlative Conjunction + Parallelism',
+q:'Choose the sentence that correctly uses both a correlative conjunction AND maintains parallelism:',
+opts:[
+  'He is not only brave but also shows great discipline.',
+  'He is not only brave but also disciplined.',
+  'Not only is he brave but also he is disciplined.',
+  'He not only is brave but disciplined also.'
+],ans:1,
+rule:'"Not only…but also" must connect grammatically PARALLEL elements — both elements must be the same part of speech or structure',
+exp:'<strong>Parallelism</strong> with correlative conjunctions requires that the elements on both sides of the pair be grammatically equivalent. "Not only…but also" connects two elements that must be in the same grammatical form. Option A: "not only brave" (adjective) BUT "also shows great discipline" (verb phrase) — not parallel ✗. Option C: "Not only is he brave" (inverted clause) BUT "also he is disciplined" (normal order) — inconsistent inversion ✗. Option D: "not only is brave" (auxiliary + adj.) BUT "disciplined also" (adj. only) — unbalanced and unidiomatic ✗. Option B: "not only <strong>brave</strong>" (adjective) BUT "also <strong>disciplined</strong>" (adjective) — both are predicate adjectives, perfectly parallel ✓. Answer: B.'},
+
+];
+
+// ── ENGINE ──────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Grammar Terms</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Your command of grammatical terminology is at the level needed to ace any English paper.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit clause types and modifier errors — those are the trickiest naming questions.'}
+  else if(pct>=50){grade='Average';msg='Good foundation. Focus on the Structures tab — clause types and phrase types appear most in questions.'}
+  else{grade='Needs Work';msg='Start with the Parts of Speech tab, then build up to clause and phrase identification in the Structures tab.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:\'smooth\'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={terms:0,pos:1,structures:2,quickref:3,quiz:4}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbs | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Deep Navy / Steel Crimson ─── */
+  --bg:        #F2F4F8;
+  --bg2:       #E6E9F0;
+  --bg3:       #D8DCE8;
+  --white:     #FFFFFF;
+  --ink:       #0D1420;
+  --ink2:      #1A2438;
+  --muted:     #5A6680;
+  --dim:       #8A96B0;
+  --border:    #C8CFE0;
+
+  /* Primary — deep navy */
+  --pri:       #1A3066;
+  --priLt:     #2244AA;
+  --priPale:   #EAF0FF;
+
+  /* Accent 1 — steel teal */
+  --ac1:       #0E6B6B;
+  --ac1Lt:     #127A7A;
+  --ac1Pale:   #DCF5F5;
+
+  /* Accent 2 — forest green (correct) */
+  --ac2:       #1A5C20;
+  --ac2Lt:     #227228;
+  --ac2Pale:   #DFF2E2;
+
+  /* Accent 3 — crimson (error) */
+  --ac3:       #8B1520;
+  --ac3Lt:     #A81E2C;
+  --ac3Pale:   #FCEAEC;
+
+  /* Accent 4 — deep indigo (rule boxes) */
+  --ac4:       #2B1A6E;
+  --ac4Lt:     #3A2490;
+  --ac4Pale:   #ECEAFF;
+
+  /* Accent 5 — warm burgundy */
+  --ac5:       #6E1A3E;
+  --ac5Pale:   #FAEAF2;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(13,20,32,.10);
+  --shadow-md: 0 4px 20px rgba(13,20,32,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#080E22 0%,#122060 55%,#1A3080 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(100,160,255,.12) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(100,160,255,.05);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.50);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#90C8FF;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(144,200,255,.18);color:#90C8FF}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+/* ── TAB BAR ── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(13,20,32,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(26,48,102,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(14,107,107,.20);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(139,21,32,.20);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(43,26,110,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(110,26,62,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── TABLES ── */
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.5;font-size:15px}
+.degree-table td:first-child{font-weight:700;color:var(--ink)}
+.degree-table .hi-row td{background:#EAF0FF!important}
+.degree-table .hi-row td:first-child{color:var(--pri)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.tag-prim{background:var(--priPale);color:var(--pri);border:1px solid rgba(26,48,102,.25)}
+.tag-modal{background:var(--ac4Pale);color:var(--ac4);border:1px solid rgba(43,26,110,.25)}
+.tag-exam{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(26,92,32,.25)}
+.tag-trap{background:var(--ac3Pale);color:var(--ac3);border:1px solid rgba(139,21,32,.25)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── MODAL GRID ── */
+.modal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}
+.m-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px;box-shadow:var(--shadow)}
+.m-verb{font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--pri);margin-bottom:4px}
+.m-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.mt-poss{background:var(--priPale);color:var(--pri);border:1px solid rgba(26,48,102,.2)}
+.mt-able{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(26,92,32,.2)}
+.mt-perm{background:var(--ac1Pale);color:var(--ac1);border:1px solid rgba(14,107,107,.2)}
+.mt-obl{background:var(--ac4Pale);color:var(--ac4);border:1px solid rgba(43,26,110,.2)}
+.mt-cond{background:var(--ac5Pale);color:var(--ac5);border:1px solid rgba(110,26,62,.2)}
+.m-uses{font-size:13.5px;color:var(--ink2);line-height:1.75}
+.m-uses span{color:var(--ac1);font-weight:700}
+@media(max-width:420px){.modal-grid{grid-template-columns:1fr}}
+
+/* ── FORM STRIP (principal parts) ── */
+.form-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-radius:10px;overflow:hidden;margin:12px 0;border:1px solid var(--border)}
+.fs-cell{padding:10px 6px;text-align:center;border-right:1px solid var(--border)}
+.fs-cell:last-child{border-right:none}
+.fs-head{font-size:9px;font-weight:800;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.fs-word{font-family:'Lora',serif;font-size:14px;font-weight:700;color:var(--pri);line-height:1.2}
+.fs-cell:nth-child(odd){background:var(--priPale)}.fs-cell:nth-child(even){background:var(--white)}
+@media(max-width:420px){.form-strip{grid-template-columns:repeat(3,1fr)}}
+
+/* ── QUICK REF ── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(26,48,102,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(26,48,102,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#080E22 0%,#1A3080 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#90C8FF;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .tab{padding:12px 12px;font-size:11px}
+  .hero-title{font-size:22px}
+  .form-strip{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-kicker">Olive Defence · English Grammar</div>
+  <div class="hero-title">E14 — <span>Verbs</span></div>
+  <div class="hero-sub">Types · Principal Parts · Transitive &amp; Intransitive · Subject-Verb Agreement · Modals &amp; Helping Verbs · Tense Errors · Exam Traps — CDS · NDA · AFCAT</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-y">7 Sections</span>
+    <span class="chip chip-g">15 Questions</span>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab" onclick="switchTab('verbforms')">Verb Forms</button>
+  <button class="tab" onclick="switchTab('modals')">Modals</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz</button>
+</div>
+
+<!-- ═══════════════════════ THEORY ═══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>verb</strong> is the engine of every sentence — it expresses an action, occurrence, or state of being. In CDS/NDA/AFCAT English, verbs are tested across <strong>error spotting, sentence improvement, fill-in-the-blank, and comprehension</strong>. The highest-yield areas are: <strong>subject-verb agreement, modal auxiliary usage, tense consistency, transitive/intransitive errors, infinitive vs gerund, and irregular verb forms</strong>.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — Types of Verbs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🗂️</div>
+      <div style="flex:1">
+        <div class="c-title">Main Classification</div>
+        <div class="c-sub">Main · Auxiliary · Modal · Transitive · Intransitive · Linking</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Definition</th><th>Examples</th></tr>
+          <tr><td><b>Main (Lexical) Verb</b></td><td>Carries the primary meaning of the sentence</td><td>march, command, fight, train, deploy, report</td></tr>
+          <tr><td><b>Auxiliary (Helping) Verb</b></td><td>Helps the main verb form tense, mood, or voice</td><td>be, have, do (primary auxiliaries)</td></tr>
+          <tr><td><b>Modal Auxiliary</b></td><td>Expresses possibility, ability, obligation, permission</td><td>can, could, may, might, shall, should, will, would, must, ought to, used to, need, dare</td></tr>
+          <tr><td><b>Transitive Verb</b></td><td>Requires a direct object to complete its meaning</td><td>The officer <b>ordered</b> <u>a retreat</u>. / She <b>leads</b> <u>the squad</u>.</td></tr>
+          <tr><td><b>Intransitive Verb</b></td><td>Does not take a direct object; complete in itself</td><td>The troops <b>marched</b>. / He <b>arrived</b>.</td></tr>
+          <tr><td><b>Linking (Copular) Verb</b></td><td>Connects subject to a predicate noun or adjective</td><td>be, seem, appear, become, feel, look, smell, taste, sound, remain, grow, turn</td></tr>
+          <tr><td><b>Ditransitive Verb</b></td><td>Takes both a direct and indirect object</td><td>He <b>gave</b> <u>the platoon</u> <u>orders</u>. (IO + DO)</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Verbs That Are Both Transitive and Intransitive</div>
+        <ul>
+          <li><strong>run</strong>: "He runs fast." (intransitive) / "He runs the unit." (transitive)</li>
+          <li><strong>move</strong>: "The convoy moved." (intr.) / "He moved the troops." (tr.)</li>
+          <li><strong>fly</strong>: "The pilot flew." (intr.) / "He flew the aircraft." (tr.)</li>
+          <li>Context determines which — error when an intransitive verb is given an object or a transitive verb is left without one.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">📐</div>
+      <div style="flex:1">
+        <div class="c-title">Finite vs Non-Finite Verbs</div>
+        <div class="c-sub">Infinitive · Gerund · Participle — the three non-finite forms</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A <strong>finite verb</strong> is limited by person, number, and tense — it can stand as the predicate of a sentence. A <strong>non-finite verb</strong> is not limited — it cannot alone be the sentence predicate.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Non-Finite Form</th><th>Structure</th><th>Function</th><th>Example</th></tr>
+          <tr><td><b>Infinitive</b></td><td>to + base form</td><td>Noun, adjective, or adverb function</td><td>"<b>To lead</b> is an honour." / "He trained <b>to compete</b>."</td></tr>
+          <tr><td><b>Gerund</b></td><td>base + -ing (noun use)</td><td>Acts as a noun (subject, object)</td><td>"<b>Training</b> is essential." / "He enjoys <b>commanding</b>."</td></tr>
+          <tr><td><b>Present Participle</b></td><td>base + -ing (adjective/adverb)</td><td>Modifies nouns or verbs</td><td>"The <b>marching</b> soldiers." / "<b>Hearing</b> the order, he moved."</td></tr>
+          <tr><td><b>Past Participle</b></td><td>V3 form</td><td>Used in perfect tenses and passive voice</td><td>"The mission was <b>accomplished</b>."</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Gerund vs Infinitive — The Key Exam Trap</div>
+        <ul>
+          <li><strong>Verbs followed by GERUND only</strong>: enjoy, avoid, admit, consider, deny, finish, imagine, keep, mind, miss, postpone, practise, risk, suggest, recommend<br>→ "He <strong>enjoys commanding</strong>." (not "to command") ✓</li>
+          <li><strong>Verbs followed by INFINITIVE only</strong>: agree, arrange, choose, decide, expect, fail, hope, learn, manage, offer, plan, prepare, promise, refuse, want, wish<br>→ "He <strong>decided to withdraw</strong>." (not "withdrawing") ✓</li>
+          <li><strong>Verbs followed by EITHER (meaning changes)</strong>:<br>
+          — remember: "I <strong>remember locking</strong> the armoury." (did it) vs "I <strong>remembered to lock</strong> it." (must do it)<br>
+          — forget: "I <strong>forgot meeting</strong> him." (past event) vs "I <strong>forgot to meet</strong> him." (task undone)<br>
+          — stop: "He <strong>stopped smoking</strong>." (quit) vs "He <strong>stopped to smoke</strong>." (paused in order to)<br>
+          — try: "He <strong>tried opening</strong> the safe." (attempted) vs "He <strong>tried to open</strong> it." (made effort)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — Subject-Verb Agreement</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Core Agreement Rules</div>
+        <div class="c-sub">Either/Neither · Each/Every · Intervening phrases · Inversion · Collective nouns</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="fact-box">
+        <div class="fb-label">The 12 Core S-V Agreement Rules</div>
+        <ul>
+          <li><strong>Either/Neither</strong> as subjects → singular verb: "Neither option <strong>is</strong> viable." ✓</li>
+          <li><strong>Either…or / Neither…nor</strong> → verb agrees with the nearer subject: "Neither the colonel nor the majors <strong>were</strong> present." ✓</li>
+          <li><strong>Each / Every / Everyone / Everything / Anybody / Nobody</strong> → singular verb: "Each cadet <strong>has</strong> submitted." ✓</li>
+          <li><strong>Intervening phrase</strong> (with, along with, as well as, in addition to, together with, accompanied by) → verb agrees with the grammatical subject before the phrase: "The CO, along with his officers, <strong>was</strong> briefed." ✓</li>
+          <li><strong>None</strong> → traditionally singular ("None of the soldiers <strong>was</strong> injured"), but plural is now widely accepted when referring to a group ("None of the soldiers <strong>were</strong> injured").</li>
+          <li><strong>A number of</strong> → plural verb; <strong>The number of</strong> → singular verb: "A number of cadets <strong>have</strong> passed." / "The number of vacancies <strong>is</strong> high." ✓</li>
+          <li><strong>More than one</strong> → singular verb: "More than one officer <strong>was</strong> present." ✓</li>
+          <li><strong>One of</strong> → singular: "One of the soldiers <strong>has</strong> been selected." ✓</li>
+          <li><strong>Many a / Many an</strong> → singular verb: "Many a soldier <strong>has</strong> sacrificed his life." ✓</li>
+          <li><strong>As well as / Together with / With</strong> → verb agrees with first subject: "The General, as well as his staff, <strong>is</strong> attending." ✓</li>
+          <li><strong>Relative pronoun "who/which/that"</strong> → verb agrees with the antecedent: "He is one of those officers who <strong>lead</strong> by example." ✓ (antecedent = officers)</li>
+          <li><strong>Titles, subjects as names, amounts</strong> → singular: "Three kilometres <strong>is</strong> a short march." / "Physics <strong>is</strong> mandatory." ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Most Tested S-V Agreement Errors</div>
+        <ul>
+          <li>✗ "Each of the officers <em>have</em> reported." → ✓ "Each of the officers <strong>has</strong> reported."</li>
+          <li>✗ "The team, along with supporters, <em>were</em> briefed." → ✓ "…<strong>was</strong> briefed." (team = subject)</li>
+          <li>✗ "Neither the map nor the compass <em>were</em> useful." → ✓ "…<strong>was</strong> useful." (nearer subject: compass = singular)</li>
+          <li>✗ "A number of mistakes <em>has</em> been made." → ✓ "…<strong>have</strong> been made."</li>
+          <li>✗ "Many a cadet <em>have</em> graduated." → ✓ "Many a cadet <strong>has</strong> graduated."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Auxiliary (Helping) Verbs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">🔧</div>
+      <div style="flex:1">
+        <div class="c-title">Primary Auxiliaries — Be, Have, Do</div>
+        <div class="c-sub">Forming tenses, passive voice, questions &amp; negations</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The three <strong>primary auxiliaries</strong> are special because they can also function as main verbs. As auxiliaries, they help form tenses, voice, questions, and negations.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Auxiliary</th><th>Forms</th><th>Functions</th><th>Example</th></tr>
+          <tr><td><b>BE</b></td><td>am, is, are, was, were, been, being</td><td>Progressive tenses; passive voice</td><td>"He <b>is</b> training." / "Orders <b>were</b> issued."</td></tr>
+          <tr><td><b>HAVE</b></td><td>have, has, had, having</td><td>Perfect tenses</td><td>"She <b>has</b> completed the course." / "He <b>had</b> arrived."</td></tr>
+          <tr><td><b>DO</b></td><td>do, does, did</td><td>Questions; negations; emphasis</td><td>"<b>Does</b> he qualify?" / "He <b>did</b> report on time." (emphatic)</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Tense Formation with Primary Auxiliaries</div>
+        <ul>
+          <li><strong>Present Progressive</strong>: am/is/are + V-ing → "He <strong>is marching</strong>."</li>
+          <li><strong>Past Progressive</strong>: was/were + V-ing → "They <strong>were advancing</strong>."</li>
+          <li><strong>Present Perfect</strong>: have/has + V3 → "She <strong>has completed</strong> training."</li>
+          <li><strong>Past Perfect</strong>: had + V3 → "He <strong>had submitted</strong> the report."</li>
+          <li><strong>Passive Voice</strong>: be + V3 → "The base <strong>was secured</strong>."</li>
+          <li><strong>Perfect Progressive</strong>: have/has/had + been + V-ing → "He <strong>has been training</strong> for months."</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Do" — Never Used With Other Auxiliaries</div>
+        <ul>
+          <li>✗ "Did he <em>went</em>?" → ✓ "Did he <strong>go</strong>?" (do/does/did → base form of main verb)</li>
+          <li>✗ "He <em>does</em> can swim." → ✓ "He <strong>can</strong> swim." (do not double-auxiliary)</li>
+          <li>✗ "She <em>didn't went</em>." → ✓ "She <strong>didn't go</strong>."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 — MODALS ── -->
+  <div class="sec-label">Section 4 — Modal Auxiliaries</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Modal Rules — The Non-Negotiables</div>
+        <div class="c-sub">No -s in third person · Always followed by bare infinitive · No two modals together</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Three Absolute Modal Rules</div>
+        <p><strong>1. Modals do not change for person or number</strong> — never add -s/-es in third person singular.<br>✗ "He <em>cans</em> do it." → ✓ "He <strong>can</strong> do it."<br><br>
+        <strong>2. Modals are always followed by the bare infinitive</strong> (base form, no "to" — except "ought to", "used to", "have to", "need to").<br>✗ "She <em>must to report</em>." → ✓ "She <strong>must report</strong>."<br><br>
+        <strong>3. Two modals cannot be used together in standard English.</strong><br>✗ "He <em>will can</em> do it." → ✓ "He <strong>will be able to</strong> do it."</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Can vs Could — Ability &amp; Possibility</div>
+        <ul>
+          <li><strong>can</strong> = present ability: "He <strong>can</strong> run 10 km." ✓</li>
+          <li><strong>could</strong> = past ability: "He <strong>could</strong> run 10 km before the injury." ✓</li>
+          <li><strong>could</strong> = polite request / possibility: "<strong>Could</strong> you hand me the report?" ✓</li>
+          <li><strong>can</strong> = informal permission: "You <strong>can</strong> leave now." ✓ (formal: may)</li>
+          <li><strong>could have + V3</strong> = unrealised past possibility: "He <strong>could have been</strong> selected." ✓</li>
+          <li>✗ "He <em>can</em> have won yesterday." → ✓ "He <strong>could have</strong> won yesterday." (past context)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">May vs Might — Permission &amp; Possibility</div>
+        <ul>
+          <li><strong>may</strong> = formal permission: "You <strong>may</strong> proceed." ✓</li>
+          <li><strong>may</strong> = present/future possibility (stronger): "It <strong>may</strong> rain." ✓ (~50% chance)</li>
+          <li><strong>might</strong> = past possibility OR weaker current possibility: "It <strong>might</strong> rain." ✓ (~25% chance)</li>
+          <li><strong>might have + V3</strong> = unrealised past: "He <strong>might have survived</strong> if treated." ✓</li>
+          <li>✗ "He said he <em>may</em> come yesterday." → ✓ "He said he <strong>might</strong> come." (reported speech)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Shall vs Will — Volition, Promises &amp; Determination</div>
+        <ul>
+          <li>Traditional rule: <strong>shall</strong> with I/we (simple future); <strong>will</strong> with he/she/it/you/they</li>
+          <li>For <strong>determination / promise / threat</strong>: reverse — I/we + <strong>will</strong>; he/she/they + <strong>shall</strong></li>
+          <li>"I <strong>will</strong> not surrender." (determination — speaker's strong will) ✓</li>
+          <li>"He <strong>shall</strong> be punished." (authority's decree — determination for another person) ✓</li>
+          <li>In modern usage, "will" is used for all persons; "shall" is largely formal/legal.</li>
+          <li><strong>Should</strong> = obligation / advice / condition: "You <strong>should</strong> report immediately." ✓</li>
+          <li><strong>Would</strong> = past habit / polite request / conditional: "He <strong>would</strong> patrol every night." ✓ (past habit)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Must vs Have To vs Ought To vs Should</div>
+        <ul>
+          <li><strong>must</strong> = strong internal obligation / logical deduction (present/future): "He <strong>must</strong> obey orders." ✓</li>
+          <li><strong>must not</strong> = prohibition: "You <strong>must not</strong> enter." ✓ (strong — not "don't have to")</li>
+          <li><strong>don't have to / needn't</strong> = absence of obligation (NOT prohibition): "You <strong>don't have to</strong> attend." ✓</li>
+          <li><strong>have to</strong> = external obligation: "He <strong>has to</strong> submit by 1700 hrs." ✓</li>
+          <li><strong>ought to</strong> = moral duty / mild obligation (= should, slightly stronger): "Officers <strong>ought to</strong> lead from the front." ✓</li>
+          <li><strong>should</strong> = advice / expectation: "You <strong>should</strong> prepare for CDS." ✓</li>
+          <li><strong>must have + V3</strong> = logical deduction about past: "He <strong>must have left</strong> early." ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Must Not vs Need Not / Don't Have To</div>
+        <ul>
+          <li><strong>must not</strong> = you are PROHIBITED from doing it (strong negative command)</li>
+          <li><strong>need not / don't have to</strong> = there is no obligation, but you may if you wish</li>
+          <li>"You <strong>must not</strong> enter the restricted zone." (prohibited — if you do, it's wrong)</li>
+          <li>"You <strong>need not</strong> salute in casual dress." (not required — but not forbidden)</li>
+          <li>✗ Confusing these two completely reverses the meaning — a top exam error trap.</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Used To vs Would — Past Habits</div>
+        <ul>
+          <li><strong>used to</strong> = past habit OR past state that NO LONGER exists: "He <strong>used to</strong> patrol this route." (habit) / "There <strong>used to be</strong> a camp here." (state) ✓</li>
+          <li><strong>would</strong> = past repeated action ONLY (not states): "He <strong>would</strong> patrol every night." ✓ — but NOT "There <strong>would be</strong> a camp here." ✗ for states</li>
+          <li>✗ "He <em>would</em> live in Delhi before joining." → ✓ "He <strong>used to</strong> live in Delhi…" (state, not action)</li>
+          <li><strong>be used to + gerund</strong> = be accustomed to (present habit): "He is <strong>used to</strong> marching long distances." ✓</li>
+          <li><strong>get used to + gerund</strong> = become accustomed to: "He <strong>got used to</strong> the altitude." ✓</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Need &amp; Dare — Semi-Modals</div>
+        <ul>
+          <li><strong>need</strong> as modal (negative/question): "He <strong>need not</strong> report." / "<strong>Need</strong> he report?" — no -s, followed by bare infinitive ✓</li>
+          <li><strong>need</strong> as main verb: "He <strong>needs to</strong> report." / "He <strong>doesn't need to</strong> report." — inflects normally ✓</li>
+          <li><strong>dare</strong> as modal: "He <strong>dare not</strong> disobey." ✓</li>
+          <li><strong>dare</strong> as main verb: "He <strong>doesn't dare to</strong> disobey." ✓</li>
+          <li>✗ "He <em>needs</em> not report." → ✓ "He <strong>need</strong> not report." (modal use — no -s)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="sec-label">Section 5 — Tense &amp; Time Errors</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">⏱️</div>
+      <div style="flex:1">
+        <div class="c-title">Sequence of Tenses</div>
+        <div class="c-sub">Main clause past → subordinate clause past · Reported speech · Stative verbs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When the main clause verb is in a <strong>past tense</strong>, the subordinate clause verb must also be in a <strong>past form</strong> — this is the rule of <strong>sequence of tenses</strong>.</p>
+      <div class="eg-box">
+        <div class="eg-label">Sequence of Tenses — Correct</div>
+        <ul>
+          <li>He said he <strong>was</strong> ready. (not "is") ✓</li>
+          <li>She asked whether he <strong>had submitted</strong> the report. ✓</li>
+          <li>The CO ordered that the troops <strong>should advance</strong>. ✓</li>
+          <li>They believed the enemy <strong>had retreated</strong>. ✓</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Exceptions to Sequence of Tenses</div>
+        <p><strong>1. Universal / habitual truths</strong> → always present tense even after past main verb:<br>"He said that the Earth <strong>revolves</strong> around the Sun." ✓<br>"The teacher explained that water <strong>boils</strong> at 100°C." ✓<br><br>
+        <strong>2. Historical facts</strong> → may remain in past even in reported speech:<br>"He said that the Battle of Panipat <strong>was</strong> fought in 1526." ✓<br><br>
+        <strong>3. Habitual actions still true</strong> → present allowed:<br>"He told me he <strong>goes</strong> to the gym every day." ✓ (still true)</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Stative Verbs — Never Use in Progressive Tense</div>
+        <ul>
+          <li><strong>Stative verbs</strong> describe states, not actions, and do NOT take -ing forms normally</li>
+          <li>Perception: see, hear, smell, taste, feel (in stative sense)</li>
+          <li>Emotion/desire: love, hate, want, wish, prefer, like, dislike</li>
+          <li>Cognition: know, believe, understand, think (opinion), remember, forget, mean, realise</li>
+          <li>Possession: have (=possess), own, belong, contain, consist</li>
+          <li>✗ "I am <em>knowing</em> the answer." → ✓ "I <strong>know</strong> the answer."</li>
+          <li>✗ "She is <em>wanting</em> to become an officer." → ✓ "She <strong>wants</strong> to become an officer."</li>
+          <li>✗ "He is <em>having</em> a car." → ✓ "He <strong>has</strong> a car." (have = possess)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6 ── -->
+  <div class="sec-label">Section 6 — Active &amp; Passive Voice</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Voice — Active to Passive Conversion</div>
+        <div class="c-sub">Structure · Tense-wise patterns · Verbs that cannot be made passive</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">Passive Voice Formula</div>
+        <p><strong>Object of active</strong> → Subject of passive<br>
+        <strong>Active verb</strong> → appropriate form of <strong>be + V3</strong><br>
+        <strong>Subject of active</strong> → by + agent (optional, often omitted)</p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Tense</th><th>Active</th><th>Passive</th></tr>
+          <tr><td>Simple Present</td><td>He <b>commands</b> the unit.</td><td>The unit <b>is commanded</b> by him.</td></tr>
+          <tr><td>Simple Past</td><td>She <b>led</b> the patrol.</td><td>The patrol <b>was led</b> by her.</td></tr>
+          <tr><td>Present Perfect</td><td>They <b>have secured</b> the base.</td><td>The base <b>has been secured</b>.</td></tr>
+          <tr><td>Past Perfect</td><td>He <b>had completed</b> training.</td><td>Training <b>had been completed</b> by him.</td></tr>
+          <tr><td>Future Simple</td><td>They <b>will deploy</b> the squad.</td><td>The squad <b>will be deployed</b>.</td></tr>
+          <tr><td>Modal</td><td>They <b>must verify</b> the order.</td><td>The order <b>must be verified</b>.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Intransitive Verbs Cannot Be Made Passive</div>
+        <ul>
+          <li>Intransitive verbs have no object — without an object, there is nothing to become the passive subject.</li>
+          <li>✗ "The accident <em>was occurred</em> on the highway." → ✓ "The accident <strong>occurred</strong>." (occur = intransitive)</li>
+          <li>✗ "The soldier <em>was died</em> in battle." → ✓ "The soldier <strong>died</strong> in battle." (die = intransitive)</li>
+          <li>✗ "The convoy <em>was arrived</em> at dawn." → ✓ "The convoy <strong>arrived</strong> at dawn."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 7 ── -->
+  <div class="sec-label">Section 7 — Conditionals &amp; Subjunctive</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">💬</div>
+      <div style="flex:1">
+        <div class="c-title">Conditionals — Four Types</div>
+        <div class="c-sub">Zero · First · Second · Third — tense–modal pairings</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>If-Clause</th><th>Main Clause</th><th>Meaning</th></tr>
+          <tr><td><b>Zero</b></td><td>If + Simple Present</td><td>Simple Present</td><td>Universal truth: "If you <b>heat</b> metal, it <b>expands</b>."</td></tr>
+          <tr><td><b>First</b></td><td>If + Simple Present</td><td>will + base</td><td>Real/likely future: "If he <b>trains</b> hard, he <b>will pass</b>."</td></tr>
+          <tr><td><b>Second</b></td><td>If + Simple Past</td><td>would + base</td><td>Unreal present: "If he <b>trained</b> harder, he <b>would pass</b>."</td></tr>
+          <tr><td><b>Third</b></td><td>If + Past Perfect</td><td>would have + V3</td><td>Unreal past: "If he <b>had trained</b>, he <b>would have passed</b>."</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Never Use "Would" in the If-Clause</div>
+        <ul>
+          <li>✗ "If he <em>would train</em> harder, he would pass." → ✓ "If he <strong>trained</strong> harder, he would pass."</li>
+          <li>✗ "If I <em>would have known</em>, I would have acted." → ✓ "If I <strong>had known</strong>, I would have acted."</li>
+          <li>Exception: "would" can appear in if-clauses only when it means "be willing to" — "If you <strong>would kindly</strong> follow me…"</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Subjunctive Mood — "Were" in All Persons</div>
+        <p>The subjunctive is used for <strong>hypothetical, wishful, or contrary-to-fact</strong> situations. In formal English, use <strong>"were"</strong> for all persons (not "was"):<br><br>
+        "If I <strong>were</strong> a general, I would reform the system." ✓ (not "was")<br>
+        "I wish I <strong>were</strong> posted in Ladakh." ✓<br>
+        "He behaved as if he <strong>were</strong> the commander." ✓<br>
+        "It is essential that he <strong>be</strong> present." ✓ (subjunctive in "that" clause after demand/suggestion)</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════ VERB FORMS ═══════════════════════ -->
+<div id="verbforms" class="pane">
+
+  <div class="intro-box">
+    <p>The <strong>principal parts</strong> of a verb are its four key forms: <strong>Base (V1), Simple Past (V2), Past Participle (V3), Present Participle (V-ing)</strong>. Irregular verbs do not follow the standard -ed pattern — these are the direct fill-in-the-blank and error-spotting targets.</p>
+  </div>
+
+  <div class="sec-label">Highly Irregular Verbs — Exam Priority</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Base (V1)</th><th>Past (V2)</th><th>Past Participle (V3)</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>arise</td><td>arose</td><td>arisen</td><td><span class="degree-tag tag-trap">Trap</span> not "arised"</td></tr>
+        <tr class="hi-row"><td>bear</td><td>bore</td><td>borne / born</td><td><span class="degree-tag tag-exam">Exam</span> borne = carried; born = given birth to</td></tr>
+        <tr><td>beat</td><td>beat</td><td>beaten</td><td>V1 = V2; V3 = beaten</td></tr>
+        <tr class="hi-row"><td>bite</td><td>bit</td><td>bitten</td><td><span class="degree-tag tag-trap">Trap</span> not "bit" for V3</td></tr>
+        <tr><td>blow</td><td>blew</td><td>blown</td><td></td></tr>
+        <tr class="hi-row"><td>break</td><td>broke</td><td>broken</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>choose</td><td>chose</td><td>chosen</td><td></td></tr>
+        <tr class="hi-row"><td>do</td><td>did</td><td>done</td><td><span class="degree-tag tag-exam">Exam</span> also auxiliary</td></tr>
+        <tr><td>draw</td><td>drew</td><td>drawn</td><td></td></tr>
+        <tr class="hi-row"><td>drink</td><td>drank</td><td>drunk</td><td><span class="degree-tag tag-trap">Trap</span> not "drunken" as V3 (drunken = adj)</td></tr>
+        <tr><td>drive</td><td>drove</td><td>driven</td><td></td></tr>
+        <tr class="hi-row"><td>fall</td><td>fell</td><td>fallen</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>fly</td><td>flew</td><td>flown</td><td></td></tr>
+        <tr class="hi-row"><td>forbid</td><td>forbade / forbad</td><td>forbidden</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>forget</td><td>forgot</td><td>forgotten</td><td></td></tr>
+        <tr class="hi-row"><td>forsake</td><td>forsook</td><td>forsaken</td><td><span class="degree-tag tag-trap">Trap</span> not "forsook" as V3</td></tr>
+        <tr><td>freeze</td><td>froze</td><td>frozen</td><td></td></tr>
+        <tr class="hi-row"><td>give</td><td>gave</td><td>given</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>go</td><td>went</td><td>gone</td><td></td></tr>
+        <tr class="hi-row"><td>grow</td><td>grew</td><td>grown</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>hang (suspend)</td><td>hung</td><td>hung</td><td>hang (execute) → hanged → hanged</td></tr>
+        <tr class="hi-row"><td>hide</td><td>hid</td><td>hidden</td><td><span class="degree-tag tag-trap">Trap</span> not "hid" as V3</td></tr>
+        <tr><td>know</td><td>knew</td><td>known</td><td></td></tr>
+        <tr class="hi-row"><td>lay (to place)</td><td>laid</td><td>laid</td><td><span class="degree-tag tag-exam">Exam</span> transitive; "lay" vs "lie" most tested</td></tr>
+        <tr class="hi-row"><td>lie (to recline)</td><td>lay</td><td>lain</td><td><span class="degree-tag tag-trap">Trap</span> intransitive; past of "lie" = "lay"</td></tr>
+        <tr><td>lead</td><td>led</td><td>led</td><td>often misspelled as "leaded"</td></tr>
+        <tr><td>lose</td><td>lost</td><td>lost</td><td></td></tr>
+        <tr class="hi-row"><td>mistake</td><td>mistook</td><td>mistaken</td><td><span class="degree-tag tag-trap">Trap</span></td></tr>
+        <tr><td>ride</td><td>rode</td><td>ridden</td><td></td></tr>
+        <tr><td>ring</td><td>rang</td><td>rung</td><td></td></tr>
+        <tr class="hi-row"><td>rise</td><td>rose</td><td>risen</td><td><span class="degree-tag tag-exam">Exam</span> intransitive — "raise" is transitive counterpart</td></tr>
+        <tr class="hi-row"><td>see</td><td>saw</td><td>seen</td><td><span class="degree-tag tag-trap">Trap</span> "I have saw" = error; should be "seen"</td></tr>
+        <tr><td>seek</td><td>sought</td><td>sought</td><td></td></tr>
+        <tr><td>shake</td><td>shook</td><td>shaken</td><td></td></tr>
+        <tr class="hi-row"><td>shine</td><td>shone / shined</td><td>shone / shined</td><td><span class="degree-tag tag-trap">Trap</span> shone = intransitive; shined = transitive (shoes)</td></tr>
+        <tr><td>shrink</td><td>shrank</td><td>shrunk</td><td></td></tr>
+        <tr class="hi-row"><td>sink</td><td>sank</td><td>sunk</td><td><span class="degree-tag tag-exam">Exam</span> "sunken" = adjective only</td></tr>
+        <tr><td>sing</td><td>sang</td><td>sung</td><td></td></tr>
+        <tr><td>sit</td><td>sat</td><td>sat</td><td></td></tr>
+        <tr class="hi-row"><td>slay</td><td>slew</td><td>slain</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>speak</td><td>spoke</td><td>spoken</td><td></td></tr>
+        <tr class="hi-row"><td>spring</td><td>sprang</td><td>sprung</td><td><span class="degree-tag tag-trap">Trap</span></td></tr>
+        <tr><td>steal</td><td>stole</td><td>stolen</td><td></td></tr>
+        <tr><td>strike</td><td>struck</td><td>struck / stricken</td><td>"stricken" = formal/literary</td></tr>
+        <tr class="hi-row"><td>swear</td><td>swore</td><td>sworn</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>swim</td><td>swam</td><td>swum</td><td></td></tr>
+        <tr class="hi-row"><td>take</td><td>took</td><td>taken</td><td><span class="degree-tag tag-trap">Trap</span> not "took" as V3</td></tr>
+        <tr><td>teach</td><td>taught</td><td>taught</td><td></td></tr>
+        <tr class="hi-row"><td>tear</td><td>tore</td><td>torn</td><td><span class="degree-tag tag-exam">Exam</span></td></tr>
+        <tr><td>throw</td><td>threw</td><td>thrown</td><td></td></tr>
+        <tr class="hi-row"><td>wake</td><td>woke / waked</td><td>woken / waked</td><td><span class="degree-tag tag-trap">Trap</span></td></tr>
+        <tr><td>wear</td><td>wore</td><td>worn</td><td></td></tr>
+        <tr><td>win</td><td>won</td><td>won</td><td></td></tr>
+        <tr class="hi-row"><td>write</td><td>wrote</td><td>written</td><td><span class="degree-tag tag-trap">Trap</span> not "wrote" as V3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Confusable Verb Pairs — Most Tested</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Pair</th><th>Key Distinction</th><th>Memory Hook</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>lie / lay</td><td><b>lie</b> = recline (intransitive) — lay, lain<br><b>lay</b> = place/put (transitive) — laid, laid</td><td>"Lie down" yourself; "Lay" the object down</td></tr>
+        <tr class="hi-row"><td>rise / raise</td><td><b>rise</b> = go up on its own (intr.) — rose, risen<br><b>raise</b> = lift something (tr.) — raised, raised</td><td>Sun rises; you raise the flag</td></tr>
+        <tr><td>sit / set</td><td><b>sit</b> = to be seated (intr.) — sat, sat<br><b>set</b> = to place (tr.) — set, set</td><td>You sit; you set the table</td></tr>
+        <tr class="hi-row"><td>hang</td><td><b>hang</b> (suspend) — hung, hung<br><b>hang</b> (execute) — hanged, hanged</td><td>Pictures are hung; criminals are hanged</td></tr>
+        <tr><td>bear / bare</td><td><b>bear</b> (carry/endure/give birth) — bore, borne/born<br><b>bare</b> = naked/expose (adj/verb)</td><td>borne = carried; born = given birth</td></tr>
+        <tr class="hi-row"><td>find / found</td><td><b>find</b> — found, found (discover)<br><b>found</b> — founded, founded (establish)</td><td>"Founded" is regular; "found" (discover) is irregular</td></tr>
+        <tr><td>drown</td><td>Regular: drown — drowned — drowned<br>✗ "was drownded" is always wrong</td><td>Drowned (not drownded)</td></tr>
+        <tr class="hi-row"><td>affect / effect</td><td><b>affect</b> (verb) = to influence<br><b>effect</b> (noun usually) = result; (verb rarely) = bring about</td><td>"The cold <b>affected</b> performance." / "The <b>effect</b> was positive."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /verbforms -->
+
+<!-- ═══════════════════════ MODALS TAB ═══════════════════════ -->
+<div id="modals" class="pane">
+
+  <div class="intro-box">
+    <p>All <strong>12 core modals</strong> are listed here with their primary meanings, typical exam usage patterns, and the <strong>perfect modal structures</strong> (modal + have + V3) that appear regularly in CDS/NDA/AFCAT error-spotting and fill-in-the-blank questions.</p>
+  </div>
+
+  <div class="sec-label">Modal Quick Cards</div>
+
+  <div class="modal-grid">
+    <div class="m-card">
+      <div class="m-verb">CAN</div>
+      <div class="m-tag mt-able">Ability</div>
+      <div class="m-uses">Present ability: "He <span>can swim</span>."<br>Informal permission: "You <span>can leave</span>."<br>General possibility: "It <span>can get</span> cold."<br>✗ Never "cans" or "can to"</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">COULD</div>
+      <div class="m-tag mt-able">Past Ability</div>
+      <div class="m-uses">Past ability: "He <span>could run</span> 10 km."<br>Polite request: "<span>Could</span> you assist?"<br>Weaker possibility: "It <span>could rain</span>."<br>Unrealised past: "He <span>could have won</span>."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">MAY</div>
+      <div class="m-tag mt-perm">Permission</div>
+      <div class="m-uses">Formal permission: "You <span>may proceed</span>."<br>Possibility (~50%): "It <span>may rain</span>."<br>Wish/prayer: "<span>May</span> you succeed."<br>Concession: "He <span>may be</span> late, but…"</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">MIGHT</div>
+      <div class="m-tag mt-poss">Possibility</div>
+      <div class="m-uses">Weaker possibility (~25%): "It <span>might rain</span>."<br>Past in reported speech: "He said it <span>might work</span>."<br>Unrealised past: "She <span>might have survived</span>."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">SHALL</div>
+      <div class="m-tag mt-obl">Formal Future</div>
+      <div class="m-uses">Formal future (I/we): "I <span>shall return</span>."<br>Determination (he/she/they): "He <span>shall be</span> punished."<br>Legal obligation: "The officer <span>shall report</span> by…"<br>Offer/suggestion: "<span>Shall</span> I proceed?"</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">SHOULD</div>
+      <div class="m-tag mt-obl">Obligation</div>
+      <div class="m-uses">Advice: "You <span>should train</span> harder."<br>Expectation: "He <span>should be</span> here by now."<br>Conditional: "If you <span>should</span> see him…"<br>Unrealised duty: "You <span>should have reported</span>."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">WILL</div>
+      <div class="m-tag mt-poss">Future</div>
+      <div class="m-uses">Future fact: "He <span>will graduate</span> next year."<br>Determination (I/we): "I <span>will not</span> surrender."<br>Habitual (present): "He <span>will often</span> walk at night."<br>Willingness: "I <span>will help</span> you."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">WOULD</div>
+      <div class="m-tag mt-cond">Conditional</div>
+      <div class="m-uses">Conditional result: "He <span>would pass</span> if he trained."<br>Past habit: "He <span>would patrol</span> every night."<br>Polite request: "<span>Would</span> you sign this?"<br>Unrealised: "He <span>would have passed</span>."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">MUST</div>
+      <div class="m-tag mt-obl">Obligation</div>
+      <div class="m-uses">Strong obligation: "You <span>must obey</span> orders."<br>Logical deduction: "He <span>must be</span> tired."<br>Prohibition: "You <span>must not enter</span>."<br>Past deduction: "He <span>must have left</span> early."</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">OUGHT TO</div>
+      <div class="m-tag mt-obl">Moral Duty</div>
+      <div class="m-uses">Moral obligation: "Officers <span>ought to</span> lead."<br>Expectation: "It <span>ought to</span> be ready."<br>Past duty unfulfilled: "He <span>ought to have</span> filed the report."<br>✗ Never "ought to can" etc.</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">USED TO</div>
+      <div class="m-tag mt-poss">Past Habit</div>
+      <div class="m-uses">Past habit: "He <span>used to patrol</span> nightly."<br>Past state (no longer true): "There <span>used to be</span> a camp here."<br>✗ "He is <em>use to</em> patrol" → ✓ "<span>used to patrol</span>"<br>✗ "would" for states</div>
+    </div>
+    <div class="m-card">
+      <div class="m-verb">NEED / DARE</div>
+      <div class="m-tag mt-perm">Semi-Modal</div>
+      <div class="m-uses">Need (modal): "He <span>need not report</span>." (no -s)<br>Need (main): "He <span>needs to report</span>."<br>Dare (modal): "He <span>dare not disobey</span>."<br>Dare (main): "He <span>doesn't dare to</span> disobey."</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Perfect Modal Structures — Past Reference</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Structure</th><th>Meaning</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>should have + V3</td><td>Past duty that was NOT done (regret/criticism)</td><td>"He <b>should have reported</b> earlier." (but didn't)</td></tr>
+        <tr class="hi-row"><td>should not have + V3</td><td>Past action that was done but was wrong</td><td>"He <b>should not have disobeyed</b> orders."</td></tr>
+        <tr><td>would have + V3</td><td>Unrealised past result (3rd conditional)</td><td>"He <b>would have passed</b> if he had tried."</td></tr>
+        <tr class="hi-row"><td>could have + V3</td><td>Past ability/possibility not realised</td><td>"She <b>could have been</b> selected." (but wasn't)</td></tr>
+        <tr><td>might have + V3</td><td>Past possibility (uncertain)</td><td>"He <b>might have survived</b>." (uncertain)</td></tr>
+        <tr class="hi-row"><td>must have + V3</td><td>Logical deduction about the past</td><td>"He <b>must have left</b> early." (certain deduction)</td></tr>
+        <tr><td>may have + V3</td><td>Past possibility (not certain)</td><td>"He <b>may have heard</b> the alarm."</td></tr>
+        <tr class="hi-row"><td>need not have + V3</td><td>Past action done unnecessarily</td><td>"You <b>need not have rushed</b>." (you did, but it was unnecessary)</td></tr>
+        <tr><td>ought to have + V3</td><td>Past moral obligation not fulfilled</td><td>"He <b>ought to have</b> filed the report."</td></tr>
+        <tr class="hi-row"><td>cannot have + V3</td><td>Logical impossibility about the past</td><td>"He <b>cannot have seen</b> the order; he was away."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Modal Confusion — Exam Error Pairs</div>
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Error Pattern</th><th>Wrong</th><th>Correct</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr class="hi-row"><td>Must not vs Need not</td><td>"You <span style="color:var(--ac3)">must not</span> submit it today." (if meaning optional)</td><td>"You <b>need not</b> submit today."</td><td>must not = prohibited; need not = not required</td></tr>
+        <tr><td>Would for past states</td><td>"There <span style="color:var(--ac3)">would be</span> a camp here in 1971."</td><td>"There <b>used to be</b> a camp here."</td><td>would = repeated actions only, not states</td></tr>
+        <tr class="hi-row"><td>Can vs May (permission)</td><td>"<span style="color:var(--ac3)">Can</span> I leave early, sir?" (informal)</td><td>"<b>May</b> I leave early, sir?"</td><td>may = formal permission in exam context</td></tr>
+        <tr><td>Double modal</td><td>"He <span style="color:var(--ac3)">will can</span> finish by 1800."</td><td>"He <b>will be able to</b> finish."</td><td>Two modals cannot co-occur</td></tr>
+        <tr class="hi-row"><td>Modal + to (bare inf.)</td><td>"She <span style="color:var(--ac3)">must to</span> report now."</td><td>"She <b>must report</b> now."</td><td>Modals take bare infinitive (except ought to)</td></tr>
+        <tr><td>Should have confusion</td><td>"He <span style="color:var(--ac3)">should had</span> reported."</td><td>"He <b>should have</b> reported."</td><td>Perfect modal = modal + have + V3</td></tr>
+        <tr class="hi-row"><td>Dare (modal) + -s</td><td>"He <span style="color:var(--ac3)">dares</span> not disobey." (modal use)</td><td>"He <b>dare not</b> disobey."</td><td>Modal dare never takes -s</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /modals -->
+
+<!-- ═══════════════════════ QUICK REF ═══════════════════════ -->
+<div id="quickref" class="pane">
+  <div class="sec-label">Quick Reference — Core Rules</div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Subject-Verb Agreement — Top Rules</div>
+      <ul>
+        <li><b>Either/Neither</b> (alone) → singular verb</li>
+        <li><b>Each/Every/Many a</b> → singular verb</li>
+        <li><b>Either…or / Neither…nor</b> → verb agrees with nearer subject</li>
+        <li><b>Along with / As well as / Together with</b> → agree with 1st subject</li>
+        <li><b>A number of</b> → plural; <b>The number of</b> → singular</li>
+        <li><b>More than one</b> + singular noun → singular verb</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Modal — Three Absolute Rules</div>
+      <ul>
+        <li>Modals <b>never add -s/-es</b> in 3rd person singular</li>
+        <li>Modals followed by <b>bare infinitive</b> (except <em>ought to, used to, have to, need to</em>)</li>
+        <li><b>No two modals together</b> → use alternative: "will be able to"</li>
+        <li><span class="err">✗ "must to go"</span> → <span class="ok">✓ "must go"</span></li>
+        <li><span class="err">✗ "will can do"</span> → <span class="ok">✓ "will be able to do"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Must Not vs Need Not</div>
+      <ul>
+        <li><b>must not</b> = PROHIBITION — you are forbidden</li>
+        <li><b>need not / don't have to</b> = no obligation — optional</li>
+        <li>"You <em>must not</em> enter." (banned)</li>
+        <li>"You <em>need not</em> wait." (not required)</li>
+        <li>Swapping these reverses the entire meaning</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Perfect Modals — Past Reference</div>
+      <ul>
+        <li><b>should have + V3</b> = duty not done (regret)</li>
+        <li><b>could have + V3</b> = unrealised past ability</li>
+        <li><b>must have + V3</b> = logical deduction about past</li>
+        <li><b>would have + V3</b> = unreal past result (3rd conditional)</li>
+        <li><b>need not have + V3</b> = unnecessary past action</li>
+        <li><span class="err">✗ "should had"</span> → <span class="ok">✓ "should have"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Stative Verbs — No Progressive Form</div>
+      <ul>
+        <li><b>Know, understand, believe, think (opinion), mean, realise</b></li>
+        <li><b>Want, wish, prefer, like, love, hate, need</b></li>
+        <li><b>See, hear, smell, taste, feel</b> (stative sense)</li>
+        <li><b>Have</b> (= possess), <b>own, belong, contain, consist</b></li>
+        <li><span class="err">✗ "am knowing / is wanting"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Conditionals — If-Clause Tense</div>
+      <ul>
+        <li><b>Zero</b>: If + present → present (universal truth)</li>
+        <li><b>First</b>: If + present → will + base (likely)</li>
+        <li><b>Second</b>: If + past → would + base (unreal present)</li>
+        <li><b>Third</b>: If + past perfect → would have + V3 (unreal past)</li>
+        <li><span class="err">✗ "If he would train"</span> → <span class="ok">✓ "If he trained"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Passive Voice — Cannot Be Passive</div>
+      <ul>
+        <li><b>Intransitive verbs</b> have no object → cannot be passive</li>
+        <li>occur, die, arrive, go, come, rise, fall, sleep, exist</li>
+        <li><span class="err">✗ "was occurred / was died / was arrived"</span></li>
+        <li>Passive = be + V3; confirm V3 not V2</li>
+        <li><span class="err">✗ "was gave"</span> → <span class="ok">✓ "was given"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Confusable Verb Pairs</div>
+      <ul>
+        <li><b>lie</b> (recline): lay → lain (intransitive)</li>
+        <li><b>lay</b> (place): laid → laid (transitive)</li>
+        <li><b>rise</b> (go up): rose → risen (intransitive)</li>
+        <li><b>raise</b> (lift): raised → raised (transitive)</li>
+        <li><b>hang</b> (object): hung; <b>hang</b> (execute): hanged</li>
+        <li><b>used to</b> for states; <b>would</b> for repeated actions only</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+  <div id="results"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · E14 Verbs · CDS · NDA · AFCAT English</div>
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ─────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'S-V Agreement',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Each of the soldiers have submitted their identity cards.',
+  'Each of the soldiers has submitted his identity card.',
+  'Each of the soldiers are submitting their cards.',
+  'Each of the soldiers were asked to submit their cards before the drill.'
+],ans:1,
+rule:'"Each" always takes a singular verb and singular pronoun reference',
+exp:'"Each" is an indefinite pronoun that always takes a singular verb. Option A uses "have" (plural) — wrong. Option C uses "are submitting" (plural) — wrong. Option D uses "were" (plural) — wrong; while it sounds natural, "each" requires singular agreement. Option B: "has submitted his identity card" — singular verb "has" and singular pronoun "his" — both correctly agree with "each". Answer: B.'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Modal — Bare Infinitive',
+q:'Spot the error:<br>"The recruits <u>must to report</u> at <u>0500 hrs</u> with <u>full kit</u>."',
+opts:['must to report','0500 hrs','full kit','No error'],ans:0,
+rule:'Modal verbs are followed by the bare infinitive (base form without "to") — "must report", not "must to report"',
+exp:'All primary modal verbs (can, could, may, might, shall, should, will, would, must) are followed directly by the base form of the verb — the bare infinitive — without "to". Only "ought to", "used to", "have to", and "need to" take the "to" infinitive. "Must to report" inserts an incorrect "to" between the modal and the verb. The correction is "must report". "0500 hrs" and "full kit" are correct. Answer: "must to report" → "must report".'},
+
+{d:'EASY',e:'CDS 2022',type:'Stative Verb',
+q:'Spot the error:<br>"She is <u>knowing</u> the answer <u>but</u> is <u>not responding</u>."',
+opts:['knowing','but','not responding','No error'],ans:0,
+rule:'"Know" is a stative verb — it describes a mental state and cannot be used in the progressive (continuous) tense',
+exp:'"Know" is a stative verb that describes a mental state (cognition). Stative verbs do not take the -ing progressive form. "Is knowing" is grammatically incorrect. The correct form is simply "knows". "But" is correctly used as a coordinating conjunction. "Is not responding" — "respond" is an action verb and can legitimately be used in the progressive form. The error is "is knowing" → should be "knows". Answer: "knowing" → "knows".'},
+
+{d:'EASY',e:'NDA 2023',type:'Irregular Verb Form',
+q:'Choose the correct form:<br>"By the time reinforcements arrived, the patrol ______ the enemy position."',
+opts:['have already located','had already located','already located','was already locating'],ans:1,
+rule:'Past Perfect (had + V3) is used for an action completed before another past action',
+exp:'The sentence describes two past events: (1) the patrol locating the position, and (2) reinforcements arriving. The event that happened first (the patrol locating the position) must use the Past Perfect tense: "had + V3". "Have already located" (A) uses the present perfect — wrong tense for a completed past event. "Already located" (C) uses simple past which is ambiguous about sequence. "Was already locating" (D) uses past progressive which suggests the action was in progress, not completed. "Had already located" (B) correctly signals the prior-completed action. Answer: B.'},
+
+{d:'EASY',e:'AFCAT 2023',type:'Must Not vs Need Not',
+q:'Choose the option that best completes the sentence:<br>"The formal dress code is optional today — you ______ wear the ceremonial uniform."',
+opts:['must not','cannot','need not','should not'],ans:2,
+rule:'"Need not" expresses absence of obligation; "must not" expresses prohibition — these are opposite meanings',
+exp:'The sentence says the dress code is optional, meaning wearing the ceremonial uniform is not required but not forbidden either. "Must not" (A) means you are prohibited from wearing it — the opposite of what is intended. "Cannot" (B) means you are unable to or not allowed to — also wrong. "Should not" (D) suggests it would be inadvisable — too strong. "Need not" (C) correctly expresses that it is not obligatory — you are free to wear it or not. Answer: C.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'S-V Agreement — Intervening Phrase',
+q:'Spot the error:<br>"The Commanding Officer, <u>along with</u> his battalion commanders, <u>were</u> briefed about <u>the operation</u>."',
+opts:['along with','were','the operation','No error'],ans:1,
+rule:'When "along with" connects two subjects, the verb agrees with the grammatical subject before the phrase — singular here',
+exp:'"Along with", "as well as", "in addition to", "together with", and "accompanied by" are prepositions, not coordinating conjunctions. They do not make the subject compound. The grammatical subject is "The Commanding Officer" (singular). The phrase "along with his battalion commanders" is a parenthetical addition, not part of the subject. Therefore, the verb must be singular: "was", not "were". "The operation" is correct. The error is "were" → should be "was". Answer: "were" → "was".'},
+
+{d:'MEDIUM',e:'NDA 2022',type:'Modal — Used To vs Would',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'There would be a dense forest on the outskirts of the town before urbanisation.',
+  'There used to be a dense forest on the outskirts of the town before urbanisation.',
+  'There would have been a dense forest there before urbanisation.',
+  'There had used to be a dense forest before urbanisation.'
+],ans:1,
+rule:'"Used to" covers past states AND past habits; "would" covers past repeated actions ONLY — not states',
+exp:'"Would" for past reference can only describe repeated actions, not states. "There would be a forest" (A) uses "would" for a past state — incorrect. "Would have been" (C) is a 3rd conditional structure, not appropriate here. "Had used to" (D) is not a grammatically valid construction. "There used to be a dense forest" (B) correctly uses "used to" to describe a past state that no longer exists. Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Gerund vs Infinitive',
+q:'Spot the error:<br>"The officer <u>stopped to smoke</u> after he had <u>managed completing</u> the <u>tactical report</u>."',
+opts:['stopped to smoke','managed completing','tactical report','No error'],ans:1,
+rule:'"Manage" is a verb always followed by the infinitive ("to + verb"), not the gerund',
+exp:'"Stopped to smoke" (A) — "stop + infinitive" means "stopped in order to smoke" — this is intentional and correct ✓. "Managed completing" (B) — "manage" belongs to the category of verbs that must be followed by the infinitive, not the gerund. The correct form is "managed to complete". "Tactical report" (C) is correct. The error is "managed completing" → "managed to complete". Answer: B.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Conditional — Would in If-Clause',
+q:'Spot the error:<br>"If the enemy <u>would advance</u> further, the regiment <u>would have to</u> <u>fall back</u>."',
+opts:['would advance','would have to','fall back','No error'],ans:0,
+rule:'"Would" cannot be used in the if-clause of a conditional sentence (except when meaning "be willing to")',
+exp:'In conditional sentences, the if-clause describes the condition and takes an appropriate verb tense — but NOT "would" (except in very specific polite constructions meaning "be willing to"). For a real/possible future condition (First Conditional), the if-clause uses the simple present: "If the enemy <strong>advances</strong> further". For an unreal present (Second Conditional), the if-clause uses the simple past: "If the enemy <strong>advanced</strong>". "Would have to fall back" and "fall back" are both correct. The error is "would advance" — it should be "advances" (First Conditional) or "advanced" (Second Conditional). Answer: "would advance" → "advances/advanced".'},
+
+{d:'MEDIUM',e:'NDA 2024',type:'Perfect Modal',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He should had informed the HQ before proceeding.',
+  'He should have informed the HQ before proceeding.',
+  'He should inform the HQ before proceeded.',
+  'He should has informed the HQ before proceeding.'
+],ans:1,
+rule:'Perfect modal structure = modal + "have" + past participle (V3); never "should had" or "should has"',
+exp:'The perfect modal structure uses: <strong>modal + have + V3</strong> (past participle). "Should had" (A) uses the past tense of "have" instead of the base form — incorrect. "Should inform…before proceeded" (C) — the main verb "inform" needs context and "proceeded" is incorrectly used. "Should has" (D) — "has" is the third-person inflected form of "have" which cannot follow a modal. "Should have informed" (B) correctly follows the pattern: modal (should) + have + V3 (informed). Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2024',type:'Passive Voice — Intransitive',
+q:'Spot the error:<br>"The accident <u>was occurred</u> at <u>the intersection</u> <u>near the cantonment</u>."',
+opts:['was occurred','the intersection','near the cantonment','No error'],ans:0,
+rule:'"Occur" is an intransitive verb — it cannot have a passive voice form; "was occurred" is always incorrect',
+exp:'"Occur" is an intransitive verb — it does not take a direct object. Without an object, there is nothing to become the subject of a passive sentence. Passive voice requires a transitive verb. Other intransitive verbs that cannot be made passive: die, arrive, go, come, rise, fall, sleep, happen, exist. "The accident was occurred" is grammatically impossible. The correct form is: "The accident <strong>occurred</strong>". "The intersection" and "near the cantonment" are both correct. The error is "was occurred" → "occurred". Answer: "was occurred" → "occurred".'},
+
+// ── HARD ─────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'S-V Agreement — One of Those Who',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is one of those officers who leads by example.',
+  'He is one of those officers who lead by example.',
+  'He is one of those officers who is leading by example.',
+  'He is one of those officer who lead by example.'
+],ans:1,
+rule:'In "one of those + plural noun + who/which/that", the relative pronoun refers to the plural noun — verb must be plural',
+exp:'In the structure "one of those [plural noun] who/which/that", the relative clause "who lead by example" refers to "those officers" (plural), not to "one" (singular). Therefore, the verb in the relative clause must be plural: "lead", not "leads". Option A uses "leads" (singular) — incorrect because the antecedent of "who" is "officers" (plural). Option C uses "is leading" (singular progressive) — wrong for the same reason. Option D uses the singular "officer" without an article — wrong. Option B: "one of those officers who lead by example" — plural verb "lead" correctly agrees with "officers". Answer: B.'},
+
+{d:'HARD',e:'NDA 2023',type:'Lie vs Lay',
+q:'Spot the error:<br>"The wounded soldier <u>was laying</u> on the ground when the medic <u>arrived</u> and <u>laid</u> his kit beside him."',
+opts:['was laying','arrived','laid','No error'],ans:0,
+rule:'"Lay" = to place/put (transitive); "lie" = to recline (intransitive) — "was laying" should be "was lying" here',
+exp:'"Lay" is a transitive verb meaning "to place or put something down". Its forms are: lay → laid → laid. "Lie" is an intransitive verb meaning "to recline or rest". Its forms are: lie → lay → lain. In the first clause, the soldier is reclining (intransitive — no object) — so the correct verb is "lie". "Was laying" uses the progressive of "lay" (transitive) — but there is no object; the soldier is not placing anything. The correct form is "was lying" (progressive of "lie"). "Arrived" ✓ and "laid his kit" ✓ — "laid" here is the past tense of "lay" (transitive — object = "his kit"). Answer: "was laying" → "was lying".'},
+
+{d:'HARD',e:'AFCAT 2023',type:'Modal — Can Have vs Could Have',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The sentry can have spotted the infiltrators last night.',
+  'The sentry could have spotted the infiltrators last night.',
+  'The sentry may have spotted the infiltrators last night.',
+  'Both B and C are correct but express different degrees of certainty.'
+],ans:3,
+rule:'"Could have + V3" = unrealised possibility in the past; "may have + V3" = uncertain past possibility — both are valid; "can have" is not standard for past reference',
+exp:'"Can have + V3" (A) is not used in standard formal English for past reference — "can" refers to present/future ability or possibility, not past. For past reference, "could have" is used. "Could have spotted" (B) suggests an unrealised past possibility — the sentry was capable of spotting but may or may not have done so. "May have spotted" (C) suggests uncertainty about whether the sentry actually spotted them in the past. Both B and C are grammatically correct and commonly used, but they convey slightly different nuances: "could have" focuses on unrealised ability/possibility; "may have" focuses on epistemic uncertainty. Answer: D.'},
+
+{d:'HARD',e:'CDS 2024',type:'Sequence of Tenses — Exception',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The physics teacher explained that the Earth revolved around the Sun.',
+  'The physics teacher explained that the Earth revolves around the Sun.',
+  'The physics teacher was explaining that the Earth had revolved around the Sun.',
+  'The physics teacher explained that the Earth would revolve around the Sun.'
+],ans:1,
+rule:'Universal/scientific truths remain in the Present Simple even when the main clause is in the Past — exception to sequence of tenses',
+exp:'The normal rule of sequence of tenses requires a past-tense subordinate clause when the main clause is in the past. However, there is a critical exception: <strong>universal truths, scientific facts, and habitual truths</strong> always remain in the Simple Present, regardless of the main clause tense. The fact that "the Earth revolves around the Sun" is a permanent scientific truth. Option A changes it to the past "revolved" — incorrect application of sequence of tenses to a universal truth. Option C uses the past perfect — doubly wrong. Option D uses "would revolve" — wrong modal tense. Option B: "explains…revolves" — correctly keeps the scientific truth in the present tense. Answer: B.'},
+
+{d:'HARD',e:'NDA 2024',type:'Subjunctive Mood',
+q:'Spot the error:<br>"The board <u>recommended</u> that every cadet <u>was present</u> for the <u>final assessment</u>."',
+opts:['recommended','was present','final assessment','No error'],ans:1,
+rule:'After verbs of recommendation, suggestion, demand, order, insistence — use the bare subjunctive (base form of verb, no tense inflection)',
+exp:'After verbs like <strong>recommend, suggest, demand, order, insist, propose, request, require, urge, move (formally)</strong>, the subordinate "that" clause uses the <strong>subjunctive mood</strong> — the bare base form of the verb, with no tense, number, or person inflection. "Was present" uses the indicative past — incorrect. The correct subjunctive form is simply <strong>"be present"</strong>: "The board recommended that every cadet <strong>be present</strong> for the final assessment." This rule applies regardless of the tense of the main verb. "Recommended" ✓ and "final assessment" ✓. The error is "was present" → should be "be present". Answer: "was present" → "be present".'},
+
+];
+
+// ── ENGINE ──────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Verbs</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Verb rules — modals, agreement, tense, and voice — are clearly mastered.'}
+  else if(pct>=70){grade='Good';msg='Well done. Revisit the Modal tab — especially perfect modals and must not vs need not.'}
+  else if(pct>=50){grade='Average';msg='Good base. Focus on subject-verb agreement rules and the modal auxiliary section in Theory.'}
+  else{grade='Needs Work';msg='Start with the three absolute modal rules, then work through S-V agreement and stative verbs in Theory.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,verbforms:1,modals:2,quickref:3,quiz:4}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>
