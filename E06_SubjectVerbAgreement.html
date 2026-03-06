@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject-Verb Agreement | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── NEW COLOUR SET: Deep Indigo / Slate ───────────────────── */
+  --bg:        #F0F0F5;
+  --bg2:       #E5E5EE;
+  --bg3:       #D8D8E6;
+  --white:     #FFFFFF;
+  --ink:       #12112A;
+  --ink2:      #25243F;
+  --muted:     #6B6884;
+  --dim:       #9996B0;
+  --border:    #CCCADE;
+
+  /* Primary — deep indigo */
+  --pri:       #3D2C8D;
+  --priLt:     #4E3AAD;
+  --priPale:   #ECEAF8;
+
+  /* Accent 1 — warm coral (replaces amber) */
+  --ac1:       #B84040;
+  --ac1Lt:     #D04848;
+  --ac1Pale:   #FCEEF0;
+
+  /* Accent 2 — forest green (same role as green) */
+  --ac2:       #286044;
+  --ac2Lt:     #337A56;
+  --ac2Pale:   #E6F4ED;
+
+  /* Accent 3 — crimson (error / red role) */
+  --ac3:       #8B1A1A;
+  --ac3Lt:     #B02020;
+  --ac3Pale:   #FCEAEA;
+
+  /* Accent 4 — slate blue (replaces blue) */
+  --ac4:       #1E3A6E;
+  --ac4Lt:     #254E96;
+  --ac4Pale:   #E8EEF8;
+
+  /* Accent 5 — plum (replaces purple) */
+  --ac5:       #5A1F7A;
+  --ac5Pale:   #F2EAFA;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(18,17,42,.10);
+  --shadow-md: 0 4px 20px rgba(18,17,42,.15);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--pri);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+  padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+  padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,150,.13);color:#7ADEA8}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(18,17,42,.08);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--pri);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--priPale);border:1.5px solid rgba(61,44,141,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--ac1Pale);border:1.5px solid rgba(184,64,64,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac1);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--ac2Pale);border-left:4px solid var(--ac2);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac2);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--ac3Pale);border-left:4px solid var(--ac3);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac3);text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--ac3Pale);border:1.5px solid rgba(139,26,26,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac3);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{
+  background:var(--ac4Pale);border:1.5px solid rgba(30,58,110,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac4);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{
+  background:var(--ac5Pale);border:1.5px solid rgba(90,31,122,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--ac5);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+.sent{
+  display:inline-block;background:var(--bg2);border-radius:6px;
+  padding:10px 14px;margin:6px 0;font-size:15.5px;color:var(--ink);
+  border-left:3px solid var(--pri);width:100%;line-height:1.7;
+}
+.sent b{color:var(--pri)}
+.sent .ok{color:var(--ac2);font-weight:700}
+.sent .err{color:var(--ac3);font-weight:700;text-decoration:underline wavy var(--ac3)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--pri);color:#fff;padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--pri);
+  margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-m{background:var(--ac1Pale);color:var(--ac1)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--pri);background:var(--priPale);
+  border:1px solid rgba(61,44,141,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(61,44,141,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--pri);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Subject-Verb Agreement</div>
+  <h1 class="hero-title">Subject–Verb<br><span>Agreement</span></h1>
+  <p class="hero-sub">SVA errors are embedded in almost every CDS, NDA and AFCAT Spotting Errors paper. Intervening phrases, collective nouns, inverted sentences, tricky connectors — learn the twelve rules that govern every pattern the examiners use.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Medium–High Level</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════════ THEORY ══════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>The golden rule of SVA: <strong>the verb must agree in number and person with its subject</strong> — not with any intervening noun, not with the complement, and not with the nearest word. The twelve rules below cover every pattern that CDS/NDA/AFCAT examiners use. Each rule has its own "trap" that candidates routinely fall into.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — The Core Rules</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#ECEAF8">📌</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 1 — Intervening Phrases</div>
+        <div class="c-sub">Phrases between subject and verb do not change agreement</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Phrases introduced by <strong>with, along with, together with, as well as, in addition to, including, except, rather than, no less than, accompanied by</strong> — when placed between the subject and verb — do <strong>not</strong> change the number of the verb. The verb still agrees with the original subject.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Rule</div>
+        <p><strong>Mentally bracket the intervening phrase and match the verb to the true subject only.</strong><br>
+        "The general, [along with his officers], <strong>was</strong> present." → subject = general (singular) → was ✓</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>The colonel, along with his troops, <strong>was</strong> decorated. ✓</li>
+          <li>The plan, as well as the execution, <strong>was</strong> flawed. ✓</li>
+          <li>The captain, together with the crew, <strong>has</strong> arrived. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Classic Errors</div>
+        <ul>
+          <li>The officer, along with his men, <span class="err">were</span> present. → <strong>was</strong> present ✓</li>
+          <li>The plan, as well as the resources, <span class="err">were</span> ready. → <strong>was</strong> ready ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4ED">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 2 — Either/Or and Neither/Nor</div>
+        <div class="c-sub">Verb agrees with the subject nearer to it</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>With <strong>either…or</strong> and <strong>neither…nor</strong>, the verb agrees with the subject that is <strong>closest to it</strong> (the nearer subject rule).</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Sentence</th><th>Nearer Subject</th><th>Verb</th></tr>
+          <tr><td>Either the soldiers or the <b>captain</b> ___</td><td>captain (singular)</td><td class="ok">is / was</td></tr>
+          <tr><td>Either the captain or the <b>soldiers</b> ___</td><td>soldiers (plural)</td><td class="ok">are / were</td></tr>
+          <tr><td>Neither he nor <b>I</b> ___</td><td>I (1st person)</td><td class="ok">am</td></tr>
+          <tr><td>Neither I nor <b>he</b> ___</td><td>he (3rd person)</td><td class="ok">is</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Person Agreement</div>
+        <p>With <strong>neither/nor</strong> and <strong>either/or</strong>, the verb must agree in both <strong>number AND person</strong> with the nearer subject.<br>
+        "Neither you nor <strong>I</strong> <em>am</em> responsible." (I = 1st person → am)<br>
+        "Neither I nor <strong>he</strong> <em>is</em> responsible." (he = 3rd person → is)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEEF0">👥</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 3 — Collective Nouns</div>
+        <div class="c-sub">Army, committee, jury, team — unit vs divided action</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A collective noun takes a <strong>singular verb</strong> when the group acts as a single unit, and a <strong>plural verb</strong> when members act individually.</p>
+      <div class="eg-box">
+        <div class="eg-label">Singular (acting as a unit)</div>
+        <ul>
+          <li>The jury <strong>has</strong> reached its verdict. ✓</li>
+          <li>The committee <strong>has</strong> approved the budget. ✓</li>
+          <li>The army <strong>was</strong> advancing towards the border. ✓</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Plural (acting individually)</div>
+        <ul>
+          <li>The jury <strong>were</strong> divided in their opinions. ✓</li>
+          <li>The committee <strong>were</strong> arguing among themselves. ✓</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Always Singular Collective Nouns (no exception in exams)</div>
+        <ul>
+          <li>The public, the press, the clergy, the aristocracy, the gentry → always singular in Indian exam context</li>
+          <li>"The public <strong>is</strong> requested to maintain silence." ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#ECEAF8">🔢</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 4 — Indefinite Pronouns as Subjects</div>
+        <div class="c-sub">Each, every, either, neither, one, anyone → always singular</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Indefinite pronouns that refer to singular entities always take a <strong>singular verb</strong> — even when followed by a plural phrase.</p>
+      <div class="fact-box">
+        <div class="fb-label">Always Take Singular Verb</div>
+        <ul>
+          <li>each, either, neither, every, one, everyone, everybody, someone, anyone, nobody, nothing, anything</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>Each of the soldiers <strong>was</strong> given a medal. ✓</li>
+          <li>Neither of the plans <strong>was</strong> approved. ✓</li>
+          <li>Everyone in the battalion <strong>has</strong> reported. ✓</li>
+          <li>One of the officers <strong>has</strong> resigned. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Each" After a Plural Subject</div>
+        <p>When "each" comes <strong>after</strong> a plural subject, the verb is <strong>plural</strong>:<br>
+        "The soldiers <strong>each have</strong> their weapons." (subject = soldiers, plural)<br>
+        But: "Each of the soldiers <strong>has</strong> a weapon." (subject = each, singular)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — Tricky Subject Patterns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8EEF8">📐</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 5 — "The number of" vs "A number of"</div>
+        <div class="c-sub">One of the most tested distinctions in CDS/NDA</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The Rule</div>
+        <p><strong>"The number of" + plural noun → singular verb</strong> (refers to a specific count)<br>
+        <strong>"A number of" + plural noun → plural verb</strong> (means "several / many")</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li><strong>The</strong> number of applicants <strong>has</strong> increased. ✓ (specific figure)</li>
+          <li><strong>A</strong> number of officers <strong>have</strong> been promoted. ✓ (= several officers)</li>
+          <li><strong>The</strong> number of vacancies <strong>is</strong> twenty. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEEF0">➕</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 6 — Subjects Joined by "And"</div>
+        <div class="c-sub">Usually plural — but three important exceptions</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Two or more subjects joined by <strong>"and"</strong> normally take a <strong>plural verb</strong>. However, there are three exceptions that examiners love to test.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Exception</th><th>Rule</th><th>Example</th></tr>
+          <tr><td><b>Same person / thing</b></td><td>Singular verb</td><td>The poet and soldier <b>was</b> Chekhov. (one person with two roles)</td></tr>
+          <tr><td><b>Each/Every before compound</b></td><td>Singular verb</td><td>Every man and woman <b>is</b> responsible.</td></tr>
+          <tr><td><b>Inseparable pair</b></td><td>Singular verb</td><td>Bread and butter <b>is</b> my breakfast. (treated as one thing)</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Common Inseparable Pairs → Singular Verb</div>
+        <ul>
+          <li>Bread and butter, rice and curry, slow and steady, trial and error</li>
+          <li>Law and order <strong>has</strong> broken down. ✓</li>
+          <li>Slow and steady <strong>wins</strong> the race. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4ED">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 7 — Inverted Sentences &amp; "There is/are"</div>
+        <div class="c-sub">When the subject comes after the verb</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>In sentences beginning with <strong>"there"</strong> or in inverted constructions, the verb must agree with the <strong>real subject</strong> that follows it — not with "there".</p>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>There <strong>is</strong> a problem with the plan. (problem = singular) ✓</li>
+          <li>There <strong>are</strong> three officers in the room. (officers = plural) ✓</li>
+          <li>There <strong>was</strong> a time when this was different. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "There is" with Compound Subject</div>
+        <p>When a compound subject follows "there", the verb agrees with the <strong>first</strong> (nearest) element:<br>
+        "There <strong>is</strong> a pen and two books on the table." (pen = first, singular → is)<br>
+        "There <strong>are</strong> two books and a pen on the table." (books = first, plural → are)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Special Noun & Phrase Types</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F2EAFA">📏</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 8 — Plural-Form Nouns that are Singular</div>
+        <div class="c-sub">News, mathematics, physics, measles — they look plural, act singular</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Many nouns end in <strong>-s</strong> but are <strong>grammatically singular</strong> in meaning and always take a singular verb.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Category</th><th>Examples</th><th>Verb</th></tr>
+          <tr><td><b>Academic subjects</b></td><td>mathematics, physics, economics, ethics, politics, statistics</td><td class="ok">singular</td></tr>
+          <tr><td><b>Diseases</b></td><td>measles, mumps, rickets, rabies</td><td class="ok">singular</td></tr>
+          <tr><td><b>Abstract/mass nouns</b></td><td>news, innings (cricket — singular), headquarters</td><td class="ok">singular</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>The news <strong>is</strong> disturbing. ✓</li>
+          <li>Mathematics <strong>is</strong> my favourite subject. ✓</li>
+          <li>Measles <strong>is</strong> a contagious disease. ✓</li>
+          <li>Politics <strong>is</strong> a dirty game. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#ECEAF8">✂️</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 9 — Relative Pronoun as Subject</div>
+        <div class="c-sub">"One of those who…" — a notorious exam trap</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When a relative pronoun (who, which, that) is the subject of a clause, the verb in that clause agrees with the <strong>antecedent</strong> of the relative pronoun.</p>
+      <div class="rule-box">
+        <div class="rl-label">The "One of those who" Pattern</div>
+        <p>"He is one of those officers who <strong>work</strong> tirelessly." → "who" refers to "those officers" (plural) → plural verb "work" ✓<br><br>
+        "He is the only one of those officers who <strong>works</strong> tirelessly." → "the only one" → singular → "works" ✓<br><br>
+        <strong>With "one of"</strong> → plural verb. &nbsp; <strong>With "only one of"</strong> → singular verb.</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Most Common Error</div>
+        <ul>
+          <li>She is one of the students who <span class="err">has</span> topped. → who <strong>have</strong> topped ✓</li>
+          <li>He is the only one of the pilots who <span class="err">have</span> qualified. → who <strong>has</strong> qualified ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEEF0">💰</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 10 — Expressions of Amount, Distance &amp; Time</div>
+        <div class="c-sub">When a plural-sounding phrase represents a single quantity</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When a phrase expresses a <strong>single, unified quantity</strong> of money, distance, time, or weight, it takes a <strong>singular verb</strong> — even if the noun is plural.</p>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage — Singular Verb for Unified Quantity</div>
+        <ul>
+          <li>Ten kilometres <strong>is</strong> a long march. ✓ (single distance)</li>
+          <li>Five years <strong>is</strong> a long time to serve. ✓ (single period)</li>
+          <li>Fifty thousand rupees <strong>was</strong> the fine. ✓ (single sum)</li>
+          <li>Two thirds of the work <strong>has</strong> been completed. ✓ (single portion)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Fraction + of + Noun</div>
+        <p>With expressions like <strong>"half of / a part of / some of / most of / all of + noun"</strong>, the verb agrees with the noun after "of":<br>
+        "Half of the soldiers <strong>were</strong> injured." (soldiers = plural)<br>
+        "Half of the water <strong>was</strong> spilled." (water = uncountable/singular)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — More High-Frequency Traps</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E6F4ED">📢</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 11 — "Not only…but also" &amp; Other Connectors</div>
+        <div class="c-sub">The verb follows the subject nearest to it</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Connector</th><th>Verb agrees with</th><th>Example</th></tr>
+          <tr><td><b>Not only…but also</b></td><td>Nearer (second) subject</td><td>Not only the men but also the <b>captain</b> <span class="ok">was</span> tired.</td></tr>
+          <tr><td><b>Neither…nor</b></td><td>Nearer (second) subject</td><td>Neither the captain nor the <b>men</b> <span class="ok">were</span> ready.</td></tr>
+          <tr><td><b>Either…or</b></td><td>Nearer (second) subject</td><td>Either the officers or the <b>general</b> <span class="ok">is</span> to blame.</td></tr>
+          <tr><td><b>With / along with</b></td><td>First subject only</td><td>The <b>general</b>, along with his staff, <span class="ok">was</span> briefed.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F2EAFA">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Rule 12 — Titles, Names &amp; Clauses as Subjects</div>
+        <div class="c-sub">A clause or title acting as a subject → always singular</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When a <strong>noun clause, infinitive phrase, gerund phrase, or a title/name</strong> acts as the subject, the verb is always <strong>singular</strong>.</p>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>What the soldiers need <strong>is</strong> better equipment. ✓ (noun clause = subject)</li>
+          <li>To serve the nation <strong>is</strong> a great honour. ✓ (infinitive phrase)</li>
+          <li>Training young officers <strong>requires</strong> patience. ✓ (gerund phrase)</li>
+          <li>"The Times" <strong>is</strong> a reputed newspaper. ✓ (title = singular)</li>
+          <li>"Three Musketeers" <strong>is</strong> a classic novel. ✓ (title with plural-looking name)</li>
+        </ul>
+      </div>
+      <div class="purple-box">
+        <div class="pl-label">Arithmetical Operations → Singular Verb</div>
+        <ul>
+          <li>Two plus two <strong>is</strong> four. ✓</li>
+          <li>Three times four <strong>is</strong> twelve. ✓</li>
+          <li>Ten minus six <strong>is</strong> four. ✓</li>
+          <li>Even division: Twenty divided by five <strong>is</strong> four. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════════ QUICK REF ══════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Subject-Verb Agreement — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Rules 1–3 at a Glance</div>
+      <ul>
+        <li><b>Intervening phrase</b> (with / along with / as well as) → verb agrees with <em>original subject only</em></li>
+        <li><b>Either…or / Neither…nor</b> → verb agrees with <em>nearer subject</em></li>
+        <li><b>Collective noun as unit</b> → singular verb</li>
+        <li><b>Collective noun, members individually</b> → plural verb</li>
+        <li><em>The public / the press / the clergy</em> → always singular in exam context</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Indefinite Pronouns → Singular Verb</div>
+      <ul>
+        <li>each, either, neither, every, one</li>
+        <li>everyone, everybody, everything</li>
+        <li>someone, somebody, something</li>
+        <li>anyone, anybody, anything</li>
+        <li>no one, nobody, nothing</li>
+        <li>Exception: <em>"The soldiers each <span class="ok">have</span>…"</em> — "each" after plural subject → plural</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">"The number of" vs "A number of"</div>
+      <ul>
+        <li><b>The number of</b> + noun → <span class="ok">singular</span> verb</li>
+        <li><em>The number of applicants <span class="ok">has</span> risen.</em></li>
+        <li><b>A number of</b> + noun → <span class="ok">plural</span> verb (= several)</li>
+        <li><em>A number of officers <span class="ok">have</span> been promoted.</em></li>
+        <li>Same logic: <b>The majority of</b> → singular; <b>A majority of</b> → plural</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Always Singular — Despite -s Ending</div>
+      <ul>
+        <li><b>Subjects:</b> mathematics, physics, economics, statistics, ethics, politics</li>
+        <li><b>Diseases:</b> measles, mumps, rickets, rabies</li>
+        <li><b>Others:</b> news, innings, headquarters, whereabouts (can be either)</li>
+        <li>Expressions of unified quantity: <em>Five years <span class="ok">is</span> a long time.</em></li>
+        <li>Arithmetic: <em>Two plus two <span class="ok">is</span> four.</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">"One of those who" vs "Only one of those who"</div>
+      <ul>
+        <li><b>One of those who</b> → <span class="ok">plural</span> verb (who = those)</li>
+        <li><em>He is one of the men who <span class="ok">work</span> hard.</em></li>
+        <li><b>The only one of those who</b> → <span class="ok">singular</span> verb</li>
+        <li><em>He is the only one who <span class="ok">works</span> hard.</em></li>
+        <li><b>Fraction/part + of + noun</b> → verb agrees with noun after "of"</li>
+        <li><em>Half of the water <span class="ok">was</span> spilled.</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Clauses, Titles &amp; "And" Exceptions</div>
+      <ul>
+        <li>Noun clause as subject → <span class="ok">singular</span> verb</li>
+        <li>Gerund / infinitive phrase as subject → <span class="ok">singular</span> verb</li>
+        <li>Title / book name as subject → <span class="ok">singular</span> verb</li>
+        <li><b>"And" exceptions:</b> same person, each/every before compound, inseparable pair</li>
+        <li><em>Law and order <span class="ok">has</span> broken down.</em> (inseparable pair)</li>
+        <li><em>Every man and woman <span class="ok">is</span> responsible.</em> (every + compound)</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════════ QUIZ ══════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Subject-Verb Agreement · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── MEDIUM ─────────────────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Spot the error in the underlined parts:<br>"The general, <u>along with</u> his officers, <u>were</u> <u>present</u> at the <u>ceremony</u>."',
+opts:['along with','were','present','ceremony'],ans:1,
+rule:'Intervening phrase "along with his officers" does not change the verb — subject is "the general" (singular) → was',
+exp:'"Along with his officers" is an intervening phrase, not part of the grammatical subject. The true subject is "the general" — singular. Therefore the verb must be singular: "was present", not "were present". This is Rule 1: words like along with, together with, as well as, in addition to placed between subject and verb do not change the number of the verb. Answer: "were" → should be "was".'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'"The number of applications received for the post ______ increased dramatically."<br>Choose the correct verb.',
+opts:['have','had','has','were'],ans:2,
+rule:'"The number of" + noun → singular verb "has"',
+exp:'"The number of" is a fixed phrase meaning a specific, countable total. It always takes a singular verb. Compare with "A number of applications have been received" — where "a number of" means "several/many" and takes a plural verb. Here the subject is "the number" (singular) → "has increased". Answer: has.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Choose the correct sentence:',
+opts:[
+  'Each of the cadets have submitted their assignment.',
+  'Each of the cadets has submitted his assignment.',
+  'Each of the cadets have submitted his assignment.',
+  'Each of the cadets had submitted their assignment.'
+],ans:1,
+rule:'"Each" is singular → singular verb "has"; referring pronoun → "his"',
+exp:'"Each" is an indefinite pronoun that is always grammatically singular — regardless of what follows it. "Each of the cadets" → verb must be singular: "has submitted". The referring pronoun must also be singular: "his". Option A uses plural "have" (wrong). Option C combines plural "have" with singular "his" (inconsistent). Option D uses plural "their" (wrong pronoun agreement). Answer: B — "Each of the cadets has submitted his assignment."'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Spot the error:<br>"Not only the jawans but also the officer <u>were</u> commended for their bravery during the operation."',
+opts:[
+  'Not only the jawans but also',
+  'the officer were commended',
+  'for their bravery',
+  'during the operation'
+],ans:1,
+rule:'"Not only…but also" — verb agrees with the nearer subject "officer" (singular) → was',
+exp:'With "not only…but also", the verb agrees with the subject nearest to it — the second subject. Here the second (nearer) subject is "the officer" — singular. Therefore the verb must be singular: "was commended", not "were commended". Answer: "the officer were commended" — "were" should be "was".'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'"There ______ a rifle and two pistols found at the scene."<br>Fill in the correct verb.',
+opts:['were','are','was','have been'],ans:2,
+rule:'In "there + verb + compound subject", verb agrees with the first (nearest) element',
+exp:'When "there" introduces a compound subject, the verb agrees with the first element listed. Here the first element is "a rifle" — singular. Therefore the verb is "was". If the sentence had started with "two pistols and a rifle", the verb would have been "were". This is an important inverted-sentence SVA rule. Answer: was.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'Choose the correct sentence:',
+opts:[
+  'Law and order have broken down in the region.',
+  'Law and order has broken down in the region.',
+  'Law and order were disrupted in the region.',
+  'Law and order are difficult to maintain.'
+],ans:1,
+rule:'"Law and order" is an inseparable pair — treated as a single concept → singular verb',
+exp:'"Law and order" is a fixed, inseparable expression representing a single concept (like "bread and butter", "trial and error"). Such compound nouns joined by "and" that represent one unified idea take a singular verb. "Has broken down" is correct. Options A, C, and D use plural verbs (have, were, are) — all incorrect for this inseparable pair. Answer: B.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Spot the error:<br>"The committee have announced its decision regarding the promotions."',
+opts:[
+  'The committee have',
+  'announced its decision',
+  'regarding the promotions',
+  'No error'
+],ans:0,
+rule:'Collective noun acting as a unit → singular verb "has"; "its" (singular) already used, confirming unit sense',
+exp:'The sentence uses "its" — a singular pronoun — to refer back to "the committee", which confirms the committee is being treated as a single unit. When a collective noun acts as a unit, both the verb and the pronoun must be singular. "Have" is plural and inconsistent with "its". The correct verb is "has". The error is in "The committee have" — should be "The committee has". Answer: A.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'"Five kilometres ______ a long distance to march in full combat gear."<br>Choose correctly.',
+opts:['are','were','is','have been'],ans:2,
+rule:'Unified quantity of distance → singular verb',
+exp:'"Five kilometres" here expresses a single, unified distance — one measurement. When a plural-form noun expresses a single quantity of distance, time, money, or weight, it takes a singular verb. "Five kilometres is a long distance" → "is" ✓. Compare: "Five kilometres were marked on the map" (here five individual kilometres are being referred to separately → plural). In the question, it is a single distance → "is". Answer: is.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Choose the sentence with NO error:',
+opts:[
+  'The news about the ceasefire are encouraging.',
+  'The news about the ceasefire is encouraging.',
+  'The news about the ceasefire were encouraging.',
+  'The news about the ceasefire have been encouraging.'
+],ans:1,
+rule:'"News" always takes a singular verb — despite the -s ending',
+exp:'"News" is one of several nouns that end in "-s" but are grammatically singular. It always takes a singular verb: "is", "was", "has been". Options A, C, and D all use plural verbs — all incorrect. The intervening phrase "about the ceasefire" does not affect the verb. Answer: B — "The news about the ceasefire is encouraging."'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'"Mathematics ______ always been my strongest subject at the academy."<br>Fill in the blank.',
+opts:['have','had','has','were'],ans:2,
+rule:'"Mathematics" is a subject name ending in -s but always takes a singular verb',
+exp:'Academic subjects ending in "-s" (mathematics, physics, economics, ethics, statistics, politics) are grammatically singular and always take a singular verb. "Mathematics has always been" → "has" ✓. "Have", "were" are plural verbs and incorrect. While "had" is singular, it creates simple past perfect without the adverb "always" fitting naturally — "has" (present perfect) is the correct choice given "always" implies continuing up to now. Answer: has.'},
+
+// ── HARD ──────────────────────────────────────────────────────────────────────
+
+{d:'HARD',e:'NDA 2023',
+q:'Four parts are underlined. Find the error:<br>"She is one of those officers who <u>has</u> consistently <u>led</u> her team <u>to victory</u> in <u>every exercise</u>."',
+opts:['has','led','to victory','every exercise'],ans:0,
+rule:'"One of those who" → "who" refers to plural antecedent "those officers" → plural verb "have"',
+exp:'"She is one of those officers who…" — the relative pronoun "who" refers back to "those officers" (plural), not to "she" (singular). Therefore the verb in the relative clause must be plural: "have consistently led", not "has consistently led". This is the famous "one of those who" trap. Contrast: "She is the only one of those officers who has…" — "the only one" makes it singular → "has". Answer: "has" → should be "have".'},
+
+{d:'HARD',e:'AFCAT 2023',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'A number of soldiers has been deployed to the forward post.',
+  'The number of soldiers deployed have increased this year.',
+  'A number of soldiers have been deployed to the forward post.',
+  'The number of soldiers deployed has increased this year, as have last year.'
+],ans:2,
+rule:'"A number of" = several → plural verb; "The number of" → singular verb',
+exp:'Option A is wrong: "A number of soldiers has" — "a number of" requires a plural verb: "have". Option B is wrong: "The number of soldiers…have increased" — "the number of" requires a singular verb: "has increased". Option C is correct: "A number of soldiers have been deployed" — "a number of" means "several" → plural verb ✓. Option D is wrong: "has increased…as have" is internally inconsistent. Answer: C.'},
+
+{d:'HARD',e:'CDS 2023',
+q:'Spot the error:<br>"What the troops need most <u>are</u> better rations and <u>adequate</u> rest after <u>the long</u> <u>patrol</u>."',
+opts:['are','adequate','the long','patrol'],ans:0,
+rule:'Noun clause as subject → always singular verb; "What the troops need most" is a noun clause → "is"',
+exp:'"What the troops need most" is a noun clause functioning as the subject of the sentence. Noun clauses acting as subjects always take a singular verb — regardless of what the complement is. Even though the complement ("better rations and adequate rest") is plural, the subject (the clause) is singular. Therefore "are" is incorrect; the correct verb is "is". Answer: "are" → should be "is".'},
+
+{d:'HARD',e:'NDA 2024',
+q:'"Neither the commanding officer nor the jawans ______ willing to abandon the post."<br>Choose correctly.',
+opts:['was','were','has been','is'],ans:1,
+rule:'"Neither…nor" → verb agrees with nearer subject "jawans" (plural) → were',
+exp:'With "neither…nor", the verb agrees with the nearer (second) subject. The nearer subject is "the jawans" — plural. Therefore the verb must be plural: "were willing". "Was" and "is" are singular (wrong). "Has been" is singular and changes tense inappropriately. Answer: were.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Choose the sentence with NO error:',
+opts:[
+  'Half of the ammunition were destroyed in the fire.',
+  'Half of the ammunition was destroyed in the fire.',
+  'Half of the soldiers has retreated to the base.',
+  'Half of the rations is still available at the depot.'
+],ans:1,
+rule:'"Half of + uncountable noun" → singular verb; "half of + plural noun" → plural verb',
+exp:'For "half of / part of / most of / some of + noun", the verb agrees with the noun after "of". Option B: "half of the ammunition" — ammunition is uncountable (singular) → "was" ✓. Option A: "half of the ammunition were" — wrong, uncountable → singular. Option C: "half of the soldiers has" — soldiers is plural → should be "have". Option D: "half of the rations is" — rations is plural → should be "are". Answer: B.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Spot the error:<br>"Every soldier and officer <u>are</u> required to <u>carry</u> <u>their</u> <u>identity card</u> at all times."',
+opts:['are','carry','their','identity card'],ans:0,
+rule:'"Every" before compound subject joined by "and" → singular verb "is"',
+exp:'When "every" or "each" precedes a compound subject joined by "and", the entire compound subject is treated as singular. "Every soldier and officer" = one singular unit → singular verb "is required". Additionally, the pronoun "their" (plural) would then need to be "his or her" — but the question only asks for the first error encountered. The primary error is the verb "are" — should be "is". Answer: "are" → should be "is".'},
+
+{d:'HARD',e:'NDA 2024',
+q:'"To lead soldiers with discipline and compassion ______ the mark of a true officer."<br>Choose correctly.',
+opts:['are','were','is','have been'],ans:2,
+rule:'Infinitive phrase as subject → always singular verb "is"',
+exp:'"To lead soldiers with discipline and compassion" is an infinitive phrase functioning as the subject of the sentence. Infinitive phrases, gerund phrases, and noun clauses acting as subjects always take a singular verb. Even though the phrase contains plural elements ("soldiers"), the subject itself — the act of leading — is a single concept. Answer: is.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Four parts are underlined. Find the error:<br>"<u>The press</u> were <u>not allowed</u> to enter <u>the restricted</u> <u>zone</u>."',
+opts:['The press','not allowed','the restricted','zone'],ans:0,
+rule:'"The press" — collective noun always treated as singular in exam/formal context → was not allowed',
+exp:'"The press" is a collective noun that, in Indian exam conventions (and formal British English), is treated as singular when referring to the institution as a whole. "The press was not allowed" → singular verb "was" ✓. "Were" is plural and incorrect in this formal, institutional sense. Similar: "The public is requested…", "The clergy is…". Answer: "The press were" — "were" should be "was".'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The team of scientists have published their findings.',
+  'The team of scientists has published their findings.',
+  'The team of scientists has published its findings.',
+  'The team of scientists have published its findings.'
+],ans:2,
+rule:'Collective noun "team" as a unit → singular verb "has" + singular pronoun "its"',
+exp:'The subject is "the team" — a collective noun acting as a single unit (publishing as one body, not individually). This requires: (1) a singular verb: "has published", and (2) a singular pronoun: "its findings". Option A: plural "have" + plural "their" — wrong. Option B: singular "has" + plural "their" — inconsistent. Option C: singular "has" + singular "its" — correct ✓. Option D: plural "have" + singular "its" — inconsistent. Answer: C.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Spot the error:<br>"He is the only one of the candidates who <u>have</u> <u>cleared</u> all <u>five stages</u> of <u>the selection process</u>."',
+opts:['have','cleared','five stages','the selection process'],ans:0,
+rule:'"The only one of those who" → "who" refers to "the only one" (singular) → singular verb "has"',
+exp:'This is the mirror image of the "one of those who" rule. "He is the only one of the candidates who…" — the phrase "the only one" makes the antecedent singular. "Who" refers to "the only one" (singular), so the verb must be singular: "has cleared". Compare: "He is one of the candidates who have cleared…" (no "only" → plural). The word "only" is the pivot. Answer: "have" → should be "has".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Subject-Verb Agreement</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding performance — SVA rules are clearly second nature to you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the traps you missed — especially "one of those who" and intervening phrases.'}
+  else if(pct>=50){grade='Average';msg='Good attempt. Study the 12 rules carefully and focus on the highlighted traps.'}
+  else{grade='Needs Work';msg="Go through the Theory tab rule by rule, then retry. SVA becomes easy once the patterns are clear."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

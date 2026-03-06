@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditional Sentences | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Steel Blue / Slate ────────────────────────── */
+  --bg:        #EDF2F7;
+  --bg2:       #E1EAF4;
+  --bg3:       #D0DDEE;
+  --white:     #FFFFFF;
+  --ink:       #0A1628;
+  --ink2:      #162440;
+  --muted:     #4A6080;
+  --dim:       #7A96B4;
+  --border:    #BED0E4;
+
+  /* Primary — rich steel blue */
+  --pri:       #1A4A7A;
+  --priLt:     #235E9A;
+  --priPale:   #E2EBF6;
+
+  /* Accent 1 — warm gold */
+  --ac1:       #8A6000;
+  --ac1Lt:     #AA7800;
+  --ac1Pale:   #FBF4E0;
+
+  /* Accent 2 — teal-green (correct) */
+  --ac2:       #12644A;
+  --ac2Lt:     #1A8060;
+  --ac2Pale:   #E0F2EC;
+
+  /* Accent 3 — crimson (error) */
+  --ac3:       #822030;
+  --ac3Lt:     #A42840;
+  --ac3Pale:   #FCEAED;
+
+  /* Accent 4 — indigo (rule boxes) */
+  --ac4:       #2A2080;
+  --ac4Lt:     #3A2EA0;
+  --ac4Pale:   #EAEBF8;
+
+  /* Accent 5 — slate purple */
+  --ac5:       #4A2870;
+  --ac5Pale:   #F0EAF8;
+
+  /* Type-specific colours */
+  --t0:        #0E5C5C;  --t0Pale: #E0F2F2;
+  --t1:        #1A4A7A;  --t1Pale: #E2EBF6;
+  --t2:        #5A2A80;  --t2Pale: #F0EAF8;
+  --t3:        #822030;  --t3Pale: #FCEAED;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(10,22,40,.10);
+  --shadow-md: 0 4px 20px rgba(10,22,40,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{background:linear-gradient(135deg,#0D2E5A 0%,#1A4A7A 60%,#1E5C96 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.08) 0%,transparent 60%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-20px;right:-20px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(80,220,160,.13);color:#70DDA8}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(10,22,40,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(26,74,122,.22);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── TYPE BADGE CARDS (overview strip) ─────────────────────────── */
+.type-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.type-badge{border-radius:10px;padding:14px 10px;text-align:center;border:1.5px solid transparent}
+.tb-0{background:var(--t0Pale);border-color:rgba(14,92,92,.25)}
+.tb-1{background:var(--t1Pale);border-color:rgba(26,74,122,.25)}
+.tb-2{background:var(--t2Pale);border-color:rgba(90,42,128,.25)}
+.tb-3{background:var(--t3Pale);border-color:rgba(130,32,48,.25)}
+.tb-num{font-family:'Lora',serif;font-size:22px;font-weight:700;line-height:1;margin-bottom:4px}
+.tb-0 .tb-num{color:var(--t0)}.tb-1 .tb-num{color:var(--t1)}.tb-2 .tb-num{color:var(--t2)}.tb-3 .tb-num{color:var(--t3)}
+.tb-name{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-head.t0{border-left-color:var(--t0)!important}
+.c-head.t1{border-left-color:var(--t1)!important}
+.c-head.t2{border-left-color:var(--t2)!important}
+.c-head.t3{border-left-color:var(--t3)!important}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(138,96,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(130,32,48,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(42,32,128,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(74,40,112,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── CONDITIONAL FORMULA BLOCK ─────────────────────────────────── */
+.formula{border-radius:10px;padding:16px 18px;margin:14px 0;display:flex;flex-direction:column;gap:8px}
+.f-t0{background:var(--t0Pale);border:1.5px solid rgba(14,92,92,.25)}
+.f-t1{background:var(--t1Pale);border:1.5px solid rgba(26,74,122,.25)}
+.f-t2{background:var(--t2Pale);border:1.5px solid rgba(90,42,128,.25)}
+.f-t3{background:var(--t3Pale);border:1.5px solid rgba(130,32,48,.25)}
+.f-header{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px}
+.f-t0 .f-header{color:var(--t0)}.f-t1 .f-header{color:var(--t1)}.f-t2 .f-header{color:var(--t2)}.f-t3 .f-header{color:var(--t3)}
+.f-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.f-clause{flex:1;min-width:180px;background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:15px;font-weight:700;color:var(--ink2);line-height:1.5}
+.f-plus{font-size:20px;font-weight:800;color:var(--muted);flex-shrink:0}
+.f-note{font-size:13.5px;color:var(--ink2);line-height:1.6}
+
+/* ── CONJUNCTION TABLE ─────────────────────────────────────────── */
+.conj-grid{display:grid;gap:8px;margin:14px 0}
+.conj-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
+.conj-name{font-size:13px;font-weight:800;color:var(--pri);letter-spacing:.5px;margin-bottom:6px}
+.conj-rule{font-size:14.5px;color:var(--ink2);line-height:1.65}
+.conj-ex{font-size:14px;color:var(--muted);margin-top:4px;font-style:italic}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REF ────────────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--ac1Pale);color:var(--ac1)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--priPale);color:var(--pri);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(26,74,122,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(26,74,122,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#0D2E5A 0%,#1A4A7A 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+  .type-strip{grid-template-columns:repeat(2,1fr)}
+  .f-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Conditionals</div>
+  <h1 class="hero-title">Conditional Sentences —<br><span>Types 0, 1, 2 &amp; 3</span></h1>
+  <p class="hero-sub">Conditionals are among the most rule-bound structures in English — the tense combinations are fixed, the conjunctions have strict grammar rules, and small changes in wording (was vs were, would vs would have) carry entirely different meanings. This module covers all four types plus every conjunction-specific trap tested in CDS, NDA and AFCAT.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">All Four Types</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">15 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (15)</button>
+</div>
+
+<!-- ═══════════════════════ THEORY ═══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>conditional sentence</strong> describes what happens (or would happen) under certain conditions. It always has an <strong>if-clause</strong> (condition) and a <strong>main/result clause</strong> (consequence). The key insight: the <strong>type of conditional is determined by reality</strong> — whether the condition is a fact, a real future possibility, a present hypothetical, or an impossible past situation. Mastering this determines whether you can correctly identify errors and fill blanks.</p>
+  </div>
+
+  <div class="type-strip">
+    <div class="type-badge tb-0"><div class="tb-num">0</div><div class="tb-name">Zero<br>Facts</div></div>
+    <div class="type-badge tb-1"><div class="tb-num">1</div><div class="tb-name">First<br>Real Future</div></div>
+    <div class="type-badge tb-2"><div class="tb-num">2</div><div class="tb-name">Second<br>Hypothetical</div></div>
+    <div class="type-badge tb-3"><div class="tb-num">3</div><div class="tb-name">Third<br>Unreal Past</div></div>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — The Four Types in Detail</div>
+
+  <div class="c-card">
+    <div class="c-head open t0" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--t0Pale)">🔵</div>
+      <div style="flex:1">
+        <div class="c-title">Type 0 — Zero Conditional (Timeless Facts)</div>
+        <div class="c-sub">If + Simple Present → Simple Present | Always true</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body open">
+      <p>Type 0 expresses <strong>universal truths, scientific facts, and permanent conditions</strong> — things that are always true whenever the condition is met. Both clauses use the <strong>Simple Present</strong> tense. The word <strong>"when"</strong> can replace "if" without changing meaning.</p>
+      <div class="formula f-t0">
+        <div class="f-header">Type 0 Formula</div>
+        <div class="f-row">
+          <div class="f-clause">If + Subject + <b>V1 (Simple Present)</b></div>
+          <div class="f-plus">→</div>
+          <div class="f-clause">Subject + <b>V1 (Simple Present)</b></div>
+        </div>
+        <div class="f-note">✦ "when" can replace "if" — same meaning ✦ No modals (will/would) in either clause</div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <ul>
+          <li>If you <strong>heat</strong> water to 100°C, it <strong>boils</strong>. ✓</li>
+          <li>If soldiers <strong>lack</strong> sleep, their performance <strong>deteriorates</strong>. ✓</li>
+          <li>When metal <strong>is</strong> exposed to air, it <strong>rusts</strong>. ✓</li>
+          <li>If you <strong>press</strong> the trigger, the weapon <strong>fires</strong>. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Error</div>
+        <ul>
+          <li>If you heat water, it <span class="err">will boil</span>. → Simple Present, not "will boil" ✓ (Type 0 fact — "will" changes it to Type 1)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head t1" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--t1Pale)">🔷</div>
+      <div style="flex:1">
+        <div class="c-title">Type 1 — First Conditional (Real Future Possibility)</div>
+        <div class="c-sub">If + Simple Present → will + V1 | Possible and likely</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Type 1 describes a <strong>real, possible future situation</strong> — the speaker believes the condition could genuinely happen. The if-clause uses <strong>Simple Present</strong>; the result clause uses <strong>will + base verb</strong>.</p>
+      <div class="formula f-t1">
+        <div class="f-header">Type 1 Formula</div>
+        <div class="f-row">
+          <div class="f-clause">If + Subject + <b>V1 (Simple Present)</b></div>
+          <div class="f-plus">→</div>
+          <div class="f-clause">Subject + <b>will + V1</b></div>
+        </div>
+        <div class="f-note">✦ Can also use: can, may, might, should, must in the result clause ✦ NEVER use "will" in the if-clause</div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <ul>
+          <li>If he <strong>trains</strong> hard, he <strong>will qualify</strong> for the NDA. ✓</li>
+          <li>If it <strong>rains</strong>, the parade <strong>will be</strong> postponed. ✓</li>
+          <li>If you <strong>study</strong> this chapter, you <strong>may score</strong> full marks. ✓</li>
+          <li>If the ceasefire <strong>holds</strong>, troops <strong>will return</strong> to base. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The Golden Rule — NEVER "will" in the if-clause</div>
+        <ul>
+          <li>✗ "If he <em>will train</em> hard, he will qualify." → ✓ "If he <strong>trains</strong> hard, he will qualify."</li>
+          <li>✗ "If it <em>will rain</em>, we will cancel." → ✓ "If it <strong>rains</strong>, we will cancel."</li>
+          <li>This is the single most tested Type 1 error in all three exams</li>
+          <li><strong>Exception:</strong> "will" can appear in an if-clause only when it expresses willingness (a polite request), not futurity: "If you <em>will</em> please wait outside…" — here "will" = willingness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head t2" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--t2Pale)">🟣</div>
+      <div style="flex:1">
+        <div class="c-title">Type 2 — Second Conditional (Unreal Present / Hypothetical)</div>
+        <div class="c-sub">If + Past Simple → would + V1 | Imaginary or unlikely now</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Type 2 describes an <strong>unreal, hypothetical, or very unlikely present/future situation</strong>. The speaker imagines a different reality — either because the condition is impossible, or because they consider it unlikely. The if-clause uses the <strong>Simple Past</strong> tense (even though the meaning is present/future).</p>
+      <div class="formula f-t2">
+        <div class="f-header">Type 2 Formula</div>
+        <div class="f-row">
+          <div class="f-clause">If + Subject + <b>V2 (Simple Past)</b></div>
+          <div class="f-plus">→</div>
+          <div class="f-clause">Subject + <b>would / could / might + V1</b></div>
+        </div>
+        <div class="f-note">✦ "were" used for ALL persons in the if-clause (subjunctive mood — formal English) ✦ Never "would" in the if-clause</div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <ul>
+          <li>If I <strong>were</strong> the commander, I <strong>would deploy</strong> reserves immediately. ✓</li>
+          <li>If she <strong>knew</strong> the answer, she <strong>would tell</strong> you. ✓</li>
+          <li>If it <strong>were</strong> not for the fog, we <strong>could launch</strong> the strike. ✓</li>
+          <li>If he <strong>had</strong> more time, he <strong>might prepare</strong> better. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Were" Not "Was" — The Subjunctive Trap</div>
+        <ul>
+          <li>In Type 2 conditionals, formal English uses <strong>"were"</strong> for all persons — including I, he, she, it</li>
+          <li>✗ "If I <em>was</em> the officer…" → ✓ "If I <strong>were</strong> the officer…"</li>
+          <li>✗ "If she <em>was</em> taller…" → ✓ "If she <strong>were</strong> taller…"</li>
+          <li>This is the subjunctive mood — used for hypothetical/unreal conditions in formal/exam English</li>
+          <li>"Was" is acceptable only in very informal speech — never in CDS/NDA/AFCAT answers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head t3" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--t3Pale)">🔴</div>
+      <div style="flex:1">
+        <div class="c-title">Type 3 — Third Conditional (Unreal Past / Regret)</div>
+        <div class="c-sub">If + Past Perfect → would have + V3 | Impossible — past cannot change</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Type 3 refers to an <strong>impossible past situation</strong> — the condition did not happen, and its result is now imagined. This is the conditional of regret, criticism, and speculation about the past. Both clauses require <strong>perfect forms</strong>.</p>
+      <div class="formula f-t3">
+        <div class="f-header">Type 3 Formula</div>
+        <div class="f-row">
+          <div class="f-clause">If + Subject + <b>had + V3 (Past Perfect)</b></div>
+          <div class="f-plus">→</div>
+          <div class="f-clause">Subject + <b>would / could / might have + V3</b></div>
+        </div>
+        <div class="f-note">✦ Can invert: "Had he trained harder, he would have passed." (no "if") ✦ Never "would have" in the if-clause</div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <ul>
+          <li>If he <strong>had trained</strong> harder, he <strong>would have passed</strong> the selection. ✓</li>
+          <li>If we <strong>had received</strong> the intelligence in time, we <strong>could have prevented</strong> the attack. ✓</li>
+          <li>If the officer <strong>had followed</strong> orders, casualties <strong>would have been</strong> minimal. ✓</li>
+          <li><strong>Had</strong> he arrived earlier, he <strong>would have met</strong> the general. ✓ (inverted)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">The Two Most Common Type 3 Errors</div>
+        <ul>
+          <li>If he <span class="err">had trained</span> harder, he <span class="err">would pass</span>. → "would <strong>have</strong> passed" (result needs "have + V3") ✗</li>
+          <li>If he <span class="err">would have trained</span>, he would have passed. → "would have" in if-clause is always wrong ✗</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 — MIXED ── -->
+  <div class="sec-label">Section 2 — Mixed Conditionals</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Mixed Conditionals — Crossing Past &amp; Present</div>
+        <div class="c-sub">Past condition + present result, or present condition + past result</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Sometimes a conditional sentence mixes time frames — the condition and the result belong to different times. Two patterns are tested.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>If-clause</th><th>Result Clause</th><th>Meaning</th></tr>
+          <tr><td><b>Past → Present</b></td><td>Past Perfect (had + V3)</td><td>would + V1</td><td>A past condition affects the present</td></tr>
+          <tr><td><b>Present → Past</b></td><td>Simple Past / were</td><td>would have + V3</td><td>A present state would have affected a past event</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Mixed Conditional Examples</div>
+        <ul>
+          <li>If he <strong>had joined</strong> the army [past], he <strong>would be</strong> an officer now. [present] ✓ (Past → Present)</li>
+          <li>If I <strong>were</strong> braver [present], I <strong>would have volunteered</strong> for that mission. [past] ✓ (Present → Past)</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">How to Identify Mixed Conditionals</div>
+        <p>Look for <strong>time markers</strong>: "now", "today", "currently" in the result clause signal Present → the condition may be past. Conversely, a past event result ("would have…") with a present-state if-clause signals the Present → Past mix.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 — CONJUNCTIONS ── -->
+  <div class="sec-label">Section 3 — Conditional Conjunctions &amp; Their Rules</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">Other Conditional Conjunctions — Unless, Until, As long as &amp; More</div>
+        <div class="c-sub">Each has its own grammar rule — these are heavily tested in Spotting Errors</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Beyond "if", several other conjunctions introduce conditional clauses. Each has a fixed grammar rule — and its own common error pattern.</p>
+
+      <div class="conj-grid">
+
+        <div class="conj-card">
+          <div class="conj-name">UNLESS = "if…not"</div>
+          <div class="conj-rule">Never use "not" after "unless" — it already contains negation. Follow same tense rules as "if".</div>
+          <div class="conj-ex">✓ "Unless you train hard, you will not qualify." &nbsp;|&nbsp; ✗ "Unless you do <u>not</u> train…" (double negative)</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">PROVIDED / PROVIDED THAT / ON CONDITION THAT = "if and only if"</div>
+          <div class="conj-rule">Means a strict condition. Uses Simple Present in the conditional clause — never "will".</div>
+          <div class="conj-ex">✓ "You may enter provided you show your ID." &nbsp;|&nbsp; ✗ "provided you will show…"</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">AS LONG AS / SO LONG AS = "on the condition that"</div>
+          <div class="conj-rule">Uses Simple Present in the clause — never future tense inside the clause.</div>
+          <div class="conj-ex">✓ "As long as you follow orders, you will succeed." &nbsp;|&nbsp; ✗ "as long as you will follow…"</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">IN CASE = "because there is a possibility"</div>
+          <div class="conj-rule">Expresses precaution. Always uses Simple Present (not "will") in the in-case clause.</div>
+          <div class="conj-ex">✓ "Take a raincoat in case it rains." &nbsp;|&nbsp; ✗ "in case it will rain"</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">SUPPOSE / SUPPOSING = "what if" (hypothetical)</div>
+          <div class="conj-rule">Introduces Type 2 / hypothetical conditions. Followed by Past Simple or Past Perfect.</div>
+          <div class="conj-ex">✓ "Suppose he were wrong, what would we do?" &nbsp;|&nbsp; ✓ "Supposing she had known, would she have told us?"</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">BUT FOR = "if it were not for / if it had not been for"</div>
+          <div class="conj-rule">Used with Type 2 (but for + noun → would + V1) or Type 3 (but for + noun → would have + V3). No verb follows "but for" directly.</div>
+          <div class="conj-ex">✓ "But for his bravery, we would have lost." (Type 3) &nbsp;|&nbsp; ✓ "But for the fog, we could see clearly." (Type 2)</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">EVEN IF = "regardless of whether"</div>
+          <div class="conj-rule">Same tense rules as "if" — follow Type 1, 2, or 3 structure. Adds emphasis that the result holds whatever the condition.</div>
+          <div class="conj-ex">✓ "Even if it rains, we will march." (Type 1) &nbsp;|&nbsp; ✓ "Even if he had tried, he would have failed." (Type 3)</div>
+        </div>
+
+        <div class="conj-card">
+          <div class="conj-name">ONLY IF = strict condition (emphatic)</div>
+          <div class="conj-rule">When "only if" starts a sentence, the main clause is inverted: "Only if + condition, auxiliary + subject + verb".</div>
+          <div class="conj-ex">✓ "Only if you train daily will you improve." (inverted main clause) &nbsp;|&nbsp; ✗ "Only if you train daily you will improve."</div>
+        </div>
+
+      </div>
+
+      <div class="trap-box">
+        <div class="tr-label">⚑ The No-Future-in-Conditional-Clause Rule</div>
+        <ul>
+          <li>All conditional/time-clause conjunctions — if, unless, provided, as long as, in case, when, before, after, until — share one rule:</li>
+          <li><strong>Never use "will/shall/would" inside the conditional/time clause itself.</strong></li>
+          <li>The future tense goes only in the main (result) clause.</li>
+          <li>✗ "Unless you <em>will study</em>…" → ✓ "Unless you <strong>study</strong>…"</li>
+          <li>✗ "Provided you <em>will attend</em>…" → ✓ "Provided you <strong>attend</strong>…"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 — INVERSION ── -->
+  <div class="sec-label">Section 4 — Inverted Conditionals (Without "If")</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Formal Inversion — Dropping "If" &amp; Inverting the Verb</div>
+        <div class="c-sub">Were I… / Had he… / Should you… — formal/literary style</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>In formal and literary English, "if" can be omitted from conditional clauses if the auxiliary verb is placed <strong>before the subject</strong>. This inversion is tested in CDS/NDA fill-in-the-blanks and spotting errors.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Normal Form</th><th>Inverted Formal Form</th><th>Type</th></tr>
+          <tr><td>If <b>he were</b> ready…</td><td><b>Were he</b> ready…</td><td>Type 2</td></tr>
+          <tr><td>If <b>he had</b> known…</td><td><b>Had he</b> known…</td><td>Type 3</td></tr>
+          <tr><td>If <b>you should</b> need help…</td><td><b>Should you</b> need help…</td><td>Type 1 (tentative)</td></tr>
+          <tr><td>If it <b>were not</b> for…</td><td><b>Were it not</b> for…</td><td>Type 2</td></tr>
+          <tr><td>If it <b>had not been</b> for…</td><td><b>Had it not been</b> for…</td><td>Type 3</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Inverted Conditional Examples</div>
+        <ul>
+          <li><strong>Were I</strong> the general, I would order a full retreat. ✓ (= If I were…)</li>
+          <li><strong>Had the officer</strong> received the signal, reinforcements would have arrived. ✓ (= If the officer had…)</li>
+          <li><strong>Should you</strong> require assistance, contact the control room. ✓ (= If you should…)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════ QUICK REF ═══════════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Conditionals — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">The Four Types at a Glance</div>
+      <ul>
+        <li><b>Type 0:</b> If + Pres. Simple → Pres. Simple &nbsp;(universal fact)</li>
+        <li><b>Type 1:</b> If + Pres. Simple → will + V1 &nbsp;(real future)</li>
+        <li><b>Type 2:</b> If + Past Simple (were) → would + V1 &nbsp;(hypothetical present)</li>
+        <li><b>Type 3:</b> If + Past Perfect → would have + V3 &nbsp;(unreal past)</li>
+        <li><b>Mixed (past→present):</b> If + Past Perfect → would + V1</li>
+        <li><b>Mixed (present→past):</b> If + Past Simple/were → would have + V3</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Golden Rules — Never Violate These</div>
+      <ul>
+        <li>✗ Never "will" in the if-clause (Types 1, 0)</li>
+        <li>✗ Never "would" in the if-clause (Types 2, 3)</li>
+        <li>✗ Never "would have" in the if-clause (Type 3)</li>
+        <li>✓ Type 2 if-clause: always <span class="ok">"were"</span> — never "was" in formal English</li>
+        <li>✓ Type 3 result: always <span class="ok">"would/could/might have + V3"</span></li>
+        <li>✓ "Unless" already means "if not" — never add "not" after "unless"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Conjunction Grammar Rules</div>
+      <ul>
+        <li><b>Unless:</b> = if…not → never "unless…not"</li>
+        <li><b>Provided / as long as / in case:</b> → Simple Present inside (no will)</li>
+        <li><b>But for + noun:</b> Type 2 → would; Type 3 → would have</li>
+        <li><b>Suppose / supposing:</b> followed by Past / Past Perfect</li>
+        <li><b>Even if:</b> same tense rules as "if"</li>
+        <li><b>Only if</b> (sentence-initial): main clause must be inverted</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Inverted Conditionals (No "If")</div>
+      <ul>
+        <li><b>Were + subject</b> → Type 2: "Were I the commander…"</li>
+        <li><b>Had + subject + V3</b> → Type 3: "Had he known…"</li>
+        <li><b>Should + subject</b> → Type 1 (tentative): "Should you need…"</li>
+        <li><b>Were it not for</b> → Type 2 version of "but for"</li>
+        <li><b>Had it not been for</b> → Type 3 version of "but for"</li>
+        <li>Inversion = formal/literary; tested in fill-in-the-blanks</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Spotting Error Checklist</div>
+      <ul>
+        <li>1. Identify the conditional type (0/1/2/3/mixed)</li>
+        <li>2. Check if-clause tense — is "will/would" wrongly placed there?</li>
+        <li>3. Check result clause — does it match the type's formula?</li>
+        <li>4. If Type 2 — is "were" used (not "was")?</li>
+        <li>5. If Type 3 — does result have "have + V3" (not just "would + V1")?</li>
+        <li>6. If "unless" — is there an extra "not" after it?</li>
+        <li>7. If "provided / as long as / in case" — is there a "will" inside?</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Result Clause Variations</div>
+      <ul>
+        <li><b>Type 1</b> result: will / can / may / might / should / must + V1</li>
+        <li><b>Type 2</b> result: would / could / might + V1</li>
+        <li><b>Type 3</b> result: would / could / might + have + V3</li>
+        <li>Imperative as result (Type 1): "If you finish early, <span class="ok">leave</span>."</li>
+        <li>Present tense as result (Type 0/habitual): "If he's late, <span class="ok">we start</span> without him."</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Conditional Sentences · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── TYPE 0 ───────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Type 0',
+q:'Fill in the blank:<br>"If iron ______ to moisture, it rusts."',
+opts:['is exposed','will be exposed','was exposed','had been exposed'],ans:0,
+rule:'Type 0 (universal fact): If + Simple Present → Simple Present',
+exp:'This sentence states a scientific/universal truth — iron always rusts when exposed to moisture. Type 0 conditionals use Simple Present in both clauses. "Is exposed" (Simple Present passive) is correct. "Will be exposed" adds "will" — this would make it Type 1 (a specific future possibility), not a universal fact. "Was exposed" (Simple Past) and "had been exposed" (Past Perfect) are wrong tenses entirely for a general scientific truth. Answer: is exposed.'},
+
+// ── TYPE 1 ───────────────────────────────────────────────────────
+
+{d:'EASY',e:'CDS 2022',type:'Type 1',
+q:'Spot the error:<br>"If the candidate will prepare sincerely, he will clear the written examination."',
+opts:[
+  'If the candidate will prepare',
+  'sincerely, he will',
+  'clear the written',
+  'examination'
+],ans:0,
+rule:'Type 1: "will" must NEVER appear in the if-clause — use Simple Present',
+exp:'This is the single most tested Type 1 error. In Type 1 conditionals (real future possibility), the if-clause must use the Simple Present tense — never "will". "Will prepare" in the if-clause is wrong. The correct form is: "If the candidate <strong>prepares</strong> sincerely, he will clear the written examination." The "will" belongs only in the result/main clause. Answer: "will prepare" → should be "prepares".'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Type 1',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'If it will rain tomorrow, we will cancel the outdoor training.',
+  'If it rains tomorrow, we will cancel the outdoor training.',
+  'If it rained tomorrow, we will cancel the outdoor training.',
+  'If it had rained tomorrow, we would cancel the outdoor training.'
+],ans:1,
+rule:'Type 1: If + Simple Present → will + V1 | "will" must not appear in the if-clause',
+exp:'Option A has "will rain" in the if-clause — wrong (Type 1 never has "will" in the if-clause). Option B: "If it rains" (Simple Present) + "we will cancel" (will + V1) — correct Type 1 structure ✓. Option C: "If it rained" (Simple Past) — this is the if-clause form for Type 2, but the result clause uses "will cancel" (Type 1 result) — mismatched types. Option D: "had rained" (Past Perfect) with "would cancel" (not "would have cancelled") — mixed up Type 3 incorrectly. Answer: B.'},
+
+// ── TYPE 2 ───────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'NDA 2022',type:'Type 2',
+q:'Fill in the blank:<br>"If I ______ the commanding officer, I would deploy additional troops to the northern sector."',
+opts:['am','was','were','had been'],ans:2,
+rule:'Type 2 subjunctive: "were" is required for all persons in the if-clause — never "was"',
+exp:'The result clause uses "would deploy" — this identifies the sentence as Type 2 (hypothetical present). In Type 2 conditionals, the if-clause uses the Simple Past, but English has a special rule for the verb "be": the subjunctive form <strong>"were"</strong> must be used for ALL persons (I were, he were, she were, it were) in formal English. "Am" (A) is Simple Present — wrong. "Was" (B) is grammatically incorrect in this formal/exam context even though it sounds natural in speech. "Had been" (D) is Past Perfect — that would make it Type 3. Answer: were.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Type 2',
+q:'Spot the error:<br>"If she was more experienced, she would be given command of the unit."',
+opts:[
+  'If she was',
+  'more experienced',
+  'she would be given',
+  'command of the unit'
+],ans:0,
+rule:'Type 2 if-clause: subjunctive "were" required — not "was" — for all persons in formal English',
+exp:'The result clause "would be given" confirms this is a Type 2 conditional — hypothetical present situation. In formal/exam English, the verb "be" in a Type 2 if-clause must take the subjunctive form "were" regardless of the subject: "If she <strong>were</strong> more experienced…" The use of "was" is considered incorrect in CDS/NDA/AFCAT formal grammar. This is one of the most frequently tested Type 2 errors. Answer: "was" → should be "were".'},
+
+// ── TYPE 3 ───────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Type 3',
+q:'Fill in the blank:<br>"If the intelligence report ______ on time, the mission would have succeeded."',
+opts:['arrives','arrived','had arrived','would have arrived'],ans:2,
+rule:'Type 3: if-clause = Past Perfect (had + V3); result = would have + V3',
+exp:'The result clause "would have succeeded" uses "would have + V3" — this identifies the sentence as Type 3 (unreal past). In Type 3, the if-clause must use the Past Perfect: "had + V3". "Had arrived" is correct. Option A ("arrives") is Simple Present — wrong. Option B ("arrived") is Simple Past — this would combine with "would have succeeded" in an inconsistent way (Simple Past if-clause + would have result = inconsistent). Option D ("would have arrived") — "would have" must never appear in the if-clause. Answer: had arrived.'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Type 3',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'If he had studied harder, he would pass the examination.',
+  'If he studied harder, he would have passed the examination.',
+  'If he had studied harder, he would have passed the examination.',
+  'If he would have studied harder, he would have passed the examination.'
+],ans:2,
+rule:'Type 3: If + Past Perfect → would have + V3 | Never "would have" in the if-clause',
+exp:'Option A: "had studied" (correct if-clause) + "would pass" (wrong — result needs "would have passed"). Mismatched. Option B: "studied" (Simple Past) + "would have passed" — this is a Mixed Conditional (present → past), not a standard Type 3. The sentence implies he did not study hard in the past, so Past Perfect is needed. Option C: "had studied" (Past Perfect) + "would have passed" (would have + V3) — correct Type 3 ✓. Option D: "would have studied" — "would have" in the if-clause is always wrong. Answer: C.'},
+
+// ── UNLESS ───────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Unless',
+q:'Spot the error:<br>"Unless you do not submit the medical form, your application will be rejected."',
+opts:[
+  'Unless you do not submit',
+  'the medical form',
+  'your application will',
+  'be rejected'
+],ans:0,
+rule:'"Unless" already means "if…not" — adding "not" creates a double negative, reversing the intended meaning',
+exp:'"Unless" means "if not" — it already contains the negation. Adding "not" after "unless" creates a double negative, which actually reverses the meaning: "Unless you do not submit" = "If you do submit" — the opposite of what is intended. The correct form is: "Unless you <strong>submit</strong> the medical form, your application will be rejected." = "If you do not submit the form, your application will be rejected." Answer: "Unless you do not submit" → should be "Unless you submit".'},
+
+// ── PROVIDED / AS LONG AS ────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2023',type:'Provided / As long as',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Provided you will follow the safety protocols, you may enter the range.',
+  'Provided you followed the safety protocols, you may enter the range.',
+  'Provided you follow the safety protocols, you may enter the range.',
+  'Provided you are following the safety protocols, you may enter the range.'
+],ans:2,
+rule:'"Provided" introduces a conditional clause — Simple Present inside; never "will"',
+exp:'"Provided" (= "if and only if") functions like "if" in a conditional clause. The same rule applies: no "will" inside the "provided" clause. Simple Present must be used. Option A has "will follow" — wrong. Option B has "followed" (Simple Past) — this would make it a Type 2 hypothetical, which does not fit the meaning here. Option D has "are following" (Present Continuous) — ongoing action is not appropriate for a condition. Option C "follow" (Simple Present) is correct and follows the Type 1 pattern. Answer: C.'},
+
+// ── IN CASE ──────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'NDA 2023',type:'In case',
+q:'Fill in the blank:<br>"Carry a torch in case the power ______ during the night operation."',
+opts:['will fail','would fail','fails','had failed'],ans:2,
+rule:'"In case" = precautionary clause → Simple Present inside; never "will" or "would"',
+exp:'"In case" introduces a precautionary clause — it expresses that you do something as a precaution because something might happen. The clause after "in case" always uses Simple Present tense in future-reference contexts. "Fails" (Simple Present) is correct. "Will fail" — "will" is never used inside "in case" clauses. "Would fail" is used in hypothetical/reported contexts, not in direct precautionary clauses. "Had failed" (Past Perfect) is wrong tense entirely. Answer: fails.'},
+
+// ── BUT FOR ──────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'But for',
+q:'Fill in the blank:<br>"But for the timely arrival of reinforcements, the platoon ______ the position."',
+opts:['would lose','will have lost','would have lost','had lost'],ans:2,
+rule:'"But for" + past event = Type 3 equivalent → result clause: would have + V3',
+exp:'"But for" means "if it had not been for" — when referring to a past event (the arrival of reinforcements already happened in the past), it is equivalent to a Type 3 conditional. The result clause must therefore use <strong>"would have + V3"</strong>: "would have lost". Option A ("would lose") is the Type 2 result form — incorrect for a past reference. Option B ("will have lost") is Future Perfect — wrong tense and wrong modal. Option D ("had lost") is Past Perfect — no modal, which is wrong for a conditional result clause. Answer: would have lost.'},
+
+// ── INVERTED CONDITIONAL ─────────────────────────────────────────
+
+{d:'HARD',e:'AFCAT 2023',type:'Inverted Conditional',
+q:'Choose the correct inverted conditional form of:<br>"If you should need further assistance, contact the operations room."',
+opts:[
+  'Should you need further assistance, contact the operations room.',
+  'Were you to need further assistance, contact the operations room.',
+  'Had you needed further assistance, contact the operations room.',
+  'If you will need further assistance, contact the operations room.'
+],ans:0,
+rule:'Inverted Type 1 (tentative): "Should + subject + V1…" replaces "If + subject + should + V1…"',
+exp:'When "if" is dropped from a conditional clause and the auxiliary is moved before the subject, it is called inversion. "If you should need" → inverted form = <strong>"Should you need…"</strong> (auxiliary "should" moves before the subject "you"). This is a Type 1 tentative conditional — used for polite requests or low-probability events. Option B ("Were you to need") would correspond to "If you were to need" — a Type 2 hypothetical form. Option C ("Had you needed") = Type 3 inversion — past, and result clause should use "would have", not an imperative. Option D re-introduces "if" and uses "will" in the if-clause — both wrong. Answer: A.'},
+
+// ── MIXED CONDITIONAL ────────────────────────────────────────────
+
+{d:'HARD',e:'NDA 2024',type:'Mixed Conditional',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'If he had joined the army, he would be an officer now.',
+  'If he had joined the army, he would have been an officer now.',
+  'If he joined the army, he would have been an officer now.',
+  'If he has joined the army, he would be an officer now.'
+],ans:0,
+rule:'Mixed Conditional (past → present): If + Past Perfect → would + V1 (present result)',
+exp:'This is a Mixed Conditional: the condition is in the past (he did not join the army — past event) but the result is in the present (he is not an officer now). Structure: <strong>If + Past Perfect → would + base verb</strong> (present result). Option A: "had joined" (Past Perfect if-clause) + "would be" (present result) — correct Mixed Conditional ✓. Option B: "would have been" — this is a Type 3 result form (past result), not a present one. "Now" tells us the result is present. Option C: "joined" (Simple Past) + "would have been" — mismatched (this mixes Type 2 if-clause with Type 3 result). Option D: "has joined" (Present Perfect) — wrong; the condition must be past perfect for a mixed conditional. Answer: A.'},
+
+// ── ONLY IF ──────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2024',type:'Only if (Inversion)',
+q:'Spot the error:<br>"Only if you score above the cut-off in the written test you will be called for the SSB interview."',
+opts:[
+  'Only if you score above',
+  'the cut-off in the written test',
+  'you will be called',
+  'for the SSB interview'
+],ans:2,
+rule:'"Only if" at the start of a sentence requires inversion in the main clause: "will you be called" not "you will be called"',
+exp:'When "Only if" (or other restrictive adverbials like "only when", "not until", "never", "rarely") begins a sentence, the main clause must be <strong>inverted</strong> — the auxiliary verb comes before the subject. "You will be called" is normal word order — wrong in this structure. The correct form is: "Only if you score above the cut-off in the written test <strong>will you be called</strong> for the SSB interview." (auxiliary "will" precedes subject "you"). This inversion rule is specifically tested in CDS/NDA. Answer: "you will be called" → should be "will you be called".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Conditional Sentences</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=87){grade='Excellent';msg='Outstanding! All four types and their conjunction rules are clearly second nature to you.'}
+  else if(pct>=67){grade='Good';msg='Well done. Review the conjunction-specific rules and mixed conditionals once more.'}
+  else if(pct>=47){grade='Average';msg='Good effort. Go back to the Theory cards — focus on the "were vs was" rule and conjunction traps.'}
+  else{grade='Needs Work';msg='Start with the four Type formulas in Theory. Once those are solid, tackle conjunctions and inversion.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

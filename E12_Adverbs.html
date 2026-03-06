@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adverbs | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F6F1E8;
+  --bg2:       #EDE5D4;
+  --bg3:       #E2D6BF;
+  --white:     #FFFFFF;
+  --ink:       #1E1200;
+  --ink2:      #342000;
+  --muted:     #7A6040;
+  --dim:       #AA8C5C;
+  --border:    #D8C89C;
+  --pri:       #8A4E00;
+  --priLt:     #AA6200;
+  --priPale:   #FDF4E0;
+  --ac1:       #0A5858;
+  --ac1Lt:     #0E7070;
+  --ac1Pale:   #E0F2F2;
+  --ac2:       #245E28;
+  --ac2Lt:     #2E7A34;
+  --ac2Pale:   #E4F2E6;
+  --ac3:       #7A1E10;
+  --ac3Lt:     #9E2818;
+  --ac3Pale:   #FCEAED;
+  --ac4:       #162048;
+  --ac4Lt:     #1E2C64;
+  --ac4Pale:   #E4E8F6;
+  --ac5:       #541860;
+  --ac5Pale:   #F4EAF8;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(30,18,0,.10);
+  --shadow-md: 0 4px 20px rgba(30,18,0,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+.hero{background:linear-gradient(135deg,#002840 0%,#003D5C 55%,#005078 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(80,200,255,.10) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(80,200,255,.05);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#7DDBF5;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(125,219,245,.18);color:#7DDBF5}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(30,18,0,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.intro-box{background:var(--priPale);border:1.5px solid rgba(138,78,0,.22);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(10,88,88,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(122,30,16,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(22,32,72,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(84,24,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.5;font-size:15px}
+.degree-table td:first-child{font-weight:700;color:var(--ink)}
+.degree-table td:nth-child(2){color:var(--ac1);font-weight:700}
+.degree-table td:nth-child(3){color:var(--pri);font-weight:700}
+.degree-table .irr-row td{background:#FFF8E8!important}
+.degree-table .irr-row td:first-child{color:var(--pri)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.tag-irr{background:var(--priPale);color:var(--pri);border:1px solid rgba(138,78,0,.25)}
+.tag-defect{background:var(--ac3Pale);color:var(--ac3);border:1px solid rgba(122,30,16,.25)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+.order-strip{display:flex;gap:0;border-radius:10px;overflow:hidden;margin:14px 0;border:1px solid var(--border)}
+.os-cell{flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:800;border-right:1px solid var(--border)}
+.os-cell:last-child{border-right:none}
+.os-num{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--pri);line-height:1;margin-bottom:3px}
+.os-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;line-height:1.3}
+.os-cell:nth-child(odd){background:var(--priPale)}.os-cell:nth-child(even){background:var(--white)}
+
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(138,78,0,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(138,78,0,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#002840 0%,#005078 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#7DDBF5;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .tab{padding:12px 14px;font-size:11px}
+  .hero-title{font-size:22px}
+  .order-strip{flex-wrap:wrap}
+  .os-cell{flex:0 0 33.33%}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-kicker">Olive Defence · English Grammar</div>
+  <div class="hero-title">E12 — <span>Adverbs</span></div>
+  <div class="hero-sub">Types, degrees, position rules, common confusables &amp; exam-pattern traps for CDS · NDA · AFCAT</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-y">5 Sections</span>
+    <span class="chip chip-g">15 Questions</span>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">Theory</button>
+  <button class="tab" onclick="switchTab('degrees')">Degree List</button>
+  <button class="tab" onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">Quiz</button>
+</div>
+
+<!-- ═══════════════════════ THEORY ═══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>An <strong>adverb</strong> modifies a <strong>verb, adjective, another adverb, or an entire clause</strong>. It answers questions like <strong>How? When? Where? How often? To what degree?</strong> Adverbs are tested in CDS/NDA/AFCAT primarily through <strong>error spotting, sentence improvement, and fill-in-the-blank</strong> question types. The key trap areas are: position of adverbs, adjective vs adverb confusion, double negatives, and irregular degree forms.</p>
+  </div>
+
+  <!-- ── SECTION 1 — TYPES ── -->
+  <div class="sec-label">Section 1 — Types of Adverbs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🗂️</div>
+      <div style="flex:1">
+        <div class="c-title">Classification of Adverbs</div>
+        <div class="c-sub">Manner · Place · Time · Frequency · Degree · Sentence adverbs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Adverbs are grouped by the question they answer:</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Question Answered</th><th>Examples</th></tr>
+          <tr><td><b>Manner</b></td><td>How?</td><td>bravely, quickly, well, hard, fast</td></tr>
+          <tr><td><b>Place</b></td><td>Where?</td><td>here, there, abroad, nearby, everywhere</td></tr>
+          <tr><td><b>Time</b></td><td>When?</td><td>now, then, soon, already, yet, still</td></tr>
+          <tr><td><b>Frequency</b></td><td>How often?</td><td>always, usually, often, seldom, never, once</td></tr>
+          <tr><td><b>Degree</b></td><td>To what extent?</td><td>very, quite, rather, almost, too, enough, fairly</td></tr>
+          <tr><td><b>Sentence</b></td><td>Comments on the whole clause</td><td>unfortunately, clearly, obviously, frankly</td></tr>
+          <tr><td><b>Interrogative</b></td><td>Asks a question</td><td>where, when, why, how</td></tr>
+          <tr><td><b>Relative</b></td><td>Introduces a relative clause</td><td>where, when, why (after noun)</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples in context</div>
+        <ul>
+          <li>The cadet marched <strong>briskly</strong>. [Manner — How?]</li>
+          <li>The convoy stopped <strong>here</strong>. [Place — Where?]</li>
+          <li>The orders arrived <strong>soon</strong>. [Time — When?]</li>
+          <li>He <strong>always</strong> reports on time. [Frequency — How often?]</li>
+          <li>The mission was <strong>quite</strong> successful. [Degree — To what extent?]</li>
+          <li><strong>Fortunately</strong>, no casualties were reported. [Sentence adverb]</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">🔤</div>
+      <div style="flex:1">
+        <div class="c-title">Formation of Adverbs</div>
+        <div class="c-sub">Adding -ly, spelling changes, and flat adverbs (fast, hard, late)</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Most adverbs of manner are formed by adding <strong>-ly</strong> to an adjective, but spelling rules and exceptions must be noted:</p>
+      <div class="fact-box">
+        <div class="fb-label">Formation Rules</div>
+        <ul>
+          <li>Most adjectives: add <strong>-ly</strong> → brave → <strong>bravely</strong>; quick → <strong>quickly</strong></li>
+          <li>Adjective ending in <strong>-y</strong>: change y→i, add -ly → happy → <strong>happily</strong>; easy → <strong>easily</strong></li>
+          <li>Adjective ending in <strong>-le</strong>: drop e, add -y → simple → <strong>simply</strong>; gentle → <strong>gently</strong></li>
+          <li>Adjective ending in <strong>-ic</strong>: add -ally → basic → <strong>basically</strong>; tragic → <strong>tragically</strong> (exception: <em>publicly</em>)</li>
+          <li>Adjective ending in <strong>-ful</strong>: add -ly → careful → <strong>carefully</strong>; hopeful → <strong>hopefully</strong></li>
+          <li>Adjective ending in <strong>-ll</strong>: add -y → full → <strong>fully</strong>; dull → <strong>dully</strong></li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Flat Adverbs — Same form as the adjective</div>
+        <ul>
+          <li><strong>fast</strong> — He drives <strong>fast</strong>. (not "fastly") ✓</li>
+          <li><strong>hard</strong> — She worked <strong>hard</strong>. (not "hardly" — "hardly" means scarcely)</li>
+          <li><strong>late</strong> — He arrived <strong>late</strong>. (not "lately" — "lately" means recently)</li>
+          <li><strong>high</strong> — The plane flew <strong>high</strong>. (not "highly" — "highly" = to a great degree: "highly trained")</li>
+          <li><strong>near</strong> — Come <strong>near</strong>. (not "nearly" — "nearly" = almost)</li>
+          <li><strong>deep</strong> — They dug <strong>deep</strong>. (not "deeply" — "deeply" = intensely/emotionally)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 — POSITION ── -->
+  <div class="sec-label">Section 2 — Position of Adverbs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">📍</div>
+      <div style="flex:1">
+        <div class="c-title">Position Rules — Manner, Place, Time</div>
+        <div class="c-sub">End position default · MPT order · Never split infinitive</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When multiple adverbs follow a verb, they follow the order: <strong>Manner → Place → Time (MPT)</strong>. This is tested in sentence rearrangement questions.</p>
+      <div class="order-strip">
+        <div class="os-cell"><div class="os-num">1</div><div class="os-name">Manner</div></div>
+        <div class="os-cell"><div class="os-num">2</div><div class="os-name">Place</div></div>
+        <div class="os-cell"><div class="os-num">3</div><div class="os-name">Time</div></div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">MPT Order Examples</div>
+        <ul>
+          <li>The soldiers marched <strong>bravely [M] through the valley [P] at dawn [T]</strong>. ✓</li>
+          <li>She performed <strong>brilliantly [M] on stage [P] last night [T]</strong>. ✓</li>
+          <li>He drove <strong>carefully [M] to the base [P] yesterday [T]</strong>. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Wrong Order Errors</div>
+        <ul>
+          <li>✗ "He arrived <em>yesterday at the base quickly</em>." → ✓ "He arrived <strong>quickly at the base yesterday</strong>."</li>
+          <li>✗ "She reported <em>at 0600 to headquarters promptly</em>." → ✓ "…<strong>promptly at headquarters at 0600</strong>."</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Split Infinitive — Avoid in Formal Writing</div>
+        <p>Placing an adverb <strong>between "to" and the verb</strong> is called a split infinitive. While acceptable in modern informal usage, it is treated as an error in defence exams.<br><br>
+        ✗ "The officer decided to <em>quickly</em> retreat." → ✓ "…decided to retreat <strong>quickly</strong>."<br>
+        ✗ "We need to <em>carefully</em> examine the report." → ✓ "…need to examine the report <strong>carefully</strong>."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac2Pale)">🔁</div>
+      <div style="flex:1">
+        <div class="c-title">Position of Frequency Adverbs</div>
+        <div class="c-sub">always, usually, often, seldom, never — before main verb, after auxiliary</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Frequency adverbs (<strong>always, usually, often, sometimes, seldom, rarely, never</strong>) have a fixed position in the sentence — this is a heavily tested rule in error-spotting questions.</p>
+      <div class="fact-box">
+        <div class="fb-label">Position Rule for Frequency Adverbs</div>
+        <ul>
+          <li><strong>Before the main verb</strong>: She <strong>always</strong> reports on time. ✓</li>
+          <li><strong>After the auxiliary verb</strong> (be, have, will, can, must…): He is <strong>always</strong> punctual. / She has <strong>never</strong> failed. ✓</li>
+          <li><strong>After "be" when used alone</strong>: They are <strong>usually</strong> ready. ✓</li>
+          <li><strong>At beginning or end</strong> (for emphasis only — especially sometimes/usually/often): <strong>Often</strong>, the orders change at the last moment. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Position Errors</div>
+        <ul>
+          <li>✗ "He reports <em>always</em> on time." → ✓ "He <strong>always</strong> reports on time."</li>
+          <li>✗ "She has completed <em>never</em> a task late." → ✓ "She has <strong>never</strong> completed a task late."</li>
+          <li>✗ "The unit is <em>seldom</em> late — <em>seldom</em> it misses briefing." → ✓ "The unit is <strong>seldom</strong> late; it <strong>seldom</strong> misses briefing."</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Seldom / Rarely / Never" — Inversion After Fronting</div>
+        <ul>
+          <li>When <em>seldom, rarely,</em> or <em>never</em> is placed at the <strong>start</strong> of a sentence for emphasis, the subject and auxiliary are <strong>inverted</strong>.</li>
+          <li><strong>Seldom</strong> does the commanding officer repeat an order. ✓</li>
+          <li><strong>Never</strong> have I seen such discipline. ✓</li>
+          <li>✗ "<strong>Seldom</strong> the CO repeats an order." ← No inversion = error</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 — DEGREE ── -->
+  <div class="sec-label">Section 3 — Degrees of Comparison</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">📊</div>
+      <div style="flex:1">
+        <div class="c-title">Forming Degrees of Adverbs</div>
+        <div class="c-sub">Regular (-er/-est vs more/most) · Irregular forms · Flat adverbs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Like adjectives, adverbs have three degrees: <strong>Positive, Comparative, Superlative</strong>. One-syllable flat adverbs take <strong>-er/-est</strong>; adverbs ending in <strong>-ly</strong> take <strong>more/most</strong>.</p>
+      <div class="fact-box">
+        <div class="fb-label">Degree Formation Rules</div>
+        <ul>
+          <li>One-syllable flat adverb: <strong>fast → faster → fastest</strong>; hard → harder → hardest</li>
+          <li>-ly adverbs: <strong>quickly → more quickly → most quickly</strong>; bravely → more bravely → most bravely</li>
+          <li>Irregular: <strong>well → better → best</strong>; badly → worse → worst; little → less → least; much → more → most</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Double Comparison Errors (very common trap)</div>
+        <ul>
+          <li>✗ "She ran <em>more faster</em> than him." → ✓ "She ran <strong>faster</strong> than him."</li>
+          <li>✗ "He performed <em>more better</em> today." → ✓ "He performed <strong>better</strong> today."</li>
+          <li>✗ "They arrived <em>most earliest</em>." → ✓ "They arrived <strong>earliest</strong>."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 — ADJECTIVE vs ADVERB ── -->
+  <div class="sec-label">Section 4 — Adjective vs Adverb Confusion</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Adjective vs Adverb — The Core Distinction</div>
+        <div class="c-sub">Linking verbs take adjectives · Action verbs take adverbs · "Good" vs "well"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The most heavily tested error type is using an <strong>adjective where an adverb is needed</strong>, or vice versa. The key rule: <strong>linking verbs (be, seem, look, feel, smell, taste, sound, become, appear, remain)</strong> are followed by <strong>adjectives</strong> (describing the subject), while <strong>action verbs</strong> are followed by <strong>adverbs</strong> (describing the action).</p>
+      <div class="eg-box">
+        <div class="eg-label">Linking Verb → Adjective</div>
+        <ul>
+          <li>The cadet looked <strong>confident</strong>. (not "confidently" — "looked" = linking verb here) ✓</li>
+          <li>The stew smells <strong>good</strong>. (not "well") ✓</li>
+          <li>He remained <strong>calm</strong> under fire. ✓</li>
+          <li>She felt <strong>nervous</strong> before the interview. ✓</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Action Verb → Adverb</div>
+        <ul>
+          <li>The cadet performed <strong>confidently</strong>. (action verb — describe the action) ✓</li>
+          <li>She answered the questions <strong>well</strong>. (not "good") ✓</li>
+          <li>He fought <strong>bravely</strong> throughout the engagement. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Good" vs "Well" — The Defining Exam Trap</div>
+        <ul>
+          <li><strong>Good</strong> = adjective only → "She is a good officer." / "He feels good." (= healthy)</li>
+          <li><strong>Well</strong> = adverb (manner) → "She performed <strong>well</strong>." / also adjective meaning "in good health" → "He is well now."</li>
+          <li>✗ "She performed <em>good</em> in the drill." → ✓ "She performed <strong>well</strong> in the drill."</li>
+          <li>✗ "He is doing <em>good</em> in training." → ✓ "He is doing <strong>well</strong> in training."</li>
+        </ul>
+      </div>
+      <div class="compare-table" style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Adjective</th><th>Adverb</th><th>Distinction</th></tr>
+          <tr><td><b>hard</b> (difficult / working hard)</td><td><b>hardly</b></td><td>"hardly" = scarcely/almost not — completely different meaning</td></tr>
+          <tr><td><b>late</b> (not on time)</td><td><b>lately</b></td><td>"lately" = recently</td></tr>
+          <tr><td><b>high</b> (elevated)</td><td><b>highly</b></td><td>"highly" = to a great degree (highly trained)</td></tr>
+          <tr><td><b>near</b> (close in distance)</td><td><b>nearly</b></td><td>"nearly" = almost</td></tr>
+          <tr><td><b>deep</b> (far down)</td><td><b>deeply</b></td><td>"deeply" = intensely/emotionally</td></tr>
+          <tr><td><b>sharp</b> (at exactly a time)</td><td><b>sharply</b></td><td>"sharply" = in a sharp manner (criticised sharply)</td></tr>
+          <tr><td><b>close</b> (nearby)</td><td><b>closely</b></td><td>"closely" = carefully / in a close manner</td></tr>
+          <tr><td><b>wide</b> (fully open)</td><td><b>widely</b></td><td>"widely" = over a large area or extent</td></tr>
+          <tr><td><b>short</b> (abruptly)</td><td><b>shortly</b></td><td>"shortly" = soon</td></tr>
+          <tr><td><b>free</b> (without charge)</td><td><b>freely</b></td><td>"freely" = openly / without restriction</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 — COMMON TRAPS ── -->
+  <div class="sec-label">Section 5 — Common Exam Traps</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">🪤</div>
+      <div style="flex:1">
+        <div class="c-title">Double Negatives &amp; Negative Adverbs</div>
+        <div class="c-sub">hardly, scarcely, barely, seldom — already negative; never add "not"</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Hardly, scarcely, barely, seldom, rarely, never</strong> are <strong>negative adverbs</strong>. Using them with another negative word ("not", "no", "nothing") creates an illegal double negative in formal English.</p>
+      <div class="wrong-box">
+        <div class="wg-label">Double Negative Errors</div>
+        <ul>
+          <li>✗ "He couldn't <em>hardly</em> breathe." → ✓ "He could <strong>hardly</strong> breathe."</li>
+          <li>✗ "She didn't <em>scarcely</em> have time." → ✓ "She <strong>scarcely</strong> had time."</li>
+          <li>✗ "I don't <em>never</em> arrive late." → ✓ "I <strong>never</strong> arrive late." / "I don't ever arrive late."</li>
+          <li>✗ "There was <em>nothing hardly</em> left." → ✓ "There was <strong>hardly</strong> anything left."</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Scarcely / Hardly — Inversion Rule</div>
+        <p>Like <em>seldom</em> and <em>never</em>, when <strong>scarcely</strong> or <strong>hardly</strong> begins a sentence for emphasis, the subject and auxiliary must be <strong>inverted</strong>.<br><br>
+        <strong>Hardly</strong> had the troops assembled <strong>when</strong> the orders changed. ✓<br>
+        <strong>Scarcely</strong> had she sat down <strong>when</strong> the alarm sounded. ✓<br><br>
+        Note: "hardly…when" and "scarcely…when" (not "than") — this is a common error.</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Hardly/Scarcely … when (NOT "than")</div>
+        <ul>
+          <li>✗ "Hardly had he entered <em>than</em> the general arrived." → ✓ "…entered <strong>when</strong> the general arrived."</li>
+          <li>✗ "Scarcely had they landed <em>than</em> firing began." → ✓ "…landed <strong>when</strong> firing began."</li>
+          <li>(Compare: "No sooner had he entered <strong>than</strong> the general arrived." — "No sooner" takes "than" ✓)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">💡</div>
+      <div style="flex:1">
+        <div class="c-title">Too vs Very vs Enough</div>
+        <div class="c-sub">"Too" implies excess (negative); "enough" follows the adjective/adverb</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Too</strong>, <strong>very</strong>, and <strong>enough</strong> are degree adverbs with distinct rules — frequently tested in error spotting.</p>
+      <div class="fact-box">
+        <div class="fb-label">Key Rules</div>
+        <ul>
+          <li><strong>Too</strong> = excessive (implies a negative result): "The pack is <strong>too</strong> heavy <strong>to</strong> carry." ✓</li>
+          <li><strong>Very</strong> = intensifier with no negative implication: "The pack is <strong>very</strong> heavy." ✓ — no result clause needed</li>
+          <li><strong>Enough</strong> comes <strong>AFTER</strong> the adjective or adverb it modifies: "He is tall <strong>enough</strong> to qualify." ✓</li>
+          <li><strong>Enough</strong> comes <strong>BEFORE</strong> a noun: "She has <strong>enough</strong> courage." ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors</div>
+        <ul>
+          <li>✗ "He is <em>too</em> brave." → (Implies he's excessively brave — a negative outcome must follow; ✓ "He is <strong>very</strong> brave." if no negative result)</li>
+          <li>✗ "She is <em>enough</em> strong to lead." → ✓ "She is strong <strong>enough</strong> to lead." (enough comes after the adjective)</li>
+          <li>✗ "The cadet is <em>very</em> short to reach the beam." → ✓ "The cadet is <strong>too</strong> short to reach the beam." (negative consequence → use "too")</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Confusable Adverbs — Yet, Still, Already, Anymore</div>
+        <div class="c-sub">Positive vs negative contexts · Tense dependencies</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Adverb</th><th>Use</th><th>Example</th></tr>
+          <tr><td><b>yet</b></td><td>Negative sentences &amp; questions (perfect tense); expectation unfulfilled</td><td>"Has the general arrived <b>yet</b>?" / "He hasn't reported <b>yet</b>." ✓</td></tr>
+          <tr><td><b>still</b></td><td>Ongoing action (affirmative/negative); earlier than expected</td><td>"He is <b>still</b> training." / "She has <b>still</b> not received orders." ✓</td></tr>
+          <tr><td><b>already</b></td><td>Action completed sooner than expected (affirmative)</td><td>"He has <b>already</b> submitted the report." ✓</td></tr>
+          <tr><td><b>anymore / any longer</b></td><td>Cessation of an action (negative sentences)</td><td>"She doesn't serve in that unit <b>anymore</b>." ✓</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Yet" vs "Already" in Questions</div>
+        <ul>
+          <li>"Has he arrived <strong>yet</strong>?" = neutral question (not sure if he has) ✓</li>
+          <li>"Has he <strong>already</strong> arrived?" = surprised that he arrived sooner than expected ✓</li>
+          <li>✗ "He has yet arrived." → ✓ "He has <strong>already</strong> arrived." / "He hasn't arrived <strong>yet</strong>."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════ DEGREE LIST ═══════════════════════ -->
+<div id="degrees" class="pane">
+
+  <div class="intro-box">
+    <p>This is the <strong>complete exam-relevant adverb degree list</strong> — regular patterns first, then all <strong>irregular forms</strong> (marked <span class="degree-tag tag-irr">Irr</span>), followed by key <strong>flat adverbs</strong> and the confusable pairs most tested in CDS/NDA/AFCAT.</p>
+  </div>
+
+  <div class="sec-label">Regular Adverbs — -ly Form (more/most)</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>quickly</td><td>more quickly</td><td>most quickly</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>bravely</td><td>more bravely</td><td>most bravely</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>carefully</td><td>more carefully</td><td>most carefully</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>efficiently</td><td>more efficiently</td><td>most efficiently</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>clearly</td><td>more clearly</td><td>most clearly</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>fluently</td><td>more fluently</td><td>most fluently</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>loudly</td><td>more loudly</td><td>most loudly</td><td>-ly adverb → more/most</td></tr>
+        <tr><td>frequently</td><td>more frequently</td><td>most frequently</td><td>-ly adverb → more/most</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">One-Syllable Flat Adverbs (-er/-est)</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>fast</td><td>faster</td><td>fastest</td><td>flat adverb — same form as adjective</td></tr>
+        <tr><td>hard</td><td>harder</td><td>hardest</td><td>flat adverb; "hardly" = scarcely (different word)</td></tr>
+        <tr><td>late</td><td>later</td><td>latest / last</td><td>flat adverb; "lately" = recently (different word)</td></tr>
+        <tr><td>long</td><td>longer</td><td>longest</td><td>flat adverb</td></tr>
+        <tr><td>high</td><td>higher</td><td>highest</td><td>flat adverb; "highly" = to a great degree</td></tr>
+        <tr><td>near</td><td>nearer</td><td>nearest</td><td>flat adverb; "nearly" = almost</td></tr>
+        <tr><td>low</td><td>lower</td><td>lowest</td><td>flat adverb</td></tr>
+        <tr><td>deep</td><td>deeper</td><td>deepest</td><td>flat adverb; "deeply" = intensely</td></tr>
+        <tr><td>early</td><td>earlier</td><td>earliest</td><td>ends in -ly but is NOT a manner adverb — takes -er/-est</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Irregular Adverbs — Must Memorise</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="irr-row"><td>well</td><td>better</td><td>best</td><td><span class="degree-tag tag-irr">Irr</span> Most tested — "well" is the adverb form of "good"</td></tr>
+        <tr class="irr-row"><td>badly / ill</td><td>worse</td><td>worst</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>little</td><td>less</td><td>least</td><td><span class="degree-tag tag-irr">Irr</span> degree adverb use (he cares little → cares less → cares least)</td></tr>
+        <tr class="irr-row"><td>much</td><td>more</td><td>most</td><td><span class="degree-tag tag-irr">Irr</span> modifying verbs and comparisons</td></tr>
+        <tr class="irr-row"><td>far</td><td>farther / further</td><td>farthest / furthest</td><td><span class="degree-tag tag-irr">Irr</span> farther = physical distance; further = degree/extent</td></tr>
+        <tr class="irr-row"><td>forth</td><td>—</td><td>—</td><td><span class="degree-tag tag-irr">Irr</span> defective — used only in fixed expressions (back and forth, and so forth)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Key Confusable Adverb Pairs — Exam Favourites</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Word</th><th>Meaning &amp; Use</th><th>Confusable</th><th>Different Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>hard</td><td>with effort / with force</td><td>hardly</td><td>scarcely, almost not</td></tr>
+        <tr><td>late</td><td>after the expected time</td><td>lately</td><td>recently</td></tr>
+        <tr><td>high</td><td>at a great height</td><td>highly</td><td>to a great degree</td></tr>
+        <tr><td>near</td><td>at a short distance</td><td>nearly</td><td>almost</td></tr>
+        <tr><td>deep</td><td>to a great depth</td><td>deeply</td><td>intensely, profoundly</td></tr>
+        <tr><td>close</td><td>at a short distance (moved close)</td><td>closely</td><td>carefully, attentively</td></tr>
+        <tr><td>wide</td><td>fully open (opened wide)</td><td>widely</td><td>over a large area / to a large extent</td></tr>
+        <tr><td>short</td><td>abruptly (stopped short)</td><td>shortly</td><td>soon</td></tr>
+        <tr><td>free</td><td>without payment (got in free)</td><td>freely</td><td>openly, without restriction</td></tr>
+        <tr><td>sharp</td><td>at exactly a specified time (at 8 sharp)</td><td>sharply</td><td>in a cutting or intense manner</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /degrees -->
+
+<!-- ═══════════════════════ QUICK REF ═══════════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Quick Reference — Core Rules</div>
+
+  <div class="ref-grid">
+    <div class="ref-card">
+      <div class="ref-card-title">Adverb Position — MPT Order</div>
+      <ul>
+        <li><b>Manner → Place → Time</b>: "She drove <em>carefully [M] to the base [P] at noon [T]</em>." ✓</li>
+        <li>Frequency adverbs <b>before main verb</b>, <b>after auxiliary</b></li>
+        <li>Degree adverbs (very, quite, rather, too) <b>immediately before</b> the word they modify</li>
+        <li><b>Enough</b> comes <b>after</b> adjective/adverb, <b>before</b> noun</li>
+        <li>Avoid <b>split infinitive</b> in formal exam writing</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Negative Adverbs — No Double Negatives</div>
+      <ul>
+        <li><b>Hardly, scarcely, barely, seldom, rarely, never</b> are already negative</li>
+        <li>✗ "can't hardly" → <span class="ok">✓ "can hardly"</span></li>
+        <li><b>Hardly/Scarcely…when</b> (inversion + "when", not "than")</li>
+        <li><b>No sooner…than</b> (inversion + "than")</li>
+        <li>Seldom/Never/Rarely at sentence start → auxiliary inversion required</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Adjective vs Adverb</div>
+      <ul>
+        <li>Linking verbs (be, seem, look, feel, sound, smell, taste) → <b>Adjective</b></li>
+        <li>Action verbs → <b>Adverb</b></li>
+        <li><b>Good</b> = adjective only; <b>Well</b> = adverb of manner (+ adj = healthy)</li>
+        <li><span class="err">✗ "performed good"</span> → <span class="ok">✓ "performed well"</span></li>
+        <li>Flat adverbs: fast, hard, late, high, near, deep — do NOT add -ly</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Too / Very / Enough</div>
+      <ul>
+        <li><b>Too</b> = excess with negative consequence → "too heavy <em>to carry</em>"</li>
+        <li><b>Very</b> = intensifier, no consequence needed → "very heavy"</li>
+        <li><b>Enough</b> after adj/adv: "<em>strong enough</em> to lead"</li>
+        <li><b>Enough</b> before noun: "<em>enough time</em>"</li>
+        <li><span class="err">✗ "enough strong"</span> → <span class="ok">✓ "strong enough"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Yet / Still / Already / Anymore</div>
+      <ul>
+        <li><b>Yet</b> — questions &amp; negatives (perfect tense): "hasn't arrived <em>yet</em>"</li>
+        <li><b>Still</b> — ongoing: "is <em>still</em> training"; before auxiliary in negative: "has <em>still</em> not"</li>
+        <li><b>Already</b> — completed sooner than expected: "has <em>already</em> finished"</li>
+        <li><b>Anymore / any longer</b> — cessation, negative sentences: "doesn't serve there <em>anymore</em>"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Irregular Degree — Must Know</div>
+      <ul>
+        <li><b>well → better → best</b></li>
+        <li><b>badly → worse → worst</b></li>
+        <li><b>much → more → most</b></li>
+        <li><b>little → less → least</b></li>
+        <li><b>far → farther/further → farthest/furthest</b></li>
+        <li><span class="err">✗ "more better"</span> / <span class="err">✗ "more faster"</span> — double comparison</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div id="results"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · E12 Adverbs · CDS · NDA · AFCAT English</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ─────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Adjective vs Adverb',
+q:'Choose the correct option to fill in the blank:<br>"The soldier responded ______ to the officer\'s command."',
+opts:['quick','quickest','quickly','more quick'],ans:2,
+rule:'Action verbs take adverbs (manner adverb "quickly"), not adjectives',
+exp:'"Responded" is an action verb, so it must be modified by an adverb, not an adjective. "Quick" (A) and "quickest" (B) are adjectives — they cannot modify action verbs. "More quick" (D) is an incorrect comparative form (should be "more quickly" for -ly adverb, but even then unnecessary here). "Quickly" (C) is the correct manner adverb modifying the verb "responded". Answer: C.'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Position of Adverb',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He always is on time for parade.',
+  'He is always on time for parade.',
+  'Always he is on time for parade.',
+  'He is on time always for parade.'
+],ans:1,
+rule:'Frequency adverb "always" comes after the auxiliary verb "is", not before it',
+exp:'The frequency adverb "always" must be placed after the auxiliary verb when an auxiliary is present. Option A places "always" before the auxiliary "is" — incorrect. Option C places "always" at the start without the required subject-auxiliary inversion (that rule applies to negative adverbs like "seldom/never", not to "always"). Option D places "always" after the phrase "on time" — incorrect position. Option B: "He is always on time" — "always" correctly follows the auxiliary "is". Answer: B.'},
+
+{d:'EASY',e:'CDS 2022',type:'Good vs Well',
+q:'Spot the error:<br>"She performed <u>good</u> in the physical fitness test <u>and</u> impressed <u>all the</u> evaluators."',
+opts:['good','and','all the','No error'],ans:0,
+rule:'"Good" is an adjective; the action verb "performed" requires the adverb "well"',
+exp:'"Performed" is an action verb — it must be modified by an adverb. "Good" is an adjective and cannot modify a verb. The correct word is "well" (adverb of manner). "Well" describes how the action was performed. "And" and "all the" are both grammatically correct. The error is "good" — it should be "well". Answer: "good" → should be "well".'},
+
+{d:'EASY',e:'NDA 2023',type:'Flat Adverb',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The cadet ran fastly to the finish line.',
+  'The aircraft climbed highly into the sky.',
+  'The unit worked hard throughout the exercise.',
+  'She nearled missed the cut-off time.'
+],ans:2,
+rule:'"Hard" is a flat adverb — "hardly" means scarcely, which changes the meaning entirely',
+exp:'"Hard" functions as both an adjective and an adverb — it does NOT add -ly for the adverbial form. "Fastly" (A) does not exist — the adverb is "fast". "Highly" (B) means "to a great degree" (as in "highly trained"), not "at a great height" — the correct form for physical height is "high". "Nearled" (D) is not a word. "The unit worked hard" (C) correctly uses the flat adverb "hard". Answer: C.'},
+
+{d:'EASY',e:'AFCAT 2023',type:'Too vs Very',
+q:'Choose the correct option:<br>"The route was ______ difficult to complete in three hours."',
+opts:['very','too','enough','quite'],ans:1,
+rule:'"Too" signals excess + negative consequence (impossible to complete) — "very" has no such implication',
+exp:'The sentence implies a negative consequence — the route cannot be completed in three hours. This signals excess, which requires "too". "Very" (A) simply intensifies without implying impossibility. "Enough" (C) means sufficient — the opposite of what is needed here. "Quite" (D) softens, it does not express excess. "Too difficult to complete" correctly signals that the difficulty makes completion impossible. Answer: B.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Double Negative',
+q:'Spot the error in the sentence:<br>"The recruit <u>couldn\'t</u> hardly <u>lift</u> the rifle <u>above his head</u> after the long march."',
+opts:["couldn't",'lift','above his head','No error'],ans:0,
+rule:'"Hardly" is already negative — combining with "couldn\'t" creates an illegal double negative',
+exp:'"Hardly" is a negative adverb meaning "scarcely" or "almost not". Using it with the negative contraction "couldn\'t" creates a double negative: "couldn\'t hardly" = two negatives cancelling each other, implying the recruit could easily lift the rifle — the opposite of the intended meaning. The correct form is "could hardly lift" (one negative). "Lift" and "above his head" are both correct. The error is "couldn\'t" — it should be "could". Answer: "couldn\'t" → should be "could".'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Inversion with Seldom',
+q:'Which sentence is grammatically CORRECT?',
+opts:[
+  'Seldom the commanding officer has repeated an order.',
+  'Seldom has the commanding officer repeated an order.',
+  'The commanding officer seldom has repeated an order.',
+  'The commanding officer has seldom repeated any order not.'
+],ans:1,
+rule:'When "seldom" fronts a sentence, subject-auxiliary inversion is required',
+exp:'When a negative adverb like "seldom" is placed at the beginning of a sentence for emphasis, the auxiliary verb must come before the subject (inversion). Option A has "seldom" at the front but no inversion — "the commanding officer has" is not inverted. Option C places "seldom" correctly between the subject and auxiliary — grammatically acceptable in mid-position without inversion, but "seldom has" (inverted) is the tested formal pattern. Option D adds "not" — double negative error. Option B: "Seldom has the commanding officer repeated an order" — correct fronting with inversion (has + subject). Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Hardly…When',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Hardly had the platoon settled than the mission was changed.',
+  'Hardly had the platoon settled when the mission was changed.',
+  'Hardly the platoon had settled when the mission was changed.',
+  'Hardly had the platoon settled and the mission was changed.'
+],ans:1,
+rule:'"Hardly…when" — inversion required; "when" (not "than") follows "hardly"',
+exp:'"Hardly…when" is a fixed correlative structure. When "hardly" fronts the sentence, the auxiliary must be inverted (had + subject). The second clause uses "when" — never "than" (that is the error trap, as "no sooner…than" uses "than"). Option A uses "than" — wrong conjunction for "hardly". Option C has "hardly" at the front but no inversion ("the platoon had" is not inverted). Option D uses "and" — not the correct conjunction. Option B: "Hardly had the platoon settled when the mission was changed" — correct inversion + "when". Answer: B.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Enough Position',
+q:'Spot the error:<br>"The young officer was <u>enough brave</u> to lead <u>the patrol</u> <u>into</u> enemy territory."',
+opts:['enough brave','the patrol','into','No error'],ans:0,
+rule:'"Enough" must come AFTER the adjective it modifies: "brave enough", not "enough brave"',
+exp:'"Enough" as a degree adverb must follow the adjective or adverb it modifies — it is postpositive. "Enough brave" places "enough" before the adjective "brave" — this is incorrect. The correct form is "brave enough to lead". Compare: "enough" before a noun is correct ("enough courage"), but after an adjective it must come after. "The patrol" and "into" are both correct. The error is "enough brave" → should be "brave enough". Answer: "enough brave" → "brave enough".'},
+
+{d:'MEDIUM',e:'NDA 2024',type:'Yet vs Still vs Already',
+q:'Choose the correct option:<br>"The reinforcements have ______ arrived, so the unit can begin the operation."',
+opts:['yet','still','already','anymore'],ans:2,
+rule:'"Already" = completed sooner than expected (affirmative sentence, perfect tense)',
+exp:'The sentence is affirmative and implies the arrival happened before expected — a cue for "already". "Yet" (A) is used in questions and negative sentences ("hasn\'t arrived yet") — not in affirmative statements with this meaning. "Still" (B) indicates an ongoing action, not a completed one. "Anymore" (D) indicates cessation and requires a negative sentence. "Already" (C) correctly indicates the completion of an event sooner than expected in an affirmative perfect tense sentence. Answer: C.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',type:'Adjective vs Adverb — Linking Verb',
+q:'Spot the error:<br>"After the long patrol, <u>the soldiers</u> felt <u>exhaustedly</u> and could barely <u>stand</u>."',
+opts:['the soldiers','exhaustedly','stand','No error'],ans:1,
+rule:'"Felt" is a linking verb here — it takes an adjective predicate, not an adverb',
+exp:'"Felt" in this sentence functions as a linking verb describing the state of the soldiers, not an action. Linking verbs are followed by adjectives (predicate adjectives), not adverbs. "Exhaustedly" is an adverb — it cannot follow a linking verb. The correct form is the adjective "exhausted". "The soldiers" and "stand" are both correct. The error is "exhaustedly" → should be "exhausted". Answer: "exhaustedly" → "exhausted".'},
+
+// ── HARD ─────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:'Adverb Degree — Irregular',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'She performed more better in the obstacle course today.',
+  'She performed best in all her batch during the test.',
+  'She performed more well in the obstacle course today.',
+  'She performed weller than any other cadet in the batch.'
+],ans:1,
+rule:'"Well → better → best" is the irregular adverb degree; no double comparison ("more better", "more well")',
+exp:'The adverb "well" is irregular: well → better → best. "More better" (A) is a double comparison — "better" is already the comparative, so "more" must not be added. "More well" (C) is also wrong — the comparative of "well" is "better", not "more well". "Weller" (D) does not exist. "She performed best in all her batch" (B) correctly uses the superlative "best" of the irregular adverb "well". Answer: B.'},
+
+{d:'HARD',e:'NDA 2023',type:'Split Infinitive',
+q:'Which of the following avoids the split infinitive correctly?',
+opts:[
+  'The officer was ordered to immediately report to headquarters.',
+  'The officer was ordered to report immediately to headquarters.',
+  'The officer was ordered immediately to report to headquarters.',
+  'Both B and C are correct, but B is preferred.'
+],ans:3,
+rule:'A split infinitive places an adverb between "to" and the verb; both B and C avoid it, but B (adverb after verb) is the preferred form',
+exp:'A split infinitive = adverb placed between "to" and the base verb (e.g. "to immediately report"). Option A does this — it is a split infinitive. Option B places "immediately" after the verb "report" — this is the preferred position for the adverb in formal writing. Option C places "immediately" before "to" — this is acceptable and avoids the split infinitive, but it modifies the whole verb phrase somewhat ambiguously. In defence exam contexts, both B and C are accepted as correct (no split infinitive), but B is the most natural and preferred form. Answer: D.'},
+
+{d:'HARD',e:'AFCAT 2024',type:'No Sooner vs Hardly',
+q:'Spot the error:<br>"No sooner <u>had the alarm</u> sounded <u>when</u> the entire unit <u>was on its feet</u>."',
+opts:['had the alarm','when','was on its feet','No error'],ans:1,
+rule:'"No sooner…than" — "than" follows "no sooner"; "when" follows "hardly/scarcely"',
+exp:'"No sooner" is a fixed correlative conjunction that must be paired with "than" — not "when". The structure "no sooner…when" is a common exam error. Compare: "Hardly/Scarcely…when" (correct). "Had the alarm" correctly shows inversion after fronting "no sooner". "Was on its feet" is grammatically correct. The error is "when" — it should be "than". Answer: "when" → should be "than".'},
+
+{d:'HARD',e:'CDS 2024',type:'Confusable Adverb Pair',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The officer has been working hardly since the exercise began.',
+  'The officer has been working hard since the exercise began.',
+  'The officer has lately worked hard at the base.',
+  'The officer hard has been working since the exercise began.'
+],ans:1,
+rule:'"Hard" = with effort (flat adverb); "hardly" = scarcely — completely different meanings',
+exp:'"Hard" and "hardly" are not interchangeable. "Hard" as an adverb means "with great effort or force". "Hardly" means "scarcely" or "almost not" — a negative adverb. Option A uses "hardly" — this means the officer has scarcely been working, the opposite of the intended meaning. Option C uses "lately" which means "recently" — while not entirely wrong, the sentence structure is awkward and changes the meaning. Option D misplaces "hard" before the auxiliary — incorrect. Option B: "working hard since the exercise began" — correctly uses the flat adverb "hard" to describe the manner of work. Answer: B.'},
+
+{d:'HARD',e:'NDA 2024',type:'Position — Frequency Adverb',
+q:'Spot the error:<br>"The commanding officer has <u>given always</u> priority to <u>the welfare</u> of <u>his troops</u>."',
+opts:['given always','the welfare','his troops','No error'],ans:0,
+rule:'Frequency adverb "always" must come after the auxiliary "has" but before the past participle "given"',
+exp:'In a perfect tense construction (has + past participle), the frequency adverb must be placed between the auxiliary verb and the past participle: "has always given" — not "has given always". Placing the adverb after the past participle ("given always") is incorrect. "The welfare" and "his troops" are both grammatically sound. The error is "given always" → should be "always given". Answer: "given always" → "has always given".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Adverbs</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Adverb rules — position, degree, and confusable pairs — are clearly no problem for you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the flat adverb pairs and the hardly/scarcely inversion rules once more.'}
+  else if(pct>=50){grade='Average';msg='Good start. Focus on the Degree List tab and the double negative traps in Theory.'}
+  else{grade='Needs Work';msg='Start with the confusable pairs (hard/hardly, late/lately), then work through position rules and double negatives in Theory.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,degrees:1,quickref:2,quiz:3}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

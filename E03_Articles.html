@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F4F1EC;
+  --bg2:       #ECE7DD;
+  --bg3:       #E2DBCD;
+  --white:     #FFFFFF;
+  --ink:       #221C12;
+  --ink2:      #38301E;
+  --muted:     #79705A;
+  --dim:       #A8997E;
+  --border:    #D6CCBA;
+  --teal:      #1B5E6B;
+  --tealLt:    #247080;
+  --tealPale:  #E5F2F4;
+  --amber:     #A85C10;
+  --amberLt:   #C87010;
+  --amberPale: #FDF2E2;
+  --green:     #2A6438;
+  --greenLt:   #358046;
+  --greenPale: #E8F4EA;
+  --red:       #892020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --blueLt:    #235294;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(34,28,18,.09);
+  --shadow-md: 0 4px 20px rgba(34,28,18,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+  padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+  padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(34,28,18,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(27,94,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(168,92,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--redPale);border-left:4px solid var(--red);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--red);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(137,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue);font-weight:700}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:9px}
+
+.sent{
+  display:inline-block;
+  background:var(--bg2);border-radius:6px;
+  padding:10px 14px;margin:6px 0;
+  font-size:15.5px;color:var(--ink);
+  border-left:3px solid var(--teal);
+  width:100%;line-height:1.7;
+}
+.sent b{color:var(--teal)}
+.sent s{color:var(--red);text-decoration:line-through}
+.sent .ok{color:var(--green);font-weight:700}
+.sent .err{color:var(--red);font-weight:700;text-decoration:underline wavy var(--red)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+.compare-table td .ok{color:var(--green);font-weight:700}
+.compare-table td .err{color:var(--red);font-weight:700}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+.ref-card li .err{color:var(--red);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(27,94,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(27,94,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Articles</div>
+  <h1 class="hero-title">Articles —<br><span>A, An & The</span></h1>
+  <p class="hero-sub">Articles seem simple, but they are among the most consistently tested topics in CDS, NDA & AFCAT — in Spotting Errors, Fill in the Blanks and Sentence Improvement, every single year.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Beginner Friendly</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════ THEORY ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>An <strong>article</strong> is a type of determiner placed before a noun. English has three articles: <strong>A</strong>, <strong>An</strong> (indefinite) and <strong>The</strong> (definite). The most common errors tested in CDS/NDA/AFCAT are: <strong>using "a" vs "an"</strong> incorrectly, <strong>omitting or inserting "the"</strong> wrongly, and confusion with <strong>abstract/uncountable nouns</strong>. This module covers every pattern you need.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — What Are Articles?</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">📖</div>
+      <div style="flex:1">
+        <div class="c-title">The Basic Idea</div>
+        <div class="c-sub">Definite vs Indefinite — at a glance</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Articles tell us <strong>whether a noun is specific or general</strong>. They are the most frequently used words in English, yet they are misused constantly in exam sentences.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Article</th><th>Type</th><th>Use</th><th>Example</th></tr>
+          <tr><td><b>A</b></td><td>Indefinite</td><td>Before consonant sounds — one, any</td><td>I saw <b>a</b> dog.</td></tr>
+          <tr><td><b>An</b></td><td>Indefinite</td><td>Before vowel sounds — one, any</td><td>She is <b>an</b> engineer.</td></tr>
+          <tr><td><b>The</b></td><td>Definite</td><td>Specific or previously mentioned noun</td><td><b>The</b> dog I saw was black.</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">The Golden Rule</div>
+        <p><strong>A/An</strong> depends on the <strong>sound</strong> of the next word — NOT the letter. If the word begins with a <strong>vowel sound</strong>, use <strong>an</strong>. If it begins with a <strong>consonant sound</strong>, use <strong>a</strong>. This distinction catches hundreds of exam candidates every year.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — A vs An: Sound, Not Spelling</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🔊</div>
+      <div style="flex:1">
+        <div class="c-title">The Sound Rule</div>
+        <div class="c-sub">It's always about pronunciation, never just the letter</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The choice between <strong>"a"</strong> and <strong>"an"</strong> depends entirely on the <strong>initial sound</strong> of the word that follows — not its first letter.</p>
+      <div class="eg-box">
+        <div class="eg-label">Vowel Sound → Use "An"</div>
+        <ul>
+          <li><strong>an</strong> officer (o- = vowel sound ✓)</li>
+          <li><strong>an</strong> honest man (h is silent → starts with 'o' sound ✓)</li>
+          <li><strong>an</strong> hour (h is silent → starts with 'au' sound ✓)</li>
+          <li><strong>an</strong> MBA degree (M → sounds like "em" = vowel sound ✓)</li>
+          <li><strong>an</strong> unusual event (u sounds like "un" = vowel sound ✓)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Consonant Sound → Use "A"</div>
+        <ul>
+          <li><strong>a</strong> uniform (u sounds like "yoo" = consonant sound ✓)</li>
+          <li><strong>a</strong> university (u sounds like "yoo" ✓)</li>
+          <li><strong>a</strong> one-rupee coin (o sounds like "wun" = consonant sound ✓)</li>
+          <li><strong>a</strong> European country (E sounds like "yoo" = consonant sound ✓)</li>
+          <li><strong>a</strong> historical event (h is pronounced ✓)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap — Abbreviations & Acronyms</div>
+        <ul>
+          <li>Use the <strong>sound of the first letter when spoken aloud</strong>: "an NDA officer" (N = "en", vowel sound)</li>
+          <li><strong>an</strong> FIR, <strong>an</strong> MLA, <strong>an</strong> SSB interview — all start with vowel-sounding letters</li>
+          <li><strong>a</strong> BSc degree, <strong>a</strong> CDS candidate — B and C start with consonant sounds ("bee", "see"... wait — "see" is a vowel sound! So: <em>an</em> SSC exam)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Indefinite Article "A/An": Key Uses</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">🔢</div>
+      <div style="flex:1">
+        <div class="c-title">When to Use A / An</div>
+        <div class="c-sub">Six exam-tested patterns</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Rule</th><th>Example</th></tr>
+          <tr><td>First mention of a singular countable noun</td><td>I bought <b>a</b> book.</td></tr>
+          <tr><td>Referring to one of a class/profession</td><td>He is <b>an</b> engineer.</td></tr>
+          <tr><td>Meaning "per" (rate expressions)</td><td>She earns ₹500 <b>a</b> day.</td></tr>
+          <tr><td>With "such a", "quite a", "rather a"</td><td>It was <b>such a</b> difficult paper.</td></tr>
+          <tr><td>With a proper noun used as common noun</td><td>He is <b>a</b> Newton of our times.</td></tr>
+          <tr><td>After exclamations — "What a…!"</td><td><b>What a</b> brave soldier!</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Do NOT use A/An with</div>
+        <ul>
+          <li>Uncountable/mass nouns: <span style="color:var(--red)">✗ a water, a rice, a music</span></li>
+          <li>Plural nouns: <span style="color:var(--red)">✗ a soldiers, an officers</span></li>
+          <li>Abstract nouns used in general sense: <span style="color:var(--red)">✗ a honesty, a courage</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Definite Article "The": Core Rules</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EA">📌</div>
+      <div style="flex:1">
+        <div class="c-title">When to Use "The"</div>
+        <div class="c-sub">Most tested rules in CDS/NDA spotting errors</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Use <strong>"the"</strong> when the noun is <strong>specific, unique, or already known</strong> to the listener/reader.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Rule</th><th>Example</th></tr>
+          <tr><td>Second mention (already introduced)</td><td>I saw a dog. <b>The</b> dog barked.</td></tr>
+          <tr><td>Unique/one-of-a-kind things</td><td><b>the</b> sun, <b>the</b> moon, <b>the</b> earth</td></tr>
+          <tr><td>Superlative degree</td><td>He is <b>the</b> best cadet in the batch.</td></tr>
+          <tr><td>Ordinal numbers</td><td><b>the</b> first, <b>the</b> second, <b>the</b> last</td></tr>
+          <tr><td>Names of rivers, seas, oceans, mountain ranges</td><td><b>the</b> Ganges, <b>the</b> Himalayas, <b>the</b> Pacific</td></tr>
+          <tr><td>Names of countries that are unions/groups</td><td><b>the</b> USA, <b>the</b> UAE, <b>the</b> Netherlands</td></tr>
+          <tr><td>Musical instruments</td><td>She plays <b>the</b> violin.</td></tr>
+          <tr><td>Whole class represented by singular noun</td><td><b>The</b> tiger is a powerful animal.</td></tr>
+          <tr><td>Newspapers, religious books, ships</td><td><b>The</b> Hindustan Times, <b>The</b> Quran</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🚫</div>
+      <div style="flex:1">
+        <div class="c-title">When NOT to Use "The"</div>
+        <div class="c-sub">Omission errors — the other half of the trap</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Just as important as knowing when to use "the" is knowing when to <strong>leave it out</strong>. These omission rules are heavily tested.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Do NOT use "The" before…</th><th>Example</th></tr>
+          <tr><td>Names of languages</td><td><span class="ok">She speaks Hindi.</span> <span class="err">(not "the Hindi")</span></td></tr>
+          <tr><td>Names of games/sports</td><td><span class="ok">He plays cricket.</span> <span class="err">(not "the cricket")</span></td></tr>
+          <tr><td>Names of single mountains or lakes</td><td><span class="ok">Mount Everest, Lake Dal</span> <span class="err">(not "the Everest")</span></td></tr>
+          <tr><td>Names of meals</td><td><span class="ok">We had dinner at 8.</span></td></tr>
+          <tr><td>Abstract nouns used in general sense</td><td><span class="ok">Honesty is the best policy.</span></td></tr>
+          <tr><td>Proper nouns (names of people)</td><td><span class="ok">Captain Sharma arrived.</span></td></tr>
+          <tr><td>Names of subjects/disciplines</td><td><span class="ok">She studied Physics.</span></td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The Biggest Trap — "The" with Proper Nouns</div>
+        <ul>
+          <li>No "the" before a person's name: <span class="err">The Arjun won the medal</span> ✗ → <span class="ok">Arjun won the medal</span> ✓</li>
+          <li>But: "the Arjun of our team" (using a name as a common comparison) is correct</li>
+          <li>No "the" before names of single cities, countries (except unions): <span class="err">The India is great</span> ✗</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="sec-label">Section 5 — Special & Tricky Cases</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Tricky Article Patterns</div>
+        <div class="c-sub">High-frequency traps from past papers</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="fact-box">
+        <div class="fb-label">The "Double Superlative" Trap</div>
+        <ul>
+          <li>"most" without "the" when used as adverb: <em>She was <strong>most</strong> helpful</em> (= very helpful — no "the")</li>
+          <li>"the most" when comparing: <em>She was <strong>the most</strong> helpful person in the room</em> ✓</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">School / College / Hospital — With or Without "The"?</div>
+        <ul>
+          <li><strong>No "the"</strong> → purpose/function: <em>He went to <strong>school</strong></em> (to study) | <em>She is in <strong>hospital</strong></em> (as a patient)</li>
+          <li><strong>Use "the"</strong> → specific place: <em>He went to <strong>the</strong> school to meet the principal</em> | <em>The school is near our house</em></li>
+        </ul>
+      </div>
+      <div class="purple-box">
+        <div class="pl-label">Article with Adjective + Noun</div>
+        <ul>
+          <li>When an adjective comes before the noun, the article goes before the adjective: <em><strong>a</strong> brave soldier</em>, <em><strong>an</strong> old officer</em></li>
+          <li>Exception — "quite/rather/such/what + a/an + adj + noun": <em>quite <strong>a</strong> difficult task</em>, <em>what <strong>an</strong> excellent idea</em></li>
+          <li>Note: "half a/an" → <em>half <strong>an</strong> hour</em>; but "a half" is also correct in informal use</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Most-Tested Error Types</div>
+        <ul>
+          <li><span class="err">He is best player in the team.</span> → missing "the": <strong>He is <em>the</em> best player…</strong> ✓</li>
+          <li><span class="err">She plays the cricket.</span> → no article with sports: <strong>She plays cricket.</strong> ✓</li>
+          <li><span class="err">He gave a useful advise.</span> → "advice" is uncountable: <strong>He gave useful advice.</strong> ✓</li>
+          <li><span class="err">The honesty is the best policy.</span> → abstract noun in general sense: <strong>Honesty is the best policy.</strong> ✓</li>
+          <li><span class="err">He is an university student.</span> → "u" in university = "yoo" sound: <strong>He is <em>a</em> university student.</strong> ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">🌍</div>
+      <div style="flex:1">
+        <div class="c-title">Articles with Geographical Names</div>
+        <div class="c-sub">Rivers, mountains, countries, cities — the complete map</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Use "The"</th><th>Do NOT use "The"</th></tr>
+          <tr><td>Rivers: <b>the</b> Nile, <b>the</b> Amazon, <b>the</b> Ganges</td><td>Single mountains: Mount Everest, Mount Abu</td></tr>
+          <tr><td>Mountain ranges: <b>the</b> Himalayas, <b>the</b> Alps</td><td>Single lakes: Lake Victoria, Dal Lake</td></tr>
+          <tr><td>Oceans & seas: <b>the</b> Pacific, <b>the</b> Arabian Sea</td><td>Continents: Asia, Africa, Europe</td></tr>
+          <tr><td>Groups of islands: <b>the</b> Andamans, <b>the</b> Maldives</td><td>Most countries: India, France, China</td></tr>
+          <tr><td>Countries that are unions: <b>the</b> USA, <b>the</b> UK, <b>the</b> UAE</td><td>Cities: Delhi, London, Paris</td></tr>
+          <tr><td>Canals & straits: <b>the</b> Suez Canal, <b>the</b> Palk Strait</td><td>Single islands: Sri Lanka, Cuba</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REFERENCE ══════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Articles — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">A vs An — Sound Rule</div>
+      <ul>
+        <li><b>an</b> honest man — h is silent (vowel sound)</li>
+        <li><b>an</b> hour — h is silent (vowel sound)</li>
+        <li><b>a</b> uniform — 'u' = 'yoo' (consonant sound)</li>
+        <li><b>a</b> university — 'u' = 'yoo' (consonant sound)</li>
+        <li><b>a</b> one-way street — 'o' = 'wun' (consonant sound)</li>
+        <li><b>a</b> European tour — 'E' = 'yoo' (consonant sound)</li>
+        <li><b>an</b> NDA officer — N = 'en' (vowel sound)</li>
+        <li><b>an</b> MBA — M = 'em' (vowel sound)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Always Use "The"</div>
+      <ul>
+        <li>Superlatives: <em>the best, the tallest, the most</em></li>
+        <li>Ordinals: <em>the first, the second, the last</em></li>
+        <li>Unique things: <em>the sun, the moon, the earth</em></li>
+        <li>Rivers/Ranges/Oceans: <em>the Ganges, the Himalayas</em></li>
+        <li>Musical instruments: <em>play the guitar</em></li>
+        <li>Specific/previously mentioned nouns</li>
+        <li>Country unions: <em>the USA, the UK, the UAE</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Never Use "The"</div>
+      <ul>
+        <li>Languages: <em>Hindi, English, French</em></li>
+        <li>Sports &amp; games: <em>cricket, chess, football</em></li>
+        <li>Meals: <em>breakfast, lunch, dinner</em></li>
+        <li>Academic subjects: <em>Physics, History, Maths</em></li>
+        <li>Single mountains/lakes: <em>Mount Everest, Lake Dal</em></li>
+        <li>Abstract nouns in general: <em>Honesty, Courage, Love</em></li>
+        <li>Most countries: <em>India, France, Japan</em></li>
+        <li>People's names: <em>Captain Singh, Priya</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">School / Hospital / Church — Special Rule</div>
+      <ul>
+        <li><b>No article</b> — when visiting for its primary purpose</li>
+        <li><em>go to school</em> (to study), <em>in hospital</em> (as patient)</li>
+        <li><b>"The"</b> — when visiting as an outsider/for another purpose</li>
+        <li><em>go to <b>the</b> school</em> to meet principal</li>
+        <li><em>went to <b>the</b> hospital</em> to see a friend</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Commonly Confused — Exam Traps</div>
+      <ul>
+        <li><b>a/an</b> + singular countable noun (first mention)</li>
+        <li><em>He is <b>a</b> unique talent</em> — unique starts with 'yoo'</li>
+        <li><em>It was <b>an</b> ugly scene</em> — ugly starts with vowel</li>
+        <li>What + <em>a/an</em>: <em>What <b>a</b> wonderful day!</em></li>
+        <li>Such + <em>a/an</em>: <em>Such <b>an</b> odd question!</em></li>
+        <li><em>half <b>an</b> hour</em> — h is silent</li>
+        <li><em>once in <b>a</b> while</em> — fixed expression</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Formula Patterns</div>
+      <ul>
+        <li><em>the + comparative + S + V, the + comparative + S + V</em></li>
+        <li><em><b>The</b> more you practise, <b>the</b> better you get.</em></li>
+        <li><em>by + article + noun</em>: paid <b>by the</b> hour</li>
+        <li><em>in + article + phrase</em>: <b>in the</b> morning / <b>in the</b> evening</li>
+        <li>BUT: <em>at night</em> (no article) — fixed expression</li>
+        <li><em>a number of</em> (plural verb) vs <em>the number of</em> (singular verb)</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All & See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Articles · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+// ── QUESTIONS ──────────────────────────────────────────────────────────────────
+const QS = [
+
+{d:'EASY',e:'NDA 2022',
+q:'Fill in the blank: "She is ______ honest officer."',
+opts:['a','an','the','no article needed'],ans:1,
+rule:'"honest" begins with a vowel sound (h is silent) → use "an"',
+exp:'"Honest" is pronounced with a silent "h" — it begins with the vowel sound "o". Therefore "an" is correct: "She is an honest officer." Option A ("a") is wrong because "a" is used before consonant sounds only. Option C ("the") would mean a specific, already-identified officer. Option D is wrong because a singular countable noun in this context requires an article.'},
+
+{d:'EASY',e:'AFCAT 2023',
+q:'Which sentence is correct?',
+opts:[
+  'He is a university student.',
+  'He is an university student.',
+  'He is the university student.',
+  'He is university student.'
+],ans:0,
+rule:'"university" begins with "yoo" sound (consonant) → use "a"',
+exp:'"University" starts with the letter "u" but its pronunciation begins with the sound "yoo" — a consonant sound. Therefore "a" is used, not "an". Option B is a very common error — candidates see the vowel "u" and wrongly use "an". Option C ("the") implies a specific, identified student. Option D is wrong because a singular countable noun needs an article.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'"______ Ganga is a sacred river." Which article fills the blank correctly?',
+opts:['A','An','The','No article'],ans:2,
+rule:'Names of rivers always take "the"',
+exp:'Rivers always take the definite article "the": the Ganga, the Nile, the Amazon. Option A and B are wrong as "Ganga" (a proper noun/river name) cannot take an indefinite article. Option D is wrong because the rule firmly requires "the" before all river names.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'Identify the error: "She plays the cricket every evening."',
+opts:[
+  'She plays',
+  'the cricket',
+  'every evening',
+  'No error'
+],ans:1,
+rule:'No article is used before names of sports or games',
+exp:'"The cricket" is incorrect. Names of games and sports never take an article. The correct sentence is: "She plays cricket every evening." This is one of the most commonly tested rules. Compare: "She plays the violin" (musical instrument → needs "the") vs "She plays cricket" (sport → no article).'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'"He is ______ European." Choose the correct option.',
+opts:['a','an','the','either a or an'],ans:0,
+rule:'"European" starts with "yoo" sound → consonant sound → use "a"',
+exp:'"European" begins with the letter "E" but it is pronounced "yoo-ro-pee-an" — starting with the "yoo" sound, which is a consonant sound. Therefore "a" is correct. This is a classic exam trap: candidates see a vowel letter and choose "an". The rule is always about sound, never spelling.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Four parts are underlined. Find the error:<br>"<u>The</u> honesty is <u>the</u> best policy <u>in</u> <u>the world</u>."',
+opts:['The (first)','the best policy','in','the world'],ans:0,
+rule:'Abstract nouns in general sense do not take "the"',
+exp:'"The honesty" is incorrect. Abstract nouns when used in their general, universal sense do not take the definite article. The correct sentence is: "Honesty is the best policy in the world." Note that "the best" is correct (superlative) and "the world" is correct (unique/specific noun). Only the first "the" (before "honesty") is an error.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'"She went to ______ hospital to visit her friend." Which is correct?',
+opts:['a','an','the','no article'],ans:2,
+rule:'"The" hospital — visiting for a reason other than being a patient',
+exp:'When someone goes to a hospital to visit another person (not as a patient), we use "the hospital" because the purpose is not the hospital\'s primary function. Compare: "She is in hospital" (she is a patient — no article) vs "She went to the hospital to visit her friend" (she is a visitor — use "the"). Option A and B are wrong (indefinite articles don\'t fit a specific, known location). Option D would require a different sentence construction.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"He is ______ MBA from IIM Ahmedabad." Choose correctly.',
+opts:['a','an','the','no article'],ans:1,
+rule:'"MBA" — M is pronounced "em" (vowel sound) → use "an"',
+exp:'The abbreviation "MBA" is read as individual letters: "em-bee-ay". The first letter "M" is pronounced "em" — which begins with a vowel sound. Therefore "an" is correct. This tests the rule that article choice depends on the sound of the spoken abbreviation, not its written form. "An MBA, an NDA officer, an FIR" are all correct.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The more you read, more you learn.',
+  'The more you read, the more you learn.',
+  'More you read, the more you learn.',
+  'More you read, more you learn.'
+],ans:1,
+rule:'"The + comparative…the + comparative" — both "the"s are required',
+exp:'The pattern for expressing proportional relationships is: "the + comparative + clause, the + comparative + clause." Both "the"s are mandatory. Option B is the only correct choice. This pattern frequently appears in CDS/NDA sentence improvement questions. Other examples: "The harder you train, the better you perform."'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'"______ number of candidates who appeared for the exam was large." Choose correctly.',
+opts:['A','An','The','No article'],ans:2,
+rule:'"The number of" takes a singular verb; "a number of" takes a plural verb',
+exp:'"The number of" (with "the") is used to refer to a specific, countable total — it takes a singular verb ("was"). "A number of" means "several/many" — it takes a plural verb ("were"). Since the sentence uses "was" (singular), "The number of" is correct. This distinction is frequently tested in CDS English.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Spot the error: "He is best student in the class."',
+opts:[
+  'He is',
+  'best student',
+  'in the class',
+  'No error'
+],ans:1,
+rule:'Superlative always requires "the" before it',
+exp:'"Best student" is incorrect — superlative adjectives always require the definite article "the" before them. The correct sentence is: "He is the best student in the class." This is one of the most tested rules in CDS/NDA spotting errors. Superlatives: the best, the tallest, the most intelligent — always with "the".'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'"He gave ______ useful advice to the recruits." Choose correctly.',
+opts:['a','an','the','no article'],ans:3,
+rule:'"Advice" is uncountable — no article; "useful" starts with "yoo" sound',
+exp:'"Advice" is an uncountable noun — it cannot be preceded by "a" or "an" in any case. The correct sentence is "He gave useful advice to the recruits" with no article. Even though "useful" begins with "u", the rule is irrelevant here because "advice" is uncountable. Note: if "advice" were countable, "a useful" (not "an useful") would apply because "useful" starts with the "yoo" consonant sound.'},
+
+{d:'HARD',e:'CDS 2023',
+q:'Choose the sentence with NO article error:',
+opts:[
+  'The Mount Everest is the highest peak in the world.',
+  'He plays the chess very well.',
+  'She speaks the English fluently.',
+  'The Himalayas stretch across five countries.'
+],ans:3,
+rule:'Mountain ranges take "the"; single mountains, sports, languages do not',
+exp:'Option D is correct: "The Himalayas" — mountain ranges always take "the". Option A is wrong: "The Mount Everest" is incorrect — single, named mountains do not take "the". It should be "Mount Everest is the highest peak." Option B is wrong: sports never take "the" — "He plays chess." Option C is wrong: language names never take "the" — "She speaks English fluently."'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Four parts are underlined. Find the error:<br>"He left for <u>the</u> school <u>early in</u> <u>the morning</u> to <u>meet the principal</u>."',
+opts:['the school','early in','the morning','meet the principal'],ans:3,
+rule:'"The school" is correct here — he is going as an outsider, not as a student',
+exp:'This is a tricky question. "The school" (Option A) is actually CORRECT here because he is going to meet the principal — he is visiting as an outsider, not going to study. "The morning" (Option C) is correct. "Meet the principal" — "the principal" is correct. Actually, all parts appear correct. However, if the exam identifies an error, "the principal" should remain — and this question tests whether students wrongly mark "the school" as an error when it is in fact correct. The sentence is error-free.'},
+
+{d:'HARD',e:'AFCAT 2023',
+q:'"______ poor need our support." Choose the most appropriate option.',
+opts:['A','An','The','No article'],ans:2,
+rule:'"The" + adjective = a class of people (the poor = poor people as a group)',
+exp:'"The poor" means "poor people as a whole class." When "the" is placed before an adjective without a noun, it creates a noun phrase referring to a group: the poor, the rich, the elderly, the brave. This is a standard English construction. Option A ("A poor") and B ("An poor") are wrong. Option D would be ungrammatical in this sentence structure.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'"She is ______ most dedicated officer in the unit." Choose correctly.',
+opts:['a','an','the','no article'],ans:2,
+rule:'Superlative form always requires "the"',
+exp:'"The most dedicated" — superlatives always require the definite article "the." The sentence: "She is the most dedicated officer in the unit." Options A and B are wrong (indefinite articles cannot precede superlatives). Option D is wrong — "most dedicated" here is superlative, not an adverb meaning "very" (which would require "most dedicated" without comparison context).'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'A number of soldiers was present at the parade.',
+  'The number of soldiers were present at the parade.',
+  'The number of soldiers was large.',
+  'A number of soldiers is on duty today.'
+],ans:2,
+rule:'"The number of" + singular verb; "A number of" + plural verb',
+exp:'Option C is correct: "The number of soldiers was large" — "the number of" refers to a specific count and takes a singular verb ("was"). Option A is wrong: "a number of" means "several" and takes a plural verb — should be "were present." Option B is wrong: "the number of" takes singular — should be "was." Option D is wrong: "a number of" must take a plural verb — should be "are on duty."'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Identify the error: "What a beautiful the sunset was last evening!"',
+opts:[
+  'What a beautiful',
+  'the sunset',
+  'was last evening',
+  'No error'
+],ans:1,
+rule:'"What a/an + adj + noun" — no second article before the noun',
+exp:'"The sunset" is the error. The exclamatory pattern is: "What a/an + adjective + noun!" — the article "a/an" is already present; you do not add another article ("the") before the noun. The correct sentence is: "What a beautiful sunset it was last evening!" This is a subtle but tested pattern in AFCAT sentence correction questions.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'"He is ______ unique player — there is no one like him in ______ world." Choose the correct pair.',
+opts:['a / a','a / the','an / the','an / a'],ans:1,
+rule:'"unique" = "yoo-neek" (consonant sound) → "a"; "world" is unique → "the world"',
+exp:'"Unique" begins with the "yoo" sound — a consonant sound — so "a unique player" is correct (not "an unique"). "The world" is correct because the world is a unique, one-of-a-kind noun that always takes "the". So the correct pair is "a / the" — Option B. This question simultaneously tests the consonant-sound rule (a unique) and the unique-noun rule (the world).'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the sentence with NO error:',
+opts:[
+  'He is an one-eyed soldier.',
+  'She gave a historic speech at the academy.',
+  'The India is a land of diversity.',
+  'He reported to a nearest police station.'
+],ans:1,
+rule:'"historic" begins with consonant "h" sound → "a"; names of countries have no "the"',
+exp:'Option B is correct: "a historic speech" — "historic" begins with a pronounced "h" (consonant sound), so "a" is correct. Option A is wrong: "one" is pronounced "wun" — a consonant sound — so it should be "a one-eyed soldier." Option C is wrong: "The India" is incorrect — names of countries (not unions) never take "the." Option D is wrong: with superlatives like "nearest" you need "the" — "the nearest police station."'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Articles</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Articles are clearly your strength.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong carefully.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref section and retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

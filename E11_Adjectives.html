@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjectives | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Warm Saffron / Amber ─────────────────────── */
+  --bg:        #F6F1E8;
+  --bg2:       #EDE5D4;
+  --bg3:       #E2D6BF;
+  --white:     #FFFFFF;
+  --ink:       #1E1200;
+  --ink2:      #342000;
+  --muted:     #7A6040;
+  --dim:       #AA8C5C;
+  --border:    #D8C89C;
+
+  /* Primary — deep saffron/amber */
+  --pri:       #8A4E00;
+  --priLt:     #AA6200;
+  --priPale:   #FDF4E0;
+
+  /* Accent 1 — warm teal */
+  --ac1:       #0A5858;
+  --ac1Lt:     #0E7070;
+  --ac1Pale:   #E0F2F2;
+
+  /* Accent 2 — leaf green (correct) */
+  --ac2:       #245E28;
+  --ac2Lt:     #2E7A34;
+  --ac2Pale:   #E4F2E6;
+
+  /* Accent 3 — deep rust (error) */
+  --ac3:       #7A1E10;
+  --ac3Lt:     #9E2818;
+  --ac3Pale:   #FCEAED;
+
+  /* Accent 4 — midnight blue (rule boxes) */
+  --ac4:       #162048;
+  --ac4Lt:     #1E2C64;
+  --ac4Pale:   #E4E8F6;
+
+  /* Accent 5 — plum */
+  --ac5:       #541860;
+  --ac5Pale:   #F4EAF8;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(30,18,0,.10);
+  --shadow-md: 0 4px 20px rgba(30,18,0,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{background:linear-gradient(135deg,#4A2400 0%,#7A3C00 55%,#9E5200 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(255,200,80,.10) 0%,transparent 55%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:rgba(255,200,80,.05);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(80,220,140,.12);color:#80DDA8}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(30,18,0,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(138,78,0,.22);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(10,88,88,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(122,30,16,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(22,32,72,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(84,24,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* ── DEGREE TABLE (special styled) ───────────────────────────── */
+.degree-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.degree-table thead tr{background:var(--pri)}
+.degree-table thead th{color:#fff;padding:10px 14px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.5px}
+.degree-table tbody tr:nth-child(even) td{background:var(--bg)}
+.degree-table tbody tr:nth-child(odd) td{background:var(--white)}
+.degree-table td{padding:9px 14px;border:1px solid var(--border);color:var(--ink2);line-height:1.5;font-size:15px}
+.degree-table td:first-child{font-weight:700;color:var(--ink)}
+.degree-table td:nth-child(2){color:var(--ac1);font-weight:700}
+.degree-table td:nth-child(3){color:var(--pri);font-weight:700}
+.degree-table .irr-row td{background:#FFF8E8!important}
+.degree-table .irr-row td:first-child{color:var(--pri)}
+.degree-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle}
+.tag-irr{background:var(--priPale);color:var(--pri);border:1px solid rgba(138,78,0,.25)}
+.tag-defect{background:var(--ac3Pale);color:var(--ac3);border:1px solid rgba(122,30,16,.25)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── ORDER STRIP ─────────────────────────────────────────────── */
+.order-strip{display:flex;gap:0;border-radius:10px;overflow:hidden;margin:14px 0;border:1px solid var(--border)}
+.os-cell{flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:800;border-right:1px solid var(--border)}
+.os-cell:last-child{border-right:none}
+.os-num{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--pri);line-height:1;margin-bottom:3px}
+.os-name{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;line-height:1.3}
+.os-cell:nth-child(odd){background:var(--priPale)}.os-cell:nth-child(even){background:var(--white)}
+
+/* ── QUICK REF ────────────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--priPale);color:var(--pri)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--ac1Pale);color:var(--ac1);letter-spacing:.5px}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(138,78,0,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(138,78,0,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:linear-gradient(135deg,#4A2400 0%,#8A4E00 100%);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+  .order-strip{flex-wrap:wrap}
+  .os-cell{min-width:calc(50% - 1px)}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Adjectives</div>
+  <h1 class="hero-title">Adjectives —<br><span>Degrees, Order &amp; Usage</span></h1>
+  <p class="hero-sub">Adjectives are tested in CDS, NDA and AFCAT across all three question types — Spotting Errors, Fill in the Blanks, and Sentence Improvement. The traps include wrong degrees of comparison, double comparatives, absolute adjectives, incorrect order in a noun phrase, and confused pairs like elder/older and farther/further. This module covers every pattern.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Comprehensive</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('degrees')">Degree List</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ═══════════════════════ THEORY ═══════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>An <strong>adjective</strong> modifies a noun or pronoun — it describes, identifies, or quantifies it. In competitive exams, adjectives are tested mainly on: <strong>(1) Degrees of comparison</strong> — forming and using positive, comparative, and superlative correctly; <strong>(2) Confused pairs</strong> — elder/older, farther/further, later/latter, latest/last; <strong>(3) Absolute adjectives</strong> — perfect, unique, dead, complete, round, which cannot be compared; <strong>(4) Order of adjectives</strong> in a noun phrase; and <strong>(5) Adjective vs adverb confusion</strong>.</p>
+  </div>
+
+  <!-- ── SECTION 1 — DEGREES ── -->
+  <div class="sec-label">Section 1 — Degrees of Comparison</div>
+
+  <div class="c-card">
+    <div class="c-head open" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">📐</div>
+      <div style="flex:1">
+        <div class="c-title">Forming Degrees — Rules for -er / -est vs More / Most</div>
+        <div class="c-sub">Which adjectives add -er/-est and which use more/most</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body open">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Adjective Type</th><th>Comparative</th><th>Superlative</th><th>Examples</th></tr>
+          <tr><td><b>1-syllable</b></td><td>+ er</td><td>+ est</td><td>tall → taller → tallest</td></tr>
+          <tr><td><b>1-syllable ending in -e</b></td><td>+ r</td><td>+ st</td><td>brave → braver → bravest</td></tr>
+          <tr><td><b>1-syllable CVC</b> (consonant-vowel-consonant)</td><td>double final consonant + er</td><td>double + est</td><td>big → bigger → biggest</td></tr>
+          <tr><td><b>2-syllable ending in -y</b></td><td>change y→i + er</td><td>change y→i + est</td><td>happy → happier → happiest</td></tr>
+          <tr><td><b>Most 2-syllable adjectives</b></td><td>more +</td><td>most +</td><td>careful → more careful → most careful</td></tr>
+          <tr><td><b>3+ syllables</b></td><td>more +</td><td>most +</td><td>intelligent → more intelligent → most intelligent</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Double Comparative / Double Superlative — Always Wrong</div>
+        <ul>
+          <li>✗ "more taller", "more bigger", "more happier" — never add "more" to an -er form</li>
+          <li>✗ "most tallest", "most bravest" — never add "most" to an -est form</li>
+          <li>✓ "taller", "more careful", "most intelligent"</li>
+          <li>This is the most tested adjective error in all three exams</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">The "Than" Rule for Comparatives</div>
+        <p>A comparative adjective must always be followed by <strong>"than"</strong> when making a comparison — never "from" or "to".<br>
+        ✓ "He is taller <strong>than</strong> his brother." &nbsp;|&nbsp; ✗ "He is taller <em>from</em> his brother."<br>
+        Exception: "different from" (not "different than" in formal British English used in these exams).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Using Degrees Correctly — Structures &amp; Rules</div>
+        <div class="c-sub">As…as, not so…as, the…the, -er than any other — fixed patterns</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Structure</th><th>Rule</th><th>Example</th></tr>
+          <tr><td><b>as + positive + as</b></td><td>Positive degree — equal comparison</td><td>He is <b>as tall as</b> his captain. ✓</td></tr>
+          <tr><td><b>not so + positive + as</b></td><td>Inequality — less than</td><td>He is <b>not so tall as</b> his captain. ✓</td></tr>
+          <tr><td><b>comparative + than any other</b></td><td>Superlative meaning via comparative</td><td>He is <b>braver than any other</b> soldier. ✓</td></tr>
+          <tr><td><b>one of the + superlative + plural noun</b></td><td>Superlative with plural noun</td><td>He is one of the <b>bravest soldiers</b>. ✓</td></tr>
+          <tr><td><b>the + comparative, the + comparative</b></td><td>Proportional increase</td><td><b>The higher</b> you climb, <b>the colder</b> it gets. ✓</td></tr>
+          <tr><td><b>no other + singular noun + positive</b></td><td>Superlative meaning via positive</td><td>No other soldier is <b>as brave as</b> he. ✓</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "One of the + superlative" — Noun Must Be Plural</div>
+        <ul>
+          <li>✗ "He is one of the bravest <em>soldier</em>." → ✓ "one of the bravest <strong>soldiers</strong>"</li>
+          <li>✗ "She is one of the best <em>student</em>." → ✓ "one of the best <strong>students</strong>"</li>
+          <li>After "one of the + superlative", the noun must always be plural</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Illogical Comparisons — Comparing Unlike Things</div>
+        <ul>
+          <li>✗ "The climate of Mumbai is better than Delhi." → comparing climate to a city</li>
+          <li>✓ "The climate of Mumbai is better than <strong>that of</strong> Delhi." ✓</li>
+          <li>✗ "India's army is larger than China." → ✓ "India's army is larger than <strong>that of</strong> China." ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 — ABSOLUTE ADJECTIVES ── -->
+  <div class="sec-label">Section 2 — Absolute Adjectives</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac3Pale)">🚫</div>
+      <div style="flex:1">
+        <div class="c-title">Adjectives That Cannot Be Compared</div>
+        <div class="c-sub">Perfect, unique, dead, infinite, round, complete — no degrees possible</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Absolute adjectives</strong> represent qualities that are all-or-nothing — they cannot exist in degrees. Something is either unique or it is not; something is either perfect or it is not. Using "more", "most", "very", or "-er/-est" with these is grammatically incorrect.</p>
+      <div class="fact-box">
+        <div class="fb-label">Common Absolute Adjectives — Never Compare These</div>
+        <ul>
+          <li><strong>unique, absolute, universal, infinite, eternal, immortal, omnipotent</strong></li>
+          <li><strong>perfect, ideal, complete, total, entire, whole, full</strong></li>
+          <li><strong>dead, alive, pregnant, blind, deaf, dumb</strong> (states that are either present or not)</li>
+          <li><strong>round, square, circular, triangular, oval</strong> (geometric absolutes)</li>
+          <li><strong>impossible, inevitable, certain, correct, wrong, true, false</strong></li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors with Absolute Adjectives</div>
+        <ul>
+          <li>✗ "This plan is <em>more perfect</em>." → ✓ "This plan is <strong>perfect</strong>." (or "more nearly perfect")</li>
+          <li>✗ "The shape is <em>very round</em>." → ✓ "The shape is <strong>round</strong>."</li>
+          <li>✗ "It is <em>very impossible</em>." → ✓ "It is <strong>impossible</strong>."</li>
+          <li>✗ "He found a <em>more unique</em> solution." → ✓ "He found a <strong>unique</strong> solution."</li>
+        </ul>
+      </div>
+      <div class="purple-box">
+        <div class="pl-label">Acceptable Modifiers for Absolute Adjectives</div>
+        <ul>
+          <li>"nearly perfect", "almost complete", "virtually impossible" — these are acceptable because "nearly/almost" shows approach to the absolute</li>
+          <li>"absolutely unique", "completely dead" — the adverb reinforces, not grades, the absolute</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 — CONFUSED PAIRS ── -->
+  <div class="sec-label">Section 3 — Commonly Confused Adjective Pairs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">👥</div>
+      <div style="flex:1">
+        <div class="c-title">Elder / Older &nbsp;·&nbsp; Latest / Last &nbsp;·&nbsp; Nearest / Next</div>
+        <div class="c-sub">Context determines the correct choice — all tested in spotting errors</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Pair</th><th>Usage</th><th>Correct Example</th></tr>
+          <tr><td><b>Elder</b></td><td>Seniority within a family (brother, sister, son, daughter) — not followed by "than"</td><td>He is my <b>elder</b> brother. ✓</td></tr>
+          <tr><td><b>Older</b></td><td>Age comparison between any two persons/things — followed by "than"</td><td>He is <b>older than</b> his friend. ✓</td></tr>
+          <tr><td><b>Latest</b></td><td>Most recent (time-based) — still ongoing possibility</td><td>Have you read the <b>latest</b> news? ✓</td></tr>
+          <tr><td><b>Last</b></td><td>Final in a series — nothing comes after it</td><td>This is the <b>last</b> chapter of the book. ✓</td></tr>
+          <tr><td><b>Later</b></td><td>More recent time (time-based comparative)</td><td>We will discuss this at a <b>later</b> date. ✓</td></tr>
+          <tr><td><b>Latter</b></td><td>The second of two previously mentioned items</td><td>I prefer the <b>latter</b> option. ✓ (of two)</td></tr>
+          <tr><td><b>Nearest</b></td><td>Closest in distance</td><td>What is the <b>nearest</b> hospital? ✓</td></tr>
+          <tr><td><b>Next</b></td><td>Immediately following in order/sequence</td><td>Take the <b>next</b> left turn. ✓</td></tr>
+          <tr><td><b>Farther</b></td><td>Greater physical distance</td><td>The camp is <b>farther</b> than I thought. ✓</td></tr>
+          <tr><td><b>Further</b></td><td>Additional / figurative extension ("moreover")</td><td><b>Further</b> training is required. ✓</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Elder — Two Key Restrictions</div>
+        <ul>
+          <li>"Elder" cannot be used with "than": ✗ "He is elder <em>than</em> me." → ✓ "He is <strong>older</strong> than me."</li>
+          <li>"Elder" cannot be used predicatively (after a verb): ✗ "He is elder." → ✓ "He is the <strong>elder</strong>." (with article) or "He is <strong>older</strong>."</li>
+          <li>"Elder" is only used attributively (before a noun) in family contexts: "my elder brother", "her elder sister"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac1Pale)">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Little / Less / Least &nbsp;·&nbsp; Few / Fewer / Fewest &nbsp;·&nbsp; Old comparatives</div>
+        <div class="c-sub">Countable vs uncountable — and older vs elder, late comparatives</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Used with</th></tr>
+          <tr><td>little</td><td>less</td><td>least</td><td>Uncountable nouns</td></tr>
+          <tr><td>few</td><td>fewer</td><td>fewest</td><td>Countable plural nouns</td></tr>
+          <tr><td>old</td><td>older / elder</td><td>oldest / eldest</td><td>older = general; elder = family</td></tr>
+          <tr><td>late</td><td>later / latter</td><td>latest / last</td><td>later/latest = time; latter/last = order/position</td></tr>
+          <tr><td>far</td><td>farther / further</td><td>farthest / furthest</td><td>farther = distance; further = additional</td></tr>
+          <tr><td>near</td><td>nearer</td><td>nearest / next</td><td>nearest = distance; next = sequence</td></tr>
+          <tr><td>fore</td><td>former</td><td>foremost / first</td><td>former = first of two; foremost = most prominent</td></tr>
+          <tr><td>in / inner</td><td>inner</td><td>inmost / innermost</td><td>position — no positive "in" as adj</td></tr>
+          <tr><td>up / upper</td><td>upper</td><td>upmost / uppermost</td><td>position</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Former vs Latter — Two Items Only</div>
+        <ul>
+          <li>"Between strategy and execution, the <strong>former</strong> must be sound." (strategy = 1st) ✓</li>
+          <li>"Of bravery and discipline, the <strong>latter</strong> sustains an army." (discipline = 2nd) ✓</li>
+          <li>Former/latter only for two items — for three or more, use "first" / "last"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 — ORDER ── -->
+  <div class="sec-label">Section 4 — Order of Adjectives in a Noun Phrase</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac4Pale)">📋</div>
+      <div style="flex:1">
+        <div class="c-title">The Fixed Order — DSASCOM + Noun</div>
+        <div class="c-sub">Determiner → Size → Age → Shape → Colour → Origin → Material → Purpose → Noun</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When multiple adjectives modify a single noun, they must follow a <strong>fixed natural order</strong>. Violating this order sounds unnatural and is tested as an error in sentence arrangement questions.</p>
+      <div class="order-strip">
+        <div class="os-cell"><div class="os-num">1</div><div class="os-name">Determiner</div></div>
+        <div class="os-cell"><div class="os-num">2</div><div class="os-name">Opinion / Observation</div></div>
+        <div class="os-cell"><div class="os-num">3</div><div class="os-name">Size</div></div>
+        <div class="os-cell"><div class="os-num">4</div><div class="os-name">Age</div></div>
+        <div class="os-cell"><div class="os-num">5</div><div class="os-name">Shape</div></div>
+        <div class="os-cell"><div class="os-num">6</div><div class="os-name">Colour</div></div>
+        <div class="os-cell"><div class="os-num">7</div><div class="os-name">Origin</div></div>
+        <div class="os-cell"><div class="os-num">8</div><div class="os-name">Material</div></div>
+        <div class="os-cell"><div class="os-num">9</div><div class="os-name">Purpose / Qualifier</div></div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Order Examples</div>
+        <ul>
+          <li>A <strong>beautiful [opinion] large [size] old [age] rectangular [shape] brown [colour] Indian [origin] wooden [material] writing [purpose]</strong> desk ✓</li>
+          <li>Three <strong>brave [opinion] young [age] Indian [origin]</strong> soldiers ✓</li>
+          <li>A <strong>small [size] black [colour] leather [material]</strong> holster ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Wrong Order Errors</div>
+        <ul>
+          <li>✗ "a <em>wooden old large</em> table" → ✓ "a <strong>large old wooden</strong> table" (size → age → material)</li>
+          <li>✗ "a <em>black beautiful small</em> bag" → ✓ "a <strong>beautiful small black</strong> bag" (opinion → size → colour)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 — PREDICATIVE/ATTRIBUTIVE ── -->
+  <div class="sec-label">Section 5 — Predicative vs Attributive &amp; Other Rules</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--ac5Pale)">✏️</div>
+      <div style="flex:1">
+        <div class="c-title">Attributive-Only &amp; Predicative-Only Adjectives</div>
+        <div class="c-sub">Some adjectives can only be used before a noun; others only after a linking verb</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Category</th><th>Adjectives</th><th>Rule</th><th>Example</th></tr>
+          <tr><td><b>Attributive only</b><br>(before noun only)</td><td>elder, former, latter, inner, outer, upper, utter, mere, only, chief, principal, main, sole</td><td>Cannot follow a linking verb directly</td><td>"my <b>elder</b> brother" ✓ &nbsp;|&nbsp; ✗ "He is elder."</td></tr>
+          <tr><td><b>Predicative only</b><br>(after linking verb only)</td><td>afraid, alive, alone, asleep, awake, aware, ashamed, ablaze, aloof, averse, akin</td><td>Cannot be used before a noun directly</td><td>"The soldier is <b>afraid</b>." ✓ &nbsp;|&nbsp; ✗ "the afraid soldier"</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors</div>
+        <ul>
+          <li>✗ "the <em>asleep</em> guard" → ✓ "the <strong>sleeping</strong> guard" (use participial adj)</li>
+          <li>✗ "an <em>afraid</em> recruit" → ✓ "a <strong>frightened</strong> recruit"</li>
+          <li>✗ "an <em>alive</em> prisoner" → ✓ "a <strong>living</strong> prisoner"</li>
+          <li>✗ "He is <em>utter</em> wrong." → ✓ "He is <strong>utterly</strong> wrong." (utter = attributive adj; utterly = adverb)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--priPale)">🔢</div>
+      <div style="flex:1">
+        <div class="c-title">Adjectives with Specific Prepositions</div>
+        <div class="c-sub">Anxious about / for, good at / for, different from, superior to…</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Many adjectives require a specific preposition when followed by a noun or pronoun. Using the wrong preposition is a common spotting error pattern.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Adjective + Preposition</th><th>Adjective + Preposition</th></tr>
+          <tr><td><b>good at</b> (a skill)</td><td><b>good for</b> (benefit/suitability)</td></tr>
+          <tr><td><b>anxious about</b> (worried)</td><td><b>anxious for</b> (eager)</td></tr>
+          <tr><td><b>different from</b> (not "than")</td><td><b>similar to</b> (not "with")</td></tr>
+          <tr><td><b>superior to</b> (not "than")</td><td><b>inferior to</b> (not "than")</td></tr>
+          <tr><td><b>senior to</b> (not "than")</td><td><b>junior to</b> (not "than")</td></tr>
+          <tr><td><b>worthy of</b> (not "for")</td><td><b>proud of</b></td></tr>
+          <tr><td><b>responsible for</b></td><td><b>capable of</b></td></tr>
+          <tr><td><b>indifferent to</b></td><td><b>blind to</b> (not "of")</td></tr>
+          <tr><td><b>deaf to</b> (requests)</td><td><b>eligible for</b></td></tr>
+          <tr><td><b>familiar with</b></td><td><b>innocent of</b> (not "from")</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Superior/Inferior/Senior/Junior/Prior" — Always "to", Never "than"</div>
+        <ul>
+          <li>These five adjectives are <strong>already comparative in meaning</strong> — they should never be followed by "than"</li>
+          <li>✗ "He is senior <em>than</em> me." → ✓ "He is senior <strong>to</strong> me."</li>
+          <li>✗ "This model is superior <em>than</em> the old one." → ✓ "…superior <strong>to</strong> the old one."</li>
+          <li>Also: never use "more superior" — they are already comparative; no double comparison</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════ DEGREE LIST ═══════════════════════ -->
+<div id="degrees" class="pane">
+
+  <div class="intro-box">
+    <p>This is the <strong>complete exam-relevant degree list</strong> — regular patterns first, then all <strong>irregular forms</strong> (marked <span class="degree-tag tag-irr">Irr</span>), then <strong>defective adjectives</strong> (marked <span class="degree-tag tag-defect">Defect</span>) that exist in only one or two degrees. Memorise the irregular and defective forms — they appear directly in fill-in-the-blank questions.</p>
+  </div>
+
+  <div class="sec-label">Regular Adjectives — Key Exam Examples</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>tall</td><td>taller</td><td>tallest</td><td>1-syllable</td></tr>
+        <tr><td>brave</td><td>braver</td><td>bravest</td><td>ends in -e</td></tr>
+        <tr><td>big</td><td>bigger</td><td>biggest</td><td>CVC — double final consonant</td></tr>
+        <tr><td>hot</td><td>hotter</td><td>hottest</td><td>CVC — double</td></tr>
+        <tr><td>thin</td><td>thinner</td><td>thinnest</td><td>CVC — double</td></tr>
+        <tr><td>happy</td><td>happier</td><td>happiest</td><td>2-syll ending -y → i</td></tr>
+        <tr><td>heavy</td><td>heavier</td><td>heaviest</td><td>-y → i</td></tr>
+        <tr><td>clever</td><td>cleverer / more clever</td><td>cleverest / most clever</td><td>2-syll — both forms acceptable</td></tr>
+        <tr><td>simple</td><td>simpler / more simple</td><td>simplest / most simple</td><td>2-syll ending -le</td></tr>
+        <tr><td>narrow</td><td>narrower</td><td>narrowest</td><td>2-syll — -er/est acceptable</td></tr>
+        <tr><td>careful</td><td>more careful</td><td>most careful</td><td>2+ syll — more/most</td></tr>
+        <tr><td>intelligent</td><td>more intelligent</td><td>most intelligent</td><td>3-syll</td></tr>
+        <tr><td>beautiful</td><td>more beautiful</td><td>most beautiful</td><td>3-syll</td></tr>
+        <tr><td>important</td><td>more important</td><td>most important</td><td>3-syll</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Irregular Adjectives — Must Memorise</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="irr-row"><td>good / well</td><td>better</td><td>best</td><td><span class="degree-tag tag-irr">Irr</span> Most tested irregular form</td></tr>
+        <tr class="irr-row"><td>bad / ill / evil</td><td>worse</td><td>worst</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>little (amount)</td><td>less</td><td>least</td><td><span class="degree-tag tag-irr">Irr</span> uncountable</td></tr>
+        <tr class="irr-row"><td>much / many</td><td>more</td><td>most</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>far</td><td>farther / further</td><td>farthest / furthest</td><td><span class="degree-tag tag-irr">Irr</span> farther = distance; further = additional</td></tr>
+        <tr class="irr-row"><td>old</td><td>older / elder</td><td>oldest / eldest</td><td><span class="degree-tag tag-irr">Irr</span> elder = family seniority only</td></tr>
+        <tr class="irr-row"><td>late</td><td>later / latter</td><td>latest / last</td><td><span class="degree-tag tag-irr">Irr</span> later/latest = time; latter/last = order</td></tr>
+        <tr class="irr-row"><td>near</td><td>nearer</td><td>nearest / next</td><td><span class="degree-tag tag-irr">Irr</span> next = sequence; nearest = distance</td></tr>
+        <tr class="irr-row"><td>fore</td><td>former</td><td>foremost / first</td><td><span class="degree-tag tag-irr">Irr</span> former = first of two</td></tr>
+        <tr class="irr-row"><td>out (outer)</td><td>outer</td><td>outmost / outermost / utmost / uttermost</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>in (inner)</td><td>inner</td><td>inmost / innermost</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>up (upper)</td><td>upper</td><td>upmost / uppermost</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>nether (below)</td><td>—</td><td>nethermost / lowest</td><td><span class="degree-tag tag-irr">Irr</span></td></tr>
+        <tr class="irr-row"><td>rathe (early)</td><td>rather</td><td>—</td><td><span class="degree-tag tag-irr">Irr</span> archaic; "rather" survives as adverb</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Defective / Incomplete Adjectives</div>
+
+  <div style="overflow-x:auto">
+    <table class="degree-table">
+      <thead><tr><th>Form</th><th>Degree</th><th>Notes &amp; Usage</th></tr></thead>
+      <tbody>
+        <tr><td>chief / main / principal / sole / only</td><td>Positive only <span class="degree-tag tag-defect">Defect</span></td><td>Absolute meaning — no comparison possible</td></tr>
+        <tr><td>unique / perfect / absolute / complete / total</td><td>Positive only <span class="degree-tag tag-defect">Defect</span></td><td>Absolute adjectives — cannot be graded</td></tr>
+        <tr><td>dead / blind / deaf / dumb / pregnant</td><td>Positive only <span class="degree-tag tag-defect">Defect</span></td><td>Binary states — either present or not</td></tr>
+        <tr><td>former / latter / inner / outer / upper / nether / fore</td><td>Comparative only <span class="degree-tag tag-defect">Defect</span></td><td>Derived from positional or sequence words; no positive degree in adj form</td></tr>
+        <tr><td>foremost / utmost / uttermost / topmost / nethermost / hindmost / inmost / outmost / uppermost</td><td>Superlative only <span class="degree-tag tag-defect">Defect</span></td><td>Position/rank superlatives — no comparative/positive</td></tr>
+        <tr><td>prior / posterior / senior / junior / superior / inferior / major / minor / exterior / interior / anterior / ulterior</td><td>Comparative only <span class="degree-tag tag-defect">Defect</span></td><td>Latin-origin comparatives — already mean "more than"; followed by "to", never "than"</td></tr>
+        <tr><td>supreme / extreme / top</td><td>Superlative only <span class="degree-tag tag-defect">Defect</span></td><td>Inherently superlative — no positive or comparative degree</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-label">Latin-Origin Comparatives — Followed by "to", Never "than"</div>
+
+  <div class="fact-box">
+    <div class="fb-label">These 12 adjectives are already comparative — use "to" not "than"</div>
+    <ul>
+      <li><strong>senior to, junior to</strong> — rank/age hierarchy</li>
+      <li><strong>superior to, inferior to</strong> — quality hierarchy</li>
+      <li><strong>prior to, posterior to</strong> — time sequence (prior = before; posterior = after)</li>
+      <li><strong>major, minor</strong> — relative importance (often used alone; "major to" is rare)</li>
+      <li><strong>exterior to, interior to, anterior to, ulterior to</strong> — position/motivation</li>
+      <li><strong>prefer…to</strong> — (prefer is a verb but follow same rule): "I prefer tea <strong>to</strong> coffee." ✓ not "prefer tea <em>than</em> coffee"</li>
+    </ul>
+  </div>
+
+</div><!-- /degrees -->
+
+<!-- ═══════════════════════ QUICK REF ═══════════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Adjectives — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Forming Degrees — Key Rules</div>
+      <ul>
+        <li>1 syllable → <span class="ok">-er / -est</span> (tall → taller → tallest)</li>
+        <li>CVC → double last consonant (big → bigger)</li>
+        <li>2-syll ending -y → change y to i (happy → happier)</li>
+        <li>3+ syllables → <span class="ok">more / most</span></li>
+        <li>✗ Never "more taller" / "most tallest" — double comparison</li>
+        <li>Comparative always followed by <span class="ok">"than"</span> — never "from" or "to"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Critical Irregular Pairs</div>
+      <ul>
+        <li><b>good → better → best</b> | <b>bad → worse → worst</b></li>
+        <li><b>much/many → more → most</b> | <b>little → less → least</b></li>
+        <li><b>far:</b> farther/farthest (distance) | further/furthest (additional)</li>
+        <li><b>old:</b> older/oldest (general) | elder/eldest (family seniority)</li>
+        <li><b>late:</b> later/latest (time) | latter/last (order/sequence)</li>
+        <li><b>near:</b> nearer/nearest (distance) | next (sequence)</li>
+        <li><b>fore → former → foremost</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Absolute Adjectives — Never Compare</div>
+      <ul>
+        <li><em>unique, perfect, ideal, absolute, complete, total, entire</em></li>
+        <li><em>dead, alive, pregnant, blind, deaf, infinite, eternal</em></li>
+        <li><em>round, square, circular, correct, impossible, inevitable</em></li>
+        <li>✗ "more unique", "very perfect", "most complete" — all wrong</li>
+        <li>✓ "nearly perfect", "almost complete" — acceptable</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Latin Comparatives → "to" not "than"</div>
+      <ul>
+        <li><b>senior to, junior to</b> (never "senior than")</li>
+        <li><b>superior to, inferior to</b> (never "superior than")</li>
+        <li><b>prior to, anterior to, posterior to</b></li>
+        <li>Also: <b>prefer…to</b> (verb but same rule)</li>
+        <li>Never "more superior" — already comparative in meaning</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Adjectives with Fixed Prepositions</div>
+      <ul>
+        <li><b>different from</b> (not than) | <b>similar to</b> (not with)</li>
+        <li><b>worthy of</b> | <b>proud of</b> | <b>innocent of</b></li>
+        <li><b>good at</b> (skill) / <b>good for</b> (benefit)</li>
+        <li><b>anxious about</b> (worry) / <b>anxious for</b> (eager)</li>
+        <li><b>responsible for</b> | <b>capable of</b> | <b>eligible for</b></li>
+        <li><b>familiar with</b> | <b>blind to</b> | <b>deaf to</b></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Order of Adjectives (OSASCOM)</div>
+      <ul>
+        <li>Opinion → Size → Age → Shape → Colour → Origin → Material → Purpose</li>
+        <li><em>a beautiful large old round blue French silver decorative vase</em></li>
+        <li>Attributive only: elder, former, latter, inner, outer, utter, mere, chief</li>
+        <li>Predicative only: afraid, alive, asleep, awake, aware, ashamed, ablaze, aloof</li>
+        <li>"One of the + superlative" → noun must be <span class="ok">plural</span></li>
+        <li>Illogical comparison → add <span class="ok">"that of"</span> for singular nouns</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Adjectives · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── DEGREES — EASY ───────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Double Comparative',
+q:'Spot the error:<br>"She is <u>more braver</u> than any other <u>cadet</u> in the <u>batch</u>."',
+opts:['more braver','cadet','batch','No error'],ans:0,
+rule:'Double comparative: "more" + "-er" form is always wrong — use either "more brave" or "braver"',
+exp:'"More braver" is a double comparative — it incorrectly combines "more" with the "-er" form "braver". You must use one or the other, not both. The correct forms are: "more brave" (for 1-syllable adjectives, "-er" is preferred) → "braver". So "more braver" → should be "braver". This is the most frequently tested adjective error across all three exams. Answer: "more braver" → should be "braver".'},
+
+{d:'EASY',e:'CDS 2022',type:'Irregular Degree',
+q:'Fill in the blank:<br>"Of the two plans presented, the second one is ______ suited for the terrain."',
+opts:['more better','better','best','more good'],ans:1,
+rule:'"Better" is the comparative of "good" — never "more better" or "more good"',
+exp:'"Good" is an irregular adjective: good → better → best. For comparing two items, the comparative "better" is used — not "best" (which is for three or more). "More better" and "more good" are both double comparatives — wrong. The correct answer is simply "better". Answer: better.'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Superlative + Plural Noun',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is one of the bravest soldier in the regiment.',
+  'He is one of the bravest soldiers in the regiment.',
+  'He is one of the most brave soldier in the regiment.',
+  'He is the one of bravest soldiers in the regiment.'
+],ans:1,
+rule:'"One of the + superlative" must be followed by a plural noun',
+exp:'The structure "one of the + superlative adjective" requires the following noun to be in the plural form. "Soldier" (A, C) is singular — wrong. Option B: "bravest soldiers" — superlative + plural noun — correct ✓. Option C also has "most brave soldier" (singular) — wrong twice. Option D misplaces "the": "the one of" is incorrect; it should be "one of the". Answer: B.'},
+
+// ── CONFUSED PAIRS ───────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2023',type:'Elder / Older',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'My elder brother is elder than me by five years.',
+  'My elder brother is older than me by five years.',
+  'My older brother is elder than me by five years.',
+  'My oldest brother is elder to me by five years.'
+],ans:1,
+rule:'"Elder" cannot be used with "than" — use "older than" for age comparisons',
+exp:'"Elder" is used attributively before a noun in family contexts: "my elder brother" ✓. However, "elder" cannot be followed by "than" — it has no comparative structure with "than". When comparing ages, "older than" must be used. Option A uses "elder than" — wrong. Option B: "my elder brother" (attributive ✓) + "older than me" (comparative ✓) — correct. Option C: "older brother" as an attribute is less natural than "elder brother" in Indian formal English. Option D: "eldest" and "elder to" are both wrong in this context. Answer: B.'},
+
+{d:'EASY',e:'CDS 2022',type:'Latest / Last',
+q:'Fill in the blank:<br>"This is the ______ chapter of the textbook — nothing follows it."',
+opts:['latest','last','latter','later'],ans:1,
+rule:'"Last" = final in a series (nothing follows) | "latest" = most recent in time (more may follow)',
+exp:'"Nothing follows it" tells us this is the final, terminal item in a series — that is the meaning of <strong>"last"</strong>. "Latest" means most recent in time but implies more could follow in the future. "Latter" refers to the second of two previously mentioned items (not applicable here). "Later" is a comparative of time. Answer: last.'},
+
+// ── MEDIUM ───────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Superior / Latin Comparative',
+q:'Spot the error:<br>"The new communication system is <u>more superior</u> than the <u>older model</u> in <u>every respect</u>."',
+opts:['more superior','older model','every respect','No error'],ans:0,
+rule:'"Superior" is already a Latin comparative — never add "more"; use "superior to", not "superior than"',
+exp:'"Superior" is a Latin-origin comparative adjective — it already means "of higher quality than something else". Two errors occur here: (1) "more superior" adds "more" to an already comparative form — double comparison, which is wrong. (2) "superior than" — Latin comparatives always take "to", not "than". The correct phrase is simply "superior to the older model". Answer: "more superior" → should be "superior to".'},
+
+{d:'MEDIUM',e:'NDA 2022',type:'Absolute Adjective',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The general found a more unique solution to the tactical problem.',
+  'Her performance was the most perfect in the entire exercise.',
+  'The circular shape of the base made it nearly ideal for defence.',
+  'This is a very complete report on the operation.'
+],ans:2,
+rule:'"Unique", "perfect", and "complete" are absolute adjectives — they cannot be compared or intensified with very/more/most',
+exp:'Option A: "more unique" — "unique" is an absolute adjective (one-of-a-kind); it cannot be graded. ✗. Option B: "most perfect" — "perfect" is an absolute; it cannot take "most". ✗. Option D: "very complete" — "complete" is an absolute; "very" grades it, which is wrong. ✗. Option C: "nearly ideal" — "nearly" shows an approach to the absolute without grading it directly. This is the acceptable way to modify an absolute adjective. ✓. Answer: C.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Illogical Comparison',
+q:'Spot the error:<br>"The equipment of the Indian Army is far better than <u>Pakistan</u>."',
+opts:[
+  'The equipment of',
+  'the Indian Army',
+  'is far better than',
+  'Pakistan'
+],ans:3,
+rule:'Illogical comparison: comparing "equipment" (thing) to "Pakistan" (country) — must add "that of" to compare like with like',
+exp:'The sentence compares "the equipment of the Indian Army" with "Pakistan" — this is an illogical comparison because it compares a thing (equipment) to a country. The correct form must use "that of" to refer back to the equipment of Pakistan: "…far better than <strong>that of Pakistan</strong>." This ensures the comparison is between two pieces of equipment, not between equipment and a country. Answer: "Pakistan" → should be "that of Pakistan".'},
+
+{d:'MEDIUM',e:'AFCAT 2023',type:'Farther / Further',
+q:'Fill in the blank:<br>"The general demanded ______ clarification on the intelligence report before approving the mission."',
+opts:['farther','farthest','further','furthest'],ans:2,
+rule:'"Further" = additional / more (figurative) | "farther" = greater physical distance',
+exp:'"Clarification" is not a physical distance — it is an additional/extended amount of information. "Further" is used for additional, extended, or metaphorical extensions: "further clarification", "further training", "further discussion". "Farther" refers specifically to physical distance: "The base is farther than we thought." Answer: further.'},
+
+{d:'MEDIUM',e:'NDA 2023',type:'Former / Latter',
+q:'"Between the written test and the SSB interview, the ______ tests personality and leadership."',
+opts:['former','latter','latest','last'],ans:1,
+rule:'"Latter" = the second of two previously mentioned items; "former" = the first of two',
+exp:'Two items are mentioned: (1) the written test, and (2) the SSB interview. "The latter" refers to the second item — the SSB interview. "The former" would refer to the first item — the written test. Since the SSB interview tests personality and leadership, "latter" is correct. "Latest" and "last" refer to time or sequence, not to items in a pair. Answer: latter.'},
+
+{d:'MEDIUM',e:'CDS 2023',type:'Adjective + Preposition',
+q:'Spot the error:<br>"The senior officer was <u>anxious about</u> his performance but remained <u>indifferent for</u> the <u>criticism</u>."',
+opts:['anxious about','indifferent for','criticism','No error'],ans:1,
+rule:'"Indifferent to" — not "indifferent for"; fixed preposition rule',
+exp:'"Indifferent" is always followed by the preposition "to" — it means showing no interest in or concern for something. "Indifferent for" is wrong. "Anxious about" (A) is correct — it means worried about. The error is "indifferent for" — should be "indifferent to". Other preposition rules: "indifferent to", "different from", "superior to", "blind to". Answer: "indifferent for" → should be "indifferent to".'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Predicative-Only Adjective',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The afraid soldier hesitated at the gate.',
+  'The asleep guard did not hear the alarm.',
+  'The soldiers were fully aware of the danger ahead.',
+  'The alive prisoner was taken for questioning.'
+],ans:2,
+rule:'"Afraid", "asleep", "alive" are predicative-only adjectives — they cannot precede a noun directly',
+exp:'Predicative-only adjectives (those beginning with "a-": afraid, asleep, alive, awake, aware, ashamed, ablaze) cannot be used attributively (before a noun). Option A: "the afraid soldier" — "afraid" cannot precede a noun; use "frightened soldier" ✗. Option B: "the asleep guard" — "asleep" cannot precede a noun; use "sleeping guard" ✗. Option D: "the alive prisoner" — "alive" cannot precede a noun; use "living prisoner" ✗. Option C: "were fully aware" — "aware" is used after the linking verb "were" (predicatively) — correct ✓. Answer: C.'},
+
+// ── HARD ─────────────────────────────────────────────────────────
+
+{d:'HARD',e:'NDA 2023',type:'Order of Adjectives',
+q:'Which sentence has the adjectives in the CORRECT order?',
+opts:[
+  'The officer wore a leather old brown British uniform.',
+  'The officer wore a brown old leather British uniform.',
+  'The officer wore a beautiful old brown British leather uniform.',
+  'The officer wore a British old brown leather beautiful uniform.'
+],ans:2,
+rule:'Order: Opinion → Size → Age → Shape → Colour → Origin → Material → Purpose',
+exp:'The correct order of adjectives is: Opinion/Observation → Size → Age → Shape → Colour → Origin → Material → Purpose. Let us analyse Option C: "beautiful" (opinion) → "old" (age) → "brown" (colour) → "British" (origin) → "leather" (material) — this follows the correct order ✓. Option A: "leather" (material) before "old" (age) before "brown" (colour) — wrong order. Option B: "brown" (colour) before "old" (age) — wrong; age comes before colour. Option D: "British" (origin) before "old" (age) before "brown" (colour) — all in wrong order. Answer: C.'},
+
+{d:'HARD',e:'CDS 2023',type:'Comparative Structures',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'No other country has as large an army as China has.',
+  'No other country has as large army as China has.',
+  'China has a larger army than any country.',
+  'China has the most largest army in the world.'
+],ans:0,
+rule:'"As + adj + a/an + noun + as" — article must be placed after the adjective in this structure',
+exp:'The structure "as + adjective + a/an + noun + as" requires the article to come after the adjective, not before: "as large <strong>an</strong> army" (not "as large army"). Option A: "as large an army as China has" — correct structure with article in the right place ✓. Option B: "as large army" — missing article between "large" and "army" ✗. Option C: "larger than any country" — should be "larger than any <strong>other</strong> country" (China itself is a country, so "other" is needed) ✗. Option D: "most largest" — double superlative ✗. Answer: A.'},
+
+{d:'HARD',e:'AFCAT 2023',type:'Defective Adjective',
+q:'Fill in the blank:<br>"Of all the candidates, she showed the ______ dedication to the training programme."',
+opts:['most','utmost','uttermost','more'],ans:1,
+rule:'"Utmost" = greatest possible (defective superlative) — correct for expressing the highest degree of an abstract quality',
+exp:'"Utmost" is a defective superlative adjective meaning the greatest, most extreme, or maximum degree. It is used for abstract qualities like dedication, care, importance, urgency. "Of all the candidates" signals a superlative context. "Most" (A) would need to precede a gradable adjective — "most dedication" is unnatural with no preceding adjective. "Uttermost" (C) is synonymous but less standard in modern formal usage; "utmost" is the preferred exam choice. "More" (D) is comparative, not superlative. Answer: utmost.'},
+
+{d:'HARD',e:'NDA 2024',type:'Comparison Structures',
+q:'Spot the error:<br>"The strategic depth of the Himalayas is more important than <u>the Alps</u> <u>for India\'s</u> <u>northern defence</u>."',
+opts:['the Alps','for India\'s','northern defence','No error'],ans:0,
+rule:'Illogical comparison: "strategic depth of the Himalayas" (abstract quality) compared to "the Alps" (a mountain range) — must be "that of the Alps"',
+exp:'The subject being compared is "the strategic depth of the Himalayas" — an abstract quality. It is being compared to "the Alps" — a physical mountain range. This is an illogical comparison: a quality cannot be compared to a thing. The correction is: "…more important than <strong>that of the Alps</strong>" — where "that" refers to "the strategic depth". This is the same illogical comparison rule applied to abstract nouns. Answer: "the Alps" → should be "that of the Alps".'},
+
+{d:'HARD',e:'CDS 2024',type:'Irregular + Defective',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is the most foremost scientist in the field of aerospace.',
+  'He is the foremost scientist in the field of aerospace.',
+  'He is the more foremost scientist in the field.',
+  'He is foremost than any other scientist in the field.'
+],ans:1,
+rule:'"Foremost" is a defective superlative — it already means "most prominent"; never add "most/more" or use "than"',
+exp:'"Foremost" is a defective superlative adjective — it inherently means "most prominent, most important, first in rank". It has no positive or comparative form in standard usage. Options A and C add "most" and "more" respectively — both double up on a superlative form, which is wrong. Option D uses "foremost than" — since it is a superlative (not a comparative), it cannot take "than". Option B "He is the foremost scientist" — uses the defective superlative correctly with the definite article ✓. Answer: B.'},
+
+{d:'HARD',e:'AFCAT 2024',type:'Senior / Junior',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is more senior than the other officers in the unit.',
+  'He is senior than the other officers in the unit.',
+  'He is senior to the other officers in the unit.',
+  'He is the most senior officer of the unit.'
+],ans:2,
+rule:'"Senior" is a Latin comparative — takes "to", never "than"; also never use "more senior" (double comparative)',
+exp:'"Senior" is a Latin-origin comparative adjective that already contains the idea of comparison. It must be followed by "to" (not "than"). Option A: "more senior than" — double comparison with wrong preposition. ✗. Option B: "senior than" — wrong preposition; should be "to". ✗. Option C: "senior to the other officers" — correct Latin comparative + correct preposition ✓. Option D: "the most senior officer" — this is actually grammatically acceptable in modern usage when used as a superlative in a group, but the question tests the specific "senior to" rule, and Option C is the more precisely correct formal answer. Answer: C.'},
+
+{d:'HARD',e:'NDA 2024',type:'As…as Structure',
+q:'Spot the error:<br>"The discipline of NDA cadets is as strict as <u>IMA</u>."',
+opts:[
+  'The discipline of NDA cadets',
+  'is as strict as',
+  'IMA',
+  'No error'
+],ans:2,
+rule:'Illogical comparison: "discipline" (abstract) compared to "IMA" (institution) — must be "that of IMA"',
+exp:'The sentence compares "the discipline of NDA cadets" (an abstract quality belonging to a group) with "IMA" (an institution). This is an illogical comparison — a quality is being compared to an institution. The correct form inserts "that of" to make the comparison logical: "…as strict as <strong>that of</strong> IMA" — where "that" refers to the discipline of IMA. This is the same illogical comparison pattern applied to "as…as" structures. Answer: "IMA" → should be "that of IMA".'},
+
+{d:'HARD',e:'CDS 2024',type:'Adjective Order',
+q:'"She was holding a ______ briefcase." — Arrange the adjectives in correct order:<br>(i) black &nbsp; (ii) small &nbsp; (iii) leather &nbsp; (iv) Italian',
+opts:[
+  'a black small Italian leather briefcase',
+  'a small black Italian leather briefcase',
+  'a small Italian black leather briefcase',
+  'a leather small black Italian briefcase'
+],ans:1,
+rule:'Order: Size (small) → Colour (black) → Origin (Italian) → Material (leather)',
+exp:'The four adjectives map to: "small" = Size (position 3), "black" = Colour (position 6), "Italian" = Origin (position 7), "leather" = Material (position 8). Following the fixed order: Size → Colour → Origin → Material = <strong>small → black → Italian → leather</strong>. Option A: black (colour) before small (size) — wrong. Option B: small (size) → black (colour) → Italian (origin) → leather (material) — correct order ✓. Option C: Italian (origin) before black (colour) — wrong; colour comes before origin. Option D: leather (material) first — completely wrong. Answer: B.'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Adjectives</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Adjective rules — regular, irregular and defective — are clearly no problem for you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the confused pairs and Latin comparative rules once more.'}
+  else if(pct>=50){grade='Average';msg='Good start. Focus on the Degree List tab and the absolute adjectives section in Theory.'}
+  else{grade='Needs Work';msg='Start with the irregular degree list, then work through confused pairs and absolute adjectives in Theory.'}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,degrees:1,quickref:2,quiz:3}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

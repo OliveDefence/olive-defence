@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Determiners | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Warm Olive / Burgundy ─────────────────────── */
+  --bg:        #F3F1EC;
+  --bg2:       #EAE6DC;
+  --bg3:       #DDD8C8;
+  --white:     #FFFFFF;
+  --ink:       #1C160A;
+  --ink2:      #302818;
+  --muted:     #74694E;
+  --dim:       #A89878;
+  --border:    #D0C9B4;
+
+  /* Primary — deep olive green */
+  --pri:       #4A5C1A;
+  --priLt:     #5C7220;
+  --priPale:   #EDF2DC;
+
+  /* Accent 1 — burgundy (replaces amber) */
+  --ac1:       #7A1F3A;
+  --ac1Lt:     #9A2848;
+  --ac1Pale:   #FAEDF1;
+
+  /* Accent 2 — moss green (correct states) */
+  --ac2:       #2E5C30;
+  --ac2Lt:     #3A7A3C;
+  --ac2Pale:   #E8F4E8;
+
+  /* Accent 3 — deep rust (error states) */
+  --ac3:       #7A2A10;
+  --ac3Lt:     #9E3614;
+  --ac3Pale:   #FCEEE8;
+
+  /* Accent 4 — dark teal (rule boxes) */
+  --ac4:       #14484A;
+  --ac4Lt:     #1A5E60;
+  --ac4Pale:   #E2F0F0;
+
+  /* Accent 5 — deep plum */
+  --ac5:       #4E1E5C;
+  --ac5Pale:   #F0EAF6;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(28,22,10,.10);
+  --shadow-md: 0 4px 20px rgba(28,22,10,.15);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--pri);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(140,220,120,.13);color:#AADE90}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(28,22,10,.08);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--priPale);border:1.5px solid rgba(74,92,26,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--ac1Pale);border:1.5px solid rgba(122,31,58,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--ac2Pale);border-left:4px solid var(--ac2);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--ac3Pale);border-left:4px solid var(--ac3);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--ac3Pale);border:1.5px solid rgba(122,42,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);
+  text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{
+  background:var(--ac4Pale);border:1.5px solid rgba(20,72,74,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{
+  background:var(--ac5Pale);border:1.5px solid rgba(78,30,92,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+.sent{
+  display:inline-block;background:var(--bg2);border-radius:6px;
+  padding:10px 14px;margin:6px 0;font-size:15.5px;color:var(--ink);
+  border-left:3px solid var(--pri);width:100%;line-height:1.7;
+}
+.sent b{color:var(--pri)}
+.sent .ok{color:var(--ac2);font-weight:700}
+.sent .err{color:var(--ac3);font-weight:700;text-decoration:underline wavy var(--ac3)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--pri);color:#fff;padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REF ────────────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--ac1Pale);color:var(--ac1)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--pri);background:var(--priPale);
+  border:1px solid rgba(74,92,26,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(74,92,26,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--pri);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Determiners</div>
+  <h1 class="hero-title">Determiners —<br><span>Much, Many, Few &amp; More</span></h1>
+  <p class="hero-sub">Determiners — the words that come before nouns to specify quantity, reference and identity — are tested heavily in CDS, NDA and AFCAT Fill in the Blanks and Spotting Errors. The confusion between much/many, few/little, each/every, and other pairs trips up most candidates. This module fixes that.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Exam Focused</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════════ THEORY ══════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>determiner</strong> is a word placed before a noun to express reference, quantity, or identification. Unlike adjectives, determiners do not describe a noun — they <strong>identify or quantify</strong> it. The six categories tested in CDS/NDA/AFCAT are: <strong>articles</strong> (covered separately), <strong>quantifiers</strong> (much/many, few/little, some/any), <strong>distributives</strong> (each/every, either/neither), <strong>possessives</strong> (my, your, his…), <strong>demonstratives</strong> (this/that, these/those), and <strong>numbers &amp; ordinals</strong>. This module focuses on the categories most tested at medium–high level.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — Quantifiers: Much, Many, More, Most</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EDF2DC">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Much vs Many</div>
+        <div class="c-sub">Countable vs uncountable — the foundational split</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This is the most fundamental quantifier distinction. The rule never changes: <strong>much</strong> is used with uncountable nouns; <strong>many</strong> is used with countable nouns.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Determiner</th><th>Used with</th><th>Examples</th></tr>
+          <tr><td><b>Much</b></td><td>Uncountable nouns</td><td><b>much</b> water, <b>much</b> time, <b>much</b> courage, <b>much</b> information</td></tr>
+          <tr><td><b>Many</b></td><td>Countable plural nouns</td><td><b>many</b> soldiers, <b>many</b> questions, <b>many</b> officers, <b>many</b> days</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>He showed <strong>much</strong> courage during the mission. ✓</li>
+          <li><strong>Many</strong> cadets applied for the NDA examination. ✓</li>
+          <li>There is not <strong>much</strong> time left for the briefing. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Classic Errors</div>
+        <ul>
+          <li>He has <span class="err">many</span> experience in mountain warfare. → <strong>much</strong> experience ✓</li>
+          <li>There is <span class="err">much</span> soldiers in the platoon. → <strong>many</strong> soldiers ✓</li>
+          <li>She gave <span class="err">many</span> advice to the recruits. → <strong>much</strong> advice ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Uncountable Nouns That Fool Candidates</div>
+        <ul>
+          <li><strong>much</strong>: advice, information, knowledge, furniture, equipment, luggage, scenery, traffic, progress, research, work, news, weather, evidence</li>
+          <li>These all look like they could be countable but are not. Never use "many" with them.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E2F0F0">📊</div>
+      <div style="flex:1">
+        <div class="c-title">More, Most, Less, Least, Fewer, Fewest</div>
+        <div class="c-sub">Comparative and superlative quantifiers — and the fewer/less trap</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Form</th><th>Countable</th><th>Uncountable</th></tr>
+          <tr><td><b>Comparative "more"</b></td><td>more soldiers</td><td>more water</td></tr>
+          <tr><td><b>Superlative "most"</b></td><td>most soldiers</td><td>most water</td></tr>
+          <tr><td><b>Comparative "less/fewer"</b></td><td><b>fewer</b> soldiers ✓</td><td><b>less</b> water ✓</td></tr>
+          <tr><td><b>Superlative "least/fewest"</b></td><td><b>fewest</b> soldiers ✓</td><td><b>least</b> water ✓</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Fewer vs Less — The Key Rule</div>
+        <p><strong>Fewer</strong> is used with countable nouns (things you can count individually).<br>
+        <strong>Less</strong> is used with uncountable nouns (things measured in bulk/quantity).<br><br>
+        "There are <strong>fewer</strong> vacancies this year." (vacancies = countable) ✓<br>
+        "There is <strong>less</strong> rainfall this monsoon." (rainfall = uncountable) ✓</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors</div>
+        <ul>
+          <li>There are <span class="err">less</span> candidates this year. → <strong>fewer</strong> candidates ✓</li>
+          <li>We had <span class="err">fewer</span> time to prepare. → <strong>less</strong> time ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — Few, Little, A Few, A Little</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FAEDF1">🔢</div>
+      <div style="flex:1">
+        <div class="c-title">Few / A Few / The Few &amp; Little / A Little / The Little</div>
+        <div class="c-sub">The article changes the entire meaning — the most tested distinction</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This is one of the <strong>most frequently tested determiner rules</strong> in CDS/NDA/AFCAT. The presence or absence of "a" completely changes the meaning — from negative to positive.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Form</th><th>Noun type</th><th>Meaning</th><th>Tone</th></tr>
+          <tr><td><b>Few</b></td><td>Countable plural</td><td>Hardly any — almost none</td><td class="err">Negative</td></tr>
+          <tr><td><b>A few</b></td><td>Countable plural</td><td>Some — not many, but enough</td><td class="ok">Positive</td></tr>
+          <tr><td><b>The few</b></td><td>Countable plural</td><td>The small number that exist (all of them)</td><td>Specific</td></tr>
+          <tr><td><b>Little</b></td><td>Uncountable</td><td>Hardly any — almost none</td><td class="err">Negative</td></tr>
+          <tr><td><b>A little</b></td><td>Uncountable</td><td>Some — not much, but enough</td><td class="ok">Positive</td></tr>
+          <tr><td><b>The little</b></td><td>Uncountable</td><td>Whatever small amount exists (all of it)</td><td>Specific</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Meaning in Context</div>
+        <ul>
+          <li>"He has <strong>few</strong> friends in the regiment." → He is almost friendless. (sad) ✓</li>
+          <li>"He has <strong>a few</strong> friends in the regiment." → He has some friends. (fine) ✓</li>
+          <li>"There is <strong>little</strong> hope of rescue." → Almost no hope. (grim) ✓</li>
+          <li>"There is <strong>a little</strong> hope of rescue." → Some hope remains. (reassuring) ✓</li>
+          <li>"Spend <strong>the little</strong> money you have wisely." → Use all of the small amount. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Choosing Based on Context</div>
+        <p>In fill-in-the-blank questions, read the <strong>tone of the sentence</strong>. If the sentence implies hardship, scarcity, or pessimism → use <strong>few / little</strong>. If the sentence implies sufficiency or hope → use <strong>a few / a little</strong>. This tonal clue is always present.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Some, Any, No &amp; Their Compounds</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EDF2DC">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Some vs Any</div>
+        <div class="c-sub">Affirmative vs negative/interrogative — and the exceptions</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Determiner</th><th>Used in</th><th>Example</th></tr>
+          <tr><td><b>Some</b></td><td>Affirmative sentences</td><td>There are <b>some</b> officers in the hall.</td></tr>
+          <tr><td><b>Some</b></td><td>Questions expecting "yes"</td><td>Could I have <b>some</b> water, please?</td></tr>
+          <tr><td><b>Some</b></td><td>Offers &amp; requests</td><td>Would you like <b>some</b> tea?</td></tr>
+          <tr><td><b>Any</b></td><td>Negative sentences</td><td>There aren't <b>any</b> vacancies.</td></tr>
+          <tr><td><b>Any</b></td><td>Genuine questions (yes/no unclear)</td><td>Are there <b>any</b> messages for me?</td></tr>
+          <tr><td><b>Any</b></td><td>Conditional clauses (if/whether)</td><td>If <b>any</b> reinforcements arrive, inform me.</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Compound Forms</div>
+        <ul>
+          <li><strong>some-</strong>: someone, somebody, something, somewhere → affirmative contexts</li>
+          <li><strong>any-</strong>: anyone, anybody, anything, anywhere → negative/question/conditional</li>
+          <li><strong>no-</strong>: no one, nobody, nothing, nowhere → negative meaning, affirmative structure</li>
+          <li>"I didn't meet <strong>anybody</strong>." = "I met <strong>nobody</strong>." (same meaning, different structure)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Any" in Affirmative = "Every" / "It doesn't matter which"</div>
+        <p>"<strong>Any</strong> officer can confirm this." → Here "any" does not mean a question or negative — it means <em>every / whichever</em>. This special affirmative use of "any" is tested in CDS/NDA to distinguish it from "some".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Distributive Determiners</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E2F0F0">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Each vs Every</div>
+        <div class="c-sub">Both mean "all individually" — but with key grammatical differences</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Both <strong>each</strong> and <strong>every</strong> refer to individual members of a group and both take a <strong>singular noun and singular verb</strong>. However, they are not always interchangeable.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Feature</th><th>Each</th><th>Every</th></tr>
+          <tr><td><b>Minimum number</b></td><td>Two or more</td><td>Three or more (implies a larger group)</td></tr>
+          <tr><td><b>Focus</b></td><td>Individual members separately</td><td>All members together as a totality</td></tr>
+          <tr><td><b>Position</b></td><td>Can follow subject: "They <b>each</b> received…"</td><td>Always before noun: "<b>Every</b> soldier received…"</td></tr>
+          <tr><td><b>Used alone</b></td><td>Yes — "Give <b>each</b> a turn."</td><td>No — needs a noun: ✗ "Give every a turn."</td></tr>
+          <tr><td><b>With "not"</b></td><td><b>Each</b> can deny individually</td><td><b>Every</b> + not = partial denial (not all)</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li><strong>Each</strong> of the two cadets received a medal. ✓ (only two)</li>
+          <li><strong>Every</strong> cadet in the battalion reported on time. ✓ (large group)</li>
+          <li>Not <strong>every</strong> plan succeeds. ✓ (= some don't)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Every other" is Correct — "Each other" is Different</div>
+        <ul>
+          <li>"<strong>Every other</strong> day" = alternate days → uses "every", not "each"</li>
+          <li>"<strong>Each other</strong>" = reciprocal pronoun (they helped each other) → fixed phrase, not replaceable with "every"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FAEDF1">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Either vs Neither vs Both</div>
+        <div class="c-sub">Always used for exactly two — and the agreement rules</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Determiner</th><th>Meaning</th><th>Verb</th><th>Example</th></tr>
+          <tr><td><b>Either</b></td><td>One or the other of two</td><td>Singular</td><td><b>Either</b> route <b>leads</b> to the camp.</td></tr>
+          <tr><td><b>Neither</b></td><td>Not one, not the other</td><td>Singular</td><td><b>Neither</b> officer <b>was</b> available.</td></tr>
+          <tr><td><b>Both</b></td><td>The two together</td><td>Plural</td><td><b>Both</b> soldiers <b>were</b> decorated.</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors</div>
+        <ul>
+          <li><span class="err">Either</span> of the three routes is safe. → <strong>Any</strong> of the three routes ✓ (either = only two)</li>
+          <li><span class="err">Neither</span> of the three officers arrived. → <strong>None</strong> of the three officers ✓</li>
+          <li>Both the soldiers <span class="err">was</span> brave. → Both the soldiers <strong>were</strong> brave ✓</li>
+        </ul>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">The "Two Only" Rule</div>
+        <p><strong>Either, neither, and both are strictly for two items.</strong> When three or more are involved: use <strong>any</strong> instead of either, <strong>none</strong> instead of neither, and <strong>all</strong> instead of both.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="sec-label">Section 5 — Demonstratives &amp; Other Determiners</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EDF2DC">👆</div>
+      <div style="flex:1">
+        <div class="c-title">This / That / These / Those</div>
+        <div class="c-sub">Proximity and number — and the "these kind" trap</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th></th><th>Near (proximity)</th><th>Far (distance)</th></tr>
+          <tr><td><b>Singular</b></td><td>this</td><td>that</td></tr>
+          <tr><td><b>Plural</b></td><td>these</td><td>those</td></tr>
+        </table>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Agreement: Demonstrative Must Match Noun in Number</div>
+        <ul>
+          <li><strong>This / That</strong> + singular noun: <em>this book, that officer</em></li>
+          <li><strong>These / Those</strong> + plural noun: <em>these books, those soldiers</em></li>
+          <li>Never: <span style="color:var(--ac3)">these kind of people</span> ✗ → <strong>this kind of people</strong> OR <strong>these kinds of people</strong> ✓</li>
+          <li>Never: <span style="color:var(--ac3)">those sort of problems</span> ✗ → <strong>that sort of problem</strong> OR <strong>those sorts of problems</strong> ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Such" as a Determiner</div>
+        <ul>
+          <li>"<strong>Such</strong> a brave soldier" — singular countable: such + a/an + adj + noun</li>
+          <li>"<strong>Such</strong> brave soldiers" — plural: such + noun (no article)</li>
+          <li>"<strong>Such</strong> courage" — uncountable: such + noun (no article)</li>
+          <li>Never: <span style="color:var(--ac3)">such a courage</span> ✗ (courage is uncountable)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#AC5Pale">🔑</div>
+      <div style="flex:1">
+        <div class="c-title">Enough, Plenty of, Sufficient &amp; All / Whole</div>
+        <div class="c-sub">Position, usage and the "all vs whole" distinction</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">"Enough" — Position Rule</div>
+        <p>As a determiner (before a noun): <strong>enough</strong> comes <strong>before</strong> the noun.<br>
+        As an adverb (after an adjective/adverb): <strong>enough</strong> comes <strong>after</strong> the adjective.<br><br>
+        "There is <strong>enough</strong> food for the platoon." (determiner before noun) ✓<br>
+        "He is experienced <strong>enough</strong> for the mission." (adverb after adjective) ✓<br>
+        ✗ "He is <em>enough experienced</em>…" — wrong word order</p>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Determiner</th><th>Rule</th><th>Example</th></tr>
+          <tr><td><b>All + the</b></td><td>All the + plural or uncountable noun</td><td><b>All the</b> soldiers were present.</td></tr>
+          <tr><td><b>Whole</b></td><td>The whole + singular countable noun</td><td><b>The whole</b> battalion was deployed.</td></tr>
+          <tr><td><b>All + day/night/week</b></td><td>No article: all day, all night</td><td>He marched <b>all day</b>. ✓</td></tr>
+        </table>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">All vs Whole — Errors</div>
+        <ul>
+          <li><span class="err">All the battalion</span> was deployed. → <strong>The whole battalion</strong> ✓ (singular countable)</li>
+          <li><span class="err">The whole soldiers</span> were present. → <strong>All the soldiers</strong> ✓ (plural)</li>
+          <li><span class="err">The whole milk</span> was spilled. → <strong>All the milk</strong> ✓ (uncountable)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6 ── -->
+  <div class="sec-label">Section 6 — Order of Determiners</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E2F0F0">📋</div>
+      <div style="flex:1">
+        <div class="c-title">When Multiple Determiners Appear Together</div>
+        <div class="c-sub">Pre-determiners, central determiners, and post-determiners</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When a noun phrase contains more than one determiner, they must appear in a fixed order.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Fixed Order</div>
+        <p><strong>Pre-determiner → Central determiner → Post-determiner → Noun</strong><br><br>
+        <strong>Pre-determiners</strong>: all, both, half, double, twice, such<br>
+        <strong>Central determiners</strong>: articles (a/an/the), possessives (my/his…), demonstratives (this/that), quantifiers (some/any/each/every/either/neither/no)<br>
+        <strong>Post-determiners</strong>: ordinals (first, second…), cardinals (one, two…), general ordinals (next, last, other)</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Order Examples</div>
+        <ul>
+          <li><strong>All</strong> [pre] + <strong>the</strong> [central] + <strong>five</strong> [post] soldiers → "All the five soldiers" ✓</li>
+          <li><strong>Both</strong> [pre] + <strong>his</strong> [central] + <strong>two</strong> [post] sons → "Both his two sons" ✓</li>
+          <li><strong>Half</strong> [pre] + <strong>a</strong> [central] + hour → "Half an hour" ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Wrong Order Errors</div>
+        <ul>
+          <li><span class="err">The all five soldiers</span> → <strong>All the five soldiers</strong> ✓</li>
+          <li><span class="err">His both sons</span> → <strong>Both his sons</strong> ✓</li>
+          <li><span class="err">My these books</span> → <strong>These books of mine</strong> ✓ (possessive + demonstrative cannot co-occur directly)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════════ QUICK REF ══════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Determiners — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Much / Many / Fewer / Less</div>
+      <ul>
+        <li><b>Much</b> + uncountable: <em>much water, much advice</em></li>
+        <li><b>Many</b> + countable plural: <em>many soldiers, many days</em></li>
+        <li><b>Fewer</b> + countable plural: <em>fewer candidates</em></li>
+        <li><b>Less</b> + uncountable: <em>less time, less water</em></li>
+        <li>Never: <em><span class="err">less candidates</span></em> ✗ or <em><span class="err">fewer time</span></em> ✗</li>
+        <li>Tricky uncountables: <em>advice, information, furniture, equipment, luggage, work, news</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Few / A Few / Little / A Little</div>
+      <ul>
+        <li><b>Few</b> (countable) = <em>hardly any</em> → negative tone</li>
+        <li><b>A few</b> (countable) = <em>some</em> → positive tone</li>
+        <li><b>The few</b> = <em>all of the small number</em></li>
+        <li><b>Little</b> (uncountable) = <em>hardly any</em> → negative tone</li>
+        <li><b>A little</b> (uncountable) = <em>some</em> → positive tone</li>
+        <li>Tone clue: pessimism/scarcity → few/little; sufficiency → a few/a little</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Each / Every / Either / Neither / Both</div>
+      <ul>
+        <li><b>Each</b>: 2 or more, individual focus, can stand alone</li>
+        <li><b>Every</b>: 3 or more, collective/total focus, always + noun</li>
+        <li><b>Either / Neither / Both</b>: strictly for <em>two items only</em></li>
+        <li>3+ items → use <b>any</b> (not either), <b>none</b> (not neither), <b>all</b> (not both)</li>
+        <li><em>Every other day</em> = alternate days (fixed phrase)</li>
+        <li><em>Each other</em> = reciprocal pronoun (cannot use "every other" here)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Some / Any / No</div>
+      <ul>
+        <li><b>Some</b>: affirmative sentences; offers/requests; questions expecting yes</li>
+        <li><b>Any</b>: negative sentences; genuine yes/no questions; conditional clauses</li>
+        <li><b>Any</b> (affirmative) = every / whichever: <em>Any soldier can do this.</em></li>
+        <li><b>No</b>: replaces "not any" — affirmative structure, negative meaning</li>
+        <li><em>I saw nobody</em> = <em>I didn't see anybody</em> (not: <span class="err">I didn't see nobody</span>)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">All vs Whole / Enough / Such</div>
+      <ul>
+        <li><b>All the</b> + plural/uncountable: <em>all the soldiers, all the milk</em></li>
+        <li><b>The whole</b> + singular countable: <em>the whole battalion</em></li>
+        <li><b>Enough</b> before noun (det.) / after adjective (adv.): <em>enough food; brave enough</em></li>
+        <li><b>Such a/an</b> + singular countable: <em>such a brave officer</em></li>
+        <li><b>Such</b> + plural/uncountable (no article): <em>such soldiers; such courage</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Order of Determiners</div>
+      <ul>
+        <li><b>Pre-det.</b>: all, both, half, double, such</li>
+        <li><b>Central det.</b>: articles, possessives, demonstratives, quantifiers</li>
+        <li><b>Post-det.</b>: ordinals, cardinals, next/last/other</li>
+        <li><em>All the five soldiers</em> ✓ — not <em><span class="err">The all five</span></em> ✗</li>
+        <li><em>Both his sons</em> ✓ — not <em><span class="err">His both sons</span></em> ✗</li>
+        <li>Demonstrative + possessive cannot co-occur: use "of mine/yours" instead</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════════ QUIZ ══════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Determiners · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',
+q:'Fill in the blank:<br>"The soldiers showed ______ courage during the rescue operation."',
+opts:['many','much','few','a few'],ans:1,
+rule:'"Courage" is uncountable → must use "much", not "many"',
+exp:'"Courage" is an uncountable noun — it cannot be counted individually. The quantifier for uncountable nouns is "much", not "many". "Many" is only for countable plural nouns. "Few" and "a few" are also used with countable nouns. Answer: much.'},
+
+{d:'EASY',e:'CDS 2022',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'There are less candidates this year than last year.',
+  'There are fewer candidates this year than last year.',
+  'There are little candidates this year than last year.',
+  'There are few candidates this year than last year.'
+],ans:1,
+rule:'"Candidates" is countable plural → "fewer", not "less"',
+exp:'"Fewer" is the comparative determiner for countable nouns. "Candidates" is countable (you can count individual candidates). "Less" is used with uncountable nouns ("less time", "less water"). Option A ("less candidates") is the most common error in this category. Option C ("little") is for uncountable nouns. Option D ("few") is not a comparative form — it would work as a standalone but not in the comparison structure with "than". Answer: B.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'"______ the soldiers completed the obstacle course before sunset."<br>Choose the correct determiner.',
+opts:['Whole','All','The whole','All of'],ans:1,
+rule:'"All" + plural noun = "all soldiers"; "whole" is used with singular countable nouns',
+exp:'"The soldiers" is a plural noun. "All" is used before plural and uncountable nouns: "all the soldiers" or "all soldiers". "Whole" and "The whole" are used with singular countable nouns: "the whole battalion". "All of" requires a determiner after it: "All of the soldiers" (correct) — but "All of soldiers" (without "the") is wrong. The cleanest correct option here is "All". Answer: B.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'"He had ______ friends in the new unit and felt quite lonely."<br>Choose correctly.',
+opts:['a few','few','a little','little'],ans:1,
+rule:'"Few" (no article) = hardly any → negative/pessimistic tone, matching "felt quite lonely"',
+exp:'The sentence tells us he "felt quite lonely" — this is a negative, pessimistic context indicating scarcity of friends. "Few" (without "a") means "hardly any" and carries a negative tone — matching the loneliness. "A few" means "some — not many but enough" and would imply he had company, which contradicts "felt lonely". "A little" and "little" are for uncountable nouns; "friends" is countable. Answer: few.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'Spot the error:<br>"Neither of the three routes to the base camp were considered safe."',
+opts:[
+  'Neither of the three routes',
+  'to the base camp',
+  'were considered',
+  'No error'
+],ans:0,
+rule:'"Neither" is for exactly two items; three routes → "none" is correct',
+exp:'"Neither" is strictly used when referring to exactly two items. Here, there are three routes — so "neither" is incorrect. The correct determiner for three or more negative references is "none": "None of the three routes was considered safe." Additionally, "none of + plural noun" can take either a singular or plural verb in modern usage, but in CDS/NDA formal context, singular ("was") is preferred. The error is "Neither of the three routes" — should be "None of the three routes". Answer: A.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"There is ______ hope of finding the missing soldier alive after four days."<br>Choose correctly.',
+opts:['few','little','a little','a few'],ans:1,
+rule:'"Hope" is uncountable → "little" (hardly any) — negative tone matches the grim context',
+exp:'"Hope" is an uncountable noun, so "few" and "a few" (used with countable nouns) are eliminated. The choice is between "little" (hardly any — pessimistic) and "a little" (some — reassuring). The sentence is grim: "after four days" with no sign of the soldier implies very low hope. "Little hope" (= almost no hope) matches this pessimistic context. "A little hope" would imply there is still some basis for optimism — not appropriate here. Answer: little.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Both the three officers were present at the court martial.',
+  'Either of the three officers was present at the court martial.',
+  'All three officers were present at the court martial.',
+  'Neither of the three officers were present at the court martial.'
+],ans:2,
+rule:'"Both / either / neither" are for two only; three items → "all / any / none"',
+exp:'Options A, B and D all use distributive determiners meant for exactly two items: "both" (A), "either" (B), "neither" (D). Since there are three officers, none of these is correct. Option C uses "all" — the correct determiner for three or more — with the plural verb "were". This is the only correct sentence. Answer: C.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'"______ soldier in the regiment is expected to maintain peak physical fitness."<br>Fill in the blank.',
+opts:['Each','Every','Either','All'],ans:1,
+rule:'"Every" — used for a large group (the whole regiment), stressing totality; "each" stresses individuality',
+exp:'Both "each" and "every" are grammatically possible, but there is a subtle distinction: "every soldier" emphasises the group as a whole and is more natural when referring to an entire regiment (a large body). "Each soldier" would suggest focusing on members individually, one by one. In formal military instructions that apply to the entire regiment collectively, "Every soldier" is the idiomatic and preferred choice. Also, "each" works better with smaller, discrete groups. Answer: Every.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Identify the error:<br>"These kind of mistakes should not be made during an operation."',
+opts:[
+  'These kind',
+  'of mistakes',
+  'should not be made',
+  'during an operation'
+],ans:0,
+rule:'"These kind" — demonstrative and noun must agree in number: "This kind" or "These kinds"',
+exp:'"Kind" is singular, so it must be preceded by the singular demonstrative "this", not the plural "these". The correct forms are: "This kind of mistake" (singular determiner + singular noun) or "These kinds of mistakes" (plural determiner + plural noun). "These kind" mixes a plural demonstrative with a singular noun — a number agreement error. Answer: "These kind" → should be "This kind".'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'"______ the platoon had completed the march when the storm broke out."<br>Choose the best option.',
+opts:['All','Whole','The whole of','All of'],ans:2,
+rule:'"The whole of the platoon" or "The whole platoon" — singular collective noun needs "whole", not "all"',
+exp:'"The platoon" is a singular collective noun. The correct determiner for a singular countable noun is "whole" — specifically "the whole platoon" or "the whole of the platoon". "All the platoon" is less natural because "all" is typically used with uncountable or plural nouns. "All of the platoon" is marginally acceptable but less formal. "The whole of" + the platoon is fully correct and idiomatic. Answer: C.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is enough brave to lead the commando unit.',
+  'He is brave enough to lead the commando unit.',
+  'He has enough bravery for leading the commando unit.',
+  'He is quite enough brave to lead the unit.'
+],ans:1,
+rule:'"Enough" as adverb comes after the adjective it modifies: "brave enough", not "enough brave"',
+exp:'When "enough" modifies an adjective or adverb, it must come <strong>after</strong> that adjective/adverb: "brave enough", "fast enough", "good enough". "Enough brave" (Option A) reverses this — wrong. Option C ("has enough bravery") is grammatically acceptable but less elegant; the blank tests the adverb position rule specifically. Option D adds "quite" before "enough brave" — "quite enough" can work adverbially but the "enough brave" order is still wrong. Answer: B.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"______ advice he gave was extremely useful for the mission planning."<br>Choose the correct option.',
+opts:['The little','A little','Few','Little'],ans:0,
+rule:'"The little" = all of the small amount that existed — specific and total reference',
+exp:'"Advice" is uncountable, so "few" (countable) is eliminated. The sentence says "the advice he gave" — referring to a specific, identifiable amount of advice (whatever little he gave). "The little" means "whatever small amount existed — all of it" and carries a specific, complete reference. "A little" would mean just "some advice" without the emphasis on completeness. "Little" alone (no article) would mean "hardly any" — but then calling it "extremely useful" creates a contradiction. "The little" fits perfectly. Answer: A.'},
+
+// ── HARD ──────────────────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',
+q:'Four parts are underlined. Find the error:<br>"<u>Both his</u> two sons <u>have joined</u> the <u>armed forces</u> and <u>are serving</u> with distinction."',
+opts:['Both his','have joined','armed forces','are serving'],ans:0,
+rule:'"Both his two sons" — pre-determiner "both" must precede central determiner "his": correct order is "Both his sons" (dropping "two" as redundant) or "His two sons"',
+exp:'"Both" is a pre-determiner; "his" is a central determiner (possessive). The correct order is pre-determiner → central determiner: "Both his sons". The word "two" is redundant when "both" is already used — "both" already implies two. The phrase "Both his two sons" is grammatically awkward because "both" and "two" are repetitive. The error is in "Both his two" — it should be "Both his sons" (removing "two") or simply "His two sons". Answer: A.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Any of the two plans can be executed tonight.',
+  'Either of the two plans can be executed tonight.',
+  'Each of the two plans can be executed tonight.',
+  'All of the two plans can be executed tonight.'
+],ans:1,
+rule:'"Either" = one or the other of two → correct for exactly two options',
+exp:'There are exactly two plans. "Either of the two" = one or the other of two — correct usage ✓. Option A ("Any of the two") is wrong: "any" is used for three or more, not two. Option C ("Each of the two") is technically grammatical but changes the meaning: "each" refers to both plans individually, implying both will be executed — not the intended meaning of choosing one. Option D ("All of the two") is incorrect — "all" for two items is unnatural; "both" would be used. Answer: B.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Spot the error:<br>"Would you like some more informations about the new posting?"',
+opts:[
+  'Would you like',
+  'some more',
+  'informations',
+  'about the new posting'
+],ans:2,
+rule:'"Information" is uncountable — it has no plural form; "informations" is always wrong',
+exp:'"Information" is an uncountable noun in English and has no plural form. "Informations" does not exist as a standard English word. The correct sentence is: "Would you like some more information about the new posting?" Other similar uncountable nouns that candidates wrongly pluralise: advice (not advices), luggage (not luggages), furniture (not furnitures), equipment (not equipments). Answer: "informations" → should be "information".'},
+
+{d:'HARD',e:'CDS 2024',
+q:'"______ of his suggestions was accepted by the committee during the briefing."<br>Choose the best option.',
+opts:['Either','Neither','None','Both'],ans:1,
+rule:'"Neither…was" — implies exactly two suggestions were made, both rejected; singular verb "was" confirms singular subject',
+exp:'The verb used is "was" — singular. This tells us the subject is singular. Among the options: "Either…was" (one of two accepted) would be a positive statement — contradicts the context (nothing was accepted). "Neither…was" = not one of the two was accepted → negative, singular → matches "was accepted" perfectly. "None…was" is valid for three or more suggestions but changes the implied count. "Both…was" is wrong because "both" takes a plural verb ("were"). The most precise and grammatically fitting option is "Neither". Answer: B.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'Such a bravery was rarely seen on the battlefield.',
+  'Such bravery was rarely seen on the battlefield.',
+  'Such the bravery was rarely seen on the battlefield.',
+  'So much a bravery was rarely seen on the battlefield.'
+],ans:1,
+rule:'"Such" + uncountable noun (no article): "such bravery" — never "such a bravery"',
+exp:'"Bravery" is an uncountable noun. The pattern for "such" with uncountable nouns is: <strong>such + noun</strong> (no article). "Such a/an" is only used with singular countable nouns: "such a brave soldier". Because "bravery" is uncountable, inserting "a" (Option A) is incorrect. Option C ("Such the bravery") is wrong — articles do not follow "such" in this structure. Option D ("So much a bravery") is wrong — "so much" is used with uncountable nouns but not with "a". Answer: B.'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Four parts are underlined. Find the error:<br>"<u>A number of</u> equipment <u>was</u> <u>damaged</u> during <u>the flood</u>."',
+opts:['A number of','was','damaged','the flood'],ans:0,
+rule:'"Equipment" is uncountable — "a number of" is only for countable nouns; use "much" or "a great deal of"',
+exp:'"A number of" is a quantifier used exclusively with countable plural nouns: "a number of soldiers", "a number of vehicles". "Equipment" is uncountable and therefore cannot follow "a number of". The correct phrasing is: "Much equipment was damaged" or "A great deal of equipment was damaged" or "A lot of equipment was damaged." Note that "was" (singular) is correct for uncountable "equipment". The error is solely in "A number of". Answer: A.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'The whole soldiers of the platoon stood at attention.',
+  'All the soldier of the platoon stood at attention.',
+  'All the soldiers of the platoon stood at attention.',
+  'Whole the soldiers of the platoon stood at attention.'
+],ans:2,
+rule:'"All the" + plural noun is correct; "whole" is for singular countable nouns; "whole" cannot precede "the"',
+exp:'Option A: "The whole soldiers" — "whole" is used with singular countable nouns, not plural nouns. ✗ Option B: "All the soldier" — "soldier" must be plural after "all the". ✗ Option C: "All the soldiers" — "all the" + plural noun is the correct construction. ✓ Option D: "Whole the soldiers" — the determiner order is wrong; "the" must come before "whole", not after: "the whole battalion" (singular). ✗ Answer: C.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Spot the error:<br>"He trains every other days to maintain his physical fitness for the selection process."',
+opts:[
+  'He trains',
+  'every other days',
+  'to maintain his',
+  'physical fitness'
+],ans:1,
+rule:'"Every other day" is a fixed expression — singular "day", not plural "days"',
+exp:'"Every other day" is a fixed idiomatic expression meaning "on alternate days". The noun "day" must be singular in this phrase. "Every other days" (plural) breaks the fixed expression and is grammatically incorrect. Compare: "every day" (not "every days"), "every other week" (not "every other weeks"). The phrase is always: every other + singular time noun. Answer: "every other days" → should be "every other day".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Determiners</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Determiners are clearly no problem for you.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the few/little and each/every distinctions once more.'}
+  else if(pct>=50){grade='Average';msg='Good start. Go back to the Theory cards — focus on the trap sections.'}
+  else{grade='Needs Work';msg:"Don't worry — master much/many and few/little first, then build up to the harder patterns."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

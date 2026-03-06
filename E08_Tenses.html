@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tenses | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Deep Ocean / Slate-Teal ──────────────────── */
+  --bg:        #EEF2F5;
+  --bg2:       #E2E8EE;
+  --bg3:       #D4DCE4;
+  --white:     #FFFFFF;
+  --ink:       #0E1A24;
+  --ink2:      #1C2E3C;
+  --muted:     #5A7080;
+  --dim:       #8AA0AE;
+  --border:    #C4D0DA;
+
+  /* Primary — deep ocean blue */
+  --pri:       #0D4A6B;
+  --priLt:     #126088;
+  --priPale:   #E0EEF5;
+
+  /* Accent 1 — warm saffron */
+  --ac1:       #A06010;
+  --ac1Lt:     #C07818;
+  --ac1Pale:   #FDF3E0;
+
+  /* Accent 2 — sea-green (correct) */
+  --ac2:       #1A5C44;
+  --ac2Lt:     #237558;
+  --ac2Pale:   #E2F2EC;
+
+  /* Accent 3 — coral-red (error) */
+  --ac3:       #8C1F2A;
+  --ac3Lt:     #B02836;
+  --ac3Pale:   #FCEAEC;
+
+  /* Accent 4 — slate-blue (rule boxes) */
+  --ac4:       #1A3A5C;
+  --ac4Lt:     #244E7A;
+  --ac4Pale:   #E4EBF5;
+
+  /* Accent 5 — muted violet */
+  --ac5:       #4A2870;
+  --ac5Pale:   #F0EAF8;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(14,26,36,.10);
+  --shadow-md: 0 4px 20px rgba(14,26,36,.15);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--pri);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(80,220,160,.13);color:#70DDAC}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(14,26,36,.08);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--priPale);border:1.5px solid rgba(13,74,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--ac1Pale);border:1.5px solid rgba(160,96,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--ac2Pale);border-left:4px solid var(--ac2);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--ac3Pale);border-left:4px solid var(--ac3);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--ac3Pale);border:1.5px solid rgba(140,31,42,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);
+  text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{
+  background:var(--ac4Pale);border:1.5px solid rgba(26,58,92,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{
+  background:var(--ac5Pale);border:1.5px solid rgba(74,40,112,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);
+  text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+.tense-tag{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;padding:3px 10px;border-radius:20px;margin:2px 3px 2px 0;
+}
+.tt-simp{background:var(--priPale);color:var(--pri);border:1px solid rgba(13,74,107,.2)}
+.tt-cont{background:var(--ac1Pale);color:var(--ac1);border:1px solid rgba(160,96,16,.2)}
+.tt-perf{background:var(--ac2Pale);color:var(--ac2);border:1px solid rgba(26,92,68,.2)}
+.tt-perfcont{background:var(--ac5Pale);color:var(--ac5);border:1px solid rgba(74,40,112,.2)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--pri);color:#fff;padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* ── QUICK REF ────────────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--ac1Pale);color:var(--ac1)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--pri);background:var(--priPale);
+  border:1px solid rgba(13,74,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(13,74,107,.3)}
+.btn-primary:hover{background:#12608A;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--pri);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Tenses</div>
+  <h1 class="hero-title">Tenses —<br><span>Time, Aspect &amp; Sequence</span></h1>
+  <p class="hero-sub">Tense errors are the single largest source of marks lost in CDS, NDA and AFCAT English. Wrong aspect choice, broken sequence of tenses, stative verbs in continuous form, and conditional-clause mismatches — this module breaks down every high-frequency pattern.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Comprehensive</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════════ THEORY ══════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>English has <strong>twelve tenses</strong> — four aspects (simple, continuous, perfect, perfect continuous) across three times (past, present, future). Most exam errors are not about memorising tense names; they are about four key areas: <strong>aspect choice</strong> (simple vs perfect vs continuous), <strong>stative vs dynamic verbs</strong>, <strong>sequence of tenses</strong> in complex sentences, and <strong>conditional structures</strong>. Master these and nearly all tense questions become straightforward.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — The 12 Tenses at a Glance</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E0EEF5">🗂️</div>
+      <div style="flex:1">
+        <div class="c-title">The Complete Tense Map</div>
+        <div class="c-sub">Structure, signal words and core use for all 12 tenses</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Tense</th><th>Structure</th><th>Key Signal Words</th></tr>
+          <tr><td><b>Simple Present</b></td><td>V1 / V1+s</td><td>always, usually, every day, generally, often</td></tr>
+          <tr><td><b>Present Continuous</b></td><td>is/am/are + V-ing</td><td>now, at this moment, currently, look!, listen!</td></tr>
+          <tr><td><b>Present Perfect</b></td><td>has/have + V3</td><td>just, already, yet, ever, never, recently, since, for</td></tr>
+          <tr><td><b>Present Perfect Cont.</b></td><td>has/have been + V-ing</td><td>for, since (+ ongoing action up to now)</td></tr>
+          <tr><td><b>Simple Past</b></td><td>V2</td><td>yesterday, ago, last week/year, in 2010, then</td></tr>
+          <tr><td><b>Past Continuous</b></td><td>was/were + V-ing</td><td>while, when (background action in progress)</td></tr>
+          <tr><td><b>Past Perfect</b></td><td>had + V3</td><td>before, after, by the time, already, when</td></tr>
+          <tr><td><b>Past Perfect Cont.</b></td><td>had been + V-ing</td><td>for, since (+ duration before a past point)</td></tr>
+          <tr><td><b>Simple Future</b></td><td>will + V1</td><td>tomorrow, next week, soon, in the future</td></tr>
+          <tr><td><b>Future Continuous</b></td><td>will be + V-ing</td><td>at this time tomorrow, this time next week</td></tr>
+          <tr><td><b>Future Perfect</b></td><td>will have + V3</td><td>by tomorrow, by then, by the time</td></tr>
+          <tr><td><b>Future Perfect Cont.</b></td><td>will have been + V-ing</td><td>by then, for X hours/years (future duration)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — The Most Tested Distinctions</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E0EEF5">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Simple Past vs Present Perfect</div>
+        <div class="c-sub">The most common tense error in CDS/NDA spotting errors</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This is the <strong>single most tested tense distinction</strong> across all three exams. The rule: use <strong>Simple Past</strong> for completed actions with a <em>definite past time</em>; use <strong>Present Perfect</strong> for actions with <em>no specified past time</em> or with a <em>present relevance</em>.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Core Distinction</div>
+        <p><strong>Simple Past</strong> = finished, at a specific time → "He left <em>yesterday</em>."<br>
+        <strong>Present Perfect</strong> = finished, time unspecified OR still relevant now → "He has left." / "He has served for ten years [and still is]."<br><br>
+        <strong>Key trigger:</strong> Words like <em>yesterday, ago, last week, in 2010, then</em> → always Simple Past.<br>
+        Words like <em>just, already, yet, recently, ever, never, since, for</em> → always Present Perfect.</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Classic Errors</div>
+        <ul>
+          <li>I <span class="err">have seen</span> him <em>yesterday</em>. → I <strong>saw</strong> him yesterday. ✓ (definite past time)</li>
+          <li>She <span class="err">joined</span> the academy <em>recently</em>. → She <strong>has joined</strong> the academy recently. ✓</li>
+          <li>He <span class="err">has left</span> <em>two years ago</em>. → He <strong>left</strong> two years ago. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Since" and "For" with Present Perfect</div>
+        <ul>
+          <li><strong>"Since"</strong> marks a point of time in the past: <em>since 2010, since Monday, since he joined</em></li>
+          <li><strong>"For"</strong> marks a duration of time: <em>for two years, for three months</em></li>
+          <li>Both always trigger <strong>Present Perfect</strong> (or Past Perfect in past context)</li>
+          <li>✗ "He is serving for ten years." → ✓ "<strong>He has been serving</strong> for ten years."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E2F2EC">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Stative Verbs — Never Use Continuous Form</div>
+        <div class="c-sub">Know, believe, want, see, have… cannot be progressive</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p><strong>Stative verbs</strong> describe states, not actions. They express mental states, emotions, senses, possession, or appearance — and <strong>cannot be used in any continuous (progressive) tense</strong>.</p>
+      <div class="fact-box">
+        <div class="fb-label">Common Stative Verbs — Never Use -ing Form</div>
+        <ul>
+          <li><strong>Mental states:</strong> know, believe, think (= opinion), understand, remember, forget, mean, suppose</li>
+          <li><strong>Emotions:</strong> love, hate, like, prefer, want, wish, need, fear</li>
+          <li><strong>Senses:</strong> see, hear, smell, taste, feel (when describing passive sense)</li>
+          <li><strong>Possession/state:</strong> have (= possess), own, belong, contain, consist, include, resemble</li>
+          <li><strong>Appearance:</strong> seem, appear, look (= seem), sound</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors</div>
+        <ul>
+          <li>I <span class="err">am knowing</span> the answer. → I <strong>know</strong> the answer. ✓</li>
+          <li>He <span class="err">is having</span> a car. → He <strong>has</strong> a car. ✓ (possession)</li>
+          <li>She <span class="err">is believing</span> in discipline. → She <strong>believes</strong> in discipline. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Dual-Use Verbs — Stative AND Dynamic</div>
+        <ul>
+          <li><strong>have:</strong> "He <em>has</em> a rifle." (possess = stative ✓) vs "He <em>is having</em> lunch." (activity = dynamic ✓)</li>
+          <li><strong>think:</strong> "I <em>think</em> he is right." (opinion = stative ✓) vs "I <em>am thinking</em> about the plan." (process = dynamic ✓)</li>
+          <li><strong>see:</strong> "I <em>see</em> the mountain." (passive sense = stative ✓) vs "I <em>am seeing</em> the doctor." (meeting = dynamic ✓)</li>
+          <li><strong>taste / smell:</strong> "The food <em>tastes</em> good." (state) vs "She <em>is tasting</em> the soup." (active testing)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF3E0">⏱️</div>
+      <div style="flex:1">
+        <div class="c-title">Past Perfect — Sequence of Two Past Actions</div>
+        <div class="c-sub">The earlier action → Past Perfect; the later action → Simple Past</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When two actions both happened in the past, the <strong>earlier one</strong> must use <strong>Past Perfect (had + V3)</strong> and the <strong>later one</strong> uses <strong>Simple Past (V2)</strong>. This shows the sequence clearly.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Sequence Rule</div>
+        <p>Earlier action → <strong>had + V3</strong> &nbsp;|&nbsp; Later action → <strong>V2</strong><br><br>
+        "When the reinforcements <strong>arrived</strong> [later], the enemy <strong>had already retreated</strong> [earlier]." ✓<br>
+        "He <strong>had briefed</strong> [earlier] the team before the operation <strong>began</strong> [later]." ✓</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors — Both actions in Simple Past</div>
+        <ul>
+          <li>By the time we <span class="err">reached</span>, the train already <span class="err">left</span>. → …the train <strong>had already left</strong>. ✓</li>
+          <li>He told me that he <span class="err">finished</span> his report. → …he <strong>had finished</strong> his report. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ When Past Perfect is NOT needed</div>
+        <p>If the sequence is already made clear by <strong>"before"</strong> or <strong>"after"</strong>, Past Perfect is technically optional — Simple Past can be used for both.<br>
+        "He <strong>ate</strong> before he <strong>slept</strong>." ✓ (sequence obvious from "before")<br>
+        But if there is <strong>no sequence connector</strong>, Past Perfect is mandatory to show which happened first.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Conditionals &amp; Reported Speech</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E4EBF5">🔀</div>
+      <div style="flex:1">
+        <div class="c-title">Conditional Sentences — All Four Types</div>
+        <div class="c-sub">Type 0, 1, 2 and 3 — the tense combinations are fixed</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>If-clause</th><th>Main clause</th><th>Use</th></tr>
+          <tr><td><b>Type 0</b></td><td>Simple Present</td><td>Simple Present</td><td>Always-true facts / scientific truths</td></tr>
+          <tr><td><b>Type 1</b></td><td>Simple Present</td><td>will + V1</td><td>Real future possibility</td></tr>
+          <tr><td><b>Type 2</b></td><td>Simple Past</td><td>would + V1</td><td>Unreal / hypothetical present</td></tr>
+          <tr><td><b>Type 3</b></td><td>Past Perfect</td><td>would have + V3</td><td>Unreal past — couldn't happen now</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Examples</div>
+        <ul>
+          <li><strong>Type 0:</strong> If you heat water to 100°C, it <strong>boils</strong>. ✓</li>
+          <li><strong>Type 1:</strong> If he <strong>trains</strong> hard, he <strong>will pass</strong> the selection. ✓</li>
+          <li><strong>Type 2:</strong> If I <strong>were</strong> the commanding officer, I <strong>would deploy</strong> the reserves. ✓</li>
+          <li><strong>Type 3:</strong> If he <strong>had trained</strong> harder, he <strong>would have passed</strong> the test. ✓</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Three Critical Conditional Traps</div>
+        <ul>
+          <li><strong>Never use "will" in the if-clause</strong>: ✗ "If he <em>will come</em>…" → ✓ "If he <em>comes</em>…"</li>
+          <li><strong>Type 2 uses "were" not "was"</strong> for all persons: ✓ "If I <em>were</em>…", "If she <em>were</em>…" (subjunctive)</li>
+          <li><strong>Type 3 uses "would have + V3"</strong> not "would + V3": ✗ "…he <em>would pass</em>" → ✓ "…he <em>would have passed</em>"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F0EAF8">💬</div>
+      <div style="flex:1">
+        <div class="c-title">Reported Speech — Tense Back-Shift</div>
+        <div class="c-sub">When reporting verb is past, all tenses shift back one step</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>When converting direct speech to reported (indirect) speech, if the reporting verb (said, told, asked) is in the <strong>past tense</strong>, all tenses in the reported clause shift <strong>one step back</strong> into the past.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Direct Speech Tense</th><th>Reported Speech Tense</th></tr>
+          <tr><td>Simple Present → "I <b>work</b> hard."</td><td>Simple Past → He said he <b>worked</b> hard.</td></tr>
+          <tr><td>Present Continuous → "I <b>am working</b>."</td><td>Past Continuous → He said he <b>was working</b>.</td></tr>
+          <tr><td>Present Perfect → "I <b>have finished</b>."</td><td>Past Perfect → He said he <b>had finished</b>.</td></tr>
+          <tr><td>Simple Past → "I <b>left</b> early."</td><td>Past Perfect → He said he <b>had left</b> early.</td></tr>
+          <tr><td>will → "I <b>will come</b>."</td><td>would → He said he <b>would come</b>.</td></tr>
+          <tr><td>can → "I <b>can</b> do it."</td><td>could → He said he <b>could</b> do it.</td></tr>
+          <tr><td>may → "It <b>may</b> rain."</td><td>might → He said it <b>might</b> rain.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ When Back-Shift is NOT Required</div>
+        <ul>
+          <li><strong>Universal truths / scientific facts</strong>: "She said the sun <strong>rises</strong> in the east." (no shift) ✓</li>
+          <li><strong>Habitual facts still true</strong>: "He said he <strong>gets up</strong> at 5 a.m." (habit still current — no shift needed)</li>
+          <li><strong>Modal verbs that don't shift</strong>: would, could, should, might, ought to — already in past form, no further shift</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Common High-Frequency Traps</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEC">🚨</div>
+      <div style="flex:1">
+        <div class="c-title">Time Clauses — Never Use Future Tense</div>
+        <div class="c-sub">After when, before, after, until, as soon as, once, by the time → use Present</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>In <strong>time clauses</strong> referring to the future, English uses the <strong>Present tense</strong> (not future) in the subordinate clause, even though the meaning is future.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Rule</div>
+        <p>Time conjunctions: <strong>when, before, after, until/till, as soon as, once, by the time, whenever</strong><br>
+        In a future context → use <strong>Simple Present</strong> in the time clause, <strong>will</strong> in the main clause.<br><br>
+        "I will contact you <strong>when</strong> I <strong>reach</strong> the base." ✓ (not "will reach")<br>
+        "He will brief us <strong>before</strong> he <strong>leaves</strong>." ✓ (not "will leave")</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Errors</div>
+        <ul>
+          <li>I will call you when I <span class="err">will arrive</span>. → when I <strong>arrive</strong> ✓</li>
+          <li>Wait here until he <span class="err">will come</span> back. → until he <strong>comes</strong> back ✓</li>
+          <li>As soon as the operation <span class="err">will end</span>, we will rest. → …operation <strong>ends</strong> ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E0EEF5">📌</div>
+      <div style="flex:1">
+        <div class="c-title">Present Perfect vs Past Perfect — "Since" Trap &amp; More</div>
+        <div class="c-sub">High-frequency patterns that look similar but are different</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Pattern</th><th>Correct Tense</th><th>Example</th></tr>
+          <tr><td><b>It is + time + since</b></td><td>Simple Past</td><td>It is two years since he <b>retired</b>. ✓</td></tr>
+          <tr><td><b>It has been + time + since</b></td><td>Simple Past</td><td>It has been years since we <b>met</b>. ✓</td></tr>
+          <tr><td><b>This is the first time…</b></td><td>Present Perfect</td><td>This is the first time I <b>have visited</b> the base. ✓</td></tr>
+          <tr><td><b>That was the first time…</b></td><td>Past Perfect</td><td>That was the first time he <b>had flown</b>. ✓</td></tr>
+          <tr><td><b>Hardly / Scarcely…when</b></td><td>Past Perf. → Simple Past</td><td>Hardly <b>had</b> he arrived <b>when</b> the alarm <b>rang</b>. ✓</td></tr>
+          <tr><td><b>No sooner…than</b></td><td>Past Perf. → Simple Past</td><td>No sooner <b>had</b> they landed <b>than</b> firing <b>began</b>. ✓</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Hardly/Scarcely…when" and "No sooner…than"</div>
+        <ul>
+          <li>These are inverted structures: auxiliary verb comes before the subject</li>
+          <li>✗ "No sooner <em>they landed than</em> firing began." → ✓ "No sooner <strong>had they landed</strong> than firing began."</li>
+          <li>✗ "Hardly <em>he arrived when</em>…" → ✓ "Hardly <strong>had he arrived when</strong>…"</li>
+          <li>"No sooner…<strong>than</strong>" (not "when") | "Hardly/Scarcely…<strong>when</strong>" (not "than")</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E2F2EC">🔑</div>
+      <div style="flex:1">
+        <div class="c-title">Present Perfect Continuous vs Present Perfect</div>
+        <div class="c-sub">Duration of an ongoing action vs completion — the aspect difference</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Both tenses use <em>since/for</em> — but they communicate different things.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Tense</th><th>Focus</th><th>Example</th></tr>
+          <tr><td><b>Present Perfect</b><br>(has/have + V3)</td><td>Completion — the action is done</td><td>He <b>has written</b> three reports. (completed count)</td></tr>
+          <tr><td><b>Present Perfect Continuous</b><br>(has/have been + V-ing)</td><td>Duration — the action is still ongoing</td><td>He <b>has been writing</b> the report for two hours. (still writing)</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Key Contrast</div>
+        <ul>
+          <li>"She <strong>has lived</strong> in Delhi." → She lived there; may or may not still live there — focus on experience.</li>
+          <li>"She <strong>has been living</strong> in Delhi for five years." → She is still living there — focus on ongoing duration.</li>
+          <li>"He <strong>has been serving</strong> in the army for twenty years." → Still serving now ✓ (duration)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Error</div>
+        <ul>
+          <li>He <span class="err">is serving</span> in the army for ten years. → He <strong>has been serving</strong> in the army for ten years. ✓</li>
+          <li>She <span class="err">is working</span> here since 2018. → She <strong>has been working</strong> here since 2018. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════════ QUICK REF ══════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Tenses — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Simple Past vs Present Perfect</div>
+      <ul>
+        <li><b>Simple Past</b> → definite past time word present (yesterday, ago, last week, in 2010)</li>
+        <li><b>Present Perfect</b> → no time word, or: just, already, yet, recently, ever, never</li>
+        <li><b>Since</b> (point) + <b>For</b> (duration) → always <span class="ok">Present Perfect</span></li>
+        <li>✗ "I <span class="err">have seen</span> him yesterday" → ✓ "I <span class="ok">saw</span> him yesterday"</li>
+        <li>✗ "He <span class="err">left</span> recently" → ✓ "He <span class="ok">has left</span> recently"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Stative Verbs — No Continuous Form</div>
+      <ul>
+        <li><b>Mental:</b> know, believe, understand, remember, think (opinion), mean</li>
+        <li><b>Emotion:</b> love, hate, like, want, wish, need, prefer</li>
+        <li><b>Sense:</b> see, hear, smell, taste, feel (passive)</li>
+        <li><b>Possession:</b> have (=own), belong, contain, consist, include</li>
+        <li><b>Appearance:</b> seem, appear, look (=seem), sound</li>
+        <li>✗ "I <span class="err">am knowing</span>" → ✓ "I <span class="ok">know</span>"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Conditionals — Fixed Tense Pairs</div>
+      <ul>
+        <li><b>Type 0:</b> If + Pres. Simple → Pres. Simple (facts)</li>
+        <li><b>Type 1:</b> If + Pres. Simple → will + V1 (real future)</li>
+        <li><b>Type 2:</b> If + Past Simple → would + V1 (hypothetical)</li>
+        <li><b>Type 3:</b> If + Past Perfect → would have + V3 (unreal past)</li>
+        <li>✗ Never "will" in if-clause | Type 2 uses "were" for all persons</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Time Clauses &amp; Future Tense</div>
+      <ul>
+        <li>After <b>when, before, after, until, as soon as, once</b> → use Present (not future)</li>
+        <li>✗ "when I <span class="err">will arrive</span>" → ✓ "when I <span class="ok">arrive</span>"</li>
+        <li><b>No sooner…than</b> → Past Perfect + Simple Past (inverted)</li>
+        <li><b>Hardly/Scarcely…when</b> → Past Perfect + Simple Past (inverted)</li>
+        <li>"No sooner had he left <span class="ok">than</span>…" | "Hardly had he left <span class="ok">when</span>…"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Reported Speech Back-Shift</div>
+      <ul>
+        <li>Present Simple → Past Simple</li>
+        <li>Present Continuous → Past Continuous</li>
+        <li>Present Perfect → Past Perfect</li>
+        <li>Simple Past → Past Perfect</li>
+        <li>will → would | can → could | may → might</li>
+        <li>No shift for: universal truths, would/could/should/might/ought to</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Special Patterns to Memorise</div>
+      <ul>
+        <li>"It is/has been + time + since" → Simple Past in "since" clause</li>
+        <li>"This is the first time…" → Present Perfect</li>
+        <li>"That was the first time…" → Past Perfect</li>
+        <li>"He <span class="ok">has been serving</span> for X years" — not "is serving" ✗</li>
+        <li>Past Perfect Continuous = had been + V-ing (duration before a past point)</li>
+        <li>Type 2 conditional: "If I <span class="ok">were</span>…" — never "If I <span class="err">was</span>…" in formal English</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════════ QUIZ ══════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Tenses · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',
+q:'Fill in the blank with the correct tense:<br>"The cadet ______ his physical training every morning at 0500 hours."',
+opts:['is completing','has completed','completes','has been completing'],ans:2,
+rule:'Simple Present — habitual/routine action; signal word "every morning"',
+exp:'"Every morning" is a signal word for the Simple Present tense, which describes habitual, routine, or regularly repeated actions. "Completes" (V1 + s for third person singular) is correct. "Is completing" (Present Continuous) is used for actions happening right now — not habits. "Has completed" (Present Perfect) implies recent completion without a time frame. "Has been completing" (Present Perfect Continuous) would suggest an ongoing action up to now — not a daily routine. Answer: completes.'},
+
+{d:'EASY',e:'CDS 2022',
+q:'Spot the error:<br>"I have met the General yesterday at the headquarters."',
+opts:[
+  'I have met',
+  'the General',
+  'yesterday at',
+  'the headquarters'
+],ans:0,
+rule:'Simple Past required — "yesterday" is a definite past time marker; Present Perfect cannot be used with it',
+exp:'"Yesterday" is a definite past time expression. Present Perfect ("have met") cannot be used with definite past time markers. The correct tense is Simple Past: "I <strong>met</strong> the General yesterday." Present Perfect is used when no specific past time is mentioned or when the action has present relevance. As soon as a definite past time word (yesterday, ago, last week, in 2010) appears, Simple Past is mandatory. Answer: "have met" → should be "met".'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'"I will call you when I ______ to the base camp."<br>Choose correctly.',
+opts:['will return','would return','return','am returning'],ans:2,
+rule:'Time clause with "when" referring to future → Simple Present (never "will") in the time clause',
+exp:'In time clauses introduced by "when", "before", "after", "until", "as soon as" in a future context, English uses the Simple Present tense — never "will". Even though the meaning is future, the grammar rule forbids "will" inside the time clause. The main clause carries the "will": "I will call you when I <strong>return</strong>." "Would return" is used in hypothetical/conditional contexts. "Am returning" (continuous) does not fit here. Answer: return.'},
+
+{d:'EASY',e:'NDA 2023',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'She is knowing the answer to every question.',
+  'She knows the answer to every question.',
+  'She has been knowing the answer to every question.',
+  'She was knowing the answer to every question.'
+],ans:1,
+rule:'"Know" is a stative verb — it cannot be used in any continuous (progressive) form',
+exp:'"Know" is a stative verb that describes a mental state. Stative verbs cannot be used in any continuous tense — present, past, or perfect continuous. Options A, C, and D all use "knowing" — the continuous/progressive form — which is incorrect. The only correct option is "She <strong>knows</strong> the answer" — Simple Present, which is the correct tense for stative verbs expressing permanent or ongoing states. Answer: B.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'"By the time the reinforcements arrived, the enemy ______ the village."',
+opts:['already left','has already left','had already left','was already leaving'],ans:2,
+rule:'Two past actions — earlier one takes Past Perfect (had + V3); "already" with Past Perfect confirms it',
+exp:'"By the time the reinforcements arrived" establishes a past reference point. The enemy leaving happened BEFORE this — it is the earlier of the two past actions. The earlier of two past actions must use the Past Perfect: "had already left". Simple Past "already left" (A) is incorrect because it does not show the sequence clearly. "Has already left" (B) is Present Perfect — wrong in a past-sequence context. "Was already leaving" (D) implies the leaving was in progress when the reinforcements arrived — which changes the meaning. Answer: had already left.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"He ______ in the Navy for fifteen years and still continues to serve."<br>Choose correctly.',
+opts:['served','is serving','has been serving','had been serving'],ans:2,
+rule:'Present Perfect Continuous (has been + V-ing) — action started in the past, continues to the present, with duration',
+exp:'The sentence says "still continues to serve" — the action is ongoing into the present. "For fifteen years" indicates a duration of time from past to present. This is the classic pattern for Present Perfect Continuous: "has been serving". Simple Past "served" (A) would imply the service is over. "Is serving" (B) is grammatically incorrect with "for fifteen years" — duration requires Perfect aspect. "Had been serving" (D) is Past Perfect Continuous — used for duration up to a past point, not the present. Answer: has been serving.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Spot the error:<br>"No sooner did the commander give the signal when the troops advanced."',
+opts:[
+  'No sooner did the commander',
+  'give the signal',
+  'when the troops',
+  'advanced'
+],ans:2,
+rule:'"No sooner…than" is the fixed structure — "when" is used with "Hardly/Scarcely", not "No sooner"',
+exp:'"No sooner" must be paired with <strong>"than"</strong> — never "when". The correct correlative conjunction pair is: "No sooner…<strong>than</strong>". The word "when" is used with "Hardly" and "Scarcely": "Hardly had he arrived <strong>when</strong>…". Additionally, "No sooner" triggers an inverted structure with Past Perfect: "No sooner <strong>had</strong> the commander given the signal <strong>than</strong> the troops advanced." The error is specifically the use of "when" instead of "than". Answer: "when the troops" → should be "than the troops".'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'"If the colonel ______ the operation plan earlier, the mission would have succeeded."',
+opts:['approves','approved','had approved','would approve'],ans:2,
+rule:'Type 3 conditional — if-clause takes Past Perfect (had + V3) for unreal past situations',
+exp:'The main clause uses "would have succeeded" — this is the Type 3 conditional result clause (would have + V3). In a Type 3 conditional, the if-clause must take the Past Perfect (had + V3). This structure refers to an unreal past situation: the colonel did NOT approve the plan, and therefore the mission did not succeed. "Approves" (A) and "approved" (B) give wrong conditional types. "Would approve" (D) is never used in an if-clause. Answer: had approved.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'This is the first time I visited this base.',
+  'This is the first time I have visited this base.',
+  'This was the first time I have visited this base.',
+  'This is the first time I had visited this base.'
+],ans:1,
+rule:'"This is the first time…" → Present Perfect in the subordinate clause',
+exp:'The fixed pattern "This is the first time…" must be followed by the <strong>Present Perfect</strong> tense in the that-clause. "This is the first time I <strong>have visited</strong> this base." Option A uses Simple Past "visited" — incorrect for this pattern. Option C mixes "This was" with "have visited" — inconsistent tenses. Option D uses Past Perfect "had visited" — that would be correct only if the main clause were "This was the first time…" (past reference). Since it says "This is…" (present), we need Present Perfect. Answer: B.'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'Spot the error in the underlined parts:<br>"He <u>told</u> me that he <u>will attend</u> the parade <u>the next</u> <u>day</u>."',
+opts:['told','will attend','the next','day'],ans:1,
+rule:'Reported speech back-shift: "will" becomes "would" when reporting verb is in Simple Past',
+exp:'The reporting verb is "told" — past tense. In reported speech, when the reporting verb is past, all tenses in the reported clause shift back. "Will" (future) becomes "would" (past future). The correct sentence is: "He told me that he <strong>would attend</strong> the parade the next day." Note also that "tomorrow" changes to "the next day" in reported speech — but the sentence already has "the next day", so that change is already made correctly. The only error is "will attend" → "would attend". Answer: "will attend" → should be "would attend".'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'"It is two years since the General ______ from active service."',
+opts:['has retired','retired','is retiring','retires'],ans:1,
+rule:'"It is + time + since" → Simple Past in the since-clause',
+exp:'The pattern "It is + period of time + since" always takes the <strong>Simple Past</strong> in the clause following "since". "It is two years since he <strong>retired</strong>." The retirement happened two years ago — it is a completed past action. "Has retired" (Present Perfect) is incorrect here — the "It is…since" construction already establishes the past reference, so Simple Past is used. "Is retiring" and "retires" are wrong tenses entirely. Answer: retired.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'She has been working here since three years.',
+  'She has worked here for three years.',
+  'She has been working here for three years.',
+  'She was working here for three years.'
+],ans:2,
+rule:'Present Perfect Continuous + "for" = ongoing action from past to present with duration',
+exp:'She is still working here — the action is ongoing. "For three years" gives a duration. Both conditions (ongoing + duration from past to now) point to <strong>Present Perfect Continuous</strong>: "has been working…for three years." Option A ("since three years") is wrong — "since" is used with a point in time (since 2021), not a duration ("three years"). Option B ("has worked for three years") is Present Perfect — acceptable but implies the action may be complete; Present Perfect Continuous is better for stressing continuity. Option D ("was working") is Past Continuous — wrong tense. Answer: C.'},
+
+// ── HARD ──────────────────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',
+q:'"Hardly ______ the mission briefing when the enemy launched a counter-attack."',
+opts:[
+  'the team finished',
+  'did the team finish',
+  'had the team finished',
+  'the team had finished'
+],ans:2,
+rule:'"Hardly…when" → inverted Past Perfect: "Hardly had + subject + V3…when + Simple Past"',
+exp:'"Hardly…when" is an inverted structure that requires: (1) the auxiliary "had" to be placed before the subject (inversion), and (2) the Past Perfect for the "Hardly" clause. The correct structure: "Hardly <strong>had the team finished</strong> [Past Perfect, inverted] the mission briefing when the enemy launched [Simple Past] a counter-attack." Option A has no inversion and no Past Perfect — wrong. Option B uses "did" — wrong auxiliary for this inverted structure (did = Simple Past). Option D has the right tense but wrong order — no inversion ("the team had" instead of "had the team"). Answer: had the team finished.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Spot the error:<br>"If I <u>was</u> the commanding officer, I <u>would deploy</u> the troops <u>to the</u> <u>northern sector</u>."',
+opts:['was','would deploy','to the','northern sector'],ans:0,
+rule:'Type 2 conditional — subjunctive "were" is required for all persons in formal/exam English',
+exp:'This is a Type 2 conditional — a hypothetical, unreal present situation ("I am not the commanding officer, but if I were…"). In Type 2 conditionals, the if-clause uses the <strong>subjunctive mood</strong>, which requires <strong>"were"</strong> for all persons — including first person singular ("I"). "Was" is used in indicative mood (normal statements), but in hypothetical conditional clauses, formal English mandates "were": "If I <strong>were</strong> the commanding officer…" This is one of the most tested conditional rules in CDS/NDA. Answer: "was" → should be "were".'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'She said that the earth revolves around the sun.',
+  'She said that the earth revolved around the sun.',
+  'She said that the earth had revolved around the sun.',
+  'She said that the earth is revolving around the sun.'
+],ans:0,
+rule:'Reported speech: universal/scientific truths do not undergo back-shift — Present Simple stays',
+exp:'When the reported speech contains a <strong>universal truth or scientific fact</strong>, no back-shift occurs — the tense in the reported clause remains in the present. "The earth revolves around the sun" is a permanent scientific truth. Therefore, even though the reporting verb "said" is past, the reported clause stays in Simple Present: "She said that the earth <strong>revolves</strong> around the sun." Option B ("revolved") applies back-shift incorrectly. Options C and D are grammatically incorrect for this fact. Answer: A.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'"By this time next year, the officer ______ the advanced commando course."<br>Choose correctly.',
+opts:['will complete','will have completed','would complete','completes'],ans:1,
+rule:'Future Perfect (will have + V3) — action completed before a specified future time point',
+exp:'"By this time next year" is the classic signal phrase for the <strong>Future Perfect</strong> tense. It indicates that an action will be completed before (or by) a specific point in the future. "Will have completed" = Future Perfect = the course will be done by that future time. "Will complete" (A) = Simple Future — implies the completion happens at that exact future time, not before it. "Would complete" (C) is used in conditional or reported speech contexts. "Completes" (D) is Simple Present — wrong for a future time reference. Answer: will have completed.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Spot the error:<br>"The General <u>has been</u> visiting the forward post <u>yesterday</u> to assess <u>the ground</u> <u>situation</u>."',
+opts:['has been','yesterday','the ground','situation'],ans:0,
+rule:'"Yesterday" is a definite past time marker — demands Simple Past, not Present Perfect Continuous',
+exp:'"Yesterday" is a definite past time expression. Any form of the Present Perfect (including Present Perfect Continuous "has been visiting") cannot be used with definite past time markers. The correct tense is Simple Past: "The General <strong>visited</strong> the forward post yesterday." This is the same rule as the Simple Past vs Present Perfect distinction, but here applied to the continuous form. The presence of "yesterday" immediately disqualifies all Perfect tenses. Answer: "has been" → should be "visited" (Simple Past).'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He is having a meeting with the defence minister right now.',
+  'He has a meeting with the defence minister right now.',
+  'He has been having a meeting with the defence minister right now.',
+  'He will be having a meeting with the defence minister right now.'
+],ans:0,
+rule:'"Have" as a dynamic verb (= conduct/hold an activity) → can be used in Continuous form',
+exp:'This question tests the dual-use verb "have". When "have" means <em>to conduct, hold, or experience an activity</em> (a meeting, a bath, a meal, a conversation), it functions as a <strong>dynamic verb</strong> and CAN be used in continuous form: "He <strong>is having</strong> a meeting" ✓. Option B ("has a meeting") uses "have" as a stative possession verb — but a meeting is an activity, not something you possess. Option C ("has been having") is Present Perfect Continuous — incorrect for something happening right now with "right now". Option D ("will be having") is Future Continuous — wrong for a present-moment action. Answer: A.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Four parts are underlined. Find the error:<br>"<u>Had</u> the weather <u>been</u> clear, the airstrike <u>would be</u> launched at <u>first light</u>."',
+opts:['Had','been','would be','first light'],ans:2,
+rule:'Type 3 conditional (inverted): result clause must be "would have + V3", not "would + V1"',
+exp:'"Had the weather been clear" is an inverted Type 3 conditional if-clause (equivalent to "If the weather had been clear"). In Type 3 conditionals, the result clause must use <strong>"would have + V3"</strong>: "would have been launched". "Would be launched" (simple conditional) is the result clause for Type 2 conditionals — it does not match the Past Perfect in the if-clause. The if-clause establishes an unreal past scenario (the weather was NOT clear), so the result must also be in the past: "would <strong>have been</strong> launched". Answer: "would be" → should be "would have been".'},
+
+{d:'HARD',e:'NDA 2024',
+q:'"She ______ in this regiment since she was commissioned in 2018."<br>Choose the most appropriate tense.',
+opts:['serves','is serving','served','has been serving'],ans:3,
+rule:'Present Perfect Continuous + "since" — ongoing action from a past point (2018) to the present',
+exp:'"Since she was commissioned in 2018" identifies the starting point (2018) of an action that has continued up to the present. The correct tense is <strong>Present Perfect Continuous</strong>: "has been serving". This tense combines: (1) the Perfect aspect to connect past to present, and (2) the Continuous aspect to emphasise the unbroken duration. "Serves" (A) is Simple Present — used for habits, not duration from a past point. "Is serving" (B) is Present Continuous — cannot be used with "since" to show duration. "Served" (C) is Simple Past — implies the service is over. Answer: has been serving.'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Tenses</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! You have a sharp command of tenses — well done.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you missed — especially conditionals and back-shift.'}
+  else if(pct>=50){grade='Average';msg='Good effort. Go back to Theory — focus on stative verbs, Past Perfect sequence, and time clauses.'}
+  else{grade='Needs Work';msg:"Don't worry — master Simple Past vs Present Perfect first, then build up to conditionals and reported speech."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

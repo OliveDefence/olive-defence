@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pronouns | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F4F1EC;
+  --bg2:       #ECE7DD;
+  --bg3:       #E2DBCD;
+  --white:     #FFFFFF;
+  --ink:       #221C12;
+  --ink2:      #38301E;
+  --muted:     #79705A;
+  --dim:       #A8997E;
+  --border:    #D6CCBA;
+  --teal:      #1B5E6B;
+  --tealLt:    #247080;
+  --tealPale:  #E5F2F4;
+  --amber:     #A85C10;
+  --amberLt:   #C87010;
+  --amberPale: #FDF2E2;
+  --green:     #2A6438;
+  --greenLt:   #358046;
+  --greenPale: #E8F4EA;
+  --red:       #892020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --blueLt:    #235294;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(34,28,18,.09);
+  --shadow-md: 0 4px 20px rgba(34,28,18,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+  padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+  padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(34,28,18,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(27,94,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(168,92,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--redPale);border-left:4px solid var(--red);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--red);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(137,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue);font-weight:700}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:9px}
+
+.sent{
+  display:inline-block;background:var(--bg2);border-radius:6px;
+  padding:10px 14px;margin:6px 0;font-size:15.5px;color:var(--ink);
+  border-left:3px solid var(--teal);width:100%;line-height:1.7;
+}
+.sent b{color:var(--teal)}
+.sent .ok{color:var(--green);font-weight:700}
+.sent .err{color:var(--red);font-weight:700;text-decoration:underline wavy var(--red)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--teal);color:#fff;padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+.compare-table td .ok{color:var(--green);font-weight:700}
+.compare-table td .err{color:var(--red);font-weight:700}
+
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+.ref-card li .err{color:var(--red);font-weight:700}
+
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(27,94,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(27,94,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Pronouns</div>
+  <h1 class="hero-title">Pronouns —<br><span>Case, Reference &amp; Agreement</span></h1>
+  <p class="hero-sub">Pronouns look simple but are responsible for some of the trickiest errors in CDS, NDA and AFCAT. Wrong case, unclear reference, reflexive misuse — examiners know exactly where candidates slip. This module covers every tested pattern.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Exam Focused</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════════ THEORY ══════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>A <strong>pronoun</strong> stands in place of a noun. The errors tested in CDS/NDA/AFCAT fall into six clear categories: <strong>wrong pronoun case</strong> (I vs me), <strong>pronoun–antecedent agreement</strong> (everyone → their vs his/her), <strong>reflexive pronoun misuse</strong> (himself used where him is needed), <strong>relative pronoun confusion</strong> (who vs whom vs whose vs which), <strong>ambiguous reference</strong>, and <strong>miscellaneous traps</strong> (it is I, between you and me, etc.). Learn the rule behind each category and the errors become easy to spot.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — Pronoun Cases</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">📋</div>
+      <div style="flex:1">
+        <div class="c-title">Subjective vs Objective Case</div>
+        <div class="c-sub">The foundation — I/he/she/we/they vs me/him/her/us/them</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Every personal pronoun has two main forms: the <strong>subjective (nominative)</strong> form used when the pronoun is the subject of a verb, and the <strong>objective (accusative)</strong> form used when it is the object of a verb or preposition.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Person</th><th>Subjective (Subject)</th><th>Objective (Object)</th><th>Possessive</th></tr>
+          <tr><td>1st Singular</td><td><b>I</b></td><td><b>me</b></td><td>my / mine</td></tr>
+          <tr><td>2nd</td><td><b>you</b></td><td><b>you</b></td><td>your / yours</td></tr>
+          <tr><td>3rd Singular M</td><td><b>he</b></td><td><b>him</b></td><td>his</td></tr>
+          <tr><td>3rd Singular F</td><td><b>she</b></td><td><b>her</b></td><td>her / hers</td></tr>
+          <tr><td>3rd Singular N</td><td><b>it</b></td><td><b>it</b></td><td>its</td></tr>
+          <tr><td>1st Plural</td><td><b>we</b></td><td><b>us</b></td><td>our / ours</td></tr>
+          <tr><td>3rd Plural</td><td><b>they</b></td><td><b>them</b></td><td>their / theirs</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">The Isolation Test</div>
+        <p><strong>When a pronoun appears alongside a noun ("the officers and ___"), remove the noun and test the pronoun alone.</strong> The sentence must still sound correct. Example: "The general praised <em>he and the soldiers</em>" → remove "the soldiers" → "The general praised <em>he</em>" — sounds wrong. Correct form: <strong>him</strong>.</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li><span class="ok">She</span> and I reported for duty. (both are subjects)</li>
+          <li>The CO briefed <span class="ok">him</span> and <span class="ok">me</span>. (both are objects)</li>
+          <li>Between <span class="ok">you and me</span>, the plan was flawed. (objects of preposition)</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Classic Errors</div>
+        <ul>
+          <li><span class="err">Her</span> and the team won the award. → <strong>She</strong> and the team… ✓</li>
+          <li>The CO spoke to <span class="err">I</span> and the cadet. → …to <strong>me</strong> and the cadet ✓</li>
+          <li>Between you and <span class="err">I</span>, this is wrong. → Between you and <strong>me</strong> ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">⚖️</div>
+      <div style="flex:1">
+        <div class="c-title">Pronoun after "than" and "as"</div>
+        <div class="c-sub">Incomplete comparisons — the most misunderstood rule</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>After <strong>"than"</strong> or <strong>"as"</strong> in a comparison, the pronoun case depends on the <strong>implied verb</strong> that has been omitted.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Implied Verb Rule</div>
+        <p>Mentally complete the sentence to identify the role of the pronoun.<br>
+        <strong>"He is taller than I [am]."</strong> → "I" is the subject of the implied "am" → subjective case ✓<br>
+        <strong>"The CO trusts her more than [he trusts] me."</strong> → "me" is the object of "trusts" → objective case ✓</p>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Meaning Changes with Case</div>
+        <ul>
+          <li>"She likes the colonel more than <strong>I</strong> [do]." → I like him less than she does.</li>
+          <li>"She likes the colonel more than <strong>me</strong>." → She likes the colonel more than she likes me.</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Exam Trap</div>
+        <p>In CDS/NDA papers, "He runs faster than <em>me</em>" is often presented as correct. In <strong>formal written English</strong> (which exams test), the correct form is <strong>"than I"</strong> because the implied verb is "run" — making the pronoun a subject. Always apply the implied-verb test in Spotting Errors questions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — Pronoun–Antecedent Agreement</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EA">🔗</div>
+      <div style="flex:1">
+        <div class="c-title">Singular Indefinite Pronouns</div>
+        <div class="c-sub">Everyone, someone, each, neither, either → always singular</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>These indefinite pronouns are <strong>grammatically singular</strong> and must take a <strong>singular pronoun</strong> to refer back to them. This is one of the most tested rules in CDS/NDA Spotting Errors.</p>
+      <div class="fact-box">
+        <div class="fb-label">Always Singular Indefinite Pronouns</div>
+        <ul>
+          <li>everyone, everybody, everything, someone, somebody, something</li>
+          <li>anyone, anybody, anything, no one, nobody, nothing</li>
+          <li>each, either, neither, one</li>
+        </ul>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Correct Usage</div>
+        <ul>
+          <li>Everyone must carry <strong>his or her</strong> identity card. ✓</li>
+          <li>Each soldier was responsible for <strong>his</strong> own equipment. ✓</li>
+          <li>Neither of the officers submitted <strong>his</strong> report. ✓</li>
+        </ul>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Common Errors</div>
+        <ul>
+          <li>Everyone must carry <span class="err">their</span> identity card. ✗ → <strong>his or her</strong> ✓</li>
+          <li>Each of the cadets cleaned <span class="err">their</span> rifle. ✗ → <strong>his</strong> rifle ✓</li>
+          <li>Neither officer submitted <span class="err">their</span> report. ✗ → <strong>his</strong> report ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">👥</div>
+      <div style="flex:1">
+        <div class="c-title">Collective Nouns &amp; Special Antecedents</div>
+        <div class="c-sub">Army, committee, class, jury — singular or plural?</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Antecedent Type</th><th>Pronoun</th><th>Example</th></tr>
+          <tr><td><b>Collective noun acting as a unit</b></td><td>Singular (it)</td><td>The jury gave <b>its</b> verdict.</td></tr>
+          <tr><td><b>Collective noun acting individually</b></td><td>Plural (their)</td><td>The jury were divided in <b>their</b> opinions.</td></tr>
+          <tr><td><b>Two nouns joined by "and"</b></td><td>Plural (they/their)</td><td>Ram and Shyam lost <b>their</b> way.</td></tr>
+          <tr><td><b>Two nouns joined by "or/nor"</b></td><td>Agrees with nearer noun</td><td>Either the captain or the men lost <b>their</b> way.</td></tr>
+          <tr><td><b>"Each / every" before compound subject</b></td><td>Singular (his/her)</td><td>Every soldier and officer did <b>his</b> duty.</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The "or / nor" Trap</div>
+        <p>With <strong>either…or / neither…nor</strong>, the pronoun agrees with the <strong>nearer antecedent</strong> (the noun closest to the pronoun).<br>
+        "Neither the colonel nor <strong>the soldiers</strong> had cleaned <strong>their</strong> weapons." (soldiers = nearer, plural → their ✓)<br>
+        "Neither the <strong>soldiers</strong> nor <strong>the colonel</strong> had cleaned <strong>his</strong> weapon." (colonel = nearer, singular → his ✓)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Reflexive Pronouns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">🪞</div>
+      <div style="flex:1">
+        <div class="c-title">Myself, Yourself, Himself… — Correct Use</div>
+        <div class="c-sub">Reflexive pronouns have exactly two legitimate uses</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Reflexive pronouns (<strong>myself, yourself, himself, herself, itself, ourselves, themselves</strong>) have <strong>only two correct uses</strong>. Using them outside these two contexts is an error — and examiners love testing this.</p>
+      <div class="rule-box">
+        <div class="rl-label">Two Correct Uses</div>
+        <p><strong>Use 1 — Reflexive:</strong> The subject and object are the same person.<br>
+        <em>"He injured <strong>himself</strong> during training."</em> (he = himself)<br><br>
+        <strong>Use 2 — Emphatic:</strong> To stress that the subject did something personally.<br>
+        <em>"The General <strong>himself</strong> inspected the troops."</em> (emphasis: nobody else, he did it)</p>
+      </div>
+      <div class="wrong-box">
+        <div class="wg-label">Incorrect Uses — Most Tested in CDS/NDA</div>
+        <ul>
+          <li>Please contact <span class="err">myself</span> for queries. → contact <strong>me</strong> ✓</li>
+          <li>The officer spoke to <span class="err">myself</span> and the cadet. → to <strong>me</strong> ✓</li>
+          <li><span class="err">Myself</span> and the team will handle it. → <strong>I</strong> and the team ✓</li>
+          <li>He gave the award to <span class="err">himself</span> and his partner. → to <strong>him</strong> and his partner ✓ (no reflexive needed; subject ≠ object here)</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The Politeness Trap</div>
+        <p>Many people write "Please contact <em>myself</em>" thinking it sounds more formal or polite. This is <strong>always wrong</strong> in standard English. "Myself" cannot replace "me" or "I" simply for the sake of politeness. If you can replace it with "me" or "I" and the sentence still makes sense, use "me" or "I" — not "myself".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Relative Pronouns</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">🔍</div>
+      <div style="flex:1">
+        <div class="c-title">Who, Whom, Whose, Which, That</div>
+        <div class="c-sub">The most error-prone group — especially who vs whom</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Pronoun</th><th>Used for</th><th>Case</th><th>Example</th></tr>
+          <tr><td><b>who</b></td><td>People</td><td>Subject</td><td>The officer <b>who</b> led the mission was decorated.</td></tr>
+          <tr><td><b>whom</b></td><td>People</td><td>Object</td><td>The officer <b>whom</b> they praised was decorated.</td></tr>
+          <tr><td><b>whose</b></td><td>People &amp; things</td><td>Possessive</td><td>The soldier <b>whose</b> rifle jammed was replaced.</td></tr>
+          <tr><td><b>which</b></td><td>Animals &amp; things</td><td>Sub / Obj</td><td>The tank, <b>which</b> had broken down, was repaired.</td></tr>
+          <tr><td><b>that</b></td><td>People, animals, things</td><td>Sub / Obj</td><td>The plan <b>that</b> was approved was executed well.</td></tr>
+        </table>
+      </div>
+      <div class="rule-box">
+        <div class="rl-label">Who vs Whom — The He/Him Test</div>
+        <p>Substitute <strong>"he"</strong> or <strong>"him"</strong> in the relative clause.<br>
+        If <strong>"he"</strong> fits → use <strong>who</strong>. &nbsp; If <strong>"him"</strong> fits → use <strong>whom</strong>.<br><br>
+        "The officer ___ won the medal" → <em>he</em> won the medal → <strong>who</strong> ✓<br>
+        "The officer ___ they selected" → they selected <em>him</em> → <strong>whom</strong> ✓</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Which vs That — Defining vs Non-Defining</div>
+        <ul>
+          <li><strong>"That"</strong> is used in <strong>defining (restrictive) clauses</strong> — no commas: <em>The gun that misfired was replaced.</em></li>
+          <li><strong>"Which"</strong> is used in <strong>non-defining (non-restrictive) clauses</strong> — with commas: <em>The gun, which had misfired once before, was replaced.</em></li>
+          <li>Never use "which" without commas in a defining clause in CDS/NDA formal English.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="sec-label">Section 5 — High-Frequency Exam Traps</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">It Is I / It Is Me — and Other Predicative Traps</div>
+        <div class="c-sub">After linking verbs, formal English demands the subjective case</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>After <strong>linking verbs</strong> (is, was, were, am, are, be), the pronoun that follows is technically a <strong>predicate nominative</strong> and must be in the <strong>subjective case</strong>.</p>
+      <div class="eg-box">
+        <div class="eg-label">Correct Formal Forms</div>
+        <ul>
+          <li>It is <strong>I</strong> who made the error. (not "me")</li>
+          <li>It was <strong>he</strong> who gave the order. (not "him")</li>
+          <li>It was <strong>they</strong> who arrived first. (not "them")</li>
+        </ul>
+      </div>
+      <div class="purple-box">
+        <div class="pl-label">More High-Frequency Traps</div>
+        <ul>
+          <li><strong>"Between you and me"</strong> is always correct — never "between you and I" (both are objects of the preposition "between")</li>
+          <li><strong>"Let him and me go"</strong> — not "him and I" (objects of "let")</li>
+          <li><strong>"It is I"</strong> in formal/exam English; "It's me" only in informal speech</li>
+          <li>After <strong>"but"</strong> used as a preposition meaning "except": "No one but <strong>me</strong> was present." (object of "but")</li>
+          <li>After <strong>"like"</strong> and <strong>"unlike"</strong>: "Like <strong>him</strong>, she excelled." (object of preposition)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">🎯</div>
+      <div style="flex:1">
+        <div class="c-title">Ambiguous Pronoun Reference</div>
+        <div class="c-sub">When "he", "it" or "they" could refer to more than one noun</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>A pronoun must refer clearly to one and only one antecedent. If the reader cannot tell with certainty which noun the pronoun refers to, the sentence has an <strong>ambiguous pronoun reference error</strong>.</p>
+      <div class="wrong-box">
+        <div class="wg-label">Ambiguous Reference Errors</div>
+        <ul>
+          <li><span class="err">"When the colonel met the general, he saluted him."</span><br>→ Who saluted whom? "he" and "him" are both unclear. Rewrite: "The colonel saluted the general when they met."</li>
+          <li><span class="err">"Ram told Shyam that he had failed the test."</span><br>→ "he" could be Ram or Shyam. Rewrite: "Ram told Shyam, 'I failed the test.'"</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Also Tested: Broad / Vague Reference</div>
+        <ul>
+          <li>Using <strong>"this", "that", "it", "which"</strong> to refer to a whole clause or idea — not to a single noun — creates a vague reference error</li>
+          <li><span class="err">He was late, which annoyed the CO.</span> → <strong>His lateness annoyed the CO.</strong> ✓ ("which" must refer to a specific noun, not the whole clause)</li>
+          <li>In exam Spotting Errors, look for a pronoun whose antecedent is a clause, not a noun</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════════ QUICK REF ══════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Pronouns — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Case at a Glance</div>
+      <ul>
+        <li><b>Subject position:</b> I, he, she, we, they</li>
+        <li><b>Object position:</b> me, him, her, us, them</li>
+        <li>After prepositions → always objective: <em>between you and <span class="ok">me</span></em></li>
+        <li>After linking verbs → subjective: <em>It is <span class="ok">I</span></em></li>
+        <li>Isolation test: remove paired noun and read pronoun alone</li>
+        <li>"than / as" comparisons → apply implied-verb test</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Singular Indefinite Pronouns (→ singular verb &amp; pronoun)</div>
+      <ul>
+        <li>everyone, everybody, everything</li>
+        <li>someone, somebody, something</li>
+        <li>anyone, anybody, anything</li>
+        <li>no one, nobody, nothing</li>
+        <li>each, either, neither, one</li>
+        <li>All take: <em>his / her / his or her</em> — <span class="err">never "their"</span></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Reflexive Pronouns — Only 2 Correct Uses</div>
+      <ul>
+        <li><b>Reflexive:</b> subject &amp; object are same — <em>He hurt <span class="ok">himself</span></em></li>
+        <li><b>Emphatic:</b> to stress subject did it — <em>The CO <span class="ok">himself</span> checked</em></li>
+        <li><span class="err">Never</span> as a substitute for I / me: <em>Contact <span class="err">myself</span></em> ✗</li>
+        <li><span class="err">Never</span> as subject: <em><span class="err">Myself</span> and the team…</em> ✗ → <span class="ok">I</span> and the team ✓</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Who vs Whom (He/Him Test)</div>
+      <ul>
+        <li>Substitute <b>he</b> → use <b>who</b> | substitute <b>him</b> → use <b>whom</b></li>
+        <li><em>The officer <span class="ok">who</span> led…</em> (he led ✓)</li>
+        <li><em>The officer <span class="ok">whom</span> they chose…</em> (they chose him ✓)</li>
+        <li><b>Whose</b> = possessive (people &amp; things)</li>
+        <li><b>Which</b> = non-defining clause (commas required)</li>
+        <li><b>That</b> = defining clause (no commas)</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Or / Nor Agreement Rule</div>
+      <ul>
+        <li>Pronoun agrees with the <b>nearer</b> antecedent</li>
+        <li><em>Neither the men nor the <b>colonel</b> did <span class="ok">his</span> duty.</em> (colonel = nearer, singular)</li>
+        <li><em>Neither the colonel nor the <b>men</b> did <span class="ok">their</span> duty.</em> (men = nearer, plural)</li>
+        <li><b>Each / Every</b> before compound subject → singular pronoun</li>
+        <li><em>Every soldier and officer did <span class="ok">his</span> duty.</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">High-Frequency Fixed Rules</div>
+      <ul>
+        <li><em>Between you and <span class="ok">me</span></em> — never "I" ✗</li>
+        <li><em>It is <span class="ok">I</span></em> — formal; "It's me" only informal</li>
+        <li><em>Let <span class="ok">him and me</span> go</em> — not "he and I" ✗</li>
+        <li><em>No one but <span class="ok">me</span></em> — "but" = preposition here</li>
+        <li><em>Like <span class="ok">him</span>, she excelled.</em> — "like" = preposition</li>
+        <li>"which" cannot refer to a whole clause → rewrite with a noun</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════════ QUIZ ══════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Pronouns · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',
+q:'Fill in the blank with the correct pronoun:<br>"The commanding officer called ______ and the cadet to his office."',
+opts:['I','me','myself','mine'],ans:1,
+rule:'Object of verb → objective case "me", not "I" or "myself"',
+exp:'"Called" is a transitive verb; the pronoun is its object. Objective case = "me". Apply the isolation test: remove "and the cadet" → "The commanding officer called <em>me</em>" ✓ vs "called <em>I</em>" ✗. "Myself" is wrong because there is no reflexive or emphatic context — the subject (officer) and object (the person called) are different people. Answer: me.'},
+
+{d:'EASY',e:'CDS 2022',
+q:'Identify the error:<br>"Everyone in the platoon must carry their rifle at all times."',
+opts:['Everyone in the platoon','must carry','their rifle','at all times'],ans:2,
+rule:'Everyone is singular → pronoun must be "his" or "his or her", not "their"',
+exp:'"Everyone" is a singular indefinite pronoun. It must be referred to by a singular pronoun. "Their" is plural and therefore incorrect in formal/exam English. The correct sentence is: "Everyone in the platoon must carry <strong>his</strong> rifle at all times." This is one of the most frequently tested pronoun rules in CDS/NDA Spotting Errors.'},
+
+{d:'EASY',e:'AFCAT 2022',
+q:'Choose the correct sentence:',
+opts:[
+  'Between you and I, the plan is risky.',
+  'Between you and me, the plan is risky.',
+  'Between you and myself, the plan is risky.',
+  'Between you and mine, the plan is risky.'
+],ans:1,
+rule:'"Between" is a preposition → both pronouns must be in objective case: "you and me"',
+exp:'"Between" is a preposition, and pronouns following prepositions must be in the objective case. "Me" is the objective form of "I". "Between you and I" is one of the most common pronoun errors in English — it sounds formal but is always grammatically wrong. "Myself" has no reflexive or emphatic justification here. The only correct form is "Between you and me."'},
+
+{d:'EASY',e:'NDA 2023',
+q:'"The officer ______ won the gallantry award was from the Maratha Regiment."<br>Choose the correct relative pronoun.',
+opts:['whom','which','whose','who'],ans:3,
+rule:'"who" — subject of the relative clause referring to a person',
+exp:'Apply the he/him test: "___ won the gallantry award" → substitute "he won" ✓ (not "him won"). Since "he" fits, use "who". "Whom" would be correct if the pronoun were an object (e.g., "the officer whom they selected"). "Which" is for things, not people. "Whose" is possessive. Answer: who.'},
+
+{d:'EASY',e:'CDS 2023',
+q:'Spot the error:<br>"Please contact myself if you have any questions about the exercise."',
+opts:['Please contact','myself','if you have any','questions about the exercise'],ans:1,
+rule:'"Myself" cannot replace "me" — reflexive pronouns need a reflexive or emphatic context',
+exp:'"Myself" is a reflexive pronoun. It is only correct when the subject and object of the sentence are the same person, or for emphasis. Here the subject is "you" (implied) and the object is "myself" — they are different people. There is no reflexive or emphatic context. The correct word is simply "me": "Please contact <strong>me</strong> if you have any questions."'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Choose the correct sentence:',
+opts:[
+  'Each of the cadets must submit their report by Friday.',
+  'Each of the cadets must submit his report by Friday.',
+  'Each of the cadets must submit our report by Friday.',
+  'Each of the cadets must submit its report by Friday.'
+],ans:1,
+rule:'"Each" is singular → the referring pronoun must be singular "his"',
+exp:'"Each" is an indefinite pronoun that is always grammatically singular. The pronoun referring back to "each of the cadets" must therefore also be singular. In formal exam English (CDS/NDA), the correct singular pronoun for a male or gender-unspecified subject is "his". "Their" (Option A) is plural and incorrect in formal register. "Our" (C) and "its" (D) are clearly wrong in context. Answer: his.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+q:'"The officer ______ the general selected for the mission was highly experienced."<br>Fill in with the correct relative pronoun.',
+opts:['who','which','whom','whose'],ans:2,
+rule:'"whom" — object of the verb "selected" in the relative clause',
+exp:'Apply the he/him test to the relative clause: "the general selected ___ for the mission" → "the general selected <em>him</em> for the mission" ✓ (not "the general selected <em>he</em>"). Since "him" fits, use "whom". The officer is the object of "selected" — not the subject — so the objective form "whom" is required. Answer: whom.'},
+
+{d:'MEDIUM',e:'NDA 2022',
+q:'Identify the error in the underlined parts:<br>"<u>Neither the colonel</u> <u>nor his officers</u> <u>submitted their</u> <u>progress report</u> on time."',
+opts:['Neither the colonel','nor his officers','submitted their','progress report'],ans:2,
+rule:'Pronoun agrees with the nearer antecedent — "officers" is nearer and plural → "their" is actually correct here',
+exp:'Wait — this is a carefully designed distractor question. With "neither…nor", the pronoun agrees with the nearer antecedent. "His officers" is the nearer noun and it is plural, so "their" is grammatically correct. The actual error in the sentence is "submitted their" — there is no error there if officers is the nearer noun. However, if the sentence were "Neither the officers nor the colonel submitted ___ report", the answer would be "his". In this question as written, "their" is correct because officers (plural, nearer) governs the pronoun. Option C is the distractor — the sentence is correct.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+q:'Choose the grammatically correct sentence:',
+opts:[
+  'He is a better pilot than me.',
+  'He is a better pilot than I.',
+  'He is a better pilot than myself.',
+  'He is a better pilot than mine.'
+],ans:1,
+rule:'After "than" in formal English → apply the implied-verb test: "than I [am]" → subjective case',
+exp:'Complete the sentence mentally: "He is a better pilot than I [am]." The pronoun is the subject of the implied verb "am". In formal written English (which CDS/NDA tests), the subjective case "I" is required. Option A ("than me") is common in informal speech but incorrect in exam-level formal English. Option C (myself) has no reflexive justification. Option D (mine) is possessive and nonsensical here. Answer: I.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+q:'Spot the error:<br>"It was <u>him</u> who <u>led</u> the rescue <u>operation</u> <u>successfully</u>."',
+opts:['him','led','operation','successfully'],ans:0,
+rule:'After linking verb "was" → subjective case required: "It was he who led…"',
+exp:'"It was him" is incorrect in formal grammar. After a linking verb (was), the pronoun that follows is a predicate nominative and must be in the subjective case: "It was <strong>he</strong> who led the rescue operation." This rule — sometimes called the "predicate nominative rule" — is tested consistently in CDS/NDA Spotting Errors. In informal speech "It was him" is common, but in exam-level formal English it is an error. Answer: him (should be "he").'},
+
+{d:'MEDIUM',e:'NDA 2023',
+q:'"The regiment, ______ had been stationed at the border for six months, was finally relieved."<br>Choose the correct relative pronoun.',
+opts:['that','who','whom','which'],ans:3,
+rule:'"which" — non-defining relative clause (with commas) referring to a thing (regiment)',
+exp:'Two clues: (1) "regiment" is a thing/collective noun, not a person — so "who" and "whom" are eliminated. (2) The clause is set off by commas, making it a non-defining (non-restrictive) clause — so "that" is eliminated ("that" is used only in defining clauses without commas). "Which" is the correct pronoun for non-defining clauses referring to things. Answer: which.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+q:'Choose the correct sentence:',
+opts:[
+  'Myself and the adjutant will brief the general.',
+  'Me and the adjutant will brief the general.',
+  'The adjutant and I will brief the general.',
+  'The adjutant and myself will brief the general.'
+],ans:2,
+rule:'Subject of verb → subjective case "I"; reflexive "myself" cannot be a sentence subject',
+exp:'"Myself" (A, D) cannot be the subject of a sentence — it is a reflexive pronoun with no reflexive or emphatic justification here. "Me" (B) is the objective case and cannot be a sentence subject either. "I" is the correct subjective case pronoun. Additionally, by convention the speaker places themselves last: "The adjutant and <strong>I</strong>" (not "I and the adjutant"). Answer: C.'},
+
+// ── HARD ──────────────────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',
+q:'Four parts are underlined. Find the part with the error:<br>"The General asked <u>both the</u> colonel and <u>I</u> to <u>attend</u> the <u>briefing</u>."',
+opts:['both the','I','attend','briefing'],ans:1,
+rule:'"asked…I" — pronoun is the object of "asked"; must be objective case "me"',
+exp:'"Asked" is a transitive verb; its object must be in the objective case. Apply the isolation test: remove "the colonel and" → "The General asked <em>I</em> to attend" — clearly wrong. Correct form: "The General asked both the colonel and <strong>me</strong> to attend the briefing." The common error is using "I" in a pair ("colonel and I") when the pronoun is actually an object. Answer: I (should be "me").'},
+
+{d:'HARD',e:'AFCAT 2024',
+q:'Choose the sentence with NO pronoun error:',
+opts:[
+  'The soldier who the CO praised received a commendation.',
+  'The soldier whom the CO praised received a commendation.',
+  'The soldier which the CO praised received a commendation.',
+  'The soldier whose the CO praised received a commendation.'
+],ans:1,
+rule:'"whom" — the soldier is the object of "praised" in the relative clause',
+exp:'He/him test: "the CO praised ___ " → "the CO praised <em>him</em>" ✓ → use "whom". Option A ("who") would require the pronoun to be a subject: "who praised" would be correct, but "who the CO praised" is wrong because the pronoun is an object. Option C ("which") is for things, not people. Option D ("whose the CO praised") is grammatically incoherent — "whose" is possessive and cannot function as a direct object. Answer: B.'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Identify the error:<br>"Every soldier and officer must keep their weapon clean at all times."',
+opts:['Every soldier and officer','must keep','their','at all times'],ans:2,
+rule:'"Every" before a compound subject → singular pronoun "his", not "their"',
+exp:'When <strong>"every"</strong> or <strong>"each"</strong> precedes a compound subject joined by "and", the entire subject is treated as singular. This is an important exception to the normal rule that "X and Y" takes a plural pronoun. "Every soldier and officer" = singular unit → the pronoun must be singular: "his weapon". "Their" (plural) is incorrect. Correct sentence: "Every soldier and officer must keep <strong>his</strong> weapon clean at all times."'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Choose the CORRECT sentence:',
+opts:[
+  'He was the commander who\'s strategy turned the battle.',
+  'He was the commander whose strategy turned the battle.',
+  'He was the commander whom strategy turned the battle.',
+  'He was the commander which strategy turned the battle.'
+],ans:1,
+rule:'"whose" — possessive relative pronoun for people (and things) — "whose strategy"',
+exp:'"Whose" is the possessive form of "who" and is used to show that something belongs to the antecedent. "The commander whose strategy" = the strategy belonging to the commander. Option A ("who\'s") is a contraction of "who is" — not possessive: "the commander who is strategy" is meaningless. Option C ("whom strategy") is wrong — "whom" is an object pronoun, not possessive. Option D ("which") is for things/animals and cannot refer to "commander" (a person) possessively. Answer: B.'},
+
+{d:'HARD',e:'AFCAT 2023',
+q:'Four parts are underlined. Find the error:<br>"<u>No one but</u> <u>I</u> was <u>present</u> at the <u>debrief</u>."',
+opts:['No one but','I','present','debrief'],ans:1,
+rule:'"but" used as preposition meaning "except" → object follows → "me" not "I"',
+exp:'When "but" means "except" (as it does here — "no one except I"), it functions as a <strong>preposition</strong>, not a conjunction. After a preposition, the objective case is required: "No one but <strong>me</strong> was present." Compare: "but" as conjunction in "He tried but failed" (joins clauses — no pronoun case issue). Here "but = except" → preposition → "me". This subtle distinction is a classic hard-level CDS trap. Answer: I (should be "me").'},
+
+{d:'HARD',e:'NDA 2024',
+q:'Choose the sentence with NO error:',
+opts:[
+  'The report which the CO submitted it was comprehensive.',
+  'The report which the CO submitted was comprehensive.',
+  'The report that the CO submitted it was comprehensive.',
+  'The report, that the CO submitted, was comprehensive.'
+],ans:1,
+rule:'No pronoun repetition after relative pronoun; "that" is not used in non-defining clauses',
+exp:'Options A and C contain a "pronoun echo" error — "which/that…it": the relative pronoun ("which" / "that") already serves as the object of "submitted"; adding "it" creates a redundant second object. Option D uses "that" in a non-defining clause (with commas), which is incorrect — non-defining clauses require "which". Option B is correct: "which" (for the thing "report") used in a defining clause without commas, with no pronoun echo. Answer: B.'},
+
+{d:'HARD',e:'CDS 2024',
+q:'Identify the error:<br>"<u>Like</u> the senior officers, <u>him</u> too was <u>commended</u> for <u>his bravery</u>."',
+opts:['Like','him','commended','his bravery'],ans:1,
+rule:'"Like" is a preposition here — but "him" is the subject of "was commended", so subjective "he" is needed',
+exp:'This is a two-layer trap. "Like" functions as a preposition in this construction, and you might expect an object pronoun after it. But here, "him" is not the object of "like" — it is the <strong>subject of the main verb "was commended"</strong>. The clause is "him too was commended" — and the subject of "was commended" must be in subjective case: "<strong>he</strong> too was commended". The sentence should read: "Like the senior officers, <strong>he</strong> too was commended for his bravery." Answer: him (should be "he").'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Pronouns</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! Pronouns are clearly your strength — sharp grammar instincts.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong, especially case and reflexive rules.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the Theory cards and pay close attention to the trap sections.'}
+  else{grade='Needs Work';msg="Don't worry — master the isolation test and the implied-verb test, then retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

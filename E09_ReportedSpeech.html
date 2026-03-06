@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reported Speech | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  /* ── COLOUR SET: Crimson / Warm Slate ─────────────────────── */
+  --bg:        #F5F0EF;
+  --bg2:       #EDE5E3;
+  --bg3:       #E0D5D2;
+  --white:     #FFFFFF;
+  --ink:       #1E0E0A;
+  --ink2:      #321612;
+  --muted:     #7A5A54;
+  --dim:       #AA8880;
+  --border:    #D8C8C4;
+
+  /* Primary — deep crimson */
+  --pri:       #7A1820;
+  --priLt:     #9A2028;
+  --priPale:   #FAEAEA;
+
+  /* Accent 1 — warm amber */
+  --ac1:       #8C5A00;
+  --ac1Lt:     #B07200;
+  --ac1Pale:   #FDF5E0;
+
+  /* Accent 2 — forest green (correct) */
+  --ac2:       #1E5C34;
+  --ac2Lt:     #287844;
+  --ac2Pale:   #E4F2EA;
+
+  /* Accent 3 — deep rust (error) */
+  --ac3:       #7A2008;
+  --ac3Lt:     #9E2C0C;
+  --ac3Pale:   #FCEEE8;
+
+  /* Accent 4 — deep navy (rule boxes) */
+  --ac4:       #0E2C52;
+  --ac4Lt:     #163E72;
+  --ac4Pale:   #E4EAF4;
+
+  /* Accent 5 — plum */
+  --ac5:       #4E1860;
+  --ac5Pale:   #F2E8F8;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(30,14,10,.10);
+  --shadow-md: 0 4px 20px rgba(30,14,10,.15);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* HERO */
+.hero{background:var(--pri);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.07) 0%,transparent 60%);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px;padding-left:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.32)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;padding-left:8px}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(80,220,140,.13);color:#70DDA0}
+
+/* TAB BAR */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(30,14,10,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--pri);border-bottom-color:var(--pri)}
+
+/* PANES */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--pri);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INTRO BOX */
+.intro-box{background:var(--priPale);border:1.5px solid rgba(122,24,32,.2);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--pri)}
+
+/* CONCEPT CARDS */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--pri)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--pri);font-weight:700}
+.c-body em{color:var(--ac1);font-style:normal;font-weight:700}
+
+/* CONTENT BLOCKS */
+.fact-box{background:var(--ac1Pale);border:1.5px solid rgba(140,90,0,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac1);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--ac1);font-weight:700;font-size:13px}
+
+.eg-box{background:var(--ac2Pale);border-left:4px solid var(--ac2);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac2);text-transform:uppercase;margin-bottom:6px}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--ac2);font-size:12px;font-weight:800}
+
+.wrong-box{background:var(--ac3Pale);border-left:4px solid var(--ac3);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.wrong-box .wg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:6px}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--ac3);font-size:12px;font-weight:800}
+
+.trap-box{background:var(--ac3Pale);border:1.5px solid rgba(122,32,8,.2);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--ac3)}
+
+.rule-box{background:var(--ac4Pale);border:1.5px solid rgba(14,44,82,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac4);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--ac4);font-weight:700}
+
+.purple-box{background:var(--ac5Pale);border:1.5px solid rgba(78,24,96,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--ac5);text-transform:uppercase;margin-bottom:8px}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--ac5);top:9px}
+
+/* SPEECH DISPLAY BLOCKS */
+.speech-pair{margin:12px 0;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.speech-direct{background:var(--priPale);padding:11px 16px;border-left:4px solid var(--pri)}
+.speech-reported{background:var(--ac2Pale);padding:11px 16px;border-left:4px solid var(--ac2)}
+.speech-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.speech-direct .speech-label{color:var(--pri)}
+.speech-reported .speech-label{color:var(--ac2)}
+.speech-text{font-size:15.5px;color:var(--ink);line-height:1.7;font-weight:600}
+.speech-text b{color:var(--pri)}
+.speech-text .chg{color:var(--ac1);font-weight:800;text-decoration:underline dotted var(--ac1)}
+
+/* JOINER / CHANGE TAGS */
+.jtag{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:800;letter-spacing:.5px;margin:3px 3px 3px 0}
+.jt-that{background:var(--priPale);color:var(--pri);border:1.5px solid rgba(122,24,32,.2)}
+.jt-if{background:var(--ac1Pale);color:var(--ac1);border:1.5px solid rgba(140,90,0,.2)}
+.jt-wh{background:var(--ac4Pale);color:var(--ac4);border:1.5px solid rgba(14,44,82,.2)}
+.jt-to{background:var(--ac5Pale);color:var(--ac5);border:1.5px solid rgba(78,24,96,.2)}
+.jt-spec{background:var(--ac2Pale);color:var(--ac2);border:1.5px solid rgba(30,92,52,.2)}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{background:var(--pri);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--pri)}
+.compare-table td .ok{color:var(--ac2);font-weight:700}
+.compare-table td .err{color:var(--ac3);font-weight:700}
+
+/* QUICK REF */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--pri);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--ac1);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--ac2);font-weight:700}
+.ref-card li .err{color:var(--ac3);font-weight:700}
+
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--pri);line-height:1}
+.qs-val.g{color:var(--ac2)}.qs-val.r{color:var(--ac3)}.qs-val.a{color:var(--ac1)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--pri);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--pri)}
+.q-card.correct{border-left-color:var(--ac2)}
+.q-card.wrong{border-left-color:var(--ac3)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--ac2Pale);color:var(--ac2)}
+.diff-m{background:var(--ac1Pale);color:var(--ac1)}
+.diff-h{background:var(--ac3Pale);color:var(--ac3)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-type{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--priPale);color:var(--pri);letter-spacing:.5px}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:15.5px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--pri);background:var(--priPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--pri);background:var(--priPale);color:var(--pri)}
+.opt.ok{border-color:var(--ac2)!important;background:var(--ac2Pale)!important;color:var(--ac2)!important}
+.opt.bad{border-color:var(--ac3)!important;background:var(--ac3Pale)!important;color:var(--ac3)!important}
+
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--pri);color:#fff;border-color:var(--pri)}
+.opt.ok  .opt-lbl{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.opt.bad .opt-lbl{background:var(--ac3);color:#fff;border-color:var(--ac3)}
+
+.exp-panel{margin:4px 0 0;padding:14px 16px;background:var(--bg);border-top:1px solid var(--border);display:none;animation:fadeUp .2s ease}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac1);margin-bottom:6px}
+.exp-rule{display:inline-block;font-size:11px;font-weight:700;color:var(--pri);background:var(--priPale);border:1px solid rgba(122,24,32,.2);border-radius:6px;padding:3px 10px;margin-bottom:8px;letter-spacing:.5px}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{padding:8px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:14px 28px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.btn-primary{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(122,24,32,.3)}
+.btn-primary:hover{background:var(--priLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--pri);color:var(--pri)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{background:var(--pri);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:12px}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
+
+.page-footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--dim);font-weight:600;border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-text{font-size:16px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English Grammar · Reported Speech</div>
+  <h1 class="hero-title">Reported Speech —<br><span>Rules, Types &amp; Special Cases</span></h1>
+  <p class="hero-sub">Converting direct speech to reported (indirect) speech tests six things simultaneously: the correct joiner, tense back-shift, pronoun change, expression conversion, sentence-type rules, and special cases like blessings, wishes and exclamations. This module covers every pattern tested in CDS, NDA and AFCAT.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Comprehensive</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">15 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (15)</button>
+</div>
+
+<!-- ═══════════════════════════ THEORY ═══════════════════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>Reported speech (indirect speech) has <strong>six layers of change</strong> — every one of them is tested. Work through them in order: (1) <strong>Reporting verb</strong> — choose and sometimes modify it. (2) <strong>Joiner</strong> — that / if/whether / wh-word / to-infinitive. (3) <strong>Tense back-shift</strong> — if the reporting verb is past. (4) <strong>Pronoun change</strong> — speaker/listener perspective. (5) <strong>Expression change</strong> — time/place words. (6) <strong>Special cases</strong> — questions, commands, exclamations, wishes, blessings, and sentences with modals.</p>
+  </div>
+
+  <!-- ══ SECTION 1 — SENTENCE TYPES ══ -->
+  <div class="sec-label">Section 1 — Sentence Types &amp; Their Joiners</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FAEAEA">📣</div>
+      <div style="flex:1">
+        <div class="c-title">Type 1 — Assertive (Statement) Sentences</div>
+        <div class="c-sub">Joiner: "that" (often omitted) | Reporting verb: said / told</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Assertive sentences state a fact, opinion, or observation. They are the simplest to convert.</p>
+      <div class="rule-box">
+        <div class="rl-label">The Structure</div>
+        <p><strong>said → said that</strong> (no object) &nbsp;|&nbsp; <strong>said to → told</strong> (with object)<br>
+        Direct: He said, "I am ready."<br>
+        Reported: He said <strong>that</strong> he <strong>was</strong> ready.</p>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct</div><div class="speech-text">The officer said to the cadet, "<span class="chg">I</span> <span class="chg">am</span> proud of your performance."</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The officer <b>told</b> the cadet <b>that</b> <span class="chg">he</span> <span class="chg">was</span> proud of <span class="chg">his</span> performance.</div></div>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Said vs Told</div>
+        <ul>
+          <li><strong>"said that"</strong> — no person object: He said that he was tired. ✓</li>
+          <li><strong>"told + person + that"</strong> — with a person object: He told me that he was tired. ✓</li>
+          <li>✗ "He said me that…" — wrong: "said" never takes a person object directly</li>
+          <li>✗ "He told that…" — wrong: "told" always needs a person object before "that"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF5E0">❓</div>
+      <div style="flex:1">
+        <div class="c-title">Type 2 — Interrogative (Question) Sentences</div>
+        <div class="c-sub">Yes/No → if/whether | Wh-questions → wh-word | Normal word order restored</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Questions require two major changes beyond back-shift: (1) the correct joiner, and (2) the verb order reverts to normal (subject before verb — no inversion).</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Question Type</th><th>Joiner</th><th>Reporting Verb</th></tr>
+          <tr><td><b>Yes/No question</b> (no wh-word)</td><td><b>if</b> or <b>whether</b></td><td>asked / inquired / wanted to know</td></tr>
+          <tr><td><b>Wh-question</b> (what, who, when, where, why, how)</td><td><b>the same wh-word</b></td><td>asked / inquired / wanted to know</td></tr>
+        </table>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct — Yes/No</div><div class="speech-text">She asked, "Did you complete the assignment?"</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">She asked <b>if/whether</b> <span class="chg">I</span> <span class="chg">had completed</span> the assignment.</div></div>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct — Wh-question</div><div class="speech-text">He asked, "Where <span class="chg">are</span> you going?"</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">He asked <b>where</b> <span class="chg">I</span> <span class="chg">was</span> going.</div></div>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Word Order Must Become Normal in Reported Questions</div>
+        <ul>
+          <li>Direct: "Where <em>are you</em> going?" (inverted order)</li>
+          <li>Reported: He asked where <strong>I was</strong> going. (normal order — subject before verb) ✓</li>
+          <li>✗ "He asked where was I going." — wrong: do not keep inversion in reported speech</li>
+          <li>The question mark also disappears — it becomes a statement structure</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E4EAF4">📋</div>
+      <div style="flex:1">
+        <div class="c-title">Type 3 — Imperative (Command / Request / Advice) Sentences</div>
+        <div class="c-sub">Joiner: to-infinitive | Reporting verb conveys the tone</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Imperatives (commands, requests, advice, orders) are reported using a <strong>to-infinitive</strong>. The reporting verb must be chosen to match the speaker's tone.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Tone in Direct Speech</th><th>Reporting Verb</th></tr>
+          <tr><td><b>Order / Command</b></td><td>ordered, commanded, directed</td></tr>
+          <tr><td><b>Request / Polite</b></td><td>requested, begged, implored, urged</td></tr>
+          <tr><td><b>Advice</b></td><td>advised, suggested, recommended</td></tr>
+          <tr><td><b>Warning</b></td><td>warned, cautioned</td></tr>
+          <tr><td><b>Invitation</b></td><td>invited, asked</td></tr>
+          <tr><td><b>Prohibition (Don't)</b></td><td>forbade, warned…not to, told…not to</td></tr>
+        </table>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct — Command</div><div class="speech-text">The sergeant said to the recruit, "Stand at attention immediately."</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The sergeant <b>ordered</b> the recruit <b>to stand</b> at attention immediately.</div></div>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct — Prohibition</div><div class="speech-text">The officer said to the cadet, "Don't enter the restricted area."</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The officer <b>warned</b> the cadet <b>not to enter</b> the restricted area.</div></div>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Suggest" — Never Followed by To-Infinitive</div>
+        <ul>
+          <li>✗ "He suggested me to study harder." — wrong</li>
+          <li>✓ "He suggested that I should study harder." — correct</li>
+          <li>✓ "He suggested studying harder." — correct (gerund form)</li>
+          <li>"Suggest" never takes to-infinitive directly. This is a very commonly tested error.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F2E8F8">😲</div>
+      <div style="flex:1">
+        <div class="c-title">Type 4 — Exclamatory Sentences</div>
+        <div class="c-sub">Joiner: "that" | Reporting verb: exclaimed / cried out / shouted</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Exclamatory sentences express strong emotion. The exclamation mark is removed, and the sentence is reported using an emotion-expressing reporting verb followed by <strong>"that"</strong>.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Exclamation Type</th><th>Reporting Verb</th></tr>
+          <tr><td>General exclamation (What a…! How…!)</td><td>exclaimed with joy/surprise/sorrow that</td></tr>
+          <tr><td>Expression of joy (Hurrah! Bravo!)</td><td>exclaimed with joy / cheered / cried out that</td></tr>
+          <tr><td>Expression of sorrow (Alas! Oh!)</td><td>exclaimed with sorrow / lamented that</td></tr>
+          <tr><td>Expression of surprise / wonder</td><td>exclaimed with surprise / marvelled that</td></tr>
+        </table>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct</div><div class="speech-text">"What a brave soldier he is!" said the general.</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The general <b>exclaimed with admiration that</b> <span class="chg">he was</span> a very brave soldier.</div></div>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct — Hurrah!</div><div class="speech-text">"Hurrah! We have won the match!" shouted the players.</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The players <b>exclaimed with joy that</b> they <span class="chg">had won</span> the match.</div></div>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">Converting "What a…" / "How…"</div>
+        <ul>
+          <li>"What a beautiful view!" → …exclaimed that it was a very beautiful view. ✓</li>
+          <li>"How clever she is!" → …exclaimed that she was very clever. ✓</li>
+          <li>The emphatic "What a" / "How" is replaced with "very" in reported form</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2 — BACK-SHIFT ══ -->
+  <div class="sec-label">Section 2 — Tense Back-Shift &amp; When to Skip It</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FAEAEA">⏪</div>
+      <div style="flex:1">
+        <div class="c-title">The Complete Back-Shift Table</div>
+        <div class="c-sub">Every tense and modal, one step back — and when the rule does not apply</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Direct Speech Tense</th><th>→ Reported Speech Tense</th></tr>
+          <tr><td>Simple Present → "I <b>work</b>"</td><td>Simple Past → said he <b>worked</b></td></tr>
+          <tr><td>Present Continuous → "I <b>am working</b>"</td><td>Past Continuous → said he <b>was working</b></td></tr>
+          <tr><td>Present Perfect → "I <b>have finished</b>"</td><td>Past Perfect → said he <b>had finished</b></td></tr>
+          <tr><td>Present Perfect Cont. → "I <b>have been working</b>"</td><td>Past Perfect Cont. → said he <b>had been working</b></td></tr>
+          <tr><td>Simple Past → "I <b>left</b>"</td><td>Past Perfect → said he <b>had left</b></td></tr>
+          <tr><td>Past Continuous → "I <b>was going</b>"</td><td>Past Perfect Cont. → said he <b>had been going</b></td></tr>
+          <tr><td>Past Perfect → "I <b>had seen</b>"</td><td>Past Perfect (no change) → said he <b>had seen</b></td></tr>
+          <tr><td>will → "I <b>will</b> come"</td><td>would → said he <b>would</b> come</td></tr>
+          <tr><td>can → "I <b>can</b> do it"</td><td>could → said he <b>could</b> do it</td></tr>
+          <tr><td>may → "It <b>may</b> rain"</td><td>might → said it <b>might</b> rain</td></tr>
+          <tr><td>shall → "I <b>shall</b> go"</td><td>should → said he <b>should</b> go</td></tr>
+          <tr><td>must → "You <b>must</b> obey"</td><td>had to → said he <b>had to</b> obey</td></tr>
+        </table>
+      </div>
+      <div class="purple-box">
+        <div class="pl-label">Modals That Do NOT Change (Already Past-Form)</div>
+        <ul>
+          <li><strong>would, could, should, might, ought to</strong> — no further back-shift</li>
+          <li>"He said, 'I <em>would</em> try.'" → He said he <strong>would</strong> try. (no change) ✓</li>
+          <li>"She said, 'You <em>ought to</em> rest.'" → She said I <strong>ought to</strong> rest. ✓</li>
+          <li><strong>need not</strong> → <strong>need not / didn't need to</strong> (either accepted)</li>
+          <li><strong>used to</strong> → <strong>used to</strong> (no change)</li>
+        </ul>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">When Back-Shift Does NOT Happen</div>
+        <ul>
+          <li><strong>Universal / scientific truths:</strong> "The sun rises in the east." → …said the sun <strong>rises</strong> in the east. ✓</li>
+          <li><strong>Historical facts:</strong> "India got independence in 1947." → no tense change</li>
+          <li><strong>Habitual facts still true now:</strong> "She wakes up at 5 a.m." → no change if still current</li>
+          <li><strong>Reporting verb in Present/Future tense:</strong> "He says that he is fine." → no back-shift needed</li>
+          <li><strong>Past Perfect already:</strong> cannot go back further — stays as Past Perfect</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 — EXPRESSIONS ══ -->
+  <div class="sec-label">Section 3 — Expression &amp; Pronoun Changes</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF5E0">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Time, Place &amp; Demonstrative Expression Changes</div>
+        <div class="c-sub">The complete list — all tested in CDS/NDA spotting errors</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Direct Speech Expression</th><th>→ Reported Speech Expression</th></tr>
+          <tr><td><b>now</b></td><td>then / at that time</td></tr>
+          <tr><td><b>today</b></td><td>that day</td></tr>
+          <tr><td><b>tonight</b></td><td>that night</td></tr>
+          <tr><td><b>yesterday</b></td><td>the previous day / the day before</td></tr>
+          <tr><td><b>tomorrow</b></td><td>the next day / the following day</td></tr>
+          <tr><td><b>last week / year</b></td><td>the previous week / year / the week / year before</td></tr>
+          <tr><td><b>next week / year</b></td><td>the following week / year</td></tr>
+          <tr><td><b>ago</b></td><td>before / previously</td></tr>
+          <tr><td><b>here</b></td><td>there</td></tr>
+          <tr><td><b>this</b></td><td>that</td></tr>
+          <tr><td><b>these</b></td><td>those</td></tr>
+          <tr><td><b>thus / so</b></td><td>in that way / thus</td></tr>
+        </table>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ Pronoun Changes — The Three Rules</div>
+        <ul>
+          <li><strong>1st person</strong> (I, me, my, we, us, our) → changes according to the <strong>subject</strong> of the reporting verb</li>
+          <li><strong>2nd person</strong> (you, your) → changes according to the <strong>object</strong> of the reporting verb</li>
+          <li><strong>3rd person</strong> (he, she, it, they) → <strong>no change</strong></li>
+          <li>Memory trick: <strong>S-O-N</strong> — Subject changes 1st person, Object changes 2nd person, No change for 3rd person</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 — SPECIAL CASES ══ -->
+  <div class="sec-label">Section 4 — Special Cases</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E4F2EA">🙏</div>
+      <div style="flex:1">
+        <div class="c-title">Wishes &amp; Blessings</div>
+        <div class="c-sub">May → might / prayed that / wished that — specific reporting verbs</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>Wishes and blessings use <strong>"May…"</strong> in direct speech. In reported speech, they are handled with specific reporting verbs and the joiner <strong>"that"</strong>.</p>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Type</th><th>Direct Speech</th><th>Reported Speech</th></tr>
+          <tr><td><b>Blessing / Good wish</b></td><td>"May you live long!"</td><td>He <b>prayed / wished</b> that I <b>might</b> live long.</td></tr>
+          <tr><td><b>Blessing (formal)</b></td><td>"May God bless you!"</td><td>He prayed that God <b>might</b> bless me.</td></tr>
+          <tr><td><b>Wish for self</b></td><td>"I wish I were rich!"</td><td>He <b>wished</b> that he <b>were</b> rich.</td></tr>
+          <tr><td><b>Curse / Ill-wish</b></td><td>"May you fail!"</td><td>He <b>cursed</b> / <b>wished ill</b> that I <b>might</b> fail.</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">More Examples</div>
+        <ul>
+          <li>"May you succeed!" → She <strong>wished/prayed</strong> that he might succeed. ✓</li>
+          <li>"May God bless you with happiness!" → He prayed that God might bless her with happiness. ✓</li>
+          <li>"I wish I could fly!" → He wished that he could fly. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F2E8F8">🎭</div>
+      <div style="flex:1">
+        <div class="c-title">Optative &amp; Exclamatory — Emotions &amp; Greetings</div>
+        <div class="c-sub">Hello, Good morning, Congratulations, Alas, Bravo → all have specific reported forms</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Direct Speech</th><th>Reporting Verb / Structure</th></tr>
+          <tr><td>"Hello!" / "Hi!" / "Good morning!"</td><td><b>greeted / wished</b> (name) good morning</td></tr>
+          <tr><td>"Goodbye!" / "Farewell!"</td><td><b>bade</b> (name) goodbye / farewell</td></tr>
+          <tr><td>"Congratulations!"</td><td><b>congratulated</b> (name) on (noun/gerund)</td></tr>
+          <tr><td>"Thank you!"</td><td><b>thanked</b> (name) for (noun/gerund)</td></tr>
+          <tr><td>"Sorry!" / "I apologise!"</td><td><b>apologised</b> to (name) for (noun/gerund)</td></tr>
+          <tr><td>"Hurrah!" / "Bravo!"</td><td><b>exclaimed with joy</b> that…</td></tr>
+          <tr><td>"Alas!" / "Oh no!"</td><td><b>exclaimed with sorrow / lamented</b> that…</td></tr>
+          <tr><td>"What a…!" / "How…!"</td><td><b>exclaimed with admiration/surprise</b> that…</td></tr>
+        </table>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct</div><div class="speech-text">"Congratulations on passing the NDA examination!" said the colonel to the cadet.</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The colonel <b>congratulated</b> the cadet <b>on passing</b> the NDA examination.</div></div>
+      </div>
+      <div class="speech-pair">
+        <div class="speech-direct"><div class="speech-label">Direct</div><div class="speech-text">"Thank you for your bravery," said the general to the soldier.</div></div>
+        <div class="speech-reported"><div class="speech-label">Reported</div><div class="speech-text">The general <b>thanked</b> the soldier <b>for his bravery</b>.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FAEAEA">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">Special Cases — Let, If Only, It's Time, Would Rather</div>
+        <div class="c-sub">Fixed structures that need special treatment in reported speech</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Direct Speech</th><th>Reported Form</th></tr>
+          <tr><td>"Let's go to the range."</td><td>He <b>proposed / suggested that they should go</b> to the range. ✓</td></tr>
+          <tr><td>"Let him enter."</td><td>He <b>ordered / allowed that he should enter</b>. ✓</td></tr>
+          <tr><td>"If only I had won!"</td><td>He <b>wished</b> that he <b>had won</b>. ✓</td></tr>
+          <tr><td>"It's high time you worked."</td><td>He said it <b>was high time</b> I <b>worked</b>. ✓</td></tr>
+          <tr><td>"I would rather stay."</td><td>He said he <b>would rather stay</b>. (no change to "would rather") ✓</td></tr>
+          <tr><td>"I would sooner die."</td><td>He said he <b>would sooner die</b>. (no change) ✓</td></tr>
+        </table>
+      </div>
+      <div class="eg-box">
+        <div class="eg-label">"Let's" — Proposal / Suggestion</div>
+        <ul>
+          <li>"Let's plan the operation." → He suggested that <strong>they should plan</strong> the operation. ✓</li>
+          <li>"Let's" always becomes a suggestion/proposal — never a command in reported speech</li>
+        </ul>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ "Must" in Reported Speech — Two Meanings</div>
+        <ul>
+          <li><strong>Obligation must → had to:</strong> "You must report by 0600." → He said I <strong>had to</strong> report by 0600. ✓</li>
+          <li><strong>Logical deduction must → must (no change):</strong> "He must be the captain." → He said he <strong>must</strong> be the captain. ✓</li>
+          <li>Read the context to determine which "must" is being used before converting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════════ QUICK REF ═══════════════════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Reported Speech — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">Joiners by Sentence Type</div>
+      <ul>
+        <li><b>Statement:</b> <em>that</em> (often dropped) → told / said that</li>
+        <li><b>Yes/No Question:</b> <em>if / whether</em> → asked if/whether</li>
+        <li><b>Wh-Question:</b> <em>same wh-word</em> → asked what/where/when…</li>
+        <li><b>Command/Request:</b> <em>to-infinitive</em> → ordered/requested to…</li>
+        <li><b>Prohibition:</b> <em>not to-infinitive</em> → warned/told not to…</li>
+        <li><b>Exclamation/Wish:</b> <em>that</em> → exclaimed / wished / prayed that</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Key Reporting Verbs</div>
+      <ul>
+        <li><b>said/told</b> → statements (said = no object; told = needs object)</li>
+        <li><b>asked/inquired</b> → questions</li>
+        <li><b>ordered/commanded</b> → strong commands</li>
+        <li><b>requested/begged/implored</b> → polite requests</li>
+        <li><b>advised/warned/cautioned</b> → advice/warning</li>
+        <li><b>suggested/proposed</b> → always + that…should (never + to-inf.)</li>
+        <li><b>exclaimed with joy/sorrow/surprise</b> → exclamations</li>
+        <li><b>wished/prayed</b> → blessings and wishes</li>
+        <li><b>congratulated on / thanked for / apologised for</b> → greetings</li>
+        <li><b>greeted / bade farewell</b> → greetings/farewells</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Tense Back-Shift (Key Pairs)</div>
+      <ul>
+        <li>Simple Present → <span class="ok">Simple Past</span></li>
+        <li>Present Continuous → <span class="ok">Past Continuous</span></li>
+        <li>Present Perfect → <span class="ok">Past Perfect</span></li>
+        <li>Simple Past → <span class="ok">Past Perfect</span></li>
+        <li>will → <span class="ok">would</span> | can → <span class="ok">could</span> | may → <span class="ok">might</span></li>
+        <li>shall → <span class="ok">should</span> | must (obligation) → <span class="ok">had to</span></li>
+        <li>No change: would, could, should, might, ought to, used to, Past Perfect</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Expression Changes</div>
+      <ul>
+        <li>now → <em>then</em> | today → <em>that day</em> | tonight → <em>that night</em></li>
+        <li>yesterday → <em>the previous day / the day before</em></li>
+        <li>tomorrow → <em>the next day / the following day</em></li>
+        <li>last week → <em>the previous week</em> | next week → <em>the following week</em></li>
+        <li>ago → <em>before / previously</em></li>
+        <li>here → <em>there</em> | this → <em>that</em> | these → <em>those</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Special Cases at a Glance</div>
+      <ul>
+        <li><b>"May…" blessing:</b> prayed/wished that…<em>might</em></li>
+        <li><b>"Congratulations!":</b> congratulated on + gerund</li>
+        <li><b>"Thank you!":</b> thanked for + gerund/noun</li>
+        <li><b>"Sorry!":</b> apologised to…for + gerund</li>
+        <li><b>"Let's…":</b> proposed/suggested that they should…</li>
+        <li><b>"must" obligation:</b> → <em>had to</em> | "must" deduction: → <em>must</em> (no change)</li>
+        <li><b>"would rather / sooner":</b> no change</li>
+        <li><b>Exclamations "What a / How":</b> → "very" in reported form</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">When Back-Shift Does NOT Apply</div>
+      <ul>
+        <li>Universal/scientific truths: <em>the sun rises</em> (stays present) ✓</li>
+        <li>Historical facts: <em>India became independent in 1947</em> ✓</li>
+        <li>Reporting verb is Present/Future tense (no back-shift needed)</li>
+        <li>Modal already in past form (would/could/should/might/ought to)</li>
+        <li>Past Perfect: already at the furthest back — no further shift</li>
+        <li>Pronouns: 3rd person (he/she/it/they) never changes</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════════ QUIZ ═══════════════════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Reported Speech · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── ASSERTIVE / BACK-SHIFT ────────────────────────────────────────
+
+{d:'EASY',e:'NDA 2022',type:'Assertive + Back-shift',
+q:'Choose the correct reported form:<br>Direct: The officer said to the cadet, "I am proud of your performance today."',
+opts:[
+  'The officer told the cadet that he is proud of his performance today.',
+  'The officer said the cadet that he was proud of his performance that day.',
+  'The officer told the cadet that he was proud of his performance that day.',
+  'The officer told to the cadet that he was proud of his performance today.'
+],ans:2,
+rule:'Assertive: "said to" → "told" | back-shift: am → was | expression: today → that day | pronoun: I → he',
+exp:'Four changes must occur: (1) "said to" becomes "told" — with an object (the cadet). (2) Back-shift: "am" → "was". (3) Pronoun: "I" → "he" (1st person changes to match the subject of the reporting verb — the officer). (4) Expression: "today" → "that day". Option A keeps "today" and present tense — wrong. Option B uses "said…the cadet" without "to" — wrong; "said" cannot take a person object directly. Option D says "told to" — wrong; "told" never needs "to". Answer: C.'},
+
+{d:'EASY',e:'CDS 2022',type:'Said vs Told',
+q:'Spot the error in the reported sentence:<br>"He said me that he would finish the assignment by the next morning."',
+opts:[
+  'He said me',
+  'that he would finish',
+  'the assignment',
+  'by the next morning'
+],ans:0,
+rule:'"said" cannot take a person object directly — use "told me" or "said to me"',
+exp:'"Said" cannot be followed directly by a person (me, him, her, us). This is one of the most tested reporting verb errors. The correct options are: (1) "He <strong>told</strong> me that…" (told + person + that), or (2) "He <strong>said to</strong> me that…" (said to + person + that). "Said me" is always wrong. "Would finish" is correct (will → would back-shift). "The next morning" is the correct expression change for "tomorrow morning". Answer: "He said me" → should be "He told me".'},
+
+{d:'EASY',e:'AFCAT 2022',type:'Yes/No Question',
+q:'Choose the correct reported form:<br>Direct: She asked the recruit, "Have you eaten your lunch?"',
+opts:[
+  'She asked the recruit if he has eaten his lunch.',
+  'She asked the recruit if he had eaten his lunch.',
+  'She asked the recruit whether he ate his lunch.',
+  'She asked the recruit that had he eaten his lunch.'
+],ans:1,
+rule:'Yes/No question → joiner: if/whether | back-shift: have eaten → had eaten | word order: normal (subject before verb)',
+exp:'Yes/No questions (no wh-word) use "if" or "whether" as the joiner — not "that". The tense back-shifts: "have eaten" (Present Perfect) → "had eaten" (Past Perfect). The inverted question order ("Have you") becomes normal statement order: "he had eaten". Option A keeps present tense "has eaten" — wrong (back-shift needed). Option C uses "whether" (acceptable) but "ate" (Simple Past) instead of "had eaten" — wrong. Option D uses "that" — wrong joiner for a yes/no question. Answer: B.'},
+
+// ── WH-QUESTION ─────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'NDA 2022',type:'Wh-Question',
+q:'Choose the correct reported form:<br>Direct: The general asked the officer, "Why did you not follow the orders?"',
+opts:[
+  'The general asked the officer why he did not follow the orders.',
+  'The general asked the officer why he had not followed the orders.',
+  'The general inquired the officer that why had he not followed the orders.',
+  'The general asked the officer whether he had not followed the orders.'
+],ans:1,
+rule:'Wh-question: joiner = "why" (same wh-word) | back-shift: did not follow → had not followed | no inversion in reported clause',
+exp:'Wh-questions use the same wh-word ("why") as the joiner. The tense back-shifts: "did not follow" (Simple Past) → "had not followed" (Past Perfect). Word order becomes normal — no inversion: "he had not followed" (not "had he not followed"). Option A ("did not follow") has no back-shift — wrong. Option C uses "that why" (double joiner — wrong) and keeps inverted order "had he" — wrong. Option D uses "whether" — wrong joiner for a wh-question; also changes meaning entirely. Answer: B.'},
+
+// ── COMMAND / IMPERATIVE ─────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',type:'Imperative (Command)',
+q:'Choose the correct reported form:<br>Direct: The sergeant said to the recruits, "Stand at ease and maintain silence."',
+opts:[
+  'The sergeant told the recruits to stand at ease and to maintain silence.',
+  'The sergeant ordered the recruits that they stand at ease and maintain silence.',
+  'The sergeant said the recruits stand at ease and maintain silence.',
+  'The sergeant ordered the recruits to stand at ease and maintain silence.'
+],ans:3,
+rule:'Command → reporting verb: "ordered" | joiner: to-infinitive | no "that" for imperatives',
+exp:'Commands are reported using the to-infinitive — not "that". The reporting verb must reflect the tone: a sergeant commanding recruits in a military context = "ordered". Option A uses "told…to" — acceptable but less precise for a military command; also repeats "to" before "maintain" — slightly clumsy. Option B uses "that they stand" — wrong joiner for imperatives. Option C has no proper structure — "said the recruits stand" is incorrect entirely. Option D correctly uses "ordered…to stand" with the coordinated "and maintain" — clean and precise. Answer: D.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',type:'Imperative (Prohibition)',
+q:'Choose the correct reported form:<br>Direct: The officer said to the cadets, "Do not enter the restricted zone."',
+opts:[
+  'The officer told the cadets not enter the restricted zone.',
+  'The officer warned the cadets not to enter the restricted zone.',
+  'The officer said the cadets that they should not enter the restricted zone.',
+  'The officer told the cadets to not enter the restricted zone.'
+],ans:1,
+rule:'Prohibition (Don\'t…): reporting verb = warned/told | structure = not to + base verb',
+exp:'Negative imperatives ("Do not…") are reported as "not to + base verb". The reporting verb for a prohibition or warning in a military context is "warned" or "told". Option A ("not enter") is missing "to" — wrong infinitive structure. Option C ("said…that they should not") uses "that + should" — this is the pattern for "suggest", not for direct prohibition. Option D ("to not enter") — placing "not" between "to" and the verb (split infinitive) is less acceptable in formal exam English. Option B "warned…not to enter" is the cleanest and most standard. Answer: B.'},
+
+// ── SUGGEST TRAP ─────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'NDA 2023',type:'Imperative (Suggest)',
+q:'Choose the CORRECT reported form:<br>Direct: The doctor said to the soldier, "You should rest for a week."',
+opts:[
+  'The doctor suggested the soldier to rest for a week.',
+  'The doctor advised the soldier to rest for a week.',
+  'The doctor suggested the soldier that he rested for a week.',
+  'The doctor told the soldier resting for a week.'
+],ans:1,
+rule:'"Suggested" never takes to-infinitive directly; "advised to" is correct for personal recommendation',
+exp:'This is the classic "suggest" trap. "Suggest" cannot be followed by a person object + to-infinitive: "suggested the soldier to rest" is always wrong. Option A falls into this trap. Option C uses "suggested…that he rested" — "rested" (past simple) is wrong here; it should be "should rest". Option D ("told…resting") — wrong structure altogether. Option B "advised the soldier to rest" is the correct pattern: "advise + person + to + verb". When the recommendation is personal and direct, "advise" is preferred over "suggest". Answer: B.'},
+
+// ── EXCLAMATORY ─────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2023',type:'Exclamatory',
+q:'Choose the correct reported form:<br>Direct: "Hurrah! We have won the inter-services championship!" shouted the players.',
+opts:[
+  'The players exclaimed with sorrow that they had won the inter-services championship.',
+  'The players exclaimed with joy that they had won the inter-services championship.',
+  'The players exclaimed with joy that they have won the inter-services championship.',
+  'The players said with joy that they have won the inter-services championship.'
+],ans:1,
+rule:'"Hurrah!" = joy | exclaimed with joy that | back-shift: have won → had won',
+exp:'"Hurrah!" expresses joy. The reporting phrase is "exclaimed with joy that". The tense back-shifts: "have won" (Present Perfect) → "had won" (Past Perfect). Option A uses "sorrow" — wrong emotion for "Hurrah!" ✗. Option C keeps "have won" without back-shift — wrong. Option D uses "said with joy" — "said" is not the appropriate verb for an exclamation; "exclaimed" is required. Answer: B.'},
+
+// ── BLESSING / WISH ─────────────────────────────────────────────
+
+{d:'MEDIUM',e:'AFCAT 2023',type:'Blessing / Wish',
+q:'Choose the correct reported form:<br>Direct: The mother said to her son, "May God bless you with success!"',
+opts:[
+  'The mother wished her son that God blessed him with success.',
+  'The mother prayed that God might bless her son with success.',
+  'The mother prayed that God would bless her son with success.',
+  'The mother said to her son that God may bless him with success.'
+],ans:1,
+rule:'"May…" blessing → prayed/wished that + subject + might + verb',
+exp:'"May God bless you!" is a blessing/prayer. The reporting verb is <strong>prayed</strong> (or wished), and "may" converts to <strong>might</strong> in reported speech. Pronoun: "you" (object of reporting verb = "her son") → changes accordingly. Option A uses "blessed" — past tense instead of might + verb. Option C uses "would bless" — "would" is the back-shift of "will", not "may"; "may" becomes "might". Option D keeps "may" — no back-shift; also "said to" is inappropriate for a blessing. Answer: B.'},
+
+// ── EXPRESSIONS ─────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'NDA 2023',type:'Expression Change',
+q:'Direct: He said, "I will meet you here tomorrow at this time."<br>Choose the correctly reported sentence.',
+opts:[
+  'He said that he would meet me there the next day at that time.',
+  'He said that he will meet me here tomorrow at this time.',
+  'He said that he would meet me here the next day at that time.',
+  'He told that he would meet me there the following day at that time.'
+],ans:0,
+rule:'Expressions: tomorrow → the next day | here → there | this time → that time | will → would',
+exp:'Multiple expression changes occur simultaneously: "will" → "would" (back-shift), "tomorrow" → "the next day", "here" → "there", "this time" → "that time". Option A gets all four changes correct ✓. Option B makes no changes at all — keeps will, here, tomorrow, this time — wrong. Option C correctly changes tomorrow and this time but keeps "here" — wrong. Option D uses "told that" — "told" requires a person object before "that"; "He told that…" without a person object is wrong. Answer: A.'},
+
+// ── SPECIAL CASE: LET'S ─────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',type:"Special Case: Let's",
+q:'Choose the correct reported form:<br>Direct: The colonel said to the team, "Let\'s review the mission plan once more."',
+opts:[
+  'The colonel ordered the team to review the mission plan once more.',
+  'The colonel told the team to let them review the mission plan once more.',
+  'The colonel proposed that they should review the mission plan once more.',
+  'The colonel suggested the team to review the mission plan once more.'
+],ans:2,
+rule:'"Let\'s" = proposal / suggestion → proposed/suggested that they should + verb',
+exp:'"Let\'s" (Let us) is used for proposals or suggestions where the speaker includes themselves. In reported speech it becomes: <strong>proposed / suggested that they should + base verb</strong>. Option A ("ordered…to review") — "ordered" implies a command, not a joint proposal; also changes the meaning since "let\'s" includes the speaker. Option B ("told the team to let them") — awkward and structurally wrong. Option D ("suggested the team to review") — "suggest" cannot be followed by person + to-infinitive. This is the classic "suggest" trap. Option C is the only correct and natural reported form. Answer: C.'},
+
+// ── UNIVERSAL TRUTH ─────────────────────────────────────────────
+
+{d:'HARD',e:'AFCAT 2023',type:'No Back-Shift: Universal Truth',
+q:'Choose the CORRECT reported sentence:<br>Direct: The science teacher said, "Sound travels faster in water than in air."',
+opts:[
+  'The science teacher said that sound travelled faster in water than in air.',
+  'The science teacher said that sound had travelled faster in water than in air.',
+  'The science teacher said that sound travels faster in water than in air.',
+  'The science teacher said that sound would travel faster in water than in air.'
+],ans:2,
+rule:'Universal / scientific truth → no back-shift; present tense is retained in reported speech',
+exp:'"Sound travels faster in water than in air" is a permanent scientific fact — a universal truth. When a direct speech clause contains a universal or scientific truth, the tense does not shift in reported speech. The present tense "travels" is retained. Option A ("travelled") applies unnecessary back-shift — wrong for a scientific truth. Option B ("had travelled") is Past Perfect — completely wrong. Option D ("would travel") is the conditional form — wrong. Answer: C.'},
+
+// ── CONGRATULATIONS / GREETING ───────────────────────────────────
+
+{d:'HARD',e:'NDA 2024',type:'Special Case: Greeting',
+q:'Choose the correct reported form:<br>Direct: The commandant said to the officer, "Congratulations on being selected for the United Nations mission!"',
+opts:[
+  'The commandant congratulated the officer on being selected for the United Nations mission.',
+  'The commandant told the officer congratulations for being selected for the United Nations mission.',
+  'The commandant wished the officer congratulations on being selected for the United Nations mission.',
+  'The commandant said the officer that he was congratulated on being selected for the mission.'
+],ans:0,
+rule:'"Congratulations!" → congratulated + person + on + gerund/noun',
+exp:'The word "Congratulations" is reported using the verb "congratulated" with the structure: <strong>congratulated + person + on + gerund</strong>. No "that" clause is needed — it converts to a compact verb structure. Option B ("told…congratulations for") — wrong preposition (should be "on", not "for"); "told" is also incorrect here. Option C ("wished…congratulations") — "wished congratulations" is not standard; "congratulated on" is the fixed structure. Option D ("said…that he was congratulated") — passive and wrong; changes the meaning entirely. Answer: A.'},
+
+// ── MUST: OBLIGATION vs DEDUCTION ────────────────────────────────
+
+{d:'HARD',e:'CDS 2024',type:'Special Case: Must',
+q:'He said, "The approaching aircraft must be an enemy drone." — Choose the correct reported form.',
+opts:[
+  'He said that the approaching aircraft had to be an enemy drone.',
+  'He said that the approaching aircraft must be an enemy drone.',
+  'He said that the approaching aircraft should be an enemy drone.',
+  'He said that the approaching aircraft would be an enemy drone.'
+],ans:1,
+rule:'"Must" of logical deduction → no change in reported speech; only "must" of obligation → "had to"',
+exp:'There are two types of "must" and they convert differently in reported speech. <strong>"Must" of obligation</strong> (you are required to do something) → converts to "had to". <strong>"Must" of logical deduction / inference</strong> (I conclude / deduce that…) → stays as "must" with no change. "The approaching aircraft must be an enemy drone" is clearly a deduction — the speaker is inferring from evidence, not giving an obligation. Therefore "must" is retained. Option A ("had to") applies the obligation conversion — wrong context. Option C ("should") and Option D ("would") are both wrong. Answer: B.'},
+
+// ── BACK-SHIFT: REPORTED QUESTION ────────────────────────────────
+
+{d:'HARD',e:'AFCAT 2024',type:'Wh-Question + Word Order',
+q:'Spot the error:<br>"The officer asked the cadet what time was the parade scheduled to begin."',
+opts:[
+  'The officer asked',
+  'the cadet what time',
+  'was the parade scheduled',
+  'to begin'
+],ans:2,
+rule:'Reported questions use normal word order (subject before verb) — not inverted order',
+exp:'In reported speech, questions lose their inverted word order and revert to normal statement order: <strong>subject before verb</strong>. "What time was the parade scheduled" has inverted order ("was" before "the parade") — this is direct question order, which is incorrect in reported speech. The correct form is: "The officer asked the cadet what time <strong>the parade was scheduled</strong> to begin." (subject "the parade" comes before verb "was"). Answer: "was the parade scheduled" → should be "the parade was scheduled".'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────
+const TOTAL    = QS.length;
+const answers  = new Array(TOTAL).fill(null);
+const revealed = new Array(TOTAL).fill(false);
+const LABS     = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-type">${q.type}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Reported Speech</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--pri)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/TOTAL*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${TOTAL} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--ac2)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--ac3)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/TOTAL*100);
+  let grade,msg;
+  if(pct>=87){grade='Excellent';msg='Outstanding! You have a thorough command of Reported Speech — all six layers.'}
+  else if(pct>=67){grade='Good';msg='Well done. Review the special cases you missed — blessings, must, and suggest are the trickiest.'}
+  else if(pct>=47){grade='Average';msg='Good effort. Focus on the joiner rules and back-shift table in Theory, then retry.'}
+  else{grade='Needs Work';msg="Start from Section 1 in Theory. Master assertive sentences first, then build to special cases."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${TOTAL}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${TOTAL} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

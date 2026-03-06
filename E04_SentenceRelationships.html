@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentence Relationships | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F4F1EC;
+  --bg2:       #ECE7DD;
+  --bg3:       #E2DBCD;
+  --white:     #FFFFFF;
+  --ink:       #221C12;
+  --ink2:      #38301E;
+  --muted:     #79705A;
+  --dim:       #A8997E;
+  --border:    #D6CCBA;
+  --teal:      #1B5E6B;
+  --tealLt:    #247080;
+  --tealPale:  #E5F2F4;
+  --amber:     #A85C10;
+  --amberLt:   #C87010;
+  --amberPale: #FDF2E2;
+  --green:     #2A6438;
+  --greenLt:   #358046;
+  --greenPale: #E8F4EA;
+  --red:       #892020;
+  --redLt:     #AC2828;
+  --redPale:   #FCEAEA;
+  --blue:      #1A3F72;
+  --blueLt:    #235294;
+  --bluePale:  #EAF0FA;
+  --purple:    #5B2D8E;
+  --purplePale:#F3EEFB;
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(34,28,18,.09);
+  --shadow-md: 0 4px 20px rgba(34,28,18,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:var(--teal);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.58);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+  padding-left:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+  padding-left:8px;
+}
+.hero-title span{color:#FFD87A;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.70);margin-bottom:18px;line-height:1.65;padding-left:8px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:8px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,216,122,.18);color:#FFD87A}
+.chip-g{background:rgba(100,220,130,.13);color:#7ADEA0}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(34,28,18,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--tealPale);border:1.5px solid rgba(27,94,107,.2);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.8}
+.intro-box strong{color:var(--teal)}
+
+/* ── CONCEPT CARDS ────────────────────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--teal)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--teal);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BLOCKS ───────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(168,92,16,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75;margin-bottom:8px}
+.eg-box p:last-child{margin-bottom:0}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:12px;font-weight:800}
+
+.wrong-box{
+  background:var(--redPale);border-left:4px solid var(--red);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.wrong-box .wg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:6px;
+}
+.wrong-box p,.wrong-box ul{font-size:15px;color:var(--ink2);line-height:1.75}
+.wrong-box ul{list-style:none;padding:0}
+.wrong-box li{padding:4px 0 4px 16px;position:relative;line-height:1.65}
+.wrong-box li::before{content:'✗';position:absolute;left:0;color:var(--red);font-size:12px;font-weight:800}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(137,32,32,.2);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(26,63,114,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue);font-weight:700}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(91,45,142,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box p,.purple-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{padding:5px 0 5px 20px;position:relative}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:9px}
+
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+.compare-table th{
+  background:var(--teal);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--teal)}
+.compare-table td .ok{color:var(--green);font-weight:700}
+.compare-table td .err{color:var(--red);font-weight:700}
+
+/* ── RELATIONSHIP TYPE BADGES ─────────────────────────────────── */
+.rel-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  border-radius:8px;padding:8px 14px;margin:4px 4px 4px 0;
+  font-size:13px;font-weight:800;letter-spacing:.3px;
+}
+.rel-badge .rb-name{font-size:13px;font-weight:800}
+.rel-badge .rb-cue{font-size:11px;font-weight:600;opacity:.75;margin-left:2px}
+.rb-confirms {background:var(--greenPale);color:var(--green);border:1.5px solid rgba(42,100,56,.2)}
+.rb-contradicts{background:var(--redPale);color:var(--red);border:1.5px solid rgba(137,32,32,.2)}
+.rb-illustrates{background:var(--tealPale);color:var(--teal);border:1.5px solid rgba(27,94,107,.2)}
+.rb-generalises{background:var(--amberPale);color:var(--amber);border:1.5px solid rgba(168,92,16,.2)}
+.rb-qualifies {background:var(--purplePale);color:var(--purple);border:1.5px solid rgba(91,45,142,.2)}
+.rb-questions {background:var(--bluePale);color:var(--blue);border:1.5px solid rgba(26,63,114,.2)}
+.rb-restates  {background:var(--bg3);color:var(--muted);border:1.5px solid var(--border)}
+.rb-infers    {background:#FFF3E0;color:#7B3F00;border:1.5px solid rgba(123,63,0,.2)}
+
+/* ── SENTENCE DISPLAY BLOCK ───────────────────────────────────── */
+.s-block{
+  background:var(--bg2);border-radius:10px;
+  padding:14px 16px;margin:10px 0;
+  border-left:4px solid var(--teal);
+}
+.s-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);margin-bottom:6px;
+}
+.s-text{font-size:15.5px;color:var(--ink);line-height:1.75}
+
+/* ── QUICK REFERENCE ──────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--teal);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-card li .ok{color:var(--green);font-weight:700}
+.ref-card li .err{color:var(--red);font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--teal);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+/* ── QUIZ CARD — sentence-pair layout ────────────────────────── */
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--teal)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+
+/* sentence pair inside quiz card */
+.q-pair{margin-bottom:14px}
+.q-sent{
+  border-radius:8px;padding:11px 14px;margin-bottom:7px;
+  font-size:15.5px;line-height:1.75;color:var(--ink2);
+}
+.q-sent:last-child{margin-bottom:0}
+.q-sent-s1{background:var(--tealPale);border-left:4px solid var(--teal)}
+.q-sent-s2{background:var(--amberPale);border-left:4px solid var(--amber)}
+.q-sent-lbl{
+  font-size:9px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:5px;
+}
+.q-sent-s1 .q-sent-lbl{color:var(--teal)}
+.q-sent-s2 .q-sent-lbl{color:var(--amber)}
+.q-sent-body{font-size:15.5px;color:var(--ink);line-height:1.75;font-weight:600}
+
+.q-instruction{
+  font-size:13px;color:var(--muted);font-weight:700;
+  letter-spacing:.3px;margin-bottom:12px;
+  padding:8px 12px;background:var(--bg);
+  border-radius:6px;border:1px solid var(--border);
+}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--tealPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--teal);background:var(--tealPale);color:var(--teal)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{
+  margin:4px 0 0;padding:14px 16px;
+  background:var(--bg);border-top:1px solid var(--border);
+  display:none;animation:fadeUp .2s ease;
+}
+.exp-panel.show{display:block}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.exp-rule{
+  display:inline-block;font-size:11px;font-weight:700;
+  color:var(--teal);background:var(--tealPale);
+  border:1px solid rgba(27,94,107,.2);border-radius:6px;
+  padding:3px 10px;margin-bottom:8px;letter-spacing:.5px;
+}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{
+  padding:8px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.q-status{font-size:12px;color:var(--dim);font-weight:600}
+
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.btn{
+  padding:14px 28px;border:none;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-size:14px;
+  font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  border-radius:10px;transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(27,94,107,.3)}
+.btn-primary:hover{background:var(--tealLt);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+#results{display:none;animation:fadeUp .4s ease}
+.res-hero{
+  background:var(--teal);border-radius:var(--radius);
+  padding:32px 24px;text-align:center;margin-bottom:12px;
+}
+.res-score{font-family:'Lora',serif;font-size:72px;font-weight:700;color:#FFD87A;line-height:1}
+.res-grade{font-family:'Lora',serif;font-size:24px;color:#fff;margin:6px 0 4px;font-style:italic}
+.res-msg{font-size:14px;color:rgba(255,255,255,.65);font-weight:600}
+.res-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;
+}
+
+.page-footer{
+  text-align:center;padding:24px 16px;
+  font-size:12px;color:var(--dim);font-weight:600;
+  border-top:1px solid var(--border);margin-top:32px;letter-spacing:.5px;
+}
+
+@media(max-width:400px){
+  .hero{padding:22px 16px 20px}
+  .hero-title{font-size:22px}
+  .tab{padding:12px 13px;font-size:11px}
+  .q-sent-body{font-size:14.5px}
+  .opt{font-size:15px;padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kicker">English · Critical Reasoning</div>
+  <h1 class="hero-title">Sentence<br><span>Relationships</span></h1>
+  <p class="hero-sub">Read two sentences and identify the precise logical relationship between them — does S2 confirm, contradict, illustrate, qualify, generalise, or question S1? A high-value topic in CDS, NDA and AFCAT that rewards systematic thinking over guesswork.</p>
+  <div class="hero-chips">
+    <span class="chip chip-w">Intermediate Level</span>
+    <span class="chip chip-y">CDS · NDA · AFCAT</span>
+    <span class="chip chip-g">20 Practice Questions</span>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">Theory</button>
+  <button class="tab"     onclick="switchTab('quickref')">Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">Quiz (20)</button>
+</div>
+
+<!-- ══════════════ THEORY ══════════════ -->
+<div id="theory" class="pane on">
+
+  <div class="intro-box">
+    <p>In sentence relationship questions you are given <strong>two sentences</strong> and must identify the <strong>logical role</strong> the second sentence plays relative to the first. The eight relationship types — Confirms, Contradicts, Illustrates, Qualifies, Generalises, Questions, Restates and Infers — each have distinct signal patterns. <strong>Master the 3-step method</strong> and the signal words for each type and you will rarely get these wrong.</p>
+  </div>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="sec-label">Section 1 — The 3-Step Method</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">🧭</div>
+      <div style="flex:1">
+        <div class="c-title">How to Approach Every Question</div>
+        <div class="c-sub">A reliable 3-step process that eliminates wrong answers fast</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rule-box">
+        <div class="rl-label">The 3-Step Method</div>
+        <p><strong>Step 1 — Understand S1 completely.</strong> Ask: What is the main claim, fact, or situation in Sentence 1? Label it mentally: is it a rule, a fact, a problem, a policy, an opinion?<br><br>
+        <strong>Step 2 — Understand what S2 adds.</strong> Ask: Does S2 agree or disagree? Is it specific or general? Does it give a reason, an example, a counter-point, or a conclusion?<br><br>
+        <strong>Step 3 — Match to a relationship type.</strong> Compare your S2 finding to the eight types. One will fit precisely — eliminate the rest using the "signal word" test.</p>
+      </div>
+      <div class="trap-box">
+        <div class="tr-label">⚑ The Most Common Mistake</div>
+        <p>Candidates often confuse <strong>Confirms</strong> and <strong>Illustrates</strong>. The difference: <em>Confirms</em> = S2 provides <strong>another fact/evidence</strong> that the claim in S1 is true. <em>Illustrates</em> = S2 gives a <strong>specific example</strong> of the general idea in S1. Ask yourself: "Is S2 an example or is S2 additional proof?"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="sec-label">Section 2 — The 8 Relationship Types</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E8F4EA">✅</div>
+      <div style="flex:1">
+        <div class="c-title">Confirms</div>
+        <div class="c-sub">S2 supports or validates the claim made in S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-confirms">✅ <span class="rb-name">CONFIRMS</span> <span class="rb-cue">— S2 backs up S1 with evidence or a parallel fact</span></div>
+      <p>S2 is <strong>consistent with</strong> S1 and adds supporting evidence, data, or a corroborating fact. Both sentences agree; S2 <strong>strengthens</strong> the claim in S1.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> Regular physical exercise significantly improves mental health.</p>
+        <p><strong>S2:</strong> Studies show that people who exercise daily report lower levels of anxiety and depression.</p>
+        <p>→ S2 is a research finding that <strong>confirms</strong> the claim in S1 with direct evidence.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>Statistics, data, research findings that agree with S1</li>
+          <li>Another event/fact that parallels the claim in S1</li>
+          <li>Words: "studies show…", "research confirms…", "data suggests…"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">❌</div>
+      <div style="flex:1">
+        <div class="c-title">Contradicts</div>
+        <div class="c-sub">S2 directly opposes or negates the claim in S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-contradicts">❌ <span class="rb-name">CONTRADICTS</span> <span class="rb-cue">— S2 disagrees with or disproves S1</span></div>
+      <p>S2 <strong>directly conflicts</strong> with S1. The two sentences cannot both be true at the same time in the same context. S2 may deny, disprove, or present facts that go against S1.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> The new highway project will greatly reduce commute time for residents.</p>
+        <p><strong>S2:</strong> Traffic surveys indicate that the highway will add 40 minutes to daily commutes due to bottlenecks at entry points.</p>
+        <p>→ S2 directly opposes the claim in S1 — it <strong>contradicts</strong> it.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>Opposite outcome to what S1 claims</li>
+          <li>Data or facts that are incompatible with S1</li>
+          <li>Words: "however…", "on the contrary…", "in fact, the opposite…"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#E5F2F4">🔍</div>
+      <div style="flex:1">
+        <div class="c-title">Illustrates</div>
+        <div class="c-sub">S2 gives a specific example of the general idea in S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-illustrates">🔍 <span class="rb-name">ILLUSTRATES</span> <span class="rb-cue">— S2 is a specific instance of the general claim in S1</span></div>
+      <p>S1 makes a <strong>broad, general statement</strong>. S2 provides a <strong>concrete, specific example</strong> that shows what S1 looks like in practice. S2 does not prove S1 — it simply shows one case of it.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> The government announced strict measures to control pollution in major cities.</p>
+        <p><strong>S2:</strong> Several industries have already begun adopting cleaner technologies to reduce emissions.</p>
+        <p>→ S2 shows one <strong>specific instance</strong> of what is happening in response to S1's general policy — it <strong>illustrates</strong> it.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>S1 is general → S2 is specific (a named person, place, industry, event)</li>
+          <li>S2 uses "for instance", "for example", "such as", "one such…"</li>
+          <li>S2 could begin: "In Bengaluru…", "The Indian Army…", "One factory…"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#F3EEFB">⚠️</div>
+      <div style="flex:1">
+        <div class="c-title">Qualifies</div>
+        <div class="c-sub">S2 adds a condition, limitation or exception to S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-qualifies">⚠️ <span class="rb-name">QUALIFIES</span> <span class="rb-cue">— S2 limits or restricts the claim in S1</span></div>
+      <p>S2 <strong>does not contradict</strong> S1 — it accepts S1 as broadly true but adds a <strong>condition, exception, or restriction</strong>. S2 says: "Yes, but only if…" or "Yes, except when…"</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> Digital technology has transformed communication across the world.</p>
+        <p><strong>S2:</strong> However, millions in remote rural areas still lack access to stable internet connectivity.</p>
+        <p>→ S2 accepts S1 but <strong>qualifies</strong> it with a significant limitation — the transformation is not universal.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>Words: "however", "but", "except", "unless", "only when", "not always"</li>
+          <li>S2 mentions a group, region, or condition where S1 does not apply</li>
+          <li>S2 agrees with S1 in general but carves out an exception</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FDF2E2">🔭</div>
+      <div style="flex:1">
+        <div class="c-title">Generalises</div>
+        <div class="c-sub">S2 draws a broader principle from the specific idea in S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-generalises">🔭 <span class="rb-name">GENERALISES</span> <span class="rb-cue">— S2 widens the scope of what S1 says</span></div>
+      <p>This is the <strong>reverse of Illustrates</strong>. S1 is specific; S2 draws a <strong>wider, universal conclusion</strong> from it. S2 takes the particular case in S1 and extends it to a general rule or pattern.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> The soldier continued to march despite a fractured knee, refusing to fall behind his unit.</p>
+        <p><strong>S2:</strong> Courage and duty often compel individuals to push far beyond their physical limits.</p>
+        <p>→ S2 takes the specific act in S1 and <strong>generalises</strong> it into a universal principle about courage.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>S1 is a specific case → S2 is a universal/general statement</li>
+          <li>S2 uses "always", "in general", "as a rule", "this shows that…", "such behaviour…"</li>
+          <li>S2 replaces specific nouns with general ones (soldier → individuals)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="sec-label">Section 3 — Three More Relationship Types</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#EAF0FA">❓</div>
+      <div style="flex:1">
+        <div class="c-title">Questions</div>
+        <div class="c-sub">S2 raises a doubt or challenge about the claim in S1</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-questions">❓ <span class="rb-name">QUESTIONS</span> <span class="rb-cue">— S2 casts doubt on whether S1 is achievable or valid</span></div>
+      <p>S2 does not directly <em>contradict</em> S1 (i.e., it does not say S1 is factually wrong), but it <strong>raises a concern, doubt, or challenge</strong> that makes S1 harder to accept without reservation. It asks "but can this really work?" or "but at what cost?"</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> The administration plans to achieve 100% literacy in the district within two years.</p>
+        <p><strong>S2:</strong> With a shortage of over 3,000 trained teachers and inadequate school infrastructure, the timeline appears highly optimistic.</p>
+        <p>→ S2 does not say the goal is impossible, but <strong>questions</strong> its feasibility.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>S2 points to obstacles, resource gaps, or contradicting conditions</li>
+          <li>Words: "however", "yet", "despite", "this raises the question of…"</li>
+          <li>S2 often ends with doubt-language: "seems unlikely", "remains unclear", "is debatable"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#ECE7DD">🔄</div>
+      <div style="flex:1">
+        <div class="c-title">Restates</div>
+        <div class="c-sub">S2 says the same thing as S1 but in different words</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-restates">🔄 <span class="rb-name">RESTATES</span> <span class="rb-cue">— S2 is a paraphrase or rephrasing of S1</span></div>
+      <p>S2 adds <strong>no new information</strong>. The same idea is expressed using different vocabulary, structure, or emphasis. This is the only type where both sentences are essentially saying exactly the same thing.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> Lack of sleep impairs a soldier's judgement and reaction time in the field.</p>
+        <p><strong>S2:</strong> Sleep deprivation reduces a combatant's cognitive sharpness and slows their response to threats.</p>
+        <p>→ S2 is simply a <strong>restatement</strong> of S1 using different words (lack of sleep = sleep deprivation; judgement = cognitive sharpness; reaction time = response to threats).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FFF3E0">💡</div>
+      <div style="flex:1">
+        <div class="c-title">Infers / Concludes</div>
+        <div class="c-sub">S2 draws a logical conclusion from what S1 states</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="rel-badge rb-infers">💡 <span class="rb-name">INFERS</span> <span class="rb-cue">— S2 is a deduction or conclusion drawn from S1</span></div>
+      <p>S1 provides a <strong>premise, observation, or fact</strong>. S2 is a <strong>logical conclusion</strong> drawn from that premise. S2 could not stand on its own without S1 — it follows from S1 by reasoning.</p>
+      <div class="eg-box">
+        <div class="eg-label">Example</div>
+        <p><strong>S1:</strong> The enemy's supply lines have been cut off and their fuel reserves are critically low.</p>
+        <p><strong>S2:</strong> A retreat or surrender is likely in the coming days.</p>
+        <p>→ S2 is a <strong>logical conclusion</strong> drawn from the facts presented in S1.</p>
+      </div>
+      <div class="fact-box">
+        <div class="fb-label">Signal Patterns in S2</div>
+        <ul>
+          <li>Words: "therefore", "thus", "hence", "this means that…", "it can be concluded…"</li>
+          <li>S2 is a prediction, consequence, or deduction — not a new fact</li>
+          <li>S2 would not make sense if you had not read S1 first</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="sec-label">Section 4 — Confusable Pairs</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:#FCEAEA">⚡</div>
+      <div style="flex:1">
+        <div class="c-title">The Four Pairs Most Candidates Mix Up</div>
+        <div class="c-sub">Side-by-side comparisons with the exact difference</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <tr><th>Pair</th><th>How to Tell Them Apart</th></tr>
+          <tr>
+            <td><b class="ok">Confirms</b> vs <b class="err">Illustrates</b></td>
+            <td><b>Confirms</b> = S2 is independent evidence (a study, statistic, parallel event). <b>Illustrates</b> = S2 is a single specific example of S1's general claim. Ask: "Is S2 evidence <em>for</em> S1, or a <em>case of</em> S1?"</td>
+          </tr>
+          <tr>
+            <td><b class="ok">Contradicts</b> vs <b class="err">Qualifies</b></td>
+            <td><b>Contradicts</b> = S2 says S1 is wrong entirely. <b>Qualifies</b> = S2 says S1 is broadly right but adds an exception or condition. Ask: "Does S2 deny S1 altogether, or just limit its scope?"</td>
+          </tr>
+          <tr>
+            <td><b class="ok">Qualifies</b> vs <b class="err">Questions</b></td>
+            <td><b>Qualifies</b> = S2 restricts who/when S1 applies to (still partly agrees). <b>Questions</b> = S2 challenges whether S1's aim is realistic or valid. Ask: "Does S2 limit S1, or doubt S1?"</td>
+          </tr>
+          <tr>
+            <td><b class="ok">Infers</b> vs <b class="err">Confirms</b></td>
+            <td><b>Infers</b> = S2 is a deduction/conclusion from S1 (logical reasoning). <b>Confirms</b> = S2 is a separate factual observation that supports S1. Ask: "Did S2 <em>follow logically</em> from S1, or does S2 exist independently?"</td>
+          </tr>
+          <tr>
+            <td><b class="ok">Restates</b> vs <b class="err">Confirms</b></td>
+            <td><b>Restates</b> = S2 adds zero new information — same content, different words. <b>Confirms</b> = S2 is a genuinely new piece of supporting evidence. Ask: "Does S2 teach me anything new?"</td>
+          </tr>
+          <tr>
+            <td><b class="ok">Generalises</b> vs <b class="err">Infers</b></td>
+            <td><b>Generalises</b> = S2 broadens the scope (specific → universal principle). <b>Infers</b> = S2 draws a logical next-step conclusion (cause → predicted effect). Ask: "Is S2 a wider rule, or a specific prediction?"</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ══════════════ QUICK REFERENCE ══════════════ -->
+<div id="quickref" class="pane">
+
+  <div class="sec-label">Sentence Relationships — Complete Quick Reference</div>
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">All 8 Types at a Glance</div>
+      <ul>
+        <li><b class="ok">Confirms</b> — S2 provides supporting evidence for S1</li>
+        <li><b class="err">Contradicts</b> — S2 directly opposes or disproves S1</li>
+        <li><b>Illustrates</b> — S2 gives a specific example of S1's general claim</li>
+        <li><b>Qualifies</b> — S2 limits or adds a condition/exception to S1</li>
+        <li><b>Generalises</b> — S2 draws a broader principle from S1's specific case</li>
+        <li><b>Questions</b> — S2 raises doubt about S1's feasibility or validity</li>
+        <li><b>Restates</b> — S2 rephrases S1 with no new information added</li>
+        <li><b>Infers</b> — S2 draws a logical conclusion from S1's facts</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Confirms — Signal Words in S2</div>
+      <ul>
+        <li>Studies / research / data show / confirm / indicate…</li>
+        <li>Reports suggest… / evidence points to…</li>
+        <li>Similarly… / likewise… / in the same way…</li>
+        <li>S2 = independent statistic or parallel fact that agrees with S1</li>
+        <li>Both S1 and S2 can stand as separate, true, supporting facts</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Illustrates — Signal Words in S2</div>
+      <ul>
+        <li>For example… / for instance… / one such case…</li>
+        <li>S1 is general → S2 names a specific person, place, event</li>
+        <li>S2 could start: "In Delhi…", "The 12th Battalion…", "One factory…"</li>
+        <li>S2 is a <em>case of</em> S1, not proof <em>for</em> S1</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Qualifies vs Contradicts</div>
+      <ul>
+        <li><b>Qualifies:</b> "Yes, but only if / except when / not always"</li>
+        <li>S2 words: however, but, except, unless, only in certain cases</li>
+        <li>S2 <em>partially</em> agrees — limits scope, doesn't deny S1 entirely</li>
+        <li><b>Contradicts:</b> S2 directly opposes — "no, the opposite is true"</li>
+        <li>S2 words: contrary to…, in fact…, the data shows the reverse…</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">Infers vs Generalises</div>
+      <ul>
+        <li><b>Infers:</b> S2 = logical deduction / prediction / conclusion from S1</li>
+        <li>S2 words: therefore, thus, hence, it follows that, this means…</li>
+        <li>S2 could not make sense without having first read S1</li>
+        <li><b>Generalises:</b> S2 = wider universal principle drawn from S1's specific case</li>
+        <li>S2 replaces the specific with the general: "soldier → individuals"</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">The 3-Step Method (Quick)</div>
+      <ul>
+        <li><b>Step 1:</b> Label S1 — is it a fact, claim, policy, problem or observation?</li>
+        <li><b>Step 2:</b> Label S2 — does it agree, disagree, narrow, widen, or conclude?</li>
+        <li><b>Step 3:</b> Match to the 8 types using the signal word test</li>
+        <li><em>Key test:</em> Confirms vs Illustrates → "evidence for" or "case of"?</li>
+        <li><em>Key test:</em> Qualifies vs Contradicts → "limits" or "denies" S1?</li>
+        <li><em>Key test:</em> Infers vs Confirms → "deduced from" or "independent of" S1?</li>
+      </ul>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="quiz" class="pane">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">20</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 20 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div id="q-area"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; See Results</button>
+    <button class="btn btn-ghost"   onclick="resetQuiz()">Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+
+</div><!-- /quiz -->
+
+<div class="page-footer">Olive Defence · English: Sentence Relationships · CDS · NDA · AFCAT</div>
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+// ── EASY ──────────────────────────────────────────────────────────────────────
+
+{d:'EASY',e:'CDS 2022',
+s1:'The Indian Army conducts regular high-altitude training exercises to prepare soldiers for extreme conditions.',
+s2:'During a recent exercise in Siachen, troops practised survival techniques at temperatures below minus 40 degrees Celsius.',
+opts:['Contradicts','Confirms','Illustrates','Generalises'],ans:2,
+rule:'Illustrates — S2 gives a specific named example of the general activity described in S1',
+exp:'S1 makes a general statement about the Army conducting high-altitude training. S2 names a specific instance — a recent exercise at Siachen — making it a concrete example of S1\'s claim. This is Illustrates, not Confirms. Confirms would require S2 to be independent supporting evidence (like a statistic), not a specific case drawn from within the same context.'},
+
+{d:'EASY',e:'NDA 2022',
+s1:'A balanced diet is essential for maintaining good health and physical fitness.',
+s2:'People who consume adequate proteins, vitamins and minerals are less likely to suffer from chronic diseases.',
+opts:['Contradicts','Illustrates','Questions','Confirms'],ans:3,
+rule:'Confirms — S2 provides independent supporting evidence that validates the claim in S1',
+exp:'S1 states that a balanced diet is essential for health. S2 provides a corroborating factual observation — people with good nutrition have fewer chronic diseases. S2 is not an example of S1 (not a specific named case); it is an independent supporting fact that backs up the general claim. This makes it Confirms, not Illustrates.'},
+
+{d:'EASY',e:'AFCAT 2023',
+s1:'The new fitness policy requires all Air Force personnel to pass a quarterly physical test.',
+s2:'Many officers have expressed concern that the testing schedule does not allow sufficient recovery time between assessments.',
+opts:['Confirms','Illustrates','Qualifies','Contradicts'],ans:2,
+rule:'Qualifies — S2 accepts the policy but adds a significant limitation/concern',
+exp:'S2 does not say the policy is wrong or should be scrapped (that would be Contradicts). It accepts that the policy exists but raises an important condition — the recovery time concern. This limits or restricts the smooth application of S1\'s policy, which is the hallmark of Qualifies. The word "however" in spirit is present: the policy exists, but there is a problem with its schedule.'},
+
+{d:'EASY',e:'CDS 2023',
+s1:'Forest fires have been increasing in frequency across several states in India over the past decade.',
+s2:'Climate scientists attribute this trend to rising temperatures and prolonged dry spells caused by climate change.',
+opts:['Contradicts','Infers','Confirms','Restates'],ans:1,
+rule:'Infers — S2 draws a logical causal conclusion from the pattern described in S1',
+exp:'S1 observes a rising trend (more forest fires). S2 provides the logical explanation — a deduction made by scientists about what is causing that trend. S2 follows from S1 as a conclusion drawn from the observed data. This is Infers (also called Concludes). It is not Confirms because S2 does not simply restate supporting evidence — it gives the reasoned cause.'},
+
+{d:'EASY',e:'NDA 2023',
+s1:'Lack of sleep impairs a soldier\'s judgement and reaction time in the field.',
+s2:'Sleep deprivation reduces a combatant\'s cognitive sharpness and slows their response to battlefield threats.',
+opts:['Confirms','Contradicts','Illustrates','Restates'],ans:3,
+rule:'Restates — S2 says exactly the same thing as S1 using different vocabulary',
+exp:'Compare the two sentences closely: "Lack of sleep = Sleep deprivation", "impairs judgement = reduces cognitive sharpness", "reaction time = response to threats", "soldier = combatant", "field = battlefield". S2 adds absolutely no new information — it is a paraphrase. This is Restates. A common trap here is to choose Confirms, but Confirms requires S2 to be an independent new piece of supporting evidence.'},
+
+// ── MEDIUM ─────────────────────────────────────────────────────────────────────
+
+{d:'MEDIUM',e:'CDS 2022',
+s1:'The government announced strict measures to control pollution in major cities.',
+s2:'Several industries have already begun adopting cleaner technologies to reduce emissions.',
+opts:['Contradicts','Confirms','Illustrates','Questions'],ans:2,
+rule:'Illustrates — S2 gives a specific example of industries responding to S1\'s general policy announcement',
+exp:'S1 is a general policy announcement. S2 names a specific responding action — industries adopting cleaner technology. This is a concrete example of what is happening in response to the policy. It is Illustrates, not Confirms. Confirms would need S2 to be an independent piece of evidence that the policy is effective — not a specific example of the policy in action.'},
+
+{d:'MEDIUM',e:'AFCAT 2022',
+s1:'Digital technology has transformed communication across the globe.',
+s2:'However, millions of people in remote rural areas still lack access to stable internet connectivity.',
+opts:['Confirms','Contradicts','Illustrates','Qualifies'],ans:3,
+rule:'Qualifies — S2 accepts S1\'s claim but restricts it with a significant exception',
+exp:'S2 does not say digital technology has NOT transformed communication (that would be Contradicts). It accepts the general truth of S1 but draws attention to a group — rural populations — for whom the transformation has not reached. The word "however" is the clearest signal of Qualifies. S2 says: "Yes, but not for everyone."'},
+
+{d:'MEDIUM',e:'NDA 2022',
+s1:'The border outpost had been without resupply for three weeks due to heavy snowfall blocking all access routes.',
+s2:'The troops were therefore forced to ration their remaining food and ammunition to survive until the routes reopened.',
+opts:['Contradicts','Generalises','Illustrates','Infers'],ans:3,
+rule:'Infers — S2 is a logical consequence deduced from the situation described in S1',
+exp:'S1 establishes a specific difficult situation (no resupply for three weeks). S2 draws the logical conclusion about what the troops must do given that situation — ration their supplies. The word "therefore" in S2 is the strongest possible signal of Infers. S2 could not stand alone; its meaning depends entirely on S1 having established the conditions first.'},
+
+{d:'MEDIUM',e:'CDS 2023',
+s1:'The young officer refused to leave his injured men behind despite orders to retreat immediately.',
+s2:'Loyalty and courage in the face of adversity often define the character of truly great leaders.',
+opts:['Contradicts','Illustrates','Generalises','Infers'],ans:2,
+rule:'Generalises — S2 draws a universal principle from the specific act described in S1',
+exp:'S1 describes a specific individual act (a named officer refusing to retreat). S2 lifts that specific act into a broad, universal statement about leadership and courage. The shift from "the young officer" (specific) to "truly great leaders" (universal) is the hallmark of Generalises. Note: Generalises is the reverse of Illustrates — S1 is specific, S2 is general.'},
+
+{d:'MEDIUM',e:'AFCAT 2023',
+s1:'The administration plans to achieve 100% literacy in the district within two years.',
+s2:'With a shortage of over 3,000 trained teachers and inadequate school infrastructure, the timeline appears highly optimistic.',
+opts:['Confirms','Illustrates','Qualifies','Questions'],ans:3,
+rule:'Questions — S2 challenges the feasibility of S1\'s goal without outright denying it',
+exp:'S2 does not say the literacy goal is wrong as a goal (no Contradicts). Nor does it just add an exception (Qualifies would say "except for certain areas"). Instead, S2 identifies concrete obstacles — teacher shortage, poor infrastructure — that make the S1 plan look unrealistic. The phrase "appears highly optimistic" signals doubt about feasibility, which is the core of Questions.'},
+
+{d:'MEDIUM',e:'NDA 2023',
+s1:'Excessive screen time has been linked to increased levels of stress and anxiety among teenagers.',
+s2:'A study by AIIMS found that adolescents spending more than four hours daily on screens showed significantly higher cortisol levels.',
+opts:['Contradicts','Illustrates','Qualifies','Confirms'],ans:3,
+rule:'Confirms — S2 is an independent research finding that directly supports the claim in S1',
+exp:'S1 makes a general health claim. S2 presents a specific scientific study (from AIIMS) with concrete data (cortisol levels, four hours threshold). This is an independent piece of evidence that backs up S1\'s claim. This is Confirms. The key distinction from Illustrates: S2 is not just an example of someone using screens — it is scientific evidence that validates the medical claim in S1.'},
+
+{d:'MEDIUM',e:'CDS 2022',
+s1:'The ceasefire agreement was hailed as a major diplomatic breakthrough by both governments.',
+s2:'Opposition leaders in both countries, however, argued that key territorial issues had been deliberately left unresolved.',
+opts:['Confirms','Contradicts','Qualifies','Illustrates'],ans:2,
+rule:'Qualifies — S2 accepts the agreement happened but adds a significant limiting concern',
+exp:'S2 does not deny that the ceasefire was signed or that it was called a breakthrough (that would be Contradicts). It accepts the event but introduces a limitation — the concern raised by opposition about unresolved issues. S2 essentially says: "The ceasefire is a breakthrough, BUT key issues are unresolved." The word "however" and the partial acceptance of S1\'s claim both confirm Qualifies.'},
+
+// ── HARD ──────────────────────────────────────────────────────────────────────
+
+{d:'HARD',e:'CDS 2023',
+s1:'Urban heat islands cause city temperatures to be significantly higher than surrounding rural areas.',
+s2:'Increased concrete surfaces, reduced vegetation and heat generated by vehicles and air conditioners contribute to this temperature differential.',
+opts:['Confirms','Illustrates','Infers','Generalises'],ans:0,
+rule:'Confirms — S2 provides the causal mechanism that validates and supports the phenomenon stated in S1',
+exp:'S1 states a phenomenon (urban heat islands raise city temperatures). S2 provides the causal reasons — concrete, lack of vegetation, heat sources. These reasons are an independent explanation that confirms WHY S1 is true. This is Confirms, not Infers. Infers would require S2 to be a conclusion drawn FROM S1. Here, S2 explains the mechanism behind S1\'s claim, functioning as supporting evidence.'},
+
+{d:'HARD',e:'AFCAT 2023',
+s1:'The regiment had been stationed at the same forward post for eight consecutive months without relief.',
+s2:'Prolonged deployment without rotation is known to severely degrade combat effectiveness and morale.',
+opts:['Illustrates','Generalises','Confirms','Infers'],ans:3,
+rule:'Infers — S2 applies a known general principle to conclude what the situation in S1 implies',
+exp:'S1 describes a specific, concrete situation (8 months at a forward post). S2 draws the logical implication of that situation — prolonged deployment degrades effectiveness. While S2 sounds like a general principle, its role here is to show what S1\'s situation logically implies. This is Infers. Note the subtle distinction: if S1 were general and S2 were the specific case, that would be Illustrates; here the direction is specific situation → deduced consequence.'},
+
+{d:'HARD',e:'NDA 2024',
+s1:'Many developing nations have significantly reduced infant mortality rates over the past two decades.',
+s2:'Access to basic healthcare, immunisation programmes and improved maternal nutrition have collectively driven this progress.',
+opts:['Illustrates','Infers','Confirms','Qualifies'],ans:2,
+rule:'Confirms — S2 identifies the independent causal factors that provide evidence for why S1 is true',
+exp:'S1 states a positive health trend. S2 gives the specific, concrete reasons — healthcare access, immunisation, nutrition — that caused this trend. These are independent factors that confirm and support the factual claim in S1. This is Confirms. Infers would mean S2 is a conclusion drawn FROM S1 — but S2 here is not a prediction or deduction; it is an explanation of causes. Causes that validate a claim = Confirms.'},
+
+{d:'HARD',e:'CDS 2024',
+s1:'The introduction of artificial intelligence in medical diagnostics has shown remarkable accuracy in detecting early-stage cancers.',
+s2:'Nevertheless, the technology remains inaccessible to the majority of hospitals in Tier-2 and Tier-3 cities due to high costs.',
+opts:['Contradicts','Confirms','Infers','Qualifies'],ans:3,
+rule:'Qualifies — S2 accepts S1\'s positive claim but restricts it with an accessibility limitation',
+exp:'S2 does not say AI is inaccurate (that would be Contradicts). It fully accepts the claim of remarkable accuracy in S1. But it limits the real-world applicability of S1 — the technology exists and works, but is not accessible in most hospitals. "Nevertheless" is the classic Qualifies signal word. S2 essentially says: "Yes, S1 is true, but it applies only to hospitals that can afford it." Scope restriction = Qualifies.'},
+
+{d:'HARD',e:'AFCAT 2024',
+s1:'Satellite imagery has revealed that polar ice caps are melting at an unprecedented rate.',
+s2:'Scientists warn that if current emission trends continue unchecked, sea levels could rise by over a metre by 2100.',
+opts:['Confirms','Illustrates','Infers','Restates'],ans:2,
+rule:'Infers — S2 is a scientific prediction (logical conclusion) drawn from the observed trend in S1',
+exp:'S1 presents an observed fact (ice caps melting rapidly). S2 takes that observation and draws a predictive conclusion about what it will lead to — a sea level rise by 2100 if emissions continue. S2 is a forward-looking logical deduction from S1\'s evidence. The phrase "if current trends continue" is a classic Infers signal — it is a conditional prediction based on S1\'s premise. This cannot be Confirms (S2 is not a new independent supporting fact; it is derived from S1).'},
+
+{d:'HARD',e:'NDA 2024',
+s1:'Corruption in public institutions erodes citizens\' trust and undermines democratic governance.',
+s2:'Transparency International\'s Corruption Perceptions Index shows that countries with high corruption scores consistently record lower voter turnout and civic engagement.',
+opts:['Illustrates','Confirms','Generalises','Infers'],ans:1,
+rule:'Confirms — S2 is an independent, globally sourced dataset that provides evidence for S1\'s claim',
+exp:'S1 makes a broad claim about the effects of corruption on democracy. S2 cites an internationally recognised index — an independent data source — showing a consistent correlation between corruption and reduced civic participation. This is not an example of S1 (Illustrates would be a single country case study); it is systematic, independent evidence that validates S1\'s claim. The key: S2 is a separate, credible, data-driven finding. That is Confirms.'},
+
+{d:'HARD',e:'CDS 2024',
+s1:'A soldier who had been declared missing in action was found alive in dense jungle terrain after twelve days.',
+s2:'Survival under extreme conditions with minimal resources is a testament to the rigorous training the armed forces provide.',
+opts:['Infers','Generalises','Confirms','Illustrates'],ans:1,
+rule:'Generalises — S2 draws a universal principle about military training from the specific survival case in S1',
+exp:'S1 describes a single, specific event — one soldier surviving for 12 days. S2 takes that specific act and elevates it into a broad, universal statement about military training and what it enables. The shift from "a soldier" to "the armed forces" (from specific to general institution), and from a single event to a principle ("is a testament to"), are the clear markers of Generalises. This is not Infers because S2 does not predict a future event — it draws a wide lesson.'},
+
+{d:'HARD',e:'AFCAT 2024',
+s1:'The government has mandated that all new buildings in earthquake-prone zones must comply with updated seismic safety codes.',
+s2:'However, a survey of recent constructions found that over 60% of new buildings in high-risk zones had received approvals without proper seismic evaluation.',
+opts:['Confirms','Qualifies','Contradicts','Questions'],ans:3,
+rule:'Questions — S2 raises serious doubt about whether the mandate in S1 is being implemented effectively',
+exp:'This is a subtle but critical distinction. S2 does not say the mandate should not exist (no Contradicts). Nor does it simply limit the scope of who the mandate applies to (Qualifies would say "but not for buildings below three floors"). Instead, S2 points to a specific implementation failure — 60% non-compliance — that seriously challenges whether the policy in S1 is actually working. Pointing to implementation failure and making the goal look unachievable in practice = Questions.'},
+
+];
+
+// ── ENGINE ────────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-instruction">Read the two sentences and identify the relationship of S2 to S1.</div>
+        <div class="q-pair">
+          <div class="q-sent q-sent-s1">
+            <div class="q-sent-lbl">Sentence 1</div>
+            <div class="q-sent-body">${q.s1}</div>
+          </div>
+          <div class="q-sent q-sent-s2">
+            <div class="q-sent-lbl">Sentence 2</div>
+            <div class="q-sent-body">${q.s2}</div>
+          </div>
+        </div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">Sentence Relationships</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--teal)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=85){grade='Excellent';msg='Outstanding! You can clearly see the logic connecting sentences.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the confusable pairs — Confirms vs Illustrates especially.'}
+  else if(pct>=50){grade='Average';msg='Good effort. Study the 8 types in Theory and note the signal words carefully.'}
+  else{grade='Needs Work';msg:"Don't worry — master the 3-Step Method and the confusable pairs table, then retry."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>
