@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A01 · My First English | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#FFF8EC;--bg2:#FFF0D8;--bg3:#FFE5BE;--white:#FFFDF8;
+  --ink:#1A0E00;--ink2:#2A1A00;--muted:#7A5A30;--dim:#B89060;--border:#F0D8A8;
+  --sun:#E8920A;--sunLt:#F0A820;--sunPale:#FFF4D8;
+  --sky:#1478C0;--skyLt:#2090E0;--skyPale:#E8F4FF;
+  --green:#1A8040;--greenLt:#22A050;--greenPale:#E8F8EE;
+  --red:#C02828;--redPale:#FDEAEA;
+  --pink:#C02880;--pinkPale:#FCE8F4;
+  --purple:#6028B8;--purplePale:#F0EAFC;
+  --teal:#0A8878;--tealPale:#E0F6F4;
+  --orange:#D85800;--orangePale:#FFF2E8;
+  --radius:16px;--radius-sm:10px;--shadow:0 3px 16px rgba(26,14,0,.10);--shadow-md:0 6px 24px rgba(26,14,0,.14);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 14px 80px}
+
+/* ── HERO ─────────────────────────────────────────────── */
+.hero{background:linear-gradient(135deg,#0A3878 0%,#1478C0 50%,#20A8F0 100%);margin:0 -14px;padding:26px 20px 24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 10%,rgba(255,240,150,.14) 0%,transparent 55%),radial-gradient(ellipse at 5% 90%,rgba(180,255,220,.08) 0%,transparent 50%);pointer-events:none}
+.hero-sun{position:absolute;right:-10px;top:-20px;width:130px;height:130px;background:radial-gradient(circle,rgba(255,230,80,.22) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:16px;height:2px;background:rgba(255,255,255,.35)}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(26px,6vw,38px);color:#fff;line-height:1.15;margin-bottom:8px;letter-spacing:.5px}
+.hero-title .sun-word{color:#FFE840}
+.hero-sub{font-size:14.5px;color:rgba(255,255,255,.72);margin-bottom:16px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:800;letter-spacing:.5px;padding:4px 13px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.14);color:rgba(255,255,255,.90)}
+.chip-y{background:rgba(255,232,64,.18);color:#FFE840}
+.chip-g{background:rgba(150,255,190,.12);color:#90FFD0}
+
+/* ── TAB BAR ──────────────────────────────────────────── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -14px;display:flex;overflow-x:auto;box-shadow:0 2px 10px rgba(26,14,0,.08);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:12px 14px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}.tab.on{color:var(--sky);border-bottom-color:var(--sky)}
+
+/* ── PANES ────────────────────────────────────────────── */
+.pane{display:none;padding-top:20px;animation:fadeUp .3s ease}.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── WORLD HEADER ─────────────────────────────────────── */
+.world-hdr{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow)}
+.wh-emoji{font-size:44px;flex-shrink:0;line-height:1}
+.wh-title{font-family:'Fredoka One',cursive;font-size:22px;color:var(--sky);letter-spacing:.5px;line-height:1.2}
+.wh-sub{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.5}
+
+/* ── SECTION LABEL ────────────────────────────────────── */
+.sec-label{font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin:24px 0 10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:2px;background:var(--border);border-radius:1px}
+
+/* ── WORD CARDS (big kid-friendly) ───────────────────── */
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:10px 0}
+.word-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:14px 12px;text-align:center;box-shadow:var(--shadow);transition:transform .1s;cursor:default}
+.word-card:hover{transform:scale(1.03)}
+.wc-emoji{font-size:36px;display:block;margin-bottom:6px;line-height:1}
+.wc-english{font-family:'Fredoka One',cursive;font-size:18px;color:var(--ink);line-height:1.2;margin-bottom:2px;display:block}
+.wc-hint{font-size:11.5px;color:var(--muted);font-weight:700;display:block;margin-top:3px}
+
+/* colour variants for word cards */
+.wc-sun{border-color:rgba(232,146,10,.35);background:var(--sunPale)}
+.wc-sky{border-color:rgba(20,120,192,.25);background:var(--skyPale)}
+.wc-green{border-color:rgba(26,128,64,.25);background:var(--greenPale)}
+.wc-pink{border-color:rgba(192,40,128,.22);background:var(--pinkPale)}
+.wc-purple{border-color:rgba(96,40,184,.20);background:var(--purplePale)}
+.wc-teal{border-color:rgba(10,136,120,.22);background:var(--tealPale)}
+.wc-orange{border-color:rgba(216,88,0,.22);background:var(--orangePale)}
+
+/* ── COLOUR SWATCH CARDS ─────────────────────────────── */
+.colour-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin:10px 0}
+.colour-card{border-radius:var(--radius);padding:0;overflow:hidden;box-shadow:var(--shadow);border:2px solid rgba(0,0,0,.06);transition:transform .1s;cursor:default}
+.colour-card:hover{transform:scale(1.04)}
+.cc-swatch{height:60px;display:flex;align-items:center;justify-content:center;font-size:28px}
+.cc-label{background:var(--white);padding:8px 6px;text-align:center}
+.cc-name{font-family:'Fredoka One',cursive;font-size:16px;display:block;line-height:1.2}
+.cc-urdu{font-size:11px;color:var(--muted);font-weight:700;display:block;margin-top:2px}
+
+/* ── NUMBER CARDS ────────────────────────────────────── */
+.num-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0}
+.num-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:12px 8px;text-align:center;box-shadow:var(--shadow);transition:transform .1s;cursor:default}
+.num-card:hover{transform:scale(1.05)}
+.nc-num{font-family:'Fredoka One',cursive;font-size:28px;line-height:1;display:block}
+.nc-word{font-size:13px;font-weight:800;color:var(--muted);margin-top:2px;display:block}
+.nc-dots{font-size:18px;line-height:1.2;min-height:22px;display:block;margin:4px 0 0}
+
+/* ── PHRASE CARDS (I CAN SAY) ────────────────────────── */
+.phrase-group{margin-bottom:20px}
+.pg-title{font-family:'Fredoka One',cursive;font-size:18px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.phrase-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow);display:flex;align-items:flex-start;gap:12px}
+.pc-emoji{font-size:26px;flex-shrink:0;line-height:1.2}
+.pc-body{}
+.pc-phrase{font-family:'Fredoka One',cursive;font-size:18px;color:var(--sky);line-height:1.3}
+.pc-when{font-size:13px;color:var(--muted);font-weight:700;margin-top:3px;line-height:1.5}
+.pc-response{font-size:13px;color:var(--green);font-weight:800;margin-top:5px;padding-top:5px;border-top:1px dashed var(--border)}
+
+/* ── GREETING CONVERSATION BOX ───────────────────────── */
+.conv-box{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:16px;margin:10px 0;box-shadow:var(--shadow)}
+.conv-title{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.conv-line{display:flex;gap:10px;margin:8px 0;align-items:flex-start}
+.conv-line.right{flex-direction:row-reverse}
+.conv-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.conv-avatar.a{background:var(--skyPale);border:2px solid rgba(20,120,192,.25)}
+.conv-avatar.b{background:var(--sunPale);border:2px solid rgba(232,146,10,.30)}
+.conv-bubble{padding:9px 14px;border-radius:12px;font-size:15px;font-weight:700;max-width:75%;line-height:1.5}
+.conv-line:not(.right) .conv-bubble{background:var(--skyPale);color:var(--sky);border:1.5px solid rgba(20,120,192,.20);border-top-left-radius:4px}
+.conv-line.right .conv-bubble{background:var(--sunPale);color:var(--orange);border:1.5px solid rgba(232,146,10,.25);border-top-right-radius:4px}
+
+/* ── ACTION WORD CARDS ───────────────────────────────── */
+.action-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:10px 0}
+.action-card{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:14px 12px;text-align:center;box-shadow:var(--shadow);transition:transform .1s;cursor:default}
+.action-card:hover{transform:scale(1.03)}
+.ac-emoji{font-size:40px;display:block;margin-bottom:8px;line-height:1}
+.ac-word{font-family:'Fredoka One',cursive;font-size:20px;line-height:1.2;display:block}
+.ac-sentence{font-size:12.5px;color:var(--muted);font-weight:700;margin-top:4px;font-style:italic;line-height:1.4;display:block}
+
+/* ── BODY PARTS GRID ─────────────────────────────────── */
+.body-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}
+.body-card{background:var(--white);border:2px solid rgba(192,40,128,.20);border-radius:var(--radius-sm);background:var(--pinkPale);padding:10px 8px;text-align:center;box-shadow:var(--shadow)}
+.bc-emoji{font-size:30px;display:block;margin-bottom:4px;line-height:1}
+.bc-word{font-family:'Fredoka One',cursive;font-size:16px;color:var(--pink);line-height:1.2;display:block}
+.bc-hint{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px;display:block}
+
+/* ── FEEL CARDS ──────────────────────────────────────── */
+.feel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:10px 0}
+.feel-card{background:var(--white);border-radius:var(--radius);padding:14px 12px;text-align:center;box-shadow:var(--shadow);border:2px solid transparent;transition:transform .1s;cursor:default}
+.feel-card:hover{transform:scale(1.04)}
+.fc-emoji{font-size:38px;display:block;margin-bottom:6px;line-height:1}
+.fc-word{font-family:'Fredoka One',cursive;font-size:18px;line-height:1.2}
+.fc-when{font-size:12px;color:var(--muted);font-weight:700;margin-top:3px;line-height:1.4}
+
+/* ── FOOD GRID ───────────────────────────────────────── */
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}
+
+/* ── CLASSROOM PHRASE STRIP ──────────────────────────── */
+.cls-strip{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow);display:flex;align-items:stretch}
+.cls-icon{width:52px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;background:var(--skyPale)}
+.cls-body{padding:10px 14px;flex:1}
+.cls-phrase{font-family:'Fredoka One',cursive;font-size:17px;color:var(--sky);line-height:1.3}
+.cls-when{font-size:12.5px;color:var(--muted);font-weight:700;margin-top:2px}
+
+/* ── ALPHABET ROW ────────────────────────────────────── */
+.alpha-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.alpha-pill{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:20px;font-weight:700;box-shadow:var(--shadow);border:2px solid transparent;cursor:default;flex-shrink:0}
+
+/* ── FUN BANNER ──────────────────────────────────────── */
+.fun-banner{border-radius:var(--radius);padding:16px 18px;margin:10px 0;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow)}
+.fb-emoji{font-size:36px;flex-shrink:0}
+.fb-text{font-size:15px;color:var(--ink2);line-height:1.7}
+.fb-text b{font-weight:800}
+
+/* ── PATTERN PRACTICE ────────────────────────────────── */
+.pattern-box{background:var(--white);border:2px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin:10px 0;box-shadow:var(--shadow)}
+.pb-title{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.pb-formula{background:var(--greenPale);border-radius:10px;padding:10px 16px;font-size:15px;margin-bottom:12px;border:1.5px solid rgba(26,128,64,.20)}
+.pb-formula span{font-family:'Fredoka One',cursive;font-size:17px}
+.pb-formula .slot{color:var(--sky);background:var(--skyPale);border-radius:6px;padding:2px 10px;margin:0 2px;border:1.5px solid rgba(20,120,192,.25)}
+.pb-formula .fixed{color:var(--green);font-weight:800}
+.pb-rows{}
+.pb-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--border)}
+.pb-row:last-child{border-bottom:none}
+.pb-row .emoji{font-size:22px}
+.pb-row .sentence{font-size:15px;color:var(--ink2);font-weight:700;flex:1}
+.pb-row .sentence b{color:var(--sky)}
+
+/* ── DAYS & MONTHS ───────────────────────────────────── */
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:10px 0}
+.day-card{border-radius:var(--radius-sm);padding:10px 12px;text-align:center;border:2px solid transparent;box-shadow:var(--shadow)}
+.dc-num{font-family:'Fredoka One',cursive;font-size:13px;display:block;margin-bottom:2px;opacity:.6}
+.dc-name{font-family:'Fredoka One',cursive;font-size:17px;line-height:1.2;display:block}
+.dc-hint{font-size:11px;font-weight:700;margin-top:2px;opacity:.7;display:block}
+
+/* ── TEACHER TIP BOX ─────────────────────────────────── */
+.tip-box{background:linear-gradient(135deg,var(--purplePale),var(--skyPale));border:2px solid rgba(96,40,184,.20);border-radius:var(--radius);padding:14px 16px;margin:12px 0;box-shadow:var(--shadow)}
+.tip-box-title{font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.tip-box p{font-size:14px;color:var(--ink2);line-height:1.8}
+.tip-box strong{color:var(--purple)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-sun"></div>
+  <div class="hero-kicker">English · Lesson A01 · Kashmir English Academy</div>
+  <div class="hero-title">My First <span class="sun-word">English</span> 🌟</div>
+  <div class="hero-sub">Hello, little learner! This is your very first English lesson. We will learn words for everything around us — family, colours, numbers, feelings, and how to talk every day. Let's have fun!</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">LKG · UKG</span>
+    <span class="chip chip-y">Beginners</span>
+    <span class="chip chip-g">Words &amp; Talk</span>
+    <span class="chip chip-w">Kashmiri Kids</span>
+  </div>
+</div>
+
+<!-- ═══ TAB BAR ═══════════════════════════════════════════ -->
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('myworld')">🏠 My World</button>
+  <button class="tab"     onclick="switchTab('myday')">🌤️ My Day</button>
+  <button class="tab"     onclick="switchTab('playlearn')">🎮 Play &amp; Learn</button>
+  <button class="tab"     onclick="switchTab('isay')">🗣️ I Can Say</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 1 — MY WORLD
+══════════════════════════════════════════════════════════ -->
+<div class="pane on" id="myworld">
+
+<div class="world-hdr">
+  <div class="wh-emoji">🏠</div>
+  <div>
+    <div class="wh-title">My World</div>
+    <div class="wh-sub">The people I love, the words for me and my body, the colours I see, and the numbers I count — these are the first words every English learner needs!</div>
+  </div>
+</div>
+
+<!-- GREETINGS -->
+<div class="sec-label">Say Hello! 👋</div>
+
+<div class="conv-box">
+  <div class="conv-title">🎬 Listen &amp; Copy — A Morning Greeting</div>
+  <div class="conv-line">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">Good morning, teacher!</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar b">👩‍🏫</div>
+    <div class="conv-bubble">Good morning! How are you?</div>
+  </div>
+  <div class="conv-line">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">I am fine, thank you! 😊</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar b">👩‍🏫</div>
+    <div class="conv-bubble">Very good! Please sit down.</div>
+  </div>
+</div>
+
+<div class="word-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">
+  <div class="word-card wc-sky"><span class="wc-emoji">☀️</span><span class="wc-english">Good morning!</span><span class="wc-hint">Say when you wake up</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🌆</span><span class="wc-english">Good afternoon!</span><span class="wc-hint">Say after lunch time</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🌙</span><span class="wc-english">Good evening!</span><span class="wc-hint">Say when it gets dark</span></div>
+  <div class="word-card wc-teal"><span class="wc-emoji">🌛</span><span class="wc-english">Good night!</span><span class="wc-hint">Say before sleeping</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">😄</span><span class="wc-english">Hello! / Hi!</span><span class="wc-hint">Any time you meet someone</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">👋</span><span class="wc-english">Goodbye! / Bye!</span><span class="wc-hint">When you leave</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">🙏</span><span class="wc-english">Thank you!</span><span class="wc-hint">When someone helps you</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">😊</span><span class="wc-english">Welcome!</span><span class="wc-hint">Reply to Thank you</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🤲</span><span class="wc-english">Please</span><span class="wc-hint">When you ask for something nicely</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">😔</span><span class="wc-english">Sorry!</span><span class="wc-hint">When you make a mistake</span></div>
+</div>
+
+<!-- FAMILY -->
+<div class="sec-label">My Family 👨‍👩‍👧‍👦</div>
+
+<div class="fun-banner" style="background:var(--sunPale);border:2px solid rgba(232,146,10,.25)">
+  <div class="fb-emoji">❤️</div>
+  <div class="fb-text">These are the most important people in your life! Learn their English names. When you go home today, <b>point to each person and say their English name out loud!</b></div>
+</div>
+
+<div class="word-grid">
+  <div class="word-card wc-sky"><span class="wc-emoji">👨</span><span class="wc-english">Father</span><span class="wc-hint">Abba / Pitaji</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">👩</span><span class="wc-english">Mother</span><span class="wc-hint">Ammi / Mummy</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">👦</span><span class="wc-english">Brother</span><span class="wc-hint">Bhai</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">👧</span><span class="wc-english">Sister</span><span class="wc-hint">Behen / Aapa</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">👴</span><span class="wc-english">Grandfather</span><span class="wc-hint">Dada / Nana</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">👵</span><span class="wc-english">Grandmother</span><span class="wc-hint">Dadi / Nani</span></div>
+  <div class="word-card wc-teal"><span class="wc-emoji">👨‍👩‍👧</span><span class="wc-english">Family</span><span class="wc-hint">Parivaar / Khandan</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🧒</span><span class="wc-english">Baby</span><span class="wc-hint">Small child</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🧑</span><span class="wc-english">Friend</span><span class="wc-hint">Dost / Mitra</span></div>
+</div>
+
+<div class="pattern-box">
+  <div class="pb-title">🗣️ Say It! — My family</div>
+  <div class="pb-formula">
+    <span class="fixed">This is my</span> <span class="slot">[family word]</span> <span class="fixed">.</span>
+  </div>
+  <div class="pb-rows">
+    <div class="pb-row"><span class="emoji">👨</span><span class="sentence">This is my <b>father</b>.</span></div>
+    <div class="pb-row"><span class="emoji">👩</span><span class="sentence">This is my <b>mother</b>.</span></div>
+    <div class="pb-row"><span class="emoji">👦</span><span class="sentence">This is my <b>brother</b>.</span></div>
+    <div class="pb-row"><span class="emoji">👧</span><span class="sentence">This is my <b>sister</b>.</span></div>
+    <div class="pb-row"><span class="emoji">👴</span><span class="sentence">This is my <b>grandfather</b>.</span></div>
+  </div>
+</div>
+
+<!-- BODY PARTS -->
+<div class="sec-label">My Body 🧍</div>
+
+<div class="body-grid">
+  <div class="body-card"><span class="bc-emoji">👁️</span><span class="bc-word">Eye</span><span class="bc-hint">Aankh</span></div>
+  <div class="body-card"><span class="bc-emoji">👂</span><span class="bc-word">Ear</span><span class="bc-hint">Kaan</span></div>
+  <div class="body-card"><span class="bc-emoji">👃</span><span class="bc-word">Nose</span><span class="bc-hint">Naak</span></div>
+  <div class="body-card"><span class="bc-emoji">👄</span><span class="bc-word">Mouth</span><span class="bc-hint">Mu</span></div>
+  <div class="body-card"><span class="bc-emoji">🦷</span><span class="bc-word">Teeth</span><span class="bc-hint">Daant</span></div>
+  <div class="body-card"><span class="bc-emoji">💆</span><span class="bc-word">Head</span><span class="bc-hint">Sir</span></div>
+  <div class="body-card"><span class="bc-emoji">💪</span><span class="bc-word">Hand</span><span class="bc-hint">Haath</span></div>
+  <div class="body-card"><span class="bc-emoji">🦵</span><span class="bc-word">Leg</span><span class="bc-hint">Pair</span></div>
+  <div class="body-card"><span class="bc-emoji">🦶</span><span class="bc-word">Foot</span><span class="bc-hint">Paaon</span></div>
+  <div class="body-card"><span class="bc-emoji">🫁</span><span class="bc-word">Chest</span><span class="bc-hint">Seena</span></div>
+  <div class="body-card"><span class="bc-emoji">🖐️</span><span class="bc-word">Finger</span><span class="bc-hint">Ungli</span></div>
+  <div class="body-card"><span class="bc-emoji">💇</span><span class="bc-word">Hair</span><span class="bc-hint">Baal</span></div>
+</div>
+
+<!-- COLOURS -->
+<div class="sec-label">Colours 🌈</div>
+
+<div class="colour-grid">
+  <div class="colour-card"><div class="cc-swatch" style="background:#EF4444">🍎</div><div class="cc-label"><span class="cc-name" style="color:#CC2222">Red</span><span class="cc-urdu">Laal</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#3B82F6">🌀</div><div class="cc-label"><span class="cc-name" style="color:#1A4CBE">Blue</span><span class="cc-urdu">Neela</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#22C55E">🌿</div><div class="cc-label"><span class="cc-name" style="color:#156030">Green</span><span class="cc-urdu">Hara</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#FACC15">⭐</div><div class="cc-label"><span class="cc-name" style="color:#9A7800">Yellow</span><span class="cc-urdu">Peela</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#F97316">🍊</div><div class="cc-label"><span class="cc-name" style="color:#AA4400">Orange</span><span class="cc-urdu">Narangi</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#EC4899">🌸</div><div class="cc-label"><span class="cc-name" style="color:#A01870">Pink</span><span class="cc-urdu">Gulabi</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#8B5CF6">🔮</div><div class="cc-label"><span class="cc-name" style="color:#5A28A0">Purple</span><span class="cc-urdu">Baingani</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#FFFFFF;border:1px solid #ddd">⬜</div><div class="cc-label"><span class="cc-name" style="color:#888">White</span><span class="cc-urdu">Safed</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#1F2937">⬛</div><div class="cc-label"><span class="cc-name" style="color:#111">Black</span><span class="cc-urdu">Kaala</span></div></div>
+  <div class="colour-card"><div class="cc-swatch" style="background:#92400E">🌰</div><div class="cc-label"><span class="cc-name" style="color:#7A3800">Brown</span><span class="cc-urdu">Bhoora</span></div></div>
+</div>
+
+<div class="pattern-box">
+  <div class="pb-title">🗣️ Say It! — Colours I see</div>
+  <div class="pb-formula">
+    <span class="fixed">The</span> <span class="slot">[thing]</span> <span class="fixed">is</span> <span class="slot">[colour]</span> <span class="fixed">.</span>
+  </div>
+  <div class="pb-rows">
+    <div class="pb-row"><span class="emoji">☁️</span><span class="sentence">The sky is <b>blue</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🍎</span><span class="sentence">The apple is <b>red</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🌿</span><span class="sentence">The grass is <b>green</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🌼</span><span class="sentence">The flower is <b>yellow</b>.</span></div>
+    <div class="pb-row"><span class="emoji">❄️</span><span class="sentence">The snow is <b>white</b>.</span></div>
+  </div>
+</div>
+
+<!-- NUMBERS -->
+<div class="sec-label">Numbers 1–20 🔢</div>
+
+<div class="num-grid">
+  <div class="num-card" style="border-color:rgba(239,68,68,.35);background:#FEF2F2"><span class="nc-num" style="color:#DC2626">1</span><span class="nc-word">one</span><span class="nc-dots">🔴</span></div>
+  <div class="num-card" style="border-color:rgba(59,130,246,.35);background:#EFF6FF"><span class="nc-num" style="color:#2563EB">2</span><span class="nc-word">two</span><span class="nc-dots">🔵🔵</span></div>
+  <div class="num-card" style="border-color:rgba(34,197,94,.35);background:#F0FDF4"><span class="nc-num" style="color:#16A34A">3</span><span class="nc-word">three</span><span class="nc-dots">🟢🟢🟢</span></div>
+  <div class="num-card" style="border-color:rgba(234,179,8,.35);background:#FEFCE8"><span class="nc-num" style="color:#CA8A04">4</span><span class="nc-word">four</span><span class="nc-dots">🟡🟡🟡🟡</span></div>
+  <div class="num-card" style="border-color:rgba(249,115,22,.35);background:#FFF7ED"><span class="nc-num" style="color:#EA580C">5</span><span class="nc-word">five</span><span class="nc-dots">🟠🟠🟠🟠🟠</span></div>
+  <div class="num-card" style="border-color:rgba(236,72,153,.35);background:#FDF2F8"><span class="nc-num" style="color:#DB2777">6</span><span class="nc-word">six</span><span class="nc-dots">✿✿✿✿✿✿</span></div>
+  <div class="num-card" style="border-color:rgba(139,92,246,.35);background:#F5F3FF"><span class="nc-num" style="color:#7C3AED">7</span><span class="nc-word">seven</span><span class="nc-dots">⭐⭐⭐⭐⭐⭐⭐</span></div>
+  <div class="num-card" style="border-color:rgba(20,184,166,.35);background:#F0FDFA"><span class="nc-num" style="color:#0D9488">8</span><span class="nc-word">eight</span><span class="nc-dots">🌿×8</span></div>
+  <div class="num-card" style="border-color:rgba(99,102,241,.35);background:#EEF2FF"><span class="nc-num" style="color:#4338CA">9</span><span class="nc-word">nine</span><span class="nc-dots">🔷×9</span></div>
+  <div class="num-card" style="border-color:rgba(232,146,10,.35);background:var(--sunPale)"><span class="nc-num" style="color:var(--sun)">10</span><span class="nc-word">ten</span><span class="nc-dots">🌟×10</span></div>
+</div>
+
+<div class="num-grid" style="grid-template-columns:repeat(5,1fr)">
+  <div class="num-card"><span class="nc-num" style="color:var(--sky)">11</span><span class="nc-word">eleven</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--green)">12</span><span class="nc-word">twelve</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--pink)">13</span><span class="nc-word">thirteen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--orange)">14</span><span class="nc-word">fourteen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--purple)">15</span><span class="nc-word">fifteen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--teal)">16</span><span class="nc-word">sixteen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--sun)">17</span><span class="nc-word">seventeen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--red)">18</span><span class="nc-word">eighteen</span><span class="nc-dots"></span></div>
+  <div class="num-card"><span class="nc-num" style="color:var(--sky)">19</span><span class="nc-word">nineteen</span><span class="nc-dots"></span></div>
+  <div class="num-card" style="border-color:rgba(232,146,10,.40);background:var(--sunPale)"><span class="nc-num" style="color:var(--sun)">20</span><span class="nc-word">twenty</span><span class="nc-dots">🎉</span></div>
+</div>
+
+</div><!-- /myworld -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 2 — MY DAY
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="myday">
+
+<div class="world-hdr">
+  <div class="wh-emoji">🌤️</div>
+  <div>
+    <div class="wh-title">My Day</div>
+    <div class="wh-sub">From waking up in the morning to going to bed at night — the English words for your daily routine, classroom life, the food you eat, and the feelings you feel.</div>
+  </div>
+</div>
+
+<!-- DAILY ROUTINE -->
+<div class="sec-label">My Morning Routine ⏰</div>
+
+<div class="fun-banner" style="background:var(--sunPale);border:2px solid rgba(232,146,10,.25)">
+  <div class="fb-emoji">🌅</div>
+  <div class="fb-text">Every morning you do the same things. Now let's say them in <b>English</b>! Can you act out each action while saying the word?</div>
+</div>
+
+<div class="action-grid">
+  <div class="action-card wc-sun"><span class="ac-emoji">😴</span><span class="ac-word" style="color:var(--purple)">Wake up</span><span class="ac-sentence">I wake up at 7 o'clock.</span></div>
+  <div class="action-card wc-sky"><span class="ac-emoji">🪥</span><span class="ac-word" style="color:var(--sky)">Brush teeth</span><span class="ac-sentence">I brush my teeth every morning.</span></div>
+  <div class="action-card wc-green"><span class="ac-emoji">🚿</span><span class="ac-word" style="color:var(--green)">Wash face</span><span class="ac-sentence">I wash my face with water.</span></div>
+  <div class="action-card wc-pink"><span class="ac-emoji">👕</span><span class="ac-word" style="color:var(--pink)">Get dressed</span><span class="ac-sentence">I get dressed for school.</span></div>
+  <div class="action-card wc-orange"><span class="ac-emoji">🍽️</span><span class="ac-word" style="color:var(--orange)">Eat breakfast</span><span class="ac-sentence">I eat breakfast at home.</span></div>
+  <div class="action-card wc-teal"><span class="ac-emoji">🎒</span><span class="ac-word" style="color:var(--teal)">Go to school</span><span class="ac-sentence">I go to school every day.</span></div>
+  <div class="action-card wc-purple"><span class="ac-emoji">📖</span><span class="ac-word" style="color:var(--purple)">Study</span><span class="ac-sentence">I study and learn at school.</span></div>
+  <div class="action-card wc-sun"><span class="ac-emoji">🏡</span><span class="ac-word" style="color:var(--sun)">Come home</span><span class="ac-sentence">I come home after school.</span></div>
+  <div class="action-card wc-green"><span class="ac-emoji">🍛</span><span class="ac-word" style="color:var(--green)">Eat lunch</span><span class="ac-sentence">I eat lunch with my family.</span></div>
+  <div class="action-card wc-sky"><span class="ac-emoji">🎮</span><span class="ac-word" style="color:var(--sky)">Play</span><span class="ac-sentence">I play with my friends.</span></div>
+  <div class="action-card wc-orange"><span class="ac-emoji">🌙</span><span class="ac-word" style="color:var(--orange)">Eat dinner</span><span class="ac-sentence">I eat dinner with my family.</span></div>
+  <div class="action-card wc-purple"><span class="ac-emoji">😴</span><span class="ac-word" style="color:var(--purple)">Sleep</span><span class="ac-sentence">I sleep at night.</span></div>
+</div>
+
+<!-- FEELINGS -->
+<div class="sec-label">How Do You Feel? 😊</div>
+
+<div class="feel-grid">
+  <div class="feel-card" style="border-color:rgba(234,179,8,.40);background:#FEFCE8"><span class="fc-emoji">😄</span><span class="fc-word" style="color:#CA8A04">Happy</span><span class="fc-when">When something nice happens</span></div>
+  <div class="feel-card" style="border-color:rgba(59,130,246,.30);background:#EFF6FF"><span class="fc-emoji">😢</span><span class="fc-word" style="color:#2563EB">Sad</span><span class="fc-when">When something hurts you</span></div>
+  <div class="feel-card" style="border-color:rgba(239,68,68,.30);background:#FEF2F2"><span class="fc-emoji">😠</span><span class="fc-word" style="color:#DC2626">Angry</span><span class="fc-when">When something is not fair</span></div>
+  <div class="feel-card" style="border-color:rgba(249,115,22,.35);background:#FFF7ED"><span class="fc-emoji">😨</span><span class="fc-word" style="color:#EA580C">Scared</span><span class="fc-when">When something frightens you</span></div>
+  <div class="feel-card" style="border-color:rgba(139,92,246,.30);background:#F5F3FF"><span class="fc-emoji">😴</span><span class="fc-word" style="color:#7C3AED">Tired</span><span class="fc-when">When you need to rest</span></div>
+  <div class="feel-card" style="border-color:rgba(20,184,166,.30);background:#F0FDFA"><span class="fc-emoji">😮</span><span class="fc-word" style="color:#0D9488">Surprised</span><span class="fc-when">When something is unexpected</span></div>
+  <div class="feel-card" style="border-color:rgba(34,197,94,.30);background:#F0FDF4"><span class="fc-emoji">🤒</span><span class="fc-word" style="color:#16A34A">Sick</span><span class="fc-when">When your body hurts</span></div>
+  <div class="feel-card" style="border-color:rgba(236,72,153,.30);background:#FDF2F8"><span class="fc-emoji">😊</span><span class="fc-word" style="color:#DB2777">Excited</span><span class="fc-when">When you really look forward to something</span></div>
+</div>
+
+<div class="pattern-box">
+  <div class="pb-title">🗣️ Say It! — I feel...</div>
+  <div class="pb-formula">
+    <span class="fixed">I am</span> <span class="slot">[feeling]</span> <span class="fixed">.</span>
+  </div>
+  <div class="pb-rows">
+    <div class="pb-row"><span class="emoji">😄</span><span class="sentence">I am <b>happy</b> today!</span></div>
+    <div class="pb-row"><span class="emoji">😢</span><span class="sentence">I am <b>sad</b>.</span></div>
+    <div class="pb-row"><span class="emoji">😴</span><span class="sentence">I am very <b>tired</b>.</span></div>
+    <div class="pb-row"><span class="emoji">😠</span><span class="sentence">I am <b>angry</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🤒</span><span class="sentence">I am <b>sick</b>. I need to rest.</span></div>
+  </div>
+</div>
+
+<!-- FOOD -->
+<div class="sec-label">Food I Know 🍽️</div>
+
+<div class="word-grid">
+  <div class="word-card wc-orange"><span class="wc-emoji">🍚</span><span class="wc-english">Rice</span><span class="wc-hint">Chawal</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🫓</span><span class="wc-english">Bread</span><span class="wc-hint">Roti / Naan</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🥛</span><span class="wc-english">Milk</span><span class="wc-hint">Doodh</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">☕</span><span class="wc-english">Tea / Kahwa</span><span class="wc-hint">Chai / Kahwa</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">💧</span><span class="wc-english">Water</span><span class="wc-hint">Paani</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">🍎</span><span class="wc-english">Apple</span><span class="wc-hint">Seb</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🍌</span><span class="wc-english">Banana</span><span class="wc-hint">Kela</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">🥕</span><span class="wc-english">Carrot</span><span class="wc-hint">Gajar</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🫛</span><span class="wc-english">Dal</span><span class="wc-hint">Lentils / Dal</span></div>
+  <div class="word-card wc-teal"><span class="wc-emoji">🥗</span><span class="wc-english">Vegetable</span><span class="wc-hint">Sabzi</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🍬</span><span class="wc-english">Sweet</span><span class="wc-hint">Meetha / Mithai</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🍳</span><span class="wc-english">Egg</span><span class="wc-hint">Anda</span></div>
+</div>
+
+<!-- DAYS OF WEEK -->
+<div class="sec-label">Days of the Week 📅</div>
+
+<div class="day-grid">
+  <div class="day-card" style="background:#FEF2F2;border-color:rgba(239,68,68,.30)"><span class="dc-num">Day 1</span><span class="dc-name" style="color:#DC2626">Monday</span><span class="dc-hint" style="color:#DC2626">School day ✏️</span></div>
+  <div class="day-card" style="background:#EFF6FF;border-color:rgba(59,130,246,.30)"><span class="dc-num">Day 2</span><span class="dc-name" style="color:#2563EB">Tuesday</span><span class="dc-hint" style="color:#2563EB">School day ✏️</span></div>
+  <div class="day-card" style="background:#F0FDF4;border-color:rgba(34,197,94,.30)"><span class="dc-num">Day 3</span><span class="dc-name" style="color:#16A34A">Wednesday</span><span class="dc-hint" style="color:#16A34A">School day ✏️</span></div>
+  <div class="day-card" style="background:#FFF7ED;border-color:rgba(249,115,22,.35)"><span class="dc-num">Day 4</span><span class="dc-name" style="color:#EA580C">Thursday</span><span class="dc-hint" style="color:#EA580C">School day ✏️</span></div>
+  <div class="day-card" style="background:#F5F3FF;border-color:rgba(139,92,246,.30)"><span class="dc-num">Day 5</span><span class="dc-name" style="color:#7C3AED">Friday</span><span class="dc-hint" style="color:#7C3AED">Last school day 🎒</span></div>
+  <div class="day-card" style="background:var(--sunPale);border-color:rgba(232,146,10,.35)"><span class="dc-num">Day 6</span><span class="dc-name" style="color:var(--sun)">Saturday</span><span class="dc-hint" style="color:var(--sun)">Play day 🎈</span></div>
+  <div class="day-card" style="background:var(--pinkPale);border-color:rgba(192,40,128,.25)"><span class="dc-num">Day 7</span><span class="dc-name" style="color:var(--pink)">Sunday</span><span class="dc-hint" style="color:var(--pink)">Rest day ❤️</span></div>
+</div>
+
+</div><!-- /myday -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 3 — PLAY & LEARN
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="playlearn">
+
+<div class="world-hdr">
+  <div class="wh-emoji">🎮</div>
+  <div>
+    <div class="wh-title">Play &amp; Learn</div>
+    <div class="wh-sub">Animals, nature words, shapes — and the action words (verbs) that describe what we do every day. Learning is more fun when we move and play!</div>
+  </div>
+</div>
+
+<!-- ANIMALS -->
+<div class="sec-label">Animals I Know 🐾</div>
+
+<div class="fun-banner" style="background:var(--greenPale);border:2px solid rgba(26,128,64,.22)">
+  <div class="fb-emoji">🐾</div>
+  <div class="fb-text">India and Kashmir have so many amazing animals! Can you <b>make the sound</b> each animal makes while you say its English name?</div>
+</div>
+
+<div class="word-grid">
+  <div class="word-card wc-orange"><span class="wc-emoji">🐄</span><span class="wc-english">Cow</span><span class="wc-hint">Gaay — मू!</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🐐</span><span class="wc-english">Goat</span><span class="wc-hint">Bakri — Meh!</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🐓</span><span class="wc-english">Hen</span><span class="wc-hint">Murgi — Cluck!</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🐶</span><span class="wc-english">Dog</span><span class="wc-hint">Kutta — Woof!</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">🐱</span><span class="wc-english">Cat</span><span class="wc-hint">Billi — Meow!</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🐦</span><span class="wc-english">Bird</span><span class="wc-hint">Chiriya — Tweet!</span></div>
+  <div class="word-card wc-teal"><span class="wc-emoji">🐟</span><span class="wc-english">Fish</span><span class="wc-hint">Machli</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">🐘</span><span class="wc-english">Elephant</span><span class="wc-hint">Haathi</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🦁</span><span class="wc-english">Lion</span><span class="wc-hint">Sher — Roar!</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🐯</span><span class="wc-english">Tiger</span><span class="wc-hint">Bagh — Roar!</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">🐒</span><span class="wc-english">Monkey</span><span class="wc-hint">Bandar</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🦅</span><span class="wc-english">Eagle</span><span class="wc-hint">Ukab / Cheel</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">🐻‍❄️</span><span class="wc-english">Bear</span><span class="wc-hint">Rech (Kashmiri)</span></div>
+  <div class="word-card wc-teal"><span class="wc-emoji">🦌</span><span class="wc-english">Deer</span><span class="wc-hint">Hiran / Karan</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">🦋</span><span class="wc-english">Butterfly</span><span class="wc-hint">Titli</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🐝</span><span class="wc-english">Bee</span><span class="wc-hint">Makhi / Bhaunri</span></div>
+</div>
+
+<div class="pattern-box">
+  <div class="pb-title">🗣️ Say It! — Animals</div>
+  <div class="pb-formula">
+    <span class="fixed">This is a</span> <span class="slot">[animal]</span> <span class="fixed">. It is</span> <span class="slot">[colour]</span> <span class="fixed">.</span>
+  </div>
+  <div class="pb-rows">
+    <div class="pb-row"><span class="emoji">🐄</span><span class="sentence">This is a <b>cow</b>. It is <b>white</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🐱</span><span class="sentence">This is a <b>cat</b>. It is <b>black</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🦁</span><span class="sentence">This is a <b>lion</b>. It is <b>brown</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🐦</span><span class="sentence">This is a <b>bird</b>. It can <b>fly</b>.</span></div>
+  </div>
+</div>
+
+<!-- NATURE -->
+<div class="sec-label">Nature Around Me 🌿</div>
+
+<div class="word-grid">
+  <div class="word-card wc-sky"><span class="wc-emoji">☀️</span><span class="wc-english">Sun</span><span class="wc-hint">Sooraj</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🌙</span><span class="wc-english">Moon</span><span class="wc-hint">Chaand</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">⭐</span><span class="wc-english">Star</span><span class="wc-hint">Sitara</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">☁️</span><span class="wc-english">Cloud</span><span class="wc-hint">Baadal</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🌧️</span><span class="wc-english">Rain</span><span class="wc-hint">Baarish</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">❄️</span><span class="wc-english">Snow</span><span class="wc-hint">Barf / Sneeze (Kashmiri: Vor)</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🌳</span><span class="wc-english">Tree</span><span class="wc-hint">Ped / Darakht</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🌸</span><span class="wc-english">Flower</span><span class="wc-hint">Phool</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🌿</span><span class="wc-english">Leaf</span><span class="wc-hint">Patta</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">⛰️</span><span class="wc-english">Mountain</span><span class="wc-hint">Pahad / Koh</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🌊</span><span class="wc-english">River</span><span class="wc-hint">Nadi / Darya</span></div>
+  <div class="word-card wc-sky"><span class="wc-emoji">🏞️</span><span class="wc-english">Lake</span><span class="wc-hint">Jheel (Dal Lake!)</span></div>
+</div>
+
+<!-- SHAPES -->
+<div class="sec-label">Shapes 🔷</div>
+
+<div class="word-grid" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr))">
+  <div class="word-card wc-sky"><span class="wc-emoji">🔵</span><span class="wc-english">Circle</span><span class="wc-hint">Round like the sun</span></div>
+  <div class="word-card wc-orange"><span class="wc-emoji">🟥</span><span class="wc-english">Square</span><span class="wc-hint">4 equal sides</span></div>
+  <div class="word-card wc-green"><span class="wc-emoji">🔺</span><span class="wc-english">Triangle</span><span class="wc-hint">3 sides</span></div>
+  <div class="word-card wc-purple"><span class="wc-emoji">🟪</span><span class="wc-english">Rectangle</span><span class="wc-hint">Like a door</span></div>
+  <div class="word-card wc-pink"><span class="wc-emoji">⭐</span><span class="wc-english">Star</span><span class="wc-hint">5 points</span></div>
+  <div class="word-card wc-sun"><span class="wc-emoji">❤️</span><span class="wc-english">Heart</span><span class="wc-hint">Love shape</span></div>
+</div>
+
+<!-- ACTION WORDS -->
+<div class="sec-label">Action Words — What I Can Do! 🏃</div>
+
+<div class="fun-banner" style="background:var(--skyPale);border:2px solid rgba(20,120,192,.22)">
+  <div class="fb-emoji">💪</div>
+  <div class="fb-text">These words tell us what we <b>do</b>. They are called <b>verbs</b>. Act out each one while saying it! Say: "I can <b>run</b>!" and then run on the spot!</div>
+</div>
+
+<div class="action-grid">
+  <div class="action-card wc-orange"><span class="ac-emoji">🏃</span><span class="ac-word" style="color:var(--orange)">Run</span><span class="ac-sentence">I can run fast.</span></div>
+  <div class="action-card wc-sky"><span class="ac-emoji">🚶</span><span class="ac-word" style="color:var(--sky)">Walk</span><span class="ac-sentence">I walk to school.</span></div>
+  <div class="action-card wc-green"><span class="ac-emoji">⬆️</span><span class="ac-word" style="color:var(--green)">Jump</span><span class="ac-sentence">I can jump high!</span></div>
+  <div class="action-card wc-pink"><span class="ac-emoji">💃</span><span class="ac-word" style="color:var(--pink)">Dance</span><span class="ac-sentence">I love to dance.</span></div>
+  <div class="action-card wc-purple"><span class="ac-emoji">🎵</span><span class="ac-word" style="color:var(--purple)">Sing</span><span class="ac-sentence">I sing a song.</span></div>
+  <div class="action-card wc-sky"><span class="ac-emoji">🗣️</span><span class="ac-word" style="color:var(--sky)">Talk / Speak</span><span class="ac-sentence">I speak in English!</span></div>
+  <div class="action-card wc-sun"><span class="ac-emoji">👁️</span><span class="ac-word" style="color:var(--sun)">See / Look</span><span class="ac-sentence">I can see the mountains.</span></div>
+  <div class="action-card wc-green"><span class="ac-emoji">👂</span><span class="ac-word" style="color:var(--green)">Listen / Hear</span><span class="ac-sentence">I listen to my teacher.</span></div>
+  <div class="action-card wc-orange"><span class="ac-emoji">✏️</span><span class="ac-word" style="color:var(--orange)">Write</span><span class="ac-sentence">I write in my notebook.</span></div>
+  <div class="action-card wc-teal"><span class="ac-emoji">📖</span><span class="ac-word" style="color:var(--teal)">Read</span><span class="ac-sentence">I read my book.</span></div>
+  <div class="action-card wc-pink"><span class="ac-emoji">🖌️</span><span class="ac-word" style="color:var(--pink)">Draw / Paint</span><span class="ac-sentence">I draw a flower.</span></div>
+  <div class="action-card wc-purple"><span class="ac-emoji">😂</span><span class="ac-word" style="color:var(--purple)">Laugh</span><span class="ac-sentence">I laugh when I am happy.</span></div>
+  <div class="action-card wc-sky"><span class="ac-emoji">😢</span><span class="ac-word" style="color:var(--sky)">Cry</span><span class="ac-sentence">I cry when I am sad.</span></div>
+  <div class="action-card wc-green"><span class="ac-emoji">🙋</span><span class="ac-word" style="color:var(--green)">Help</span><span class="ac-sentence">I help my mother.</span></div>
+  <div class="action-card wc-sun"><span class="ac-emoji">🍽️</span><span class="ac-word" style="color:var(--sun)">Eat</span><span class="ac-sentence">I eat rice for lunch.</span></div>
+  <div class="action-card wc-orange"><span class="ac-emoji">💧</span><span class="ac-word" style="color:var(--orange)">Drink</span><span class="ac-sentence">I drink water every day.</span></div>
+</div>
+
+<div class="pattern-box">
+  <div class="pb-title">🗣️ Say It! — I can...</div>
+  <div class="pb-formula">
+    <span class="fixed">I can</span> <span class="slot">[action word]</span> <span class="fixed">.</span>
+  </div>
+  <div class="pb-rows">
+    <div class="pb-row"><span class="emoji">🏃</span><span class="sentence">I can <b>run</b>.</span></div>
+    <div class="pb-row"><span class="emoji">⬆️</span><span class="sentence">I can <b>jump</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🎵</span><span class="sentence">I can <b>sing</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🖌️</span><span class="sentence">I can <b>draw</b>.</span></div>
+    <div class="pb-row"><span class="emoji">🗣️</span><span class="sentence">I can <b>speak</b> English!</span></div>
+  </div>
+</div>
+
+</div><!-- /playlearn -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 4 — I CAN SAY
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="isay">
+
+<div class="world-hdr">
+  <div class="wh-emoji">🗣️</div>
+  <div>
+    <div class="wh-title">I Can Say!</div>
+    <div class="wh-sub">These are the sentences you can use every single day — at school, at home, with friends. Learn them, practise them, and use them! The more you use English, the better you get!</div>
+  </div>
+</div>
+
+<div class="tip-box">
+  <div class="tip-box-title">⭐ Teacher's Tip</div>
+  <p>The best way to learn is to <strong>use</strong> these sentences every day. Print them out, stick them on the wall, and read them every morning. By the end of the week, you will say them without thinking!</p>
+</div>
+
+<!-- IN THE CLASSROOM -->
+<div class="sec-label">In My Classroom 🏫</div>
+
+<div class="cls-strip"><div class="cls-icon">🙋</div><div class="cls-body"><div class="cls-phrase">May I come in, please?</div><div class="cls-when">When you arrive late or enter the classroom</div></div></div>
+<div class="cls-strip"><div class="cls-icon">🚻</div><div class="cls-body"><div class="cls-phrase">May I go to the toilet, please?</div><div class="cls-when">When you need to use the bathroom</div></div></div>
+<div class="cls-strip"><div class="cls-icon">💧</div><div class="cls-body"><div class="cls-phrase">May I drink water, please?</div><div class="cls-when">When you are thirsty in class</div></div></div>
+<div class="cls-strip"><div class="cls-icon">✋</div><div class="cls-body"><div class="cls-phrase">I don't understand. Can you say it again?</div><div class="cls-when">When the teacher explains something confusing</div></div></div>
+<div class="cls-strip"><div class="cls-icon">📝</div><div class="cls-body"><div class="cls-phrase">I have finished, teacher!</div><div class="cls-when">When you complete your work</div></div></div>
+<div class="cls-strip"><div class="cls-icon">❓</div><div class="cls-body"><div class="cls-phrase">I have a question.</div><div class="cls-when">When you want to ask something</div></div></div>
+<div class="cls-strip"><div class="cls-icon">✏️</div><div class="cls-body"><div class="cls-phrase">Can I borrow a pencil, please?</div><div class="cls-when">When you need a pencil or pen</div></div></div>
+<div class="cls-strip"><div class="cls-icon">📖</div><div class="cls-body"><div class="cls-phrase">Open your books to page ___.</div><div class="cls-when">The teacher says this — learn to listen for it!</div></div></div>
+
+<!-- TALKING TO FRIENDS -->
+<div class="sec-label">Talking to Friends 👫</div>
+
+<div class="phrase-group">
+  <div class="phrase-card">
+    <div class="pc-emoji">👋</div>
+    <div class="pc-body">
+      <div class="pc-phrase">What is your name?</div>
+      <div class="pc-when">When you meet someone new</div>
+      <div class="pc-response">Reply: My name is [your name].</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🏠</div>
+    <div class="pc-body">
+      <div class="pc-phrase">Where do you live?</div>
+      <div class="pc-when">When you want to know where a friend lives</div>
+      <div class="pc-response">Reply: I live in [your place/city].</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🎂</div>
+    <div class="pc-body">
+      <div class="pc-phrase">How old are you?</div>
+      <div class="pc-when">When you want to know someone's age</div>
+      <div class="pc-response">Reply: I am [number] years old.</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🎮</div>
+    <div class="pc-body">
+      <div class="pc-phrase">Let's play together!</div>
+      <div class="pc-when">When you want to play with someone</div>
+      <div class="pc-response">Reply: Yes, let's play! / OK!</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🙏</div>
+    <div class="pc-body">
+      <div class="pc-phrase">Can you help me, please?</div>
+      <div class="pc-when">When you need help from a friend</div>
+      <div class="pc-response">Reply: Sure! / Of course!</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">😊</div>
+    <div class="pc-body">
+      <div class="pc-phrase">You are my best friend!</div>
+      <div class="pc-when">Tell your best friend how special they are</div>
+      <div class="pc-response">Reply: You are my best friend too! 💛</div>
+    </div>
+  </div>
+</div>
+
+<!-- ASKING ABOUT THINGS -->
+<div class="sec-label">Asking About Things 🔍</div>
+
+<div class="phrase-group">
+  <div class="phrase-card">
+    <div class="pc-emoji">🤔</div>
+    <div class="pc-body">
+      <div class="pc-phrase">What is this?</div>
+      <div class="pc-when">When you see something you don't know</div>
+      <div class="pc-response">Reply: This is a [name of thing].</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🎨</div>
+    <div class="pc-body">
+      <div class="pc-phrase">What colour is it?</div>
+      <div class="pc-when">When you want to know the colour</div>
+      <div class="pc-response">Reply: It is [colour].</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">📍</div>
+    <div class="pc-body">
+      <div class="pc-phrase">Where is the [thing]?</div>
+      <div class="pc-when">When you are looking for something</div>
+      <div class="pc-response">Reply: It is on the table / in the bag.</div>
+    </div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🔢</div>
+    <div class="pc-body">
+      <div class="pc-phrase">How many are there?</div>
+      <div class="pc-when">When you want to count something</div>
+      <div class="pc-response">Reply: There are [number] [things].</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEELING UNWELL -->
+<div class="sec-label">When I Don't Feel Well 🤒</div>
+<div class="phrase-group">
+  <div class="phrase-card">
+    <div class="pc-emoji">🤒</div>
+    <div class="pc-body"><div class="pc-phrase">I am not feeling well.</div><div class="pc-when">Tell your teacher when you are sick</div></div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">🤕</div>
+    <div class="pc-body"><div class="pc-phrase">My head hurts. / My stomach hurts.</div><div class="pc-when">Tell where the pain is</div></div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">💧</div>
+    <div class="pc-body"><div class="pc-phrase">I am thirsty. Can I have water?</div><div class="pc-when">When you need water</div></div>
+  </div>
+  <div class="phrase-card">
+    <div class="pc-emoji">😴</div>
+    <div class="pc-body"><div class="pc-phrase">I am very tired today.</div><div class="pc-when">When you need rest</div></div>
+  </div>
+</div>
+
+<!-- FULL CONVERSATIONS -->
+<div class="sec-label">🎬 Mini Conversations — Act It Out!</div>
+
+<div class="conv-box">
+  <div class="conv-title">🏫 First Day of School</div>
+  <div class="conv-line">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">Hi! My name is Zara. What is your name?</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar b">👦</div>
+    <div class="conv-bubble">Hello! My name is Arjun. Nice to meet you!</div>
+  </div>
+  <div class="conv-line">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">How old are you, Arjun?</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar b">👦</div>
+    <div class="conv-bubble">I am five years old. How old are you?</div>
+  </div>
+  <div class="conv-line">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">I am five too! Let's be friends! 😊</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar b">👦</div>
+    <div class="conv-bubble">Yes! Let's play together at lunch!</div>
+  </div>
+</div>
+
+<div class="conv-box" style="margin-top:12px">
+  <div class="conv-title">🍽️ At Home — Telling Mother About Your Day</div>
+  <div class="conv-line">
+    <div class="conv-avatar b">👩</div>
+    <div class="conv-bubble">How was school today?</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">It was very good, Ammi! I learned colours!</div>
+  </div>
+  <div class="conv-line">
+    <div class="conv-avatar b">👩</div>
+    <div class="conv-bubble">That's wonderful! What colour is the apple?</div>
+  </div>
+  <div class="conv-line right">
+    <div class="conv-avatar a">👧</div>
+    <div class="conv-bubble">The apple is RED! 🍎</div>
+  </div>
+  <div class="conv-line">
+    <div class="conv-avatar b">👩</div>
+    <div class="conv-bubble">Very good! You are so clever! 🌟</div>
+  </div>
+</div>
+
+<!-- STAR SENTENCES -->
+<div class="sec-label">⭐ My Star Sentences — Learn One Each Day!</div>
+
+<div class="fun-banner" style="background:var(--sunPale);border:2px solid rgba(232,146,10,.28)">
+  <div class="fb-emoji">🌟</div>
+  <div class="fb-text">Try to learn <b>one new sentence every day</b>. By the end of the month you will know 30 sentences in English! Your parents and teacher will be so proud of you!</div>
+</div>
+
+<div class="phrase-group">
+  <div class="phrase-card" style="background:var(--sunPale);border-color:rgba(232,146,10,.30)"><div class="pc-emoji">☀️</div><div class="pc-body"><div class="pc-phrase" style="color:var(--sun)">Good morning! How are you?</div><div class="pc-when">Day 1 — every morning at school</div></div></div>
+  <div class="phrase-card" style="background:var(--skyPale);border-color:rgba(20,120,192,.25)"><div class="pc-emoji">🙋</div><div class="pc-body"><div class="pc-phrase" style="color:var(--sky)">My name is [your name]. I am from Kashmir.</div><div class="pc-when">Day 2 — tell people about yourself</div></div></div>
+  <div class="phrase-card" style="background:var(--greenPale);border-color:rgba(26,128,64,.22)"><div class="pc-emoji">🌈</div><div class="pc-body"><div class="pc-phrase" style="color:var(--green)">I like [colour]. It is my favourite colour!</div><div class="pc-when">Day 3 — talk about your favourite colour</div></div></div>
+  <div class="phrase-card" style="background:var(--pinkPale);border-color:rgba(192,40,128,.22)"><div class="pc-emoji">🐾</div><div class="pc-body"><div class="pc-phrase" style="color:var(--pink)">My favourite animal is the [animal].</div><div class="pc-when">Day 4 — talk about animals you love</div></div></div>
+  <div class="phrase-card" style="background:var(--purplePale);border-color:rgba(96,40,184,.20)"><div class="pc-emoji">🍎</div><div class="pc-body"><div class="pc-phrase" style="color:var(--purple)">I like to eat [food]. It is very tasty!</div><div class="pc-when">Day 5 — talk about food you enjoy</div></div></div>
+  <div class="phrase-card" style="background:var(--tealPale);border-color:rgba(10,136,120,.22)"><div class="pc-emoji">🏔️</div><div class="pc-body"><div class="pc-phrase" style="color:var(--teal)">I live in Kashmir. The mountains are beautiful!</div><div class="pc-when">Day 6 — be proud of where you come from!</div></div></div>
+  <div class="phrase-card" style="background:var(--sunPale);border-color:rgba(232,146,10,.28)"><div class="pc-emoji">🌟</div><div class="pc-body"><div class="pc-phrase" style="color:var(--sun)">I am learning English. I am doing great!</div><div class="pc-when">Day 7 — celebrate your own learning! 🎉</div></div></div>
+</div>
+
+</div><!-- /isay -->
+
+</div><!-- /page -->
+<script>
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={myworld:0,myday:1,playlearn:2,isay:3}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
