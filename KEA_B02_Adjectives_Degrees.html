@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B02 · Adjectives &amp; Degrees | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#FBF6F2;--bg2:#F3EAE2;--bg3:#E8D8CB;--white:#FFFCFA;
+  --ink:#1C0A00;--ink2:#321500;--muted:#7A5040;--dim:#B88868;--border:#DFC8B4;
+  --primary:#C04818;--primaryLt:#D85A22;--primaryPale:#FDF0EA;
+  --amber:#9A7000;--amberLt:#BF8A00;--amberPale:#FEF8DC;
+  --green:#1A6040;--greenLt:#248050;--greenPale:#E4F5EC;
+  --red:#9A1820;--redLt:#BE2028;--redPale:#FAEBEC;
+  --sky:#0A70A0;--skyPale:#E0F0FA;
+  --gold:#9A7800;--goldPale:#FFF3D0;
+  --purple:#5A1A88;--purplePale:#F2EAF8;
+  --teal:#0A7060;--tealPale:#E0F4EE;
+  --radius:12px;--shadow:0 2px 12px rgba(28,10,0,.09);--shadow-md:0 4px 20px rgba(28,10,0,.14);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:700px;margin:0 auto;padding:0 16px 80px}
+.hero{background:linear-gradient(135deg,#5A1A00 0%,#C04818 55%,#D87040 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 78% 18%,rgba(255,200,140,.10) 0%,transparent 52%),radial-gradient(ellipse at 8% 88%,rgba(255,240,180,.07) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;right:-24px;top:-24px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.5vw,32px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero-title span{color:#FFE0A8;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-o{background:rgba(255,220,140,.18);color:#FFE0A8}
+.chip-g{background:rgba(160,240,180,.12);color:#A0F0B8}
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(28,10,0,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 16px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.pane{display:none;padding-top:22px;animation:fadeUp .3s ease}.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.intro-box{background:var(--primaryPale);border:1.5px solid rgba(192,72,24,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.9}.intro-box p+p{margin-top:10px}
+.intro-box strong{color:var(--primary)}.intro-box em{color:var(--gold);font-style:normal;font-weight:700}
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent;user-select:none}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--primary)}
+.c-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:800;color:var(--ink);flex:1;line-height:1.3}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:3px}
+.c-arrow{font-size:13px;color:var(--dim);transition:transform .2s;flex-shrink:0;margin-left:4px}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:6px 18px 22px;border-top:1px solid var(--border)}.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body>p{font-size:16px;color:var(--ink2);line-height:1.9;margin:12px 0}.c-body strong{color:var(--primary);font-weight:700}
+.bl{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.eg-box{background:var(--greenPale);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:13px 16px;margin:12px 0}
+.eg-box .bl{color:var(--green)}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.75}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px;top:7px}
+.eg-box li b{color:var(--primary)}
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(154,112,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .bl{color:var(--amber)}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px;top:7px}
+.fact-box li b{color:var(--primary)}
+.trap-box{background:var(--redPale);border:1.5px solid rgba(154,24,32,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .bl{color:var(--red)}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red);top:7px}
+.rule-box{background:var(--skyPale);border:1.5px solid rgba(10,112,160,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .bl{color:var(--sky)}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.85}.rule-box strong{color:var(--sky)!important}
+.rule-box code{font-family:'Courier New',monospace;background:rgba(10,112,160,.10);border-radius:4px;padding:1px 6px;font-size:14px;color:var(--sky);font-weight:700}
+.analogy-box{background:var(--primaryPale);border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.analogy-box .bl{color:var(--primary)}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}.analogy-box strong{color:var(--primary)!important}
+.gold-box{background:var(--goldPale);border:1.5px solid rgba(154,120,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.gold-box .bl{color:var(--gold)}
+.gold-box ul{list-style:none;padding:0}
+.gold-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.gold-box li::before{content:'★';position:absolute;left:0;font-size:11px;color:var(--gold);top:8px}
+.gold-box li b{color:var(--primary)}
+.adj-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
+.adj-type-card{border-radius:12px;padding:14px 14px;border:1.5px solid transparent}
+.adj-type-card.c-desc{background:rgba(192,72,24,.07);border-color:rgba(192,72,24,.22)}
+.adj-type-card.c-size{background:rgba(10,112,160,.07);border-color:rgba(10,112,160,.20)}
+.adj-type-card.c-col {background:rgba(26,96,64,.07);border-color:rgba(26,96,64,.20)}
+.adj-type-card.c-num {background:rgba(154,120,0,.08);border-color:rgba(154,120,0,.22)}
+.adj-type-card.c-shp {background:rgba(90,26,136,.07);border-color:rgba(90,26,136,.18)}
+.adj-type-card.c-feel{background:rgba(192,72,24,.05);border-color:rgba(192,72,24,.14)}
+.atc-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.adj-type-card.c-desc .atc-label{color:var(--primary)}
+.adj-type-card.c-size .atc-label{color:var(--sky)}
+.adj-type-card.c-col  .atc-label{color:var(--green)}
+.adj-type-card.c-num  .atc-label{color:var(--gold)}
+.adj-type-card.c-shp  .atc-label{color:var(--purple)}
+.adj-type-card.c-feel .atc-label{color:var(--muted)}
+.atc-words{font-size:13.5px;color:var(--ink2);line-height:1.85}
+.atc-eg{font-size:12px;color:var(--dim);margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.07);font-style:italic}
+.pos-demo{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:12px 0}
+.pos-demo .pd-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.pos-demo .pd-row{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0;align-items:center}
+.wt{padding:7px 11px;font-size:15px;font-weight:700;border-radius:8px;line-height:1.3}
+.wt-n{background:rgba(10,112,160,.10);color:var(--sky);border:1px solid rgba(10,112,160,.20)}
+.wt-a{background:rgba(192,72,24,.12);color:var(--primary);border:1px solid rgba(192,72,24,.22)}
+.wt-v{background:rgba(26,96,64,.10);color:var(--green);border:1px solid rgba(26,96,64,.20)}
+.wt-x{background:var(--bg2);color:var(--muted);border:1px solid var(--border)}
+.wt-be{background:rgba(154,120,0,.10);color:var(--gold);border:1px solid rgba(154,120,0,.20)}
+.pos-demo .pd-note{font-size:13px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:9px 12px;border:1px solid var(--border);color:var(--ink2);line-height:1.65;vertical-align:top}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--primary)}.compare-table td em{color:var(--sky);font-style:normal;font-weight:700}
+/* DEGREES TAB */
+.deg-search{width:100%;padding:11px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;background:var(--white);color:var(--ink);margin-bottom:14px;outline:none}
+.deg-search:focus{border-color:var(--primary)}
+.deg-filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.deg-filter{font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .15s}
+.deg-filter.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.deg-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);background:var(--white)}
+.deg-table{width:100%;border-collapse:collapse;font-size:14px}
+.deg-table th{background:var(--ink);color:#FFE0A8;padding:10px 12px;text-align:left;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.deg-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.5;vertical-align:middle}
+.deg-table tr:hover td{background:var(--primaryPale)}
+.d-pos{color:var(--primary);font-weight:700}.d-com{color:var(--sky);font-weight:700}.d-sup{color:var(--green);font-weight:700}
+.d-tag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px;vertical-align:middle;white-space:nowrap}
+.d-tag-irr{background:rgba(192,72,24,.12);color:var(--primary)}
+.d-tag-short{background:rgba(10,112,160,.10);color:var(--sky)}
+.d-tag-long{background:rgba(26,96,64,.10);color:var(--green)}
+.deg-sec-hdr td{background:var(--ink2)!important;color:#A0E8FF;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:8px 12px!important;border-bottom:none!important}
+.deg-rules{display:grid;gap:12px;margin:16px 0}
+.dr-card{border-radius:var(--radius);padding:18px;border:2px solid transparent}
+.dr-card.short{background:rgba(10,112,160,.06);border-color:rgba(10,112,160,.20)}
+.dr-card.long{background:rgba(26,96,64,.06);border-color:rgba(26,96,64,.20)}
+.dr-card.irr{background:rgba(192,72,24,.06);border-color:rgba(192,72,24,.20)}
+.dr-title{font-size:14px;font-weight:800;margin-bottom:10px}
+.dr-card.short .dr-title{color:var(--sky)}.dr-card.long .dr-title{color:var(--green)}.dr-card.irr .dr-title{color:var(--primary)}
+.dr-formula{background:var(--ink);border-radius:8px;padding:10px 14px;font-size:14px;color:#FFE0A8;margin:10px 0;line-height:1.9}
+.dr-formula .fhi{color:#A0F0D0;font-weight:800}.dr-formula .flo{color:#FFE0A8;font-weight:800}.dr-formula .fsup{color:#90D8FF;font-weight:800}
+.dr-eg{font-size:14px;color:var(--ink2);line-height:1.9}
+.dr-eg b{color:var(--primary)}.dr-eg .cmp{color:var(--sky);font-weight:700}.dr-eg .sup{color:var(--green);font-weight:700}
+/* QUICK REF */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--primary);font-weight:900;font-size:20px;line-height:1.2}
+.ref-card li b{color:var(--ink);font-weight:700}.ref-card li em{color:var(--sky);font-style:normal;font-weight:700}
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--primary);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--primary)}.q-card.correct{border-left-color:var(--green)}.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}.diff-m{background:var(--amberPale);color:var(--amber)}.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}.q-text{font-size:17px;line-height:1.85;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--primaryPale)}.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--primary);background:var(--primaryPale);color:var(--primary)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{display:none;margin-top:12px;background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.exp-rule{font-size:13px;font-weight:800;color:var(--ink);background:var(--primaryPale);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:var(--bg)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:.5px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primaryLt)}
+.btn-ghost{background:var(--bg2);color:var(--ink2);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--bg3)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+#results{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md)}
+.res-hero{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.res-score{font-family:'Lora',serif;font-size:64px;font-weight:700;color:var(--primary);line-height:1}
+.res-grade{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 6px}
+.res-msg{font-size:15px;color:var(--muted)}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="hero">
+  <div class="hero-kicker">English · Lesson B02 · Kashmir English Academy</div>
+  <div class="hero-title">Adjectives &amp; <span>Degrees of Comparison</span></div>
+  <div class="hero-sub">What is an adjective? Types, position in sentences, and how to compare things using Positive, Comparative, and Superlative degrees — with rules, spelling patterns, and irregular forms. A clear foundation for Class 3–4.</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">Class 3–4</span>
+    <span class="chip chip-o">Describing Words</span>
+    <span class="chip chip-g">Positive</span>
+    <span class="chip chip-o">Comparative</span>
+    <span class="chip chip-g">Superlative</span>
+    <span class="chip chip-w">Irregular Forms</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">📖 Theory</button>
+  <button class="tab"     onclick="switchTab('degrees')">📊 Degrees</button>
+  <button class="tab"     onclick="switchTab('quickref')">⚡ Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">✏️ Quiz</button>
+</div>
+
+<!-- ══ THEORY ══════════════════════════════════════════════ -->
+<div class="pane on" id="theory">
+
+<div class="intro-box">
+  <p>Look around you. The snow in Gulmarg is <strong>white</strong>. The apple from Sopore is <strong>red</strong> and <strong>sweet</strong>. The Dal Lake is <strong>large</strong> and <strong>beautiful</strong>. The words in bold are <em>adjectives</em> — they describe the things around us.</p>
+  <p>An <strong>adjective</strong> is a word that <strong>describes a noun</strong>. It tells us <em>what kind</em>, <em>how many</em>, <em>which one</em>, or <em>what colour</em> the noun is. Without adjectives, language would be dull and vague.</p>
+</div>
+
+<div class="sec-label">Part 1 — What Is an Adjective?</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">🎨</div>
+    <div style="flex:1"><div class="c-title">Adjectives — Words That Describe Nouns</div><div class="c-sub">An adjective adds detail to a noun — it answers "what kind?", "how many?", etc.</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>An adjective <strong>modifies</strong> a noun — it sharpens our picture of the noun. It answers one of these questions:</p>
+    <div class="fact-box">
+      <div class="bl">→ Four Questions an Adjective Answers</div>
+      <ul>
+        <li><b>What kind?</b> — a <b>tall</b> mountain · a <b>sweet</b> mango · a <b>cold</b> wind</li>
+        <li><b>How many?</b> — <b>three</b> apples · <b>many</b> students · <b>few</b> birds</li>
+        <li><b>Which one?</b> — <b>this</b> book · <b>that</b> house · the <b>first</b> seat</li>
+        <li><b>What colour?</b> — a <b>red</b> flower · the <b>blue</b> sky · a <b>white</b> shawl</li>
+      </ul>
+    </div>
+    <div class="analogy-box">
+      <div class="bl">🔮 The Camera Analogy</div>
+      <p>Imagine describing a photo to someone who cannot see it. "There is a <strong>tall, dark-haired boy</strong> near a <strong>small, wooden boat</strong> on a <strong>calm, blue lake</strong>." Every bold word is an adjective. Adjectives are your <strong>zoom lens</strong> — they bring the picture into focus.</p>
+    </div>
+    <div class="eg-box">
+      <div class="bl">Spot the Adjective</div>
+      <ul>
+        <li>The <b>fluffy</b> clouds floated over the <b>green</b> valley. <span style="color:var(--muted);font-size:13px">— 2 adjectives</span></li>
+        <li>Arjun is a <b>clever</b> and <b>hardworking</b> student. <span style="color:var(--muted);font-size:13px">— 2 adjectives</span></li>
+        <li>She wore a <b>long</b>, <b>embroidered</b> phiran on a <b>cold</b> morning.</li>
+        <li>The <b>old</b> bridge near the <b>small</b> village was <b>beautiful</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 2 — Six Types of Adjectives</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--amberPale)">📦</div>
+    <div style="flex:1"><div class="c-title">Types of Adjectives</div><div class="c-sub">Quality · Size · Colour · Number · Shape · Feeling/Opinion</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>At Class 3–4 level, we focus on these <strong>six main types</strong>. Each type answers a different question about the noun it describes.</p>
+    <div class="adj-type-grid">
+      <div class="adj-type-card c-desc">
+        <div class="atc-label">Quality / Description</div>
+        <div class="atc-words">kind · brave · honest<br>gentle · clever · rude<br>beautiful · dirty · rough</div>
+        <div class="atc-eg">What kind? → a <strong>kind</strong> teacher</div>
+      </div>
+      <div class="adj-type-card c-size">
+        <div class="atc-label">Size</div>
+        <div class="atc-words">big · small · large<br>tall · short · long<br>tiny · huge · wide</div>
+        <div class="atc-eg">How big? → a <strong>tall</strong> building</div>
+      </div>
+      <div class="adj-type-card c-col">
+        <div class="atc-label">Colour</div>
+        <div class="atc-words">red · blue · green<br>yellow · white · black<br>golden · silver · pink</div>
+        <div class="atc-eg">What colour? → a <strong>red</strong> apple</div>
+      </div>
+      <div class="adj-type-card c-num">
+        <div class="atc-label">Number / Quantity</div>
+        <div class="atc-words">one · two · three…<br>many · few · some<br>all · several · no</div>
+        <div class="atc-eg">How many? → <strong>five</strong> students</div>
+      </div>
+      <div class="adj-type-card c-shp">
+        <div class="atc-label">Shape</div>
+        <div class="atc-words">round · square · flat<br>oval · curved · straight<br>triangular · narrow</div>
+        <div class="atc-eg">What shape? → a <strong>round</strong> stone</div>
+      </div>
+      <div class="adj-type-card c-feel">
+        <div class="atc-label">Feeling / Opinion</div>
+        <div class="atc-words">happy · sad · angry<br>excited · tired · scared<br>wonderful · terrible</div>
+        <div class="atc-eg">What feeling? → a <strong>happy</strong> child</div>
+      </div>
+    </div>
+    <div class="rule-box">
+      <div class="bl">Can a Noun Have More Than One Adjective?</div>
+      <p>Yes! When several adjectives describe one noun, they follow a natural order:<br><strong>Opinion → Size → Age → Shape → Colour → Material → Noun</strong><br>e.g. "a <code>beautiful</code> <code>tall</code> <code>old</code> <code>round</code> <code>golden</code> clock"</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 3 — Where Does an Adjective Sit?</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--skyPale)">📍</div>
+    <div style="flex:1"><div class="c-title">Two Positions of an Adjective</div><div class="c-sub">Attributive (before the noun) · Predicative (after a linking verb)</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>An adjective can appear in <strong>two positions</strong> in a sentence — both are grammatically correct and the meaning is the same.</p>
+    <div class="pos-demo">
+      <div class="pd-label">Position 1 — Attributive (adjective BEFORE the noun)</div>
+      <div class="pd-row">
+        <div class="wt wt-x">The</div><div class="wt wt-a">tall</div><div class="wt wt-n">boy</div><div class="wt wt-v">runs</div><div class="wt wt-x">fast.</div>
+      </div>
+      <div class="pd-row">
+        <div class="wt wt-x">A</div><div class="wt wt-a">cold</div><div class="wt wt-n">wind</div><div class="wt wt-v">blew</div><div class="wt wt-x">across the valley.</div>
+      </div>
+      <div class="pd-row">
+        <div class="wt wt-x">She</div><div class="wt wt-v">found</div><div class="wt wt-x">a</div><div class="wt wt-a">beautiful</div><div class="wt wt-n">shawl</div><div class="wt wt-x">.</div>
+      </div>
+      <div class="pd-note">🟠 = Adjective &nbsp;&nbsp; 🔵 = Noun it describes &nbsp;&nbsp; 🟢 = Verb &nbsp;&nbsp; ⬜ = Other words<br>Adjective sits <strong>directly before</strong> its noun.</div>
+    </div>
+    <div class="pos-demo">
+      <div class="pd-label">Position 2 — Predicative (adjective AFTER a linking verb)</div>
+      <div class="pd-row">
+        <div class="wt wt-x">The</div><div class="wt wt-n">boy</div><div class="wt wt-be">is</div><div class="wt wt-a">tall</div><div class="wt wt-x">.</div>
+      </div>
+      <div class="pd-row">
+        <div class="wt wt-x">The</div><div class="wt wt-n">wind</div><div class="wt wt-be">was</div><div class="wt wt-a">cold</div><div class="wt wt-x">.</div>
+      </div>
+      <div class="pd-row">
+        <div class="wt wt-x">The</div><div class="wt wt-n">shawl</div><div class="wt wt-be">looks</div><div class="wt wt-a">beautiful</div><div class="wt wt-x">.</div>
+      </div>
+      <div class="pd-note">🟡 = Linking verb (is / was / looks / seems / feels / sounds / smells / tastes)<br>Adjective comes <strong>after the linking verb</strong> and still describes the subject (noun).</div>
+    </div>
+    <div class="fact-box">
+      <div class="bl">→ Common Linking Verbs</div>
+      <ul>
+        <li><b>To be:</b> is · am · are · was · were (most common)</li>
+        <li><b>Sensory:</b> looks · sounds · feels · smells · tastes</li>
+        <li><b>Other:</b> seems · becomes · appears · remains · stays</li>
+        <li>After ALL these verbs → use an adjective (not an adverb!)</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="bl">⚑ Adjective vs Adverb — The Classic Mix-up</div>
+      <ul>
+        <li>Adjectives describe <b>nouns</b>: "She is a <b>quick</b> learner." → quick describes <em>learner</em></li>
+        <li>Adverbs describe <b>verbs</b>: "She learns <b>quickly</b>." → quickly describes <em>learns</em></li>
+        <li>❌ "She sings <b>beautiful</b>." → ✅ "She sings <b>beautifully</b>." (adverb after verb)</li>
+        <li>❌ "The flower smells <b>sweetly</b>." → ✅ "The flower smells <b>sweet</b>." (adjective after linking verb)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 4 — Identifying Adjectives</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--purplePale)">🔍</div>
+    <div style="flex:1"><div class="c-title">Three Quick Tests to Find an Adjective</div><div class="c-sub">Use these every time you are unsure whether a word is an adjective</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="gold-box">
+      <div class="bl">★ The Three Tests</div>
+      <ul>
+        <li><b>Test 1 — The "What kind?" question:</b> If the word answers "What kind of noun?", it is an adjective. "A <em>cold</em> day." → What kind of day? Cold ✅</li>
+        <li><b>Test 2 — The "very" test:</b> If you can put "very" before it and it makes sense, it is usually an adjective. "very <em>tall</em>" ✅ · "very <em>run</em>" ❌ (run = verb)</li>
+        <li><b>Test 3 — Position test:</b> It appears directly before a noun, or after a linking verb. "<em>beautiful</em> flower" ✅ · "The flower is <em>beautiful</em>" ✅</li>
+      </ul>
+    </div>
+    <div class="eg-box">
+      <div class="bl">Practice — Find All Adjectives</div>
+      <ul>
+        <li>"The <b>old</b>, <b>tired</b> camel sat near the <b>green</b> pond." → <span style="color:var(--muted);font-size:13px">3 adjectives</span></li>
+        <li>"Rohan is <b>clever</b> but also very <b>lazy</b>." → <span style="color:var(--muted);font-size:13px">2 adjectives</span></li>
+        <li>"She picked <b>five</b> <b>ripe</b> mangoes from the <b>tall</b> tree." → <span style="color:var(--muted);font-size:13px">3 adjectives</span></li>
+        <li>"The <b>cold</b>, <b>dark</b> night felt very <b>long</b>." → <span style="color:var(--muted);font-size:13px">3 adjectives</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 5 — An Introduction to Degrees</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--greenPale)">📊</div>
+    <div style="flex:1"><div class="c-title">Comparing Things — Three Degrees</div><div class="c-sub">Positive · Comparative · Superlative</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>We often use adjectives to <strong>compare</strong> people, places, and things. English has three <strong>degrees of comparison</strong>.</p>
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr><th style="background:#5A1A00">Degree</th><th style="background:#5A1A00">What It Means</th><th style="background:#5A1A00">Things Compared</th><th style="background:#5A1A00">Example</th></tr>
+        <tr><td><b>Positive</b></td><td>Just describing — no comparison</td><td>1 thing</td><td>Arjun is <em>tall</em>.</td></tr>
+        <tr><td><b>Comparative</b></td><td>One has MORE of the quality</td><td>2 things</td><td>Arjun is <em>taller than</em> Rohan.</td></tr>
+        <tr><td><b>Superlative</b></td><td>One has the MOST in a group</td><td>3+ things</td><td>Arjun is <em>the tallest</em> in the class.</td></tr>
+      </table>
+    </div>
+    <div class="analogy-box">
+      <div class="bl">🏔️ The Mountain Analogy</div>
+      <p>Three mountains near Srinagar. One is high — <strong>Positive</strong> (just describing). A second is higher than the first — <strong>Comparative</strong> (comparing two). The third is the highest of all — <strong>Superlative</strong> (best of the whole group).</p>
+    </div>
+    <div class="rule-box">
+      <div class="bl">Key Signal Words — Never Forget These</div>
+      <p><strong>Comparative</strong> → always followed by <code>than</code>: "taller <strong>than</strong>", "more beautiful <strong>than</strong>"<br><strong>Superlative</strong> → always preceded by <code>the</code>: "<strong>the</strong> tallest", "<strong>the</strong> most beautiful"</p>
+    </div>
+    <p style="margin-top:12px;font-size:15px;color:var(--muted)">👉 For full rules and a searchable list of all degrees, go to the <strong>Degrees</strong> tab above.</p>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ══ DEGREES ══════════════════════════════════════════════ -->
+<div class="pane" id="degrees">
+
+<div class="intro-box" style="margin-bottom:16px">
+  <p>Three rules govern how degrees are formed. Which rule to use depends on the <strong>length</strong> of the adjective and whether it is <em>regular or irregular</em>. Learn the rules, then use the searchable table below to look up any adjective.</p>
+</div>
+
+<div class="sec-label">The Three Formation Rules</div>
+<div class="deg-rules">
+
+  <div class="dr-card short">
+    <div class="dr-title">Rule 1 — Short Adjectives (1 syllable · most 2-syllable adjectives)</div>
+    <div class="dr-formula">
+      <span class="flo">Positive</span> → <span class="fhi">Positive + <strong>-er</strong></span> (Comparative) → <span class="fsup"><strong>the</strong> + Positive + <strong>-est</strong></span> (Superlative)
+    </div>
+    <div class="dr-eg">
+      <b>tall</b> → <span class="cmp">taller</span> → <span class="sup">the tallest</span><br>
+      <b>cold</b> → <span class="cmp">colder</span> → <span class="sup">the coldest</span><br>
+      <b>smart</b> → <span class="cmp">smarter</span> → <span class="sup">the smartest</span>
+    </div>
+    <div style="margin-top:12px">
+      <div class="rule-box" style="margin:0">
+        <div class="bl">Spelling Patterns for -er / -est</div>
+        <p>
+          <strong>Ends in silent -e:</strong> drop the e, add -r / -st → nice → nic<strong>er</strong> → nic<strong>est</strong><br>
+          <strong>CVC (consonant-vowel-consonant):</strong> double final consonant → big → big<strong>ger</strong> · hot → hot<strong>ter</strong><br>
+          <strong>Ends in -y (after consonant):</strong> y → i, then -er / -est → happy → happ<strong>ier</strong> → happ<strong>iest</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dr-card long">
+    <div class="dr-title">Rule 2 — Long Adjectives (3+ syllables · many 2-syllable -ful/-ous/-ing/-ed adjectives)</div>
+    <div class="dr-formula">
+      <span class="flo">Positive</span> → <span class="fhi"><strong>more</strong> + Positive</span> (Comparative) → <span class="fsup"><strong>the most</strong> + Positive</span> (Superlative)
+    </div>
+    <div class="dr-eg">
+      <b>beautiful</b> → <span class="cmp">more beautiful</span> → <span class="sup">the most beautiful</span><br>
+      <b>important</b> → <span class="cmp">more important</span> → <span class="sup">the most important</span><br>
+      <b>exciting</b> → <span class="cmp">more exciting</span> → <span class="sup">the most exciting</span>
+    </div>
+    <div style="margin-top:12px">
+      <div class="trap-box" style="margin:0">
+        <div class="bl">⚑ Never Double-Form</div>
+        <ul>
+          <li>❌ "more taller" / "more tallest" — never add more/most to a short adjective</li>
+          <li>❌ "beautifuler" — never add -er/-est to a long adjective</li>
+          <li>Quick rule: 1–2 syllables → Rule 1 · 3+ syllables → Rule 2</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="dr-card irr">
+    <div class="dr-title">Rule 3 — Irregular Adjectives (must be memorised — no rule applies!)</div>
+    <div class="dr-formula">
+      <span class="flo">Positive</span> → <span class="fhi">Completely Different Word</span> (Comparative) → <span class="fsup">Completely Different Word</span> (Superlative)
+    </div>
+    <div class="dr-eg">
+      <b>good</b> → <span class="cmp">better</span> → <span class="sup">the best</span><br>
+      <b>bad</b> → <span class="cmp">worse</span> → <span class="sup">the worst</span><br>
+      <b>many / much</b> → <span class="cmp">more</span> → <span class="sup">the most</span><br>
+      <b>little</b> → <span class="cmp">less</span> → <span class="sup">the least</span><br>
+      <b>far</b> → <span class="cmp">farther / further</span> → <span class="sup">the farthest / furthest</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="sec-label">Complete Degrees — Searchable &amp; Filterable</div>
+<input class="deg-search" type="text" placeholder="🔍  Search any adjective (e.g. happy, beautiful, good…)" oninput="filterDeg(this.value)" id="deg-search">
+<div class="deg-filter-bar">
+  <button class="deg-filter on" onclick="setFilter('all',this)">All</button>
+  <button class="deg-filter" onclick="setFilter('IRR',this)">Irregular Only</button>
+  <button class="deg-filter" onclick="setFilter('SHORT',this)">Short (−er/−est)</button>
+  <button class="deg-filter" onclick="setFilter('LONG',this)">Long (more/most)</button>
+</div>
+<div class="deg-wrap">
+  <table class="deg-table">
+    <thead>
+      <tr><th>Type</th><th class="d-pos">Positive</th><th class="d-com">Comparative</th><th class="d-sup">Superlative</th><th>Example Sentence</th></tr>
+    </thead>
+    <tbody id="deg-body"></tbody>
+  </table>
+</div>
+
+</div><!-- /degrees -->
+
+<!-- ══ QUICK REF ════════════════════════════════════════════ -->
+<div class="pane" id="quickref">
+<div class="ref-grid">
+  <div class="ref-card">
+    <div class="ref-card-title">🎨 What Is an Adjective?</div>
+    <ul>
+      <li>A word that <b>describes a noun</b> (person, place, animal, thing)</li>
+      <li>Answers: What kind? How many? Which one? What colour?</li>
+      <li><em>very test:</em> "very tall" ✅ → adjective · "very run" ❌ → not adjective</li>
+      <li>Examples: tall, red, five, round, happy, beautiful, cold</li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">📦 Six Types of Adjectives</div>
+    <ul>
+      <li><b>Quality:</b> kind, brave, clean, honest, beautiful</li>
+      <li><b>Size:</b> big, small, tall, short, tiny, huge, wide</li>
+      <li><b>Colour:</b> red, blue, green, golden, white, black</li>
+      <li><b>Number/Quantity:</b> one, many, few, all, some, several</li>
+      <li><b>Shape:</b> round, square, flat, oval, triangular</li>
+      <li><b>Feeling/Opinion:</b> happy, sad, wonderful, terrible</li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">📍 Two Positions of Adjectives</div>
+    <ul>
+      <li><b>Attributive</b> (before noun): a <em>tall</em> boy · a <em>cold</em> wind</li>
+      <li><b>Predicative</b> (after linking verb): The boy <em>is tall.</em> The wind <em>was cold.</em></li>
+      <li>Linking verbs: is/am/are/was/were · looks · seems · feels · sounds · smells · tastes</li>
+      <li>After a verb of action → need <b>adverb</b>, not adjective: runs <em>quickly</em></li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">📊 Three Degrees of Comparison</div>
+    <ul>
+      <li><b>Positive:</b> just describing — "tall"</li>
+      <li><b>Comparative:</b> 2 things, use <em>than</em> → "taller than"</li>
+      <li><b>Superlative:</b> 3+ things, use <em>the</em> → "the tallest"</li>
+      <li>Comparative always needs <em>than</em> · Superlative always needs <em>the</em></li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">📐 Formation Rules</div>
+    <ul>
+      <li><b>Short (1–2 syllable):</b> + -er / -est → cold → colder → coldest</li>
+      <li><b>Ends in -e:</b> + -r / -st → nice → nicer → nicest</li>
+      <li><b>CVC pattern:</b> double final consonant → big → bigger → biggest</li>
+      <li><b>Ends in -y:</b> y→i + er/est → happy → happier → happiest</li>
+      <li><b>Long (3+ syllable):</b> more / the most + adj → more beautiful</li>
+      <li>❌ Never: "more taller" · "beautifuler" · "more tallest"</li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">⚠️ Irregular Degrees — Memorise These</div>
+    <ul>
+      <li><b>good</b> → <em>better</em> → <em>the best</em></li>
+      <li><b>bad</b> → <em>worse</em> → <em>the worst</em></li>
+      <li><b>many / much</b> → <em>more</em> → <em>the most</em></li>
+      <li><b>little</b> (quantity) → <em>less</em> → <em>the least</em></li>
+      <li><b>far</b> → <em>farther / further</em> → <em>the farthest / furthest</em></li>
+      <li><b>old</b> (family) → <em>elder</em> → <em>the eldest</em></li>
+    </ul>
+  </div>
+  <div class="ref-card">
+    <div class="ref-card-title">⚑ Critical Rules — Never Forget</div>
+    <ul>
+      <li>Comparative + <b>than</b>: "taller <em>than</em>" — the "than" is compulsory</li>
+      <li>Superlative + <b>the</b>: "<em>the</em> tallest" — the "the" is compulsory</li>
+      <li>❌ "more taller" → ✅ "taller" (short adj: only -er)</li>
+      <li>❌ "beautifuler" → ✅ "more beautiful" (long adj: only more)</li>
+      <li>❌ "She sings beautiful." → ✅ "She sings <em>beautifully</em>."</li>
+      <li>❌ "more better" / "more best" — good/better/best: never add more/most</li>
+    </ul>
+  </div>
+</div>
+</div><!-- /quickref -->
+
+<!-- ══ QUIZ ═════════════════════════════════════════════════ -->
+<div class="pane" id="quiz">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a" id="s-tot">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+  <div id="results"></div>
+  <div id="q-area"></div>
+</div>
+
+</div><!-- /page -->
+<script>
+/* ── DEGREE DATA ─────────────────────────────────────── */
+const DEGREES=[
+  ['IRR','good','better','the best','Kashmiri saffron is the best in the world.'],
+  ['IRR','bad','worse','the worst','That was the worst storm the valley had seen.'],
+  ['IRR','many','more','the most','She has the most books in the class.'],
+  ['IRR','much','more','the most','He needs more time to finish his work.'],
+  ['IRR','little','less','the least','She ate the least food at dinner.'],
+  ['IRR','far','farther / further','the farthest / furthest','Leh is the farthest city from Srinagar.'],
+  ['IRR','old (family)','elder','the eldest','He is the eldest son in the family.'],
+  ['SHORT','tall','taller','the tallest','Arjun is the tallest student in the class.'],
+  ['SHORT','short','shorter','the shortest','The shortest route is through the pine valley.'],
+  ['SHORT','big','bigger','the biggest','The biggest apple in the basket was bright red.'],
+  ['SHORT','small','smaller','the smallest','This is the smallest house on the street.'],
+  ['SHORT','long','longer','the longest','The Indus is the longest river in the region.'],
+  ['SHORT','cold','colder','the coldest','January is the coldest month in Srinagar.'],
+  ['SHORT','hot','hotter','the hottest','This is the hottest summer the village has seen.'],
+  ['SHORT','fast','faster','the fastest','A cheetah is the fastest land animal.'],
+  ['SHORT','slow','slower','the slowest','The tortoise is the slowest but the wisest.'],
+  ['SHORT','hard','harder','the hardest','Diamond is the hardest natural substance.'],
+  ['SHORT','soft','softer','the softest','Pashmina wool is the softest fibre known.'],
+  ['SHORT','bright','brighter','the brightest','She is the brightest student in the batch.'],
+  ['SHORT','dark','darker','the darkest','The cave was darker than the night outside.'],
+  ['SHORT','clean','cleaner','the cleanest','The river was cleaner before the rains came.'],
+  ['SHORT','cheap','cheaper','the cheapest','That market has the cheapest fruits in town.'],
+  ['SHORT','heavy','heavier','the heaviest','An elephant is heavier than any other land animal.'],
+  ['SHORT','light','lighter','the lightest','Feathers are lighter than stones.'],
+  ['SHORT','easy','easier','the easiest','This is the easiest question on the paper.'],
+  ['SHORT','busy','busier','the busiest','Monday is the busiest day of the week.'],
+  ['SHORT','happy','happier','the happiest','She is the happiest child I know.'],
+  ['SHORT','funny','funnier','the funniest','That was the funniest joke I had heard.'],
+  ['SHORT','pretty','prettier','the prettiest','The garden looked prettier after the rain.'],
+  ['SHORT','early','earlier','the earliest','She always arrives the earliest.'],
+  ['SHORT','late','later','the latest','He woke up later than everyone else.'],
+  ['SHORT','wide','wider','the widest','The Wular Lake is the widest lake in India.'],
+  ['SHORT','brave','braver','the bravest','He was the bravest soldier in the regiment.'],
+  ['SHORT','wise','wiser','the wisest','The oldest teacher was the wisest of all.'],
+  ['SHORT','kind','kinder','the kindest','She is the kindest person I have ever met.'],
+  ['SHORT','strong','stronger','the strongest','An eagle has a stronger grip than a hawk.'],
+  ['SHORT','weak','weaker','the weakest','The weakest link breaks first.'],
+  ['SHORT','young','younger','the youngest','She is the youngest member of the team.'],
+  ['SHORT','old','older','the oldest','This is the oldest mosque in the city.'],
+  ['SHORT','near','nearer','the nearest','Where is the nearest hospital?'],
+  ['SHORT','high','higher','the highest','Mount Everest is the highest peak in the world.'],
+  ['SHORT','low','lower','the lowest','The lowest point of the valley was flooded.'],
+  ['SHORT','sweet','sweeter','the sweetest','Honey is sweeter than sugar.'],
+  ['SHORT','fresh','fresher','the freshest','The freshest vegetables come from the valley.'],
+  ['SHORT','great','greater','the greatest','He is the greatest poet of his era.'],
+  ['SHORT','fine','finer','the finest','Kashmiri saffron is the finest in the world.'],
+  ['SHORT','thick','thicker','the thickest','The thickest wall was in the old fort.'],
+  ['SHORT','thin','thinner','the thinnest','Paper is thinner than cardboard.'],
+  ['SHORT','loud','louder','the loudest','The thunder was louder this time.'],
+  ['SHORT','safe','safer','the safest','This is the safest path down the hill.'],
+  ['SHORT','nice','nicer','the nicest','She gave the nicest gift I received.'],
+  ['LONG','beautiful','more beautiful','the most beautiful','The Dal Lake is the most beautiful lake I have seen.'],
+  ['LONG','important','more important','the most important','Health is more important than wealth.'],
+  ['LONG','difficult','more difficult','the most difficult','This was the most difficult exam of the year.'],
+  ['LONG','interesting','more interesting','the most interesting','That book was more interesting than the film.'],
+  ['LONG','exciting','more exciting','the most exciting','The match was the most exciting of the season.'],
+  ['LONG','dangerous','more dangerous','the most dangerous','Speeding is more dangerous than people think.'],
+  ['LONG','comfortable','more comfortable','the most comfortable','This chair is the most comfortable in the room.'],
+  ['LONG','expensive','more expensive','the most expensive','Gold is more expensive than silver.'],
+  ['LONG','colourful','more colourful','the most colourful','The festival was the most colourful event of the year.'],
+  ['LONG','powerful','more powerful','the most powerful','The river was more powerful after the rains.'],
+  ['LONG','careful','more careful','the most careful','She is the most careful driver I know.'],
+  ['LONG','helpful','more helpful','the most helpful','The teacher was more helpful than I expected.'],
+  ['LONG','popular','more popular','the most popular','Cricket is the most popular sport in India.'],
+  ['LONG','wonderful','more wonderful','the most wonderful','It was the most wonderful trip of our lives.'],
+  ['LONG','generous','more generous','the most generous','She is the most generous person in our village.'],
+  ['LONG','patient','more patient','the most patient','The most patient student always learns the most.'],
+  ['LONG','terrible','more terrible','the most terrible','That was the most terrible noise I had heard.'],
+  ['LONG','peaceful','more peaceful','the most peaceful','The village was more peaceful than the city.'],
+];
+let degFilter='all',degSearch='';
+function renderDegrees(){
+  const body=document.getElementById('deg-body');
+  body.innerHTML='';
+  let data=DEGREES.filter(d=>{
+    const mf=degFilter==='all'||d[0]===degFilter;
+    const q=degSearch.toLowerCase();
+    const ms=!q||d[1].toLowerCase().includes(q)||d[2].toLowerCase().includes(q)||d[3].toLowerCase().includes(q)||d[4].toLowerCase().includes(q);
+    return mf&&ms;
+  });
+  if(!data.length){body.innerHTML=`<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--muted);font-style:italic">No adjectives found. Try a different search.</td></tr>`;return;}
+  const groups={IRR:[],SHORT:[],LONG:[]};
+  data.forEach(d=>groups[d[0]].push(d));
+  const labels={IRR:'⚑ Irregular — must be memorised',SHORT:'📐 Short Adjectives — -er (comparative) · -est (superlative)',LONG:'📝 Long Adjectives — more (comparative) · the most (superlative)'};
+  const tc={IRR:'d-tag-irr',SHORT:'d-tag-short',LONG:'d-tag-long'};
+  const tt={IRR:'IRREGULAR',SHORT:'−er / −est',LONG:'more / most'};
+  ['IRR','SHORT','LONG'].forEach(type=>{
+    if(!groups[type].length)return;
+    body.innerHTML+=`<tr class="deg-sec-hdr"><td colspan="5">${labels[type]}</td></tr>`;
+    groups[type].forEach(d=>{
+      body.innerHTML+=`<tr><td><span class="d-tag ${tc[type]}">${tt[type]}</span></td><td class="d-pos">${d[1]}</td><td class="d-com">${d[2]}</td><td class="d-sup">${d[3]}</td><td style="font-size:13px;color:var(--muted);font-style:italic">${d[4]}</td></tr>`;
+    });
+  });
+}
+function filterDeg(q){degSearch=q;renderDegrees();}
+function setFilter(f,btn){degFilter=f;document.querySelectorAll('.deg-filter').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderDegrees();}
+renderDegrees();
+
+/* ── QUIZ ─────────────────────────────────────────────── */
+const QS=[
+  {d:'EASY',e:'Class 3–4 · B02',q:'Which word is an adjective in: "The tall boy climbed the old tree."?',opts:['boy','climbed','tall and old','tree'],ans:2,rule:'Adjectives describe nouns. "tall" describes boy; "old" describes tree.',exp:'"tall" and "old" are both adjectives — they describe the nouns "boy" and "tree" respectively. Adjectives answer "what kind of noun?": tall boy (what kind of boy?) · old tree (what kind of tree?). "boy" and "tree" are nouns. "climbed" is a verb.'},
+  {d:'EASY',e:'Class 3–4 · B02',q:'What type of adjective is "three" in: "She bought three apples"?',opts:['Colour adjective','Shape adjective','Number adjective','Quality adjective'],ans:2,rule:'"three" tells us HOW MANY — it is a Number adjective.',exp:'"three" answers the question "how many apples?" — so it is a Number adjective. Colour adjectives tell us what colour (red, blue). Shape adjectives tell us what shape (round, square). Quality adjectives tell us what kind (sweet, ripe, beautiful).'},
+  {d:'EASY',e:'Class 3–4 · B02',q:'"The sky is blue." — What position is the adjective "blue" in?',opts:['Attributive — directly before the noun','Predicative — after a linking verb','Before the verb','Inside the object'],ans:1,rule:'Predicative position: adjective comes after a linking verb (is/was/looks etc.)',exp:'"blue" comes after the linking verb "is" and describes the subject "sky". This is the predicative position. Compare with attributive: "the blue sky" — where "blue" comes directly before "sky". Both are correct, just different positions.'},
+  {d:'EASY',e:'Class 3–4 · B02',q:'What is the comparative degree of "cold"?',opts:['coldest','most cold','colder','more cold'],ans:2,rule:'"cold" is a short 1-syllable adjective → add -er for comparative.',exp:'"cold" has one syllable, so it follows Rule 1: add -er for comparative, -est for superlative. cold → colder → the coldest. "most cold" is wrong — never use "most" with a short single-syllable adjective. "more cold" is also wrong for the same reason.'},
+  {d:'EASY',e:'Class 3–4 · B02',q:'What is the superlative degree of "good"?',opts:['more good','the goodest','the most good','the best'],ans:3,rule:'"good" is irregular: good → better → the best. Must be memorised.',exp:'"good" is an irregular adjective — it does not follow Rule 1 or Rule 2. The three degrees must be memorised: good (Positive) → better (Comparative) → the best (Superlative). "goodest" and "more good" and "most good" are all common errors — none of them is correct.'},
+  {d:'MEDIUM',e:'Class 3–4 · B02',q:'Which sentence uses the comparative correctly?',opts:['Rohan is more taller than Arjun.','Rohan is tallest than Arjun.','Rohan is taller than Arjun.','Rohan is the taller of all students.'],ans:2,rule:'Comparative of short adj: "taller" + "than". No "more" needed. No "the" for comparative.',exp:'"taller than" is correct. "tall" is a 1-syllable short adjective → use -er only (not "more"). Option A adds both "more" AND "-er" — double comparative = wrong. Option B uses "tallest" (superlative) with "than" — wrong, superlative does not use "than". Option D uses "the taller" — you use "the + comparative" only when comparing exactly two specific things.'},
+  {d:'MEDIUM',e:'Class 3–4 · B02',q:'What is the correct comparative of "beautiful"?',opts:['beautifuler','more beautiful','beautifullier','most beautiful'],ans:1,rule:'"beautiful" has 3 syllables → use "more" for comparative (Rule 2).',exp:'"beautiful" has three syllables (beau-ti-ful), so it follows Rule 2: more beautiful (comparative) and the most beautiful (superlative). Never add -er/-est to a long 3-syllable adjective. "beautifuler" and "beautifullier" are not real English words. "most beautiful" would be the superlative form, not comparative.'},
+  {d:'MEDIUM',e:'Class 3–4 · B02',q:'Fill in the blank: "Mount Everest is ___ mountain in the world."',opts:['a high','higher than','the highest','more high'],ans:2,rule:'Superlative = "the" + adj + "-est". Used when comparing 3 or more things.',exp:'We are comparing Mount Everest to ALL mountains in the world — a group of 3 or more = superlative. "high" is 1 syllable → the highest. The superlative always uses "the" before it. "higher than" is comparative (comparing 2 things). "more high" is wrong — short adjectives use -er/-est, never more/most.'},
+  {d:'MEDIUM',e:'Class 3–4 · B02',q:'Which sentence has an adjective in the ATTRIBUTIVE position?',opts:['The river looks wide.','The tea tastes sweet.','A tall minaret stood near the mosque.','She seemed very tired.'],ans:2,rule:'Attributive = adjective directly before a noun — no linking verb between them.',exp:'"A tall minaret" — "tall" comes directly before the noun "minaret". That is the attributive position. In options A, B, and D: "wide", "sweet", and "tired" all come after a linking verb (looks, tastes, seemed) — that is the predicative position.'},
+  {d:'MEDIUM',e:'Class 3–4 · B02',q:'What is the spelling rule for the comparative of "big"?',opts:['bigger — drop the g before -er','biger — just add -er','bigger — double the g before -er','more big — it is a long adjective'],ans:2,rule:'CVC rule: when an adjective ends consonant-vowel-consonant, double the final consonant.',exp:'"big" ends in consonant-vowel-consonant (b-i-g). Rule: double the final consonant before adding -er or -est. big → bigger → biggest. Same pattern: hot → hotter · thin → thinner · fat → fatter · sad → sadder. "biger" (single g) is a misspelling. "more big" is wrong — "big" is a short 1-syllable adjective.'},
+  {d:'HARD',e:'Class 3–4 · B02',q:'Which sentence is INCORRECT?',opts:['She is the most intelligent girl in the class.','This is the baddest day of my life.','He runs faster than his brother.','Srinagar is more beautiful than many cities.'],ans:1,rule:'"bad" is irregular: bad → worse → the worst. "baddest" does not exist.',exp:'"the baddest" is completely incorrect — "bad" is an irregular adjective. Its degrees are: bad → worse → the worst. "baddest" is not a word in standard English. "the most intelligent" is correct (long adj → most). "faster than" is correct (short adj → -er + than). "more beautiful" is correct (long adj → more).'},
+  {d:'HARD',e:'Class 3–4 · B02',q:'Choose the sentence with the CORRECT use of an adjective.',opts:['She dances beautiful.','He is a quick learner.','The flower smells sweetly.','Run fastly to the gate.'],ans:1,rule:'Adjectives go before nouns or after linking verbs — not after action verbs.',exp:'"He is a quick learner" — "quick" is an adjective correctly placed in attributive position before the noun "learner". "She dances beautiful" — "dances" is an action verb needing an adverb: "beautifully". "The flower smells sweetly" — "smells" is a linking verb here, so we need the adjective "sweet", not the adverb "sweetly". "fastly" is not a real English word — the correct adverb is just "fast".'},
+  {d:'HARD',e:'Class 3–4 · B02',q:'What is the correct comparative of "happy"?',opts:['happyer','more happier','happier','most happy'],ans:2,rule:'"happy" ends in consonant + y → change y to i, add -er → happier.',exp:'"happy" ends in consonant + y (p + y). Rule: change the "y" to "i" and add "-er" for comparative / "-est" for superlative. happy → happier → the happiest. "happyer" keeps the y (wrong spelling). "more happier" is a double comparative (wrong). "most happy" is the wrong structure — it should be "the happiest".'},
+  {d:'HARD',e:'Class 3–4 · B02',q:'The comparative of "little" meaning a small amount (quantity) is:',opts:['littler','more little','lesser','less'],ans:3,rule:'"little" (quantity) is irregular: little → less → the least.',exp:'"little" used for quantity is irregular: little → less → the least. Example: "She has less time than I do." "littler" and "more little" are used only for physical size (a littler box), but for quantity we always say "less". "lesser" exists but is a slightly different word used in formal contexts meaning "not as great in importance".'},
+  {d:'HARD',e:'Class 3–4 · B02',q:'Which adjective order is CORRECT before a noun?',opts:['a wooden old small box','a small old wooden box','an old wooden small box','a small wooden old box'],ans:1,rule:'Adjective order: Opinion/Size → Age → Shape → Colour → Material → Noun.',exp:'English has a natural fixed order for multiple adjectives before a noun: Opinion → Size → Age → Shape → Colour → Material → Noun. So: "a small (size) old (age) wooden (material) box" is the correct, natural order. All other options change this order and sound unnatural to a native speaker, even if the meaning is technically clear.'},
+];
+const answers=new Array(QS.length).fill(null),revealed=new Array(QS.length).fill(false),LABS=['A','B','C','D'];
+function build(){
+  const area=document.getElementById('q-area');area.innerHTML='';
+  QS.forEach((q,i)=>{
+    const dc=q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div=document.createElement('div');div.className='q-card';div.id=`qc${i}`;
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${String(i+1).padStart(2,'0')}</span><span class="q-diff ${dc}">${q.d}</span><span class="q-exam">${q.e}</span></div><div class="q-body"><div class="q-text">${q.q}</div><div class="opts" id="opts${i}">${q.opts.map((o,j)=>`<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})"><span class="opt-lbl">${LABS[j]}</span>${o}</button>`).join('')}</div><div class="exp-panel" id="ex${i}"><div class="exp-tag">Explanation</div><div class="exp-rule">${q.rule}</div><p>${q.exp}</p></div></div><div class="q-foot"><span style="font-size:11px;color:var(--dim);font-weight:700">English · B02</span><span id="ai${i}" class="q-status">—</span></div>`;
+    area.appendChild(div);
+  });
+}
+function pick(qi,oi){
+  if(revealed[qi])return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{b.classList.remove('sel');if(j===oi)b.classList.add('sel');});
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);ai.textContent=`Selected: ${LABS[oi]}`;ai.style.color='var(--primary)';
+  updateStats();
+}
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});
+  document.getElementById('s-cor').textContent=c;document.getElementById('s-wrg').textContent=w;
+}
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel');});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null&&answers[i]!==q.ans)opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();showResults(cor,wrg,skp);
+}
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent 🌟';msg='Outstanding! You have a strong grasp of adjectives and degrees.'}
+  else if(pct>=70){grade='Good 👍';msg='Well done! Review the questions you got wrong and try again.'}
+  else if(pct>=50){grade='Good Try 📚';msg='Good effort! Read the Theory and Degrees tabs once more.'}
+  else{grade='Keep Practising 💪';msg="Don't worry — go through the lesson carefully and try again. You can do it!"}
+  const res=document.getElementById('results');
+  res.innerHTML=`<div class="res-hero"><div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div><div class="res-grade">${grade} · ${pct}%</div><div class="res-msg">${msg}</div></div><div class="res-stats"><div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div><div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div><div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div><div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div></div><div style="text-align:center;margin:16px 0"><button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button></div>`;
+  res.style.display='block';res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetQuiz(){
+  answers.fill(null);revealed.fill(false);build();
+  document.getElementById('results').style.display='none';document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,degrees:1,quickref:2,quiz:3}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+build();
+</script>
+</body>
+</html>

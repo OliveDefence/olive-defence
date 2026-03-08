@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C04 · Tenses (Time Concept) | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:        #F6F4F9;
+  --bg2:       #EDE9F4;
+  --bg3:       #E2DBF0;
+  --white:     #FDFCFF;
+  --ink:       #160D2A;
+  --ink2:      #2D1E4A;
+  --muted:     #6B5A88;
+  --dim:       #9E8EBA;
+  --border:    #D4CBEA;
+
+  /* Primary — deep indigo/violet */
+  --primary:      #3D1F8A;
+  --primaryLt:    #5230AD;
+  --primaryPale:  #EDE9F8;
+
+  /* Accent 1 — warm amber (time markers) */
+  --amber:        #8A5A08;
+  --amberLt:      #B07210;
+  --amberPale:    #FEF5DC;
+
+  /* Accent 2 — forest green (examples / correct) */
+  --green:        #1E5C38;
+  --greenLt:      #276E46;
+  --greenPale:    #E6F4ED;
+
+  /* Accent 3 — crimson (warnings/traps) */
+  --red:          #7A1A2E;
+  --redLt:        #9C2240;
+  --redPale:      #FAEAED;
+
+  /* Accent 4 — teal (past tense) */
+  --blue:         #0F4D72;
+  --bluePale:     #E5F0F8;
+
+  /* Accent 5 — plum (future tense) */
+  --purple:       #5A1F72;
+  --purplePale:   #F2E8F8;
+
+  --radius:    12px;
+  --shadow:    0 2px 12px rgba(22,13,42,.08);
+  --shadow-md: 0 4px 20px rgba(22,13,42,.13);
+}
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.75;
+  min-height:100vh;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#1A0A3D 0%,#3D1F8A 55%,#5230AD 100%);
+  margin:0 -16px;
+  padding:28px 20px 26px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 80% 20%,rgba(200,180,255,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 5% 85%,rgba(180,220,255,.05) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;right:-20px;top:-20px;
+  width:180px;height:180px;
+  border-radius:50%;
+  background:rgba(255,255,255,.03);
+  pointer-events:none;
+}
+.hero-kicker{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.52);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{
+  font-family:'Lora',serif;
+  font-size:clamp(24px,5.5vw,34px);
+  font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;
+}
+.hero-title span{color:#C8B4FF;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-r{background:rgba(255,200,160,.16);color:#FFCDB2}
+.chip-g{background:rgba(120,220,160,.12);color:#90E8A8}
+.chip-b{background:rgba(140,200,255,.14);color:#A8D8FF}
+
+/* ── TAB BAR ──────────────────────────────────────────────────── */
+.tab-bar{
+  position:sticky;top:0;z-index:50;
+  background:var(--white);border-bottom:2px solid var(--border);
+  margin:0 -16px;display:flex;overflow-x:auto;
+  box-shadow:0 2px 8px rgba(22,13,42,.07);
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;padding:14px 18px;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted);
+  border:none;background:transparent;cursor:pointer;
+  border-bottom:3px solid transparent;margin-bottom:-2px;
+  transition:all .2s;white-space:nowrap;
+}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+
+/* ── PANES ────────────────────────────────────────────────────── */
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.sec-label{
+  font-size:10px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--primary);
+  margin:28px 0 12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── INTRO BOX ────────────────────────────────────────────────── */
+.intro-box{
+  background:var(--primaryPale);border:1.5px solid rgba(61,31,138,.18);
+  border-radius:var(--radius);padding:20px;margin-bottom:8px;
+}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.85}
+.intro-box p+p{margin-top:10px}
+.intro-box strong{color:var(--primary)}
+
+/* ── CONCEPT CARDS (collapsible) ──────────────────────────────── */
+.c-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:10px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.c-head{
+  display:flex;align-items:center;gap:12px;padding:16px 18px;
+  cursor:pointer;border-left:4px solid transparent;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--primary)}
+.c-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}
+.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}
+.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--primary);font-weight:700}
+.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── CONTENT BOXES ────────────────────────────────────────────── */
+.fact-box{
+  background:var(--amberPale);border:1.5px solid rgba(138,90,8,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.fact-box .fb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{
+  font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;
+  position:relative;line-height:1.7;
+}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+
+.eg-box{
+  background:var(--greenPale);border-left:4px solid var(--green);
+  border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;
+}
+.eg-box .eg-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--green);text-transform:uppercase;margin-bottom:6px;
+}
+.eg-box p{font-size:15px;color:var(--ink2);line-height:1.75}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+
+.trap-box{
+  background:var(--redPale);border:1.5px solid rgba(122,26,46,.18);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.trap-box .tr-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--red);text-transform:uppercase;margin-bottom:8px;
+}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}
+.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+
+.rule-box{
+  background:var(--bluePale);border:1.5px solid rgba(15,77,114,.15);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.rule-box .rl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:8px;
+}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.rule-box strong{color:var(--blue)}
+
+.purple-box{
+  background:var(--purplePale);border:1.5px solid rgba(90,31,114,.15);
+  border-radius:10px;padding:16px 18px;margin:14px 0;
+}
+.purple-box .pl-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--purple);text-transform:uppercase;margin-bottom:8px;
+}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+
+.analogy-box{
+  background:#EBF3FA;border-left:4px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;
+}
+.analogy-box .an-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:6px;
+}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+
+.primary-box{
+  background:var(--primaryPale);border-left:4px solid var(--primary);
+  border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0;
+}
+.primary-box .pb-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  color:var(--primary);text-transform:uppercase;margin-bottom:6px;
+}
+.primary-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.primary-box strong{color:var(--primary)}
+
+/* ── TIME-MARKER PILL — special element for this lesson ────────── */
+.tm-pill{
+  display:inline-block;
+  background:var(--amberPale);border:1.5px solid rgba(138,90,8,.25);
+  border-radius:20px;padding:2px 10px;
+  font-size:13px;font-weight:800;color:var(--amber);
+  font-family:'Nunito',sans-serif;
+}
+.tm-green{background:var(--greenPale);border-color:rgba(30,92,56,.22);color:var(--green)}
+.tm-blue{background:var(--bluePale);border-color:rgba(15,77,114,.20);color:var(--blue)}
+.tm-purple{background:var(--purplePale);border-color:rgba(90,31,114,.20);color:var(--purple)}
+
+/* ── TENSE FORMULA STRIP ───────────────────────────────────────── */
+.formula-strip{
+  background:var(--ink);border-radius:10px;
+  padding:13px 16px;margin:12px 0;
+  font-family:'Lora',serif;font-size:15px;
+  color:#E8E0FF;line-height:1.75;
+}
+.formula-strip .fs-label{
+  font-family:'Nunito',sans-serif;
+  font-size:10px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(200,180,255,.6);
+  margin-bottom:6px;
+}
+.formula-strip .fs-hi{color:#C8B4FF;font-weight:700}
+.formula-strip .fs-time{color:#FFD580;font-weight:700}
+.formula-strip .fs-past{color:#80D8FF;font-weight:700}
+.formula-strip .fs-future{color:#B8F0C0;font-weight:700}
+
+/* sentence transform row */
+.sent-row{
+  display:flex;flex-direction:column;gap:3px;
+  background:var(--bg);border-radius:9px;
+  padding:11px 14px;margin:8px 0;
+  border:1px solid var(--border);
+  font-size:15px;
+}
+.sent-row .sr-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:2px}
+.sent-row .sr-time{color:var(--amber);font-weight:800}
+.sent-row .sr-verb{color:var(--primary);font-weight:800}
+.sent-row .sr-note{font-size:13px;color:var(--muted);margin-top:3px}
+
+/* journey strip */
+.journey{margin:16px 0;display:flex;flex-direction:column;gap:0}
+.j-step{display:flex;align-items:stretch;gap:14px}
+.j-line{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:28px}
+.j-dot{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;flex-shrink:0;margin-top:2px;
+}
+.j-connector{width:2px;flex:1;background:var(--border);margin:2px 0}
+.j-step:last-child .j-connector{display:none}
+.j-content{padding:2px 0 18px;flex:1}
+.j-title{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:3px}
+.j-desc{font-size:14.5px;color:var(--ink2);line-height:1.7}
+.j-desc strong{color:var(--primary)}
+.j-desc em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── TABLES ───────────────────────────────────────────────────── */
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{
+  background:var(--primary);color:#fff;
+  padding:10px 12px;text-align:left;
+  font-size:13px;font-weight:700;letter-spacing:.5px;
+}
+.compare-table td{
+  padding:10px 12px;border:1px solid var(--border);
+  color:var(--ink2);vertical-align:top;line-height:1.65;
+}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--primary)}
+.compare-table td em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── QUICK REF ────────────────────────────────────────────────── */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+}
+.ref-card-title{
+  font-size:11px;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:var(--primary);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{
+  font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;
+  position:relative;line-height:1.65;
+  border-bottom:1px solid var(--bg2);
+}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--primary);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}
+.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+
+/* ── QUIZ ─────────────────────────────────────────────────────── */
+.quiz-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:16px;box-shadow:var(--shadow);
+}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--primary);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+.prog-wrap{margin-bottom:20px}
+.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+
+.q-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;
+  box-shadow:var(--shadow);overflow:hidden;
+  border-left:4px solid transparent;transition:border-color .15s;
+}
+.q-card.answered{border-left-color:var(--primary)}
+.q-card.correct{border-left-color:var(--green)}
+.q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+
+.q-body{padding:16px}
+.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  cursor:pointer;display:flex;align-items:flex-start;gap:12px;
+  font-size:16px;color:var(--ink2);text-align:left;width:100%;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
+  min-height:48px;line-height:1.6;
+}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--primaryPale)}
+.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--primary);background:var(--primaryPale);color:var(--primary)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+
+.opt-lbl{
+  min-width:28px;height:28px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:var(--muted);
+  flex-shrink:0;transition:all .15s;
+}
+.opt.sel .opt-lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+
+.exp-panel{display:none;margin-top:12px;background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.exp-rule{font-size:13px;font-weight:800;color:var(--ink);background:var(--primaryPale);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+
+.q-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:var(--bg)}
+.q-status{font-size:12px;font-weight:700}
+
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:.5px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primaryLt)}
+.btn-ghost{background:var(--bg2);color:var(--ink2);border:1.5px solid var(--border)}
+.btn-ghost:hover{background:var(--bg3)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+
+#results{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md)}
+.res-hero{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.res-score{font-family:'Lora',serif;font-size:64px;font-weight:700;color:var(--primary);line-height:1}
+.res-grade{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 6px;letter-spacing:.5px}
+.res-msg{font-size:15px;color:var(--muted)}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══ HERO ══════════════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-kicker">English · Lesson C04 · Kashmir English Academy</div>
+  <div class="hero-title">Tenses — <span>Time &amp; Choice</span></div>
+  <div class="hero-sub">How time signals (adverbs, phrases, clauses) tell you which tense to use — Present, Past and Future in all their forms. Essential for Level C grammar mastery.</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">Level C</span>
+    <span class="chip chip-w">Class 6</span>
+    <span class="chip chip-r">Present</span>
+    <span class="chip chip-b">Past</span>
+    <span class="chip chip-g">Future</span>
+    <span class="chip chip-r">Time Signals</span>
+  </div>
+</div>
+
+<!-- ══ TAB BAR ══════════════════════════════════════════════════ -->
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">📖 Theory</button>
+  <button class="tab" onclick="switchTab('quickref')">⚡ Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">✏️ Quiz</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PANE 1 — THEORY                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="pane on" id="theory">
+
+  <div class="intro-box">
+    <p><strong>The Central Idea:</strong> Every sentence has a <strong>time signal</strong> — a word, phrase, or clause that tells you <em>when</em> the action happens. The tense you choose must match that signal. Get the signal right, and the tense follows automatically.</p>
+    <p>Think of tense selection like a <strong>key-lock system</strong>: the time signal is the key, and the correct tense is the lock it opens. In this lesson, every tense is taught through its natural time signals — not just rules to memorise.</p>
+  </div>
+
+  <!-- ══ SECTION 1: PRESENT TENSES ══════════════════════════════ -->
+  <div class="sec-label">Section 1 — Present Tenses &amp; Their Time Signals</div>
+
+  <!-- PRESENT SIMPLE -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--primaryPale)">🟣</div>
+      <div style="flex:1">
+        <div class="c-title">Simple Present</div>
+        <div class="c-sub">Habits · Routines · Universal truths · Schedules</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Simple Present is used when an action is <strong>regular, repeated, or always true</strong>. It does NOT describe what is happening right now — it describes what <em>generally</em> happens.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-hi">V1 (s/es for he/she/it)</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">Negative: Subject + do/does + not + V1 &nbsp;|&nbsp; Question: Do/Does + Subject + V1?</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Simple Present</div>
+        <ul>
+          <li><span class="tm-pill">every day / week / year</span> — <em>"I go to school every day."</em></li>
+          <li><span class="tm-pill">always</span> <span class="tm-pill">usually</span> <span class="tm-pill">often</span> <span class="tm-pill">sometimes</span> <span class="tm-pill">rarely</span> <span class="tm-pill">never</span> — frequency adverbs live here</li>
+          <li><span class="tm-pill">in the morning / evening</span> — habitual time of day</li>
+          <li><span class="tm-pill">on Sundays / Mondays</span> — day-of-week routine</li>
+          <li><span class="tm-pill">generally</span> <span class="tm-pill">regularly</span> <span class="tm-pill">normally</span></li>
+          <li><em>No time signal at all</em> — for universal truths: "The sun rises in the east."</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Every day</strong> → Arjun <span style="color:var(--primary);font-weight:800">goes</span> to school every day.</li>
+          <li><strong>Always</strong> → The Dal Lake <span style="color:var(--primary);font-weight:800">looks</span> beautiful in winter.</li>
+          <li><strong>On Sundays</strong> → Meera <span style="color:var(--primary);font-weight:800">visits</span> her grandmother on Sundays.</li>
+          <li><strong>Universal truth (no signal)</strong> → Water <span style="color:var(--primary);font-weight:800">boils</span> at 100°C.</li>
+          <li><strong>Generally</strong> → Kashmiri winters <span style="color:var(--primary);font-weight:800">are</span> very cold.</li>
+        </ul>
+      </div>
+
+      <div class="analogy-box">
+        <div class="an-label">The Photograph Test</div>
+        <p>Simple Present describes your <strong>normal life — not a photograph of this moment</strong>. "I eat rice" = my habit. "I am eating rice" = snap a photo right now. If the signal says <em>every / always / usually</em>, choose Simple Present.</p>
+      </div>
+
+      <div class="trap-box">
+        <div class="tr-label">⚑ Common Mistake</div>
+        <ul>
+          <li>❌ "He <strong>go</strong> to school every day." → He <strong>goes</strong> (add -s/-es for he/she/it)</li>
+          <li>❌ "I am eating breakfast every morning." → I <strong>eat</strong> breakfast every morning. (habit, not continuous)</li>
+          <li>❌ Using "do" in questions for he/she: "Does she <strong>goes</strong>?" → Does she <strong>go</strong>? (no -s after does)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENT CONTINUOUS -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--primaryPale)">🔵</div>
+      <div style="flex:1">
+        <div class="c-title">Present Continuous</div>
+        <div class="c-sub">Right now · At this moment · Temporary actions · Changing situations</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Present Continuous is used when an action is <strong>happening at this exact moment</strong>, or is <strong>temporary</strong> — it is in progress during this period but will not last forever.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-hi">am / is / are</span> + <span class="fs-hi">V-ing</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">Negative: am/is/are + not + V-ing &nbsp;|&nbsp; Question: Am/Is/Are + Subject + V-ing?</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Present Continuous</div>
+        <ul>
+          <li><span class="tm-pill">now</span> <span class="tm-pill">right now</span> <span class="tm-pill">at this moment</span> — the strongest signals</li>
+          <li><span class="tm-pill">at present</span> <span class="tm-pill">currently</span> <span class="tm-pill">at the moment</span></li>
+          <li><span class="tm-pill">today</span> <span class="tm-pill">this morning</span> <span class="tm-pill">this evening</span> — temporary ongoing action</li>
+          <li><span class="tm-pill">this week</span> <span class="tm-pill">these days</span> — temporary situation over a short period</li>
+          <li><span class="tm-pill">Look!</span> <span class="tm-pill">Listen!</span> — drawing attention to something happening right now</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Right now</strong> → Zara <span style="color:var(--primary);font-weight:800">is reading</span> a book right now.</li>
+          <li><strong>At this moment</strong> → The snow <span style="color:var(--primary);font-weight:800">is falling</span> on Gulmarg at this moment.</li>
+          <li><strong>This week</strong> → Rohan <span style="color:var(--primary);font-weight:800">is preparing</span> for his exams this week.</li>
+          <li><strong>These days</strong> → More tourists <span style="color:var(--primary);font-weight:800">are visiting</span> Kashmir these days.</li>
+          <li><strong>Look!</strong> → Look! The children <span style="color:var(--primary);font-weight:800">are playing</span> in the snow.</li>
+        </ul>
+      </div>
+
+      <div class="primary-box">
+        <div class="pb-label">Big Action — Short Time Period</div>
+        <p><strong>Think of it this way:</strong> the Present Continuous captures a <strong>large, ongoing action inside a short, specific time window</strong>. The action (studying, snowing, playing) is the "big thing" happening; "right now / this morning / this week" is the small time frame around it. This is the opposite of Simple Present, which describes a pattern with no specific moment.</p>
+      </div>
+
+      <div class="trap-box">
+        <div class="tr-label">⚑ Verbs That Cannot Be Continuous</div>
+        <ul>
+          <li>State verbs are NEVER continuous: <b>know, believe, understand, like, love, hate, want, need, seem, appear, own, belong, prefer</b></li>
+          <li>❌ "I am knowing the answer." → I <strong>know</strong> the answer. ✓</li>
+          <li>❌ "She is liking the food." → She <strong>likes</strong> the food. ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENT PERFECT -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--primaryPale)">🟤</div>
+      <div style="flex:1">
+        <div class="c-title">Present Perfect</div>
+        <div class="c-sub">Past action — present result · Life experience · Unfinished time periods</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Present Perfect connects the <strong>past to the present</strong>. Something happened in the past, but we feel its <strong>result or importance NOW</strong>. Crucially, we often do NOT say exactly when — the exact time is unknown, unimportant, or we are using an unfinished time period.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-hi">have / has</span> + <span class="fs-hi">V3 (Past Participle)</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">have = I/you/we/they &nbsp;|&nbsp; has = he/she/it/singular name</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Present Perfect</div>
+        <ul>
+          <li><span class="tm-pill">just</span> — very recently finished: "She has <em>just</em> left."</li>
+          <li><span class="tm-pill">already</span> — sooner than expected: "I have <em>already</em> eaten."</li>
+          <li><span class="tm-pill">yet</span> — in negatives &amp; questions: "Have you finished <em>yet</em>?"</li>
+          <li><span class="tm-pill">ever</span> <span class="tm-pill">never</span> — life experience: "Have you <em>ever</em> seen the Dal Lake?"</li>
+          <li><span class="tm-pill">so far</span> <span class="tm-pill">until now</span> <span class="tm-pill">up to now</span> — up to this point in time</li>
+          <li><span class="tm-pill">recently</span> <span class="tm-pill">lately</span> — in the recent past</li>
+          <li><span class="tm-pill">this week / month / year</span> — the period is NOT over yet</li>
+          <li><span class="tm-pill">for + duration</span> <span class="tm-pill">since + point in time</span> — how long something has lasted</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Just</strong> → The bus <span style="color:var(--primary);font-weight:800">has just arrived</span> at the Srinagar station.</li>
+          <li><strong>Already</strong> → Priya <span style="color:var(--primary);font-weight:800">has already submitted</span> her homework.</li>
+          <li><strong>Ever</strong> → Have you <span style="color:var(--primary);font-weight:800">ever visited</span> the Mughal Gardens?</li>
+          <li><strong>So far</strong> → We <span style="color:var(--primary);font-weight:800">have read</span> five chapters so far.</li>
+          <li><strong>This year</strong> → The cricket team <span style="color:var(--primary);font-weight:800">has won</span> three matches this year.</li>
+          <li><strong>Since 2020</strong> → Aisha <span style="color:var(--primary);font-weight:800">has lived</span> in Srinagar since 2020.</li>
+        </ul>
+      </div>
+
+      <div class="rule-box">
+        <div class="rl-label">The "No Exact Time" Rule</div>
+        <p>Present Perfect is used when you do <strong>NOT mention a finished, specific past time</strong>. The moment you say "yesterday / last year / in 2020 (as finished time)", you must switch to <strong>Simple Past</strong>. <br><br>✓ "I <strong>have seen</strong> that film." (no specific time) <br>✓ "I <strong>saw</strong> that film <strong>yesterday</strong>." (specific finished time = Simple Past)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESENT PERFECT CONTINUOUS -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--primaryPale)">⏳</div>
+      <div style="flex:1">
+        <div class="c-title">Present Perfect Continuous</div>
+        <div class="c-sub">Started in the past — still continuing now · Emphasis on duration</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>This tense emphasises <strong>how long</strong> an action has been going on — it started in the past and is <strong>still happening</strong> or has <em>just</em> stopped (but the effect is visible).</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-hi">have / has</span> + <span class="fs-hi">been</span> + <span class="fs-hi">V-ing</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Present Perfect Continuous</div>
+        <ul>
+          <li><span class="tm-pill">for + duration</span> — "She has been studying <em>for two hours</em>."</li>
+          <li><span class="tm-pill">since + starting point</span> — "It has been raining <em>since morning</em>."</li>
+          <li><span class="tm-pill">all day / all week / all morning</span></li>
+          <li><em>Visible result + duration together</em> — "You look tired. Have you been running?"</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>For two hours</strong> → Meera <span style="color:var(--primary);font-weight:800">has been waiting</span> for two hours.</li>
+          <li><strong>Since morning</strong> → It <span style="color:var(--primary);font-weight:800">has been snowing</span> in Gulmarg since morning.</li>
+          <li><strong>All day</strong> → The workers <span style="color:var(--primary);font-weight:800">have been building</span> the road all day.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: PAST TENSES ══════════════════════════════════ -->
+  <div class="sec-label">Section 2 — Past Tenses &amp; Their Time Signals</div>
+
+  <!-- SIMPLE PAST -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--bluePale)">🔵</div>
+      <div style="flex:1">
+        <div class="c-title">Simple Past</div>
+        <div class="c-sub">Big time period — small, completed action inside it</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Simple Past describes an action that <strong>started and finished at a definite time in the past</strong>. The key is that there is a <strong>large, clearly named time period</strong> (yesterday, last week, in 1947), and the action is a <strong>single completed event inside it</strong>.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-past">V2 (Past form)</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">Negative: did + not + V1 &nbsp;|&nbsp; Question: Did + Subject + V1?</span>
+      </div>
+
+      <div class="analogy-box">
+        <div class="an-label">Big Time — Small Action (The Container Image)</div>
+        <p>Imagine the time signal (<em>yesterday / last year</em>) as a <strong>large container</strong>. The action (went, ate, wrote) is a small object placed neatly inside that container. The action is complete — it does not spill out of the container into the present.</p>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Simple Past</div>
+        <ul>
+          <li><span class="tm-blue">yesterday</span> <span class="tm-blue">last night</span> — "She left <em>yesterday</em>."</li>
+          <li><span class="tm-blue">last week / month / year</span> — "We won <em>last year</em>."</li>
+          <li><span class="tm-blue">ago</span> — "He arrived two days <em>ago</em>."</li>
+          <li><span class="tm-blue">in + finished year</span> — "India became independent <em>in 1947</em>."</li>
+          <li><span class="tm-blue">on + specific date/day</span> — "The match was <em>on Monday</em>."</li>
+          <li><span class="tm-blue">when (for a sudden single event)</span> — "The bell rang <em>when</em> I was sleeping." (the ringing = simple past)</li>
+          <li><span class="tm-blue">once upon a time</span> — stories and narratives</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Yesterday</strong> → Arjun <span style="color:var(--blue);font-weight:800">played</span> cricket yesterday.</li>
+          <li><strong>Last week</strong> → Our school team <span style="color:var(--blue);font-weight:800">won</span> the inter-school competition last week.</li>
+          <li><strong>Two years ago</strong> → My family <span style="color:var(--blue);font-weight:800">visited</span> Pahalgam two years ago.</li>
+          <li><strong>In 1947</strong> → India <span style="color:var(--blue);font-weight:800">became</span> independent in 1947.</li>
+          <li><strong>On Sunday</strong> → Zara <span style="color:var(--blue);font-weight:800">baked</span> a cake on Sunday.</li>
+        </ul>
+      </div>
+
+      <div class="trap-box">
+        <div class="tr-label">⚑ Common Mistake — Regular vs Irregular Verbs</div>
+        <ul>
+          <li>Regular: add <strong>-ed</strong> → walk→walked, play→played, visit→visited</li>
+          <li>Irregular: must memorise → go→went, eat→ate, write→wrote, see→saw, buy→bought</li>
+          <li>❌ "She <strong>goed</strong> to school." → She <strong>went</strong> to school. ✓</li>
+          <li>❌ "I <strong>didn't went</strong> there." → I <strong>didn't go</strong> there. ✓ (V1 after did)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAST CONTINUOUS -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--bluePale)">🌊</div>
+      <div style="flex:1">
+        <div class="c-title">Past Continuous</div>
+        <div class="c-sub">Big ongoing action — small time period or interrupting event</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Past Continuous describes an action that <strong>was in progress at a specific moment or period in the past</strong>. It is the exact opposite of Simple Past in structure: here the <strong>action is large and ongoing</strong>, while the <strong>time period is small or specific</strong>.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-past">was / were</span> + <span class="fs-past">V-ing</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">was = I/he/she/it &nbsp;|&nbsp; were = you/we/they</span>
+      </div>
+
+      <div class="analogy-box">
+        <div class="an-label">Big Action — Small Time (The River Image)</div>
+        <p>Imagine the action as a <strong>wide, flowing river</strong> (studying, sleeping, cooking). The time signal (<em>at 7 pm / when the bell rang</em>) is a <strong>small bridge over that river</strong>. You are standing on the bridge looking at the water flowing beneath — the action was happening all around that moment.</p>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Past Continuous</div>
+        <ul>
+          <li><span class="tm-blue">at + time in the past</span> — "She <em>was cooking</em> at 6 pm." (big action at a precise clock time)</li>
+          <li><span class="tm-blue">while</span> — "I was reading <em>while</em> he was sleeping." (two ongoing actions together)</li>
+          <li><span class="tm-blue">when (for the background action)</span> — "I <em>was sleeping</em> when the phone rang." (sleeping = continuous background)</li>
+          <li><span class="tm-blue">all morning / all day / all night</span> — ongoing through the time period</li>
+          <li><span class="tm-blue">this time yesterday / last Sunday</span> — point in past when action was ongoing</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>At 8 pm</strong> → Meera <span style="color:var(--blue);font-weight:800">was doing</span> her homework at 8 pm.</li>
+          <li><strong>While</strong> → Rohan <span style="color:var(--blue);font-weight:800">was singing</span> while Priya <span style="color:var(--blue);font-weight:800">was playing</span> the guitar.</li>
+          <li><strong>When (background)</strong> → I <span style="color:var(--blue);font-weight:800">was walking</span> near Dal Lake when it started to rain.</li>
+          <li><strong>All morning</strong> → The students <span style="color:var(--blue);font-weight:800">were practising</span> for the play all morning.</li>
+          <li><strong>This time yesterday</strong> → We <span style="color:var(--blue);font-weight:800">were travelling</span> to Sonamarg this time yesterday.</li>
+        </ul>
+      </div>
+
+      <div class="rule-box">
+        <div class="rl-label">When + Past Continuous + Simple Past Together</div>
+        <p>When two past events appear together with "when," the <strong>longer background action = Past Continuous</strong>, and the <strong>sudden shorter action = Simple Past</strong>.<br><br>
+        "She <strong>was cooking</strong> (long) when the power <strong>went</strong> (sudden) off." <br>
+        "The teacher <strong>was explaining</strong> when Arjun <strong>knocked</strong> on the door."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAST PERFECT -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--bluePale)">⏮️</div>
+      <div style="flex:1">
+        <div class="c-title">Past Perfect</div>
+        <div class="c-sub">The "earlier past" — action completed before another past action</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Past Perfect is used when you have <strong>two events in the past</strong> and you need to show which one happened <strong>first</strong>. The <em>earlier</em> action takes Past Perfect; the <em>later</em> action takes Simple Past.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-past">had</span> + <span class="fs-past">V3</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">had = all subjects (I/you/he/she/it/we/they)</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Past Perfect</div>
+        <ul>
+          <li><span class="tm-blue">before</span> — "She had left <em>before</em> he arrived." (leaving came first)</li>
+          <li><span class="tm-blue">after</span> — "After he <em>had eaten</em>, he went to sleep." (eating came first)</li>
+          <li><span class="tm-blue">by the time</span> — "By the time we reached, the train had left."</li>
+          <li><span class="tm-blue">already … when</span> — "The film had already started when we entered."</li>
+          <li><span class="tm-blue">as soon as … had</span> — "As soon as she had finished, she called me."</li>
+          <li>In Reported Speech (indirect speech) — Simple Past in direct becomes Past Perfect in reported</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Before</strong> → Arjun <span style="color:var(--blue);font-weight:800">had finished</span> his project before the teacher arrived.</li>
+          <li><strong>After</strong> → After the snow <span style="color:var(--blue);font-weight:800">had melted</span>, the roads reopened.</li>
+          <li><strong>By the time</strong> → By the time we reached Gulmarg, the chairlift <span style="color:var(--blue);font-weight:800">had closed</span>.</li>
+          <li><strong>Already … when</strong> → She <span style="color:var(--blue);font-weight:800">had already eaten</span> when we invited her.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: FUTURE TENSES ════════════════════════════════ -->
+  <div class="sec-label">Section 3 — Future Tenses &amp; Their Time Signals</div>
+
+  <!-- SIMPLE FUTURE -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--purplePale)">🟢</div>
+      <div style="flex:1">
+        <div class="c-title">Simple Future</div>
+        <div class="c-sub">Predictions · Decisions made now · Offers · Promises</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Simple Future is used for actions that <strong>will happen after the present moment</strong> — predictions, spontaneous decisions, offers, promises, and things we believe will happen.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-future">will</span> + <span class="fs-future">V1</span> + Object<br>
+        <span style="font-size:13px;color:rgba(200,180,255,.6)">Negative: will not (won't) + V1 &nbsp;|&nbsp; Question: Will + Subject + V1?</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Simple Future</div>
+        <ul>
+          <li><span class="tm-green">tomorrow</span> <span class="tm-green">the day after tomorrow</span></li>
+          <li><span class="tm-green">next week / month / year</span> <span class="tm-green">next Sunday</span></li>
+          <li><span class="tm-green">soon</span> <span class="tm-green">shortly</span> <span class="tm-green">in a moment</span></li>
+          <li><span class="tm-green">in + future time</span> — "in ten minutes / in 2030"</li>
+          <li><span class="tm-green">probably</span> <span class="tm-green">certainly</span> <span class="tm-green">perhaps</span> — predictions with will</li>
+          <li><em>No time signal — spontaneous decision</em>: "The phone is ringing. I'll answer it."</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>Tomorrow</strong> → It <span style="color:var(--green);font-weight:800">will snow</span> in Gulmarg tomorrow.</li>
+          <li><strong>Next year</strong> → Priya <span style="color:var(--green);font-weight:800">will study</span> in Jammu next year.</li>
+          <li><strong>In two hours</strong> → The train <span style="color:var(--green);font-weight:800">will arrive</span> in two hours.</li>
+          <li><strong>Probably (prediction)</strong> → They <span style="color:var(--green);font-weight:800">will probably win</span> the match.</li>
+          <li><strong>Spontaneous offer</strong> → Don't worry — I <span style="color:var(--green);font-weight:800">will help</span> you carry those bags.</li>
+        </ul>
+      </div>
+
+      <div class="analogy-box">
+        <div class="an-label">will vs going to</div>
+        <p><strong>will</strong> = spontaneous decision or pure prediction <em>("Look at those clouds — it will rain.")</em><br>
+        <strong>going to</strong> = planned decision made before the moment of speaking <em>("I am going to study tonight." — already planned)</em><br>
+        Both are correct future forms; context and intention decide which to use.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUTURE CONTINUOUS -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--purplePale)">🌀</div>
+      <div style="flex:1">
+        <div class="c-title">Future Continuous</div>
+        <div class="c-sub">Big ongoing action — at a specific future time point</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Future Continuous describes an action that will be <strong>in progress at a specific moment in the future</strong>. The action is the "big, ongoing thing" and the time signal is the small, precise point.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-future">will be</span> + <span class="fs-future">V-ing</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Future Continuous</div>
+        <ul>
+          <li><span class="tm-green">at + future time</span> — "At 8 pm tonight, I will be watching the match."</li>
+          <li><span class="tm-green">this time tomorrow</span> — "This time tomorrow, we will be travelling to Leh."</li>
+          <li><span class="tm-green">all day / all evening tomorrow</span></li>
+          <li><span class="tm-green">when you arrive / call</span> — "When you arrive, I will be sleeping."</li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>At 9 am tomorrow</strong> → The students <span style="color:var(--green);font-weight:800">will be writing</span> their exam at 9 am tomorrow.</li>
+          <li><strong>This time tomorrow</strong> → We <span style="color:var(--green);font-weight:800">will be flying</span> over the Himalayas this time tomorrow.</li>
+          <li><strong>When you call</strong> → When you call, she <span style="color:var(--green);font-weight:800">will be cooking</span> dinner.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUTURE PERFECT -->
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--purplePale)">✅</div>
+      <div style="flex:1">
+        <div class="c-title">Future Perfect</div>
+        <div class="c-sub">Action completed before a specific future deadline</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <p>The Future Perfect says that an action <strong>will be finished before a certain point in the future</strong>. The time signal always mentions a <strong>future deadline</strong>.</p>
+
+      <div class="formula-strip">
+        <div class="fs-label">Formula</div>
+        Subject + <span class="fs-future">will have</span> + <span class="fs-future">V3</span>
+      </div>
+
+      <div class="fact-box">
+        <div class="fb-label">Time Signals → Future Perfect</div>
+        <ul>
+          <li><span class="tm-green">by + future time</span> — "By 6 pm, I will have finished."</li>
+          <li><span class="tm-green">by the time + future event</span> — "By the time you arrive, we will have cooked dinner."</li>
+          <li><span class="tm-green">before + future event</span> — "Before the match ends, they will have scored."</li>
+          <li><span class="tm-green">by next week / month / year</span></li>
+        </ul>
+      </div>
+
+      <div class="eg-box">
+        <div class="eg-label">Sentences Built from Time Signals</div>
+        <ul>
+          <li><strong>By tonight</strong> → Aisha <span style="color:var(--green);font-weight:800">will have completed</span> her project by tonight.</li>
+          <li><strong>By the time you return</strong> → By the time you return from Sonamarg, we <span style="color:var(--green);font-weight:800">will have prepared</span> dinner.</li>
+          <li><strong>By next year</strong> → The new bridge over the Jhelum <span style="color:var(--green);font-weight:800">will have been completed</span> by next year.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4: THE MASTER KEY ════════════════════════════════ -->
+  <div class="sec-label">Section 4 — The Master Signal Chart: Signal → Tense</div>
+
+  <div class="c-card">
+    <div class="c-head" onclick="tog(this)">
+      <div class="c-icon" style="background:var(--amberPale)">🗝️</div>
+      <div style="flex:1">
+        <div class="c-title">How to Read a Sentence and Pick the Right Tense</div>
+        <div class="c-sub">A step-by-step method for any sentence</div>
+      </div>
+      <span class="c-arrow">▾</span>
+    </div>
+    <div class="c-body">
+      <div class="journey">
+        <div class="j-step">
+          <div class="j-line"><div class="j-dot">1</div><div class="j-connector"></div></div>
+          <div class="j-content">
+            <div class="j-title">Find the time signal first</div>
+            <div class="j-desc">Underline the adverb, phrase, or clause: <em>yesterday / now / by tomorrow / for two hours / since Monday.</em> This is your key.</div>
+          </div>
+        </div>
+        <div class="j-step">
+          <div class="j-line"><div class="j-dot">2</div><div class="j-connector"></div></div>
+          <div class="j-content">
+            <div class="j-title">Identify the time zone: Past / Present / Future</div>
+            <div class="j-desc">Words like <em>yesterday, last, ago, in 1947</em> = <strong>Past zone</strong>. Words like <em>now, today, this week, still</em> = <strong>Present zone</strong>. Words like <em>tomorrow, next, soon, by + future</em> = <strong>Future zone</strong>.</div>
+          </div>
+        </div>
+        <div class="j-step">
+          <div class="j-line"><div class="j-dot">3</div><div class="j-connector"></div></div>
+          <div class="j-content">
+            <div class="j-title">Ask: Is the action a habit, a moment, or a duration?</div>
+            <div class="j-desc"><strong>Habit / general truth</strong> → Simple. &nbsp; <strong>Ongoing at a moment</strong> → Continuous. &nbsp; <strong>Completed with present/future result or deadline</strong> → Perfect. &nbsp; <strong>Duration emphasised</strong> → Perfect Continuous.</div>
+          </div>
+        </div>
+        <div class="j-step">
+          <div class="j-line"><div class="j-dot">4</div><div class="j-connector"></div></div>
+          <div class="j-content">
+            <div class="j-title">Combine: Zone + Type = Tense</div>
+            <div class="j-desc">Present + Habit = <strong>Simple Present</strong>. Past + Ongoing = <strong>Past Continuous</strong>. Future + Completed before deadline = <strong>Future Perfect</strong>. Present + Duration = <strong>Present Perfect Continuous</strong>.</div>
+          </div>
+        </div>
+        <div class="j-step">
+          <div class="j-line"><div class="j-dot">5</div><div class="j-connector"></div></div>
+          <div class="j-content">
+            <div class="j-title">Apply the correct formula</div>
+            <div class="j-desc">Use the right auxiliary + verb form, match subject (he/she → is, has, was) and write the sentence confidently.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="primary-box">
+        <div class="pb-label">Practise This Method — Example</div>
+        <p>Sentence: <em>"She _____ (study) for three hours."</em><br>
+        Step 1: Signal = <strong>for three hours</strong> (duration). Step 2: No other signal → present zone. Step 3: Duration + still going. Step 4: Present + Duration = <strong>Present Perfect Continuous</strong>. Step 5: She <strong>has been studying</strong> for three hours. ✓</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /theory -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PANE 2 — QUICK REFERENCE                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="pane" id="quickref">
+
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-card-title">🟣 Simple Present — Signal Words</div>
+      <ul>
+        <li><b>always, usually, often, sometimes, rarely, never</b></li>
+        <li><b>every day / week / month / year</b></li>
+        <li><b>on Sundays / Mondays…</b> — day-based routines</li>
+        <li><b>in the morning / afternoon / evening</b></li>
+        <li><b>generally, normally, regularly</b></li>
+        <li><em>no time signal</em> — universal truths (Water boils at 100°C)</li>
+        <li>Formula: S + <em>V1(s/es)</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔵 Present Continuous — Signal Words</div>
+      <ul>
+        <li><b>now, right now, at this moment</b></li>
+        <li><b>at present, currently, at the moment</b></li>
+        <li><b>today, this morning / evening</b></li>
+        <li><b>this week, these days</b></li>
+        <li><b>Look! Listen!</b> — drawing attention</li>
+        <li>Formula: S + <em>am/is/are + V-ing</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🟤 Present Perfect — Signal Words</div>
+      <ul>
+        <li><b>just, already, yet, ever, never</b></li>
+        <li><b>so far, until now, up to now</b></li>
+        <li><b>recently, lately</b></li>
+        <li><b>this week / month / year</b> — period not yet over</li>
+        <li><b>for + duration, since + starting point</b></li>
+        <li>Formula: S + <em>have/has + V3</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⏳ Present Perfect Continuous — Signal Words</div>
+      <ul>
+        <li><b>for + duration</b> — for two hours, for months</li>
+        <li><b>since + point in time</b> — since morning, since 2020</li>
+        <li><b>all day / all morning / all week</b></li>
+        <li>Formula: S + <em>have/has been + V-ing</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🔵 Simple Past — Signal Words</div>
+      <ul>
+        <li><b>yesterday, last night</b></li>
+        <li><b>last week / month / year</b></li>
+        <li><b>ago</b> — two days ago, years ago</li>
+        <li><b>in + finished year</b> — in 1947, in 2010</li>
+        <li><b>on + specific date</b> — on Monday, on 15th August</li>
+        <li><em>when</em> — sudden completed action</li>
+        <li>Formula: S + <em>V2</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🌊 Past Continuous — Signal Words</div>
+      <ul>
+        <li><b>at + past time</b> — at 7 pm, at midnight</li>
+        <li><b>while</b> — two ongoing past actions</li>
+        <li><b>when</b> — the longer background action</li>
+        <li><b>all day / all morning / all night</b></li>
+        <li><b>this time yesterday / last Sunday</b></li>
+        <li>Formula: S + <em>was/were + V-ing</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⏮️ Past Perfect — Signal Words</div>
+      <ul>
+        <li><b>before</b> — earlier of two past actions</li>
+        <li><b>after</b> — the action that came first</li>
+        <li><b>by the time</b> — "By the time he arrived…"</li>
+        <li><b>already … when</b> — "had already left when…"</li>
+        <li><b>as soon as … had</b></li>
+        <li>Formula: S + <em>had + V3</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🟢 Simple Future — Signal Words</div>
+      <ul>
+        <li><b>tomorrow, the day after tomorrow</b></li>
+        <li><b>next week / month / year / Sunday</b></li>
+        <li><b>soon, shortly, in a moment</b></li>
+        <li><b>in + future period</b> — in ten minutes, in 2030</li>
+        <li><b>probably, certainly, perhaps</b></li>
+        <li><em>no signal</em> — spontaneous decisions</li>
+        <li>Formula: S + <em>will + V1</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">🌀 Future Continuous — Signal Words</div>
+      <ul>
+        <li><b>at + future time</b> — at 8 pm tonight</li>
+        <li><b>this time tomorrow / next week</b></li>
+        <li><b>all day / all evening tomorrow</b></li>
+        <li><b>when you arrive / call</b></li>
+        <li>Formula: S + <em>will be + V-ing</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">✅ Future Perfect — Signal Words</div>
+      <ul>
+        <li><b>by + future time</b> — by 6 pm, by Monday</li>
+        <li><b>by the time + future clause</b></li>
+        <li><b>before + future event</b></li>
+        <li><b>by next week / year</b></li>
+        <li>Formula: S + <em>will have + V3</em></li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">⚑ Critical Rules — Never Forget</div>
+      <ul>
+        <li><b>yesterday / ago / last / in (finished year)</b> → always Simple Past, NEVER Present Perfect</li>
+        <li><b>State verbs</b> (know, like, want, own…) → NEVER use with continuous tenses</li>
+        <li><b>He/She/It + Simple Present</b> → always add <em>-s/-es</em> to verb</li>
+        <li><b>did + not → always V1</b> (not V2): didn't go ✓, didn't went ✗</li>
+        <li><b>for</b> = duration (for 3 hours) → Perfect / Perfect Continuous</li>
+        <li><b>since</b> = starting point (since Monday) → Perfect / Perfect Continuous</li>
+        <li><b>while</b> = two actions together → both Continuous (same tense)</li>
+        <li><b>when + short action</b> → Simple Past; <b>when + background</b> → Past Continuous</li>
+      </ul>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-title">📊 The Master Formula Table</div>
+      <div style="overflow-x:auto;margin-top:8px">
+        <table class="compare-table">
+          <tr><th>Tense</th><th>Formula</th></tr>
+          <tr><td><b>Simple Present</b></td><td>S + V1(s/es)</td></tr>
+          <tr><td><b>Present Cont.</b></td><td>S + am/is/are + V-ing</td></tr>
+          <tr><td><b>Present Perfect</b></td><td>S + have/has + V3</td></tr>
+          <tr><td><b>Pres. Perf. Cont.</b></td><td>S + have/has been + V-ing</td></tr>
+          <tr><td><b>Simple Past</b></td><td>S + V2</td></tr>
+          <tr><td><b>Past Continuous</b></td><td>S + was/were + V-ing</td></tr>
+          <tr><td><b>Past Perfect</b></td><td>S + had + V3</td></tr>
+          <tr><td><b>Simple Future</b></td><td>S + will + V1</td></tr>
+          <tr><td><b>Future Cont.</b></td><td>S + will be + V-ing</td></tr>
+          <tr><td><b>Future Perfect</b></td><td>S + will have + V3</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /quickref -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PANE 3 — QUIZ                                            -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="pane" id="quiz">
+
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a" id="s-tot">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+
+  <div id="results"></div>
+  <div id="q-area"></div>
+
+</div><!-- /quiz -->
+
+</div><!-- /page -->
+
+<script>
+const QS = [
+
+{d:'EASY',e:'Level C · Class 6',
+q:'Fill in the blank: Arjun _____ cricket every evening after school.',
+opts:['is playing','plays','played','will play'],ans:1,
+rule:'every evening = habit → Simple Present (S + V1)',
+exp:'"Every evening" is a frequency signal showing a regular habit. Simple Present is used for habits and routines. The subject "Arjun" is third person singular, so we add -s to the verb: plays. "Is playing" would need "right now/at this moment." "Played" is past. "Will play" is future.'},
+
+{d:'EASY',e:'Level C · Class 6',
+q:'Choose the correct tense: Look! The snow _____ on the mountains of Gulmarg.',
+opts:['falls','fell','is falling','has fallen'],ans:2,
+rule:'"Look!" = action happening right now → Present Continuous (am/is/are + V-ing)',
+exp:'"Look!" is a classic signal that draws attention to something happening at this exact moment. Present Continuous (is falling) is the correct tense. "Falls" is a habit. "Fell" is past. "Has fallen" would mean it has already finished (and we see the result), which does not match "Look!" — which means we are watching it happen.'},
+
+{d:'EASY',e:'Level C · Class 6',
+q:'Meera _____ to Pahalgam last summer with her family.',
+opts:['goes','is going','went','has gone'],ans:2,
+rule:'"last summer" = finished past time → Simple Past (S + V2)',
+exp:'"Last summer" is a definite finished past time signal. Simple Past (went) is always used with signals like last + time period, yesterday, ago, and specific finished dates. "Goes" is Simple Present. "Is going" is Present Continuous. "Has gone" is Present Perfect — which CANNOT be used with "last summer" because Present Perfect cannot be paired with a finished, specific past time.'},
+
+{d:'EASY',e:'Level C · Class 6',
+q:'I _____ never _____ the Mughal Gardens in Srinagar. I hope to visit them soon.',
+opts:['have … visited','did … visit','was … visiting','will … visit'],ans:0,
+rule:'"never" + life experience (no specific time) → Present Perfect (have/has + V3)',
+exp:'"Never" expresses a life experience — something that has not happened up to this point. Present Perfect (have … visited) is used for experiences without a specific time. The sentence contrasts with a future plan, confirming the speaker has not visited yet. "Did … visit" is Simple Past which needs a specific time. "Was visiting" is Past Continuous. "Will visit" is future.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'She _____ for three hours when I finally called her.',
+opts:['studied','was studying','has been studying','had been studying'],ans:3,
+rule:'"for three hours" + action before another past event → Past Perfect Continuous (had been + V-ing)',
+exp:'There are two events here: (1) she was studying — the longer background action, (2) I called — the later event. The studying started and continued in the past BEFORE the call. "For three hours" emphasises duration. When we have duration + background action before another past event, we use Past Perfect Continuous (had been studying). "Was studying" would work if the two events were simultaneous with "when", but the long duration here points to the perfect form.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'By the time Rohan arrives at the station, the train _____ already _____.',
+opts:['was … leaving','is … leaving','will have … left','has … left'],ans:2,
+rule:'"By the time + future event" → Future Perfect (will have + V3)',
+exp:'"By the time" signals that one action will be completed BEFORE another future event. The train leaving will be finished before Rohan arrives (both are in the future). This is the Future Perfect: "will have left." "Was leaving" is Past Continuous. "Is leaving" is Present Continuous. "Has left" is Present Perfect — used for actions with present relevance, not future deadlines.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'The students _____ a play all morning for the school event tomorrow.',
+opts:['practise','practised','are practising','will practise'],ans:2,
+rule:'"all morning" (temporary, right now) → Present Continuous (am/is/are + V-ing)',
+exp:'"All morning" indicates an action in progress throughout this morning — it is temporary and ongoing. Present Continuous (are practising) is correct. "Practise" (Simple Present) would mean a habit: "they practise every morning." "Practised" is past. "Will practise" is future. The mention of "tomorrow\'s event" as the reason does not change the tense — the practising is happening NOW, today morning.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'It _____ in the valley since early morning. The roads are now wet.',
+opts:['rained','rains','has been raining','will rain'],ans:2,
+rule:'"since + starting point" + result visible now → Present Perfect Continuous (have/has been + V-ing)',
+exp:'"Since early morning" = a duration starting in the past and continuing to now. The visible result (wet roads) confirms the action is connected to the present. Present Perfect Continuous (has been raining) is correct. "Rained" (Simple Past) would need a finished, specific time. "Rains" is a habit. "Will rain" is future. The combination of "since" + visible present result is the key signal for Present Perfect Continuous.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'I _____ the book before the teacher asked me about it.',
+opts:['read','was reading','have read','had read'],ans:3,
+rule:'"before" + two past events → the earlier action = Past Perfect (had + V3)',
+exp:'"Before" connects two past events: reading and the teacher asking. The reading happened FIRST — it was complete before the teacher asked. The earlier of two past events takes Past Perfect (had read). The later event (teacher asked) takes Simple Past. "Read" alone is ambiguous (could be present or past but lacks the "earlier" signal). "Was reading" would suggest it was ongoing — not yet complete before the asking.'},
+
+{d:'MEDIUM',e:'Level C · Class 6',
+q:'This time next week, our family _____ through the mountains of Ladakh.',
+opts:['travels','travelled','will have travelled','will be travelling'],ans:3,
+rule:'"This time next week" = ongoing action at a future moment → Future Continuous (will be + V-ing)',
+exp:'"This time next week" means: at the same point of time, one week from now. The action of travelling will be IN PROGRESS at that future moment — it will be ongoing, not yet complete. Future Continuous (will be travelling) is correct. "Travels" is Simple Present. "Travelled" is Simple Past. "Will have travelled" is Future Perfect — which would mean the journey is ALREADY COMPLETE by that point, but "this time next week" shows it is in progress, not finished.'},
+
+{d:'HARD',e:'Level C · Class 6',
+q:'Identify the error: "She has visited Sonamarg last year and said it was breathtaking."',
+opts:[
+  'No error — Present Perfect is correct here',
+  '"has visited" should be "visited" — "last year" demands Simple Past',
+  '"said" should be "has said" — it should also be Present Perfect',
+  '"it was" should be "it is" — reported speech error'
+],ans:1,
+rule:'"last year" = finished past time → must use Simple Past, NOT Present Perfect',
+exp:'The critical error is "has visited" with "last year." Present Perfect CANNOT be used with a specific, finished past time expression like "last year, yesterday, ago, in 2020." These signals require Simple Past. The correct sentence is: "She visited Sonamarg last year and said it was breathtaking." The word "said" is correctly in Simple Past (reporting what she said in the past). "It was" is correct as reported speech (indirect speech backshifts present to past).'},
+
+{d:'HARD',e:'Level C · Class 6',
+q:'Choose the correct sentence:',
+opts:[
+  'I am knowing the answer to this question.',
+  'He has been knowing her since childhood.',
+  'She knows everyone in the village.',
+  'They were knowing about the plan.'
+],ans:2,
+rule:'"know" is a state verb — never used in continuous forms',
+exp:'"Know" is a STATE VERB — it describes a mental state, not a physical action. State verbs are NEVER used in any continuous form (-ing). Options A, B, and D all incorrectly use "knowing" in continuous tenses. Only option C ("She knows") correctly uses Simple Present for a state verb. Other state verbs: believe, understand, like, love, hate, want, need, own, seem, appear, prefer, belong.'},
+
+{d:'HARD',e:'Level C · Class 6',
+q:'The teacher was explaining the lesson _____ Arjun knocked on the door.',
+opts:['while','when','since','after'],ans:1,
+rule:'"was V-ing" (ongoing background) + sudden action = "when" + Simple Past',
+exp:'"When" is used to combine two past events where one is a longer background action (Past Continuous) and the other is a shorter, interrupting action (Simple Past). Here: "was explaining" (ongoing background) + "knocked" (sudden event) = "when." "While" is used when BOTH actions are continuous and happening simultaneously: "While she was explaining, he was drawing." "Since" introduces a starting time. "After" shows sequence.'},
+
+{d:'HARD',e:'Level C · Class 6',
+q:'By next month, Priya _____ her novel. She started it three months ago.',
+opts:['will finish','is finishing','will have finished','has finished'],ans:2,
+rule:'"By next month" = deadline in the future → Future Perfect (will have + V3)',
+exp:'"By next month" is a future deadline — it means the action will be COMPLETED before that deadline arrives. Future Perfect (will have finished) is the correct tense. "Will finish" (Simple Future) suggests she will finish at that time, not necessarily by then. "Is finishing" is Present Continuous. "Has finished" is Present Perfect — connected to the present, not a future deadline. The mention of "started three months ago" gives background context but does not change the main tense needed.'},
+
+{d:'HARD',e:'Level C · Class 6',
+q:'Which sentence uses "for" and "since" CORRECTLY?',
+opts:[
+  'She has lived here for 2019.',
+  'They have been waiting since two hours.',
+  'He has been working here for six years and since he joined in 2018.',
+  'I have studied here for three years, and since 2021 specifically.'
+],ans:3,
+rule:'"for" = duration (a length of time) · "since" = starting point (a specific moment)',
+exp:'"For" must be followed by a DURATION — a length of time: for three years, for two hours, for months. "Since" must be followed by a SPECIFIC STARTING POINT — a moment or date: since Monday, since 2021, since morning. Option A: "for 2019" is wrong — 2019 is a point, not a duration; should be "since 2019." Option B: "since two hours" is wrong — "two hours" is a duration; should be "for two hours." Option C is grammatically awkward and contradictory. Option D correctly uses both: "for three years" (duration) and "since 2021" (starting point).'},
+
+];
+
+// ── ENGINE ─────────────────────────────────────────────────────────────────
+const answers  = new Array(QS.length).fill(null);
+const revealed = new Array(QS.length).fill(false);
+const LABS = ['A','B','C','D'];
+
+function build(){
+  const area = document.getElementById('q-area');
+  area.innerHTML = '';
+  QS.forEach((q,i)=>{
+    const dc = q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div = document.createElement('div');
+    div.className='q-card'; div.id=`qc${i}`;
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,'0')}</span>
+        <span class="q-diff ${dc}">${q.d}</span>
+        <span class="q-exam">${q.e}</span>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.q}</div>
+        <div class="opts" id="opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join('')}
+        </div>
+        <div class="exp-panel" id="ex${i}">
+          <div class="exp-tag">Explanation</div>
+          <div class="exp-rule">${q.rule}</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">English · C04</span>
+        <span id="ai${i}" class="q-status">—</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi,oi){
+  if(revealed[qi]) return;
+  answers[qi]=oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{
+    b.classList.remove('sel');
+    if(j===oi) b.classList.add('sel');
+  });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai=document.getElementById(`ai${qi}`);
+  ai.textContent=`Selected: ${LABS[oi]}`;
+  ai.style.color='var(--primary)';
+  updateStats();
+}
+
+function updateStats(){
+  const att=answers.filter(a=>a!==null).length;
+  document.getElementById('s-att').textContent=att;
+  document.getElementById('prog').style.width=(att/QS.length*100)+'%';
+  document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;
+  let c=0,w=0;
+  answers.forEach((a,i)=>{ if(a===null)return; if(a===QS[i].ans)c++; else w++; });
+  document.getElementById('s-cor').textContent=c;
+  document.getElementById('s-wrg').textContent=w;
+}
+
+function submitAll(){
+  let cor=0,wrg=0,skp=0;
+  QS.forEach((q,i)=>{
+    revealed[i]=true;
+    const opts=document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});
+    opts[q.ans].classList.add('ok');
+    if(answers[i]!==null && answers[i]!==q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai=document.getElementById(`ai${i}`);
+    const card=document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}
+    else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}
+    else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}
+  });
+  updateStats();
+  showResults(cor,wrg,skp);
+}
+
+function showResults(cor,wrg,skp){
+  const pct=Math.round(cor/QS.length*100);
+  let grade,msg;
+  if(pct>=88){grade='Excellent';msg='Outstanding! You have mastered Tenses and Time Signals.'}
+  else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}
+  else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}
+  else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and try again."}
+  const res=document.getElementById('results');
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div>
+      <div class="res-grade">${grade} · ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:16px 0">
+      <button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button>
+    </div>`;
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetQuiz(){
+  answers.fill(null); revealed.fill(false);
+  build();
+  document.getElementById('results').style.display='none';
+  document.getElementById('results').innerHTML='';
+  ['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');
+  document.getElementById('prog').style.width='0%';
+  document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function switchTab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx={theory:0,quickref:1,quiz:2}[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+}
+
+function tog(hd){
+  const bd=hd.nextElementSibling;
+  const isOpen=bd.classList.contains('open');
+  bd.classList.toggle('open',!isOpen);
+  hd.classList.toggle('open',!isOpen);
+}
+
+build();
+</script>
+</body>
+</html>

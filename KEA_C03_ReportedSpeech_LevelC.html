@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C03 · Reported Speech | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F8F0F5;--bg2:#EFE0EA;--bg3:#E4CCD8;--white:#FDF8FC;
+  --ink:#1A001A;--ink2:#320028;--muted:#7A4070;--dim:#B080A8;--border:#D8B0D0;
+  --primary:#7A1060;--primaryLt:#9A1878;--primaryPale:#FAE8F5;
+  --amber:#8A6008;--amberLt:#B07A10;--amberPale:#FEF8DC;
+  --green:#1A5C38;--greenLt:#246E46;--greenPale:#E4F4EC;
+  --red:#8B1818;--redLt:#AC2020;--redPale:#FAEAEA;
+  --blue:#1A3A6A;--bluePale:#E8EEF8;
+  --purple:#5A1A72;--purplePale:#F2E8F8;
+  --rose:#9A1048;--rosePale:#FAE8F0;
+  --radius:12px;--shadow:0 2px 12px rgba(26,0,26,.09);--shadow-md:0 4px 20px rgba(26,0,26,.14);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+.hero{background:linear-gradient(135deg,#2A0028 0%,#7A1060 55%,#9A1878 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(255,160,220,.07) 0%,transparent 55%),radial-gradient(ellipse at 5% 85%,rgba(255,200,240,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;right:-20px;top:-20px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero-title span{color:#FFB8E0;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-r{background:rgba(255,160,200,.16);color:#FFB8E0}
+.chip-g{background:rgba(120,220,160,.12);color:#90E8A8}
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(26,0,26,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.intro-box{background:var(--primaryPale);border:1.5px solid rgba(122,16,96,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.85}.intro-box p+p{margin-top:10px}.intro-box strong{color:var(--primary)}
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--primary)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--primary);font-weight:700}.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(138,96,8,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+.eg-box{background:var(--greenPale);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px}
+.trap-box{background:var(--redPale);border:1.5px solid rgba(139,24,24,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(26,58,106,.15);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}.rule-box strong{color:var(--blue)}
+.purple-box{background:var(--purplePale);border:1.5px solid rgba(90,26,114,.15);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+.analogy-box{background:#EAF0F8;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.analogy-box .an-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:6px}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.primary-box{background:var(--primaryPale);border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.primary-box .pb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--primary);text-transform:uppercase;margin-bottom:6px}
+.primary-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}.primary-box strong{color:var(--primary)}
+.formula-strip{background:var(--ink);border-radius:10px;padding:13px 16px;margin:12px 0;font-family:'Lora',serif;font-size:15px;color:#F0D8EC;line-height:1.75}
+.formula-strip .fs-label{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,184,224,.6);margin-bottom:6px}
+.formula-strip .fs-hi{color:#FFB8E0;font-weight:700}
+/* conversion block */
+.conv-block{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0}
+.conv-block .cb-direct{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:4px}
+.conv-block .cb-d{font-size:15px;color:var(--ink2);margin-bottom:6px}
+.conv-block .cb-arrow{font-size:13px;color:var(--dim);font-style:italic;padding:3px 0}
+.conv-block .cb-indirect{font-size:14px;color:var(--primary);font-weight:700;margin-top:6px;margin-bottom:4px}
+.conv-block .cb-i{font-size:15px;color:var(--primary);font-weight:600}
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}.compare-table td b{color:var(--primary)}.compare-table td em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--primary);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--primary);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--primary)}.q-card.correct{border-left-color:var(--green)}.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}.diff-m{background:var(--amberPale);color:var(--amber)}.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--primaryPale)}.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--primary);background:var(--primaryPale);color:var(--primary)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{display:none;margin-top:12px;background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.exp-rule{font-size:13px;font-weight:800;color:var(--ink);background:var(--primaryPale);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:var(--bg)}
+.q-status{font-size:12px;font-weight:700}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:.5px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primaryLt)}
+.btn-ghost{background:var(--bg2);color:var(--ink2);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--bg3)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+#results{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md)}
+.res-hero{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.res-score{font-family:'Lora',serif;font-size:64px;font-weight:700;color:var(--primary);line-height:1}
+.res-grade{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 6px;letter-spacing:.5px}
+.res-msg{font-size:15px;color:var(--muted)}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-kicker">English · Lesson C03 · Kashmir English Academy</div>
+  <div class="hero-title">Reported <span>Speech</span></div>
+  <div class="hero-sub">Direct to Indirect — statements, questions, commands, exclamations. Tense backshift, pronoun changes, and time-word transformations. Essential for Level C grammar mastery.</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">Level C</span>
+    <span class="chip chip-r">Statements</span>
+    <span class="chip chip-r">Questions</span>
+    <span class="chip chip-g">Commands</span>
+    <span class="chip chip-w">Tense Backshift</span>
+    <span class="chip chip-r">Pronouns</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">📖 Theory</button>
+  <button class="tab" onclick="switchTab('quickref')">⚡ Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">✏️ Quiz</button>
+</div>
+
+<!-- ═══ THEORY ═══════════════════════════════════════════════════ -->
+<div class="pane on" id="theory">
+
+<div class="intro-box">
+  <p><strong>What is Reported Speech?</strong> When we tell someone what another person said, we use <strong>Reported (Indirect) Speech</strong>. Instead of quoting the exact words (Direct Speech), we report the <em>meaning</em> of what was said — changing tenses, pronouns, and time words.</p>
+  <p>Three big changes always happen: <strong>(1) Tense shifts back</strong> one step, <strong>(2) Pronouns change</strong> to match the new speaker/listener, and <strong>(3) Time &amp; place words change</strong> (now→then, here→there, today→that day).</p>
+</div>
+
+<div class="sec-label">Part 1 — Direct Speech vs Indirect Speech</div>
+
+<!-- DIRECT -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">💬</div>
+    <div style="flex:1"><div class="c-title">Direct Speech</div><div class="c-sub">Exact words · Inverted commas · Capital letter inside quotes</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Direct speech quotes the <strong>exact words</strong> of the speaker. It uses <strong>inverted commas</strong> (" "). The first word inside starts with a <strong>capital letter</strong>.</p>
+    <div class="formula-strip">
+      <div class="fs-label">Structure</div>
+      Reporting clause + , + <span class="fs-hi">"Exact words in inverted commas"</span><br>
+      <span style="font-size:13px;color:rgba(255,184,224,.55)">e.g. She said, "I love Kashmir."</span>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Examples — Direct Speech</div>
+      <ul>
+        <li>Meera said, <strong>"I am reading a book."</strong> <span style="color:var(--muted);font-size:13px">— exact words in quotes</span></li>
+        <li>The teacher said to the students, <strong>"Open your books."</strong> <span style="color:var(--muted);font-size:13px">— command</span></li>
+        <li>Arjun asked, <strong>"Where is the Dal Lake?"</strong> <span style="color:var(--muted);font-size:13px">— question mark inside</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- INDIRECT -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--rosePale)">📝</div>
+    <div style="flex:1"><div class="c-title">Indirect Speech (Reported Speech)</div><div class="c-sub">Reported meaning · No inverted commas · Connectors: that / if / to</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Indirect speech reports the <strong>meaning</strong> — no inverted commas. Three things always change: <strong>tense, pronouns, and time/place words</strong>.</p>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">Meera said, "I <span style="color:var(--rose)">am</span> reading a book."</div>
+      <div class="cb-arrow">↓ tense: am → was · pronoun: I → she</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">Meera said that she <span style="color:var(--primary)">was</span> reading a book.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">He said, "I <span style="color:var(--rose)">will go</span> to Srinagar <span style="color:var(--rose)">tomorrow</span>."</div>
+      <div class="cb-arrow">↓ will → would · tomorrow → the next day · I → he</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">He said that he <span style="color:var(--primary)">would go</span> to Srinagar <span style="color:var(--primary)">the next day</span>.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 2 — Tense Backshift (The Most Important Rule)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--amberPale)">🕐</div>
+    <div style="flex:1"><div class="c-title">Tense Backshift — "One Step Back in Time"</div><div class="c-sub">When reporting verb is past (said/told/asked), tense shifts one step back</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p><strong>The Golden Rule:</strong> When the reporting verb is in the <em>past tense</em> (said, told, asked, replied), every tense in the direct speech <strong>moves one step back</strong> into the past.</p>
+    <div class="fact-box">
+      <div class="fb-label">Tense Shift Chart</div>
+      <ul>
+        <li><em>Simple Present</em> → <strong>Simple Past</strong> &nbsp;|&nbsp; "I play" → he played</li>
+        <li><em>Present Continuous</em> → <strong>Past Continuous</strong> &nbsp;|&nbsp; "I am eating" → she was eating</li>
+        <li><em>Present Perfect</em> → <strong>Past Perfect</strong> &nbsp;|&nbsp; "I have seen" → he had seen</li>
+        <li><em>Simple Past</em> → <strong>Past Perfect</strong> &nbsp;|&nbsp; "I visited" → she had visited</li>
+        <li><em>will</em> → <strong>would</strong> &nbsp;|&nbsp; <em>can</em> → <strong>could</strong> &nbsp;|&nbsp; <em>may</em> → <strong>might</strong> &nbsp;|&nbsp; <em>must</em> → <strong>had to</strong></li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Exception — No Backshift Needed</div>
+      <p>When the reporting verb is <strong>present</strong> (says/tells), OR the statement is a <strong>universal truth or habit</strong>, the tense does NOT change.<br><br>
+      Direct: She says, "The sun rises in the east." → She says that the sun <strong>rises</strong> in the east. ✅</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 3 — Types of Reported Speech</div>
+
+<!-- STATEMENTS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--greenPale)">🟢</div>
+    <div style="flex:1"><div class="c-title">Type 1 — Reporting Statements</div><div class="c-sub">Reporting verb: said / told · Connector: "that" (optional)</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="formula-strip">
+      <div class="fs-label">Formula</div>
+      Subject + <span class="fs-hi">said (that)</span> + reported clause (tense shifted)<br>
+      Subject + <span class="fs-hi">told</span> + person + <span class="fs-hi">(that)</span> + reported clause<br>
+      <span style="font-size:13px;color:rgba(255,184,224,.55)">"said" = no object · "told" MUST have an object (told me / told him)</span>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">Priya said, "I love apples from Shopian."</div>
+      <div class="cb-arrow">↓ said → said that · I → she · love → loved</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">Priya said that she loved apples from Shopian.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">The teacher told the class, "You are doing well."</div>
+      <div class="cb-arrow">↓ told + object (the class) · You → they · are → were</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">The teacher told the class that they were doing well.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">Aisha said, "I have visited the Hazratbal shrine."</div>
+      <div class="cb-arrow">↓ have visited → had visited · I → she</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">Aisha said that she had visited the Hazratbal shrine.</div>
+    </div>
+  </div>
+</div>
+
+<!-- YES/NO QUESTIONS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--bluePale)">❓</div>
+    <div style="flex:1"><div class="c-title">Type 2a — Reporting Yes/No Questions</div><div class="c-sub">Reporting verb: asked · Connector: if / whether · No question mark</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="formula-strip">
+      <div class="fs-label">Formula</div>
+      Subject + <span class="fs-hi">asked</span> + (object) + <span class="fs-hi">if / whether</span> + reported clause (statement order)
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">He asked, "Are you coming to the shikara ride?"</div>
+      <div class="cb-arrow">↓ asked + if · Are you → if I was · question mark removed</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">He asked if I was coming to the shikara ride.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">The guard asked Meera, "Do you have a ticket?"</div>
+      <div class="cb-arrow">↓ asked + whether · Do you have → whether she had</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">The guard asked Meera whether she had a ticket.</div>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Key Rules for Questions</div>
+      <ul>
+        <li>Change to <strong>statement word order</strong> (not question order): "if she was coming" NOT "if was she coming"</li>
+        <li>Remove the <strong>question mark (?)</strong> — indirect speech ends with a full stop</li>
+        <li>Use <strong>if / whether</strong> — NOT "that" for questions</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- WH QUESTIONS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--bluePale)">🔎</div>
+    <div style="flex:1"><div class="c-title">Type 2b — Reporting Wh- Questions</div><div class="c-sub">Reporting verb: asked · Connector: the question word itself</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="formula-strip">
+      <div class="fs-label">Formula</div>
+      Subject + <span class="fs-hi">asked</span> + (object) + <span class="fs-hi">question word</span> + reported clause (statement order)
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">She asked, "Where do you live?"</div>
+      <div class="cb-arrow">↓ asked + where · do you live → where I lived (statement order)</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">She asked where I lived.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">Arjun asked Zara, "Why are you late today?"</div>
+      <div class="cb-arrow">↓ asked + why · are you → she was · today → that day</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">Arjun asked Zara why she was late that day.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMANDS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--amberPale)">📣</div>
+    <div style="flex:1"><div class="c-title">Type 3 — Reporting Commands &amp; Requests</div><div class="c-sub">Reporting verb: told / ordered / requested · Connector: to (infinitive)</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="formula-strip">
+      <div class="fs-label">Positive Command</div>
+      Subject + <span class="fs-hi">told / ordered / asked</span> + object + <span class="fs-hi">to + V1</span>
+      <div class="fs-label" style="margin-top:10px">Negative Command</div>
+      Subject + <span class="fs-hi">told / warned / asked</span> + object + <span class="fs-hi">not to + V1</span>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">The teacher said to students, "Open your books quietly."</div>
+      <div class="cb-arrow">↓ said to → told · "Open" → to open</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">The teacher told the students to open their books quietly.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">Mother said to Rohan, "Don't make noise."</div>
+      <div class="cb-arrow">↓ negative command → not to + V1</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">Mother told Rohan not to make noise.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">She requested the shopkeeper, "Please give me a shawl."</div>
+      <div class="cb-arrow">↓ requested + to + V1 · "please" removed · me → her</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">She requested the shopkeeper to give her a shawl.</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXCLAMATIONS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">🎉</div>
+    <div style="flex:1"><div class="c-title">Type 4 — Reporting Exclamations &amp; Wishes</div><div class="c-sub">Reporting verb: exclaimed (with joy/sorrow/surprise) · Connector: that</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="formula-strip">
+      <div class="fs-label">Formula</div>
+      Subject + <span class="fs-hi">exclaimed with joy/sorrow/surprise</span> + <span class="fs-hi">that</span> + reported clause<br>
+      <span style="font-size:13px;color:rgba(255,184,224,.55)">Remove "What a / How / Alas / Hurrah". Add "with joy/sorrow" to show emotion.</span>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">She said, "What a beautiful valley!"</div>
+      <div class="cb-arrow">↓ exclaimed with joy that · "What a …!" → very beautiful</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">She exclaimed with joy that it was a very beautiful valley.</div>
+    </div>
+    <div class="conv-block">
+      <div class="cb-direct">Direct:</div><div class="cb-d">He said, "Alas! I have lost my wallet."</div>
+      <div class="cb-arrow">↓ exclaimed with sorrow · have lost → had lost</div>
+      <div class="cb-indirect">Indirect:</div><div class="cb-i">He exclaimed with sorrow that he had lost his wallet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRONOUN CHANGES -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--purplePale)">🔀</div>
+    <div style="flex:1"><div class="c-title">Pronoun Changes in Reported Speech</div><div class="c-sub">I/we/you change based on who is speaking and who is listening</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Pronouns in the direct speech change based on the relationship between the <strong>speaker</strong> (reporting verb subject) and the <strong>listener</strong> (object of told/asked).</p>
+    <div class="fact-box">
+      <div class="fb-label">General Pronoun Rules</div>
+      <ul>
+        <li><strong>I / my / me / myself</strong> → he/his/him or she/her — based on who is speaking</li>
+        <li><strong>We / our / us / ourselves</strong> → they / their / them</li>
+        <li><strong>You / your / yourself</strong> → depends on context (the listener becomes he/she/they)</li>
+        <li><strong>He / She / They / It</strong> → usually unchanged</li>
+      </ul>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Examples</div>
+      <ul>
+        <li>Arjun said to me, "I love <strong>my</strong> school." → Arjun told me that he loved <strong>his</strong> school.</li>
+        <li>She said to me, "<strong>You</strong> are my best friend." → She told me that <strong>I</strong> was her best friend.</li>
+        <li>They said, "<strong>We</strong> are going to Sonamarg." → They said that <strong>they</strong> were going to Sonamarg.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ═══ QUICK REF ═══════════════════════════════════════════════════ -->
+<div class="pane" id="quickref">
+<div class="ref-grid">
+
+  <div class="ref-card">
+    <div class="ref-card-title">🕐 Tense Backshift — Complete Chart</div>
+    <div style="overflow-x:auto;margin-top:8px">
+      <table class="compare-table">
+        <tr><th>Direct (Tense)</th><th>Indirect (Becomes)</th></tr>
+        <tr><td>Simple Present</td><td><b>Simple Past</b></td></tr>
+        <tr><td>Present Continuous</td><td><b>Past Continuous</b></td></tr>
+        <tr><td>Present Perfect</td><td><b>Past Perfect</b></td></tr>
+        <tr><td>Pres. Perfect Cont.</td><td><b>Past Perfect Cont.</b></td></tr>
+        <tr><td>Simple Past</td><td><b>Past Perfect</b></td></tr>
+        <tr><td>Past Continuous</td><td><b>Past Perfect Cont.</b></td></tr>
+        <tr><td>will</td><td><b>would</b></td></tr>
+        <tr><td>can</td><td><b>could</b></td></tr>
+        <tr><td>may</td><td><b>might</b></td></tr>
+        <tr><td>shall</td><td><b>should / would</b></td></tr>
+        <tr><td>must</td><td><b>had to</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🗓️ Time &amp; Place Word Changes</div>
+    <div style="overflow-x:auto;margin-top:8px">
+      <table class="compare-table">
+        <tr><th>Direct Speech</th><th>Indirect Speech</th></tr>
+        <tr><td>now</td><td><b>then</b></td></tr>
+        <tr><td>today</td><td><b>that day</b></td></tr>
+        <tr><td>yesterday</td><td><b>the day before</b></td></tr>
+        <tr><td>tomorrow</td><td><b>the next day / following day</b></td></tr>
+        <tr><td>last week/month</td><td><b>the previous week/month</b></td></tr>
+        <tr><td>next week/month</td><td><b>the following week/month</b></td></tr>
+        <tr><td>here</td><td><b>there</b></td></tr>
+        <tr><td>this</td><td><b>that</b></td></tr>
+        <tr><td>these</td><td><b>those</b></td></tr>
+        <tr><td>ago</td><td><b>before</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">📋 Types — At a Glance</div>
+    <ul>
+      <li><b>Statement:</b> said/told + (that) + reported clause</li>
+      <li><b>Yes/No Q:</b> asked + if/whether + statement order</li>
+      <li><b>Wh- Q:</b> asked + question word + statement order</li>
+      <li><b>Command (+):</b> told/ordered + to + V1</li>
+      <li><b>Command (−):</b> told/warned + not to + V1</li>
+      <li><b>Request:</b> requested/asked + to + V1 (remove "please")</li>
+      <li><b>Exclamation:</b> exclaimed with joy/sorrow + that + clause</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🔀 Pronoun Changes</div>
+    <ul>
+      <li>I / my / me → <b>he/his/him</b> or <b>she/her</b></li>
+      <li>We / our / us → <b>they / their / them</b></li>
+      <li>You / your → depends on context (often he/she)</li>
+      <li>He / She / It / They → usually <b>unchanged</b></li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">⚑ Critical Rules — Never Forget</div>
+    <ul>
+      <li>"said to" + name → always becomes <b>"told"</b> + name</li>
+      <li><b>"said"</b> has no object · <b>"told"</b> must have a person after it</li>
+      <li>Questions: change to <b>statement word order</b> — remove "?"</li>
+      <li>Commands: use <b>to + V1</b> (not "that he open")</li>
+      <li>No backshift if reporting verb is <b>present</b> (says/tells)</li>
+      <li>No backshift for <b>universal truths</b> ("The sun rises…")</li>
+      <li>Remove exclamation words (What a! Alas! Hurrah!) → use <b>exclaimed with joy/sorrow</b></li>
+    </ul>
+  </div>
+
+</div>
+</div><!-- /quickref -->
+
+<!-- ═══ QUIZ ═══════════════════════════════════════════════════════ -->
+<div class="pane" id="quiz">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a" id="s-tot">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+  <div id="results"></div>
+  <div id="q-area"></div>
+</div>
+
+</div><!-- /page -->
+<script>
+const QS=[
+{d:'EASY',e:'Level C · C03',q:'Change to Indirect Speech: Priya said, "I am going to Gulmarg today."',opts:['Priya said that she is going to Gulmarg today.','Priya said that she was going to Gulmarg that day.','Priya said that I was going to Gulmarg that day.','Priya told that she went to Gulmarg today.'],ans:1,rule:'Statement: said → said that · "am going" → "was going" · I → she · today → that day.',exp:'All four changes apply here: (1) "said" stays as "said that". (2) "am going" (present continuous) → "was going" (past continuous). (3) "I" → "she". (4) "today" → "that day". Option C keeps "I" unchanged (wrong). Option D uses "told that" without a person (wrong — "told" must have an object). Option A keeps present tense "is going" (no backshift).'},
+{d:'EASY',e:'Level C · C03',q:'Change to Indirect: The teacher said to Arjun, "You have done excellent work."',opts:['The teacher said to Arjun that he has done excellent work.','The teacher told Arjun that you had done excellent work.','The teacher told Arjun that he had done excellent work.','The teacher said Arjun that he had done excellent work.'],ans:2,rule:'"said to" + name → "told" + name · "You" → "he" · have done → had done.',exp:'"said to Arjun" converts to "told Arjun". "You" (Arjun) → "he". "have done" (present perfect) → "had done" (past perfect). Option A uses "said to Arjun that" — wrong, must be "told". Option B keeps "you" unchanged. Option D says "said Arjun" — "said" cannot take a person directly.'},
+{d:'EASY',e:'Level C · C03',q:'Choose the correct indirect form: He said, "I will visit Sonamarg next week."',opts:['He said that he will visit Sonamarg the next week.','He said that he would visit Sonamarg the following week.','He said that he would visit Sonamarg next week.','He told that he would visit Sonamarg the following week.'],ans:1,rule:'"will" → "would" · "next week" → "the following week" · "said" (no object) is correct.',exp:'"will" → "would" (backshift). "next week" → "the following week" (time word change). "said" is correct (no person after it). Option A: keeps "will" (no backshift). Option C: keeps "next week" (time word not changed). Option D: "told that" without a person — wrong.'},
+{d:'EASY',e:'Level C · C03',q:'Change to Indirect: She asked, "Are you interested in the shikara ride?"',opts:['She asked if I am interested in the shikara ride.','She asked whether I was interested in the shikara ride.','She asked that I was interested in the shikara ride.','She asked if was I interested in the shikara ride.'],ans:1,rule:'Yes/No question: asked + if/whether · statement order · tense shift.',exp:'Yes/No question indirect: asked + if/whether + statement order. "Are you" → "whether I was" (backshift + statement order). "that" (option C) is used for statements, not questions. Option D has wrong word order ("if was I" = question order, should be "if I was"). Option A: no backshift ("am" stays — wrong).'},
+{d:'MEDIUM',e:'Level C · C03',q:'Change to Indirect: The tourist asked the guide, "Where is the Hazratbal shrine?"',opts:['The tourist asked the guide where was the Hazratbal shrine.','The tourist asked the guide where the Hazratbal shrine is.','The tourist asked the guide where the Hazratbal shrine was.','The tourist asked the guide that where the Hazratbal shrine was.'],ans:2,rule:'Wh- question: asked + where + statement order + tense shift.',exp:'Wh- question indirect: asked + question word (where) + statement order. "Where is" → "where the Hazratbal shrine was" (statement order: subject before verb). "is" → "was" (backshift). Option A: "where was the Hazratbal shrine" = question order (wrong). Option B: no backshift. Option D: "that where" — never use "that" after a question word.'},
+{d:'MEDIUM',e:'Level C · C03',q:'Change to Indirect: The teacher said to students, "Open your books quietly."',opts:['The teacher told the students to open their books quietly.','The teacher said the students to open their books quietly.','The teacher told the students that they open their books quietly.','The teacher asked the students open their books quietly.'],ans:0,rule:'Positive command: "said to" → "told" + object + to + V1.',exp:'Command (positive): "said to" → "told" + object. Connector: "to + V1" (to open). "your" → "their". No tense backshift — we use the infinitive directly. "said" without "to" cannot be used (Option B). "that they open" is wrong for commands (Option C). "asked open" — missing "to" (Option D).'},
+{d:'MEDIUM',e:'Level C · C03',q:"Change to Indirect: Mother said to Riya, \"Don't watch TV late at night.\"",opts:['Mother told Riya not watch TV late at night.','Mother told Riya not to watch TV late at night.','Mother told Riya to not watch TV late at night.','Mother said Riya not to watch TV late at night.'],ans:1,rule:"Negative command: Don't + V1 → not to + V1.",exp:'"Don\'t + V1" → "not to + V1". Structure: told + person + not to + V1. "not to" must stay together (Option C splits it with "to not" — incorrect). "said Riya" (Option D) is wrong — "said" cannot take a direct object person. Option A misses "to".'},
+{d:'MEDIUM',e:'Level C · C03',q:'Change to Indirect: Meera said, "What a beautiful valley this is!"',opts:['Meera said that what a beautiful valley that was.','Meera told that the valley was very beautiful.','Meera exclaimed with joy that the valley was very beautiful.','Meera exclaimed that what a beautiful valley that was.'],ans:2,rule:'Exclamation of joy: "What a…!" → exclaimed with joy that + restructured statement.',exp:'"What a…!" = exclamation of joy → "exclaimed with joy that". Remove "What a". Restructure: "the valley was very beautiful". "this is" → "the valley was" (tense backshift). Option A: "said that what a" is wrong structure. Option B: "told that" without a person — wrong. Option D: keeping "what a" in indirect — wrong.'},
+{d:'MEDIUM',e:'Level C · C03',q:'What does "now" become in Indirect Speech?',opts:['today','there','then','before'],ans:2,rule:'"now" → "then" in indirect speech.',exp:'"now" → "then". "today" → "that day" (not "today" in indirect). "here" → "there". "ago" → "before". These time/place changes always happen when the reporting verb is past tense.'},
+{d:'MEDIUM',e:'Level C · C03',q:'Identify the error: He said that he will come to Srinagar tomorrow.',opts:['"He said" should be "He told"','"will" should be "would" and "tomorrow" should be "the next day"','"come" should be "came"','There is no error'],ans:1,rule:'"will" must → "would" · "tomorrow" must → "the next day".',exp:'Two errors together: "will" must backshift to "would", AND "tomorrow" must change to "the next day". Both must change when reporting verb is past (said). "He said" is correct — "said" without an object is fine for statements. "come" does not change (infinitive in indirect, but that is not the error here).'},
+{d:'HARD',e:'Level C · C03',q:'Change to Indirect: She said to him, "Please help me carry these bags."',opts:['She told him please to help her carry those bags.','She requested him to help her carry those bags.','She asked him that he help her carry those bags.','She said to him to help her carry those bags.'],ans:1,rule:'"Please" = request → "requested" · to + V1 · remove please · these → those.',exp:'"Please" signals a request → "requested". Structure: requested + him + to + V1. Remove "please". "me" → "her", "these" → "those". Option A keeps "please" (wrong). Option C uses "that he help" — wrong for commands (use infinitive). Option D: "said to him to" — incorrect structure.'},
+{d:'HARD',e:'Level C · C03',q:'Change to Indirect: Zara asked me, "Did you attend the wazwan dinner yesterday?"',opts:['Zara asked me if I had attended the wazwan dinner the day before.','Zara asked me if I attended the wazwan dinner yesterday.','Zara asked me whether I have attended the wazwan dinner the day before.','Zara asked me did I attend the wazwan dinner the day before.'],ans:0,rule:'Yes/No Q: asked + if · "Did you attend" (past) → "had attended" (past perfect) · yesterday → the day before.',exp:'Yes/No question: asked + if. "Did you attend" = simple past → "had attended" (past perfect backshift). "yesterday" → "the day before". Statement word order: "if I had attended". Option B: no backshift and "yesterday" unchanged. Option C: "have attended" = present perfect (wrong). Option D: "did I attend" = question order (wrong).'},
+{d:'HARD',e:'Level C · C03',q:'The reporting verb for Wh- questions in indirect speech is:',opts:['said','told','asked','exclaimed'],ans:2,rule:'"asked" is the reporting verb for ALL questions (Yes/No and Wh-) in indirect speech.',exp:'"asked" is used for all questions — both Yes/No and Wh- — in indirect speech. "said/told" are for statements. "exclaimed" is for exclamations. This is a foundational rule: direct question → always use "asked" in indirect.'},
+{d:'HARD',e:'Level C · C03',q:'Change to Indirect: He said, "Alas! I have failed the examination."',opts:['He said with sorrow that he had failed the examination.','He exclaimed sadly that he failed the examination.','He exclaimed with sorrow that he had failed the examination.','He told with sorrow that he has failed the examination.'],ans:2,rule:'"Alas!" = sorrow → exclaimed with sorrow that · have failed → had failed.',exp:'"Alas!" = expression of sorrow → "exclaimed with sorrow that". Remove "Alas!". "have failed" (present perfect) → "had failed" (past perfect). Option A: "said with sorrow" — wrong verb for exclamations. Option B: "exclaimed sadly" is informal — use "with sorrow"; also no backshift. Option D: "told with sorrow" — wrong verb + "has failed" (no backshift).'},
+{d:'HARD',e:'Level C · C03',q:'Which sentence correctly reports: Arjun said to me, "I love your city."?',opts:['Arjun told me that I loved my city.','Arjun told me that he loved my city.','Arjun said me that he loved your city.','Arjun told me that he loved your city.'],ans:1,rule:'"said to me" → "told me" · I (Arjun) → he · "your" (my city, from my perspective) → stays "my".',exp:'"said to me" → "told me". "I" (Arjun\'s pronoun) → "he". "your city" — Arjun is referring to MY city, so from my perspective it stays "my city". Option A: "I loved" — "I" is not backshifted to "he" (wrong). Option C: "said me" is wrong structure. Option D: "your city" remains unchanged — but Arjun said "your city" referring to me, so it should be "my city" in indirect.'},
+];
+const answers=new Array(QS.length).fill(null),revealed=new Array(QS.length).fill(false),LABS=['A','B','C','D'];
+function build(){
+  const area=document.getElementById('q-area');area.innerHTML='';
+  QS.forEach((q,i)=>{
+    const dc=q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div=document.createElement('div');div.className='q-card';div.id=`qc${i}`;
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${String(i+1).padStart(2,'0')}</span><span class="q-diff ${dc}">${q.d}</span><span class="q-exam">${q.e}</span></div><div class="q-body"><div class="q-text">${q.q}</div><div class="opts" id="opts${i}">${q.opts.map((o,j)=>`<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})"><span class="opt-lbl">${LABS[j]}</span>${o}</button>`).join('')}</div><div class="exp-panel" id="ex${i}"><div class="exp-tag">Explanation</div><div class="exp-rule">${q.rule}</div><p>${q.exp}</p></div></div><div class="q-foot"><span style="font-size:11px;color:var(--dim);font-weight:700">English · C03</span><span id="ai${i}" class="q-status">—</span></div>`;
+    area.appendChild(div);
+  });
+}
+function pick(qi,oi){if(revealed[qi])return;answers[qi]=oi;document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{b.classList.remove('sel');if(j===oi)b.classList.add('sel')});document.getElementById(`qc${qi}`).classList.add('answered');const ai=document.getElementById(`ai${qi}`);ai.textContent=`Selected: ${LABS[oi]}`;ai.style.color='var(--primary)';updateStats();}
+function updateStats(){const att=answers.filter(a=>a!==null).length;document.getElementById('s-att').textContent=att;document.getElementById('prog').style.width=(att/QS.length*100)+'%';document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;let c=0,w=0;answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});document.getElementById('s-cor').textContent=c;document.getElementById('s-wrg').textContent=w;}
+function submitAll(){let cor=0,wrg=0,skp=0;QS.forEach((q,i)=>{revealed[i]=true;const opts=document.querySelectorAll(`#opts${i} .opt`);opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});opts[q.ans].classList.add('ok');if(answers[i]!==null&&answers[i]!==q.ans)opts[answers[i]].classList.add('bad');document.getElementById(`ex${i}`).classList.add('show');const ai=document.getElementById(`ai${i}`);const card=document.getElementById(`qc${i}`);card.classList.remove('answered');if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='var(--green)';}else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}});updateStats();showResults(cor,wrg,skp);}
+function showResults(cor,wrg,skp){const pct=Math.round(cor/QS.length*100);let grade,msg;if(pct>=88){grade='Excellent';msg='Outstanding! You have mastered Reported Speech.'}else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and try again."}const res=document.getElementById('results');res.innerHTML=`<div class="res-hero"><div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div><div class="res-grade">${grade} · ${pct}%</div><div class="res-msg">${msg}</div></div><div class="res-stats"><div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div><div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div><div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div><div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div></div><div style="text-align:center;margin:16px 0"><button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button></div>`;res.style.display='block';res.scrollIntoView({behavior:'smooth',block:'start'});}
+function resetQuiz(){answers.fill(null);revealed.fill(false);build();document.getElementById('results').style.display='none';document.getElementById('results').innerHTML='';['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');document.getElementById('prog').style.width='0%';document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;window.scrollTo({top:0,behavior:'smooth'});}
+function switchTab(id){document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');const idx={theory:0,quickref:1,quiz:2}[id];document.querySelectorAll('.tab')[idx].classList.add('on');}
+function tog(hd){const bd=hd.nextElementSibling;const isOpen=bd.classList.contains('open');bd.classList.toggle('open',!isOpen);hd.classList.toggle('open',!isOpen);}
+build();
+</script>
+</body>
+</html>

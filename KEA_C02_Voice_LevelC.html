@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C02 · Voice: Active &amp; Passive | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#EEF5F2;--bg2:#E0EDE8;--bg3:#CDE0D8;--white:#F6FCFA;
+  --ink:#001A10;--ink2:#0D2E1E;--muted:#3A6B52;--dim:#6EA084;--border:#AECFC2;
+  --primary:#0A5C3A;--primaryLt:#127348;--primaryPale:#E2F4ED;
+  --amber:#7A6008;--amberLt:#9A7A10;--amberPale:#FEF8DC;
+  --green:#0A5C3A;--greenLt:#127348;--greenPale:#E2F4ED;
+  --red:#7A1A2A;--redLt:#9C2238;--redPale:#FAEAED;
+  --blue:#0F4060;--bluePale:#E2EFF8;
+  --purple:#4A2068;--purplePale:#EFE8F8;
+  --teal:#0A7060;--tealPale:#E0F4F0;
+  --radius:12px;--shadow:0 2px 12px rgba(0,26,16,.09);--shadow-md:0 4px 20px rgba(0,26,16,.14);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:680px;margin:0 auto;padding:0 16px 80px}
+.hero{background:linear-gradient(135deg,#022B1E 0%,#0A5C3A 55%,#127348 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(100,255,200,.07) 0%,transparent 55%),radial-gradient(ellipse at 5% 85%,rgba(180,255,220,.05) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;right:-20px;top:-20px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(24px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero-title span{color:#A0F0D0;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-g{background:rgba(100,255,180,.14);color:#A0F0D0}
+.chip-b{background:rgba(100,200,255,.12);color:#90D8FF}
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(0,26,16,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:14px 18px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+.pane{display:none;padding-top:24px;animation:fadeUp .3s ease}.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.intro-box{background:var(--primaryPale);border:1.5px solid rgba(10,92,58,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.85}.intro-box p+p{margin-top:10px}.intro-box strong{color:var(--primary)}
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--primary)}
+.c-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:700;color:var(--ink);flex:1}.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:2px}
+.c-arrow{font-size:12px;color:var(--dim);transition:transform .2s;flex-shrink:0}.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:4px 18px 20px;border-top:1px solid var(--border)}.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body p{font-size:16px;color:var(--ink2);line-height:1.85;margin-bottom:12px}.c-body p:last-child{margin-bottom:0}
+.c-body strong{color:var(--primary);font-weight:700}.c-body em{color:var(--amber);font-style:normal;font-weight:700}
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(122,96,8,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:8px}
+.fact-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px}
+.eg-box{background:var(--tealPale);border-left:4px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.eg-box .eg-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:6px}
+.eg-box ul{list-style:none;padding:0}
+.eg-box li{font-size:15px;color:var(--ink2);padding:4px 0 4px 18px;position:relative;line-height:1.65}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800;font-size:12px}
+.trap-box{background:var(--redPale);border:1.5px solid rgba(122,26,42,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:8px}
+.trap-box p,.trap-box li{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.trap-box ul{list-style:none;padding:0}.trap-box li{padding:5px 0 5px 22px;position:relative}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red)}
+.rule-box{background:var(--bluePale);border:1.5px solid rgba(15,64,96,.15);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}.rule-box strong{color:var(--blue)}
+.purple-box{background:var(--purplePale);border:1.5px solid rgba(74,32,104,.15);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.purple-box ul{list-style:none;padding:0}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+.analogy-box{background:#E4F0F8;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.analogy-box .an-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:6px}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}
+.primary-box{background:var(--primaryPale);border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.primary-box .pb-label{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--primary);text-transform:uppercase;margin-bottom:6px}
+.primary-box p{font-size:15.5px;color:var(--ink2);line-height:1.75}.primary-box strong{color:var(--primary)}
+.formula-strip{background:var(--ink);border-radius:10px;padding:13px 16px;margin:12px 0;font-family:'Lora',serif;font-size:15px;color:#D0EEE0;line-height:1.75}
+.formula-strip .fs-label{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(160,240,200,.6);margin-bottom:6px}
+.formula-strip .fs-hi{color:#A0F0D0;font-weight:700}
+/* transform block */
+.transform-block{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0}
+.transform-block .tb-tense{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px}
+.transform-row{margin:8px 0}
+.t-active{font-size:15px;color:var(--ink2);font-weight:600}
+.t-arrow{font-size:13px;color:var(--muted);padding:3px 0;font-style:italic}
+.t-passive{font-size:15px;color:var(--primary);font-weight:700}
+/* to-be grid */
+.tobe-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.tobe-cell{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center}
+.tc-tense{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.tc-forms{font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--primary)}
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:10px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}.compare-table td b{color:var(--primary)}.compare-table td em{color:var(--amber);font-style:normal;font-weight:700}
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--primary);font-weight:900;font-size:18px;line-height:1.3}
+.ref-card li b{color:var(--ink);font-weight:700}.ref-card li em{color:var(--amber);font-style:normal;font-weight:700}
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--primary);line-height:1}
+.qs-val.g{color:#0A7060}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--primary)}.q-card.correct{border-left-color:#0A7060}.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--tealPale);color:var(--teal)}.diff-m{background:var(--amberPale);color:var(--amber)}.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}.q-text{font-size:17px;line-height:1.8;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--primaryPale)}.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--primary);background:var(--primaryPale);color:var(--primary)}
+.opt.ok{border-color:#0A7060!important;background:var(--tealPale)!important;color:#0A7060!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.ok  .opt-lbl{background:#0A7060;color:#fff;border-color:#0A7060}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{display:none;margin-top:12px;background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.exp-rule{font-size:13px;font-weight:800;color:var(--ink);background:var(--primaryPale);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:var(--bg)}
+.q-status{font-size:12px;font-weight:700}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:.5px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primaryLt)}
+.btn-ghost{background:var(--bg2);color:var(--ink2);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--bg3)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+#results{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md)}
+.res-hero{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.res-score{font-family:'Lora',serif;font-size:64px;font-weight:700;color:var(--primary);line-height:1}
+.res-grade{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 6px;letter-spacing:.5px}
+.res-msg{font-size:15px;color:var(--muted)}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-kicker">English · Lesson C02 · Kashmir English Academy</div>
+  <div class="hero-title">Voice — <span>Active &amp; Passive</span></div>
+  <div class="hero-sub">Who does the action and who receives it — mastering the verb "To Be," all passive transformations, and the rules of voice across tenses. Essential for Level C grammar mastery.</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">Level C</span>
+    <span class="chip chip-g">Active Voice</span>
+    <span class="chip chip-b">Passive Voice</span>
+    <span class="chip chip-g">Verb To Be</span>
+    <span class="chip chip-w">V3 Forms</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab on" onclick="switchTab('theory')">📖 Theory</button>
+  <button class="tab" onclick="switchTab('quickref')">⚡ Quick Ref</button>
+  <button class="tab" onclick="switchTab('quiz')">✏️ Quiz</button>
+</div>
+
+<!-- ═══ THEORY ═══════════════════════════════════════════════════ -->
+<div class="pane on" id="theory">
+
+<div class="intro-box">
+  <p><strong>What is Voice?</strong> In English grammar, <strong>Voice</strong> tells us whether the <em>subject</em> of a sentence is performing the action or receiving it. There are two voices: <strong>Active</strong> (subject does the action) and <strong>Passive</strong> (subject receives the action).</p>
+  <p>To change voice, we need the <strong>verb "To Be"</strong> — the most important helping verb in English. Understanding its forms across tenses is the key to mastering passive voice.</p>
+</div>
+
+<div class="sec-label">Part 1 — Active &amp; Passive Voice</div>
+
+<!-- ACTIVE -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">🟢</div>
+    <div style="flex:1"><div class="c-title">Active Voice</div><div class="c-sub">Subject → does the action · Direct &amp; clear · Most common in everyday writing</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Use <strong>Active Voice</strong> when you want to show <em>who</em> is performing the action clearly. It is direct, energetic, and easier to read.</p>
+    <div class="formula-strip">
+      <div class="fs-label">Structure</div>
+      <span class="fs-hi">Subject</span> + <span class="fs-hi">Verb</span> + Object<br>
+      <span style="font-size:13px;color:rgba(160,240,200,.55)">The subject performs the action directly.</span>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Examples — Active Voice</div>
+      <ul>
+        <li>Arjun <strong>kicks</strong> the football. <span style="color:var(--muted);font-size:13px">— Arjun (S) → kicks (V) → football (O)</span></li>
+        <li>The farmer in Kashmir <strong>grows</strong> saffron every year.</li>
+        <li>Meera <strong>wrote</strong> a beautiful poem about the Dal Lake.</li>
+        <li>The chef <strong>prepared</strong> delicious kahwa for the guests.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PASSIVE -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--bluePale)">🔵</div>
+    <div style="flex:1"><div class="c-title">Passive Voice</div><div class="c-sub">Subject ← receives the action · Uses "to be" + V3 · Formal &amp; scientific writing</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Use <strong>Passive Voice</strong> when the <em>action is more important than who does it</em>, when the doer is unknown, or in formal/scientific writing.</p>
+    <div class="formula-strip">
+      <div class="fs-label">Structure</div>
+      <span class="fs-hi">Subject</span> + <span class="fs-hi">To Be</span> + <span class="fs-hi">V3 (Past Participle)</span> + (by + agent)<br>
+      <span style="font-size:13px;color:rgba(160,240,200,.55)">The doer is placed after "by" — and is optional.</span>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Examples — Passive Voice</div>
+      <ul>
+        <li>The football <strong>is kicked</strong> by Arjun. <span style="color:var(--muted);font-size:13px">— football receives the action</span></li>
+        <li>Saffron <strong>is grown</strong> in Kashmir every year. <span style="color:var(--muted);font-size:13px">— doer not mentioned</span></li>
+        <li>A beautiful poem about the Dal Lake <strong>was written</strong> by Meera.</li>
+        <li>The road to Gulmarg <strong>was blocked</strong> by heavy snow.</li>
+      </ul>
+    </div>
+    <div class="analogy-box">
+      <div class="an-label">Active vs Passive — The Spotlight</div>
+      <p>Active voice shines the spotlight on the <strong>doer</strong>. Passive voice moves the spotlight to the <strong>action or the object</strong>. Newspapers often use passive when the doer is unknown: "The bridge was damaged." (We don't know who — or it doesn't matter.)</p>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 2 — Active → Passive Transformation (Tense-wise)</div>
+
+<!-- TRANSFORMATIONS -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--tealPale)">🔄</div>
+    <div style="flex:1"><div class="c-title">Tense-wise Transformations</div><div class="c-sub">Simple Present · Simple Past · Future · Continuous · Perfect</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="transform-block">
+      <div class="tb-tense">Simple Present → is/am/are + V3</div>
+      <div class="transform-row"><div class="t-active">Rohan eats mangoes.</div><div class="t-arrow">↓ passive</div><div class="t-passive">Mangoes are eaten by Rohan.</div></div>
+      <div class="transform-row"><div class="t-active">The teacher explains the lesson.</div><div class="t-arrow">↓</div><div class="t-passive">The lesson is explained by the teacher.</div></div>
+    </div>
+    <div class="transform-block">
+      <div class="tb-tense">Simple Past → was/were + V3</div>
+      <div class="transform-row"><div class="t-active">Zara painted the wall.</div><div class="t-arrow">↓ passive</div><div class="t-passive">The wall was painted by Zara.</div></div>
+      <div class="transform-row"><div class="t-active">The floods damaged the bridge near Anantnag.</div><div class="t-arrow">↓</div><div class="t-passive">The bridge near Anantnag was damaged by the floods.</div></div>
+    </div>
+    <div class="transform-block">
+      <div class="tb-tense">Simple Future → will be + V3</div>
+      <div class="transform-row"><div class="t-active">Priya will bake the cake.</div><div class="t-arrow">↓ passive</div><div class="t-passive">The cake will be baked by Priya.</div></div>
+      <div class="transform-row"><div class="t-active">The government will build a new school in Baramulla.</div><div class="t-arrow">↓</div><div class="t-passive">A new school will be built in Baramulla by the government.</div></div>
+    </div>
+    <div class="transform-block">
+      <div class="tb-tense">Present Continuous → is/am/are being + V3</div>
+      <div class="transform-row"><div class="t-active">The workers are building the bridge.</div><div class="t-arrow">↓ passive</div><div class="t-passive">The bridge is being built by the workers.</div></div>
+    </div>
+    <div class="transform-block">
+      <div class="tb-tense">Present Perfect → has/have been + V3</div>
+      <div class="transform-row"><div class="t-active">Aisha has written the letter.</div><div class="t-arrow">↓ passive</div><div class="t-passive">The letter has been written by Aisha.</div></div>
+    </div>
+    <div class="transform-block">
+      <div class="tb-tense">Past Perfect → had been + V3</div>
+      <div class="transform-row"><div class="t-active">The team had finished the project.</div><div class="t-arrow">↓ passive</div><div class="t-passive">The project had been finished by the team.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">📋</div>
+    <div style="flex:1"><div class="c-title">5 Rules for Changing Active to Passive</div><div class="c-sub">Step-by-step method — never get it wrong</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="fact-box">
+      <div class="fb-label">The 5 Steps</div>
+      <ul>
+        <li><strong>Step 1</strong> — The <em>Object</em> of active becomes the <em>Subject</em> of passive. Active: Priya (S) wrote the letter (O). → Passive: The letter (S)…</li>
+        <li><strong>Step 2</strong> — The verb changes to: correct form of <em>"to be"</em> + <em>Past Participle (V3)</em>. The tense decides which form of "to be."</li>
+        <li><strong>Step 3</strong> — The active Subject becomes <em>"by + agent"</em> phrase at the end (optional — omit if unknown).</li>
+        <li><strong>Step 4</strong> — Change pronouns: I→me, he→him, she→her, they→them, we→us (object form after "by"). Active: She helped me. → Passive: I was helped by <em>her</em>.</li>
+        <li><strong>Step 5</strong> — ⚠️ <em>Intransitive verbs</em> (no object) CANNOT be made passive. "The bird flew" — no passive possible.</li>
+      </ul>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Common Mistakes</div>
+      <ul>
+        <li>❌ "by she / by he / by they" → ✅ "by her / by him / by them" — use object pronouns after "by"</li>
+        <li>❌ "The cake is baked yesterday." → ✅ "The cake was baked yesterday." — match "to be" to original tense</li>
+        <li>❌ "The letter was write by her." → ✅ "The letter was written by her." — always use V3, not V1/V2</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec-label">Part 3 — The Verb "To Be" &amp; Its Forms</div>
+
+<!-- TO BE -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--purplePale)">🟣</div>
+    <div style="flex:1"><div class="c-title">All 8 Forms of "To Be"</div><div class="c-sub">am · is · are · was · were · be · been · being</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>"To Be" works in <strong>three ways</strong>: (1) as a <strong>Main Verb</strong> — describing a state; (2) as an <strong>Auxiliary</strong> — forming continuous tenses; (3) as a <strong>Passive Auxiliary</strong> — forming all passive sentences.</p>
+    <div class="tobe-grid">
+      <div class="tobe-cell"><div class="tc-tense">I (Present)</div><div class="tc-forms">am</div></div>
+      <div class="tobe-cell"><div class="tc-tense">He/She/It (Present)</div><div class="tc-forms">is</div></div>
+      <div class="tobe-cell"><div class="tc-tense">You/We/They (Present)</div><div class="tc-forms">are</div></div>
+      <div class="tobe-cell"><div class="tc-tense">I/He/She/It (Past)</div><div class="tc-forms">was</div></div>
+      <div class="tobe-cell"><div class="tc-tense">You/We/They (Past)</div><div class="tc-forms">were</div></div>
+      <div class="tobe-cell"><div class="tc-tense">Base / after modal</div><div class="tc-forms">be</div></div>
+      <div class="tobe-cell"><div class="tc-tense">Past Participle (V3)</div><div class="tc-forms">been</div></div>
+      <div class="tobe-cell"><div class="tc-tense">Present Participle (V4)</div><div class="tc-forms">being</div></div>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Three Roles — Examples</div>
+      <ul>
+        <li>Arjun <strong>is</strong> a good student. <span style="color:var(--muted);font-size:13px">→ Main verb (state of being)</span></li>
+        <li>She <strong>is</strong> singing a folk song. <span style="color:var(--muted);font-size:13px">→ Auxiliary (forms present continuous)</span></li>
+        <li>The book <strong>was</strong> written by Rahul. <span style="color:var(--muted);font-size:13px">→ Passive auxiliary (was + V3)</span></li>
+        <li>Meena has <strong>been</strong> waiting for an hour. <span style="color:var(--muted);font-size:13px">→ Perfect continuous (been + V-ing)</span></li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Passive Formation Using "To Be"</div>
+      <p>
+        <strong>Present Simple Passive:</strong> is/am/are + V3 → "The letter is written."<br>
+        <strong>Past Simple Passive:</strong> was/were + V3 → "The letter was written."<br>
+        <strong>Future Passive:</strong> will be + V3 → "The letter will be written."<br>
+        <strong>Continuous Passive:</strong> is/am/are being + V3 → "The road is being repaired."<br>
+        <strong>Perfect Passive:</strong> has/have/had been + V3 → "The letter has been sent."
+      </p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory -->
+
+<!-- ═══ QUICK REF ═══════════════════════════════════════════════════ -->
+<div class="pane" id="quickref">
+<div class="ref-grid">
+
+  <div class="ref-card">
+    <div class="ref-card-title">🟢 Active Voice</div>
+    <ul>
+      <li>Subject <b>does</b> the action</li>
+      <li>Structure: S + V + O</li>
+      <li>Direct and clear — most common in speech</li>
+      <li>Emphasises the <b>doer</b></li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🔵 Passive Voice</div>
+    <ul>
+      <li>Subject <b>receives</b> the action</li>
+      <li>"To be" + V3 — always</li>
+      <li>"by + agent" is optional</li>
+      <li>Used in formal, news, and scientific writing</li>
+      <li>Doer unknown or unimportant → omit "by…"</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🟣 "To Be" — Present Forms</div>
+    <ul>
+      <li>I → <b>am</b></li>
+      <li>He / She / It → <b>is</b></li>
+      <li>You / We / They → <b>are</b></li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🟣 "To Be" — Past &amp; Other Forms</div>
+    <ul>
+      <li>I / He / She / It → <b>was</b></li>
+      <li>You / We / They → <b>were</b></li>
+      <li>After modal (will/can/must) → <b>be</b></li>
+      <li>After have / has / had → <b>been</b></li>
+      <li>Continuous passive → <b>being</b></li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">📊 Passive Formula — All Tenses</div>
+    <div style="overflow-x:auto;margin-top:8px">
+      <table class="compare-table">
+        <tr><th>Tense</th><th>Passive Formula</th><th>Example</th></tr>
+        <tr><td><b>Simple Present</b></td><td>is/am/are + V3</td><td>Rice is cooked by Priya.</td></tr>
+        <tr><td><b>Simple Past</b></td><td>was/were + V3</td><td>The letter was written by Arjun.</td></tr>
+        <tr><td><b>Simple Future</b></td><td>will be + V3</td><td>The cake will be baked by Zara.</td></tr>
+        <tr><td><b>Pres. Continuous</b></td><td>is/am/are being + V3</td><td>The road is being repaired.</td></tr>
+        <tr><td><b>Past Continuous</b></td><td>was/were being + V3</td><td>The song was being sung.</td></tr>
+        <tr><td><b>Present Perfect</b></td><td>has/have been + V3</td><td>The letter has been sent.</td></tr>
+        <tr><td><b>Past Perfect</b></td><td>had been + V3</td><td>The work had been done.</td></tr>
+        <tr><td><b>Future Perfect</b></td><td>will have been + V3</td><td>The task will have been finished.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">⚑ Critical Rules — Never Forget</div>
+    <ul>
+      <li>Passive <b>always</b> needs "to be" + V3 — never V1 or V2</li>
+      <li>❌ "by she/he/they" → ✅ "by her/him/them"</li>
+      <li>Intransitive verbs (<b>sleep, die, go, cry</b>…) → NO passive</li>
+      <li>Match "to be" to the <b>original tense</b></li>
+      <li>After "have/has/had" always use <b>"been"</b> (not "be" or "being")</li>
+      <li><b>"being"</b> = continuous/progressive passive only</li>
+    </ul>
+  </div>
+
+</div>
+</div><!-- /quickref -->
+
+<!-- ═══ QUIZ ══════════════════════════════════════════════════════ -->
+<div class="pane" id="quiz">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a" id="s-tot">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+  <div id="results"></div>
+  <div id="q-area"></div>
+</div>
+
+</div><!-- /page -->
+<script>
+const QS=[
+{d:'EASY',e:'Level C · C02',q:"Identify the voice: 'The students cleaned the classroom.'",opts:['Active Voice','Passive Voice','Neither','Cannot be determined'],ans:0,rule:'Active Voice — subject (students) performs the action.',exp:'Active Voice: the students (subject) are performing the action of cleaning. S + V + O. "The students" = doer. In passive, the classroom would be the subject receiving the action.'},
+{d:'EASY',e:'Level C · C02',q:"Identify the voice: 'The classroom was cleaned by the students.'",opts:['Active Voice','Passive Voice','Future Voice','Continuous Voice'],ans:1,rule:'Passive Voice — subject (classroom) receives the action. was + V3.',exp:'Passive Voice: "the classroom" (subject) receives the action. Structure: was (to be, past) + cleaned (V3) + by the students (agent). The focus is on the classroom being cleaned.'},
+{d:'EASY',e:'Level C · C02',q:"Which form of 'to be' is used with 'I' in simple present?",opts:['is','are','am','was'],ans:2,rule:"'am' is exclusively used with 'I' in simple present.",exp:'"am" is used only with "I" in the simple present: "I am a student / I am happy." "is" = he/she/it. "are" = you/we/they. "was" = past tense.'},
+{d:'EASY',e:'Level C · C02',q:"Which form of 'to be' is correct? 'You ___ my best friend.'",opts:['am','is','are','were'],ans:2,rule:"'You' always takes 'are' in simple present.",exp:'"You" always takes "are" in simple present — whether it refers to one person or many. "are" is the only correct form here. "am" is only for I. "is" is for he/she/it. "were" is past tense.'},
+{d:'EASY',e:'Level C · C02',q:"Change to passive: 'Priya writes a letter.' → 'A letter ___ written by Priya.'",opts:['is','was','will be','has been'],ans:0,rule:'Simple Present passive = is/am/are + V3. Singular subject → "is".',exp:'Simple Present passive: is/am/are + V3. "Letter" is singular third person → "is written". "was" is past passive. "will be" is future passive. "has been" is present perfect passive.'},
+{d:'MEDIUM',e:'Level C · C02',q:"Change to passive: 'Arjun kicked the ball.' → 'The ball ___ kicked by Arjun.'",opts:['is','are','was','will be'],ans:2,rule:'Simple Past passive = was/were + V3. Singular → "was".',exp:'Simple Past passive: was/were + V3. "Ball" is singular → "was kicked". The original tense is past (kicked = V2), so "to be" must also be past: "was". "is" is present. "will be" is future.'},
+{d:'MEDIUM',e:'Level C · C02',q:"Change to passive: 'The team will win the match.' → 'The match ___ won by the team.'",opts:['is','was','will be','has been'],ans:2,rule:'Simple Future passive = will be + V3.',exp:'Simple Future passive: will be + V3. "The match will be won by the team." The original uses "will win" so the passive uses "will be". "is" = present passive. "was" = past passive. "has been" = present perfect passive.'},
+{d:'MEDIUM',e:'Level C · C02',q:"Which sentence uses 'to be' as a MAIN verb (not auxiliary)?",opts:['She is singing a song.','The letter was written by him.','Rohan is a clever boy.','The road is being repaired.'],ans:2,rule:"'is' as main verb — describes a state, no other main verb needed.",exp:'"Rohan is a clever boy" — "is" is the main verb describing Rohan\'s state of being. In the others: "is singing" = auxiliary forming continuous; "was written" = passive auxiliary; "is being repaired" = passive continuous auxiliary.'},
+{d:'MEDIUM',e:'Level C · C02',q:"Present Perfect Passive: 'The Mughal Gardens have ___ opened to tourists.'",opts:['be','being','been','was'],ans:2,rule:'Present Perfect Passive = have/has + BEEN + V3.',exp:'Present Perfect Passive uses "have/has + been + V3". "Have been opened" is correct. "be" is infinitive (used after modals). "being" is present participle (continuous passive). "was" is simple past (not used with "have").'},
+{d:'MEDIUM',e:'Level C · C02',q:"Identify the correct passive: 'She helped me.' →",opts:['I was helped by she.','Me was helped by her.','I was helped by her.','I am helped by her.'],ans:2,rule:'Pronoun changes: me→I (subject), she→her (object after "by").',exp:'"Me" becomes "I" as the new subject. "She" becomes "her" (object pronoun) after "by". "I was helped by her." — simple past passive. "by she" is wrong (subject pronoun after "by"). "Me was" is wrong (object pronoun as subject). "am helped" = present tense.'},
+{d:'MEDIUM',e:'Level C · C02',q:'Which of these sentences CANNOT be changed to passive voice?',opts:['The farmer grows saffron.','Zara painted the wall.','The child slept quietly.','Meera wrote a poem.'],ans:2,rule:'Intransitive verbs (no object) cannot be made passive.',exp:'"The child slept quietly" — "sleep" is intransitive (no object). Only transitive verbs (those with objects) can be made passive. "Grows saffron", "painted the wall", "wrote a poem" all have objects and can be passivised.'},
+{d:'HARD',e:'Level C · C02',q:"Past Continuous Passive: 'Workers were building the bridge.' → 'The bridge ___ being built by workers.'",opts:['is','was','were','had been'],ans:1,rule:'Past Continuous Passive = was/were being + V3. "Bridge" is singular → "was".',exp:'Past Continuous Passive = was/were + being + V3. "Bridge" is singular → "was being built". "is being built" = Present Continuous Passive. "were" is for plural subjects. "had been built" = Past Perfect Passive.'},
+{d:'HARD',e:'Level C · C02',q:"Choose the correct form: 'The apples from Kashmir ___ very sweet.'",opts:['am','is','are','was'],ans:2,rule:'"Apples" is plural → use "are" in simple present.',exp:'"Apples" is a plural noun → "are". Simple Present: I=am, he/she/it=is, you/we/they=are. Plural nouns take "are". "am" is only for I. "is" is for singular third person. "was" is past tense.'},
+{d:'HARD',e:'Level C · C02',q:"Which is the correct passive of: 'The government is building a new hospital in Srinagar.'?",opts:['A new hospital was built in Srinagar by the government.','A new hospital is being built in Srinagar by the government.','A new hospital will be built in Srinagar by the government.','A new hospital has been built in Srinagar by the government.'],ans:1,rule:'Present Continuous Passive = is/am/are being + V3. Tense must be preserved.',exp:'Present Continuous Passive = is/am/are + being + V3. "is building" → "is being built". The tense must be preserved — original is present continuous, so passive must also be present continuous. "was built" = past, "will be built" = future, "has been built" = present perfect.'},
+{d:'HARD',e:'Level C · C02',q:"Fill in: 'By the time we arrived, the cake ___ already ___ by the children.' (Past Perfect Passive)",opts:['has / been eaten','had / been eaten','was / being eaten','will / be eaten'],ans:1,rule:'Past Perfect Passive = had + been + V3.',exp:'Past Perfect Passive = had + been + V3. "The cake had already been eaten." "By the time we arrived" signals that eating was complete before arriving — Past Perfect. "has been" = Present Perfect (not past). "was being" = Past Continuous Passive. "will be" = future.'},
+];
+const answers=new Array(QS.length).fill(null),revealed=new Array(QS.length).fill(false),LABS=['A','B','C','D'];
+function build(){
+  const area=document.getElementById('q-area');area.innerHTML='';
+  QS.forEach((q,i)=>{
+    const dc=q.d==='EASY'?'diff-e':q.d==='MEDIUM'?'diff-m':'diff-h';
+    const div=document.createElement('div');div.className='q-card';div.id=`qc${i}`;
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${String(i+1).padStart(2,'0')}</span><span class="q-diff ${dc}">${q.d}</span><span class="q-exam">${q.e}</span></div><div class="q-body"><div class="q-text">${q.q}</div><div class="opts" id="opts${i}">${q.opts.map((o,j)=>`<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})"><span class="opt-lbl">${LABS[j]}</span>${o}</button>`).join('')}</div><div class="exp-panel" id="ex${i}"><div class="exp-tag">Explanation</div><div class="exp-rule">${q.rule}</div><p>${q.exp}</p></div></div><div class="q-foot"><span style="font-size:11px;color:var(--dim);font-weight:700">English · C02</span><span id="ai${i}" class="q-status">—</span></div>`;
+    area.appendChild(div);
+  });
+}
+function pick(qi,oi){if(revealed[qi])return;answers[qi]=oi;document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j)=>{b.classList.remove('sel');if(j===oi)b.classList.add('sel')});document.getElementById(`qc${qi}`).classList.add('answered');const ai=document.getElementById(`ai${qi}`);ai.textContent=`Selected: ${LABS[oi]}`;ai.style.color='var(--primary)';updateStats();}
+function updateStats(){const att=answers.filter(a=>a!==null).length;document.getElementById('s-att').textContent=att;document.getElementById('prog').style.width=(att/QS.length*100)+'%';document.getElementById('prog-label').textContent=`${att} of ${QS.length} answered`;let c=0,w=0;answers.forEach((a,i)=>{if(a===null)return;if(a===QS[i].ans)c++;else w++;});document.getElementById('s-cor').textContent=c;document.getElementById('s-wrg').textContent=w;}
+function submitAll(){let cor=0,wrg=0,skp=0;QS.forEach((q,i)=>{revealed[i]=true;const opts=document.querySelectorAll(`#opts${i} .opt`);opts.forEach(b=>{b.disabled=true;b.classList.remove('sel')});opts[q.ans].classList.add('ok');if(answers[i]!==null&&answers[i]!==q.ans)opts[answers[i]].classList.add('bad');document.getElementById(`ex${i}`).classList.add('show');const ai=document.getElementById(`ai${i}`);const card=document.getElementById(`qc${i}`);card.classList.remove('answered');if(answers[i]===null){skp++;ai.textContent='Skipped';ai.style.color='var(--dim)';}else if(answers[i]===q.ans){cor++;card.classList.add('correct');ai.textContent='✓ Correct';ai.style.color='#0A7060';}else{wrg++;card.classList.add('wrong');ai.textContent='✗ Wrong';ai.style.color='var(--red)';}});updateStats();showResults(cor,wrg,skp);}
+function showResults(cor,wrg,skp){const pct=Math.round(cor/QS.length*100);let grade,msg;if(pct>=88){grade='Excellent';msg='Outstanding! You have mastered Active & Passive Voice.'}else if(pct>=70){grade='Good';msg='Well done. Review the questions you got wrong.'}else if(pct>=50){grade='Average';msg='Good start. Revisit the theory cards and try again.'}else{grade='Needs Work';msg="Don't worry — go through the Quick Ref and try again."}const res=document.getElementById('results');res.innerHTML=`<div class="res-hero"><div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div><div class="res-grade">${grade} · ${pct}%</div><div class="res-msg">${msg}</div></div><div class="res-stats"><div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div><div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div><div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div><div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div></div><div style="text-align:center;margin:16px 0"><button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button></div>`;res.style.display='block';res.scrollIntoView({behavior:'smooth',block:'start'});}
+function resetQuiz(){answers.fill(null);revealed.fill(false);build();document.getElementById('results').style.display='none';document.getElementById('results').innerHTML='';['s-att','s-cor','s-wrg'].forEach(id=>document.getElementById(id).textContent='0');document.getElementById('prog').style.width='0%';document.getElementById('prog-label').textContent=`0 of ${QS.length} answered`;window.scrollTo({top:0,behavior:'smooth'});}
+function switchTab(id){document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');const idx={theory:0,quickref:1,quiz:2}[id];document.querySelectorAll('.tab')[idx].classList.add('on');}
+function tog(hd){const bd=hd.nextElementSibling;const isOpen=bd.classList.contains('open');bd.classList.toggle('open',!isOpen);hd.classList.toggle('open',!isOpen);}
+build();
+</script>
+</body>
+</html>

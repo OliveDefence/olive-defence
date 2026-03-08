@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B01 · Verbs, Forms &amp; Tense Syntax | Kashmir English Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+:root{
+  --bg:#F6F8FE;--bg2:#E8EDF8;--bg3:#D4DCED;--white:#FAFCFF;
+  --ink:#08122A;--ink2:#1A2840;--muted:#4A6080;--dim:#7898B8;--border:#C2D0E4;
+  --primary:#1A52A8;--primaryLt:#2264C8;--primaryPale:#EAF0FB;
+  --amber:#9A7000;--amberLt:#BF8A00;--amberPale:#FEF8DC;
+  --sky:#0878B8;--skyPale:#E0F4FB;
+  --green:#1A6040;--greenLt:#248050;--greenPale:#E4F5EC;
+  --red:#9A1820;--redLt:#BE2028;--redPale:#FAEBEC;
+  --gold:#B07800;--goldPale:#FFF3D0;
+  --purple:#5A1A88;--purplePale:#F2EAF8;
+  --teal:#0A7060;--tealPale:#E0F4EE;
+  --orange:#B84A00;--orangePale:#FFF0E8;
+  --radius:12px;--shadow:0 2px 12px rgba(8,18,42,.09);--shadow-md:0 4px 20px rgba(8,18,42,.14);
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:700px;margin:0 auto;padding:0 16px 80px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0A2260 0%,#1A52A8 55%,#2872D0 100%);margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(120,200,255,.10) 0%,transparent 50%),radial-gradient(ellipse at 10% 90%,rgba(255,220,100,.07) 0%,transparent 50%);pointer-events:none}
+.hero::after{content:'';position:absolute;right:-24px;top:-24px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.52);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.30)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.5vw,32px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px}
+.hero-title span{color:#FFE080;font-style:italic}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.68);margin-bottom:18px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.13);color:rgba(255,255,255,.88)}
+.chip-y{background:rgba(255,224,120,.18);color:#FFE080}
+.chip-b{background:rgba(120,210,255,.14);color:#A0E0FF}
+
+/* TAB BAR */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(8,18,42,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 16px;font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}.tab.on{color:var(--primary);border-bottom-color:var(--primary)}
+
+/* PANES */
+.pane{display:none;padding-top:22px;animation:fadeUp .3s ease}.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--primary);margin:28px 0 12px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INTRO BOX */
+.intro-box{background:var(--primaryPale);border:1.5px solid rgba(26,82,168,.20);border-radius:var(--radius);padding:20px;margin-bottom:8px}
+.intro-box p{font-size:16px;color:var(--ink2);line-height:1.9}.intro-box p+p{margin-top:10px}
+.intro-box strong{color:var(--primary)}.intro-box em{color:var(--gold);font-style:normal;font-weight:700}
+
+/* COLLAPSIBLE CARDS */
+.c-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow);overflow:hidden}
+.c-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;border-left:4px solid transparent;transition:all .15s;-webkit-tap-highlight-color:transparent;user-select:none}
+.c-head:hover,.c-head.open{background:var(--bg);border-left-color:var(--primary)}
+.c-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.c-title{font-size:17px;font-weight:800;color:var(--ink);flex:1;line-height:1.3}
+.c-sub{font-size:12px;color:var(--dim);font-weight:600;margin-top:3px}
+.c-arrow{font-size:13px;color:var(--dim);transition:transform .2s;flex-shrink:0;margin-left:4px}
+.c-head.open .c-arrow{transform:rotate(180deg)}
+.c-body{display:none;padding:6px 18px 22px;border-top:1px solid var(--border)}.c-body.open{display:block;animation:fadeUp .2s ease}
+.c-body>p{font-size:16px;color:var(--ink2);line-height:1.9;margin:12px 0}
+.c-body strong{color:var(--primary);font-weight:700}
+
+/* CONTENT BOXES */
+.fact-box{background:var(--amberPale);border:1.5px solid rgba(154,112,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.fact-box .fb-label,.eg-box .eg-label,.trap-box .tr-label,.rule-box .rl-label,.analogy-box .an-label,.primary-box .pb-label,.purple-box .pl-label,.gold-box .gl-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.fact-box .fb-label{color:var(--amber)}
+.fact-box ul,.eg-box ul,.trap-box ul,.purple-box ul{list-style:none;padding:0}
+.fact-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.fact-box li::before{content:'→';position:absolute;left:0;color:var(--amber);font-weight:700;font-size:13px;top:7px}
+
+.eg-box{background:var(--greenPale);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:13px 16px;margin:12px 0}
+.eg-box .eg-label{color:var(--green)}
+.eg-box li{font-size:15px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.7}
+.eg-box li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:800;font-size:12px;top:7px}
+
+.trap-box{background:var(--redPale);border:1.5px solid rgba(154,24,32,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.trap-box .tr-label{color:var(--red)}
+.trap-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 22px;position:relative;line-height:1.75}
+.trap-box li::before{content:'⚑';position:absolute;left:0;font-size:12px;color:var(--red);top:7px}
+.trap-box p{font-size:15.5px;color:var(--ink2);line-height:1.75;margin:6px 0}
+
+.rule-box{background:var(--skyPale);border:1.5px solid rgba(8,120,184,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.rule-box .rl-label{color:var(--sky)}
+.rule-box p{font-size:15.5px;color:var(--ink2);line-height:1.85}.rule-box strong{color:var(--sky)}
+.rule-box code{font-family:'Courier New',monospace;background:rgba(8,120,184,.10);border-radius:4px;padding:1px 6px;font-size:14px;color:var(--sky);font-weight:700}
+
+.analogy-box{background:var(--primaryPale);border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:14px 16px;margin:12px 0}
+.analogy-box .an-label{color:var(--primary)}
+.analogy-box p{font-size:15.5px;color:var(--ink2);line-height:1.8}.analogy-box strong{color:var(--primary)}
+
+.gold-box{background:var(--goldPale);border:1.5px solid rgba(176,120,0,.18);border-radius:10px;padding:16px 18px;margin:14px 0}
+.gold-box .gl-label{color:var(--gold)}
+.gold-box p,.gold-box li{font-size:15.5px;color:var(--ink2);line-height:1.8}
+.gold-box ul{list-style:none;padding:0}
+.gold-box li{padding:5px 0 5px 22px;position:relative}
+.gold-box li::before{content:'★';position:absolute;left:0;font-size:11px;color:var(--gold);top:8px}
+
+.purple-box{background:var(--purplePale);border:1.5px solid rgba(90,26,136,.15);border-radius:10px;padding:16px 18px;margin:14px 0}
+.purple-box .pl-label{color:var(--purple)}
+.purple-box li{font-size:15.5px;color:var(--ink2);padding:5px 0 5px 20px;position:relative;line-height:1.8}
+.purple-box li::before{content:'◆';position:absolute;left:0;font-size:9px;color:var(--purple);top:10px}
+
+/* FORMULA STRIPS */
+.formula-strip{background:var(--ink);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:15px;color:#D8E8FF;line-height:2}
+.formula-strip .fs-label{font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(180,210,255,.55);margin-bottom:8px}
+.formula-strip .fs-hi{color:#FFE080;font-weight:800;font-family:'Lora',serif}
+.formula-strip .fs-b{color:#A0E8FF;font-weight:700}
+.formula-strip .fs-g{color:#80F0B8;font-weight:700}
+.formula-strip .fs-r{color:#FF9898;font-weight:700}
+.formula-strip .fs-m{color:#D8A0FF;font-weight:700}
+.formula-strip code{font-family:'Courier New',monospace;font-size:13.5px;background:rgba(255,224,128,.10);border-radius:4px;padding:2px 8px;color:#FFE080}
+
+/* SENTENCE DEMO */
+.sent-demo{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:12px 0}
+.sent-demo .sd-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.sent-demo .sd-row{display:flex;gap:0;margin:6px 0;flex-wrap:wrap;align-items:stretch}
+.sent-part{padding:8px 12px;font-size:15px;font-weight:700;border-radius:0;line-height:1.4;text-align:center;min-width:60px}
+.sent-part:first-child{border-radius:8px 0 0 8px}
+.sent-part:last-child{border-radius:0 8px 8px 0}
+.sp-sub{background:rgba(26,82,168,.12);color:var(--primary);border:1px solid rgba(26,82,168,.20)}
+.sp-hv{background:rgba(176,120,0,.12);color:var(--gold);border:1px solid rgba(176,120,0,.20)}
+.sp-mv{background:rgba(26,96,64,.12);color:var(--green);border:1px solid rgba(26,96,64,.20)}
+.sp-obj{background:rgba(90,26,136,.10);color:var(--purple);border:1px solid rgba(90,26,136,.18)}
+.sp-neg{background:rgba(154,24,32,.10);color:var(--red);border:1px solid rgba(154,24,32,.18)}
+.sp-q{background:rgba(8,120,184,.12);color:var(--sky);border:1px solid rgba(8,120,184,.20)}
+.sp-neu{background:var(--bg2);color:var(--muted);border:1px solid var(--border)}
+.sent-demo .sd-note{font-size:13px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
+
+/* VERB TYPE PILLS */
+.vtype{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;padding:4px 12px;border-radius:20px;margin:3px 3px 3px 0}
+.vtype-a{background:rgba(26,82,168,.12);color:var(--primary)}
+.vtype-s{background:rgba(26,96,64,.12);color:var(--green)}
+.vtype-h{background:rgba(176,120,0,.15);color:var(--gold)}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+.compare-table th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.5px}
+.compare-table td{padding:9px 12px;border:1px solid var(--border);color:var(--ink2);vertical-align:top;line-height:1.65}
+.compare-table tr:nth-child(even) td{background:var(--bg)}
+.compare-table td b{color:var(--primary)}.compare-table td em{color:var(--gold);font-style:normal;font-weight:700}
+.compare-table td code{font-family:'Courier New',monospace;background:var(--bg2);border-radius:4px;padding:1px 6px;font-size:13px}
+
+/* VERB FORMS TABLE */
+.vf-table{width:100%;border-collapse:collapse;font-size:14px;margin:0}
+.vf-table th{background:var(--ink);color:#FFE080;padding:10px 10px;text-align:left;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;position:sticky;top:48px;z-index:10}
+.vf-table th:first-child{border-radius:0}
+.vf-table td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--ink2);line-height:1.5;vertical-align:middle}
+.vf-table tr:hover td{background:var(--primaryPale)}
+.vf-table .v1{font-weight:700;color:var(--primary)}.vf-table .v2{color:var(--green);font-weight:700}
+.vf-table .v3{color:var(--sky);font-weight:700}.vf-table .v4{color:var(--purple)}.vf-table .v5{color:var(--orange)}
+.vf-table .irr-tag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px;background:var(--orangePale);color:var(--orange);vertical-align:middle;margin-left:4px}
+.vf-table .reg-tag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px;background:var(--tealPale);color:var(--teal);vertical-align:middle;margin-left:4px}
+.vf-sec-hdr td{background:var(--ink2)!important;color:#A0E8FF;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:8px 12px!important;border-bottom:none!important}
+.vf-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);background:var(--white)}
+
+/* QUICK REF CARDS */
+.ref-grid{display:grid;gap:10px;margin:8px 0}
+.ref-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.ref-card-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.ref-card ul{list-style:none;padding:0}
+.ref-card li{font-size:15px;color:var(--ink2);padding:5px 0 5px 16px;position:relative;line-height:1.65;border-bottom:1px solid var(--bg2)}
+.ref-card li:last-child{border-bottom:none}
+.ref-card li::before{content:'·';position:absolute;left:4px;color:var(--primary);font-weight:900;font-size:20px;line-height:1.2}
+.ref-card li b{color:var(--ink);font-weight:700}.ref-card li em{color:var(--gold);font-style:normal;font-weight:700}
+
+/* QUIZ */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow)}
+.qs-cell{background:var(--white);padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--primary);line-height:1}
+.qs-val.g{color:var(--green)}.qs-val.r{color:var(--red)}.qs-val.a{color:var(--amber)}
+.qs-lbl{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+.prog-wrap{margin-bottom:20px}.prog-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s ease;width:0%}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.q-card.answered{border-left-color:var(--primary)}.q-card.correct{border-left-color:var(--green)}.q-card.wrong{border-left-color:var(--red)}
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-e{background:var(--greenPale);color:var(--green)}.diff-m{background:var(--amberPale);color:var(--amber)}.diff-h{background:var(--redPale);color:var(--red)}
+.q-exam{font-size:11px;color:var(--dim);margin-left:auto;font-weight:600}
+.q-body{padding:16px}.q-text{font-size:17px;line-height:1.85;color:var(--ink);margin-bottom:14px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:13px 16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;font-size:16px;color:var(--ink2);text-align:left;width:100%;transition:all .15s;-webkit-tap-highlight-color:transparent;min-height:48px;line-height:1.6}
+.opt:hover:not(:disabled){border-color:var(--primary);background:var(--primaryPale)}.opt:disabled{cursor:default}
+.opt.sel{border-color:var(--primary);background:var(--primaryPale);color:var(--primary)}
+.opt.ok{border-color:var(--green)!important;background:var(--greenPale)!important;color:var(--green)!important}
+.opt.bad{border-color:var(--red)!important;background:var(--redPale)!important;color:var(--red)!important}
+.opt-lbl{min-width:28px;height:28px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--muted);flex-shrink:0;transition:all .15s}
+.opt.sel .opt-lbl{background:var(--primary);color:#fff;border-color:var(--primary)}
+.opt.ok  .opt-lbl{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.bad .opt-lbl{background:var(--red);color:#fff;border-color:var(--red)}
+.exp-panel{display:none;margin-top:12px;background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.exp-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px}
+.exp-rule{font-size:13px;font-weight:800;color:var(--ink);background:var(--primaryPale);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exp-panel p{font-size:15px;color:var(--ink2);line-height:1.8}
+.q-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:var(--bg)}
+.q-status{font-size:12px;font-weight:700}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:800;letter-spacing:.5px;border:none;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primaryLt)}
+.btn-ghost{background:var(--bg2);color:var(--ink2);border:1.5px solid var(--border)}.btn-ghost:hover{background:var(--bg3)}
+.quiz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+#results{display:none;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md)}
+.res-hero{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.res-score{font-family:'Lora',serif;font-size:64px;font-weight:700;color:var(--primary);line-height:1}
+.res-grade{font-size:16px;font-weight:800;color:var(--ink);margin:8px 0 6px;letter-spacing:.5px}
+.res-msg{font-size:15px;color:var(--muted)}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px}
+
+/* HELPING VERB GRID */
+.hv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin:12px 0}
+.hv-cell{background:var(--goldPale);border:1.5px solid rgba(176,120,0,.22);border-radius:10px;padding:10px 8px;text-align:center}
+.hv-word{font-family:'Lora',serif;font-size:18px;font-weight:700;color:var(--gold);display:block;margin-bottom:2px}
+.hv-role{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+/* SPECIAL: BIG VERB VISUAL */
+.verb-visual{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0}
+.vv-box{border-radius:12px;padding:16px 12px;text-align:center;border:2px solid transparent}
+.vv-box.action{background:rgba(26,82,168,.08);border-color:rgba(26,82,168,.25)}
+.vv-box.state{background:rgba(26,96,64,.08);border-color:rgba(26,96,64,.25)}
+.vv-box.help{background:rgba(176,120,0,.10);border-color:rgba(176,120,0,.28)}
+.vv-emoji{font-size:28px;display:block;margin-bottom:6px}
+.vv-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;display:block}
+.vv-box.action .vv-label{color:var(--primary)}.vv-box.state .vv-label{color:var(--green)}.vv-box.help .vv-label{color:var(--gold)}
+.vv-examples{font-size:13px;color:var(--ink2);line-height:1.9}
+
+/* SEARCH / FILTER */
+.vf-search{width:100%;padding:11px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;background:var(--white);color:var(--ink);margin-bottom:14px;outline:none}
+.vf-search:focus{border-color:var(--primary)}
+.vf-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.vf-legend-item{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--muted)}
+.vf-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-kicker">English · Lesson B01 · Kashmir English Academy</div>
+  <div class="hero-title">Verbs, Forms &amp; <span>Tense Syntax</span></div>
+  <div class="hero-sub">What is a verb? Action, state &amp; helping verbs — understanding the verb before you learn tenses. Affirmative, negative, and question sentences. An essential foundation for Class 3–4.</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">Class 3–4</span>
+    <span class="chip chip-y">Action Verbs</span>
+    <span class="chip chip-b">Helping Verbs</span>
+    <span class="chip chip-y">V1 V2 V3 V4 V5</span>
+    <span class="chip chip-w">Questions</span>
+  </div>
+</div>
+
+<!-- ═══ TAB BAR ═══════════════════════════════════════════ -->
+<div class="tab-bar">
+  <button class="tab on"  onclick="switchTab('theory')">📖 Theory</button>
+  <button class="tab"     onclick="switchTab('verbforms')">📋 Verb Forms</button>
+  <button class="tab"     onclick="switchTab('quickref')">⚡ Quick Ref</button>
+  <button class="tab"     onclick="switchTab('quiz')">✏️ Quiz</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 1 — THEORY
+══════════════════════════════════════════════════════════ -->
+<div class="pane on" id="theory">
+
+<div class="intro-box">
+  <p>Before we learn tenses, we need to understand the <strong>verb</strong> — the most important word in any English sentence. A sentence can exist without a noun, but <em>never without a verb</em>. The verb is the engine. Everything else in the sentence depends on it.</p>
+  <p>In this lesson, we will learn: what a verb is, the <strong>three types</strong> of verbs, the <strong>five forms</strong> every verb has, and how to build <strong>positive, negative, and question</strong> sentences using helping verbs.</p>
+</div>
+
+<!-- ─── SECTION 1: WHAT IS A VERB ─────────────────────── -->
+<div class="sec-label">Part 1 — What Is a Verb?</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--primaryPale)">⚡</div>
+    <div style="flex:1"><div class="c-title">The Verb — Heart of Every Sentence</div><div class="c-sub">Every complete sentence must have a verb. No exceptions.</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>A <strong>verb</strong> is a word that tells us what the subject <em>does</em>, <em>is</em>, or <em>has</em>. It gives life and meaning to a sentence. Without a verb, a group of words is just a phrase — not a sentence.</p>
+    <div class="analogy-box">
+      <div class="an-label">🚂 The Train Analogy</div>
+      <p>Think of a sentence as a train. The <strong>subject</strong> is the engine driver. The <strong>verb</strong> is the engine itself — it makes the train move. The <strong>object</strong> is the cargo. Without the engine (verb), the train goes nowhere.</p>
+    </div>
+    <div class="eg-box">
+      <div class="eg-label">Sentences — Spot the Verb</div>
+      <ul>
+        <li>Arjun <strong>runs</strong> every morning near the Dal Lake. <span style="color:var(--muted);font-size:13px">— verb = runs</span></li>
+        <li>The saffron <strong>grows</strong> in the fields of Pampore. <span style="color:var(--muted);font-size:13px">— verb = grows</span></li>
+        <li>Meera <strong>is</strong> a clever student. <span style="color:var(--muted);font-size:13px">— verb = is (state)</span></li>
+        <li>They <strong>are playing</strong> cricket in the garden. <span style="color:var(--muted);font-size:13px">— verb = are playing (two verbs working together)</span></li>
+      </ul>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Quick Test — Is It a Verb?</div>
+      <ul>
+        <li>Can you say <em>"I ___ it"</em> with the word? If yes — it's a verb!</li>
+        <li>I <strong>eat</strong> it ✅ · I <strong>sleep</strong> ✅ · I <strong>happy</strong> ❌ (happy is an adjective, not a verb)</li>
+        <li>Some verbs do not need an object: "The baby <strong>sleeps</strong>." is a complete sentence.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- THREE TYPES -->
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--goldPale)">🔑</div>
+    <div style="flex:1"><div class="c-title">Three Types of Verbs</div><div class="c-sub">Action Verbs · State Verbs · Helping Verbs</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <div class="verb-visual">
+      <div class="vv-box action">
+        <span class="vv-emoji">🏃</span>
+        <span class="vv-label">Action</span>
+        <div class="vv-examples">run · eat<br>write · jump<br>sing · build<br>play · read</div>
+      </div>
+      <div class="vv-box state">
+        <span class="vv-emoji">💭</span>
+        <span class="vv-label">State</span>
+        <div class="vv-examples">is · are<br>seem · feel<br>know · love<br>have · belong</div>
+      </div>
+      <div class="vv-box help">
+        <span class="vv-emoji">🤝</span>
+        <span class="vv-label">Helping</span>
+        <div class="vv-examples">is · am · are<br>was · were<br>do · does · did<br>will · can</div>
+      </div>
+    </div>
+
+    <div class="rule-box" style="margin-top:14px">
+      <div class="rl-label">Action Verbs — "Doing Words"</div>
+      <p><strong>Action verbs</strong> tell us about physical or mental activities. You can "perform" them. They are the most common type of verb. Examples: run, eat, write, think, decide, build, sing, help.</p>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">State Verbs — "Being and Having Words"</div>
+      <p><strong>State verbs</strong> describe a <strong>condition or state</strong> — not an activity. They include: <strong>is/am/are/was/were</strong> (to be), <strong>have/has/had</strong> (to have), and feeling/thinking words like <em>know, believe, love, seem, belong, own</em>. These verbs are <em>not usually used</em> in the continuous (-ing) form.</p>
+    </div>
+    <div class="gold-box">
+      <div class="gl-label">★ Helping Verbs — "The Assistants"</div>
+      <ul>
+        <li><strong>Helping verbs</strong> (also called auxiliary verbs) work together with a main verb to build a complete tense. They cannot usually stand alone as the only verb.</li>
+        <li>Example: "She <strong>is</strong> singing." — "is" helps "singing" form the present continuous tense.</li>
+        <li>Example: "They <strong>did</strong> not come." — "did" helps make the sentence negative in simple past.</li>
+        <li>You will use helping verbs in <em>every tense you will ever learn</em>. They are the most important function words in English grammar.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 2: FIVE FORMS ─────────────────────────── -->
+<div class="sec-label">Part 2 — The Five Forms of a Verb</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--skyPale)">📐</div>
+    <div style="flex:1"><div class="c-title">V1 V2 V3 V4 V5 — Every Verb Has Five Forms</div><div class="c-sub">Base · Simple Past · Past Participle · Present Participle · Third Person Singular</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Every English verb has <strong>five forms</strong>. When you learn a new verb, you should know all five forms — especially V1, V2, and V3, which are used in almost every tense.</p>
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr>
+          <th style="background:#0A2260">Form</th>
+          <th style="background:#0A2260">Name</th>
+          <th style="background:#0A2260">When Used</th>
+          <th style="background:#0A2260">play</th>
+          <th style="background:#0A2260">write</th>
+          <th style="background:#0A2260">go</th>
+        </tr>
+        <tr><td><b>V1</b></td><td>Base Form</td><td>Present, future, after do/does/did/will/can</td><td class="v1">play</td><td class="v1">write</td><td class="v1">go</td></tr>
+        <tr><td><b>V2</b></td><td>Simple Past</td><td>Past tense (yesterday, last week, ago)</td><td class="v2">played</td><td class="v2">wrote</td><td class="v2">went</td></tr>
+        <tr><td><b>V3</b></td><td>Past Participle</td><td>After have/has/had · Passive voice</td><td class="v3">played</td><td class="v3">written</td><td class="v3">gone</td></tr>
+        <tr><td><b>V4</b></td><td>Present Participle</td><td>After is/am/are/was/were (continuous)</td><td class="v4">playing</td><td class="v4">writing</td><td class="v4">going</td></tr>
+        <tr><td><b>V5</b></td><td>Third Person Singular</td><td>With he/she/it in Simple Present</td><td class="v5">plays</td><td class="v5">writes</td><td class="v5">goes</td></tr>
+      </table>
+    </div>
+    <div class="analogy-box">
+      <div class="an-label">🔮 Why Do Forms Matter?</div>
+      <p>Different tenses need different forms. Think of V1/V2/V3/V4/V5 as <strong>different outfits</strong> for the same verb. You pick the outfit that matches the tense you're using. When you learn a tense, you'll always be told which form (V1, V2, or V3) to wear.</p>
+    </div>
+    <div class="fact-box">
+      <div class="fb-label">Regular vs Irregular</div>
+      <ul>
+        <li><strong>Regular verbs:</strong> V2 and V3 are both formed by adding <em>-ed</em>. play → played → played. Easy!</li>
+        <li><strong>Irregular verbs:</strong> V2 and V3 do NOT follow the -ed rule. go → went → gone. These must be memorised. See the Verb Forms tab for the full list.</li>
+        <li>V4 is almost always V1 + <em>-ing</em> (with minor spelling changes): write → writing · run → running.</li>
+        <li>V5 is almost always V1 + <em>-s</em> or <em>-es</em>: play → plays · go → goes · watch → watches.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 3: HELPING VERBS ──────────────────────── -->
+<div class="sec-label">Part 3 — Helping Verbs (Auxiliaries)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--goldPale)">🤝</div>
+    <div style="flex:1"><div class="c-title">The Primary Helping Verbs</div><div class="c-sub">be · do · have — and their family of forms</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>There are three <strong>primary auxiliary verb families</strong>. Each family has multiple forms. These are the helpers you will use in almost every tense you learn.</p>
+    <div class="hv-grid">
+      <div class="hv-cell"><span class="hv-word">am</span><span class="hv-role">I (Present)</span></div>
+      <div class="hv-cell"><span class="hv-word">is</span><span class="hv-role">He/She/It</span></div>
+      <div class="hv-cell"><span class="hv-word">are</span><span class="hv-role">You/We/They</span></div>
+      <div class="hv-cell"><span class="hv-word">was</span><span class="hv-role">I/He/She/It Past</span></div>
+      <div class="hv-cell"><span class="hv-word">were</span><span class="hv-role">You/We/They Past</span></div>
+      <div class="hv-cell"><span class="hv-word">do</span><span class="hv-role">I/You/We/They</span></div>
+      <div class="hv-cell"><span class="hv-word">does</span><span class="hv-role">He/She/It</span></div>
+      <div class="hv-cell"><span class="hv-word">did</span><span class="hv-role">All — Past</span></div>
+      <div class="hv-cell"><span class="hv-word">have</span><span class="hv-role">I/You/We/They</span></div>
+      <div class="hv-cell"><span class="hv-word">has</span><span class="hv-role">He/She/It</span></div>
+      <div class="hv-cell"><span class="hv-word">had</span><span class="hv-role">All — Past</span></div>
+      <div class="hv-cell"><span class="hv-word">will</span><span class="hv-role">All — Future</span></div>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">What Helping Verbs Do</div>
+      <p><strong>is/am/are/was/were</strong> — form continuous tenses ("<em>is running</em>") and passive voice.<br>
+      <strong>do/does/did</strong> — form negatives ("<em>does not eat</em>") and questions ("<em>Does she eat?</em>") in simple tenses.<br>
+      <strong>have/has/had</strong> — form perfect tenses ("<em>has finished</em>").<br>
+      <strong>will</strong> — forms the future tense ("<em>will come</em>").</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 4: AFFIRMATIVE ─────────────────────────── -->
+<div class="sec-label">Part 4 — Affirmative Sentences (Positive)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--greenPale)">✅</div>
+    <div style="flex:1"><div class="c-title">Affirmative Sentences — Saying It Is So</div><div class="c-sub">Positive statements · No "not" · No inversion</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>An <strong>affirmative (positive) sentence</strong> makes a positive statement. It follows the basic word order: <strong>Subject → (Helping Verb) → Main Verb → Object/Rest</strong>.</p>
+    <div class="formula-strip">
+      <div class="fs-label">Simple Present — Affirmative</div>
+      <span class="fs-hi">Subject</span> + <span class="fs-b">V1 (or V5 for he/she/it)</span> + Object<br>
+      <span style="font-size:13px;color:rgba(180,210,255,.5)">He/She/It → always add -s/-es to the verb (V5)</span>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Subject → Verb → Object</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Arjun</div>
+        <div class="sent-part sp-mv">plays</div>
+        <div class="sent-part sp-obj">cricket</div>
+        <div class="sent-part sp-neu">every day.</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">The students</div>
+        <div class="sent-part sp-mv">read</div>
+        <div class="sent-part sp-obj">their books</div>
+        <div class="sent-part sp-neu">in school.</div>
+      </div>
+      <div class="sd-note">🔵 = Subject &nbsp;&nbsp; 🟢 = Main Verb &nbsp;&nbsp; 🟣 = Object &nbsp;&nbsp; ⬜ = Rest of sentence</div>
+    </div>
+    <div class="formula-strip">
+      <div class="fs-label">Present Continuous — Affirmative</div>
+      <span class="fs-hi">Subject</span> + <span class="fs-b">is / am / are</span> + <span class="fs-g">V4 (-ing form)</span> + Object
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Helping Verb + Main Verb (-ing)</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Meera</div>
+        <div class="sent-part sp-hv">is</div>
+        <div class="sent-part sp-mv">singing</div>
+        <div class="sent-part sp-obj">a song.</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">We</div>
+        <div class="sent-part sp-hv">are</div>
+        <div class="sent-part sp-mv">going</div>
+        <div class="sent-part sp-neu">to Gulmarg.</div>
+      </div>
+      <div class="sd-note">🟡 = Helping Verb (is/am/are)</div>
+    </div>
+    <div class="formula-strip">
+      <div class="fs-label">Simple Past — Affirmative</div>
+      <span class="fs-hi">Subject</span> + <span class="fs-b">V2 (past form)</span> + Object<br>
+      <span style="font-size:13px;color:rgba(180,210,255,.5)">No helping verb needed — V2 does all the work.</span>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Past Tense — V2 alone</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Rohan</div>
+        <div class="sent-part sp-mv">went</div>
+        <div class="sent-part sp-neu">to Pahalgam yesterday.</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">She</div>
+        <div class="sent-part sp-mv">wrote</div>
+        <div class="sent-part sp-obj">a letter</div>
+        <div class="sent-part sp-neu">last week.</div>
+      </div>
+      <div class="sd-note">"went" = V2 of go · "wrote" = V2 of write. No helping verb in simple past affirmative.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 5: NEGATIVE ─────────────────────────────── -->
+<div class="sec-label">Part 5 — Negative Sentences (Adding "Not")</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--redPale)">❌</div>
+    <div style="flex:1"><div class="c-title">Negative Sentences — Using "Not"</div><div class="c-sub">do not / does not / did not / is not / are not / was not / will not</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>To make a sentence <strong>negative</strong>, we add <em>"not"</em> after the helping verb. If there is no helping verb, we must <strong>bring in "do / does / did"</strong> to carry the "not".</p>
+    <div class="rule-box">
+      <div class="rl-label">The "Not" Rule — Simple Present Negative</div>
+      <p>Subject + <strong>do not</strong> (don't) / <strong>does not</strong> (doesn't) + <strong>V1</strong> (base form) + Object<br>
+      ⚠️ When you add "do/does", the main verb goes back to <strong>V1</strong> — never V5!<br>
+      ❌ "She does not <strong>plays</strong>." → ✅ "She does not <strong>play</strong>."</p>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Simple Present — Negative</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Arjun</div>
+        <div class="sent-part sp-hv">does not</div>
+        <div class="sent-part sp-mv">play</div>
+        <div class="sent-part sp-obj">football.</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">They</div>
+        <div class="sent-part sp-hv">do not</div>
+        <div class="sent-part sp-mv">like</div>
+        <div class="sent-part sp-obj">cold weather.</div>
+      </div>
+      <div class="sd-note">Use <b>does not</b> with he/she/it. Use <b>do not</b> with I/you/we/they. Main verb stays V1!</div>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Present Continuous — Negative (is/am/are + not)</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Priya</div>
+        <div class="sent-part sp-hv">is</div>
+        <div class="sent-part sp-neg">not</div>
+        <div class="sent-part sp-mv">singing</div>
+        <div class="sent-part sp-neu">now.</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">We</div>
+        <div class="sent-part sp-hv">are</div>
+        <div class="sent-part sp-neg">not</div>
+        <div class="sent-part sp-mv">going</div>
+        <div class="sent-part sp-neu">to school today.</div>
+      </div>
+      <div class="sd-note">🔴 = "not" · "is not" can also be written as "isn't", "are not" as "aren't"</div>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Simple Past — Negative (did not + V1)</div>
+      <div class="sd-row">
+        <div class="sent-part sp-sub">Rohan</div>
+        <div class="sent-part sp-hv">did not</div>
+        <div class="sent-part sp-mv">go</div>
+        <div class="sent-part sp-neu">to Pahalgam.</div>
+      </div>
+      <div class="sd-note">⚠️ "did not" → main verb must be <b>V1</b> (go), not V2 (went). ❌ "did not went" → ✅ "did not go"</div>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Most Common Beginner Mistakes</div>
+      <ul>
+        <li>❌ "She does not <strong>plays</strong>." → ✅ "She does not <strong>play</strong>." (V1 after does not)</li>
+        <li>❌ "He <strong>did not went</strong>." → ✅ "He <strong>did not go</strong>." (V1 after did not)</li>
+        <li>❌ "They <strong>not like</strong> it." → ✅ "They <strong>do not like</strong> it." (need "do/does")</li>
+        <li>❌ "I <strong>not am</strong> hungry." → ✅ "I <strong>am not</strong> hungry." ("not" comes AFTER "to be")</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 6: INTERROGATIVE / INVERSION ───────────── -->
+<div class="sec-label">Part 6 — Interrogative Sentences (Questions &amp; Inversion)</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--skyPale)">❓</div>
+    <div style="flex:1"><div class="c-title">Questions — Inverting Subject and Verb</div><div class="c-sub">Inversion: Helping Verb moves before the Subject</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>In English, to ask a question, we <strong>invert</strong> (swap) the helping verb and the subject. The helping verb <em>jumps to the front</em>, before the subject. This is called <strong>inversion</strong>.</p>
+    <div class="analogy-box">
+      <div class="an-label">🔄 Inversion — The Swap</div>
+      <p><strong>Statement:</strong> She <em>is</em> singing. → <strong>Question:</strong> <em>Is</em> she singing?<br>
+      The helping verb (is) swaps place with the subject (she). That swap is called <strong>inversion</strong>. It happens in every question in English.</p>
+    </div>
+    <div class="formula-strip">
+      <div class="fs-label">Simple Present — Question (Do/Does)</div>
+      <span class="fs-b">Do / Does</span> + <span class="fs-hi">Subject</span> + <span class="fs-g">V1</span> + Object + <span class="fs-r">?</span><br>
+      <span style="font-size:13px;color:rgba(180,210,255,.5)">he/she/it → Does · I/you/we/they → Do · Main verb stays V1</span>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Affirmative → Question (Simple Present)</div>
+      <div class="sd-row" style="margin-bottom:10px">
+        <div class="sent-part sp-sub">Arjun</div>
+        <div class="sent-part sp-mv">plays</div>
+        <div class="sent-part sp-obj">cricket.</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Statement</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-q">Does</div>
+        <div class="sent-part sp-sub">Arjun</div>
+        <div class="sent-part sp-mv">play</div>
+        <div class="sent-part sp-obj">cricket</div>
+        <div class="sent-part sp-neu">?</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Question</div>
+      </div>
+      <div class="sd-note">🔵 = Subject &nbsp; 🟢 = Main Verb &nbsp; 🩵 = Helping Verb (inverted to front)</div>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Affirmative → Question (Present Continuous)</div>
+      <div class="sd-row" style="margin-bottom:10px">
+        <div class="sent-part sp-sub">Meera</div>
+        <div class="sent-part sp-hv">is</div>
+        <div class="sent-part sp-mv">singing.</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Statement</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-q">Is</div>
+        <div class="sent-part sp-sub">Meera</div>
+        <div class="sent-part sp-mv">singing</div>
+        <div class="sent-part sp-neu">?</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Question</div>
+      </div>
+      <div class="sd-note">"is" was already in the sentence — just move it to the front. No new word needed.</div>
+    </div>
+    <div class="sent-demo">
+      <div class="sd-label">Affirmative → Question (Simple Past)</div>
+      <div class="sd-row" style="margin-bottom:10px">
+        <div class="sent-part sp-sub">Rohan</div>
+        <div class="sent-part sp-mv">went</div>
+        <div class="sent-part sp-neu">to Pahalgam.</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Statement</div>
+      </div>
+      <div class="sd-row">
+        <div class="sent-part sp-q">Did</div>
+        <div class="sent-part sp-sub">Rohan</div>
+        <div class="sent-part sp-mv">go</div>
+        <div class="sent-part sp-neu">to Pahalgam</div>
+        <div class="sent-part sp-neu">?</div>
+        <div class="sent-part sp-neu" style="flex:1;text-align:left;padding-left:8px;font-size:12px;color:var(--muted)">→ Question</div>
+      </div>
+      <div class="sd-note">Past tense: "went" (V2) → bring in "Did" + V1 (go). ❌ "Did Rohan <b>went</b>?" → ✅ "Did Rohan <b>go</b>?"</div>
+    </div>
+    <div class="rule-box">
+      <div class="rl-label">Wh- Questions — The Same Inversion + a Question Word</div>
+      <p><strong>Wh- words</strong> (what, where, when, who, why, how) come at the very start, THEN the inverted structure follows.<br><br>
+      <code>Wh-word</code> + <code>Helping Verb</code> + <code>Subject</code> + <code>V1</code> + <code>Object ?</code><br><br>
+      Where <strong>does</strong> she <strong>live</strong>? &nbsp;·&nbsp; What <strong>did</strong> you <strong>eat</strong>? &nbsp;·&nbsp; When <strong>will</strong> they <strong>arrive</strong>?</p>
+    </div>
+    <div class="trap-box">
+      <div class="tr-label">⚑ Inversion Mistakes to Avoid</div>
+      <ul>
+        <li>❌ "Where she <strong>lives</strong>?" → ✅ "Where <strong>does</strong> she <strong>live</strong>?" — inversion is compulsory!</li>
+        <li>❌ "Did she <strong>went</strong>?" → ✅ "Did she <strong>go</strong>?" — V1 after "did", never V2</li>
+        <li>❌ "Does he <strong>plays</strong>?" → ✅ "Does he <strong>play</strong>?" — V1 after "does"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 7: CONNECTING TO TENSES ──────────────── -->
+<div class="sec-label">Part 7 — Connecting Verbs to Tenses</div>
+
+<div class="c-card">
+  <div class="c-head" onclick="tog(this)">
+    <div class="c-icon" style="background:var(--purplePale)">🔮</div>
+    <div style="flex:1"><div class="c-title">How Verb Forms Map to Tenses</div><div class="c-sub">This is the foundation for everything you will learn in grammar</div></div>
+    <span class="c-arrow">▾</span>
+  </div>
+  <div class="c-body">
+    <p>Every tense you will ever learn uses a specific <strong>verb form + helping verb combination</strong>. Once you know the five verb forms and the helping verbs, learning any new tense becomes a simple matter of combining them correctly.</p>
+    <div style="overflow-x:auto">
+      <table class="compare-table">
+        <tr><th colspan="4" style="background:#0A2260;text-align:center;font-size:14px">Helping Verb + Verb Form = Tense</th></tr>
+        <tr><th>Tense</th><th>Formula</th><th>Example</th><th>Verb Form</th></tr>
+        <tr><td><b>Simple Present</b></td><td>V1 (or V5)</td><td>She <em>plays</em>.</td><td>V1 / V5</td></tr>
+        <tr><td><b>Present Continuous</b></td><td>is/am/are + V4</td><td>She <em>is playing</em>.</td><td>V4 (-ing)</td></tr>
+        <tr><td><b>Simple Past</b></td><td>V2 alone</td><td>She <em>played</em>.</td><td>V2</td></tr>
+        <tr><td><b>Past Continuous</b></td><td>was/were + V4</td><td>She <em>was playing</em>.</td><td>V4 (-ing)</td></tr>
+        <tr><td><b>Present Perfect</b></td><td>have/has + V3</td><td>She <em>has played</em>.</td><td>V3</td></tr>
+        <tr><td><b>Past Perfect</b></td><td>had + V3</td><td>She <em>had played</em>.</td><td>V3</td></tr>
+        <tr><td><b>Simple Future</b></td><td>will + V1</td><td>She <em>will play</em>.</td><td>V1</td></tr>
+      </table>
+    </div>
+    <div class="gold-box">
+      <div class="gl-label">★ The Big Picture</div>
+      <ul>
+        <li>V1 is the most versatile — used in Present, Future, and after all do/does/did/will/can.</li>
+        <li>V2 is the simple past — used <em>alone</em>, no helping verb needed in affirmatives.</li>
+        <li>V3 (past participle) is used after <em>have/has/had</em> for perfect tenses, and in passive voice.</li>
+        <li>V4 (-ing form) is used after <em>is/am/are/was/were</em> for continuous (ongoing) tenses.</li>
+        <li>Negative and questions in simple tenses always need <em>do/does/did</em> + V1.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /theory pane -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 2 — VERB FORMS
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="verbforms">
+
+<div class="intro-box" style="margin-bottom:16px">
+  <p>The table below gives you the <strong>five forms</strong> of the most important English verbs — both irregular and regular. Irregular verbs have unique V2 and V3 forms that you must <strong>memorise</strong>. Regular verbs simply add <em>-ed</em> for V2 and V3.</p>
+</div>
+
+<input class="vf-search" type="text" placeholder="🔍  Search for a verb (e.g. go, eat, play…)" oninput="filterVerbs(this.value)" id="vf-search">
+
+<div class="vf-legend">
+  <div class="vf-legend-item"><div class="vf-legend-dot" style="background:var(--orange)"></div>Irregular</div>
+  <div class="vf-legend-item"><div class="vf-legend-dot" style="background:var(--teal)"></div>Regular</div>
+  <div class="vf-legend-item" style="margin-left:8px;font-size:12px;color:var(--primary)"><b>V1</b> = Base &nbsp; <b style="color:var(--green)">V2</b> = Past &nbsp; <b style="color:var(--sky)">V3</b> = Past Participle &nbsp; <b style="color:var(--purple)">V4</b> = -ing &nbsp; <b style="color:var(--orange)">V5</b> = he/she/it</div>
+</div>
+
+<div class="vf-wrap">
+  <table class="vf-table" id="vf-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Meaning</th>
+        <th class="v1">V1 Base</th>
+        <th class="v2">V2 Past</th>
+        <th class="v3">V3 Participle</th>
+        <th class="v4">V4 -ing</th>
+        <th class="v5">V5 s/es</th>
+      </tr>
+    </thead>
+    <tbody id="vf-body">
+    </tbody>
+  </table>
+</div>
+
+</div><!-- /verbforms pane -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 3 — QUICK REF
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="quickref">
+<div class="ref-grid">
+
+  <div class="ref-card">
+    <div class="ref-card-title">⚡ Three Types of Verbs</div>
+    <ul>
+      <li><b>Action verb:</b> tells what someone does — run, eat, write, sing</li>
+      <li><b>State verb:</b> tells a condition — is, am, are, have, know, love</li>
+      <li><b>Helping verb:</b> assists the main verb — is, do, does, did, will, have</li>
+      <li>State verbs are NOT normally used in continuous (-ing) form</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">📐 The Five Verb Forms</div>
+    <ul>
+      <li><b>V1</b> — Base form: play, write, go</li>
+      <li><b>V2</b> — Simple Past: played, wrote, went</li>
+      <li><b>V3</b> — Past Participle: played, written, gone</li>
+      <li><b>V4</b> — Present Participle (-ing): playing, writing, going</li>
+      <li><b>V5</b> — Third Person Singular (-s/-es): plays, writes, goes</li>
+      <li><em>Regular:</em> V2 = V3 = V1 + -ed &nbsp; | &nbsp; <em>Irregular:</em> must memorise</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">✅ Affirmative Sentences</div>
+    <ul>
+      <li><b>Simple Present:</b> S + <em>V1/V5</em> + O → She plays.</li>
+      <li><b>Pres. Continuous:</b> S + <em>is/am/are</em> + V4 → She is playing.</li>
+      <li><b>Simple Past:</b> S + <em>V2</em> + O → She played.</li>
+      <li><b>Simple Future:</b> S + <em>will</em> + V1 + O → She will play.</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">❌ Negative Sentences</div>
+    <ul>
+      <li><b>Simple Present (I/you/we/they):</b> S + <em>do not</em> + V1 + O</li>
+      <li><b>Simple Present (he/she/it):</b> S + <em>does not</em> + V1 + O</li>
+      <li><b>Pres. Continuous:</b> S + is/am/are + <em>not</em> + V4</li>
+      <li><b>Simple Past:</b> S + <em>did not</em> + V1 + O</li>
+      <li><b>Simple Future:</b> S + <em>will not</em> + V1 + O</li>
+      <li>⚠️ After do/does/did → always <em>V1</em>, never V2 or V5!</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">❓ Interrogative (Questions) — Inversion</div>
+    <ul>
+      <li><b>Simple Present:</b> <em>Do/Does</em> + S + V1 + O + ?</li>
+      <li><b>Pres. Continuous:</b> <em>Is/Am/Are</em> + S + V4 + ?</li>
+      <li><b>Simple Past:</b> <em>Did</em> + S + V1 + O + ?</li>
+      <li><b>Simple Future:</b> <em>Will</em> + S + V1 + O + ?</li>
+      <li><b>Wh- questions:</b> Wh-word + <em>Helping Verb</em> + S + V1 + ?</li>
+      <li>Inversion = helping verb <em>moves before</em> the subject.</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">🤝 Helping Verb Quick Guide</div>
+    <ul>
+      <li><em>am / is / are / was / were</em> → continuous tenses + passive</li>
+      <li><em>do / does</em> → simple present negatives &amp; questions</li>
+      <li><em>did</em> → simple past negatives &amp; questions</li>
+      <li><em>have / has / had</em> → perfect tenses</li>
+      <li><em>will</em> → future tense (all subjects)</li>
+      <li>does/did → main verb must be <b>V1</b> (base form)</li>
+    </ul>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-card-title">⚑ Critical Rules — Never Forget</div>
+    <ul>
+      <li>V5 is ONLY used in <b>simple present affirmative</b> with he/she/it</li>
+      <li>❌ "does not <b>plays</b>" → ✅ "does not <b>play</b>" (V1 after does not)</li>
+      <li>❌ "did not <b>went</b>" → ✅ "did not <b>go</b>" (V1 after did not)</li>
+      <li>Inversion is <b>compulsory</b> in questions — not optional</li>
+      <li>To be (am/is/are): "not" goes directly <b>after</b> the verb</li>
+      <li>Regular V2 = V3 = base + -ed. Irregular must be memorised.</li>
+    </ul>
+  </div>
+
+</div>
+</div><!-- /quickref pane -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PANE 4 — QUIZ
+══════════════════════════════════════════════════════════ -->
+<div class="pane" id="quiz">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="s-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="s-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="s-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a" id="s-tot">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll()">Submit All &amp; Check</button>
+    <button class="btn btn-ghost" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+  <div id="results"></div>
+  <div id="q-area"></div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+/* ─── VERB DATA ───────────────────────────────────────────── */
+const VERBS = [
+  // Type, Meaning, V1, V2, V3, V4, V5
+  // IRREGULAR
+  {t:'IRR',m:'to travel on foot',v1:'go',v2:'went',v3:'gone',v4:'going',v5:'goes'},
+  {t:'IRR',m:'to arrive',v1:'come',v2:'came',v3:'come',v4:'coming',v5:'comes'},
+  {t:'IRR',m:'to consume food',v1:'eat',v2:'ate',v3:'eaten',v4:'eating',v5:'eats'},
+  {t:'IRR',m:'to perceive with eyes',v1:'see',v2:'saw',v3:'seen',v4:'seeing',v5:'sees'},
+  {t:'IRR',m:'to put down letters',v1:'write',v2:'wrote',v3:'written',v4:'writing',v5:'writes'},
+  {t:'IRR',m:'to absorb with eyes',v1:'read',v2:'read',v3:'read',v4:'reading',v5:'reads'},
+  {t:'IRR',m:'to make music with voice',v1:'sing',v2:'sang',v3:'sung',v4:'singing',v5:'sings'},
+  {t:'IRR',m:'to move fast on foot',v1:'run',v2:'ran',v3:'run',v4:'running',v5:'runs'},
+  {t:'IRR',m:'to possess',v1:'have',v2:'had',v3:'had',v4:'having',v5:'has'},
+  {t:'IRR',m:'to take or get',v1:'take',v2:'took',v3:'taken',v4:'taking',v5:'takes'},
+  {t:'IRR',m:'to offer or hand over',v1:'give',v2:'gave',v3:'given',v4:'giving',v5:'gives'},
+  {t:'IRR',m:'to use hands to make',v1:'make',v2:'made',v3:'made',v4:'making',v5:'makes'},
+  {t:'IRR',m:'to say with mouth',v1:'speak',v2:'spoke',v3:'spoken',v4:'speaking',v5:'speaks'},
+  {t:'IRR',m:'to tell in words',v1:'say',v2:'said',v3:'said',v4:'saying',v5:'says'},
+  {t:'IRR',m:'to understand',v1:'know',v2:'knew',v3:'known',v4:'knowing',v5:'knows'},
+  {t:'IRR',m:'to think deeply',v1:'think',v2:'thought',v3:'thought',v4:'thinking',v5:'thinks'},
+  {t:'IRR',m:'to find something',v1:'find',v2:'found',v3:'found',v4:'finding',v5:'finds'},
+  {t:'IRR',m:'to gain money',v1:'buy',v2:'bought',v3:'bought',v4:'buying',v5:'buys'},
+  {t:'IRR',m:'to bring something',v1:'bring',v2:'brought',v3:'brought',v4:'bringing',v5:'brings'},
+  {t:'IRR',m:'to rest the body',v1:'sleep',v2:'slept',v3:'slept',v4:'sleeping',v5:'sleeps'},
+  {t:'IRR',m:'to be awake',v1:'wake',v2:'woke',v3:'woken',v4:'waking',v5:'wakes'},
+  {t:'IRR',m:'to be in a seated position',v1:'sit',v2:'sat',v3:'sat',v4:'sitting',v5:'sits'},
+  {t:'IRR',m:'to stand upright',v1:'stand',v2:'stood',v3:'stood',v4:'standing',v5:'stands'},
+  {t:'IRR',m:'to stop living',v1:'lose',v2:'lost',v3:'lost',v4:'losing',v5:'loses'},
+  {t:'IRR',m:'to hit with foot',v1:'break',v2:'broke',v3:'broken',v4:'breaking',v5:'breaks'},
+  {t:'IRR',m:'to construct',v1:'build',v2:'built',v3:'built',v4:'building',v5:'builds'},
+  {t:'IRR',m:'to select',v1:'choose',v2:'chose',v3:'chosen',v4:'choosing',v5:'chooses'},
+  {t:'IRR',m:'to put on (cloth)',v1:'wear',v2:'wore',v3:'worn',v4:'wearing',v5:'wears'},
+  {t:'IRR',m:'to move wings',v1:'fly',v2:'flew',v3:'flown',v4:'flying',v5:'flies'},
+  {t:'IRR',m:'to move in water',v1:'swim',v2:'swam',v3:'swum',v4:'swimming',v5:'swims'},
+  {t:'IRR',m:'to feel and understand',v1:'feel',v2:'felt',v3:'felt',v4:'feeling',v5:'feels'},
+  {t:'IRR',m:'to be victorious',v1:'win',v2:'won',v3:'won',v4:'winning',v5:'wins'},
+  {t:'IRR',m:'to hold a pencil/pen',v1:'draw',v2:'drew',v3:'drawn',v4:'drawing',v5:'draws'},
+  {t:'IRR',m:'to become older',v1:'grow',v2:'grew',v3:'grown',v4:'growing',v5:'grows'},
+  {t:'IRR',m:'to understand a lesson',v1:'teach',v2:'taught',v3:'taught',v4:'teaching',v5:'teaches'},
+  {t:'IRR',m:'to gain knowledge',v1:'learn',v2:'learnt',v3:'learnt',v4:'learning',v5:'learns'},
+  {t:'IRR',m:'to be on one\'s feet',v1:'fall',v2:'fell',v3:'fallen',v4:'falling',v5:'falls'},
+  {t:'IRR',m:'to experience something',v1:'hear',v2:'heard',v3:'heard',v4:'hearing',v5:'hears'},
+  {t:'IRR',m:'to keep in mind',v1:'forget',v2:'forgot',v3:'forgotten',v4:'forgetting',v5:'forgets'},
+  {t:'IRR',m:'to attempt',v1:'meet',v2:'met',v3:'met',v4:'meeting',v5:'meets'},
+  // REGULAR
+  {t:'REG',m:'to throw a ball and hit',v1:'play',v2:'played',v3:'played',v4:'playing',v5:'plays'},
+  {t:'REG',m:'to assist someone',v1:'help',v2:'helped',v3:'helped',v4:'helping',v5:'helps'},
+  {t:'REG',m:'to move to a beat',v1:'dance',v2:'danced',v3:'danced',v4:'dancing',v5:'dances'},
+  {t:'REG',m:'to tidy or arrange',v1:'clean',v2:'cleaned',v3:'cleaned',v4:'cleaning',v5:'cleans'},
+  {t:'REG',m:'to greet',v1:'call',v2:'called',v3:'called',v4:'calling',v5:'calls'},
+  {t:'REG',m:'to observe',v1:'watch',v2:'watched',v3:'watched',v4:'watching',v5:'watches'},
+  {t:'REG',m:'to desire something',v1:'want',v2:'wanted',v3:'wanted',v4:'wanting',v5:'wants'},
+  {t:'REG',m:'to make a picture',v1:'paint',v2:'painted',v3:'painted',v4:'painting',v5:'paints'},
+  {t:'REG',m:'to move at slow pace',v1:'walk',v2:'walked',v3:'walked',v4:'walking',v5:'walks'},
+  {t:'REG',m:'to move faster than walk',v1:'jump',v2:'jumped',v3:'jumped',v4:'jumping',v5:'jumps'},
+  {t:'REG',m:'to say out loud in class',v1:'ask',v2:'asked',v3:'asked',v4:'asking',v5:'asks'},
+  {t:'REG',m:'to receive an answer',v1:'answer',v2:'answered',v3:'answered',v4:'answering',v5:'answers'},
+  {t:'REG',m:'to make food with heat',v1:'cook',v2:'cooked',v3:'cooked',v4:'cooking',v5:'cooks'},
+  {t:'REG',m:'to change from place',v1:'move',v2:'moved',v3:'moved',v4:'moving',v5:'moves'},
+  {t:'REG',m:'to cultivate land',v1:'plant',v2:'planted',v3:'planted',v4:'planting',v5:'plants'},
+  {t:'REG',m:'to stop (a vehicle)',v1:'park',v2:'parked',v3:'parked',v4:'parking',v5:'parks'},
+  {t:'REG',m:'to push a button',v1:'press',v2:'pressed',v3:'pressed',v4:'pressing',v5:'presses'},
+  {t:'REG',m:'to enter a vehicle',v1:'climb',v2:'climbed',v3:'climbed',v4:'climbing',v5:'climbs'},
+  {t:'REG',m:'to remove water',v1:'wash',v2:'washed',v3:'washed',v4:'washing',v5:'washes'},
+  {t:'REG',m:'to use a brush on teeth',v1:'brush',v2:'brushed',v3:'brushed',v4:'brushing',v5:'brushes'},
+];
+let filteredVerbs = [...VERBS];
+
+function renderVerbTable(data) {
+  const body = document.getElementById('vf-body');
+  body.innerHTML = '';
+  if (!data.length) {
+    body.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--muted);font-style:italic">No verbs found. Try a different search.</td></tr>`;
+    return;
+  }
+  // Separate by type
+  const irr = data.filter(v => v.t === 'IRR');
+  const reg = data.filter(v => v.t === 'REG');
+  if (irr.length) {
+    body.innerHTML += `<tr class="vf-sec-hdr"><td colspan="7">★ Irregular Verbs — V2 and V3 must be memorised</td></tr>`;
+    irr.forEach(v => body.innerHTML += rowHtml(v));
+  }
+  if (reg.length) {
+    body.innerHTML += `<tr class="vf-sec-hdr"><td colspan="7">Regular Verbs — V2 and V3 = V1 + -ed</td></tr>`;
+    reg.forEach(v => body.innerHTML += rowHtml(v));
+  }
+}
+
+function rowHtml(v) {
+  const tag = v.t === 'IRR'
+    ? `<span class="irr-tag">IRR</span>`
+    : `<span class="reg-tag">REG</span>`;
+  return `<tr>
+    <td>${tag}</td>
+    <td style="font-size:13px;color:var(--muted)">${v.m}</td>
+    <td class="v1">${v.v1}</td>
+    <td class="v2">${v.v2}</td>
+    <td class="v3">${v.v3}</td>
+    <td class="v4">${v.v4}</td>
+    <td class="v5">${v.v5}</td>
+  </tr>`;
+}
+
+function filterVerbs(query) {
+  const q = query.toLowerCase().trim();
+  if (!q) { filteredVerbs = [...VERBS]; }
+  else { filteredVerbs = VERBS.filter(v => v.v1.includes(q) || v.v2.includes(q) || v.v3.includes(q) || v.m.includes(q)); }
+  renderVerbTable(filteredVerbs);
+}
+
+renderVerbTable(VERBS);
+
+/* ─── QUIZ DATA ────────────────────────────────────────── */
+const QS = [
+  {d:'EASY',e:'Class 3–4 · B01',q:'Which of the following is an ACTION verb?',opts:['happy','beautiful','run','tall'],ans:2,rule:'Action verbs describe physical or mental activities.',exp:'"run" is an action verb — you can perform the action of running. "happy" and "beautiful" are adjectives (describing words), and "tall" is also an adjective. A verb is a word that tells us what the subject does, is, or has.'},
+  {d:'EASY',e:'Class 3–4 · B01',q:'Identify the verb in this sentence: "The students read their books."',opts:['students','read','books','The'],ans:1,rule:'The verb tells us what the subject does.',exp:'"read" is the verb — it tells us what the students do. "students" is the subject (who does it), "books" is the object (what they read), "The" is an article.'},
+  {d:'EASY',e:'Class 3–4 · B01',q:'"is / am / are / was / were" are examples of which type of verb?',opts:['Action verbs','Irregular verbs','Helping verbs','Object verbs'],ans:2,rule:'is/am/are/was/were are forms of "to be" — primary helping (auxiliary) verbs.',exp:'"is / am / are / was / were" are all forms of the verb "to be". They are helping (auxiliary) verbs — they help other verbs form tenses. For example: "She is singing" — here "is" helps "singing" form the present continuous tense.'},
+  {d:'EASY',e:'Class 3–4 · B01',q:'What is the V2 (Simple Past) form of "go"?',opts:['goes','gone','went','going'],ans:2,rule:'"go" is an irregular verb: go → went → gone.',exp:'"go" is one of the most important irregular verbs: V1=go, V2=went, V3=gone, V4=going, V5=goes. "went" is the simple past (V2). "gone" is the past participle (V3). "going" is the present participle (V4). "goes" is the third person singular (V5).'},
+  {d:'EASY',e:'Class 3–4 · B01',q:'Fill in the blank (Simple Present): "She ___ cricket every evening."',opts:['play','plays','played','playing'],ans:1,rule:'Simple Present with he/she/it → V5 (V1 + -s/-es).',exp:'The subject is "she" (third person singular). In simple present affirmative, he/she/it takes the V5 form — add "-s" or "-es" to the base verb. "play" + "s" = "plays". "played" is past tense. "playing" is the -ing form (V4) used with is/am/are.'},
+  {d:'MEDIUM',e:'Class 3–4 · B01',q:'Which sentence is correct?',opts:['She does not plays cricket.','She does not play cricket.','She do not plays cricket.','She not play cricket.'],ans:1,rule:'does not + V1 (base form). Never V5 after does not.',exp:'"does not" is used with he/she/it in simple present negative. After "does not", the main verb must always be in V1 (base form) — never V5. So "play" not "plays". "do not" is used with I/you/we/they. "She not play" is incorrect — you cannot make a negative without do/does/did.'},
+  {d:'MEDIUM',e:'Class 3–4 · B01',q:'Which sentence is correct?',opts:['Did he went to school?','Did he go to school?','Does he went to school?','He did went to school?'],ans:1,rule:'"did" + V1 (base form) for past questions. Never V2 after did.',exp:'For simple past questions, we use "Did + subject + V1". "did" already carries the past tense, so the main verb must return to V1 (go), not stay as V2 (went). "Did he went" is the most common mistake — it uses both V2 and "did", which doubles the past tense. "Does he went" mixes present auxiliary with past verb.'},
+  {d:'MEDIUM',e:'Class 3–4 · B01',q:'How do you make "She is singing" into a question?',opts:['She is singing?','Does she singing?','Is she singing?','Did she singing?'],ans:2,rule:'Present Continuous question: invert is/am/are to the front.',exp:'In present continuous, the helping verb "is" is already in the sentence. To make a question, we simply invert (swap) the subject and "is". "She is singing." → "Is she singing?" This is called inversion — the helping verb moves before the subject. "Does she singing?" is wrong because "does" is not used with -ing forms.'},
+  {d:'MEDIUM',e:'Class 3–4 · B01',q:'What is the V4 (-ing) form of "write"?',opts:['writting','writeing','writen','writing'],ans:3,rule:'Drop the silent -e before adding -ing: write → writing.',exp:'"write" ends in a silent -e. When adding -ing, we drop the "e" first: write → writ + ing = "writing". "writting" is wrong (double t is only for short vowel + consonant: sit → sitting). "writeing" keeps the "e" (incorrect). "writen" is not a standard form.'},
+  {d:'MEDIUM',e:'Class 3–4 · B01',q:'Fill in the blank: "Arjun ___ not go to school yesterday."',opts:['do','does','did','was'],ans:2,rule:'Simple Past negative: did not + V1.',exp:'"Yesterday" tells us this is past tense. Simple past negative uses "did not" (or "didn\'t"). After "did", the main verb must be V1 (go), not V2 (went). "do" is simple present. "does" is simple present third person. "was" is not used for action verbs in simple past negative.'},
+  {d:'HARD',e:'Class 3–4 · B01',q:'Which sentence uses a HELPING verb to form the present continuous tense?',opts:['She reads every day.','She read a book.','She is reading a book.','She does read books.'],ans:2,rule:'Present Continuous = is/am/are (helping verb) + V4 (-ing).',exp:'"She is reading a book." — "is" is the helping verb, "reading" (V4) is the main verb. Together they form the present continuous tense. "She reads" = simple present (no helping verb). "She read" = simple past. "She does read" = emphatic present (does is used for emphasis, not continuous).'},
+  {d:'HARD',e:'Class 3–4 · B01',q:'What does "inversion" mean in grammar?',opts:['Replacing a noun with a pronoun','Swapping the subject and helping verb to form a question','Adding -ing to a verb','Changing the verb to past tense'],ans:1,rule:'Inversion = helping verb moves before the subject to form a question.',exp:'Inversion is the swapping of the subject and the helping verb to make a question. Statement: "She IS singing." → Question: "IS she singing?" The helping verb (is) jumps to the front, before the subject (she). This is how all questions in English are formed — by inverting the helping verb.'},
+  {d:'HARD',e:'Class 3–4 · B01',q:'Which sentence correctly forms a Wh- question?',opts:['Where she lives?','Where does live she?','Where does she live?','Where she does live?'],ans:2,rule:'Wh- question: Wh-word + helping verb + subject + V1.',exp:'Wh- questions: question word + inverted structure. "Where" + "does" + "she" + "live" (V1). Inversion is still compulsory — "Where she lives?" has no inversion (wrong). "Where does live she?" has wrong word order (subject before verb). "Where she does live?" also has wrong order.'},
+  {d:'HARD',e:'Class 3–4 · B01',q:'What is the V3 (Past Participle) of "write"? And which helping verb would it follow?',opts:['"wrote" — follows "do"','"written" — follows "have/has"','"writing" — follows "is/am"','"writes" — follows "will"'],ans:1,rule:'V3 (Past Participle) follows have/has/had for perfect tenses.',exp:'"written" is the V3 (past participle) of "write". It is used after "have/has/had" to form perfect tenses: "She has written a letter." V3 always follows have/has/had. "wrote" is V2 (simple past). "writing" is V4 used with is/am/are. "writes" is V5 used in simple present affirmative.'},
+  {d:'HARD',e:'Class 3–4 · B01',q:'"The children were playing in the garden." — Which part is the helping verb?',opts:['"children" is the helping verb','"playing" is the helping verb','"were" is the helping verb','"garden" is the helping verb'],ans:2,rule:'"were" is the helping verb — it helps "playing" form the past continuous tense.',exp:'"were" is the helping verb (auxiliary) — it is a form of "to be" (past tense, plural). It helps "playing" (V4, -ing form) form the <strong>past continuous tense</strong>: "were + playing". "children" is the subject. "playing" is the main verb in -ing form (V4). "garden" is a noun (location). The formula: was/were + V4 = past continuous.'},
+];
+
+const answers = new Array(QS.length).fill(null), revealed = new Array(QS.length).fill(false), LABS = ['A','B','C','D'];
+
+function build() {
+  const area = document.getElementById('q-area'); area.innerHTML = '';
+  QS.forEach((q, i) => {
+    const dc = q.d === 'EASY' ? 'diff-e' : q.d === 'MEDIUM' ? 'diff-m' : 'diff-h';
+    const div = document.createElement('div'); div.className = 'q-card'; div.id = `qc${i}`;
+    div.innerHTML = `<div class="q-meta"><span class="q-num">Q.${String(i+1).padStart(2,'0')}</span><span class="q-diff ${dc}">${q.d}</span><span class="q-exam">${q.e}</span></div><div class="q-body"><div class="q-text">${q.q}</div><div class="opts" id="opts${i}">${q.opts.map((o,j) => `<button class="opt" id="o${i}_${j}" onclick="pick(${i},${j})"><span class="opt-lbl">${LABS[j]}</span>${o}</button>`).join('')}</div><div class="exp-panel" id="ex${i}"><div class="exp-tag">Explanation</div><div class="exp-rule">${q.rule}</div><p>${q.exp}</p></div></div><div class="q-foot"><span style="font-size:11px;color:var(--dim);font-weight:700">English · B01</span><span id="ai${i}" class="q-status">—</span></div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(qi, oi) {
+  if (revealed[qi]) return;
+  answers[qi] = oi;
+  document.querySelectorAll(`#opts${qi} .opt`).forEach((b,j) => { b.classList.remove('sel'); if (j === oi) b.classList.add('sel'); });
+  document.getElementById(`qc${qi}`).classList.add('answered');
+  const ai = document.getElementById(`ai${qi}`); ai.textContent = `Selected: ${LABS[oi]}`; ai.style.color = 'var(--primary)';
+  updateStats();
+}
+
+function updateStats() {
+  const att = answers.filter(a => a !== null).length;
+  document.getElementById('s-att').textContent = att;
+  document.getElementById('prog').style.width = (att / QS.length * 100) + '%';
+  document.getElementById('prog-label').textContent = `${att} of ${QS.length} answered`;
+  let c = 0, w = 0;
+  answers.forEach((a, i) => { if (a === null) return; if (a === QS[i].ans) c++; else w++; });
+  document.getElementById('s-cor').textContent = c;
+  document.getElementById('s-wrg').textContent = w;
+}
+
+function submitAll() {
+  let cor = 0, wrg = 0, skp = 0;
+  QS.forEach((q, i) => {
+    revealed[i] = true;
+    const opts = document.querySelectorAll(`#opts${i} .opt`);
+    opts.forEach(b => { b.disabled = true; b.classList.remove('sel'); });
+    opts[q.ans].classList.add('ok');
+    if (answers[i] !== null && answers[i] !== q.ans) opts[answers[i]].classList.add('bad');
+    document.getElementById(`ex${i}`).classList.add('show');
+    const ai = document.getElementById(`ai${i}`); const card = document.getElementById(`qc${i}`);
+    card.classList.remove('answered');
+    if (answers[i] === null) { skp++; ai.textContent = 'Skipped'; ai.style.color = 'var(--dim)'; }
+    else if (answers[i] === q.ans) { cor++; card.classList.add('correct'); ai.textContent = '✓ Correct'; ai.style.color = 'var(--green)'; }
+    else { wrg++; card.classList.add('wrong'); ai.textContent = '✗ Wrong'; ai.style.color = 'var(--red)'; }
+  });
+  updateStats(); showResults(cor, wrg, skp);
+}
+
+function showResults(cor, wrg, skp) {
+  const pct = Math.round(cor / QS.length * 100);
+  let grade, msg;
+  if (pct >= 88)      { grade = 'Excellent 🌟'; msg = 'Outstanding! You have understood verbs and tense syntax very well.' }
+  else if (pct >= 70) { grade = 'Good 👍'; msg = 'Well done! Review the questions you got wrong.' }
+  else if (pct >= 50) { grade = 'Good Try 📚'; msg = 'Good start! Go through the Theory cards once more and try again.' }
+  else                { grade = 'Keep Practising 💪'; msg = "Don't worry — read the lesson carefully and try again. You can do it!" }
+  const res = document.getElementById('results');
+  res.innerHTML = `<div class="res-hero"><div class="res-score">${cor}<span style="font-size:36px;opacity:.5">/${QS.length}</span></div><div class="res-grade">${grade} · ${pct}%</div><div class="res-msg">${msg}</div></div><div class="res-stats"><div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div><div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div><div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div><div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div></div><div style="text-align:center;margin:16px 0"><button class="btn btn-ghost" onclick="document.getElementById('q-area').scrollIntoView({behavior:'smooth'})">📖 Review All Answers</button></div>`;
+  res.style.display = 'block'; res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetQuiz() {
+  answers.fill(null); revealed.fill(false); build();
+  document.getElementById('results').style.display = 'none'; document.getElementById('results').innerHTML = '';
+  ['s-att','s-cor','s-wrg'].forEach(id => document.getElementById(id).textContent = '0');
+  document.getElementById('prog').style.width = '0%';
+  document.getElementById('prog-label').textContent = `0 of ${QS.length} answered`;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const idx = { theory: 0, verbforms: 1, quickref: 2, quiz: 3 }[id];
+  document.querySelectorAll('.tab')[idx].classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function tog(hd) {
+  const bd = hd.nextElementSibling;
+  const isOpen = bd.classList.contains('open');
+  bd.classList.toggle('open', !isOpen);
+  hd.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
