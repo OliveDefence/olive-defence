@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vocabulary Mock 01 | Olive Defence</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+:root{
+  --bg:#EEF0F5;
+  --bg2:#DDE1EC;
+  --bg3:#C8CEDF;
+  --white:#F7F8FC;
+  --ink:#080810;
+  --ink2:#10121E;
+  --muted:#48506A;
+  --dim:#8890AA;
+  --border:#B8C0D8;
+
+  --primary:#1A1E6A;
+  --primaryLt:#282E96;
+  --primaryPale:#E4E6F8;
+
+  --amber:#7A5808;
+  --amberLt:#9E7010;
+  --amberPale:#FAF0D4;
+
+  --green:#0A521A;
+  --greenLt:#147222;
+  --greenPale:#D6EEE0;
+
+  --red:#780E08;
+  --redLt:#9C1610;
+  --redPale:#F6E4E2;
+
+  --blue:#0C2E72;
+  --bluePale:#DDE8F6;
+
+  --purple:#440E68;
+  --purplePale:#EAE0F6;
+
+  --teal:#064038;
+  --tealPale:#D2EDEA;
+
+  --rose:#6E0A36;
+  --rosePale:#F6E0EA;
+
+  --radius:12px;
+  --shadow:0 2px 12px rgba(8,8,16,.09);
+  --shadow-md:0 4px 20px rgba(8,8,16,.14);
+}
+
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;min-height:100vh}
+.page{max-width:700px;margin:0 auto;padding:0 16px 80px}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#04040E 0%,#1A1E6A 55%,#282E96 100%);
+  margin:0 -16px;padding:28px 20px 26px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 78% 18%,rgba(200,180,255,.09) 0%,transparent 55%),
+    radial-gradient(ellipse at 8%  80%,rgba(140,160,255,.07) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(200,190,255,.40),transparent);
+  pointer-events:none;
+}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:8px;display:flex;align-items:center;gap:8px;position:relative;z-index:1}
+.hero-kicker::before{content:'';width:18px;height:2px;background:rgba(255,255,255,.28)}
+.hero-title{font-family:'Lora',serif;font-size:clamp(22px,5.5vw,32px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:10px;position:relative;z-index:1}
+.hero-title span{color:#C8C0FF;font-style:italic}
+.hero-sub{font-size:14.5px;color:rgba(255,255,255,.64);margin-bottom:18px;line-height:1.65;position:relative;z-index:1}
+.hero-chips{display:flex;flex-wrap:wrap;gap:7px;position:relative;z-index:1}
+.chip{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;text-transform:uppercase}
+.chip-w{background:rgba(255,255,255,.12);color:rgba(255,255,255,.88)}
+.chip-a{background:rgba(200,192,255,.18);color:#C8C0FF}
+.chip-g{background:rgba(140,240,160,.11);color:#90E8A8}
+
+/* ── SECTION TABS ─────────────────────────────────────────────── */
+.tab-bar{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:2px solid var(--border);margin:0 -16px;display:flex;overflow-x:auto;box-shadow:0 2px 8px rgba(8,8,16,.07);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 16px;font-size:11.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);border:none;background:transparent;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.syn.on{color:#1A1E6A;border-bottom-color:#1A1E6A}
+.tab.ant.on{color:#780E08;border-bottom-color:#780E08}
+.tab.con.on{color:#064038;border-bottom-color:#064038}
+.tab.idi.on{color:#440E68;border-bottom-color:#440E68}
+
+/* ── PANES ───────────────────────────────────────────────────── */
+.pane{display:none;padding-top:20px;animation:fadeUp .3s ease}
+.pane.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── QUIZ STATS ─────────────────────────────────────────────── */
+.quiz-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:var(--radius);overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow)}
+.qs-cell{padding:12px 8px;text-align:center}
+.qs-val{font-family:'Lora',serif;font-size:22px;font-weight:700;line-height:1}
+.qs-lbl{font-size:10px;font-weight:700;letter-spacing:1px;margin-top:4px;text-transform:uppercase}
+
+/* per-section colour skins */
+.skin-syn .quiz-stats{background:#B8C0D8}
+.skin-syn .qs-cell{background:var(--white)}
+.skin-syn .qs-val{color:var(--primary)}
+.skin-syn .qs-val.g{color:var(--green)}.skin-syn .qs-val.r{color:var(--red)}.skin-syn .qs-val.a{color:var(--amber)}
+.skin-syn .qs-lbl{color:var(--muted)}
+
+.skin-ant .quiz-stats{background:#C8B8B6}
+.skin-ant .qs-cell{background:var(--white)}
+.skin-ant .qs-val{color:var(--red)}
+.skin-ant .qs-val.g{color:var(--green)}.skin-ant .qs-val.r{color:var(--red)}.skin-ant .qs-val.a{color:var(--amber)}
+.skin-ant .qs-lbl{color:var(--muted)}
+
+.skin-con .quiz-stats{background:#A8C4C0}
+.skin-con .qs-cell{background:var(--white)}
+.skin-con .qs-val{color:var(--teal)}
+.skin-con .qs-val.g{color:var(--green)}.skin-con .qs-val.r{color:var(--red)}.skin-con .qs-val.a{color:var(--amber)}
+.skin-con .qs-lbl{color:var(--muted)}
+
+.skin-idi .quiz-stats{background:#C0B0D4}
+.skin-idi .qs-cell{background:var(--white)}
+.skin-idi .qs-val{color:var(--purple)}
+.skin-idi .qs-val.g{color:var(--green)}.skin-idi .qs-val.r{color:var(--red)}.skin-idi .qs-val.a{color:var(--amber)}
+.skin-idi .qs-lbl{color:var(--muted)}
+
+/* ── PROGRESS ────────────────────────────────────────────────── */
+.prog-wrap{margin-bottom:18px}
+.prog-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px}
+.prog-bar{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px;transition:width .4s ease;width:0%}
+.skin-syn .prog-fill{background:var(--primary)}
+.skin-ant .prog-fill{background:var(--red)}
+.skin-con .prog-fill{background:var(--teal)}
+.skin-idi .prog-fill{background:var(--purple)}
+
+/* ── QUIZ ACTIONS ────────────────────────────────────────────── */
+.quiz-actions{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.btn{padding:10px 18px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.skin-syn .btn-primary{background:var(--primary);color:#fff}
+.skin-syn .btn-primary:hover{background:var(--primaryLt)}
+.skin-syn .btn-ghost{background:var(--white);color:var(--primary);border:1.5px solid var(--border)}
+.skin-syn .btn-ghost:hover{border-color:var(--primary);background:var(--primaryPale)}
+
+.skin-ant .btn-primary{background:var(--red);color:#fff}
+.skin-ant .btn-primary:hover{background:var(--redLt)}
+.skin-ant .btn-ghost{background:var(--white);color:var(--red);border:1.5px solid var(--border)}
+.skin-ant .btn-ghost:hover{border-color:var(--red);background:var(--redPale)}
+
+.skin-con .btn-primary{background:var(--teal);color:#fff}
+.skin-con .btn-primary:hover{background:#0A5A50}
+.skin-con .btn-ghost{background:var(--white);color:var(--teal);border:1.5px solid var(--border)}
+.skin-con .btn-ghost:hover{border-color:var(--teal);background:var(--tealPale)}
+
+.skin-idi .btn-primary{background:var(--purple);color:#fff}
+.skin-idi .btn-primary:hover{background:#5E14A0}
+.skin-idi .btn-ghost{background:var(--white);color:var(--purple);border:1.5px solid var(--border)}
+.skin-idi .btn-ghost:hover{border-color:var(--purple);background:var(--purplePale)}
+
+/* ── QUESTION CARDS ──────────────────────────────────────────── */
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:11px;box-shadow:var(--shadow);overflow:hidden;border-left:4px solid transparent;transition:border-color .15s}
+.skin-syn .q-card.answered{border-left-color:var(--primary)}
+.skin-syn .q-card.correct{border-left-color:var(--green)}
+.skin-syn .q-card.wrong{border-left-color:var(--red)}
+.skin-ant .q-card.answered{border-left-color:var(--red)}
+.skin-ant .q-card.correct{border-left-color:var(--green)}
+.skin-ant .q-card.wrong{border-left-color:var(--red)}
+.skin-con .q-card.answered{border-left-color:var(--teal)}
+.skin-con .q-card.correct{border-left-color:var(--green)}
+.skin-con .q-card.wrong{border-left-color:var(--red)}
+.skin-idi .q-card.answered{border-left-color:var(--purple)}
+.skin-idi .q-card.correct{border-left-color:var(--green)}
+.skin-idi .q-card.wrong{border-left-color:var(--red)}
+
+.q-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:9px 15px;background:var(--bg);border-bottom:1px solid var(--border)}
+.q-num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px}
+.q-tag{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.skin-syn .q-tag{background:var(--primaryPale);color:var(--primary)}
+.skin-ant .q-tag{background:var(--redPale);color:var(--red)}
+.skin-con .q-tag{background:var(--tealPale);color:var(--teal)}
+.skin-idi .q-tag{background:var(--purplePale);color:var(--purple)}
+.q-diff{font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
+.diff-m{background:var(--amberPale);color:var(--amber)}
+.diff-h{background:var(--redPale);color:var(--red)}
+
+.q-body{padding:15px}
+.q-text{font-size:16px;font-weight:600;color:var(--ink);line-height:1.7;margin-bottom:12px}
+.q-word{font-family:'Lora',serif;font-style:italic;font-weight:700}
+
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;text-align:left;font-family:'Nunito',sans-serif;font-size:15px;color:var(--ink2);line-height:1.55;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.opt-lbl{font-size:11px;font-weight:800;color:var(--dim);flex-shrink:0;padding-top:1px;min-width:16px}
+
+.skin-syn .opt:hover,.skin-syn .opt.sel{border-color:var(--primary);background:var(--primaryPale)}
+.skin-syn .opt.sel .opt-lbl{color:var(--primary)}
+.skin-ant .opt:hover,.skin-ant .opt.sel{border-color:var(--red);background:var(--redPale)}
+.skin-ant .opt.sel .opt-lbl{color:var(--red)}
+.skin-con .opt:hover,.skin-con .opt.sel{border-color:var(--teal);background:var(--tealPale)}
+.skin-con .opt.sel .opt-lbl{color:var(--teal)}
+.skin-idi .opt:hover,.skin-idi .opt.sel{border-color:var(--purple);background:var(--purplePale)}
+.skin-idi .opt.sel .opt-lbl{color:var(--purple)}
+
+.opt.ok{border-color:var(--green);background:var(--greenPale);color:var(--green)}
+.opt.ok .opt-lbl{color:var(--green)}
+.opt.bad{border-color:var(--red);background:var(--redPale);color:var(--red);text-decoration:line-through}
+.opt.bad .opt-lbl{color:var(--red)}
+.opt:disabled,.opt[disabled]{cursor:default}
+
+/* ── EXPLANATION ────────────────────────────────────────────── */
+.exp-panel{display:none;margin-top:12px;border-radius:9px;padding:12px 14px;border:1px solid var(--border)}
+.exp-panel.show{display:block;animation:fadeUp .2s ease}
+.skin-syn .exp-panel{background:var(--primaryPale);border-color:rgba(26,30,106,.15)}
+.skin-ant .exp-panel{background:var(--redPale);border-color:rgba(120,14,8,.15)}
+.skin-con .exp-panel{background:var(--tealPale);border-color:rgba(6,64,56,.15)}
+.skin-idi .exp-panel{background:var(--purplePale);border-color:rgba(68,14,104,.15)}
+.exp-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.skin-syn .exp-label{color:var(--primary)}
+.skin-ant .exp-label{color:var(--red)}
+.skin-con .exp-label{color:var(--teal)}
+.skin-idi .exp-label{color:var(--purple)}
+.exp-panel p{font-size:14.5px;color:var(--ink2);line-height:1.75}
+.exp-panel strong{font-weight:800}
+.skin-syn .exp-panel strong{color:var(--primary)}
+.skin-ant .exp-panel strong{color:var(--red)}
+.skin-con .exp-panel strong{color:var(--teal)}
+.skin-idi .exp-panel strong{color:var(--purple)}
+
+/* ── FOOT ────────────────────────────────────────────────────── */
+.q-foot{display:flex;align-items:center;justify-content:space-between;padding:7px 15px;border-top:1px solid var(--border);background:var(--bg)}
+.q-status{font-size:12px;font-weight:700}
+
+/* ── RESULTS ─────────────────────────────────────────────────── */
+.res-hero{border-radius:var(--radius);padding:26px;text-align:center;margin-bottom:12px}
+.skin-syn .res-hero{background:var(--primary)}
+.skin-ant .res-hero{background:var(--red)}
+.skin-con .res-hero{background:var(--teal)}
+.skin-idi .res-hero{background:var(--purple)}
+.res-score{font-family:'Lora',serif;font-size:60px;font-weight:700;color:#fff;line-height:1}
+.res-grade{font-size:17px;font-weight:700;color:rgba(255,255,255,.85);margin:8px 0 4px}
+.res-msg{font-size:14.5px;color:rgba(255,255,255,.70);line-height:1.6}
+.res-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.res-stats .qs-cell{background:var(--white)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════════════════ HERO ═════════════════════════════ -->
+<div class="hero">
+  <div class="hero-kicker">English · Vocabulary · Olive Defence</div>
+  <div class="hero-title">Vocabulary <span>Mock 01</span></div>
+  <div class="hero-sub">Synonyms · Antonyms · Confusing Words · Idioms &mdash; Medium to High difficulty for CDS, NDA &amp; AFCAT 2026</div>
+  <div class="hero-chips">
+    <span class="chip chip-w">CDS</span>
+    <span class="chip chip-w">NDA</span>
+    <span class="chip chip-w">AFCAT</span>
+    <span class="chip chip-a">15 × 4 = 60 Questions</span>
+    <span class="chip chip-g">2026 Target</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════ TAB BAR ══════════════════════════ -->
+<div class="tab-bar">
+  <button class="tab syn on" onclick="switchTab('syn')">📝 Synonyms</button>
+  <button class="tab ant"    onclick="switchTab('ant')">🔁 Antonyms</button>
+  <button class="tab con"    onclick="switchTab('con')">🔀 Confusing Words</button>
+  <button class="tab idi"    onclick="switchTab('idi')">💬 Idioms</button>
+</div>
+
+<!-- ══════════════ SYNONYMS ══════════════════════════════════════ -->
+<div class="pane on skin-syn" id="syn">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="syn-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="syn-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="syn-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="syn-prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="syn-prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll('syn')">Submit &amp; Check</button>
+    <button class="btn btn-ghost"   onclick="resetSection('syn')">&#8635; Reset</button>
+  </div>
+  <div id="syn-results"></div>
+  <div id="syn-area"></div>
+</div>
+
+<!-- ══════════════ ANTONYMS ══════════════════════════════════════ -->
+<div class="pane skin-ant" id="ant">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="ant-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="ant-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="ant-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="ant-prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="ant-prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll('ant')">Submit &amp; Check</button>
+    <button class="btn btn-ghost"   onclick="resetSection('ant')">&#8635; Reset</button>
+  </div>
+  <div id="ant-results"></div>
+  <div id="ant-area"></div>
+</div>
+
+<!-- ══════════════ CONFUSING WORDS ══════════════════════════════ -->
+<div class="pane skin-con" id="con">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="con-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="con-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="con-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="con-prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="con-prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll('con')">Submit &amp; Check</button>
+    <button class="btn btn-ghost"   onclick="resetSection('con')">&#8635; Reset</button>
+  </div>
+  <div id="con-results"></div>
+  <div id="con-area"></div>
+</div>
+
+<!-- ══════════════ IDIOMS ════════════════════════════════════════ -->
+<div class="pane skin-idi" id="idi">
+  <div class="quiz-stats">
+    <div class="qs-cell"><div class="qs-val" id="idi-att">0</div><div class="qs-lbl">Attempted</div></div>
+    <div class="qs-cell"><div class="qs-val g" id="idi-cor">0</div><div class="qs-lbl">Correct</div></div>
+    <div class="qs-cell"><div class="qs-val r" id="idi-wrg">0</div><div class="qs-lbl">Wrong</div></div>
+    <div class="qs-cell"><div class="qs-val a">15</div><div class="qs-lbl">Total</div></div>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-label" id="idi-prog-label">0 of 15 answered</div>
+    <div class="prog-bar"><div class="prog-fill" id="idi-prog"></div></div>
+  </div>
+  <div class="quiz-actions">
+    <button class="btn btn-primary" onclick="submitAll('idi')">Submit &amp; Check</button>
+    <button class="btn btn-ghost"   onclick="resetSection('idi')">&#8635; Reset</button>
+  </div>
+  <div id="idi-results"></div>
+  <div id="idi-area"></div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+/* ================================================================
+   DATA
+================================================================ */
+
+/* ── SYNONYMS (15 Qs) ──────────────────────────────────────────── */
+const SYN=[
+  {w:"GARRULOUS",d:"M",opts:["Taciturn","Loquacious","Pompous","Obsequious"],ans:1,
+   exp:"<strong>Garrulous</strong> = excessively talkative, especially on trivial matters. Synonym: <strong>Loquacious</strong>. Taciturn = habitually silent (antonym). Pompous = self-important. Obsequious = overly servile."},
+  {w:"PERFIDIOUS",d:"H",opts:["Loyal","Deceitful","Obdurate","Laconic"],ans:1,
+   exp:"<strong>Perfidious</strong> = guilty of betrayal; treacherous. Synonym: <strong>Deceitful / Treacherous</strong>. From Latin <em>perfidia</em> — faithlessness. Often appears in CDS RC passages about diplomacy."},
+  {w:"SANGUINE",d:"H",opts:["Melancholic","Pessimistic","Optimistic","Indifferent"],ans:2,
+   exp:"<strong>Sanguine</strong> = cheerfully optimistic, especially in difficult situations. Synonym: <strong>Optimistic</strong>. Do not confuse with 'sanguinary' (bloodthirsty). Common AFCAT trap pair."},
+  {w:"VITUPERATE",d:"H",opts:["Praise","Berate","Extol","Placate"],ans:1,
+   exp:"<strong>Vituperate</strong> = to criticise or abuse someone harshly in words. Synonym: <strong>Berate / Castigate</strong>. Extol = praise highly (antonym). Placate = appease."},
+  {w:"EQUIVOCAL",d:"M",opts:["Unambiguous","Ambiguous","Forthright","Resolute"],ans:1,
+   exp:"<strong>Equivocal</strong> = open to more than one interpretation; deliberately vague. Synonym: <strong>Ambiguous</strong>. Unambiguous and Forthright are antonyms. Appears frequently in NDA verbal ability."},
+  {w:"TRUCULENT",d:"H",opts:["Docile","Eager to please","Aggressively defiant","Melancholy"],ans:2,
+   exp:"<strong>Truculent</strong> = eager or quick to argue or fight; defiantly aggressive. Synonym: <strong>Belligerent / Pugnacious</strong>. Docile = easily managed (antonym)."},
+  {w:"MERETRICIOUS",d:"H",opts:["Genuinely valuable","Apparently attractive but worthless","Extremely modest","Admirably diligent"],ans:1,
+   exp:"<strong>Meretricious</strong> = apparently attractive but having in reality no value; showily showy. Synonym: <strong>Specious / Tawdry</strong>. From Latin <em>meretrix</em> = prostitute. A high-value CDS word."},
+  {w:"LACHRYMOSE",d:"M",opts:["Cheerful","Given to weeping","Humorous","Irritable"],ans:1,
+   exp:"<strong>Lachrymose</strong> = tearful or given to weeping; inducing tears. Synonym: <strong>Mournful / Tearful</strong>. From Latin <em>lacrima</em> = tear. Opposite: Jocular / Mirthful."},
+  {w:"OBFUSCATE",d:"H",opts:["Clarify","Make clear","Confuse or bewilder","Illuminate"],ans:2,
+   exp:"<strong>Obfuscate</strong> = to render obscure, unclear, or unintelligible; to confuse deliberately. Synonym: <strong>Muddle / Befuddle</strong>. Clarify is the antonym. Key word for CDS 2026."},
+  {w:"RECALCITRANT",d:"H",opts:["Submissive","Amenable","Uncooperative and obstinate","Enthusiastic"],ans:2,
+   exp:"<strong>Recalcitrant</strong> = having an obstinately uncooperative attitude toward authority or discipline. Synonym: <strong>Refractory / Intractable</strong>. Submissive is the antonym."},
+  {w:"ENERVATE",d:"M",opts:["Energise","Weaken","Invigorate","Motivate"],ans:1,
+   exp:"<strong>Enervate</strong> = to cause someone to feel drained of energy or vitality; to weaken. Synonym: <strong>Debilitate / Enfeeble</strong>. Common confusion: sounds like 'energise' but means the opposite."},
+  {w:"PELLUCID",d:"H",opts:["Murky","Translucently clear","Opaque","Verbose"],ans:1,
+   exp:"<strong>Pellucid</strong> = translucently clear; easily understood. Synonym: <strong>Lucid / Limpid</strong>. Used for both writing style and water clarity. High-frequency in AFCAT RC."},
+  {w:"IMPECUNIOUS",d:"M",opts:["Wealthy","Having very little money","Extravagant","Generous"],ans:1,
+   exp:"<strong>Impecunious</strong> = having little or no money; penniless. Synonym: <strong>Penurious / Indigent</strong>. Do not confuse with 'impeccable' (faultless). Classic NDA trap."},
+  {w:"IGNOMINY",d:"M",opts:["Glory","Courage","Public shame or disgrace","Honour"],ans:2,
+   exp:"<strong>Ignominy</strong> = public shame or disgrace. Synonym: <strong>Opprobrium / Infamy</strong>. Opposite: Glory, Honour. 'Ignominious defeat' is a common phrase in exam passages."},
+  {w:"INIMICAL",d:"H",opts:["Friendly","Tending to obstruct or harm; hostile","Beneficial","Neutral"],ans:1,
+   exp:"<strong>Inimical</strong> = tending to obstruct or harm; hostile; unfriendly. Synonym: <strong>Inimical = Hostile / Antagonistic</strong>. Do not confuse with 'inimitable' (too good to be copied)."}
+];
+
+/* ── ANTONYMS (15 Qs) ──────────────────────────────────────────── */
+const ANT=[
+  {w:"PROFLIGATE",d:"M",opts:["Thrifty and restrained","Recklessly extravagant","Generous","Courageous"],ans:0,
+   exp:"<strong>Profligate</strong> = recklessly wasteful / licentious. Antonym: <strong>Thrifty / Frugal / Restrained</strong>. A profligate spender is the opposite of a miser."},
+  {w:"SYCOPHANTIC",d:"M",opts:["Flattering and servile","Candid and assertive","Humble","Cautious"],ans:1,
+   exp:"<strong>Sycophantic</strong> = acting in an obsequious way to gain favour; fawning. Antonym: <strong>Candid / Assertive / Forthright</strong>. A sycophant flatters; the antonym speaks truth without seeking favour."},
+  {w:"PENURY",d:"M",opts:["Extreme poverty","Abundance and affluence","Misery","Boredom"],ans:1,
+   exp:"<strong>Penury</strong> = the state of being very poor; extreme poverty. Antonym: <strong>Affluence / Opulence / Prosperity</strong>. 'In penury' means in dire poverty."},
+  {w:"LOQUACIOUS",d:"M",opts:["Talkative","Argumentative","Taciturn","Eloquent"],ans:2,
+   exp:"<strong>Loquacious</strong> = tending to talk a great deal. Antonym: <strong>Taciturn</strong> (habitually silent) or <strong>Reticent</strong> (not revealing one's thoughts readily). A classic AFCAT pair."},
+  {w:"INTREPID",d:"M",opts:["Fearless","Timid and cowardly","Resolute","Adventurous"],ans:1,
+   exp:"<strong>Intrepid</strong> = fearless; adventurous (often used of explorers). Antonym: <strong>Timid / Pusillanimous / Craven</strong>. 'Intrepid soldier' = fearless soldier. Antonym 'pusillanimous' is itself a frequent exam word."},
+  {w:"MUNIFICENT",d:"H",opts:["Extremely generous","Parsimonious","Courageous","Eloquent"],ans:1,
+   exp:"<strong>Munificent</strong> = larger or more generous than is usual or necessary. Antonym: <strong>Parsimonious / Miserly / Niggardly</strong>. 'Munificent donation' ↔ 'parsimonious giving'."},
+  {w:"EBULLIENT",d:"M",opts:["Cheerful and enthusiastic","Apathetic and listless","Aggressive","Meticulous"],ans:1,
+   exp:"<strong>Ebullient</strong> = cheerful and full of energy. Antonym: <strong>Apathetic / Listless / Phlegmatic</strong>. From Latin <em>ebullire</em> = to bubble up. Phlegmatic (calm, unemotional) is the classic antonym used in CDS."},
+  {w:"MENDACIOUS",d:"H",opts:["Not telling the truth","Truthful and honest","Courageous","Intelligent"],ans:1,
+   exp:"<strong>Mendacious</strong> = not telling the truth; lying. Antonym: <strong>Veracious / Truthful / Candid</strong>. 'Mendacity' = habitual lying. 'Veracious' (truthful) frequently pairs with it in exams."},
+  {w:"ACRIMONIOUS",d:"M",opts:["Angry and bitter","Amicable and pleasant","Fierce","Indifferent"],ans:1,
+   exp:"<strong>Acrimonious</strong> = angry and bitter, especially in speech or manner. Antonym: <strong>Amicable / Cordial / Conciliatory</strong>. 'Acrimonious dispute' is common in RC passages about negotiations."},
+  {w:"TORPID",d:"H",opts:["Mentally or physically inactive; sluggish","Lively and alert","Hostile","Meticulous"],ans:1,
+   exp:"<strong>Torpid</strong> = mentally or physically inactive; lethargic. Antonym: <strong>Vivacious / Alert / Animated</strong>. Related to 'torpor' (a state of inactivity). Used in passages on winter hibernation, stagnant economies."},
+  {w:"LACONIC",d:"M",opts:["Brief and concise","Verbose and long-winded","Polite","Harsh"],ans:1,
+   exp:"<strong>Laconic</strong> = using very few words; brief and concise. Antonym: <strong>Verbose / Garrulous / Prolix</strong>. From Lakon (Spartans), famous for brevity. 'Prolix' (excessively lengthy) is the strongest antonym."},
+  {w:"PERNICIOUS",d:"H",opts:["Having a harmful effect","Harmless and benign","Cautious","Trivial"],ans:1,
+   exp:"<strong>Pernicious</strong> = having a harmful effect, especially in a gradual or subtle way. Antonym: <strong>Benign / Innocuous / Salutary</strong>. 'Pernicious influence' ↔ 'salutary effect'."},
+  {w:"IMPETUOUS",d:"M",opts:["Acting without thought; rash","Cautious and deliberate","Slow","Energetic"],ans:1,
+   exp:"<strong>Impetuous</strong> = acting or done quickly without thought or care; rash. Antonym: <strong>Circumspect / Deliberate / Prudent</strong>. 'Impetuous decision' ↔ 'circumspect approach'."},
+  {w:"AUSTERE",d:"M",opts:["Severe and strict; without luxury","Lavish and indulgent","Harsh","Silent"],ans:1,
+   exp:"<strong>Austere</strong> = severe or strict in manner; having no comforts or luxuries. Antonym: <strong>Lavish / Indulgent / Sybaritic</strong>. 'Austere lifestyle' ↔ 'sybaritic existence'. Appears often in CDS economics passages."},
+  {w:"INVETERATE",d:"H",opts:["Having a long-established habit","Occasional and sporadic","New","Enthusiastic"],ans:1,
+   exp:"<strong>Inveterate</strong> = having a particular habit, activity, or interest that is long-established and unlikely to change. Antonym: <strong>Occasional / Sporadic / Reformed</strong>. 'Inveterate gambler' = one who will not stop gambling."}
+];
+
+/* ── CONFUSING WORDS (15 Qs) ───────────────────────────────────── */
+const CON=[
+  {stem:"The general's _____ remark about enemy tactics was deliberately misleading.",
+   pair:"AMBIGUOUS / AMBIVALENT",d:"M",
+   opts:["Ambivalent — having mixed feelings","Ambiguous — open to more than one interpretation","Both are correct here","Neither fits"],ans:1,
+   exp:"<strong>Ambiguous</strong> = having more than one possible meaning (about words/statements). <strong>Ambivalent</strong> = having mixed feelings or contradictory ideas about something (about emotions/attitudes). The remark is 'ambiguous'; the general himself might be 'ambivalent'."},
+  {stem:"The treaty was signed to _____ the growing tension between the two nations.",
+   pair:"MITIGATE / MILITATE",d:"H",
+   opts:["Militate — to be a powerful factor against","Mitigate — to make less severe","Both work","Neither is correct"],ans:1,
+   exp:"<strong>Mitigate</strong> = to make something less severe, serious, or painful. <strong>Militate</strong> = (militate against) to be a powerful factor in preventing something. 'To mitigate tension' is correct. 'Militate against peace' would be the correct use of militate."},
+  {stem:"Her _____ to authority was seen as both a strength and a weakness by her superiors.",
+   pair:"DEFERENCE / DIFFERENCE",d:"M",
+   opts:["Difference — a point of distinction","Deference — humble submission and respect","Both are correct","Neither fits"],ans:1,
+   exp:"<strong>Deference</strong> = respectful submission to the opinion of another. <strong>Difference</strong> = a point of distinction or disagreement. 'Deference to authority' is the standard collocation. Do not swap these in exam sentences."},
+  {stem:"The commander refused to _____ to public pressure and maintained his original decision.",
+   pair:"ACCEDE / EXCEED",d:"M",
+   opts:["Exceed — go beyond a limit","Accede — agree to a demand or request","Both could work","Neither is correct"],ans:1,
+   exp:"<strong>Accede</strong> = to agree to a demand, request, or treaty; to assume an office. <strong>Exceed</strong> = to go beyond a limit or boundary. 'Accede to pressure' = give in. 'Exceed the limit' = go past it. Classic NDA confusing pair."},
+  {stem:"The soldier's _____ behaviour during captivity earned him a gallantry award.",
+   pair:"EXEMPLARY / EXEMPLIFIED",d:"M",
+   opts:["Exemplified — represented by an example","Exemplary — serving as a desirable model","Either works","Both are wrong"],ans:1,
+   exp:"<strong>Exemplary</strong> = serving as a desirable model; representing the best of its kind (adjective). <strong>Exemplified</strong> = illustrated by example (verb, past tense). 'Exemplary behaviour' is the correct phrase. You would say 'he exemplified courage', not 'his exemplified behaviour'."},
+  {stem:"The new policy was expected to _____ a significant improvement in morale.",
+   pair:"EFFECT / AFFECT",d:"M",
+   opts:["Affect (verb) — to have an impact on","Effect (verb) — to bring about; to cause","Both are interchangeable","Neither is correct"],ans:1,
+   exp:"<strong>Effect</strong> as a VERB means to bring about or cause (rare usage). <strong>Affect</strong> as a VERB means to have an impact on. 'To effect a change' = to bring about a change (effect = verb). 'The policy affected morale' = it had an impact. This is the trickiest confusing pair in CDS/AFCAT exams."},
+  {stem:"The officer was known for his _____ principles — he would never compromise his ethics.",
+   pair:"UNEXCEPTIONABLE / UNEXCEPTIONAL",d:"H",
+   opts:["Unexceptional — not out of the ordinary; mediocre","Unexceptionable — not open to objection; beyond reproach","Both mean the same","Neither fits"],ans:1,
+   exp:"<strong>Unexceptionable</strong> = not open to objection; perfectly acceptable; beyond reproach. <strong>Unexceptional</strong> = not out of the ordinary; mediocre; nothing special. An 'unexceptionable' character is admirable; an 'unexceptional' performance is merely average. One of the most frequently confused pairs in high-level exams."},
+  {stem:"The economist argued that the crisis would _____ a severe recession unless action was taken.",
+   pair:"PRECIPITATE / PRECIPITOUS",d:"H",
+   opts:["Precipitous — dangerously high or steep; hasty","Precipitate (verb) — to cause to happen suddenly","Both are correct here","Neither is correct"],ans:1,
+   exp:"<strong>Precipitate</strong> (verb) = to cause something to happen suddenly or prematurely. <strong>Precipitous</strong> (adjective) = dangerously high or steep; done suddenly without careful consideration. 'Precipitate a crisis' ✓. A 'precipitous decline' = a very steep decline. Do not use 'precipitous' as a verb."},
+  {stem:"The young officer was _____ in his first posting — eager, attentive and full of initiative.",
+   pair:"ASSIDUOUS / INSIDIOUS",d:"H",
+   opts:["Insidious — proceeding in a gradual, subtle, harmful way","Assiduous — showing great care and perseverance","Both could apply","Neither fits"],ans:1,
+   exp:"<strong>Assiduous</strong> = showing great care, persistence, and hard work. <strong>Insidious</strong> = proceeding in a gradual, subtle, harmful way ('insidious disease', 'insidious propaganda'). An eager young officer is 'assiduous'; a slow-spreading poison is 'insidious'."},
+  {stem:"The negotiator tried to _____ the rival faction into accepting the peace terms.",
+   pair:"CAJOLE / COERCE",d:"M",
+   opts:["Coerce — compel by force or threat","Cajole — persuade by flattery or gentle argument","Both are synonymous","Neither is correct"],ans:1,
+   exp:"<strong>Cajole</strong> = to persuade someone to do something by sustained coaxing or flattery. <strong>Coerce</strong> = to persuade an unwilling person to do something by using force or threats. The sentence implies gentle persuasion ('into accepting'), so <strong>cajole</strong> is correct. Coercing into peace is an oxymoron."},
+  {stem:"His speech was full of _____ — he spoke eloquently but said nothing of substance.",
+   pair:"RHETORIC / HYPERBOLE",d:"M",
+   opts:["Hyperbole — exaggerated statements not meant literally","Rhetoric — language designed to be persuasive but empty of real content","Both are equally correct","Neither fits the context"],ans:1,
+   exp:"<strong>Rhetoric</strong> (in its negative sense) = language that sounds impressive but lacks sincerity or substance. <strong>Hyperbole</strong> = deliberate exaggeration for effect (e.g., 'I've told you a million times'). The sentence describes empty eloquence → <strong>rhetoric</strong>. Hyperbole is about exaggeration, not emptiness."},
+  {stem:"The new legislation was designed to _____ the illegal trade in wildlife products.",
+   pair:"PROSCRIBE / PRESCRIBE",d:"M",
+   opts:["Prescribe — recommend or order the use of","Proscribe — forbid by law; prohibit","Both are interchangeable","Neither is correct"],ans:1,
+   exp:"<strong>Proscribe</strong> = to forbid, especially by law; to condemn or prohibit. <strong>Prescribe</strong> = to recommend or order something (a medicine, a course of action). Legislation 'proscribes' (bans) illegal trade. A doctor 'prescribes' medicine. Classic reversal trap in CDS English."},
+  {stem:"The historian noted that the two events were _____ — they happened at exactly the same time.",
+   pair:"CONTEMPORANEOUS / CONTEMPORARY",d:"H",
+   opts:["Contemporary — belonging to or occurring in the present","Contemporaneous — existing or occurring at the same period of time","Both are identical in meaning","Neither is correct"],ans:1,
+   exp:"<strong>Contemporaneous</strong> = existing or occurring at the same time (formal, historical/scientific use). <strong>Contemporary</strong> = belonging to or occurring in the present; also = of the same time period (more informal). For two historical events occurring simultaneously, <strong>contemporaneous</strong> is the precise term. 'Contemporary art' = art of today."},
+  {stem:"The rebel leader tried to _____ the troops against their commanding officer.",
+   pair:"INCITE / INSIGHT",d:"M",
+   opts:["Insight — the capacity to gain understanding","Incite — to encourage violent or unlawful behaviour","Both are interchangeable","Neither fits"],ans:1,
+   exp:"<strong>Incite</strong> (verb) = to encourage or stir up violent or unlawful behaviour. <strong>Insight</strong> (noun) = the capacity to gain an accurate understanding of something. 'Incite troops to mutiny' ✓. 'Insight into strategy' ✓. These are different parts of speech — confusing them indicates a fundamental error."},
+  {stem:"The diplomat's response was _____ — it seemed to agree while actually conceding nothing.",
+   pair:"DISINGENUOUS / INGENUOUS",d:"H",
+   opts:["Ingenuous — innocent and unsuspecting; candid","Disingenuous — not candid; giving a false impression of sincerity","Both could apply","Neither fits"],ans:1,
+   exp:"<strong>Disingenuous</strong> = not candid or sincere, typically by pretending ignorance of something; crafty. <strong>Ingenuous</strong> = innocent and unsuspecting; candid; (sometimes = naive). A response that feigns agreement while conceding nothing is <strong>disingenuous</strong>. An ingenuous person is openly honest, sometimes to the point of naivety. Classic high-difficulty CDS pair."}
+];
+
+/* ── IDIOMS (15 Qs) ────────────────────────────────────────────── */
+const IDI=[
+  {stem:"After the scandal, the minister decided to <span class='q-word'>lie low</span> and avoided all public appearances.",
+   d:"M",opts:["Surrender to opponents","Keep a low profile to avoid attention","Speak very quietly","Resign from office"],ans:1,
+   exp:"<strong>Lie low</strong> = to keep quiet and avoid attracting attention, especially when in trouble. The minister avoided the spotlight until the scandal died down."},
+  {stem:"The budget proposal was just a <span class='q-word'>red herring</span> — the real policy changes were buried in the annexure.",
+   d:"M",opts:["A controversial measure","Something that misleads or distracts from the real issue","An emergency measure","A popular demand"],ans:1,
+   exp:"<strong>Red herring</strong> = a clue or piece of information that is misleading or distracting. Origin: smoked herrings dragged across a fox's trail to confuse hunting dogs."},
+  {stem:"The peace talks were going well until one delegate decided to <span class='q-word'>rock the boat</span>.",
+   d:"M",opts:["Leave the negotiations","Cause trouble by disrupting a stable situation","Propose a bold new plan","Ask for more time"],ans:1,
+   exp:"<strong>Rock the boat</strong> = to upset a situation that is otherwise stable by taking disruptive action or expressing controversial opinions."},
+  {stem:"When the evidence against him mounted, the accused decided to <span class='q-word'>come clean</span>.",
+   d:"M",opts:["Escape custody","Confess or tell the full truth","Demand a lawyer","Plead not guilty"],ans:1,
+   exp:"<strong>Come clean</strong> = to tell the whole truth about something, especially something one has previously concealed. Synonym: to confess, to make a full disclosure."},
+  {stem:"The commander reminded his troops not to <span class='q-word'>bite off more than they could chew</span> when planning the operation.",
+   d:"M",opts:["Be too aggressive in combat","Take on a task too large to handle","Waste resources","Underestimate the enemy"],ans:1,
+   exp:"<strong>Bite off more than one can chew</strong> = to attempt to do something that is too difficult or too much for one's capacity. Warns against overcommitting."},
+  {stem:"The defence minister's announcement turned out to be a <span class='q-word'>damp squib</span> — the reforms were far less dramatic than expected.",
+   d:"H",opts:["A highly controversial decision","Something that fails to achieve the expected effect; an anticlimax","A secret plan","An expensive project"],ans:1,
+   exp:"<strong>Damp squib</b> = an event or thing that fails to meet expectations, especially after much anticipation. A squib is a small firework; if damp, it fails to ignite."},
+  {stem:"The politician was known for <span class='q-word'>sitting on the fence</span> on every major issue, never committing either way.",
+   d:"M",opts:["Being corrupt","Avoiding taking a clear stance on a controversial issue","Supporting the opposition","Being indecisive in personal life"],ans:1,
+   exp:"<strong>Sit on the fence</strong> = to avoid committing to either side of an argument or controversy; to remain neutral or noncommittal."},
+  {stem:"After years of rivalry, the two companies finally decided to <span class='q-word'>bury the hatchet</span>.",
+   d:"M",opts:["Merge into one company","End their conflict and make peace","Compete more aggressively","File a lawsuit"],ans:1,
+   exp:"<strong>Bury the hatchet</b> = to end a conflict and become friendly; to make peace. Origin: Native American tradition of literally burying weapons as a sign of peace."},
+  {stem:"The general's plan looked perfect on paper, but in practice it was <span class='q-word'>a bridge too far</span>.",
+   d:"H",opts:["Very expensive to execute","A step or ambition that is too much; an overreach","Dependent on allies","Strategically brilliant"],ans:1,
+   exp:"<strong>A bridge too far</strong> = an act of overreaching; going further than is wise or achievable. From the WWII Operation Market Garden (1944), where capturing a bridge at Arnhem was indeed too ambitious."},
+  {stem:"The report was completed <span class='q-word'>in the nick of time</span> before the deadline expired.",
+   d:"M",opts:["Well before the deadline","At the last possible moment","Carelessly","Ahead of schedule"],ans:1,
+   exp:"<strong>In the nick of time</strong> = at the last possible moment; just in time to prevent something bad from happening."},
+  {stem:"The minister's resignation was seen as a <span class='q-word'>shot in the arm</span> for the opposition.",
+   d:"M",opts:["A serious blow","A source of encouragement or stimulus","A shocking surprise","A minor setback"],ans:1,
+   exp:"<strong>Shot in the arm</strong> = something that gives encouragement, help, or renewed energy to something or someone. The opposition gained momentum from the minister's fall."},
+  {stem:"The young officer was told not to <span class='q-word'>blow his own trumpet</span> during the interview.",
+   d:"M",opts:["Speak too loudly","Boast about one's own abilities or achievements","Interrupt the panel","Show overconfidence"],ans:1,
+   exp:"<strong>Blow one's own trumpet</b> = to talk boastfully about one's own achievements; to self-promote excessively. American equivalent: 'toot your own horn'."},
+  {stem:"The new policy was <span class='q-word'>a double-edged sword</span> — it boosted growth but also increased inequality.",
+   d:"H",opts:["Very effective","Having both helpful and harmful consequences simultaneously","Completely ineffective","A temporary measure"],ans:1,
+   exp:"<strong>A double-edged sword</strong> = something that has both advantages and serious disadvantages; a course of action that can be beneficial and harmful at the same time."},
+  {stem:"Despite all the planning, the mission had to be abandoned as the team found themselves <span class='q-word'>up a blind alley</span>.",
+   d:"H",opts:["Lost in enemy territory","In a situation with no successful outcome; a dead end","Ambushed","Operating without orders"],ans:1,
+   exp:"<strong>Up a blind alley</b> = pursuing a course of action that leads nowhere; in a dead-end situation with no useful results. Also: 'barking up the wrong tree'."},
+  {stem:"The veteran soldier warned the recruits that war was no <span class='q-word'>bed of roses</span>.",
+   d:"M",opts:["A comfortable or easy situation","A dangerous place","A matter of discipline","Something romantic"],ans:0,
+   exp:"<strong>Bed of roses</strong> = a comfortable or easy situation (usually used in the negative: 'no bed of roses' = a difficult or unpleasant situation). War is emphatically NOT comfortable, hence the warning."}
+];
+
+/* ================================================================
+   ENGINE
+================================================================ */
+const SECTIONS={
+  syn:{qs:SYN,label:"Synonyms",tagLabel:"SYNONYM"},
+  ant:{qs:ANT,label:"Antonyms",tagLabel:"ANTONYM"},
+  con:{qs:CON,label:"Confusing Words",tagLabel:"CONF. WORDS"},
+  idi:{qs:IDI,label:"Idioms",tagLabel:"IDIOM"}
+};
+const state={};
+const LABS=["A","B","C","D"];
+
+Object.keys(SECTIONS).forEach(sec=>{
+  state[sec]={
+    answers:new Array(SECTIONS[sec].qs.length).fill(null),
+    revealed:new Array(SECTIONS[sec].qs.length).fill(false)
+  };
+  buildSection(sec);
+});
+
+function buildSection(sec){
+  const {qs,tagLabel}=SECTIONS[sec];
+  const area=document.getElementById(sec+"-area");
+  area.innerHTML="";
+  qs.forEach((q,i)=>{
+    const dc=q.d==="H"?"diff-h":"diff-m";
+    const div=document.createElement("div");
+    div.className="q-card";div.id=sec+"qc"+i;
+    const stemText=q.stem||`Choose the best <strong>synonym</strong> for: <span class="q-word">${q.w}</span>`;
+    const synAntStem=q.w?`Choose the best ${sec==="ant"?"antonym":"synonym"} for: <span class="q-word">${q.w}</span>`:null;
+    const displayStem=q.stem||synAntStem;
+    const pairBadge=q.pair?`<span style="font-size:11px;font-weight:800;color:var(--muted);margin-left:auto;letter-spacing:.3px;">${q.pair}</span>`:"";
+    div.innerHTML=`
+      <div class="q-meta">
+        <span class="q-num">Q.${String(i+1).padStart(2,"0")}</span>
+        <span class="q-tag">${tagLabel}</span>
+        <span class="q-diff ${dc}">${q.d==="H"?"HARD":"MEDIUM"}</span>
+        ${pairBadge}
+      </div>
+      <div class="q-body">
+        <div class="q-text">${displayStem}</div>
+        <div class="opts" id="${sec}opts${i}">
+          ${q.opts.map((o,j)=>`
+            <button class="opt" id="${sec}o${i}_${j}" onclick="pick('${sec}',${i},${j})">
+              <span class="opt-lbl">${LABS[j]}</span>${o}
+            </button>`).join("")}
+        </div>
+        <div class="exp-panel" id="${sec}ex${i}">
+          <div class="exp-label">Explanation</div>
+          <p>${q.exp}</p>
+        </div>
+      </div>
+      <div class="q-foot">
+        <span style="font-size:11px;color:var(--dim);font-weight:700">English · ${SECTIONS[sec].label}</span>
+        <span id="${sec}ai${i}" class="q-status">&mdash;</span>
+      </div>`;
+    area.appendChild(div);
+  });
+}
+
+function pick(sec,qi,oi){
+  if(state[sec].revealed[qi])return;
+  state[sec].answers[qi]=oi;
+  document.querySelectorAll("#"+sec+"opts"+qi+" .opt").forEach((b,j)=>{
+    b.classList.remove("sel");
+    if(j===oi)b.classList.add("sel");
+  });
+  document.getElementById(sec+"qc"+qi).classList.add("answered");
+  const ai=document.getElementById(sec+"ai"+qi);
+  ai.textContent="Selected: "+LABS[oi];
+  updateStats(sec);
+}
+
+function updateStats(sec){
+  const {qs}=SECTIONS[sec];
+  const ans=state[sec].answers;
+  const att=ans.filter(a=>a!==null).length;
+  document.getElementById(sec+"-att").textContent=att;
+  document.getElementById(sec+"-prog").style.width=(att/qs.length*100)+"%";
+  document.getElementById(sec+"-prog-label").textContent=att+" of "+qs.length+" answered";
+  let c=0,w=0;
+  ans.forEach((a,i)=>{if(a===null)return;if(a===qs[i].ans)c++;else w++;});
+  document.getElementById(sec+"-cor").textContent=c;
+  document.getElementById(sec+"-wrg").textContent=w;
+}
+
+function submitAll(sec){
+  const {qs}=SECTIONS[sec];
+  const ans=state[sec].answers;
+  let cor=0,wrg=0,skp=0;
+  qs.forEach((q,i)=>{
+    state[sec].revealed[i]=true;
+    const opts=document.querySelectorAll("#"+sec+"opts"+i+" .opt");
+    opts.forEach(b=>{b.disabled=true;b.classList.remove("sel")});
+    opts[q.ans].classList.add("ok");
+    if(ans[i]!==null&&ans[i]!==q.ans)opts[ans[i]].classList.add("bad");
+    document.getElementById(sec+"ex"+i).classList.add("show");
+    const ai=document.getElementById(sec+"ai"+i);
+    const card=document.getElementById(sec+"qc"+i);
+    card.classList.remove("answered");
+    if(ans[i]===null){skp++;ai.textContent="Skipped";ai.style.color="var(--dim)";}
+    else if(ans[i]===q.ans){cor++;card.classList.add("correct");ai.textContent="\u2713 Correct";ai.style.color="var(--green)";}
+    else{wrg++;card.classList.add("wrong");ai.textContent="\u2717 Wrong";ai.style.color="var(--red)";}
+  });
+  updateStats(sec);
+  showResults(sec,cor,wrg,skp);
+}
+
+function showResults(sec,cor,wrg,skp){
+  const total=SECTIONS[sec].qs.length;
+  const pct=Math.round(cor/total*100);
+  let grade,msg;
+  if(pct>=88){grade="Excellent \ud83c\udfc6";msg="Outstanding command of vocabulary!";}
+  else if(pct>=70){grade="Good \ud83d\udc4d";msg="Solid performance. Review the ones you missed.";}
+  else if(pct>=50){grade="Average";msg="Good effort. Revisit explanations and retry.";}
+  else{grade="Needs Work";msg="Study the explanations carefully and try again.";}
+  const res=document.getElementById(sec+"-results");
+  res.innerHTML=`
+    <div class="res-hero">
+      <div class="res-score">${cor}<span style="font-size:34px;opacity:.5">/${total}</span></div>
+      <div class="res-grade">${grade} &middot; ${pct}%</div>
+      <div class="res-msg">${msg}</div>
+    </div>
+    <div class="res-stats quiz-stats">
+      <div class="qs-cell"><div class="qs-val g">${cor}</div><div class="qs-lbl">Correct</div></div>
+      <div class="qs-cell"><div class="qs-val r">${wrg}</div><div class="qs-lbl">Wrong</div></div>
+      <div class="qs-cell"><div class="qs-val a">${skp}</div><div class="qs-lbl">Skipped</div></div>
+      <div class="qs-cell"><div class="qs-val">${pct}%</div><div class="qs-lbl">Score</div></div>
+    </div>
+    <div style="text-align:center;margin:14px 0 20px">
+      <button class="btn btn-ghost" onclick="document.getElementById('${sec}-area').scrollIntoView({behavior:'smooth'})">Review Answers</button>
+    </div>`;
+  res.style.display="block";
+  res.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function resetSection(sec){
+  state[sec].answers.fill(null);
+  state[sec].revealed.fill(false);
+  buildSection(sec);
+  document.getElementById(sec+"-results").style.display="none";
+  document.getElementById(sec+"-results").innerHTML="";
+  ["-att","-cor","-wrg"].forEach(s=>document.getElementById(sec+s).textContent="0");
+  document.getElementById(sec+"-prog").style.width="0%";
+  document.getElementById(sec+"-prog-label").textContent="0 of "+SECTIONS[sec].qs.length+" answered";
+  document.querySelector(".tab-bar").scrollIntoView({behavior:"smooth"});
+}
+
+function switchTab(id){
+  document.querySelectorAll(".pane").forEach(p=>p.classList.remove("on"));
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("on"));
+  document.getElementById(id).classList.add("on");
+  document.querySelector(".tab."+id).classList.add("on");
+}
+</script>
+</body>
+</html>
