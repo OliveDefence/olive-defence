@@ -1,197 +1,824 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Biology Notes – Olive Defence Entrance Academy</title>
-
+<title>Biology – Olive Defence Entrance Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --olive: #3b5323;
+  --olive-light: #5a7a3a;
+  --olive-pale: #e8f0df;
+  --olive-mid: #c8dbb0;
+  --accent: #8fb94a;
+  --dark: #1e2b14;
+  --text: #2c3a1e;
+  --sub: #6b7c5a;
+  --white: #fff;
+  --card-bg: #f5f8ef;
+  --shadow: 0 4px 18px rgba(59,83,35,0.10);
+  --priority: #e65c00;
+  --priority-bg: #fff4ee;
+  --priority-border: #f5b08a;
+  --lock: #8b1a1a;
+  --lock-bg: #fdf0f0;
+  --lock-border: #e8aeae;
+  --free-border: #a3d46e;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-font-family:Arial;
-text-align:center;
-background:#f2f4f3;
-margin:0;
+body {
+  font-family: 'DM Sans', Arial, sans-serif;
+  background: #f2f5ec;
+  min-height: 100vh;
+  color: var(--text);
 }
 
-h1{
-margin-top:18px;
-font-size:30px;
-color:#1b3d2f;
+/* HEADER */
+.header {
+  background: var(--olive);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(120deg, rgba(143,185,74,0.06) 0px, rgba(143,185,74,0.06) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(30deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 36px 24px 28px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--olive-mid);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(38px, 7vw, 58px);
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.header h1 span { color: var(--accent); }
+.tag-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tag {
+  background: rgba(143,185,74,0.18);
+  color: var(--olive-mid);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(143,185,74,0.3);
+  padding: 5px 14px;
+  border-radius: 20px;
 }
 
-.subtitle{
-color:#666;
-font-size:16px;
-margin-top:5px;
+/* LEGEND */
+.legend-row {
+  max-width: 680px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sub);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot-free     { background: var(--olive); }
+.dot-lock     { background: var(--lock); }
+.dot-priority { background: var(--priority); }
+
+/* PROGRESS */
+.progress-section {
+  max-width: 680px;
+  margin: 16px auto 0;
+  padding: 0 20px;
+}
+.progress-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid var(--olive-mid);
+}
+.progress-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sub);
+  white-space: nowrap;
+  min-width: 80px;
+}
+.progress-bar-wrap {
+  flex: 1;
+  background: var(--olive-pale);
+  border-radius: 99px;
+  height: 10px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--olive-light), var(--accent));
+  width: 0%;
+  transition: width 0.7s cubic-bezier(.4,0,.2,1);
+}
+.progress-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--olive);
+  white-space: nowrap;
+  min-width: 48px;
+  text-align: right;
 }
 
-.legend{
-margin-top:15px;
-font-size:14px;
-color:#555;
+/* CHAPTERS */
+.chapters {
+  max-width: 680px;
+  margin: 26px auto 48px;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
 }
 
-/* CHAPTER CARDS */
-
-.chapter{
-padding:18px;
-margin:18px auto;
-width:88%;
-max-width:420px;
-border-radius:12px;
-font-size:19px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 3px 8px rgba(0,0,0,0.08);
-transition:all 0.25s ease;
+.chapter-card {
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s, background 0.3s;
+}
+.chapter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(59,83,35,0.14);
 }
 
-.chapter:hover{
-transform:translateY(-3px);
-box-shadow:0 8px 18px rgba(0,0,0,0.15);
+/* FREE card */
+.chapter-card.free-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--olive-mid);
+}
+.chapter-card.free-card.priority {
+  background: var(--priority-bg);
+  border-color: var(--priority-border);
+}
+.chapter-card.free-card.done {
+  background: #eef6e5 !important;
+  border-color: #a3d46e !important;
 }
 
-.free{
-background:#e6f4ea;
-border:1px solid #b7e0c2;
+/* LOCKED card */
+.chapter-card.lock-card {
+  background: var(--lock-bg);
+  border: 1.5px solid var(--lock-border);
+  cursor: pointer;
+}
+.chapter-card.lock-card.priority {
+  background: var(--priority-bg);
+  border-color: var(--priority-border);
 }
 
-.free a{
-text-decoration:none;
-color:#1e7d38;
+/* Chapter number */
+.chapter-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  min-width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
+  flex-shrink: 0;
+}
+.free-card .chapter-num { background: var(--olive-pale); color: var(--olive); }
+.free-card.priority:not(.done) .chapter-num { background: #ffe0cc; color: var(--priority); }
+.free-card.done .chapter-num { background: var(--olive); color: var(--accent); }
+.lock-card .chapter-num { background: #f5d5d5; color: var(--lock); }
+.lock-card.priority .chapter-num { background: #ffe0cc; color: var(--priority); }
+
+/* Free chapter link */
+.chapter-link {
+  flex: 1;
+  padding: 13px 14px 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  min-width: 0;
+}
+.chapter-link:hover { background: rgba(143,185,74,0.07); }
+
+/* Locked chapter body */
+.chapter-body {
+  flex: 1;
+  padding: 13px 14px 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
 }
 
-.locked{
-background:#fff0f0;
-border:1px solid #f1c3c3;
-color:#c62828;
+.chapter-left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.chapter-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.free-card.done .chapter-title { color: var(--olive); }
+.lock-card .chapter-title { color: var(--lock); }
+.lock-card.priority .chapter-title { color: var(--priority); }
+
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.badge-priority { background: #ffe0cc; color: var(--priority); border: 1px solid var(--priority-border); }
+.badge-lock     { background: #f5d5d5; color: var(--lock);     border: 1px solid var(--lock-border); }
+
+.chapter-arrow {
+  color: var(--accent);
+  opacity: 0.3;
+  transition: opacity 0.18s, transform 0.18s;
+  flex-shrink: 0;
+}
+.chapter-link:hover .chapter-arrow { opacity: 1; transform: translateX(3px); }
+
+.lock-icon {
+  flex-shrink: 0;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
 }
 
+/* DONE BUTTON */
+.done-btn {
+  background: none;
+  border: none;
+  border-left: 1.5px solid var(--olive-mid);
+  cursor: pointer;
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 62px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  outline: none;
+}
+.done-btn:hover { background: rgba(143,185,74,0.12); }
+.free-card.done .done-btn { background: rgba(143,185,74,0.08); }
+.free-card.done .done-btn:hover { background: rgba(200,70,70,0.07); }
+
+.btn-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--olive-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: #aaa;
+  font-size: 0;
+  transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+  user-select: none;
+}
+.free-card.done .btn-icon {
+  border-color: #5aad1e;
+  background: #5aad1e;
+  color: white;
+  box-shadow: 0 2px 10px rgba(90,173,30,0.35);
+  transform: scale(1.08);
+}
+.btn-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sub);
+  transition: color 0.2s;
+  user-select: none;
+}
+.free-card.done .btn-label { color: #5aad1e; }
+
+/* POPUP */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,5,0.55);
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+}
+.overlay.show { display: flex; }
+.popup {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 36px 30px 28px;
+  width: 320px;
+  max-width: 92vw;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(10,20,5,0.3);
+  position: relative;
+  animation: popIn 0.3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn {
+  from { transform: scale(0.88); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+.popup-icon {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: var(--olive);
+  margin-bottom: 10px;
+}
+.popup p {
+  font-size: 14px;
+  color: var(--sub);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.popup-join {
+  display: block;
+  background: var(--olive);
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 13px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 10px;
+}
+.popup-join:hover { background: var(--olive-light); transform: translateY(-1px); }
+.popup-join span { color: var(--accent); }
+.popup-close {
+  background: #f0f5ec;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sub);
+  width: 100%;
+  transition: background 0.2s;
+}
+.popup-close:hover { background: #deebd2; }
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--olive);
+  color: white;
+  padding: 12px 26px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
+  opacity: 0;
+  z-index: 999;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 22px 16px;
+  color: var(--sub);
+  font-size: 13px;
+  border-top: 1px solid var(--olive-mid);
+  background: var(--olive-pale);
+}
 </style>
-
 </head>
-
 <body>
 
-<h1>Biology Notes</h1>
-
-<p class="subtitle">
-CDS • NDA • AFCAT Biology Preparation
-</p>
-
-<p class="legend">
-✓ Free Lesson | 🔒 Paid Chapter | ✅ High Priority
-</p>
-
-<div class="chapter free">
-<a href="B01_Cell_BasicUnit.html">
-✓ Cell – Basic Unit of Life (Free) ✅
-</a>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Back to Portal
+    </a>
+    <h1>Bio<span>logy</span></h1>
+    <div class="tag-row">
+      <span class="tag">CDS</span>
+      <span class="tag">NDA</span>
+      <span class="tag">AFCAT</span>
+      <span class="tag">15 Chapters</span>
+    </div>
+  </div>
 </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Tissues</div>
+<!-- LEGEND -->
+<div class="legend-row">
+  <span class="legend-item"><span class="legend-dot dot-free"></span> Free Chapter</span>
+  <span class="legend-item"><span class="legend-dot dot-lock"></span> Paid Chapter</span>
+  <span class="legend-item"><span class="legend-dot dot-priority"></span> High Priority</span>
+</div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Plant Physiology</div>
+<!-- PROGRESS -->
+<div class="progress-section">
+  <div class="progress-card">
+    <span class="progress-label">Free Done</span>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-count" id="progressCount">0 / 1</span>
+  </div>
+</div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Digestive System ✅</div>
+<!-- SVG SNIPPETS (reused inline) -->
+<!-- Lock SVG small -->
 
-<div class="chapter locked" onclick="showPopup()">🔒 Respiratory System</div>
+<div class="chapters">
 
-<div class="chapter locked" onclick="showPopup()">🔒 Circulatory System ✅</div>
+  <!-- Ch 01 – FREE + PRIORITY -->
+  <div class="chapter-card free-card priority" data-id="B01">
+    <div class="chapter-num">01</div>
+    <a href="B01_Cell_BasicUnit.html" class="chapter-link">
+      <div class="chapter-left">
+        <span class="chapter-title">Cell – Basic Unit of Life</span>
+        <div class="badge-row">
+          <span class="badge badge-priority">
+            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18M5 3l14 5-14 5"/></svg>
+            High Priority
+          </span>
+        </div>
+      </div>
+      <svg class="chapter-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </a>
+    <button class="done-btn" onclick="toggleDone(this)">
+      <div class="btn-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <span class="btn-label">Done</span>
+    </button>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Excretory System</div>
+  <!-- Ch 02 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">02</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Tissues</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Nervous System</div>
+  <!-- Ch 03 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">03</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Plant Physiology</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Endocrine System</div>
+  <!-- Ch 04 – LOCKED + PRIORITY -->
+  <div class="chapter-card lock-card priority" onclick="showPopup()">
+    <div class="chapter-num">04</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Digestive System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+          <span class="badge badge-priority"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18M5 3l14 5-14 5"/></svg> High Priority</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Reproductive System</div>
+  <!-- Ch 05 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">05</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Respiratory System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Genetics and Heredity ✅</div>
+  <!-- Ch 06 – LOCKED + PRIORITY -->
+  <div class="chapter-card lock-card priority" onclick="showPopup()">
+    <div class="chapter-num">06</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Circulatory System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+          <span class="badge badge-priority"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18M5 3l14 5-14 5"/></svg> High Priority</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Evolution</div>
+  <!-- Ch 07 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">07</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Excretory System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Microorganisms</div>
+  <!-- Ch 08 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">08</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Nervous System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Human Diseases ✅</div>
+  <!-- Ch 09 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">09</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Endocrine System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div class="chapter locked" onclick="showPopup()">🔒 Ecology and Environment</div>
+  <!-- Ch 10 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">10</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Reproductive System</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<!-- JOIN POPUP -->
+  <!-- Ch 11 – LOCKED + PRIORITY -->
+  <div class="chapter-card lock-card priority" onclick="showPopup()">
+    <div class="chapter-num">11</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Genetics and Heredity</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+          <span class="badge badge-priority"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18M5 3l14 5-14 5"/></svg> High Priority</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<div id="popup" style="
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:30px;
-box-shadow:0 0 20px rgba(0,0,0,0.25);
-border-radius:12px;
-width:300px;
-text-align:center;
-">
+  <!-- Ch 12 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">12</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Evolution</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<h3 style="margin-top:0;color:#1b3d2f;">
-Unlock Full Biology Course
-</h3>
+  <!-- Ch 13 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">13</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Microorganisms</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<p style="font-size:15px;">
-Access all chapters and practice questions.
-</p>
+  <!-- Ch 14 – LOCKED + PRIORITY -->
+  <div class="chapter-card lock-card priority" onclick="showPopup()">
+    <div class="chapter-num">14</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Human Diseases</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+          <span class="badge badge-priority"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18M5 3l14 5-14 5"/></svg> High Priority</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<a href="https://rzp.io/rzp/t1ZueGE"_blank">
+  <!-- Ch 15 – LOCKED -->
+  <div class="chapter-card lock-card" onclick="showPopup()">
+    <div class="chapter-num">15</div>
+    <div class="chapter-body">
+      <div class="chapter-left">
+        <span class="chapter-title">Ecology and Environment</span>
+        <div class="badge-row">
+          <span class="badge badge-lock"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Paid</span>
+        </div>
+      </div>
+      <span class="lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    </div>
+  </div>
 
-<button style="
-background:#1b5e20;
-color:white;
-border:none;
-padding:12px 24px;
-font-size:16px;
-border-radius:6px;
-cursor:pointer;
-">
+</div>
 
-Join Course
+<!-- POPUP OVERLAY -->
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="popup" id="popup">
+    <div class="popup-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#3b5323" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+    </div>
+    <h3>Unlock Full<br>Biology Course</h3>
+    <p>Get access to all 15 chapters, practice questions, and detailed notes for CDS, NDA &amp; AFCAT.</p>
+    <a href="YOUR_RAZORPAY_LINK" target="_blank" class="popup-join">
+      Join Course &nbsp;<span>→</span>
+    </a>
+    <button class="popup-close" onclick="closePopup()">Maybe Later</button>
+  </div>
+</div>
 
-</button>
+<div class="toast" id="toast"></div>
 
-</a>
-
-<br><br>
-
-<button onclick="closePopup()" style="
-background:#eee;
-border:none;
-padding:8px 16px;
-border-radius:6px;
-cursor:pointer;
-">
-
-Close
-
-</button>
-
+<div class="footer">
+  © Olive Defence Entrance Academy &nbsp;·&nbsp; Progress saved on your device
 </div>
 
 <script>
+function showPopup() { document.getElementById('overlay').classList.add('show'); }
+function closePopup() { document.getElementById('overlay').classList.remove('show'); }
+function handleOverlayClick(e) { if (e.target === document.getElementById('overlay')) closePopup(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
 
-function showPopup(){
-document.getElementById("popup").style.display="block";
+const FREE_TOTAL = document.querySelectorAll('.free-card').length;
+const STORAGE_KEY = 'olive_bio_done';
+
+function getSaved() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch(e) { return []; }
+}
+function saveDone(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+
+function updateProgress() {
+  const done = document.querySelectorAll('.free-card.done').length;
+  const pct = FREE_TOTAL > 0 ? (done / FREE_TOTAL) * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = done + ' / ' + FREE_TOTAL;
 }
 
-function closePopup(){
-document.getElementById("popup").style.display="none";
+function toggleDone(btn) {
+  const card = btn.closest('.chapter-card');
+  const id = card.dataset.id;
+  const isDone = card.classList.contains('done');
+  const saved = getSaved();
+  if (isDone) {
+    card.classList.remove('done');
+    const idx = saved.indexOf(id);
+    if (idx > -1) saved.splice(idx, 1);
+    saveDone(saved);
+    updateProgress();
+    showToast('Marked as incomplete');
+  } else {
+    card.classList.add('done');
+    if (!saved.includes(id)) saved.push(id);
+    saveDone(saved);
+    updateProgress();
+    showToast('Chapter marked as done!');
+  }
 }
 
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function restoreProgress() {
+  const saved = getSaved();
+  document.querySelectorAll('.free-card[data-id]').forEach(card => {
+    if (saved.includes(card.dataset.id)) card.classList.add('done');
+  });
+  updateProgress();
+}
+restoreProgress();
 </script>
-
 </body>
-
 </html>
-
